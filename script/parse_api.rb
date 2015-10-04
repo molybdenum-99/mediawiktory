@@ -67,6 +67,14 @@ module Api
         params: params.map(&:to_hash)
       }
     end
+
+    def to_help
+      "#{header} (#{short_flags}): #{description}"
+    end
+
+    def short_flags
+      flags.map{|f| f[:id].sub('apihelp-flag-', '')}.join(',')
+    end
   end
 
   class Parameter
@@ -161,8 +169,11 @@ require 'yaml'
 
 #start = '/w/api.php?action=help'
 #File.write 'tmp/api.yaml', Api::Module.new('/w/api.php?action=help').to_hash.to_yaml
-File.write 'tmp/api.yaml', Api::Module.new('/w/api.php?action=help&modules=query').to_hash.to_yaml
+#File.write 'tmp/api.yaml', Api::Module.new('/w/api.php?action=help&modules=query').to_hash.to_yaml
 #pp Api::Module.new("/w/api.php?action=help&modules=query%2Bextlinks").to_hash
+
+main = Api::Module.new('/w/api.php?action=help')
+puts main.to_help
 
 __END__
 
