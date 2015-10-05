@@ -24,7 +24,6 @@ module Api
     attr_reader :url, :header, :prefix, :flags, :description, :params
 
     def initialize(url)
-      puts url
       @url = url
       parse(Nokogiri::HTML(Api.client.get(url).body))
     end
@@ -38,7 +37,10 @@ module Api
         [header, nil]
       end
 
-      @flags = parse_flags(doc.at('.apihelp-flags'))
+      @flags = Flags.new(doc.at('.apihelp-flags'))
+      if @flags.include?('apihelp-unknown')
+        p url
+      end
       @description = if desc = doc.at('.apihelp-flags + p')
         desc.text.strip
       end
@@ -52,12 +54,6 @@ module Api
       end
     end
 
-    def parse_flags(div)
-      div.search(' ul li span').to_a.map{|el|
-        {id: el.attr('class'), text: el.text}
-      }
-    end
-
     def to_hash
       {
         header: header,
@@ -68,12 +64,58 @@ module Api
       }
     end
 
-    def to_help
-      "#{header} (#{short_flags}): #{description}"
+    def to_help(level = 0)
+      '  ' * level + 
+        "#{header} (#{flags.to_help}): #{description}\n" +
+        params.map{|p| p.to_help(level + 1)}.join("\n")
+    end
+  end
+
+  class Flags
+    def initialize(div)
+      @raw = div.search('ul li > span').to_a.map{|el|
+        {id: el.attr('class'), text: el.text}
+      }
+      @@all ||= []
+      @@all.concat @raw.map{|r| r[:id]}
     end
 
-    def short_flags
-      flags.map{|f| f[:id].sub('apihelp-flag-', '')}.join(',')
+    def include?(flag)
+      @raw.map{|f| f[:id]}.include?(flag)
+    end
+
+    def self.all
+      @@all
+    end
+
+    def to_help
+      @raw.map{|f| f[:id].sub(/^apihelp-(flag-)?/, '')}.join(',')
+    end
+  end
+
+  class ParameterValue
+    attr_reader :name, :url, :module
+    attr_accessor :description
+
+    def initialize(name)
+      @name = name
+    end
+
+    def parse(url)
+      @url = url
+      @module = Module.new(url) unless @name == 'generator'
+    end
+
+    def empty?
+      !@description && !@module
+    end
+
+    def to_help(level = 0)
+      if self.module
+        '  ' * level + "#{name}: " + self.module.to_help(level+1).sub(/\A\s+/, '')
+      else
+        '  ' * level + "#{name}: #{description}"
+      end
     end
   end
 
@@ -82,19 +124,11 @@ module Api
 
     def initialize(name, defs)
       @name = @full_name = name
-      @values = Hash.new{|h,k| h[k] = {} }
+      @values = Hash.new{|h,k| h[k] = ParameterValue.new(k) }
       @info = []
       
       defs.each do |el|
         parse_def(el)
-      end
-
-      if @name != 'generator'
-        @values.each do |name, val|
-          if val[:href]
-            val[:module] = Module.new(val[:href]).to_hash
-          end
-        end
       end
     end
 
@@ -117,6 +151,23 @@ module Api
       }.reject{|k,v| v.nil? || v == [] || v == {}}
     end
 
+    def to_help(level = 1)
+      '  ' * level +
+        [name,
+          type && " (#{type})",
+          ': ',
+          description,
+          default && " (default #{default})"
+        ].reject{|l| !l}.join +
+          if values.empty?
+            ''
+          elsif values.all?{|k, v| v.empty?}
+            "\n" + '  ' * (level+1) + values.keys.join(', ')
+          else
+            "\n" + values.map{|key, val| val.to_help(level + 1)}.join("\n")
+          end
+    end
+
     def parse_def(el)
       case el.attr('class')
       when 'description'
@@ -132,7 +183,7 @@ module Api
       if el.at('dl')
         @description = el.at('p').text.strip
         el.at('dl').each_term.map{|dts, dds|
-          @values[dts.first.text].merge!(info: dds.first.text)
+          @values[dts.first.text].description = dds.first.text
         }
       else
         @description = el.text.strip
@@ -145,14 +196,16 @@ module Api
         @default = $1
       when /^Type: ([^\(]+)\s*($|\()/
         @type = $1.strip
-      when /^One of the following values:\s*(.+)$/,
-           /^Values \(separate with \|\):\s*(.+)$/
+      when /^(One of) the following values:\s*(.+)$/,
+           /^(Values) \(separate with \|\):\s*(.+)$/
+
+        @type = $1 == 'One of' ? 'one of' : 'several'
         if el.at('a')
           el.search('a').each do |a|
-            @values[a.text].merge!(href: a.attr('href'))
+            @values[a.text].parse(a.attr('href'))
           end
         else
-          $1.split(',').map(&:strip).map{|val|
+          $2.split(',').map(&:strip).map{|val|
               val.sub(/^(Can be |or )/, '') # Wtf?.. https://en.wikipedia.org/w/api.php?action=help&modules=query%2Bextlinks
             }.each{|n| @values[n]}
         end
@@ -173,7 +226,8 @@ require 'yaml'
 #pp Api::Module.new("/w/api.php?action=help&modules=query%2Bextlinks").to_hash
 
 main = Api::Module.new('/w/api.php?action=help')
-puts main.to_help
+#puts main.to_help
+pp Api::Flags.all.group_by(&:itself).map{|f,c| [f, c.count]}.to_h
 
 __END__
 
