@@ -34,7 +34,6 @@ module MediaWiktory
         case value
         when Hash
           res[key] = value.keys.join('|')
-          p value
           res.merge!(value.map{|k,v| flatten(v)}.inject(:merge)) # TODO: flatten(v, prefix_from(k))
         when Array
           res[key] = value.join('|')
@@ -43,6 +42,60 @@ module MediaWiktory
         end
       end
       res
+    end
+  end
+
+  class Prop
+    def Prop.coerce(value)
+      case value
+      when Symbol, String
+        new(value.to_sym)
+      when Hash
+        value.map{|name, params|
+          new(name, params)
+        }
+      else
+        fail("Can't coerce #{value.class} to property")
+      end
+    end
+
+    attr_reader :name, :params
+
+    def initialize(name, params = {})
+      @name, @params = name, params
+    end
+  end
+
+  class QueryRequest
+    def initialize(params = {})
+      params.each do |key, val| self.send(key, val) end
+    end
+
+    def prop(*prop)
+      if prop.empty?
+        @prop
+      else
+        @prop = prop.map(&Prop.method(:coerce)).flatten
+        self
+      end
+    end
+
+    def titles(*titles)
+      if titles.empty?
+        @titles
+      else
+        @titles = titles.flatten
+        self
+      end
+    end
+
+    def redirects(*redirects)
+      if redirects.empty?
+        @redirects
+      else
+        @redirects = !!redirects.first
+        self
+      end
     end
   end
 end
