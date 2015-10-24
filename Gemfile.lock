@@ -5,11 +5,14 @@ GEM
     crack (0.4.2)
       safe_yaml (~> 1.0.0)
     diff-lcs (1.2.5)
+    faker (1.5.0)
+      i18n (~> 0.5)
     faraday (0.9.1)
       multipart-post (>= 1.2, < 3)
     faraday_middleware (0.10.0)
       faraday (>= 0.7.4, < 0.10)
     hashie (3.4.2)
+    i18n (0.7.0)
     mini_portile (0.6.2)
     multipart-post (2.0.0)
     naught (1.1.0)
@@ -41,6 +44,7 @@ PLATFORMS
 
 DEPENDENCIES
   addressable
+  faker
   faraday
   faraday_middleware
   hashie
