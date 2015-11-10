@@ -1,34 +1,104 @@
 module MediaWiktory
   describe QueryRequest do
+    let(:request){QueryRequest.new}
+
+    describe :set! do
+      it 'allows to set value' do
+        expect(request.params[:export]).to be_nil
+        request.set!(:export, true)
+        expect(request.params[:export]).to eq true
+      end
+
+      it 'checks/converts type' do
+        request.set!(:export, 'true')
+        expect(request.params[:export]).to eq true
+      end
+
+      it 'checks name' do
+        expect{request.set!(:eport, 'true')}.to raise_error(ArgumentError, /eport/)
+      end
+    end
+
+    describe :set do
+      it 'does not change origin' do
+        changed = request.set(:export, true)
+
+        expect(request.params[:export]).to be_nil
+        expect(changed.params[:export]).to eq true
+      end
+    end
+
+    describe 'method definitions' do
+      it 'works!' do
+        changed = request.export(true)
+
+        expect(request.params[:export]).to be_nil
+        expect(changed.params[:export]).to eq true
+      end
+    end
+
+    describe 'set on init' do
+      it 'sets' do
+        request = QueryRequest.new(export: true)
+        expect(request.params[:export]).to eq true
+      end
+
+      it 'checks and converts' do
+        request = QueryRequest.new(export: 'true')
+        expect(request.params[:export]).to eq true
+      end
+
+      it 'raises on unknown' do
+        expect{QueryRequest.new(eport: 'true')}.to raise_error(ArgumentError, /eport/)
+      end
+    end
+  end
+end
+
+__END__
     describe 'accepting parameters' do
       let(:request){QueryRequest.new}
+
+      describe 'basic func' do
+        let!(:changed){request.export(true)}
+
+        describe 'source' do
+          subject{request}
+          its(:params){should_not include(:export)}
+        end
+
+        describe 'changed' do
+          subject{changed}
+          its(:params){should include(export: true)}
+        end
+      end
       
       shared_examples 'array of module param' do
       end
 
       shared_examples 'boolean param' do |param|
         it 'allows to set itself' do
-          expect(request.send(param, true).to_hash).to include(param => true)
+          expect(request.send(param, true).to_hash).to include(param.to_s => true)
         end
         it 'allows to unset itself' do
           expect(request.
             send(param, true).    # setting
             send(param, false).   # unsetting
-            to_hash).not_to include(param)
+            to_hash).not_to include(param.to_s)
         end
       end
 
       shared_examples 'array of strings param' do |param|
         let(:values){3.times.map{Faker::Lorem.word}}
         it 'allows to set' do
-          expect(request.send(param, *values).to_hash).to include(param => values)
+          expect(request.send(param, *values).to_hash).to include(param.to_s => values)
         end
       end
       
       shared_examples 'array of ints param' do |param|
         let(:values){3.times.map{rand(100)}}
         it 'allows to set' do
-          expect(request.send(param, *values).to_hash).to include(param => values)
+          expect(request.send(param, *values).to_hash).to include(param.to_s => values)
         end
       end
 
@@ -36,7 +106,24 @@ module MediaWiktory
       end
       
       context :prop do
-        it_should_behave_like 'array of module param'
+        #it_should_behave_like 'array of module param'
+
+        context 'single value(s)' do
+          it 'accepts known values' do
+            expect(request.prop(:categories, :revisions).to_hash).to \
+              include('prop' => {'categories' => {}, 'revisions' => {}})
+          end
+
+          it 'raises on unknown values' do
+            expect{request.prop(:categoies)}.to raise_error(ArgumentError, /categoies/)
+          end
+        end
+
+        context 'hash' do
+        end
+
+        context 'mixed values' do
+        end
       end
       
       context :list do
