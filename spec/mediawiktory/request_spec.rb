@@ -1,5 +1,69 @@
 module MediaWiktory
   describe Request do
+    let(:klass){
+      Class.new(Request){
+        # single values
+        r_attribute :export, Axiom::Types::Boolean
+        r_attribute :max_age, Integer
+        r_attribute :limit, IntegerOrMax
+        r_attribute :limit2, IntegerOrMax
+        r_attribute :dir, Enum[:ascending, :descending]
+
+        # TODO: module
+
+        # lists
+        r_attribute :titles, Array[String]
+      }
+    }
+    
+    describe 'construction' do
+      it 'converts all attributes' do
+        req = klass.new(
+          export: 'true',
+          max_age: '100',
+          limit: '20',
+          limit2: 'max',
+          dir: :ascending,
+          titles: ['Argentina', 'Chile']
+        )
+        expect(req.export).to eq true
+        expect(req.max_age).to eq 100
+        expect(req.limit).to eq 20
+        expect(req.limit2).to eq 'max'
+        expect(req.dir).to eq :ascending
+        expect(req.titles).to eq ['Argentina', 'Chile']
+      end
+
+      it 'raises on wrong enum values' do
+      end
+
+      it 'raises on unknown attributs' do
+      end
+    end
+
+    describe 'chainable setters' do
+      let(:req){klass.new(export: true)}
+      
+      it 'works as a getter without argument' do
+        expect(req.export).to eq true
+      end
+
+      it 'works as a setter with argument' do
+        req2 = req.export(false)
+        expect(req2.export).to eq false
+        expect(req.export).to eq true
+      end
+
+      it 'works as a smart setter for arrays' do
+      end
+    end
+
+    describe :to_param do
+    end
+  end
+end
+
+__END__
     describe 'setting param - basic behavior' do
       let(:klass){
         Class.new(Request) do
@@ -59,7 +123,44 @@ module MediaWiktory
           expect{klass.new(aram1: true)}.to raise_error(ArgumentError, /aram1/)
         end
       end
+    end
 
+    describe 'different types of params' do
+      shared_examples 'param type behavior' do
+        it 'converts parameter' do
+        end
+
+        it 'throws on unacceptable value' do
+        end
+      end
+      
+      context :boolean do
+      end
+
+      context :string do
+      end
+
+      context :int do
+      end
+
+      context :int_or_str do
+        let(:convert){ {'1' => 1, 'max' => 'max'} }
+      end
+
+      context :str_list do
+      end
+
+      context :str_one_of do
+      end
+
+      context :int_list do
+      end
+
+      context :module_list do
+      end
+
+      context :module_one_of do
+      end
     end
   end
 end

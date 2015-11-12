@@ -1,3 +1,5 @@
+require 'virtus'
+
 module MediaWiktory
   module ParametersDSL
     def params
@@ -42,37 +44,72 @@ module MediaWiktory
     end
   end
 
+  class IntegerOrMax < Virtus::Attribute::Integer
+    def coerce(value)
+      value.to_s == 'max' ? 'max' : super
+    end
+  end
+
+  module Enum
+    def Enum.[](*values)
+      values.map!(&:to_sym)
+      Class.new(Virtus::Attribute) do
+        define_method(:coerce){|value|
+          return nil unless value
+          
+          value = value.to_sym
+          values.include?(value) or
+            fail(ArgumentError, "Enum #{values} not accepts #{value}")
+
+          value
+        }
+      end
+    end
+  end
+
+
   class Request
-    extend ParametersDSL
+    #extend ParametersDSL
+    include Virtus.model
 
-    attr_reader :params
+    class << self
+      def r_attribute(name, *arg)
+        attribute(name, *arg)
+        define_method(name){|*arg|
+          return super() if arg.empty?
+          self.class.new(to_h).tap{|dup| dup.send("#{name}=", *arg)}
+        }
+      end
+    end
 
-    def initialize(params = {})
-      @params = {}
+    #attr_reader :params
+
+    #def initialize(params = {})
+      #@params = {}
       
-      params.each{|name, val| set!(name, val)}
-    end
+      #params.each{|name, val| set!(name, val)}
+    #end
 
-    def dup_with(**hash)
-      self.class.new(params.merge(hash))
-    end
+    #def dup_with(**hash)
+      #self.class.new(params.merge(hash))
+    #end
 
-    def set!(name, value)
-      definition = self.class.params[name] or
-        fail(ArgumentError, "Undefined param #{name}")
+    #def set!(name, value)
+      #definition = self.class.params[name] or
+        #fail(ArgumentError, "Undefined param #{name}")
         
-      @params[name] =
-        case definition[:type]
-        when :boolean
-          !!value
-        else
-          fail "Undefined type for #{name}"
-        end
-    end
+      #@params[name] =
+        #case definition[:type]
+        #when :boolean
+          #!!value
+        #else
+          #fail "Undefined type for #{name}"
+        #end
+    #end
 
-    def set(name, value)
-      dup_with(name => value)
-    end
+    #def set(name, value)
+      #dup_with(name => value)
+    #end
   end
 
   class QueryRequest < Request
@@ -82,17 +119,17 @@ module MediaWiktory
 
     #module_array :list, QUERY_LIST
     #module_array :meta, QUERY_META
-    boolean :indexpageids
-    boolean :export
-    boolean :exportnowrap
-    boolean :iwurl
+    #boolean :indexpageids
+    #boolean :export
+    #boolean :exportnowrap
+    #boolean :iwurl
     #string :continue
     #string :rawcontinue
     #str_array :titles
     #int_array :pageids
     #int_array :revids
     #module_enum :generator
-    boolean :redirects
-    boolean :converttitles
+    #boolean :redirects
+    #boolean :converttitles
   end
 end
