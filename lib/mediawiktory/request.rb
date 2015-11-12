@@ -53,8 +53,19 @@ module MediaWiktory
   module Enum
     def Enum.[](*values)
       values.map!(&:to_sym)
+      
       Class.new(Virtus::Attribute) do
-        define_method(:coerce){|value|
+        primitive Symbol
+
+        define_singleton_method :inspect do
+          "#<Enum#{values}>"
+        end
+
+        define_singleton_method :to_s do
+          inspect
+        end
+
+        define_method :coerce do |value|
           return nil unless value
           
           value = value.to_sym
@@ -62,7 +73,7 @@ module MediaWiktory
             fail(ArgumentError, "Enum #{values} not accepts #{value}")
 
           value
-        }
+        end
       end
     end
   end

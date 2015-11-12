@@ -11,4 +11,4 @@
   * of integers;
   * of strings;
   * of enum values;
-  * list of modules.
+  * of modules.

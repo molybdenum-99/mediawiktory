@@ -8,11 +8,12 @@ module MediaWiktory
         r_attribute :limit, IntegerOrMax
         r_attribute :limit2, IntegerOrMax
         r_attribute :dir, Enum[:ascending, :descending]
-
         # TODO: module
 
         # lists
         r_attribute :titles, Array[String]
+        r_attribute :pageids, Array[Integer]
+        r_attribute :clprop, Array[Enum[:sortkey, :timestamp, :hidden]]
       }
     }
     
@@ -24,7 +25,10 @@ module MediaWiktory
           limit: '20',
           limit2: 'max',
           dir: :ascending,
-          titles: ['Argentina', 'Chile']
+          
+          titles: ['Argentina', 'Chile'],
+          pageids: ['123', '456']
+          #clprop: ['sortkey', 'timestamp'] FIXME, virtus!
         )
         expect(req.export).to eq true
         expect(req.max_age).to eq 100
@@ -32,6 +36,8 @@ module MediaWiktory
         expect(req.limit2).to eq 'max'
         expect(req.dir).to eq :ascending
         expect(req.titles).to eq ['Argentina', 'Chile']
+        expect(req.pageids).to eq [123, 456]
+        #expect(req.clprop).to eq [:sortkey, :timestamp] FIXME, virtus!
       end
 
       it 'raises on wrong enum values' do
