@@ -6,7 +6,6 @@ gem 'hashie'
 gem 'addressable'
 gem 'nokogiri'
 gem 'naught'
-gem 'virtus'
 
 group :test do
   gem 'rspec'

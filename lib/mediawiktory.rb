@@ -2,9 +2,9 @@ require 'addressable/uri'
 require 'faraday'
 
 module MediaWiktory
-  %w[request].each do |mod|
-    require_relative "mediawiktory/#{mod}"
-  end
+  #%w[request].each do |mod|
+    #require_relative "mediawiktory/#{mod}"
+  #end
 end
 
 __END__

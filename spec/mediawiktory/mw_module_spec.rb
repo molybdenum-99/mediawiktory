@@ -2,20 +2,20 @@ require 'mediawiktory/mw_module'
 
 module MediaWiktory
   describe MWModule do
-    #let!(:mod1){
-      #Class.new(MWModule){
-        #symbol :mod1
+    let!(:mod1){
+      Class.new(MWModule){
+        symbol :mod1
 
-        #r_attribute :foo, Integer
-      #}
-    #}
-    #let!(:mod2){
-      #Class.new(MWModule){
-        #symbol :mod2
+        param :foo, Params::Integer
+      }
+    }
+    let!(:mod2){
+      Class.new(MWModule){
+        symbol :mod2
 
-        #r_attribute :bar, String
-      #}
-    #}
+        param :bar, Params::String
+      }
+    }
     let(:klass){
       Class.new(MWModule){
         # single values
@@ -24,13 +24,13 @@ module MediaWiktory
         param :limit, Params::IntegerOrMax
         param :limit2, Params::IntegerOrMax
         param :dir, Params::Enum[:ascending, :descending]
-        #param :mod, ModuleAttr[:mod1, :mod2]
+        param :mod, Params::Module[:mod1, :mod2]
 
         ## lists
         param :titles, Params::List[Params::String]
         param :pageids, Params::List[Params::Integer]
         param :clprop, Params::List[Params::Enum[:sortkey, :timestamp, :hidden]]
-        #r_attribute :mods, ModuleAttr.list(:mod1, :mod2)
+        param :mods, Params::Modules[:mod1, :mod2]
       }
     }
     
@@ -57,7 +57,7 @@ module MediaWiktory
         expect(mod.clprop).to eq [:sortkey, :timestamp]
       end
 
-      xcontext 'module' do
+      context 'module' do
         it 'converts symbol to module' do
           mod = klass.new(mod: :mod1)
           expect(mod.mod).to be_instance_of(mod1)
@@ -72,7 +72,7 @@ module MediaWiktory
         it 'fails gracefully on unexpected arguments'
       end
 
-      xcontext 'modules' do
+      context 'modules' do
         it 'is initialized with any mix of symbols and hashes' do
           mod = klass.new(mods: [:mod1, {mod2: {bar: 'foo'}}])
           expect(mod.mods).to be_kind_of(Array)
@@ -103,13 +103,13 @@ module MediaWiktory
         expect(mod.export).to eq true
       end
 
-      xit 'works as a smart setter for arrays' do
+      it 'works as a smart setter for arrays' do
         m2 = mod.titles('Argentine', 'Chile')
         expect(m2.titles).to eq ['Argentine', 'Chile']
-        expect(mod.titles).to eq []
+        expect(mod.titles).to eq nil
       end
 
-      xit 'works as an super-duper smart setter for modules' do
+      it 'works as an super-duper smart setter for modules' do
         m2 = mod.mods(:mod1, mod2: {bar: 'foo'})
         expect(m2.mods.first).to be_instance_of(mod1)
         expect(m2.mods.last).to be_instance_of(mod2)
