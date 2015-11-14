@@ -15,8 +15,12 @@ module MediaWiktory
         @value = val
       end
       
-      def to_param
-        raise NotImplementedError
+      def to_param(prefix = nil)
+        {"#{prefix}#{name}" => value_to_param}
+      end
+
+      def value_to_param
+        value.to_s
       end
 
       def self.valid?(val)
@@ -69,9 +73,9 @@ module MediaWiktory
         alias_method :to_s, :inspect
       end
 
-      def valid?(val)
-        self.class.allowed_values or fail(NotImplementedError, "Abstract enum used as a param type")
-        self.class.allowed_values.include?(val)
+      def self.valid?(val)
+        allowed_values or fail(NotImplementedError, "Abstract enum used as a param type")
+        allowed_values.include?(val)
       end
     end
 
@@ -96,6 +100,10 @@ module MediaWiktory
         member_type or fail(NotImplementedError, "Abstract list used as param type")
         val.is_a?(Array) && val.all?{|v| member_type.valid?(v)}
       end
+
+      def value_to_param
+        value.join('|')
+      end
     end
 
     class Module < Param
@@ -113,9 +121,13 @@ module MediaWiktory
         super(val && MWModule.coerce(val))
       end
 
-      def valid?(val)
-        self.class.allowed_values or fail(NotImplementedError, "Abstract module used as a param type")
-        self.class.allowed_values.include?(val.class.symbol)
+      def to_param(prefix = nil)
+        {"#{prefix}#{name}" => value.class.symbol.to_s}.merge(value.to_param)
+      end
+
+      def self.valid?(val)
+        allowed_values or fail(NotImplementedError, "Abstract module used as a param type")
+        allowed_values.include?(val.class.symbol)
       end
     end
 
@@ -134,9 +146,15 @@ module MediaWiktory
         super(val && coerce_modules(val))
       end
 
-      def valid?(val)
-        self.class.allowed_values or fail(NotImplementedError, "Abstract module used as a param type")
-        val.all?{|v| self.class.allowed_values.include?(v.class.symbol)}
+      def to_param(prefix = nil)
+        [{"#{prefix}#{name}" => value.map{|v|v.class.symbol}.join('|')},
+          *value.map(&:to_param)
+        ].inject({}, :merge)
+      end
+
+      def self.valid?(val)
+        allowed_values or fail(NotImplementedError, "Abstract module used as a param type")
+        val.all?{|v| allowed_values.include?(v.class.symbol)}
       end
 
       private
@@ -168,6 +186,11 @@ module MediaWiktory
         return @symbol unless sym
         @symbol = sym
         MWModule.list[sym] = self
+      end
+
+      def prefix(pref = nil)
+        return @prefix unless pref
+        @prefix = pref
       end
 
       def coerce(value)
@@ -235,6 +258,10 @@ module MediaWiktory
 
     def param(name)
       @params[name]
+    end
+
+    def to_param
+      @params.values.map{|p| p.to_param(self.class.prefix)}.inject({}, :merge)
     end
 
     protected

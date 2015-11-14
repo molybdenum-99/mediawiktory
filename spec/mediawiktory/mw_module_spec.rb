@@ -5,6 +5,7 @@ module MediaWiktory
     let!(:mod1){
       Class.new(MWModule){
         symbol :mod1
+        prefix 'm1'
 
         param :foo, Params::Integer
       }
@@ -116,7 +117,7 @@ module MediaWiktory
       end
     end
 
-    xdescribe :to_param do
+    describe :to_param do
       context 'simple' do
         subject{
           klass.new(
@@ -128,7 +129,7 @@ module MediaWiktory
             
             titles: ['Argentina', 'Chile'],
             pageids: [123, 456],
-            clprop: ['sortkey', 'timestamp'] 
+            clprop: [:sortkey, :timestamp] 
           )
         }
 
@@ -138,16 +139,77 @@ module MediaWiktory
           'limit' => '20',
           'limit2' => 'max',
           'dir' => 'ascending',
-          'titles' => 'Argentine|Chile',
+          'titles' => 'Argentina|Chile',
           'pageids' => '123|456',
           'clprop' => 'sortkey|timestamp'
         }}
-      end
 
-      context 'prefixed' do
+        context 'prefixed' do
+          before{
+            klass.prefix 'rp'
+          }
+
+          its(:to_param){should == {
+            'rpexport' => 'true',
+            'rpmax_age' => '100',
+            'rplimit' => '20',
+            'rplimit2' => 'max',
+            'rpdir' => 'ascending',
+            'rptitles' => 'Argentina|Chile',
+            'rppageids' => '123|456',
+            'rpclprop' => 'sortkey|timestamp'
+          }}
+        end
+
       end
 
       context 'submodule flattenization' do
+        context 'name-only submodule' do
+          subject{
+            klass.new(
+              export: true,
+              max_age: 100,
+              mod: :mod1
+            )
+          }
+          its(:to_param){should == {
+            'export' => 'true',
+            'max_age' => '100',
+            'mod' => 'mod1'
+          }}
+        end
+
+        context 'submodule with its params' do
+          subject{
+            klass.new(
+              export: true,
+              max_age: 100,
+              mod: {mod1: {foo: 11}}
+            )
+          }
+          its(:to_param){should == {
+            'export' => 'true',
+            'max_age' => '100',
+            'mod' => 'mod1',
+            'm1foo' => '11'
+          }}
+        end
+
+        context 'list with everything' do
+          subject{
+            klass.new(
+              export: true,
+              max_age: 100,
+              mods: [:mod2, {mod1: {foo: 11}}]
+            )
+          }
+          its(:to_param){should == {
+            'export' => 'true',
+            'max_age' => '100',
+            'mods' => 'mod2|mod1',
+            'm1foo' => '11'
+          }}
+        end
       end
     end
   end
