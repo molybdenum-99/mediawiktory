@@ -31,7 +31,7 @@ module MediaWiktory
       end
     end
 
-    context 'request construction' do
+    context 'action construction' do
     end
   end
 end
