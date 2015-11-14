@@ -10,5 +10,9 @@ module MediaWiktory
     def get(params)
       @faraday.get('', params)
     end
+
+    def post(params)
+      @faraday.post('', params)
+    end
   end
 end

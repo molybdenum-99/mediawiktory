@@ -25,6 +25,21 @@ module MediaWiktory
 
         action.perform
       end
+
+      context 'when post' do
+        before{
+          klass.post!
+        }
+
+        it 'calls client' do
+          expect(client).to receive(:post).with(
+            'action' => 'query',
+            'export' => 'true',
+            'format' => 'json')
+
+          action.perform
+        end
+      end
       
       it 'constructs response'
     end

@@ -24,7 +24,10 @@ module MediaWiktory
           with(query: {'action' => 'query', 'prop' => 'revision'})
       end
 
-      context 'POST' do
+      it 'POSTs' do
+        expect(client.post(action: :query, prop: :revision).body).to eq 'stub'
+        expect(WebMock).to have_requested(:post, url).
+          with(body: {'action' => 'query', 'prop' => 'revision'})
       end
 
       context 'preserving cookies' do
