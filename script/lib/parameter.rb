@@ -4,14 +4,22 @@ module ApiParser
     class << self
       def from_html(dt, dds, prefix = nil)
         new(
-          name: dt.text,
+          full_name: dt.text,
+          name: dt.text.sub(/^#{prefix}/, ''),
           prefix: prefix,
           description: extract_description(dds),
           type: extract_type(dds),
-          values: extract_values(dds),
-          default: extract_default(dds) #,
-          #limit: extract_limit(dds),
-          # TODO: extract mandatoriness (optional, mandatory, this OR that is mandatory, this AND that can't intersect and so on
+          vals: extract_values(dds),
+          default: extract_default(dds)
+
+          # TODO: limit: extract_limit(dds),
+          
+          # TODO: mandatoriness:
+          # * optional
+          # * mandatory
+          # * this OR that is mandatory
+          # * this AND that can't intersect
+          # * and so on
         )
       end
 
@@ -28,9 +36,9 @@ module ApiParser
             return $1.strip
           when /^Values \(separate with \|\):/,
                /^Separate values with \|/
-            return 'several'
+            return 'list'
           when /^One of the following values:/
-            return 'one-of'
+            return 'enum'
           end
         end
         'string'
@@ -59,9 +67,9 @@ module ApiParser
                 {name: a.text, module: Module.from_url(a.attr('href'))}
               }
             else
-              return $1.split(',').map(&:strip).map{|val|
-                  val.sub(/^(Can be |or )/, '') # Wtf?.. https://en.wikipedia.org/w/api.php?action=help&modules=query%2Bextlinks
-                }.map{|n| {name: n}}
+              return $1.sub(/^Can be empty, or/, '').split(',').
+                map{|s| s.gsub(/[[:space:]]/, '')}.
+                map{|n| {name: n}}
             end
           end
         end
@@ -70,8 +78,48 @@ module ApiParser
       end
     end
 
+    def initialize(hash)
+      super(hash.reject{|k,v| !v || v.respond_to?(:empty?) && v.empty?})
+    end
+
     def to_yaml
-      to_hash.reject{|k,v| !v}.to_yaml
+      to_hash.to_yaml
+    end
+
+    def to_ruby(base_path)
+      type_str = case type
+      when 'boolean'
+        'Params::Boolean'
+      when 'string', 'user name'
+        'Params::String'
+      when 'integer'
+        'Params::Integer'
+      when 'integer or max'
+        'Params::IntegerOrMax'
+      when 'timestamp'
+        'Params::Timestamp'
+      when 'list'
+        if !vals
+        'Params::List[Params::String]'
+        elsif vals.first.module
+          vals.map(&:module).each{|m| m.write(base_path)}
+          "Params::List[Params::Module#{vals.map(&:name).map(&:to_sym)}]"
+        else
+          "Params::List[Params::Enum#{vals.map(&:name).map(&:to_s)}]"
+        end
+      when 'list of integers'
+        'Params::List[Params::Integer]'
+      when 'enum'
+        if vals.first.module
+          vals.map(&:module).each{|m| m.write(base_path)}
+          "Params::Module#{vals.map(&:name).map(&:to_sym)}"
+        else
+          "Params::Enum#{vals.map(&:name).map(&:to_s)}"
+        end
+      else
+        fail("Unrecognized param type: #{type}")
+      end
+      "    param #{name.to_sym.inspect}, #{type_str}"
     end
 
   end

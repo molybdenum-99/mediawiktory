@@ -7,6 +7,7 @@ module ApiParser
         title, prefix = extract_title(doc)
 
         new(
+          url: url,
           title: title,
           prefix: prefix,
           description: extract_description(doc),
@@ -50,6 +51,37 @@ module ApiParser
 
     def to_yaml
       to_hash.reject{|k,v| !v}.to_yaml
+    end
+
+    def to_ruby(base_path)
+      [
+        "module MediaWiktory",
+        "  class #{name.capitalize} < MWModule",
+        "    symbol #{name.to_sym.inspect}",
+        prefix && !prefix.empty? && "    prefix: #{prefix.inspect}",
+        post? && "    post!",
+        *params.map{|p| p.to_ruby(base_path)},
+        "  end",
+        "end"
+      ].reject{|v| !v}.join("\n")
+    end
+
+    def name
+      title.split('=').last
+    end
+
+    def write(base_path)
+      if title == 'Main module'
+        params.detect{|p| p.name == 'action'}.values.map(&:module).each{|mod|
+          mod.write(base_path)
+        }
+      else
+        File.write(File.join(base_path, "#{name}.rb"), to_ruby(base_path))
+      end
+    end
+
+    def post?
+      flags.detect{|f| f.id == 'apihelp-flag-mustbeposted'}
     end
   end
 end
