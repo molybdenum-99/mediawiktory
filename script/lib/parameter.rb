@@ -99,9 +99,10 @@ module ApiParser
       when 'timestamp'
         'Params::Timestamp'
       when 'list'
-        if !vals
-        'Params::List[Params::String]'
-        elsif vals.first.module
+        case
+        when !vals
+          'Params::List[Params::String]'
+        when vals.first.module
           vals.map(&:module).each{|m| m.write(base_path)}
           "Params::List[Params::Module#{vals.map(&:name).map(&:to_sym)}]"
         else
@@ -109,8 +110,14 @@ module ApiParser
         end
       when 'list of integers'
         'Params::List[Params::Integer]'
+      when 'list of timestamps'
+        'Params::List[Params::Timestamp]'
       when 'enum'
-        if vals.first.module
+        case
+        when name == 'generator'
+          vals.map(&:module).each{|m| m.write(base_path)}
+          "Params::Module#{vals.map(&:name).map{|n| ('g' + n).to_sym}}"
+        when vals.first.module
           vals.map(&:module).each{|m| m.write(base_path)}
           "Params::Module#{vals.map(&:name).map(&:to_sym)}"
         else

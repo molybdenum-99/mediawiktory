@@ -56,7 +56,7 @@ module ApiParser
     def to_ruby(base_path)
       [
         "module MediaWiktory",
-        "  class #{name.capitalize} < MWModule",
+        "  class #{class_name} < MWModule",
         "    symbol #{name.to_sym.inspect}",
         prefix && !prefix.empty? && "    prefix: #{prefix.inspect}",
         post? && "    post!",
@@ -66,22 +66,42 @@ module ApiParser
       ].reject{|v| !v}.join("\n")
     end
 
+    def to_generator_ruby
+      [
+        "module MediaWiktory",
+        "  class G#{class_name} < #{class_name}",
+        "    symbol #{('g' + name).to_sym.inspect}",
+        "    prefix: #{('g' + prefix.to_s).inspect}",
+        "  end",
+        "end"
+      ].reject{|v| !v}.join("\n")
+    end
+
     def name
       title.split('=').last
     end
 
+    def class_name
+      name.gsub(/(^|-)\w/){|s| s.sub('-', '').upcase}
+    end
+
     def write(base_path)
       if title == 'Main module'
-        params.detect{|p| p.name == 'action'}.values.map(&:module).each{|mod|
+        params.detect{|p| p.name == 'action'}.vals.map(&:module).each{|mod|
           mod.write(base_path)
         }
       else
         File.write(File.join(base_path, "#{name}.rb"), to_ruby(base_path))
+        File.write(File.join(base_path, "g#{name}.rb"), to_generator_ruby) if generator?
       end
     end
 
     def post?
       flags.detect{|f| f.id == 'apihelp-flag-mustbeposted'}
+    end
+
+    def generator?
+      flags.detect{|f| f.id == 'apihelp-flag-generator'}
     end
   end
 end
