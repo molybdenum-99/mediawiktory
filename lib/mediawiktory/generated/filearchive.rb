@@ -1,7 +1,7 @@
 module MediaWiktory
   class Filearchive < MWModule
     symbol :filearchive
-    prefix: "fa"
+    prefix "fa"
     param :from, Params::String
     param :to, Params::String
     param :prefix, Params::String

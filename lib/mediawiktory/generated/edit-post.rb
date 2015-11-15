@@ -1,7 +1,7 @@
 module MediaWiktory
   class EditPost < MWModule
     symbol :"edit-post"
-    prefix: "ep"
+    prefix "ep"
     post!
     param :postId, Params::String
     param :prev_revision, Params::String

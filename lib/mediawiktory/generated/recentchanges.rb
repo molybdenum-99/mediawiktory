@@ -1,7 +1,7 @@
 module MediaWiktory
   class Recentchanges < MWModule
     symbol :recentchanges
-    prefix: "rc"
+    prefix "rc"
     param :start, Params::Timestamp
     param :end, Params::Timestamp
     param :dir, Params::Enum["newer", "older"]

@@ -1,7 +1,7 @@
 module MediaWiktory
   class Geosearch < MWModule
     symbol :geosearch
-    prefix: "gs"
+    prefix "gs"
     param :coord, Params::String
     param :page, Params::String
     param :radius, Params::Integer

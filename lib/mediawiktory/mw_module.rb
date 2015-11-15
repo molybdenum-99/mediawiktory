@@ -56,6 +56,16 @@ module MediaWiktory
       end
     end
 
+    class Timestamp < Param
+      def self.valid?(val)
+        val.kind_of?(::Time)
+      end
+
+      def value_to_param
+        value.iso8601
+      end
+    end
+
     class Enum < Param
       class << self
         def [](*values)
@@ -227,7 +237,7 @@ module MediaWiktory
         define_method(name){|*arg|
           return param(name).value if arg.empty?
           
-          self.class.new(to_h).tap{|dup| 
+          dup.tap{|dup| 
             case
             when type.ancestors.include?(Params::List) ||
                  type.ancestors.include?(Params::Modules)
@@ -237,6 +247,14 @@ module MediaWiktory
             end
           }
         }
+      end
+
+      def request_method
+        @request_method || :get
+      end
+
+      def post!
+        @request_method = :post
       end
     end
 
@@ -250,6 +268,10 @@ module MediaWiktory
       values.each do |k, v|
         set(k, v)
       end
+    end
+
+    def dup
+      self.class.new(to_h)
     end
 
     def to_h

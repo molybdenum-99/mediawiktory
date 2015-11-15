@@ -1,7 +1,7 @@
 module MediaWiktory
   class Extracts < MWModule
     symbol :extracts
-    prefix: "ex"
+    prefix "ex"
     param :chars, Params::Integer
     param :sentences, Params::Integer
     param :limit, Params::IntegerOrMax

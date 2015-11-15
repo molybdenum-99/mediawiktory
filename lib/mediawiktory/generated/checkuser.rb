@@ -1,7 +1,7 @@
 module MediaWiktory
   class Checkuser < MWModule
     symbol :checkuser
-    prefix: "cu"
+    prefix "cu"
     post!
     param :request, Params::Enum["userips", "edits", "ipusers"]
     param :target, Params::String

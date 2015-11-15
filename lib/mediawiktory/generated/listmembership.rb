@@ -1,7 +1,7 @@
 module MediaWiktory
   class Listmembership < MWModule
     symbol :listmembership
-    prefix: "lsm"
+    prefix "lsm"
     param :id, Params::Integer
     param :owner, Params::String
     param :token, Params::String

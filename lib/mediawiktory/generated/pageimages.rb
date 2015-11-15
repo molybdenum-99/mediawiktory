@@ -1,7 +1,7 @@
 module MediaWiktory
   class Pageimages < MWModule
     symbol :pageimages
-    prefix: "pi"
+    prefix "pi"
     param :prop, Params::List[Params::Enum["thumbnail", "name"]]
     param :thumbsize, Params::Integer
     param :limit, Params::IntegerOrMax

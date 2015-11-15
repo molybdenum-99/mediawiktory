@@ -1,7 +1,7 @@
 module MediaWiktory
   class Alltransclusions < MWModule
     symbol :alltransclusions
-    prefix: "at"
+    prefix "at"
     param :continue, Params::String
     param :from, Params::String
     param :to, Params::String

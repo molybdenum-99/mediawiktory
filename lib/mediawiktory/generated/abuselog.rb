@@ -1,7 +1,7 @@
 module MediaWiktory
   class Abuselog < MWModule
     symbol :abuselog
-    prefix: "afl"
+    prefix "afl"
     param :start, Params::Timestamp
     param :end, Params::Timestamp
     param :dir, Params::Enum["newer", "older"]

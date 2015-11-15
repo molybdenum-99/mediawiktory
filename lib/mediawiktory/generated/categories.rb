@@ -1,7 +1,7 @@
 module MediaWiktory
   class Categories < MWModule
     symbol :categories
-    prefix: "cl"
+    prefix "cl"
     param :prop, Params::List[Params::Enum["sortkey", "timestamp", "hidden"]]
     param :show, Params::List[Params::Enum["hidden", "!hidden"]]
     param :limit, Params::IntegerOrMax

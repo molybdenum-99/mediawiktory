@@ -1,6 +1,6 @@
 module MediaWiktory
   class Flowinfo < MWModule
     symbol :flowinfo
-    prefix: "fli"
+    prefix "fli"
   end
 end

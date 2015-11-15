@@ -1,7 +1,7 @@
 module MediaWiktory
   class Reply < MWModule
     symbol :reply
-    prefix: "rep"
+    prefix "rep"
     post!
     param :replyTo, Params::String
     param :content, Params::String

@@ -1,6 +1,8 @@
+require_relative 'links'
+
 module MediaWiktory
   class GLinks < Links
     symbol :glinks
-    prefix: "gpl"
+    prefix "gpl"
   end
 end

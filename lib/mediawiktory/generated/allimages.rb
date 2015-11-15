@@ -1,7 +1,7 @@
 module MediaWiktory
   class Allimages < MWModule
     symbol :allimages
-    prefix: "ai"
+    prefix "ai"
     param :sort, Params::Enum["name", "timestamp"]
     param :dir, Params::Enum["ascending", "descending", "newer", "older"]
     param :from, Params::String

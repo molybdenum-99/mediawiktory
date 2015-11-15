@@ -1,6 +1,8 @@
+require_relative 'alltransclusions'
+
 module MediaWiktory
   class GAlltransclusions < Alltransclusions
     symbol :galltransclusions
-    prefix: "gat"
+    prefix "gat"
   end
 end

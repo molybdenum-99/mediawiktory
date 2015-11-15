@@ -1,7 +1,7 @@
 module MediaWiktory
   class Blocks < MWModule
     symbol :blocks
-    prefix: "bk"
+    prefix "bk"
     param :start, Params::Timestamp
     param :end, Params::Timestamp
     param :dir, Params::Enum["newer", "older"]

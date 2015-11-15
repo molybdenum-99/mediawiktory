@@ -1,6 +1,8 @@
+require_relative 'exturlusage'
+
 module MediaWiktory
   class GExturlusage < Exturlusage
     symbol :gexturlusage
-    prefix: "geu"
+    prefix "geu"
   end
 end

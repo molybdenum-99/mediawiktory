@@ -1,7 +1,7 @@
 module MediaWiktory
   class ModeratePost < MWModule
     symbol :"moderate-post"
-    prefix: "mp"
+    prefix "mp"
     post!
     param :moderationState, Params::Enum["delete", "hide", "suppress", "restore", "unhide", "undelete", "unsuppress"]
     param :reason, Params::String

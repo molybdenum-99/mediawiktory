@@ -1,0 +1,13 @@
+#!/usr/bin/env ruby
+
+require 'rubygems'
+require 'bundler/setup'
+
+$:.unshift File.join(File.dirname(__FILE__), '..', 'lib')
+require_relative '../lib/mediawiktory'
+
+include MediaWiktory
+
+require 'irb'
+ARGV.shift until ARGV.empty?
+IRB.start

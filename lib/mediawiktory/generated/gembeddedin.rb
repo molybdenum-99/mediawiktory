@@ -1,6 +1,8 @@
+require_relative 'embeddedin'
+
 module MediaWiktory
   class GEmbeddedin < Embeddedin
     symbol :gembeddedin
-    prefix: "gei"
+    prefix "gei"
   end
 end

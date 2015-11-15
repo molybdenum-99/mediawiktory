@@ -1,7 +1,7 @@
 module MediaWiktory
   class Allpages < MWModule
     symbol :allpages
-    prefix: "ap"
+    prefix "ap"
     param :from, Params::String
     param :continue, Params::String
     param :to, Params::String

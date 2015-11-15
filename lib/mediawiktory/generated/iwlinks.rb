@@ -1,7 +1,7 @@
 module MediaWiktory
   class Iwlinks < MWModule
     symbol :iwlinks
-    prefix: "iw"
+    prefix "iw"
     param :prop, Params::List[Params::Enum["url"]]
     param :prefix, Params::String
     param :title, Params::String

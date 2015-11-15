@@ -1,6 +1,8 @@
+require_relative 'fileusage'
+
 module MediaWiktory
   class GFileusage < Fileusage
     symbol :gfileusage
-    prefix: "gfu"
+    prefix "gfu"
   end
 end

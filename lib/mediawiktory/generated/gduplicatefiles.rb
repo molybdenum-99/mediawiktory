@@ -1,6 +1,8 @@
+require_relative 'duplicatefiles'
+
 module MediaWiktory
   class GDuplicatefiles < Duplicatefiles
     symbol :gduplicatefiles
-    prefix: "gdf"
+    prefix "gdf"
   end
 end

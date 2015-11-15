@@ -1,7 +1,7 @@
 module MediaWiktory
   class Allusers < MWModule
     symbol :allusers
-    prefix: "au"
+    prefix "au"
     param :from, Params::String
     param :to, Params::String
     param :prefix, Params::String

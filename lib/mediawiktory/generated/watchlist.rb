@@ -1,7 +1,7 @@
 module MediaWiktory
   class Watchlist < MWModule
     symbol :watchlist
-    prefix: "wl"
+    prefix "wl"
     param :allrev, Params::Boolean
     param :start, Params::Timestamp
     param :end, Params::Timestamp

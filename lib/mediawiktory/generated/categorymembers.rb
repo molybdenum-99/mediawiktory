@@ -1,7 +1,7 @@
 module MediaWiktory
   class Categorymembers < MWModule
     symbol :categorymembers
-    prefix: "cm"
+    prefix "cm"
     param :title, Params::String
     param :pageid, Params::Integer
     param :prop, Params::List[Params::Enum["ids", "title", "sortkey", "sortkeyprefix", "type", "timestamp"]]

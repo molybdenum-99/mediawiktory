@@ -1,6 +1,8 @@
+require_relative 'listpages'
+
 module MediaWiktory
   class GListpages < Listpages
     symbol :glistpages
-    prefix: "glsp"
+    prefix "glsp"
   end
 end

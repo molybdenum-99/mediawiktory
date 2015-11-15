@@ -1,7 +1,7 @@
 module MediaWiktory
   class EditHeader < MWModule
     symbol :"edit-header"
-    prefix: "eh"
+    prefix "eh"
     post!
     param :prev_revision, Params::String
     param :content, Params::String

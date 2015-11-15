@@ -1,6 +1,8 @@
+require_relative 'iwbacklinks'
+
 module MediaWiktory
   class GIwbacklinks < Iwbacklinks
     symbol :giwbacklinks
-    prefix: "giwbl"
+    prefix "giwbl"
   end
 end

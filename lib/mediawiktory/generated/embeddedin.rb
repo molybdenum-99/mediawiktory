@@ -1,7 +1,7 @@
 module MediaWiktory
   class Embeddedin < MWModule
     symbol :embeddedin
-    prefix: "ei"
+    prefix "ei"
     param :title, Params::String
     param :pageid, Params::Integer
     param :continue, Params::String

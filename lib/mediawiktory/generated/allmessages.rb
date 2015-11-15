@@ -1,7 +1,7 @@
 module MediaWiktory
   class Allmessages < MWModule
     symbol :allmessages
-    prefix: "am"
+    prefix "am"
     param :messages, Params::List[Params::String]
     param :prop, Params::List[Params::Enum["default"]]
     param :enableparser, Params::Boolean

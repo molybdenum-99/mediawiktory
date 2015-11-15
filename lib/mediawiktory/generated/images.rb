@@ -1,7 +1,7 @@
 module MediaWiktory
   class Images < MWModule
     symbol :images
-    prefix: "im"
+    prefix "im"
     param :limit, Params::IntegerOrMax
     param :continue, Params::String
     param :images, Params::List[Params::String]

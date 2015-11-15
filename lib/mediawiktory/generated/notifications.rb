@@ -1,7 +1,7 @@
 module MediaWiktory
   class Notifications < MWModule
     symbol :notifications
-    prefix: "not"
+    prefix "not"
     param :prop, Params::List[Params::Enum["list", "count", "index"]]
     param :sections, Params::List[Params::Enum["alert", "message"]]
     param :groupbysection, Params::Boolean

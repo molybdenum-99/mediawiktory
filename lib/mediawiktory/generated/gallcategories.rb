@@ -1,6 +1,8 @@
+require_relative 'allcategories'
+
 module MediaWiktory
   class GAllcategories < Allcategories
     symbol :gallcategories
-    prefix: "gac"
+    prefix "gac"
   end
 end

@@ -1,7 +1,7 @@
 module MediaWiktory
   class Allredirects < MWModule
     symbol :allredirects
-    prefix: "ar"
+    prefix "ar"
     param :continue, Params::String
     param :from, Params::String
     param :to, Params::String

@@ -1,6 +1,8 @@
+require_relative 'deletedrevisions'
+
 module MediaWiktory
   class GDeletedrevisions < Deletedrevisions
     symbol :gdeletedrevisions
-    prefix: "gdrv"
+    prefix "gdrv"
   end
 end

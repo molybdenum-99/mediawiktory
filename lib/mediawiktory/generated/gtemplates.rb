@@ -1,6 +1,8 @@
+require_relative 'templates'
+
 module MediaWiktory
   class GTemplates < Templates
     symbol :gtemplates
-    prefix: "gtl"
+    prefix "gtl"
   end
 end

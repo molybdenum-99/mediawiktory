@@ -1,7 +1,7 @@
 module MediaWiktory
   class Alllinks < MWModule
     symbol :alllinks
-    prefix: "al"
+    prefix "al"
     param :continue, Params::String
     param :from, Params::String
     param :to, Params::String

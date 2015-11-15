@@ -1,7 +1,7 @@
 module MediaWiktory
   class Listpages < MWModule
     symbol :listpages
-    prefix: "lsp"
+    prefix "lsp"
     param :id, Params::Integer
     param :owner, Params::String
     param :token, Params::String

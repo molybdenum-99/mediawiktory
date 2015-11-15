@@ -1,7 +1,7 @@
 module MediaWiktory
   class Revisions < MWModule
     symbol :revisions
-    prefix: "rv"
+    prefix "rv"
     param :prop, Params::List[Params::Enum["ids", "flags", "timestamp", "user", "userid", "size", "sha1", "contentmodel", "comment", "parsedcomment", "content", "tags", "parsetree", "flagged"]]
     param :limit, Params::IntegerOrMax
     param :expandtemplates, Params::Boolean

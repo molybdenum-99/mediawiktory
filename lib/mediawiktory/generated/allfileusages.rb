@@ -1,7 +1,7 @@
 module MediaWiktory
   class Allfileusages < MWModule
     symbol :allfileusages
-    prefix: "af"
+    prefix "af"
     param :continue, Params::String
     param :from, Params::String
     param :to, Params::String

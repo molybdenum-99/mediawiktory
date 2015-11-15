@@ -1,6 +1,8 @@
+require_relative 'linkshere'
+
 module MediaWiktory
   class GLinkshere < Linkshere
     symbol :glinkshere
-    prefix: "glh"
+    prefix "glh"
   end
 end

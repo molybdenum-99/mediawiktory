@@ -1,7 +1,7 @@
 module MediaWiktory
   class EditTopicSummary < MWModule
     symbol :"edit-topic-summary"
-    prefix: "ets"
+    prefix "ets"
     post!
     param :prev_revision, Params::String
     param :summary, Params::String

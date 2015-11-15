@@ -1,7 +1,7 @@
 module MediaWiktory
   class Pageswithprop < MWModule
     symbol :pageswithprop
-    prefix: "pwp"
+    prefix "pwp"
     param :propname, Params::String
     param :prop, Params::List[Params::Enum["ids", "title", "value"]]
     param :continue, Params::String

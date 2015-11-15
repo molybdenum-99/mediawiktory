@@ -1,6 +1,8 @@
+require_relative 'allpages'
+
 module MediaWiktory
   class GAllpages < Allpages
     symbol :gallpages
-    prefix: "gap"
+    prefix "gap"
   end
 end

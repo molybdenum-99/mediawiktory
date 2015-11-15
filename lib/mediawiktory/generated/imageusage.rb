@@ -1,7 +1,7 @@
 module MediaWiktory
   class Imageusage < MWModule
     symbol :imageusage
-    prefix: "iu"
+    prefix "iu"
     param :title, Params::String
     param :pageid, Params::Integer
     param :continue, Params::String

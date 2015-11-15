@@ -9,8 +9,10 @@ module MediaWiktory
       }
     }
 
-    describe :initialize do
-      it 'behaves like a module'
+    describe 'chainable creation' do
+      subject{klass.new(client).export(true)}
+      its(:client){should == client}
+      its(:export){should == true}
     end
 
     describe :perform do

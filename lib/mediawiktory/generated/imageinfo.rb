@@ -1,7 +1,7 @@
 module MediaWiktory
   class Imageinfo < MWModule
     symbol :imageinfo
-    prefix: "ii"
+    prefix "ii"
     param :prop, Params::List[Params::Enum["timestamp", "user", "userid", "comment", "parsedcomment", "canonicaltitle", "url", "size", "dimensions", "sha1", "mime", "thumbmime", "mediatype", "metadata", "commonmetadata", "extmetadata", "archivename", "bitdepth", "uploadwarning"]]
     param :limit, Params::IntegerOrMax
     param :start, Params::Timestamp

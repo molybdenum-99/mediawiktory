@@ -1,6 +1,8 @@
+require_relative 'recentchanges'
+
 module MediaWiktory
   class GRecentchanges < Recentchanges
     symbol :grecentchanges
-    prefix: "grc"
+    prefix "grc"
   end
 end

@@ -1,7 +1,7 @@
 module MediaWiktory
   class Coordinates < MWModule
     symbol :coordinates
-    prefix: "co"
+    prefix "co"
     param :limit, Params::IntegerOrMax
     param :continue, Params::String
     param :prop, Params::List[Params::Enum["type", "name", "dim", "country", "region", "globe"]]

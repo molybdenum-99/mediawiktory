@@ -1,6 +1,8 @@
+require_relative 'oldreviewedpages'
+
 module MediaWiktory
   class GOldreviewedpages < Oldreviewedpages
     symbol :goldreviewedpages
-    prefix: "gor"
+    prefix "gor"
   end
 end

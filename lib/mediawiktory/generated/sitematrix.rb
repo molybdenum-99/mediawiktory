@@ -1,7 +1,7 @@
 module MediaWiktory
   class Sitematrix < Action
     symbol :sitematrix
-    prefix: "sm"
+    prefix "sm"
     param :type, Params::List[Params::Enum["special", "language"]]
     param :state, Params::List[Params::Enum["closed", "private", "fishbowl"]]
     param :langprop, Params::List[Params::Enum["code", "name", "site", "localname"]]

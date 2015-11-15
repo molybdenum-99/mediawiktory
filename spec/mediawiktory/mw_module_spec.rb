@@ -24,6 +24,7 @@ module MediaWiktory
         param :max_age, Params::Integer
         param :limit, Params::IntegerOrMax
         param :limit2, Params::IntegerOrMax
+        param :start_at, Params::Timestamp
         param :dir, Params::Enum[:ascending, :descending]
         param :mod, Params::Module[:mod1, :mod2]
 
@@ -34,6 +35,7 @@ module MediaWiktory
         param :mods, Params::Modules[:mod1, :mod2]
       }
     }
+    let(:tm){Time.now}
     
     describe 'construction' do
       it 'converts all attributes' do
@@ -42,6 +44,7 @@ module MediaWiktory
           max_age: 100,
           limit: 20,
           limit2: 'max',
+          start_at: tm,
           dir: :ascending,
           
           titles: ['Argentina', 'Chile'],
@@ -52,6 +55,7 @@ module MediaWiktory
         expect(mod.max_age).to eq 100
         expect(mod.limit).to eq 20
         expect(mod.limit2).to eq 'max'
+        expect(mod.start_at).to eq tm
         expect(mod.dir).to eq :ascending
         expect(mod.titles).to eq ['Argentina', 'Chile']
         expect(mod.pageids).to eq [123, 456]
@@ -125,6 +129,7 @@ module MediaWiktory
             max_age: 100,
             limit: 20,
             limit2: 'max',
+            start_at: tm,
             dir: :ascending,
             
             titles: ['Argentina', 'Chile'],
@@ -138,6 +143,7 @@ module MediaWiktory
           'max_age' => '100',
           'limit' => '20',
           'limit2' => 'max',
+          'start_at' => tm.iso8601,
           'dir' => 'ascending',
           'titles' => 'Argentina|Chile',
           'pageids' => '123|456',
@@ -154,6 +160,7 @@ module MediaWiktory
             'rpmax_age' => '100',
             'rplimit' => '20',
             'rplimit2' => 'max',
+            'rpstart_at' => tm.iso8601,
             'rpdir' => 'ascending',
             'rptitles' => 'Argentina|Chile',
             'rppageids' => '123|456',

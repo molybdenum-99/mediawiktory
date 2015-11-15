@@ -1,7 +1,7 @@
 module MediaWiktory
   class Iwbacklinks < MWModule
     symbol :iwbacklinks
-    prefix: "iwbl"
+    prefix "iwbl"
     param :prefix, Params::String
     param :title, Params::String
     param :continue, Params::String

@@ -1,7 +1,7 @@
 module MediaWiktory
   class Alldeletedrevisions < MWModule
     symbol :alldeletedrevisions
-    prefix: "adr"
+    prefix "adr"
     param :prop, Params::List[Params::Enum["ids", "flags", "timestamp", "user", "userid", "size", "sha1", "contentmodel", "comment", "parsedcomment", "content", "tags", "parsetree"]]
     param :limit, Params::IntegerOrMax
     param :expandtemplates, Params::Boolean

@@ -1,7 +1,7 @@
 module MediaWiktory
   class Checkuserlog < MWModule
     symbol :checkuserlog
-    prefix: "cul"
+    prefix "cul"
     param :user, Params::String
     param :target, Params::String
     param :limit, Params::IntegerOrMax

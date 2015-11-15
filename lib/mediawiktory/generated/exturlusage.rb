@@ -1,7 +1,7 @@
 module MediaWiktory
   class Exturlusage < MWModule
     symbol :exturlusage
-    prefix: "eu"
+    prefix "eu"
     param :prop, Params::List[Params::Enum["ids", "title", "url"]]
     param :offset, Params::Integer
     param :protocol, Params::Enum["bitcoin", "ftp", "ftps", "geo", "git", "gopher", "http", "https", "irc", "ircs", "magnet", "mailto", "mms", "news", "nntp", "redis", "sftp", "sip", "sips", "sms", "ssh", "svn", "tel", "telnet", "urn", "worldwind", "xmpp"]

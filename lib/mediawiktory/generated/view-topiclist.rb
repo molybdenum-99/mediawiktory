@@ -1,7 +1,7 @@
 module MediaWiktory
   class ViewTopiclist < MWModule
     symbol :"view-topiclist"
-    prefix: "vtl"
+    prefix "vtl"
     param :"offset-dir", Params::Enum["fwd", "rev"]
     param :sortby, Params::Enum["newest", "updated", "user"]
     param :savesortby, Params::Boolean

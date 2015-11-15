@@ -1,7 +1,7 @@
 module MediaWiktory
   class Globalblocks < MWModule
     symbol :globalblocks
-    prefix: "bg"
+    prefix "bg"
     param :start, Params::Timestamp
     param :end, Params::Timestamp
     param :dir, Params::Enum["newer", "older"]

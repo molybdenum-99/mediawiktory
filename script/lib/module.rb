@@ -65,7 +65,7 @@ module ApiParser
         "module MediaWiktory",
         "  class #{class_name} < #{base}",
         "    symbol #{name.to_sym.inspect}",
-        prefix && !prefix.empty? && "    prefix: #{prefix.inspect}",
+        prefix && !prefix.empty? && "    prefix #{prefix.inspect}",
         post? && "    post!",
         *params.map{|p| p.to_ruby(base_path)},
         "  end",
@@ -75,13 +75,15 @@ module ApiParser
 
     def to_generator_ruby
       [
+        "require_relative '#{name}'",
+        "",
         "module MediaWiktory",
         "  class G#{class_name} < #{class_name}",
         "    symbol #{('g' + name).to_sym.inspect}",
-        "    prefix: #{('g' + prefix.to_s).inspect}",
+        "    prefix #{('g' + prefix.to_s).inspect}",
         "  end",
         "end"
-      ].reject{|v| !v}.join("\n")
+      ].join("\n")
     end
 
     def name

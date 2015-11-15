@@ -1,7 +1,7 @@
 module MediaWiktory
   class Usercontribs < MWModule
     symbol :usercontribs
-    prefix: "uc"
+    prefix "uc"
     param :limit, Params::IntegerOrMax
     param :start, Params::Timestamp
     param :end, Params::Timestamp

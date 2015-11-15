@@ -1,7 +1,7 @@
 module MediaWiktory
   class Globalallusers < MWModule
     symbol :globalallusers
-    prefix: "agu"
+    prefix "agu"
     param :from, Params::String
     param :to, Params::String
     param :prefix, Params::String

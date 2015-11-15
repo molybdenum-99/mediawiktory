@@ -1,7 +1,7 @@
 module MediaWiktory
   class Login < Action
     symbol :login
-    prefix: "lg"
+    prefix "lg"
     post!
     param :name, Params::String
     param :password, Params::String

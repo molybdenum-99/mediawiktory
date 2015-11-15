@@ -1,7 +1,7 @@
 module MediaWiktory
   class Langbacklinks < MWModule
     symbol :langbacklinks
-    prefix: "lbl"
+    prefix "lbl"
     param :lang, Params::String
     param :title, Params::String
     param :continue, Params::String

@@ -1,18 +1,14 @@
 module MediaWiktory
   class Action < MWModule
-    class << self
-      def request_method
-        @request_method || :get
-      end
-
-      def post!
-        @request_method = :post
-      end
-    end
+    attr_reader :client
     
     def initialize(client, **values)
       @client = client
       super(**values)
+    end
+
+    def dup
+      self.class.new(client, to_h)
     end
 
     def perform

@@ -1,7 +1,7 @@
 module MediaWiktory
   class Abusefilters < MWModule
     symbol :abusefilters
-    prefix: "abf"
+    prefix "abf"
     param :startid, Params::Integer
     param :endid, Params::Integer
     param :dir, Params::Enum["newer", "older"]

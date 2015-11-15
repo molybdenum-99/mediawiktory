@@ -104,7 +104,7 @@ module ApiParser
           'Params::List[Params::String]'
         when vals.first.module
           vals.map(&:module).each{|m| m.write(base_path)}
-          "Params::List[Params::Module#{vals.map(&:name).map(&:to_sym)}]"
+          "Params::Modules#{vals.map(&:name).map(&:to_sym)}"
         else
           "Params::List[Params::Enum#{vals.map(&:name).map(&:to_s)}]"
         end

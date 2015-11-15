@@ -1,7 +1,7 @@
 module MediaWiktory
   class Allcategories < MWModule
     symbol :allcategories
-    prefix: "ac"
+    prefix "ac"
     param :from, Params::String
     param :continue, Params::String
     param :to, Params::String

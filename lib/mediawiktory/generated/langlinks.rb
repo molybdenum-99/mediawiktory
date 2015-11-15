@@ -1,7 +1,7 @@
 module MediaWiktory
   class Langlinks < MWModule
     symbol :langlinks
-    prefix: "ll"
+    prefix "ll"
     param :prop, Params::List[Params::Enum["url", "langname", "autonym"]]
     param :lang, Params::String
     param :title, Params::String

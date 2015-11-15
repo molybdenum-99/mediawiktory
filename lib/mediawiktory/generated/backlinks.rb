@@ -1,7 +1,7 @@
 module MediaWiktory
   class Backlinks < MWModule
     symbol :backlinks
-    prefix: "bl"
+    prefix "bl"
     param :title, Params::String
     param :pageid, Params::Integer
     param :continue, Params::String

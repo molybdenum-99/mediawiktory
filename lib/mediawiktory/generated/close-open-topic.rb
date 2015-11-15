@@ -1,7 +1,7 @@
 module MediaWiktory
   class CloseOpenTopic < MWModule
     symbol :"close-open-topic"
-    prefix: "cot"
+    prefix "cot"
     post!
     param :moderationState, Params::Enum["lock", "unlock", "close", "reopen"]
     param :reason, Params::String

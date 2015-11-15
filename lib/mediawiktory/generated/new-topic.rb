@@ -1,7 +1,7 @@
 module MediaWiktory
   class NewTopic < MWModule
     symbol :"new-topic"
-    prefix: "nt"
+    prefix "nt"
     post!
     param :topic, Params::String
     param :content, Params::String
