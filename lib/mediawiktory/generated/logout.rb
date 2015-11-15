@@ -1,5 +1,5 @@
 module MediaWiktory
-  class Logout < MWModule
+  class Logout < Action
     symbol :logout
   end
 end

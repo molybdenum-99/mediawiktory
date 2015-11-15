@@ -1,5 +1,5 @@
 module MediaWiktory
-  class Reviewactivity < MWModule
+  class Reviewactivity < Action
     symbol :reviewactivity
     post!
     param :previd, Params::String

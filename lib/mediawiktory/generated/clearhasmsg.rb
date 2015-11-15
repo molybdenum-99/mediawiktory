@@ -1,5 +1,5 @@
 module MediaWiktory
-  class Clearhasmsg < MWModule
+  class Clearhasmsg < Action
     symbol :clearhasmsg
   end
 end

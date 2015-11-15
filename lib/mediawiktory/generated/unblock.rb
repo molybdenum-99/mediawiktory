@@ -1,5 +1,5 @@
 module MediaWiktory
-  class Unblock < MWModule
+  class Unblock < Action
     symbol :unblock
     post!
     param :id, Params::Integer

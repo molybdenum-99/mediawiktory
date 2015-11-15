@@ -1,5 +1,5 @@
 module MediaWiktory
-  class Globalblock < MWModule
+  class Globalblock < Action
     symbol :globalblock
     post!
     param :target, Params::String

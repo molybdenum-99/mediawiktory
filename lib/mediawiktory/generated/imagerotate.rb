@@ -1,5 +1,5 @@
 module MediaWiktory
-  class Imagerotate < MWModule
+  class Imagerotate < Action
     symbol :imagerotate
   end
 end

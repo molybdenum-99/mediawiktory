@@ -1,5 +1,5 @@
 module MediaWiktory
-  class Centralnoticequerycampaign < MWModule
+  class Centralnoticequerycampaign < Action
     symbol :centralnoticequerycampaign
     param :campaign, Params::String
   end

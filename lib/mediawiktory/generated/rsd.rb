@@ -1,5 +1,5 @@
 module MediaWiktory
-  class Rsd < MWModule
+  class Rsd < Action
     symbol :rsd
   end
 end

@@ -1,5 +1,5 @@
 module MediaWiktory
-  class Revisiondelete < MWModule
+  class Revisiondelete < Action
     symbol :revisiondelete
     post!
     param :type, Params::Enum["revision", "archive", "oldimage", "filearchive", "logging"]

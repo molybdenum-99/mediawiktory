@@ -1,5 +1,5 @@
 module MediaWiktory
-  class Sitematrix < MWModule
+  class Sitematrix < Action
     symbol :sitematrix
     prefix: "sm"
     param :type, Params::List[Params::Enum["special", "language"]]

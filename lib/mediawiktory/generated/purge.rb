@@ -1,5 +1,5 @@
 module MediaWiktory
-  class Purge < MWModule
+  class Purge < Action
     symbol :purge
     post!
     param :forcelinkupdate, Params::Boolean

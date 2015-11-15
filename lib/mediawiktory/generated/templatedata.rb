@@ -1,5 +1,5 @@
 module MediaWiktory
-  class Templatedata < MWModule
+  class Templatedata < Action
     symbol :templatedata
     param :titles, Params::List[Params::String]
     param :pageids, Params::List[Params::Integer]

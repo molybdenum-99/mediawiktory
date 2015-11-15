@@ -1,5 +1,5 @@
 module MediaWiktory
-  class Expandtemplates < MWModule
+  class Expandtemplates < Action
     symbol :expandtemplates
     param :title, Params::String
     param :text, Params::String

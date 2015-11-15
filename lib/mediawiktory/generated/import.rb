@@ -1,5 +1,5 @@
 module MediaWiktory
-  class Import < MWModule
+  class Import < Action
     symbol :import
     post!
     param :summary, Params::String

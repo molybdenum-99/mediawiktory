@@ -1,5 +1,5 @@
 module MediaWiktory
-  class Tag < MWModule
+  class Tag < Action
     symbol :tag
     post!
     param :rcid, Params::List[Params::Integer]

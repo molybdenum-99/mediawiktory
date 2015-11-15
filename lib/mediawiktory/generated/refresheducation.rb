@@ -1,5 +1,5 @@
 module MediaWiktory
-  class Refresheducation < MWModule
+  class Refresheducation < Action
     symbol :refresheducation
     post!
     param :ids, Params::List[Params::Integer]

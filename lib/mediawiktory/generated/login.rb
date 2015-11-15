@@ -1,5 +1,5 @@
 module MediaWiktory
-  class Login < MWModule
+  class Login < Action
     symbol :login
     prefix: "lg"
     post!

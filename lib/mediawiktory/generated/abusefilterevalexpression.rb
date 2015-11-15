@@ -1,5 +1,5 @@
 module MediaWiktory
-  class Abusefilterevalexpression < MWModule
+  class Abusefilterevalexpression < Action
     symbol :abusefilterevalexpression
     param :expression, Params::String
   end

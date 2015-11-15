@@ -1,5 +1,5 @@
 module MediaWiktory
-  class Thank < MWModule
+  class Thank < Action
     symbol :thank
     post!
     param :rev, Params::Integer

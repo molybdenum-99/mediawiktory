@@ -1,5 +1,5 @@
 module MediaWiktory
-  class Cxtoken < MWModule
+  class Cxtoken < Action
     symbol :cxtoken
     post!
     param :token, Params::String

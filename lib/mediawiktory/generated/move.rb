@@ -1,5 +1,5 @@
 module MediaWiktory
-  class Move < MWModule
+  class Move < Action
     symbol :move
     post!
     param :from, Params::String

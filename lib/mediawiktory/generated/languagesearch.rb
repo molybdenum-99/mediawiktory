@@ -1,5 +1,5 @@
 module MediaWiktory
-  class Languagesearch < MWModule
+  class Languagesearch < Action
     symbol :languagesearch
     param :search, Params::String
     param :typos, Params::Integer

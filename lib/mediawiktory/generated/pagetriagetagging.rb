@@ -1,5 +1,5 @@
 module MediaWiktory
-  class Pagetriagetagging < MWModule
+  class Pagetriagetagging < Action
     symbol :pagetriagetagging
     post!
     param :pageid, Params::Integer

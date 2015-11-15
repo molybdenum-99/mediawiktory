@@ -1,5 +1,5 @@
 module MediaWiktory
-  class Deleteeducation < MWModule
+  class Deleteeducation < Action
     symbol :deleteeducation
     post!
     param :ids, Params::List[Params::Integer]

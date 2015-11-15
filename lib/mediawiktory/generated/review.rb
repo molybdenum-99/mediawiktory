@@ -1,5 +1,5 @@
 module MediaWiktory
-  class Review < MWModule
+  class Review < Action
     symbol :review
     post!
     param :revid, Params::String

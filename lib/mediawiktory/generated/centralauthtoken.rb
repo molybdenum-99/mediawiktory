@@ -1,5 +1,5 @@
 module MediaWiktory
-  class Centralauthtoken < MWModule
+  class Centralauthtoken < Action
     symbol :centralauthtoken
   end
 end

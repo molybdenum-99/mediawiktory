@@ -1,5 +1,5 @@
 module MediaWiktory
-  class Watch < MWModule
+  class Watch < Action
     symbol :watch
     post!
     param :title, Params::String

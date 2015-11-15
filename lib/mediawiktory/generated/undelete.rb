@@ -1,5 +1,5 @@
 module MediaWiktory
-  class Undelete < MWModule
+  class Undelete < Action
     symbol :undelete
     post!
     param :title, Params::String

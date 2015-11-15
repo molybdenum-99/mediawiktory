@@ -1,5 +1,5 @@
 module MediaWiktory
-  class Transcodereset < MWModule
+  class Transcodereset < Action
     symbol :transcodereset
     post!
     param :title, Params::String

@@ -1,5 +1,5 @@
 module MediaWiktory
-  class ScribuntoConsole < MWModule
+  class ScribuntoConsole < Action
     symbol :"scribunto-console"
     param :title, Params::String
     param :content, Params::String

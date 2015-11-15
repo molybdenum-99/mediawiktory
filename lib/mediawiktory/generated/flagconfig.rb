@@ -1,5 +1,5 @@
 module MediaWiktory
-  class Flagconfig < MWModule
+  class Flagconfig < Action
     symbol :flagconfig
   end
 end

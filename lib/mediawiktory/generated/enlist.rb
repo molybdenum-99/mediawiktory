@@ -1,5 +1,5 @@
 module MediaWiktory
-  class Enlist < MWModule
+  class Enlist < Action
     symbol :enlist
     post!
     param :subaction, Params::Enum["add", "remove"]

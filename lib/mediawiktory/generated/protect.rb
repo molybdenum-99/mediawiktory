@@ -1,5 +1,5 @@
 module MediaWiktory
-  class Protect < MWModule
+  class Protect < Action
     symbol :protect
     post!
     param :title, Params::String

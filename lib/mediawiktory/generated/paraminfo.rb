@@ -1,5 +1,5 @@
 module MediaWiktory
-  class Paraminfo < MWModule
+  class Paraminfo < Action
     symbol :paraminfo
     param :modules, Params::List[Params::String]
     param :helpformat, Params::Enum["html", "wikitext", "raw", "none"]

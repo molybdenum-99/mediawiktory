@@ -1,5 +1,5 @@
 module MediaWiktory
-  class Echomarkread < MWModule
+  class Echomarkread < Action
     symbol :echomarkread
     post!
     param :list, Params::List[Params::String]

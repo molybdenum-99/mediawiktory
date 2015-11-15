@@ -1,5 +1,5 @@
 module MediaWiktory
-  class Strikevote < MWModule
+  class Strikevote < Action
     symbol :strikevote
     post!
     param :option, Params::Enum["strike", "unstrike"]

@@ -1,5 +1,5 @@
 module MediaWiktory
-  class Checktoken < MWModule
+  class Checktoken < Action
     symbol :checktoken
     param :type, Params::Enum["csrf", "deleteglobalaccount", "patrol", "rollback", "setglobalaccountstatus", "userrights", "watch"]
     param :token, Params::String

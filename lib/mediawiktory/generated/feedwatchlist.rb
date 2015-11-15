@@ -1,5 +1,5 @@
 module MediaWiktory
-  class Feedwatchlist < MWModule
+  class Feedwatchlist < Action
     symbol :feedwatchlist
     param :feedformat, Params::Enum["rss", "atom"]
     param :hours, Params::Integer

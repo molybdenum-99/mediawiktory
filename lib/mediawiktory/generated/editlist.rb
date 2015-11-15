@@ -1,5 +1,5 @@
 module MediaWiktory
-  class Editlist < MWModule
+  class Editlist < Action
     symbol :editlist
     post!
     param :id, Params::Integer

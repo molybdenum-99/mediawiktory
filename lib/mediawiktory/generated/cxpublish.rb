@@ -1,5 +1,5 @@
 module MediaWiktory
-  class Cxpublish < MWModule
+  class Cxpublish < Action
     symbol :cxpublish
     post!
     param :title, Params::String

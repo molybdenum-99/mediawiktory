@@ -1,5 +1,5 @@
 module MediaWiktory
-  class Ulslocalization < MWModule
+  class Ulslocalization < Action
     symbol :ulslocalization
     param :language, Params::String
   end

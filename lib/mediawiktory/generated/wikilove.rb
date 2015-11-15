@@ -1,5 +1,5 @@
 module MediaWiktory
-  class Wikilove < MWModule
+  class Wikilove < Action
     symbol :wikilove
     param :title, Params::String
     param :text, Params::String

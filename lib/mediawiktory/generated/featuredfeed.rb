@@ -1,5 +1,5 @@
 module MediaWiktory
-  class Featuredfeed < MWModule
+  class Featuredfeed < Action
     symbol :featuredfeed
     param :feedformat, Params::Enum["rss", "atom"]
     param :feed, Params::Enum["potd", "featured", "onthisday"]

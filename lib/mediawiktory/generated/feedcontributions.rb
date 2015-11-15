@@ -1,5 +1,5 @@
 module MediaWiktory
-  class Feedcontributions < MWModule
+  class Feedcontributions < Action
     symbol :feedcontributions
     param :feedformat, Params::Enum["rss", "atom"]
     param :user, Params::String

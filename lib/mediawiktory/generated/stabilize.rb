@@ -1,5 +1,5 @@
 module MediaWiktory
-  class Stabilize < MWModule
+  class Stabilize < Action
     symbol :stabilize
     post!
     param :protectlevel, Params::Enum["autoconfirmed", "review", "none"]

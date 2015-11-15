@@ -1,5 +1,5 @@
 module MediaWiktory
-  class CirrusConfigDump < MWModule
+  class CirrusConfigDump < Action
     symbol :"cirrus-config-dump"
   end
 end

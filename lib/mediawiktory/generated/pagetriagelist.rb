@@ -1,5 +1,5 @@
 module MediaWiktory
-  class Pagetriagelist < MWModule
+  class Pagetriagelist < Action
     symbol :pagetriagelist
     param :page_id, Params::Integer
     param :showbots, Params::Boolean

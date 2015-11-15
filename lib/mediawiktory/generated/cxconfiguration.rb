@@ -1,5 +1,5 @@
 module MediaWiktory
-  class Cxconfiguration < MWModule
+  class Cxconfiguration < Action
     symbol :cxconfiguration
     param :from, Params::String
     param :to, Params::String

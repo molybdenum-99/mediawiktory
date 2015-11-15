@@ -1,5 +1,5 @@
 module MediaWiktory
-  class FlowParsoidUtils < MWModule
+  class FlowParsoidUtils < Action
     symbol :"flow-parsoid-utils"
     param :from, Params::Enum["html", "wikitext"]
     param :to, Params::Enum["html", "wikitext"]

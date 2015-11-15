@@ -1,5 +1,5 @@
 module MediaWiktory
-  class CirrusMappingDump < MWModule
+  class CirrusMappingDump < Action
     symbol :"cirrus-mapping-dump"
   end
 end

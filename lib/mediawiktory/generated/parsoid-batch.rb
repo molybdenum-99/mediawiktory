@@ -1,5 +1,5 @@
 module MediaWiktory
-  class ParsoidBatch < MWModule
+  class ParsoidBatch < Action
     symbol :"parsoid-batch"
     param :batch, Params::String
   end

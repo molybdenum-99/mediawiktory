@@ -1,5 +1,5 @@
 module MediaWiktory
-  class Parse < MWModule
+  class Parse < Action
     symbol :parse
     param :title, Params::String
     param :text, Params::String

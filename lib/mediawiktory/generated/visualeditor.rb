@@ -1,5 +1,5 @@
 module MediaWiktory
-  class Visualeditor < MWModule
+  class Visualeditor < Action
     symbol :visualeditor
     param :page, Params::String
     param :format, Params::Enum["json", "jsonfm"]

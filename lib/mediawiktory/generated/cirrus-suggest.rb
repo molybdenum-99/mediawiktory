@@ -1,5 +1,5 @@
 module MediaWiktory
-  class CirrusSuggest < MWModule
+  class CirrusSuggest < Action
     symbol :"cirrus-suggest"
     param :text, Params::String
     param :context, Params::String

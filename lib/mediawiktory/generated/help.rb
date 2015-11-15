@@ -1,5 +1,5 @@
 module MediaWiktory
-  class Help < MWModule
+  class Help < Action
     symbol :help
     param :modules, Params::List[Params::String]
     param :submodules, Params::Boolean

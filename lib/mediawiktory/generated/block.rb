@@ -1,5 +1,5 @@
 module MediaWiktory
-  class Block < MWModule
+  class Block < Action
     symbol :block
     post!
     param :user, Params::String

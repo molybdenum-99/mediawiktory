@@ -1,5 +1,5 @@
 module MediaWiktory
-  class Flowthank < MWModule
+  class Flowthank < Action
     symbol :flowthank
     post!
     param :postid, Params::String

@@ -1,5 +1,5 @@
 module MediaWiktory
-  class Emailuser < MWModule
+  class Emailuser < Action
     symbol :emailuser
     post!
     param :target, Params::String

@@ -1,5 +1,5 @@
 module MediaWiktory
-  class Edit < MWModule
+  class Edit < Action
     symbol :edit
     post!
     param :title, Params::String

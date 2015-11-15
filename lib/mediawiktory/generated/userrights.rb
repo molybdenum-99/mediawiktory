@@ -1,5 +1,5 @@
 module MediaWiktory
-  class Userrights < MWModule
+  class Userrights < Action
     symbol :userrights
     post!
     param :user, Params::String

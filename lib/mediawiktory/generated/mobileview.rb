@@ -1,5 +1,5 @@
 module MediaWiktory
-  class Mobileview < MWModule
+  class Mobileview < Action
     symbol :mobileview
     param :page, Params::String
     param :redirect, Params::Enum["yes", "no"]

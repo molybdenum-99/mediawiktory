@@ -1,5 +1,5 @@
 module MediaWiktory
-  class Liststudents < MWModule
+  class Liststudents < Action
     symbol :liststudents
     param :courseids, Params::List[Params::Integer]
     param :prop, Params::Enum["username", "id"]

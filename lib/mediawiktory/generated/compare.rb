@@ -1,5 +1,5 @@
 module MediaWiktory
-  class Compare < MWModule
+  class Compare < Action
     symbol :compare
     param :fromtitle, Params::String
     param :fromid, Params::Integer

@@ -1,5 +1,5 @@
 module MediaWiktory
-  class Antispoof < MWModule
+  class Antispoof < Action
     symbol :antispoof
     param :username, Params::String
   end

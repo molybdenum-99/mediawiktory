@@ -1,5 +1,5 @@
 module MediaWiktory
-  class Deleteglobalaccount < MWModule
+  class Deleteglobalaccount < Action
     symbol :deleteglobalaccount
     post!
     param :user, Params::String

@@ -1,5 +1,5 @@
 module MediaWiktory
-  class Filerevert < MWModule
+  class Filerevert < Action
     symbol :filerevert
     post!
     param :filename, Params::String

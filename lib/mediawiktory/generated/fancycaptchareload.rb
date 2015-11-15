@@ -1,5 +1,5 @@
 module MediaWiktory
-  class Fancycaptchareload < MWModule
+  class Fancycaptchareload < Action
     symbol :fancycaptchareload
   end
 end

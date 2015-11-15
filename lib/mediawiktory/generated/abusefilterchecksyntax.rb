@@ -1,5 +1,5 @@
 module MediaWiktory
-  class Abusefilterchecksyntax < MWModule
+  class Abusefilterchecksyntax < Action
     symbol :abusefilterchecksyntax
     param :filter, Params::String
   end

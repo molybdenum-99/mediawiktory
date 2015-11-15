@@ -1,5 +1,5 @@
 module MediaWiktory
-  class Cxdelete < MWModule
+  class Cxdelete < Action
     symbol :cxdelete
     post!
     param :token, Params::String

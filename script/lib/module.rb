@@ -54,9 +54,16 @@ module ApiParser
     end
 
     def to_ruby(base_path)
+      base = case type
+      when 'action'
+        'Action'
+      else
+        'MWModule'
+      end
+      
       [
         "module MediaWiktory",
-        "  class #{class_name} < MWModule",
+        "  class #{class_name} < #{base}",
         "    symbol #{name.to_sym.inspect}",
         prefix && !prefix.empty? && "    prefix: #{prefix.inspect}",
         post? && "    post!",
@@ -79,6 +86,10 @@ module ApiParser
 
     def name
       title.split('=').last
+    end
+
+    def type
+      title.split('=').first
     end
 
     def class_name

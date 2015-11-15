@@ -1,5 +1,5 @@
 module MediaWiktory
-  class Upload < MWModule
+  class Upload < Action
     symbol :upload
     post!
     param :filename, Params::String

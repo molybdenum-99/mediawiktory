@@ -1,5 +1,5 @@
 module MediaWiktory
-  class Opensearch < MWModule
+  class Opensearch < Action
     symbol :opensearch
     param :search, Params::String
     param :limit, Params::IntegerOrMax

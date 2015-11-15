@@ -1,5 +1,5 @@
 module MediaWiktory
-  class Addstudents < MWModule
+  class Addstudents < Action
     symbol :addstudents
     post!
     param :studentusernames, Params::List[Params::String]

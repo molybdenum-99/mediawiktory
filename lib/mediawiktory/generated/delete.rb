@@ -1,5 +1,5 @@
 module MediaWiktory
-  class Delete < MWModule
+  class Delete < Action
     symbol :delete
     post!
     param :title, Params::String

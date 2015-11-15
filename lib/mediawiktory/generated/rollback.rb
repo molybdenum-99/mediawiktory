@@ -1,5 +1,5 @@
 module MediaWiktory
-  class Rollback < MWModule
+  class Rollback < Action
     symbol :rollback
     post!
     param :title, Params::String

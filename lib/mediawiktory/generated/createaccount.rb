@@ -1,5 +1,5 @@
 module MediaWiktory
-  class Createaccount < MWModule
+  class Createaccount < Action
     symbol :createaccount
     post!
     param :name, Params::String

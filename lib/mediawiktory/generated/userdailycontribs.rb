@@ -1,5 +1,5 @@
 module MediaWiktory
-  class Userdailycontribs < MWModule
+  class Userdailycontribs < Action
     symbol :userdailycontribs
     param :user, Params::String
     param :daysago, Params::Integer

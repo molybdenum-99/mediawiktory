@@ -1,5 +1,5 @@
 ---
-url: "/w/api.php?action=help&module=query"
+url: "/w/api.php?action=help"
 title: Main module
 flags:
 - id: apihelp-source
@@ -717,57 +717,6 @@ params:
         type: string
       - full_name: wpCaptchaWord
         name: wpCaptchaWord
-        type: string
-  - name: cxsuggestionlist
-    module:
-      url: "/w/api.php?action=help&modules=cxsuggestionlist"
-      title: action=cxsuggestionlist
-      prefix: 
-      description: Manage the suggestion lists. Add suggestions to lists and remove
-        them.
-      flags:
-      - id: apihelp-flag-readrights
-        text: This module requires read rights.
-        role: readrights
-      - id: apihelp-flag-writerights
-        text: This module requires write rights.
-        role: writerights
-      - id: apihelp-flag-mustbeposted
-        text: This module only accepts POST requests.
-        role: mustbeposted
-      - id: apihelp-source
-        text: 'Source: ContentTranslation'
-        role: source
-      - id: apihelp-license
-        text: 'License: GPL-2.0+'
-        role: license
-      params:
-      - full_name: listname
-        name: listname
-        description: Suggestion list name.
-        type: string
-      - full_name: listaction
-        name: listaction
-        description: Action to be performed on the list.
-        type: enum
-        vals:
-        - name: add
-        - name: remove
-      - full_name: titles
-        name: titles
-        description: Page titles.
-        type: list
-      - full_name: from
-        name: from
-        description: The source language code.
-        type: string
-      - full_name: to
-        name: to
-        description: The target language code.
-        type: string
-      - full_name: token
-        name: token
-        description: A "csrf" token retrieved from action=query&meta=tokens
         type: string
   - name: cxtoken
     module:
@@ -35163,6 +35112,41 @@ params:
         name: token
         description: A "csrf" token retrieved from action=query&meta=tokens
         type: string
+  - name: userdailycontribs
+    module:
+      url: "/w/api.php?action=help&modules=userdailycontribs"
+      title: action=userdailycontribs
+      prefix: 
+      description: Get the total number of user edits, time of registration, and edits
+        in a given timeframe.
+      flags:
+      - id: apihelp-flag-deprecated
+        text: This module is deprecated.
+        role: deprecated
+      - id: apihelp-flag-readrights
+        text: This module requires read rights.
+        role: readrights
+      - id: apihelp-source
+        text: 'Source: User Daily Contributions'
+        role: source
+      - id: apihelp-license
+        text: 'License: GPL-2.0+'
+        role: license
+      params:
+      - full_name: user
+        name: user
+        description: Username to query.
+        type: user name
+      - full_name: daysago
+        name: daysago
+        description: Number of edits since this many days ago.
+        type: integer
+      - full_name: basetimestamp
+        name: basetimestamp
+        description: Date from which daysago will be calculated, instead of "today".
+          The count returned in timeFrameEdits will be the edit count between this
+          date and the date "daysago" from it.
+        type: timestamp
   - name: userrights
     module:
       url: "/w/api.php?action=help&modules=userrights"
@@ -40240,8 +40224,8 @@ params:
   type: string
 - full_name: uselang
   name: uselang
-  description: Language to use for message translations. action=query&meta=siteinfo
-    with siprop=languages returns a list of language codes, or specify user to use
+  description: Language to use for message translations. A list of codes may be fetched
+    from action=query&meta=siteinfo with siprop=languages, or specify user to use
     the current user's language preference, or specify content to use this wiki's
     content language.
   type: string

@@ -1,5 +1,5 @@
 module MediaWiktory
-  class Options < MWModule
+  class Options < Action
     symbol :options
     post!
     param :reset, Params::Boolean

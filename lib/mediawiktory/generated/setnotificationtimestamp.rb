@@ -1,5 +1,5 @@
 module MediaWiktory
-  class Setnotificationtimestamp < MWModule
+  class Setnotificationtimestamp < Action
     symbol :setnotificationtimestamp
     post!
     param :entirewatchlist, Params::Boolean

@@ -1,5 +1,5 @@
 module MediaWiktory
-  class Setglobalaccountstatus < MWModule
+  class Setglobalaccountstatus < Action
     symbol :setglobalaccountstatus
     post!
     param :user, Params::String

@@ -1,5 +1,5 @@
 module MediaWiktory
-  class Patrol < MWModule
+  class Patrol < Action
     symbol :patrol
     post!
     param :rcid, Params::Integer

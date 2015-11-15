@@ -1,5 +1,5 @@
 module MediaWiktory
-  class Editmassmessagelist < MWModule
+  class Editmassmessagelist < Action
     symbol :editmassmessagelist
     post!
     param :spamlist, Params::String

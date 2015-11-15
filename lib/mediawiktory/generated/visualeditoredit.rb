@@ -1,5 +1,5 @@
 module MediaWiktory
-  class Visualeditoredit < MWModule
+  class Visualeditoredit < Action
     symbol :visualeditoredit
     post!
     param :page, Params::String

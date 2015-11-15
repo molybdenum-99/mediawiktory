@@ -1,5 +1,5 @@
 module MediaWiktory
-  class Pagetriagetemplate < MWModule
+  class Pagetriagetemplate < Action
     symbol :pagetriagetemplate
     param :view, Params::String
     param :template, Params::String

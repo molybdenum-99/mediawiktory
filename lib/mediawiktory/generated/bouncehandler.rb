@@ -1,5 +1,5 @@
 module MediaWiktory
-  class Bouncehandler < MWModule
+  class Bouncehandler < Action
     symbol :bouncehandler
     post!
     param :email, Params::String

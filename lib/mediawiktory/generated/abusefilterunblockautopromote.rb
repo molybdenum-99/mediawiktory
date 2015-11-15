@@ -1,5 +1,5 @@
 module MediaWiktory
-  class Abusefilterunblockautopromote < MWModule
+  class Abusefilterunblockautopromote < Action
     symbol :abusefilterunblockautopromote
     post!
     param :user, Params::String

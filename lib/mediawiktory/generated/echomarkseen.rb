@@ -1,5 +1,5 @@
 module MediaWiktory
-  class Echomarkseen < MWModule
+  class Echomarkseen < Action
     symbol :echomarkseen
     post!
     param :token, Params::String

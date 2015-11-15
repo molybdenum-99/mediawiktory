@@ -1,5 +1,5 @@
 module MediaWiktory
-  class Stashedit < MWModule
+  class Stashedit < Action
     symbol :stashedit
     post!
     param :title, Params::String

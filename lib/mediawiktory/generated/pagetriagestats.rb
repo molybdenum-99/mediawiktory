@@ -1,5 +1,5 @@
 module MediaWiktory
-  class Pagetriagestats < MWModule
+  class Pagetriagestats < Action
     symbol :pagetriagestats
     param :namespace, Params::Integer
     param :showredirs, Params::Boolean

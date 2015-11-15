@@ -1,5 +1,5 @@
 module MediaWiktory
-  class Titleblacklist < MWModule
+  class Titleblacklist < Action
     symbol :titleblacklist
     prefix: "tb"
     param :title, Params::String
