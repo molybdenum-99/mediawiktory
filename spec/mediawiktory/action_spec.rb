@@ -56,7 +56,8 @@ module MediaWiktory
       }}
       
       it 'constructs response' do
-        expect(client).to receive(:get).with(
+        expect(client).to receive(:get).
+          with(
           'action' => 'query',
           'export' => 'true',
           'format' => 'json').
@@ -65,6 +66,9 @@ module MediaWiktory
         response = action.perform
         expect(response).to be_kind_of(Action::Response)
         expect(response.to_h).to eq response_data
+        expect(response.raw).to eq response_data
+        expect(response.raw).to be_kind_of Hashie::Mash
+        expect(response.action).to eq action
       end
     end
   end
