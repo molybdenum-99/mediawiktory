@@ -1,3 +1,6 @@
+require 'json'
+require 'hashie'
+
 module MediaWiktory
   class Action < MWModule
     attr_reader :client
@@ -12,7 +15,7 @@ module MediaWiktory
     end
 
     def perform
-      @client.send(self.class.request_method, to_param)
+      Hashie::Mash.new(JSON.parse(@client.send(self.class.request_method, to_param)))
     end
 
     def to_param

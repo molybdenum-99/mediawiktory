@@ -23,7 +23,7 @@ module MediaWiktory
         expect(client).to receive(:get).with(
           'action' => 'query',
           'export' => 'true',
-          'format' => 'json')
+          'format' => 'json').and_return('{}')
 
         action.perform
       end
@@ -37,13 +37,35 @@ module MediaWiktory
           expect(client).to receive(:post).with(
             'action' => 'query',
             'export' => 'true',
-            'format' => 'json')
+            'format' => 'json').and_return('{}')
 
           action.perform
         end
       end
+
+      let(:response_data){{
+        'meta' => {
+          'continue' => '||'
+        },
+        'query' => {
+          'pages' => {
+            '123' => {'title' => 'Foo'},
+            '456' => {'title' => 'Bar'}
+          }
+        }
+      }}
       
-      it 'constructs response'
+      it 'constructs response' do
+        expect(client).to receive(:get).with(
+          'action' => 'query',
+          'export' => 'true',
+          'format' => 'json').
+          and_return(response_data.to_json)
+
+        response = action.perform
+        expect(response).to be_kind_of(Hashie::Mash)
+        expect(response).to eq response_data
+      end
     end
   end
 end
