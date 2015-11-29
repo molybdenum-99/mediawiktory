@@ -29,6 +29,11 @@ module MediaWiktory
       end
     end
 
+    def push(value, key)
+      super(value)
+      @keys.push(key)
+    end
+
     def to_h
       keys.zip(self).to_h
     end

@@ -14,9 +14,9 @@ module MediaWiktory
       self.class.new(client, to_h)
     end
 
-    def perform
+    def perform(params = {})
       self.class::Response. # child classes can enrich and specialize their Response
-        from_json(self, @client.send(self.class.request_method, to_param))
+        from_json(self, @client.send(self.class.request_method, to_param.merge(params)))
     end
 
     def to_param
@@ -33,6 +33,11 @@ module MediaWiktory
       def initialize(action, raw)
         @action = action
         @raw = Hashie::Mash.new(raw)
+      end
+
+      def initialize_copy(other)
+        @action = other.action
+        @raw = other.raw.dup
       end
 
       def to_h
