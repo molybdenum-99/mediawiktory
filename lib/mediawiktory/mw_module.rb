@@ -177,8 +177,10 @@ module MediaWiktory
             {val => {}}
           when Hash
             val.map{|k, v| {k => v}}
+          when MWModule
+            val
           else
-            fail(ArgumentError, "#{v} can not be coerced into module")
+            fail(ArgumentError, "#{val} can not be coerced into module")
           end
         }.flatten.map{|h| MWModule.coerce(h)}
       end
@@ -222,6 +224,8 @@ module MediaWiktory
             fail(ArgumentError, "Module only can be initialized with a hash, #{attr.class} given")
 
           MWModule.list[name].new(attr)
+        when MWModule
+          value
         else
           fail ArgumentError, "Can not coerce #{value} into module"
         end

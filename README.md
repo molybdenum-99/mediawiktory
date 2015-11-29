@@ -1,4 +1,5 @@
-https://www.mediawiki.org/wiki/API:Client_code#Ruby
+**Warning! Even 0.0.1 unrealeased yet! Possible first release date
+is Dec 3, 2015**
 
 **MediaWiktory** is MediaWiki API client that doesn't suck. No, seriously.
 
@@ -31,26 +32,27 @@ MediaWiktory, on the contrary, does this:
 * it manages cookies and tokens for you, but can expose underlying
   Faraday web client so the middleware can be added (like caching).
 
+**Warning: Above is IDEAL state of the library. Current state, at
+version 0.0.1 is far less impressive (yet already useful).**
+
 ## Structure and usage
 
 MediaWiktory tries to resemble original API structure. So, each of
-original `action`s represented as one of client's methods. All actions
-params are represented as nested hashes.
+original `action`s represented as one of client's methods. Action params
+are chainable methods, like in Arel and other similar libraries.
 
-Example: fetch pages from category
+Example: fetch pages from category:
 
 ```ruby
-client.query(
-  revisions: :content, # what to fetch for each page
-  generator: {categorymembers: {title: 'Countries', limit: 10}}
-)
+response = client.
+  query.
+  revisions(:content). # what to fetch for each page
+  generator(categorymembers: {title: 'Category:Countries_in_South_America', limit: 10}).
+  perform
+
+response.continue! while response.can_continue?
+
+p response.pages.map(&:title)
 ```
 
 The same thing works for entire API.
-
-[Here](#TODO) is cheatsheet for common and interesting operations,
-alongside with some comments on how to do more.
-
-### Response
-
-### Request continuing
