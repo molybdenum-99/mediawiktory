@@ -19,13 +19,13 @@ module MediaWiktory
       let(:client){Client.new(url)}
       
       it 'GETs' do
-        expect(client.get(action: :query, prop: :revision).body).to eq 'stub'
+        expect(client.get(action: :query, prop: :revision)).to eq 'stub'
         expect(WebMock).to have_requested(:get, url).
           with(query: {'action' => 'query', 'prop' => 'revision'})
       end
 
       it 'POSTs' do
-        expect(client.post(action: :query, prop: :revision).body).to eq 'stub'
+        expect(client.post(action: :query, prop: :revision)).to eq 'stub'
         expect(WebMock).to have_requested(:post, url).
           with(body: {'action' => 'query', 'prop' => 'revision'})
       end
