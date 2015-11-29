@@ -7,6 +7,9 @@ require 'pp'
 c = Client.new('https://en.wikipedia.org/w/api.php')
 a = Query.new(c).
   titles('Argentina', 'Chile').
-  prop(:categories => {limit: 50, continue: "18951905|Articles_including_recorded_pronunciations"})
+  prop(:categories)
 
-pp a.perform
+res = a.perform
+res.continue! while res.continue?
+
+pp res.pages.map(&:to_h)

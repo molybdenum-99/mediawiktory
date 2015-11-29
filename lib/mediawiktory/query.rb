@@ -31,15 +31,29 @@ module MediaWiktory
 
       def merge!(other)
         # FIXME: not the brightest code in my life, faithfully
+        # FIXME2: after this merge, only @pages are updated, but @raw.query.pages IS NOT
         other.pages.to_h.each do |k, p|
           if (existing = pages[k])
-            existing.merge!(p)
+            merge_page(existing, p)
           else
             pages.push(p, p.id)
           end
         end
 
         raw.continue = other.raw.continue
+      end
+
+      def merge_page(existing, other)
+        other.each do |k, v|
+          case existing[k]
+          when Array
+            existing[k].concat(v)
+          when Hash
+            existing[k].merge!(v)
+          else
+            existing[k] = v
+          end
+        end
       end
     end
   end

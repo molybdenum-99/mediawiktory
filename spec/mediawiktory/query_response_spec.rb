@@ -62,7 +62,7 @@ module MediaWiktory
       end
 
       it 'enriches old pages' do
-        expect(response.pages['18951905'].lastrevid).to eq 662359871
+        expect(response.pages['18951905'].categories.count).to eq 2
       end
 
       it 'updates continue info' do
