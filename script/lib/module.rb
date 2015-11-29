@@ -86,6 +86,17 @@ module ApiParser
       ].join("\n")
     end
 
+    def to_mixin_ruby
+      [
+        "module MediaWiktory",
+        "  module ActionsMixin",
+        *params.detect{|p| p.name == 'action'}.vals.map(&:module).
+          map{|mod| "    def #{mod.name.gsub('-', '_')}\n      #{mod.class_name}.new(self)\n    end"},
+        "  end",
+        "end"
+      ].join("\n")
+    end
+
     def name
       title.split('=').last
     end
@@ -103,6 +114,7 @@ module ApiParser
         params.detect{|p| p.name == 'action'}.vals.map(&:module).each{|mod|
           mod.write(base_path)
         }
+        File.write(File.join(base_path, "actions_mixin.rb"), to_mixin_ruby)
       else
         File.write(File.join(base_path, "#{name}.rb"), to_ruby(base_path))
         File.write(File.join(base_path, "g#{name}.rb"), to_generator_ruby) if generator?

@@ -1,3 +1,5 @@
+require_relative 'generated/actions_mixin'
+
 module MediaWiktory
   class Client
     attr_reader :url
@@ -14,5 +16,7 @@ module MediaWiktory
     def post(params)
       @faraday.post('', params).body
     end
+
+    include ActionsMixin
   end
 end

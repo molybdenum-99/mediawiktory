@@ -5,11 +5,11 @@ include MediaWiktory
 require 'pp'
 
 c = Client.new('https://en.wikipedia.org/w/api.php')
-a = Query.new(c).
+res = c.query.
   titles('Argentina', 'Chile').
-  prop(:categories)
+  prop(:categories).
+  perform
 
-res = a.perform
 res.continue! while res.continue?
 
 pp res.pages.map(&:to_h)
