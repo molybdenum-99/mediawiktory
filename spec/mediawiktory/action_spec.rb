@@ -64,11 +64,15 @@ module MediaWiktory
           and_return(response_data.to_json)
 
         response = action.perform
+
         expect(response).to be_kind_of(Action::Response)
+        expect(response.action).to eq action
+
         expect(response.to_h).to eq response_data
+
         expect(response.raw).to eq response_data
         expect(response.raw).to be_kind_of Hashie::Mash
-        expect(response.action).to eq action
+
       end
     end
   end
