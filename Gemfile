@@ -12,4 +12,5 @@ end
 group :development do
   gem 'nokogiri'
   gem 'naught'
+  gem 'rubygems-tasks'
 end
