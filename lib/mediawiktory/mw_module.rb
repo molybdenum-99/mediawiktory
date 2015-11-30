@@ -132,7 +132,15 @@ module MediaWiktory
       end
 
       def to_param(prefix = nil)
-        {"#{prefix}#{name}" => value.class.symbol.to_s}.merge(value.to_param)
+        {"#{prefix}#{name}" => value.class.symbol.to_s}.merge(value_to_param)
+      end
+
+      def value_to_param
+        if name == :generator
+          value.to_param.map{|k, v| ["g#{k}", v]}.to_h
+        else
+          value.to_param
+        end
       end
 
       def self.valid?(val)
@@ -157,9 +165,18 @@ module MediaWiktory
       end
 
       def to_param(prefix = nil)
-        [{"#{prefix}#{name}" => value.map{|v|v.class.symbol}.join('|')},
-          *value.map(&:to_param)
-        ].inject({}, :merge)
+        {
+          "#{prefix}#{name}" => value.map{|v|v.class.symbol}.join('|')
+        }.merge(value_to_param)
+      end
+
+      def value_to_param
+        if name == :generator
+          value.map(&:to_param).inject({}, :merge).
+            map{|k, v| ["g#{k}", v]}.to_h
+        else
+          value.map(&:to_param).inject({}, :merge)
+        end
       end
 
       def self.valid?(val)
@@ -287,7 +304,9 @@ module MediaWiktory
     end
 
     def to_param
-      @params.values.map{|p| p.to_param(self.class.prefix)}.inject({}, :merge)
+      @params.values.
+        map{|p| p.to_param(self.class.prefix)}.
+        inject({}, :merge)
     end
 
     protected

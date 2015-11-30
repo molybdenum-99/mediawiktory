@@ -117,7 +117,7 @@ module ApiParser
         File.write(File.join(base_path, "actions_mixin.rb"), to_mixin_ruby)
       else
         File.write(File.join(base_path, "#{name}.rb"), to_ruby(base_path))
-        File.write(File.join(base_path, "g#{name}.rb"), to_generator_ruby) if generator?
+        #File.write(File.join(base_path, "g#{name}.rb"), to_generator_ruby) if generator?
       end
     end
 

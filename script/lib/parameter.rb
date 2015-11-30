@@ -114,9 +114,9 @@ module ApiParser
         'Params::List[Params::Timestamp]'
       when 'enum'
         case
-        when name == 'generator'
-          vals.map(&:module).each{|m| m.write(base_path)}
-          "Params::Module#{vals.map(&:name).map{|n| ('g' + n).to_sym}}"
+        #when name == 'generator'
+          #vals.map(&:module).each{|m| m.write(base_path)}
+          #"Params::Module#{vals.map(&:name).map{|n| ('g' + n).to_sym}}"
         when vals.first.module
           vals.map(&:module).each{|m| m.write(base_path)}
           "Params::Module#{vals.map(&:name).map(&:to_sym)}"

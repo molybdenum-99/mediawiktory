@@ -217,6 +217,23 @@ module MediaWiktory
             'm1foo' => '11'
           }}
         end
+
+        context 'generator flattenization' do
+          let(:klass){
+            Class.new(MWModule){
+              param :generator, Params::Modules[:mod1, :mod2]
+            }
+          }
+          subject{
+            klass.new(
+              generator: [:mod2, {mod1: {foo: 11}}]
+            )
+          }
+          its(:to_param){should == {
+            'generator' => 'mod2|mod1',
+            'gm1foo' => '11'
+          }}
+        end
       end
     end
   end
