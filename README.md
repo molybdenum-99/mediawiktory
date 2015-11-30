@@ -1,6 +1,3 @@
-**Warning! Even 0.0.1 unrealeased yet! Possible first release date
-is Dec 3, 2015**
-
 **MediaWiktory** is MediaWiki API client that doesn't suck. No, seriously.
 
 [MediaWiki API](https://www.mediawiki.org/wiki/API:Main_page)
