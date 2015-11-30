@@ -1,15 +1,15 @@
 source 'https://rubygems.org'
 
-gem 'faraday'
-gem 'faraday_middleware'
-gem 'hashie'
-gem 'addressable'
-gem 'nokogiri'
-gem 'naught'
+gemspec
 
 group :test do
   gem 'rspec'
   gem 'rspec-its'
   gem 'webmock'
   gem 'faker'
+end
+
+group :development do
+  gem 'nokogiri'
+  gem 'naught'
 end

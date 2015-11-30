@@ -37,22 +37,67 @@ version 0.0.1 is far less impressive (yet already useful).**
 
 ## Structure and usage
 
-MediaWiktory tries to resemble original API structure. So, each of
-original `action`s represented as one of client's methods. Action params
-are chainable methods, like in Arel and other similar libraries.
+MediaWiktory tries to resemble original API structure, but make its calls
+more Ruby-ish. So, [Arel](https://github.com/rails/arel)-alike "chainable
+query" approach is implemented.
 
-Example: fetch pages from category:
+Fast example:
+
+**Goal**: fetch content for first 30 pages from category "Countries in
+South America".
+
+**Raw request** (split in lines for readability):
+
+```
+https://en.wikipedia.org/w/api.php?
+  action=query&
+  generator=categorymembers&
+  gcmtitle=Category:Countries_in_South_America&
+  gcmlimit=30&
+  prop=revisions&
+  rvprop=content
+```
+
+**MediaWiktory request**—almost the same, but structured and validated
+on-the-fly, and without `gcm` and `rv` prefixes black magic:
+
+```ruby
+client = MediaWiktory::Client.new('https://en.wikipedia.org/w/api.php')
+
+response = client.
+  query.
+  generator(categorymembers: {title: 'Category:Countries_in_South_America', limit: 30}).
+  prop(revisions: {prop: :content}).
+  perform
+
+# MediaWiktory handles "next page fetching" for you, if you want
+response.continue! while response.can_continue?
+
+# MediaWiktory parses response and provides smart shortcuts
+p response.pages.map(&:title)
+```
+
+The same approach works for ANY `action` described in [docs](https://en.wikipedia.org/w/api.php),
+and all of its "modules" and "submodules".
+
+**NB**: its 0.0.1, ok? Domain is complex and is still investigated. For
+example, above statement definitely **wants** to look like
 
 ```ruby
 response = client.
   query.
-  revisions(:content). # what to fetch for each page
-  generator(categorymembers: {title: 'Category:Countries_in_South_America', limit: 10}).
+  generator(categorymembers: 'Category:Countries_in_South_America').
+  limit(30).
+  prop(revisions: :content).
   perform
-
-response.continue! while response.can_continue?
-
-p response.pages.map(&:title)
 ```
 
-The same thing works for entire API.
+...but it should be done without flexibility loss.
+
+## Author
+
+[Victor Shepelev](http://zverok.github.io)
+
+## License
+
+MIT.

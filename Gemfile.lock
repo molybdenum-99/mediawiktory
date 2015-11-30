@@ -1,3 +1,12 @@
+PATH
+  remote: .
+  specs:
+    mediawiktory (0.0.1)
+      addressable
+      faraday
+      faraday_middleware
+      hashie
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -43,11 +52,8 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  addressable
   faker
-  faraday
-  faraday_middleware
-  hashie
+  mediawiktory!
   naught
   nokogiri
   rspec
