@@ -32,6 +32,28 @@ module MediaWiktory
 
       context 'preserving cookies' do
       end
+
+      context 'User-Agent' do
+        it 'passes reasonable default' do
+          expect(client.get(action: :query, prop: :revision)).to eq 'stub'
+          expect(WebMock).to have_requested(:get, url).
+            with(
+              query: {'action' => 'query', 'prop' => 'revision'},
+              headers: {'User-Agent' => /^MediaWiktory/}
+            )
+        end
+        
+        it 'passes when set explicitly' do
+
+          client = Client.new(url, user_agent: 'Rspec Test')
+          expect(client.get(action: :query, prop: :revision)).to eq 'stub'
+          expect(WebMock).to have_requested(:get, url).
+            with(
+              query: {'action' => 'query', 'prop' => 'revision'},
+              headers: {'User-Agent' => 'Rspec Test'}
+            )
+        end
+      end
     end
 
     context 'action construction' do
