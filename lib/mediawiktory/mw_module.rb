@@ -100,10 +100,14 @@ module MediaWiktory
         attr_accessor :member_type
 
         def inspect
-          "#<List#{member_type}>"
+          "#<List[#{member_type}]>"
         end
 
         alias_method :to_s, :inspect
+      end
+
+      def value=(val)
+        super([*val])
       end
 
       def self.valid?(val)
@@ -188,7 +192,7 @@ module MediaWiktory
 
       def coerce_modules(value)
         # making array of 1-item hashes
-        value.map{|val|
+        [*value].map{|val|
           case val
           when Symbol
             {val => {}}

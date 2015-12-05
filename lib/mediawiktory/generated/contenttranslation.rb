@@ -7,6 +7,6 @@ module MediaWiktory
     param :sourcetitle, Params::String
     param :limit, Params::IntegerOrMax
     param :offset, Params::String
-    param :type, Params::Enum["draft", "published"]
+    param :type, Params::Enum[:draft, :published]
   end
 end

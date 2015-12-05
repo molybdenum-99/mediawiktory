@@ -6,7 +6,7 @@ module MediaWiktory
     param :title, Params::String
     param :continue, Params::String
     param :limit, Params::IntegerOrMax
-    param :prop, Params::List[Params::Enum["lllang", "lltitle"]]
-    param :dir, Params::Enum["ascending", "descending"]
+    param :prop, Params::List[Params::Enum[:lllang, :lltitle]]
+    param :dir, Params::Enum[:ascending, :descending]
   end
 end

@@ -9,7 +9,7 @@ module MediaWiktory
     param :reason, Params::String
     param :cascade, Params::Boolean
     param :watch, Params::Boolean
-    param :watchlist, Params::Enum["watch", "unwatch", "preferences", "nochange"]
+    param :watchlist, Params::Enum[:watch, :unwatch, :preferences, :nochange]
     param :token, Params::String
   end
 end

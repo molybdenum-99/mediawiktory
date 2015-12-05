@@ -7,7 +7,7 @@ module MediaWiktory
     param :limit, Params::IntegerOrMax
     param :intro, Params::Boolean
     param :plaintext, Params::Boolean
-    param :sectionformat, Params::Enum["plain", "wiki", "raw"]
+    param :sectionformat, Params::Enum[:plain, :wiki, :raw]
     param :continue, Params::Integer
     param :variant, Params::String
   end

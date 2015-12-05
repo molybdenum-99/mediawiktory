@@ -10,7 +10,7 @@ module MediaWiktory
     param :to, Params::String
     param :sourcetitle, Params::String
     param :sourcerevision, Params::String
-    param :status, Params::Enum["draft", "published"]
+    param :status, Params::Enum[:draft, :published]
     param :categories, Params::String
     param :wpCaptchaId, Params::String
     param :wpCaptchaWord, Params::String

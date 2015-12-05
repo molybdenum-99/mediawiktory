@@ -4,7 +4,7 @@ module MediaWiktory
     prefix "df"
     param :limit, Params::IntegerOrMax
     param :continue, Params::String
-    param :dir, Params::Enum["ascending", "descending"]
+    param :dir, Params::Enum[:ascending, :descending]
     param :localonly, Params::Boolean
   end
 end

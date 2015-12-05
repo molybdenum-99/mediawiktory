@@ -7,8 +7,8 @@ module MediaWiktory
     param :to, Params::String
     param :prefix, Params::String
     param :unique, Params::Boolean
-    param :prop, Params::List[Params::Enum["ids", "title"]]
+    param :prop, Params::List[Params::Enum[:ids, :title]]
     param :limit, Params::IntegerOrMax
-    param :dir, Params::Enum["ascending", "descending"]
+    param :dir, Params::Enum[:ascending, :descending]
   end
 end

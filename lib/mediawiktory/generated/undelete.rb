@@ -6,7 +6,7 @@ module MediaWiktory
     param :reason, Params::String
     param :timestamps, Params::List[Params::Timestamp]
     param :fileids, Params::List[Params::Integer]
-    param :watchlist, Params::Enum["watch", "unwatch", "preferences", "nochange"]
+    param :watchlist, Params::Enum[:watch, :unwatch, :preferences, :nochange]
     param :token, Params::String
   end
 end

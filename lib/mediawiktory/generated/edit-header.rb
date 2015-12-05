@@ -5,7 +5,7 @@ module MediaWiktory
     post!
     param :prev_revision, Params::String
     param :content, Params::String
-    param :format, Params::Enum["html", "wikitext"]
+    param :format, Params::Enum[:html, :wikitext]
     param :token, Params::String
   end
 end

@@ -3,7 +3,7 @@ module MediaWiktory
     symbol :checkuser
     prefix "cu"
     post!
-    param :request, Params::Enum["userips", "edits", "ipusers"]
+    param :request, Params::Enum[:userips, :edits, :ipusers]
     param :target, Params::String
     param :reason, Params::String
     param :limit, Params::IntegerOrMax

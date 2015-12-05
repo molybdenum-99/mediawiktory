@@ -4,10 +4,10 @@ module MediaWiktory
     post!
     param :id, Params::Integer
     param :label, Params::String
-    param :perm, Params::Enum["public", "private"]
+    param :perm, Params::Enum[:public, :private]
     param :description, Params::String
     param :image, Params::String
-    param :mode, Params::Enum["update", "remove", "deletelist", "hidelist", "showlist", "flag", "approve"]
+    param :mode, Params::Enum[:update, :remove, :deletelist, :hidelist, :showlist, :flag, :approve]
     param :continue, Params::String
     param :titles, Params::List[Params::String]
     param :pageids, Params::List[Params::Integer]

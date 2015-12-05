@@ -3,6 +3,6 @@ module MediaWiktory
     symbol :"view-post-history"
     prefix "vph"
     param :postId, Params::String
-    param :format, Params::Enum["html", "wikitext", "fixed-html"]
+    param :format, Params::Enum[:html, :wikitext, :"fixed-html"]
   end
 end

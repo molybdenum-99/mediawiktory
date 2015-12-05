@@ -106,7 +106,7 @@ module ApiParser
           vals.map(&:module).each{|m| m.write(base_path)}
           "Params::Modules#{vals.map(&:name).map(&:to_sym)}"
         else
-          "Params::List[Params::Enum#{vals.map(&:name).map(&:to_s)}]"
+          "Params::List[Params::Enum#{vals.map(&:name).map(&:to_sym)}]"
         end
       when 'list of integers'
         'Params::List[Params::Integer]'
@@ -114,14 +114,11 @@ module ApiParser
         'Params::List[Params::Timestamp]'
       when 'enum'
         case
-        #when name == 'generator'
-          #vals.map(&:module).each{|m| m.write(base_path)}
-          #"Params::Module#{vals.map(&:name).map{|n| ('g' + n).to_sym}}"
         when vals.first.module
           vals.map(&:module).each{|m| m.write(base_path)}
           "Params::Module#{vals.map(&:name).map(&:to_sym)}"
         else
-          "Params::Enum#{vals.map(&:name).map(&:to_s)}"
+          "Params::Enum#{vals.map(&:name).map(&:to_sym)}"
         end
       else
         fail("Unrecognized param type: #{type}")

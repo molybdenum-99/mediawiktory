@@ -62,6 +62,17 @@ module MediaWiktory
         expect(mod.clprop).to eq [:sortkey, :timestamp]
       end
 
+      it 'allows singular values for lists' do
+        mod = klass.new(
+          titles: 'Argentina',
+          pageids: 123,
+          clprop: :sortkey 
+        )
+        expect(mod.titles).to eq ['Argentina']
+        expect(mod.pageids).to eq [123]
+        expect(mod.clprop).to eq [:sortkey]
+      end
+
       context 'module' do
         it 'converts symbol to module' do
           mod = klass.new(mod: :mod1)
@@ -85,6 +96,13 @@ module MediaWiktory
           expect(mod.mods.first).to be_instance_of(mod1)
           expect(mod.mods.last).to be_instance_of(mod2)
           expect(mod.mods.last.bar).to eq 'foo'
+        end
+
+        it 'understands well singular symbol' do
+          mod = klass.new(mods: :mod1)
+          expect(mod.mods).to be_kind_of(Array)
+          expect(mod.mods.count).to eq 1
+          expect(mod.mods.first).to be_instance_of(mod1)
         end
 
         it 'fails gracefully if something went wrong'

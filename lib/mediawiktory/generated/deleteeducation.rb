@@ -3,7 +3,7 @@ module MediaWiktory
     symbol :deleteeducation
     post!
     param :ids, Params::List[Params::Integer]
-    param :type, Params::Enum["org", "course"]
+    param :type, Params::Enum[:org, :course]
     param :comment, Params::String
     param :token, Params::String
   end

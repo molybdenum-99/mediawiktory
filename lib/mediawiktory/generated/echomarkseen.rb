@@ -3,6 +3,6 @@ module MediaWiktory
     symbol :echomarkseen
     post!
     param :token, Params::String
-    param :type, Params::Enum["alert", "message", "all"]
+    param :type, Params::Enum[:alert, :message, :all]
   end
 end

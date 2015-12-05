@@ -6,7 +6,7 @@ module MediaWiktory
     param :comment, Params::String
     param :text, Params::String
     param :watch, Params::Boolean
-    param :watchlist, Params::Enum["watch", "preferences", "nochange"]
+    param :watchlist, Params::Enum[:watch, :preferences, :nochange]
     param :ignorewarnings, Params::Boolean
     param :file, Params::String
     param :url, Params::String

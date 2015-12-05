@@ -11,7 +11,7 @@ module MediaWiktory
     param :noredirect, Params::Boolean
     param :watch, Params::Boolean
     param :unwatch, Params::Boolean
-    param :watchlist, Params::Enum["watch", "unwatch", "preferences", "nochange"]
+    param :watchlist, Params::Enum[:watch, :unwatch, :preferences, :nochange]
     param :ignorewarnings, Params::Boolean
     param :token, Params::String
   end
