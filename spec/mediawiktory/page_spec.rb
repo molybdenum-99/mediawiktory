@@ -35,6 +35,23 @@ module MediaWiktory
     end
 
     describe :merge! do
+      let(:raw_cont){Hashie::Mash.new(JSON.parse(read_fixture('argentina_cont.json')))}
+      let(:page_cont){Page.new(raw_cont)}
+
+      before{
+        page.merge!(page_cont)
+      }
+
+      it 'updates arrays' do
+        expect(page.categories.count).to eq 20
+        expect(page.categories.last.title).to eq "Category:Articles with dead external links from June 2015"
+      end
+
+      it 'checks id' do
+        raw_cont.pageid += 1
+        page_cont = Page.new(raw_cont)
+        expect{page.merge!(page_cont)}.to raise_error(ArgumentError, /pageid/)
+      end
     end
   end
 end
