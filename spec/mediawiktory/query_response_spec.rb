@@ -6,18 +6,10 @@ module MediaWiktory
     describe :pages do
       let(:response){Query::Response.from_json(action, read_fixture('query-pages.json'))}
       subject(:pages){response.pages}
-      
-      it 'behaves like array' do
-        expect(pages.count).to eq 10
-        expect(pages.first.title).to eq 'List of countries in the Americas by population'
-        expect(pages[0].title).to eq 'List of countries in the Americas by population'
-        expect(pages.each.to_a.first.title).to eq 'List of countries in the Americas by population'
-      end
 
-      it 'behaves like hash' do
-        expect(pages.keys.first).to eq '7497826'
-        expect(pages['18951905'].title).to eq 'Argentina'
-      end
+      its(:count){should == 10}
+      it{should all be_a(Page)}
+      its(:'first.title'){should == 'List of countries in the Americas by population'}
     end
 
     # FIXME: i'm still vague on whether (and how) sub-keys
@@ -62,7 +54,7 @@ module MediaWiktory
       end
 
       it 'enriches old pages' do
-        expect(response.pages['18951905'].categories.count).to eq 2
+        expect(response.pages.detect{|p| p.id == 18951905}.categories.count).to eq 2
       end
 
       it 'updates continue info' do

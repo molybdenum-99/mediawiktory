@@ -10,6 +10,7 @@ module MediaWiktory
       super(**values)
     end
 
+    # FIXME: should be initialize_copy
     def dup
       self.class.new(client, to_h)
     end

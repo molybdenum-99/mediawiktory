@@ -1,4 +1,4 @@
-require_relative 'array_with_keys'
+require_relative 'page'
 
 module MediaWiktory
   class Query
@@ -7,18 +7,27 @@ module MediaWiktory
     end
   
     class Response < Action::Response
-      def pages
-        @pages ||= ArrayWithKeys.from_hash(raw.query.pages || {})
+      attr_reader :pages, :continue_params
+      
+      def initialize(*)
+        super
+        @pages = (raw.query.pages || {}).values.map(&Page.method(:new))
+        @continue_params = raw.continue && raw.continue.dup
+      end
+
+      def initialize_copy(other)
+        super(other)
+        @pages = other.pages.dup
       end
 
       def continue?
-        !raw.continue.nil?
+        !@continue_params.nil?
       end
 
       def continue!
         continue? or fail(RuntimeError, "Response can not be continued")
         
-        merge!(action.perform(raw.continue))
+        merge!(action.perform(@continue_params))
 
         self
       end
@@ -32,28 +41,17 @@ module MediaWiktory
       def merge!(other)
         # FIXME: not the brightest code in my life, faithfully
         # FIXME2: after this merge, only @pages are updated, but @raw.query.pages IS NOT
-        other.pages.to_h.each do |k, p|
-          if (existing = pages[k])
-            merge_page(existing, p)
+        other.pages.each do |other_page|
+          existing = pages.detect{|p| p.id == other_page.id}
+          
+          if existing
+            existing.merge!(other_page)
           else
-            pages.push(p, p.id)
+            pages.push(other_page)
           end
         end
 
-        raw.continue = other.raw.continue
-      end
-
-      def merge_page(existing, other)
-        other.each do |k, v|
-          case existing[k]
-          when Array
-            existing[k].concat(v)
-          when Hash
-            existing[k].merge!(v)
-          else
-            existing[k] = v
-          end
-        end
+        @continue_params = other.continue_params
       end
     end
   end
