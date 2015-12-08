@@ -11,6 +11,7 @@ GEM
   remote: https://rubygems.org/
   specs:
     addressable (2.3.8)
+    byebug (8.2.1)
     crack (0.4.2)
       safe_yaml (~> 1.0.0)
     diff-lcs (1.2.5)
@@ -53,6 +54,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  byebug
   faker
   mediawiktory!
   naught
@@ -61,3 +63,6 @@ DEPENDENCIES
   rspec-its
   rubygems-tasks
   webmock
+
+BUNDLED WITH
+   1.10.6

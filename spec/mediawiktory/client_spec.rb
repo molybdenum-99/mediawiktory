@@ -30,6 +30,19 @@ module MediaWiktory
           with(body: {'action' => 'query', 'prop' => 'revision'})
       end
 
+      context 'when resource redirects' do
+        before{
+          stub_request(:any, /#{url}.*/).to_return(status: 301, headers: { 'Location' => redirect_url })
+          stub_request(:any, /#{redirect_url}.*/).to_return(body: 'stub')
+        }
+        let(:redirect_url){'http://en.wikipedia.org/w/api_redirect.php'}
+
+        it 'follows redirect' do
+          expect(client.get(action: :query, prop: :revision)).to eq 'stub'
+          expect(WebMock).to have_requested(:get, redirect_url)
+        end
+      end
+
       context 'preserving cookies' do
       end
 
