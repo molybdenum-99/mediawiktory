@@ -20,7 +20,11 @@ module MediaWiktory
     
     def initialize(url, **options)
       @url = Addressable::URI.parse(url)
-      @faraday = Faraday.new(url)
+      @faraday = Faraday.new(url) do |f|
+        f.request :url_encoded
+        f.use FaradayMiddleware::FollowRedirects, limit: 5
+        f.adapter Faraday.default_adapter
+      end
       @faraday.headers.merge!(headers(options))
     end
 

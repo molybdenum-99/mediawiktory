@@ -1,5 +1,6 @@
 require 'addressable/uri'
 require 'faraday'
+require 'faraday_middleware'
 
 module MediaWiktory
   %w[version client mw_module action].each do |mod|
