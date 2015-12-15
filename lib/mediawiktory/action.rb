@@ -34,6 +34,7 @@ module MediaWiktory
       def initialize(action, raw)
         @action = action
         @raw = Hashie::Mash.new(raw)
+        raise RequestError, @raw.error.info unless @raw.error.nil?
       end
 
       def initialize_copy(other)
@@ -44,6 +45,13 @@ module MediaWiktory
       def to_h
         raw.to_h
       end
+
+      def warnings
+        @raw.warnings
+      end
+    end
+
+    class RequestError < StandardError
     end
   end
 end

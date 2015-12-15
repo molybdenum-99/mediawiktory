@@ -75,5 +75,25 @@ module MediaWiktory
 
       end
     end
+
+    describe Action::Response do
+      subject { Action::Response.new('Query instance', raw) }
+
+      context 'when response contains error' do
+        let(:raw) { {"error"=>{"code"=>"gcmmissingparam", "info"=>"One of the parameters cmtitle, cmpageid is required", "*"=>"See https://en.wikipedia.org/w/api.php for API usage"}} }
+
+        it 'raises error' do
+          expect { subject }.to raise_exception(Action::RequestError)
+        end
+      end
+
+      context 'when response contains warning' do
+        let(:raw) { {"warnings"=>{"search"=>{"*"=>"gsrlimit may not be over 50 (set to 100) for users"}}} }
+
+        it 'allows access warnings' do
+          expect(subject.warnings).to be_kind_of(Hashie::Mash)
+        end
+      end
+    end
   end
 end
