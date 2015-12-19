@@ -1,3 +1,5 @@
+# MediaWiktory -- The MediaWiki Client
+
 **MediaWiktory** is MediaWiki API client that doesn't suck. No, seriously.
 
 [MediaWiki API](https://www.mediawiki.org/wiki/API:Main_page)
@@ -91,10 +93,11 @@ response = client.
 
 ...but it should be done without flexibility loss.
 
-## Author
+## Authors
 
-[Victor Shepelev](http://zverok.github.io)
+* [Victor Shepelev](https://zverok.github.io) [@zverok](https://github.com/zverok);
+* Sergey Mostovoy [@smostovoy](https://github.com/smostovoy).
 
 ## License
 
-MIT.
+[MIT](https://github.com/molybdenum-99/mediawiktory/blob/master/LICENSE.txt)
