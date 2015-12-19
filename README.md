@@ -1,4 +1,4 @@
-# MediaWiktory -- The MediaWiki Client
+# MediaWiktory, The MediaWiki Client
 
 **MediaWiktory** is MediaWiki API client that doesn't suck. No, seriously.
 
