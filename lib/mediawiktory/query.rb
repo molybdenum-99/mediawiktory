@@ -11,7 +11,7 @@ module MediaWiktory
       
       def initialize(*)
         super
-        @pages = (raw.query.pages || {}).values.map(&Page.method(:new))
+        @pages = ((raw.query.pages if raw.query) || {}).values.map(&Page.method(:new))
         @continue_params = raw.continue && raw.continue.dup
       end
 
