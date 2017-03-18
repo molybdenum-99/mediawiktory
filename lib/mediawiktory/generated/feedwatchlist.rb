@@ -8,7 +8,7 @@ module MediaWiktory
     param :wlowner, Params::String
     param :wltoken, Params::String
     param :wlshow, Params::List[Params::Enum[:minor, :"!minor", :bot, :"!bot", :anon, :"!anon", :patrolled, :"!patrolled", :unread, :"!unread"]]
-    param :wltype, Params::List[Params::Enum[:edit, :external, :new, :log]]
+    param :wltype, Params::List[Params::Enum[:edit, :new, :log, :external, :categorize]]
     param :wlexcludeuser, Params::String
   end
 end

@@ -8,7 +8,7 @@ module MediaWiktory
     param :sectiontitle, Params::String
     param :text, Params::String
     param :summary, Params::String
-    param :tags, Params::List[Params::Enum[:Huggle, :WPCleaner, :huggle]]
+    param :tags, Params::List[Params::Enum[:Noticeboarddisruption, :ProveItedit, :WPCleaner, :huggle, :largeplotaddition]]
     param :minor, Params::Boolean
     param :notminor, Params::Boolean
     param :bot, Params::Boolean
@@ -27,7 +27,7 @@ module MediaWiktory
     param :undoafter, Params::Integer
     param :redirect, Params::Boolean
     param :contentformat, Params::Enum[:"application/json", :"text/x-wiki", :"text/javascript", :"text/css", :"text/plain"]
-    param :contentmodel, Params::Enum[:MassMessageListContent, :wikitext, :javascript, :json, :css, :text, :SecurePoll, :"flow-board", :Scribunto, :JsonSchema]
+    param :contentmodel, Params::Enum[:GadgetDefinition, :SecurePoll, :MassMessageListContent, :JsonSchema, :wikitext, :javascript, :json, :css, :text, :Scribunto]
     param :token, Params::String
     param :captchaword, Params::String
     param :captchaid, Params::String

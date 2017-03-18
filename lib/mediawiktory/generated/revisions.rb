@@ -10,6 +10,7 @@ module MediaWiktory
     param :section, Params::String
     param :diffto, Params::String
     param :difftotext, Params::String
+    param :difftotextpst, Params::Boolean
     param :contentformat, Params::Enum[:"application/json", :"text/x-wiki", :"text/javascript", :"text/css", :"text/plain"]
     param :startid, Params::Integer
     param :endid, Params::Integer

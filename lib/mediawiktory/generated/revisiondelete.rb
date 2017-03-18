@@ -9,6 +9,7 @@ module MediaWiktory
     param :show, Params::List[Params::Enum[:content, :comment, :user]]
     param :suppress, Params::Enum[:yes, :no, :nochange]
     param :reason, Params::String
+    param :tags, Params::List[Params::Enum[:Noticeboarddisruption, :ProveItedit, :WPCleaner, :huggle, :largeplotaddition]]
     param :token, Params::String
   end
 end

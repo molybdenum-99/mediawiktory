@@ -4,6 +4,7 @@ module MediaWiktory
     post!
     param :filename, Params::String
     param :comment, Params::String
+    param :tags, Params::List[Params::Enum[:Noticeboarddisruption, :ProveItedit, :WPCleaner, :huggle, :largeplotaddition]]
     param :text, Params::String
     param :watch, Params::Boolean
     param :watchlist, Params::Enum[:watch, :preferences, :nochange]
@@ -17,9 +18,6 @@ module MediaWiktory
     param :offset, Params::Integer
     param :chunk, Params::String
     param :async, Params::Boolean
-    param :asyncdownload, Params::Boolean
-    param :leavemessage, Params::Boolean
-    param :statuskey, Params::String
     param :checkstatus, Params::Boolean
     param :token, Params::String
   end

@@ -6,7 +6,9 @@ module MediaWiktory
     param :section, Params::String
     param :sectiontitle, Params::String
     param :text, Params::String
-    param :contentmodel, Params::Enum[:MassMessageListContent, :wikitext, :javascript, :json, :css, :text, :SecurePoll, :"flow-board", :Scribunto, :JsonSchema]
+    param :stashedtexthash, Params::String
+    param :summary, Params::String
+    param :contentmodel, Params::Enum[:GadgetDefinition, :SecurePoll, :MassMessageListContent, :JsonSchema, :wikitext, :javascript, :json, :css, :text, :Scribunto]
     param :contentformat, Params::Enum[:"application/json", :"text/x-wiki", :"text/javascript", :"text/css", :"text/plain"]
     param :baserevid, Params::Integer
     param :token, Params::String

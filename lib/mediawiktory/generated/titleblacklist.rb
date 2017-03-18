@@ -4,6 +4,6 @@ module MediaWiktory
     prefix "tb"
     param :title, Params::String
     param :action, Params::Enum[:create, :edit, :upload, :createtalk, :createpage, :move, :"new-account"]
-    param :nooverride, Params::String
+    param :nooverride, Params::Boolean
   end
 end

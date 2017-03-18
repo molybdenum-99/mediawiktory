@@ -14,6 +14,7 @@ module MediaWiktory
     param :onlyrequestedsections, Params::Boolean
     param :offset, Params::Integer
     param :maxlen, Params::Integer
+    param :revision, Params::Integer
     param :thumbheight, Params::Integer
     param :thumbwidth, Params::Integer
     param :thumbsize, Params::Integer

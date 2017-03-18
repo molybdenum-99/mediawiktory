@@ -9,6 +9,5 @@ module MediaWiktory
     param :plaintext, Params::Boolean
     param :sectionformat, Params::Enum[:plain, :wiki, :raw]
     param :continue, Params::Integer
-    param :variant, Params::String
   end
 end

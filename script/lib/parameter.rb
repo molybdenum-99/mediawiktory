@@ -13,7 +13,7 @@ module ApiParser
           default: extract_default(dds)
 
           # TODO: limit: extract_limit(dds),
-          
+
           # TODO: mandatoriness:
           # * optional
           # * mandatory
@@ -34,7 +34,7 @@ module ApiParser
           case el.text
           when /^Type: ([^\(]+)\s*($|\()/
             return $1.strip
-          when /^Values \(separate with \|\):/,
+          when /^Values \(separate with \|/,
                /^Separate values with \|/
             return 'list'
           when /^One of the following values:/
@@ -58,14 +58,15 @@ module ApiParser
             }
           end
         }
-        
+
         # 2. ...or take from info
         els.select{|e| e.attr('class') == 'info'}.each do |el|
-          if el.text =~ /^(?:One of the following values||Values \(separate with \|\)):\s*(.+)$/
-            if el.at('a')
-              return el.search('a').map{|a|
-                {name: a.text, module: Module.from_url(a.attr('href'))}
-              }
+          if el.text =~ /^(?:One of the following values||Values \(separate with \|.*?\)):\s*(.+)$/
+            if el.search('a').count > 1
+              return el.search('a').reject { |a| a.text == 'alternative' }.
+                map{|a|
+                  {name: a.text, module: Module.from_url(a.attr('href'))}
+                }
             else
               return $1.sub(/^Can be empty, or/, '').split(',').
                 map{|s| s.gsub(/[[:space:]]/, '')}.
@@ -112,6 +113,8 @@ module ApiParser
         'Params::List[Params::Integer]'
       when 'list of timestamps'
         'Params::List[Params::Timestamp]'
+      when 'list of user names'
+        'Params::List[Params::String]'
       when 'enum'
         case
         when vals.first.module

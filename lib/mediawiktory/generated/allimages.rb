@@ -9,7 +9,7 @@ module MediaWiktory
     param :continue, Params::String
     param :start, Params::Timestamp
     param :end, Params::Timestamp
-    param :prop, Params::List[Params::Enum[:timestamp, :user, :userid, :comment, :parsedcomment, :canonicaltitle, :url, :size, :dimensions, :sha1, :mime, :mediatype, :metadata, :commonmetadata, :extmetadata, :bitdepth]]
+    param :prop, Params::List[Params::Enum[:timestamp, :user, :userid, :comment, :parsedcomment, :canonicaltitle, :url, :size, :dimensions, :sha1, :mime, :mediatype, :metadata, :commonmetadata, :extmetadata, :bitdepth, :badfile]]
     param :prefix, Params::String
     param :minsize, Params::Integer
     param :maxsize, Params::Integer

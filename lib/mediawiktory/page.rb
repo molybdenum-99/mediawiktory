@@ -27,7 +27,7 @@ module MediaWiktory
     def merge!(other)
       id == other.id or
         fail(ArgumentError, "Trying to merge different pageids: #{id}/#{other.id}")
-        
+
       other.raw.each do |key, value|
         raw.key?(key) or fail(ArgumentError, "Unknown key in continued page: #{key}")
         next unless raw[key].is_a?(Array)
@@ -35,11 +35,15 @@ module MediaWiktory
       end
     end
 
+    def has_key?(sym)
+      raw.has_key?(sym)
+    end
+
     def method_missing(sym, *args)
       super unless args.empty?
       exists? or
         fail("Page #{title} is missing, can't access #{sym}")
-        
+
       raw.fetch(sym)
     end
   end

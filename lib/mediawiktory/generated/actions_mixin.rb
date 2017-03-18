@@ -24,6 +24,9 @@ module MediaWiktory
     def bouncehandler
       Bouncehandler.new(self)
     end
+    def categorytree
+      Categorytree.new(self)
+    end
     def centralauthtoken
       Centralauthtoken.new(self)
     end
@@ -32,6 +35,9 @@ module MediaWiktory
     end
     def centralnoticequerycampaign
       Centralnoticequerycampaign.new(self)
+    end
+    def changeauthenticationdata
+      Changeauthenticationdata.new(self)
     end
     def checktoken
       Checktoken.new(self)
@@ -45,17 +51,20 @@ module MediaWiktory
     def cirrus_settings_dump
       CirrusSettingsDump.new(self)
     end
-    def cirrus_suggest
-      CirrusSuggest.new(self)
-    end
     def clearhasmsg
       Clearhasmsg.new(self)
+    end
+    def clientlogin
+      Clientlogin.new(self)
     end
     def compare
       Compare.new(self)
     end
     def createaccount
       Createaccount.new(self)
+    end
+    def cspreport
+      Cspreport.new(self)
     end
     def cxconfiguration
       Cxconfiguration.new(self)
@@ -65,6 +74,12 @@ module MediaWiktory
     end
     def cxpublish
       Cxpublish.new(self)
+    end
+    def cxsave
+      Cxsave.new(self)
+    end
+    def cxsuggestionlist
+      Cxsuggestionlist.new(self)
     end
     def cxtoken
       Cxtoken.new(self)
@@ -86,9 +101,6 @@ module MediaWiktory
     end
     def edit
       Edit.new(self)
-    end
-    def editlist
-      Editlist.new(self)
     end
     def editmassmessagelist
       Editmassmessagelist.new(self)
@@ -123,20 +135,14 @@ module MediaWiktory
     def flagconfig
       Flagconfig.new(self)
     end
-    def flow
-      Flow.new(self)
-    end
-    def flow_parsoid_utils
-      FlowParsoidUtils.new(self)
-    end
-    def flowthank
-      Flowthank.new(self)
-    end
     def globalblock
       Globalblock.new(self)
     end
     def globaluserrights
       Globaluserrights.new(self)
+    end
+    def graph
+      Graph.new(self)
     end
     def help
       Help.new(self)
@@ -150,8 +156,14 @@ module MediaWiktory
     def jsonconfig
       Jsonconfig.new(self)
     end
+    def jsondata
+      Jsondata.new(self)
+    end
     def languagesearch
       Languagesearch.new(self)
+    end
+    def linkaccount
+      Linkaccount.new(self)
     end
     def liststudents
       Liststudents.new(self)
@@ -168,11 +180,17 @@ module MediaWiktory
     def massmessage
       Massmessage.new(self)
     end
+    def mergehistory
+      Mergehistory.new(self)
+    end
     def mobileview
       Mobileview.new(self)
     end
     def move
       Move.new(self)
+    end
+    def oathvalidate
+      Oathvalidate.new(self)
     end
     def opensearch
       Opensearch.new(self)
@@ -219,6 +237,12 @@ module MediaWiktory
     def refresheducation
       Refresheducation.new(self)
     end
+    def removeauthenticationdata
+      Removeauthenticationdata.new(self)
+    end
+    def resetpassword
+      Resetpassword.new(self)
+    end
     def review
       Review.new(self)
     end
@@ -234,6 +258,9 @@ module MediaWiktory
     def rsd
       Rsd.new(self)
     end
+    def sanitize_mapdata
+      SanitizeMapdata.new(self)
+    end
     def scribunto_console
       ScribuntoConsole.new(self)
     end
@@ -242,6 +269,12 @@ module MediaWiktory
     end
     def setnotificationtimestamp
       Setnotificationtimestamp.new(self)
+    end
+    def setpagelanguage
+      Setpagelanguage.new(self)
+    end
+    def shortenurl
+      Shortenurl.new(self)
     end
     def sitematrix
       Sitematrix.new(self)
@@ -285,14 +318,17 @@ module MediaWiktory
     def undelete
       Undelete.new(self)
     end
+    def unlinkaccount
+      Unlinkaccount.new(self)
+    end
     def upload
       Upload.new(self)
     end
-    def userdailycontribs
-      Userdailycontribs.new(self)
-    end
     def userrights
       Userrights.new(self)
+    end
+    def validatepassword
+      Validatepassword.new(self)
     end
     def visualeditor
       Visualeditor.new(self)
@@ -302,6 +338,9 @@ module MediaWiktory
     end
     def watch
       Watch.new(self)
+    end
+    def webapp_manifest
+      WebappManifest.new(self)
     end
     def wikilove
       Wikilove.new(self)

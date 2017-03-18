@@ -6,7 +6,7 @@ module MediaWiktory
     param :locked, Params::Enum[:lock, :unlock]
     param :hidden, Params::Enum[:lists, :suppressed]
     param :reason, Params::String
-    param :token, Params::String
     param :statecheck, Params::String
+    param :token, Params::String
   end
 end

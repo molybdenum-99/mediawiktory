@@ -7,6 +7,7 @@ module MediaWiktory
     param :unblock, Params::Boolean
     param :reason, Params::String
     param :anononly, Params::Boolean
+    param :modify, Params::Boolean
     param :token, Params::String
   end
 end
