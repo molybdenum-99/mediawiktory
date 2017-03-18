@@ -2,6 +2,10 @@ require 'json'
 require 'hashie'
 
 module MediaWiktory
+  class Mash < Hashie::Mash
+    disable_warnings
+  end
+  
   class Action < MWModule
     attr_reader :client
     
@@ -33,7 +37,7 @@ module MediaWiktory
 
       def initialize(action, raw)
         @action = action
-        @raw = Hashie::Mash.new(raw)
+        @raw = Mash.new(raw)
         raise RequestError, @raw.error.info unless @raw.error.nil?
       end
 

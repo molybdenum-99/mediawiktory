@@ -1,6 +1,6 @@
 module MediaWiktory
   describe Page do
-    let(:raw){Hashie::Mash.new(JSON.parse(read_fixture('argentina.json')))}
+    let(:raw){Mash.new(JSON.parse(read_fixture('argentina.json')))}
     subject(:page){Page.new(raw)}
     
     describe 'params proxying' do
@@ -24,7 +24,7 @@ module MediaWiktory
     end
 
     describe 'missing/invalid pages' do
-      let(:raw){Hashie::Mash.new(JSON.parse(read_fixture('missing.json')))}
+      let(:raw){Mash.new(JSON.parse(read_fixture('missing.json')))}
       it{should be_missing}
       it{should_not be_exists}
       its(:title){should == 'Argentinfa'}
