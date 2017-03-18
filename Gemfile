@@ -15,4 +15,5 @@ group :development do
   gem 'naught'
   gem 'rubygems-tasks'
   gem 'byebug'
+  gem 'rake'
 end

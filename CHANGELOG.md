@@ -1,5 +1,10 @@
 # MediaWiktory Changelog
 
+# 0.0.3 (18.03.2017)
+
+* Regenerated Wikipedia wrapper in correspondence to current API version;
+* Preparing to independent wrappers concept.
+
 # 0.0.2 (21.11.2015)
 
 * `Page` class for grouping records in `Query::Response`;
