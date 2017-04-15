@@ -24,9 +24,9 @@ module MediaWiktory
         end
 
         def extract_description(els)
-          if p = els.detect{|e| e.attr('class') == 'description'}.at('p')
-            p.text.strip
-          end
+          els.detect{|e| e.attr('class') == 'description'}.search('p')
+            .map { |p| p.text.strip }.reject(&:empty?)
+            .join("\n")
         end
 
         def extract_type(els)
