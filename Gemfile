@@ -11,6 +11,7 @@ group :test do
 end
 
 group :development do
+  gem 'saharspec', github: 'zverok/saharspec'
   gem 'nokogiri'
   gem 'naught'
   gem 'rubygems-tasks'
