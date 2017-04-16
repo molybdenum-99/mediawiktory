@@ -120,7 +120,71 @@ RSpec.describe MediaWiktory::ApiParser::Param do
         {"name"=>"encodedjsconfigvars", "description"=> "Gives the JavaScript configuration variables specific to the page as a JSON string."},
         {"name"=>"parsetree", "description"=>"The XML parse tree of the input."}
       ]}
+    end
 
+    context 'one of "modules"' do
+      let(:source) {%Q{
+        <dd class="description"><p>The format of the output.
+        </p></dd><dd class="info">One of the following values: <a href="#json"><span dir="ltr" lang="en">json</span></a>, <a href="#jsonfm"><span dir="ltr" lang="en">jsonfm</span></a>, <a href="#none"><span dir="ltr" lang="en">none</span></a>, <a href="#php"><span dir="ltr" lang="en">php</span></a>, <a href="#phpfm"><span dir="ltr" lang="en">phpfm</span></a>, <a href="#rawfm"><span dir="ltr" lang="en">rawfm</span></a>, <a href="#xml"><span dir="ltr" lang="en">xml</span></a>, <a href="#xmlfm"><span dir="ltr" lang="en">xmlfm</span></a></dd><dd class="info">Default: <span dir="auto">jsonfm</span></dd>
+      }}
+
+      its(:type) { is_expected.to eq 'enum' }
+      its(:description) { is_expected.to eq 'The format of the output.' }
+      its(:vals) { are_expected.to eq [
+        {"name"=>"json", "module"=>"json"},
+        {"name"=>"jsonfm", "module"=>"jsonfm"},
+        {"name"=>"none", "module"=>"none"},
+        {"name"=>"php", "module"=>"php"},
+        {"name"=>"phpfm", "module"=>"phpfm"},
+        {"name"=>"rawfm", "module"=>"rawfm"},
+        {"name"=>"xml", "module"=>"xml"},
+        {"name"=>"xmlfm", "module"=>"xmlfm"}
+      ]}
+    end
+
+    context 'list of "modules"' do
+      let(:source) {%Q{
+        <dd class="description"><p>Which properties to get for the queried pages.
+        </p></dd><dd class="info">Values (separate with <kbd>|</kbd> or <a href="#main.2Fdatatypes">alternative</a>): <a href="#query+categories"><span dir="ltr" lang="en">categories</span></a>, <a href="#query+categoryinfo"><span dir="ltr" lang="en">categoryinfo</span></a>, <a href="#query+contributors"><span dir="ltr" lang="en">contributors</span></a>, <a href="#query+coordinates"><span dir="ltr" lang="en">coordinates</span></a>, <a href="#query+deletedrevisions"><span dir="ltr" lang="en">deletedrevisions</span></a>, <a href="#query+duplicatefiles"><span dir="ltr" lang="en">duplicatefiles</span></a>, <a href="#query+extlinks"><span dir="ltr" lang="en">extlinks</span></a>, <a href="#query+extracts"><span dir="ltr" lang="en">extracts</span></a>, <a href="#query+fileusage"><span dir="ltr" lang="en">fileusage</span></a>, <a href="#query+flagged"><span dir="ltr" lang="en">flagged</span></a>, <a href="#query+globalusage"><span dir="ltr" lang="en">globalusage</span></a>, <a href="#query+imageinfo"><span dir="ltr" lang="en">imageinfo</span></a>, <a href="#query+images"><span dir="ltr" lang="en">images</span></a>, <a href="#query+info"><span dir="ltr" lang="en">info</span></a>, <a href="#query+iwlinks"><span dir="ltr" lang="en">iwlinks</span></a>, <a href="#query+langlinks"><span dir="ltr" lang="en">langlinks</span></a>, <a href="#query+links"><span dir="ltr" lang="en">links</span></a>, <a href="#query+linkshere"><span dir="ltr" lang="en">linkshere</span></a>, <a href="#query+mapdata"><span dir="ltr" lang="en">mapdata</span></a>, <a href="#query+pageassessments"><span dir="ltr" lang="en">pageassessments</span></a>, <a href="#query+pageimages"><span dir="ltr" lang="en">pageimages</span></a>, <a href="#query+pageprops"><span dir="ltr" lang="en">pageprops</span></a>, <a href="#query+pageterms"><span dir="ltr" lang="en">pageterms</span></a>, <a href="#query+pageviews"><span dir="ltr" lang="en">pageviews</span></a>, <a href="#query+redirects"><span dir="ltr" lang="en">redirects</span></a>, <a href="#query+references"><span dir="ltr" lang="en">references</span></a>, <a href="#query+revisions"><span dir="ltr" lang="en">revisions</span></a>, <a href="#query+stashimageinfo"><span dir="ltr" lang="en">stashimageinfo</span></a>, <a href="#query+templates"><span dir="ltr" lang="en">templates</span></a>, <a href="#query+transcludedin"><span dir="ltr" lang="en">transcludedin</span></a>, <a href="#query+transcodestatus"><span dir="ltr" lang="en">transcodestatus</span></a>, <a href="#query+videoinfo"><span dir="ltr" lang="en">videoinfo</span></a>, <a href="#query+wbentityusage"><span dir="ltr" lang="en">wbentityusage</span></a></dd>
+      }}
+
+      its(:type) { is_expected.to eq 'list' }
+      its(:description) { is_expected.to eq 'Which properties to get for the queried pages.' }
+      its(:vals) { are_expected.to eq [
+        {"name"=>"categories", "module"=>"categories"},
+        {"name"=>"categoryinfo", "module"=>"categoryinfo"},
+        {"name"=>"contributors", "module"=>"contributors"},
+        {"name"=>"coordinates", "module"=>"coordinates"},
+        {"name"=>"deletedrevisions", "module"=>"deletedrevisions"},
+        {"name"=>"duplicatefiles", "module"=>"duplicatefiles"},
+        {"name"=>"extlinks", "module"=>"extlinks"},
+        {"name"=>"extracts", "module"=>"extracts"},
+        {"name"=>"fileusage", "module"=>"fileusage"},
+        {"name"=>"flagged", "module"=>"flagged"},
+        {"name"=>"globalusage", "module"=>"globalusage"},
+        {"name"=>"imageinfo", "module"=>"imageinfo"},
+        {"name"=>"images", "module"=>"images"},
+        {"name"=>"info", "module"=>"info"},
+        {"name"=>"iwlinks", "module"=>"iwlinks"},
+        {"name"=>"langlinks", "module"=>"langlinks"},
+        {"name"=>"links", "module"=>"links"},
+        {"name"=>"linkshere", "module"=>"linkshere"},
+        {"name"=>"mapdata", "module"=>"mapdata"},
+        {"name"=>"pageassessments", "module"=>"pageassessments"},
+        {"name"=>"pageimages", "module"=>"pageimages"},
+        {"name"=>"pageprops", "module"=>"pageprops"},
+        {"name"=>"pageterms", "module"=>"pageterms"},
+        {"name"=>"pageviews", "module"=>"pageviews"},
+        {"name"=>"redirects", "module"=>"redirects"},
+        {"name"=>"references", "module"=>"references"},
+        {"name"=>"revisions", "module"=>"revisions"},
+        {"name"=>"stashimageinfo", "module"=>"stashimageinfo"},
+        {"name"=>"templates", "module"=>"templates"},
+        {"name"=>"transcludedin", "module"=>"transcludedin"},
+        {"name"=>"transcodestatus", "module"=>"transcodestatus"},
+        {"name"=>"videoinfo", "module"=>"videoinfo"},
+        {"name"=>"wbentityusage", "module"=>"wbentityusage"}
+      ]}
     end
   end
 end

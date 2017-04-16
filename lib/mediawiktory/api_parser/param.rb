@@ -66,7 +66,7 @@ module MediaWiktory
               if el.search('a').count > 1
                 return el.search('a').reject { |a| a.text == 'alternative' }.
                   map{|a|
-                    {name: a.text, module: Module.from_url(a.attr('href'))}
+                    {name: a.text, module: a.attr('href').sub(/^.*[\#+]/, '')}
                   }
               else
                 return $1.sub(/^Can be empty, or/, '').split(',')
