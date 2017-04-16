@@ -218,5 +218,19 @@ RSpec.describe MediaWiktory::ApiParser::Param do
         |  end
       }.unindent }
     end
+
+    context 'simple prefixed' do
+      let(:param) { described_class.new(full_name: 'footest', name: 'test', prefix: 'foo', description: 'Foobar.', type: 'string') }
+
+      it { is_expected.to eq %Q{
+        |  # Foobar.
+        |  #
+        |  # @param value [String]
+        |  # @return [self]
+        |  def test(value)
+        |    merge(footest: value)
+        |  end
+      }.unindent }
+    end
   end
 end
