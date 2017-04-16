@@ -205,22 +205,28 @@ RSpec.describe MediaWiktory::ApiParser::Param do
   describe '#to_method' do
     subject { param.to_method }
 
-    context 'simple' do
-      let(:param) { described_class.new(full_name: 'test', name: 'test', prefix: '', description: 'Foobar.', type: 'string') }
+    let(:full_name) { prefix + name  }
+    let(:name) { 'test' }
+    let(:prefix) { '' }
+    let(:description) { 'Foobar.' }
+    let(:type) { 'string' }
+    let(:vals) { nil }
+    let(:param) { described_class.new(full_name: full_name, name: name, prefix: prefix, description: description, type: type, vals: vals) }
 
+    context 'simple' do
       it { is_expected.to eq %Q{
         |  # Foobar.
         |  #
         |  # @param value [String]
         |  # @return [self]
         |  def test(value)
-        |    merge(test: value)
+        |    merge(test: value.to_s)
         |  end
       }.unindent }
     end
 
     context 'simple prefixed' do
-      let(:param) { described_class.new(full_name: 'footest', name: 'test', prefix: 'foo', description: 'Foobar.', type: 'string') }
+      let(:prefix) { 'foo' }
 
       it { is_expected.to eq %Q{
         |  # Foobar.
@@ -228,7 +234,64 @@ RSpec.describe MediaWiktory::ApiParser::Param do
         |  # @param value [String]
         |  # @return [self]
         |  def test(value)
-        |    merge(footest: value)
+        |    merge(footest: value.to_s)
+        |  end
+      }.unindent }
+    end
+
+    context 'boolean' do
+      let(:type) { 'boolean' }
+
+      it { is_expected.to eq %Q{
+        |  # Foobar.
+        |  #
+        |  # @param value [true, false]
+        |  # @return [self]
+        |  def test(value = true)
+        |    merge(test: 'true') if value
+        |  end
+      }.unindent }
+    end
+
+    context 'integer' do
+      let(:type) { 'integer' }
+
+      it { is_expected.to eq %Q{
+        |  # Foobar.
+        |  #
+        |  # @param value [Integer]
+        |  # @return [self]
+        |  def test(value)
+        |    merge(test: value.to_s)
+        |  end
+      }.unindent }
+    end
+
+    context 'integer or max' do
+      let(:type) { 'integer or max' }
+
+      it { is_expected.to eq %Q{
+        |  # Foobar.
+        |  #
+        |  # @param value [Integer, "max"]
+        |  # @return [self]
+        |  def test(value)
+        |    merge(test: value.to_s)
+        |  end
+      }.unindent }
+    end
+
+    context 'enum' do
+      let(:type) { 'enum' }
+      let(:vals) { %w[foo bar baz] }
+
+      it { is_expected.to eq %Q{
+        |  # Foobar.
+        |  #
+        |  # @param value [String] One of "foo", "bar", "baz".
+        |  # @return [self]
+        |  def test(value)
+        |    merge(test: value.to_s)
         |  end
       }.unindent }
     end

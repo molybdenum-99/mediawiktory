@@ -1,7 +1,7 @@
   # {{ param.description }}
   #
-  # @param value [{{ param.ruby_type }}]
+  # @param value [{{ param.ruby_type }}]{{param.param_docs}}
   # @return [self]
-  def {{ param.name }}(value)
-    merge({{ param.full_name }}: value)
+  def {{ param.name }}(value{% if param.type == 'boolean' %} = true{% endif %})
+    {%if param.type == 'boolean' %}merge({{ param.full_name }}: 'true') if value{% else %}merge({{ param.full_name }}: value.to_s){% endif %}
   end

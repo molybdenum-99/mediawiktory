@@ -83,15 +83,28 @@ module MediaWiktory
       end
 
       def to_hash
-        super.merge('ruby_type' => ruby_type)
+        super.merge('ruby_type' => ruby_type, 'param_docs' => param_docs)
       end
 
       def ruby_type
         case type
-        when 'string', 'user name'
+        when 'string', 'user name', 'enum'
           'String'
+        when 'boolean'
+          'true, false'
+        when 'integer'
+          'Integer'
+        when 'integer or max'
+          'Integer, "max"'
         else
           fail ArgumentError, "Cannot render #{type} to Ruby still"
+        end
+      end
+
+      def param_docs
+        case type
+        when 'enum'
+          " One of #{vals.map(&:inspect).join(', ')}."
         end
       end
 
