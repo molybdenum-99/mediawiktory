@@ -12,6 +12,10 @@ RSpec.describe MediaWiktory::ApiParser::Api do
       it { is_expected.to be_an(Array).and have_attributes(size: 116).and all be_a(MediaWiktory::ApiParser::Module) }
       its_map(:name) { is_expected.to include('edit', 'query', 'delete') }
     end
+
+    describe '#modules' do
+      it { is_expected.to be_a(Hash).and include('query', 'categories', 'categorymembers', 'json') }
+    end
   end
 
   describe '.from_url' do

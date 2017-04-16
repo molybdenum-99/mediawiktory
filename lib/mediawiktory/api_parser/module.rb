@@ -7,7 +7,7 @@ module MediaWiktory
 
           new(
             #url: url,
-            type: type.to_sym,
+            type: type&.to_sym || :main,
             title: title,
             prefix: prefix,
             description: extract_description(nodes),

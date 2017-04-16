@@ -201,4 +201,22 @@ RSpec.describe MediaWiktory::ApiParser::Param do
       its(:prefix) { is_expected.to eq 'foo' }
     end
   end
+
+  describe '#to_method' do
+    subject { param.to_method }
+
+    context 'simple' do
+      let(:param) { described_class.new(full_name: 'test', name: 'test', prefix: '', description: 'Foobar.', type: 'string') }
+
+      it { is_expected.to eq %Q{
+        |  # Foobar.
+        |  #
+        |  # @param value [String]
+        |  # @return [self]
+        |  def test(value)
+        |    merge(test: value)
+        |  end
+      }.unindent }
+    end
+  end
 end

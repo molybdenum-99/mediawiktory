@@ -1,3 +1,5 @@
+require 'liquid'
+
 module MediaWiktory
   module ApiParser
     class Param < Hashie::Mash
@@ -78,6 +80,26 @@ module MediaWiktory
 
           nil
         end
+      end
+
+      def to_hash
+        super.merge('ruby_type' => ruby_type)
+      end
+
+      def ruby_type
+        case type
+        when 'string', 'user name'
+          'String'
+        else
+          fail ArgumentError, "Cannot render #{type} to Ruby still"
+        end
+      end
+
+      def to_method
+        Liquid::Template
+          .parse(File.read('lib/mediawiktory/api_parser/templates/param_method.rb.liquid'))
+          .render('param' => to_hash)
+          .chomp # templates files in most editors add empty line to an ending
       end
     end
   end

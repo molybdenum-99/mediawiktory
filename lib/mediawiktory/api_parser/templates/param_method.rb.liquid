@@ -1,0 +1,7 @@
+  # {{ param.description }}
+  #
+  # @param value [{{ param.ruby_type }}]
+  # @return [self]
+  def {{ param.name }}(value)
+    merge({{ param.full_name }}: value)
+  end

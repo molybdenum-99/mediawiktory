@@ -1,0 +1,25 @@
+
+  # {{ action.description }}
+  #
+  # This method creates an instance of \{{{ action.class_name }}\} action.
+  #
+  # Action parameters could be passed to this method, like
+  #
+  # ```ruby
+  # api.expandtemplates(text: '{{UKR}}')
+  # ```
+  # ...or by subsequent `{{ action.class_name }}` method calls, like
+  #
+  # ```ruby
+  # api.expandtemplates.text('{{UKR}}')
+  # ```
+  #
+  # See \{{{namespaces}}Action\} for generic explanation of working with MediaWiki actions and
+  # \{{{ action.class_name }}\} for a list of parameters and examples.
+  #
+  # @param [Hash] options Action options
+  # @return [{{ action.class_name }}]
+  #
+  def {{ action.name }}(**options)
+    {{ action.class_name }}.new(**options)
+  end

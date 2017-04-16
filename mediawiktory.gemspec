@@ -27,4 +27,5 @@ Gem::Specification.new do |s|
   s.add_dependency 'faraday_middleware'
   s.add_dependency 'hashie'
   s.add_dependency 'addressable'
+  s.add_dependency 'liquid'
 end
