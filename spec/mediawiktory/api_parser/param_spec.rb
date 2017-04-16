@@ -186,5 +186,19 @@ RSpec.describe MediaWiktory::ApiParser::Param do
         {"name"=>"wbentityusage", "module"=>"wbentityusage"}
       ]}
     end
+
+    context 'with prefix' do
+      subject(:param) { described_class.from_html_nodes(name, dds, prefix: 'foo') }
+
+      let(:name) { 'footest' }
+
+      let(:source) {%Q{
+        <dd class="description"><p>The full filter text to check for a match.</p></dd>
+        <dd class="info">This parameter is required.</dd>
+      }}
+
+      its(:name) { is_expected.to eq 'test' }
+      its(:prefix) { is_expected.to eq 'foo' }
+    end
   end
 end

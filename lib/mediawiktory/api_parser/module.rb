@@ -3,10 +3,11 @@ module MediaWiktory
     class Module < Hashie::Mash
       class << self
         def from_nodes(title, nodes)
-          title, prefix = title.scan(/^[a-z]+=([^(]+)(?:\s+\((.+)\))?$/).flatten
+          type, title, prefix = title.scan(/^([a-z]+)=([^(]+)(?:\s+\((.+)\))?$/).flatten
 
           new(
             #url: url,
+            type: type.to_sym,
             title: title,
             prefix: prefix,
             description: extract_description(nodes),
@@ -31,7 +32,7 @@ module MediaWiktory
         def extract_params(nodes, prefix)
           params = nodes.detect { |n| n.matches?('.apihelp-parameters') } or return []
           params.at('dl').each_term.to_a
-            .map{|dts, dds| dts.first.text } # Parameter.from_html(dts.first, dds, prefix)}
+            .map{|dts, dds| Param.from_html_nodes(dts.first.text, dds, prefix: prefix)}
         end
       end
     end

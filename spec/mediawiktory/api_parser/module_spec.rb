@@ -8,7 +8,7 @@ RSpec.describe MediaWiktory::ApiParser::Module do
 
     def nodes_of(title)
       Nokogiri::HTML(File.read('spec/fixtures/api.php.html'))
-        .at('#mw-content-text').children_groups('h3', 'div,p,h4')
+        .at('#mw-content-text').children_groups('h3,h4', 'div,p')
         .select { |t, components| t.first&.text.to_s.start_with?('action=') }
         .detect { |t, components| t.first.text.include?(title) }.last
     end
@@ -16,6 +16,7 @@ RSpec.describe MediaWiktory::ApiParser::Module do
     context 'abusefiltercheckmatch (simple)' do
       let(:title) { 'action=abusefiltercheckmatch' }
 
+      its(:type) { is_expected.to eq :action }
       its(:title) { is_expected.to eq 'abusefiltercheckmatch' }
       its(:description) { is_expected.to eq \
         "Check to see if an AbuseFilter matches a set of variables, editor logged AbuseFilter event.\n"\

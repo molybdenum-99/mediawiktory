@@ -2,7 +2,7 @@ module MediaWiktory
   module ApiParser
     class Param < Hashie::Mash
       class << self
-        def from_html_nodes(name, dds, prefix = nil)
+        def from_html_nodes(name, dds, prefix: nil)
           new(
             full_name: name,
             name: name.sub(/^#{prefix}/, ''),
