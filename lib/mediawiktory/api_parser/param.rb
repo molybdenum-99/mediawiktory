@@ -82,8 +82,14 @@ module MediaWiktory
         end
       end
 
-      def to_hash
-        super.merge('ruby_type' => ruby_type, 'param_docs' => param_docs)
+      def to_h(api)
+        super()
+          .merge(
+            'real_type' => real_type,
+            'ruby_type' => ruby_type,
+            'param_docs' => param_docs,
+            'value_conv' => value_conv(api)
+          )
       end
 
       def ruby_type
@@ -96,22 +102,72 @@ module MediaWiktory
           'Integer'
         when 'integer or max'
           'Integer, "max"'
+        when 'list'
+          'Array<String>'
+        when 'list of integers'
+          'Array<Integer>'
         else
           fail ArgumentError, "Cannot render #{type} to Ruby still"
         end
       end
 
       def param_docs
-        case type
+        case real_type
         when 'enum'
-          " One of #{vals.map(&:inspect).join(', ')}."
+          " One of #{render_vals}."
+        when 'enum of modules'
+          'Either symbol of selected option, or `{symbol: settings}` Hash.'
+        when 'list'
+          return if !vals || vals.empty?
+          " Allowed values: #{render_vals}."
         end
       end
 
-      def to_method
+      def render_vals
+        if vals.all? { |v| v.is_a?(String) }
+          vals.map(&:inspect).join(', ')
+        elsif vals.all? { |v| v.is_a?(Hash) && v.key?(:description) }
+          vals.map { |v| "#{v[:name].inspect} (#{v[:description].chomp('.')})" }.join(', ')
+        elsif modules?
+        else
+          fail ArgumentError, "Unrenderable values: #{vals}"
+        end
+      end
+
+      def value_conv(api)
+        case real_type
+        when 'boolean'
+          "'true'" # on false, merge(param: something) not rendered at all
+        when /^list/
+          "value.join('|')"
+        when 'enum of modules'
+          "module_to_hash(value, #{vals.map { |v| api.modules[v.module].name.to_sym }})"
+        else
+          'value.to_s'
+        end
+      end
+
+      def real_type
+        case type
+        when 'enum'
+          modules? ? 'enum of modules' : 'enum'
+        when 'list'
+          modules? ? 'list of modules' : 'list'
+        else
+          type
+        end
+      end
+
+      def modules?
+        vals && vals.all? { |v| v.is_a?(Hash) && v.key?(:module) }
+      end
+
+      def to_method(api)
+        # :facepalm:
+        Liquid::Template.file_system = Liquid::LocalFileSystem.new('lib/mediawiktory/api_parser/templates/')
         Liquid::Template
           .parse(File.read('lib/mediawiktory/api_parser/templates/param_method.rb.liquid'))
-          .render('param' => to_hash)
+          .render('param' => to_h(api))
           .chomp # templates files in most editors add empty line to an ending
       end
     end

@@ -203,8 +203,9 @@ RSpec.describe MediaWiktory::ApiParser::Param do
   end
 
   describe '#to_method' do
-    subject { param.to_method }
+    subject { param.to_method(api) }
 
+    let(:api) { instance_double('MediaWiktory::ApiParser::Api') }
     let(:full_name) { prefix + name  }
     let(:name) { 'test' }
     let(:prefix) { '' }
@@ -292,6 +293,100 @@ RSpec.describe MediaWiktory::ApiParser::Param do
         |  # @return [self]
         |  def test(value)
         |    merge(test: value.to_s)
+        |  end
+      }.unindent }
+    end
+
+    context 'list' do
+      let(:type) { 'list' }
+
+      it { is_expected.to eq %Q{
+        |  # Foobar.
+        |  #
+        |  # @param value [Array<String>]
+        |  # @return [self]
+        |  def test(value)
+        |    merge(test: value.join('|'))
+        |  end
+      }.unindent }
+    end
+
+    context 'list of integers' do
+      let(:type) { 'list of integers' }
+
+      it { is_expected.to eq %Q{
+        |  # Foobar.
+        |  #
+        |  # @param value [Array<Integer>]
+        |  # @return [self]
+        |  def test(value)
+        |    merge(test: value.join('|'))
+        |  end
+      }.unindent }
+    end
+
+    context 'list of predefined values' do
+      let(:type) { 'list' }
+      let(:vals) { %w[foo bar baz] }
+
+      it { is_expected.to eq %Q{
+        |  # Foobar.
+        |  #
+        |  # @param value [Array<String>] Allowed values: "foo", "bar", "baz".
+        |  # @return [self]
+        |  def test(value)
+        |    merge(test: value.join('|'))
+        |  end
+      }.unindent }
+    end
+
+    context 'list of predefined values - with docs' do
+      let(:type) { 'list' }
+      let(:vals) { [
+        {name: 'foo', description: 'Foo'},
+        {name: 'bar', description: 'The Bar.'},
+        {name: 'baz', description: 'Pretty baz.'}
+      ] }
+
+      it { is_expected.to eq %Q{
+        |  # Foobar.
+        |  #
+        |  # @param value [Array<String>] Allowed values: "foo" (Foo), "bar" (The Bar), "baz" (Pretty baz).
+        |  # @return [self]
+        |  def test(value)
+        |    merge(test: value.join('|'))
+        |  end
+      }.unindent }
+    end
+
+    xcontext 'enum - other module' do
+      let(:type) { 'enum' }
+      let(:vals) { [{name: 'foo', module: 'foo'}] }
+      let(:mod) {
+        MediaWiktory::ApiParser::Module.new(
+          name: 'mod',
+          description: 'Descr of mod',
+          params: [
+            MediaWiktory::ApiParser::Param.new(name: 'param1', type: 'string', description: 'Descr of param1.'),
+            MediaWiktory::ApiParser::Param.new(name: 'param2', type: 'enum', description: 'Descr of param2.', vals: %w[param1a param2a param3a])
+          ]
+        )
+      }
+      before { expect(api).to receive(:modules).and_return('foo' => mod) }
+
+      it { is_expected.to eq %Q{
+        |  # Foobar.
+        |  #
+        |  # Supported options and their settings:
+        |  #
+        |  #  * `:mod` (Descr of mod):
+        |  #    * param1 (String) Descr of param1.
+        |  #    * param2 (String) Descr of param2. One of "param1a", "param2a", "param3a".
+        |  #
+        |  # @param value [Symbol, Hash] Either symbol of selected option, or `{symbol: settings}` Hash.
+        |  # @return [self]
+        |  def test(value)
+        |    merge(test: module_to_hash(value, [:mod]))
         |  end
       }.unindent }
     end
