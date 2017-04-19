@@ -1,0 +1,5 @@
+  #
+  # Supported options and their settings:
+  #{% for module in param.modules %}
+  #  * `:{{ module.name }}` ({{ module.description }}):{% for par in module.params %}
+  #    * {{ par.name }} ({{ par.ruby_type }}) {{ par.description }}{{ par.param_docs }}{% endfor %}{% endfor %}

@@ -88,12 +88,13 @@ module MediaWiktory
             'real_type' => real_type,
             'ruby_type' => ruby_type,
             'param_docs' => param_docs,
-            'value_conv' => value_conv(api)
+            'value_conv' => value_conv(api),
+            'modules' => modules(api)&.map { |m| m.to_h(api) }
           )
       end
 
       def ruby_type
-        case type
+        case real_type
         when 'string', 'user name', 'enum'
           'String'
         when 'boolean'
@@ -106,6 +107,8 @@ module MediaWiktory
           'Array<String>'
         when 'list of integers'
           'Array<Integer>'
+        when 'enum of modules'
+          'Symbol, Hash'
         else
           fail ArgumentError, "Cannot render #{type} to Ruby still"
         end
@@ -116,7 +119,7 @@ module MediaWiktory
         when 'enum'
           " One of #{render_vals}."
         when 'enum of modules'
-          'Either symbol of selected option, or `{symbol: settings}` Hash.'
+          ' Either symbol of selected option, or `{symbol: settings}` Hash.'
         when 'list'
           return if !vals || vals.empty?
           " Allowed values: #{render_vals}."
@@ -141,7 +144,7 @@ module MediaWiktory
         when /^list/
           "value.join('|')"
         when 'enum of modules'
-          "module_to_hash(value, #{vals.map { |v| api.modules[v.module].name.to_sym }})"
+          "module_to_hash(value, #{modules(api).map { |m| m.name.to_sym } })"
         else
           'value.to_s'
         end
@@ -159,7 +162,11 @@ module MediaWiktory
       end
 
       def modules?
-        vals && vals.all? { |v| v.is_a?(Hash) && v.key?(:module) }
+        vals&.all? { |v| v.is_a?(Hash) && v.key?(:module) }
+      end
+
+      def modules(api)
+        modules? ? vals.map { |v| api.modules[v.module] } : nil
       end
 
       def to_method(api)

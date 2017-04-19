@@ -30,4 +30,26 @@ RSpec.describe MediaWiktory::ApiParser::Module do
       end
     end
   end
+
+  describe '#to_param_docs' do
+    let(:module) {
+      described_class.new(
+        title: 'json',
+        description: 'Output data in JSON format.',
+        params: [
+          MediaWiktory::Api::Param.new(name: 'callback', type: 'string', description: 'If specified, wraps the output into a given function call. For safety, all user-specific data will be restricted.'),
+          MediaWiktory::Api::Param.new(name: 'formatversion', type: 'enum', description: 'Output formatting:',
+            vals: [
+              {name: '1', description: 'Backwards-compatible format (XML-style booleans, * keys for content nodes, etc.).'},
+              {name: '2', description: 'Experimental modern format. Details may change!'},
+              {name: 'latest', description: 'Use the latest format (currently 2), may change without warning.'}
+            ]
+          )
+        ]
+      )
+    }
+  end
+
+  describe '#to_action_class' do
+  end
 end

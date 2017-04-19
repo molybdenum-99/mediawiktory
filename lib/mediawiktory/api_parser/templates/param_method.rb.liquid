@@ -1,5 +1,5 @@
   # {{ param.description }}
-  #{% if param.real_type == 'enum of modules' %}{% include 'module_in_param_docs' %}{% endif %}
+{% if param.real_type == 'enum of modules' %}{% include 'module_in_param_docs' %}{% endif %}  #
   # @param value [{{ param.ruby_type }}]{{param.param_docs}}
   # @return [self]
   def {{ param.name }}(value{% if param.type == 'boolean' %} = true{% endif %})

@@ -35,6 +35,10 @@ module MediaWiktory
             .map{|dts, dds| Param.from_html_nodes(dts.first.text, dds, prefix: prefix)}
         end
       end
+
+      def to_h(api)
+        super().merge('params' => params.map { |p| p.to_h(api) })
+      end
     end
   end
 end

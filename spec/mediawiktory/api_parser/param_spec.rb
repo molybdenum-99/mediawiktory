@@ -359,7 +359,7 @@ RSpec.describe MediaWiktory::ApiParser::Param do
       }.unindent }
     end
 
-    xcontext 'enum - other module' do
+    context 'enum - other module' do
       let(:type) { 'enum' }
       let(:vals) { [{name: 'foo', module: 'foo'}] }
       let(:mod) {
@@ -372,7 +372,7 @@ RSpec.describe MediaWiktory::ApiParser::Param do
           ]
         )
       }
-      before { expect(api).to receive(:modules).and_return('foo' => mod) }
+      before { expect(api).to receive(:modules).and_return('foo' => mod).twice }
 
       it { is_expected.to eq %Q{
         |  # Foobar.
