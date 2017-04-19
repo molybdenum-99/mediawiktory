@@ -303,10 +303,10 @@ RSpec.describe MediaWiktory::ApiParser::Param do
       it { is_expected.to eq %Q{
         |  # Foobar.
         |  #
-        |  # @param value [Array<String>]
+        |  # @param values [Array<String>]
         |  # @return [self]
-        |  def test(value)
-        |    merge(test: value.join('|'))
+        |  def test(*values)
+        |    merge(test: values.join('|'))
         |  end
       }.unindent }
     end
@@ -317,10 +317,10 @@ RSpec.describe MediaWiktory::ApiParser::Param do
       it { is_expected.to eq %Q{
         |  # Foobar.
         |  #
-        |  # @param value [Array<Integer>]
+        |  # @param values [Array<Integer>]
         |  # @return [self]
-        |  def test(value)
-        |    merge(test: value.join('|'))
+        |  def test(*values)
+        |    merge(test: values.join('|'))
         |  end
       }.unindent }
     end
@@ -332,10 +332,10 @@ RSpec.describe MediaWiktory::ApiParser::Param do
       it { is_expected.to eq %Q{
         |  # Foobar.
         |  #
-        |  # @param value [Array<String>] Allowed values: "foo", "bar", "baz".
+        |  # @param values [Array<String>] Allowed values: "foo", "bar", "baz".
         |  # @return [self]
-        |  def test(value)
-        |    merge(test: value.join('|'))
+        |  def test(*values)
+        |    merge(test: values.join('|'))
         |  end
       }.unindent }
     end
@@ -351,15 +351,15 @@ RSpec.describe MediaWiktory::ApiParser::Param do
       it { is_expected.to eq %Q{
         |  # Foobar.
         |  #
-        |  # @param value [Array<String>] Allowed values: "foo" (Foo), "bar" (The Bar), "baz" (Pretty baz).
+        |  # @param values [Array<String>] Allowed values: "foo" (Foo), "bar" (The Bar), "baz" (Pretty baz).
         |  # @return [self]
-        |  def test(value)
-        |    merge(test: value.join('|'))
+        |  def test(*values)
+        |    merge(test: values.join('|'))
         |  end
       }.unindent }
     end
 
-    context 'enum - other module' do
+    context 'enum - other modules' do
       let(:type) { 'enum' }
       let(:vals) { [{name: 'foo', module: 'foo'}] }
       let(:mod) {
@@ -387,6 +387,38 @@ RSpec.describe MediaWiktory::ApiParser::Param do
         |  # @return [self]
         |  def test(value)
         |    merge(test: module_to_hash(value, [:mod]))
+        |  end
+      }.unindent }
+    end
+
+    context 'list - other modules' do
+      let(:type) { 'list' }
+      let(:vals) { [{name: 'foo', module: 'foo'}] }
+      let(:mod) {
+        MediaWiktory::ApiParser::Module.new(
+          name: 'mod',
+          description: 'Descr of mod',
+          params: [
+            MediaWiktory::ApiParser::Param.new(name: 'param1', type: 'string', description: 'Descr of param1.'),
+            MediaWiktory::ApiParser::Param.new(name: 'param2', type: 'enum', description: 'Descr of param2.', vals: %w[param1a param2a param3a])
+          ]
+        )
+      }
+      before { expect(api).to receive(:modules).and_return('foo' => mod).twice }
+
+      it { is_expected.to eq %Q{
+        |  # Foobar.
+        |  #
+        |  # Supported options and their settings:
+        |  #
+        |  #  * `:mod` (Descr of mod):
+        |  #    * param1 (String) Descr of param1.
+        |  #    * param2 (String) Descr of param2. One of "param1a", "param2a", "param3a".
+        |  #
+        |  # @param values [Array<Symbol, Hash>] Any number of options (either symbol, or `{symbol: settings}` Hash).
+        |  # @return [self]
+        |  def test(*values)
+        |    merge(test: modules_to_hash(values, [:mod]))
         |  end
       }.unindent }
     end

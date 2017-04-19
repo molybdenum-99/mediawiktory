@@ -1,7 +1,7 @@
   # {{ param.description }}
-{% if param.real_type == 'enum of modules' %}{% include 'module_in_param_docs' %}{% endif %}  #
-  # @param value [{{ param.ruby_type }}]{{param.param_docs}}
+{% if param.real_type contains 'of modules' %}{% include 'module_in_param_docs' %}{% endif %}  #
+  # @param {% if param.type contains 'list' %}values{% else %}value{% endif %} [{{ param.ruby_type }}]{{param.param_docs}}
   # @return [self]
-  def {{ param.name }}(value{% if param.type == 'boolean' %} = true{% endif %})
+  def {{ param.name }}({% if param.type contains 'list' %}*values{% else %}value{% endif %}{% if param.type == 'boolean' %} = true{% endif %})
     merge({{ param.full_name }}: {{ param.value_conv }}){%if param.type == 'boolean' %} if value{% endif %}
   end

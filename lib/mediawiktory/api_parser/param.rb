@@ -109,8 +109,10 @@ module MediaWiktory
           'Array<Integer>'
         when 'enum of modules'
           'Symbol, Hash'
+        when 'list of modules'
+          'Array<Symbol, Hash>'
         else
-          fail ArgumentError, "Cannot render #{type} to Ruby still"
+          fail ArgumentError, "Cannot render #{real_type} to Ruby still"
         end
       end
 
@@ -120,6 +122,8 @@ module MediaWiktory
           " One of #{render_vals}."
         when 'enum of modules'
           ' Either symbol of selected option, or `{symbol: settings}` Hash.'
+        when 'list of modules'
+          ' Any number of options (either symbol, or `{symbol: settings}` Hash).'
         when 'list'
           return if !vals || vals.empty?
           " Allowed values: #{render_vals}."
@@ -141,8 +145,10 @@ module MediaWiktory
         case real_type
         when 'boolean'
           "'true'" # on false, merge(param: something) not rendered at all
+        when 'list of modules'
+          "modules_to_hash(values, #{modules(api).map { |m| m.name.to_sym } })"
         when /^list/
-          "value.join('|')"
+          "values.join('|')"
         when 'enum of modules'
           "module_to_hash(value, #{modules(api).map { |m| m.name.to_sym } })"
         else
