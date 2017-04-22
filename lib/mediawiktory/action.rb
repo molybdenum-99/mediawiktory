@@ -2,13 +2,65 @@ require 'json'
 require 'hashie'
 
 module MediaWiktory
+  class Action
+    attr_reader :client
+
+    def initialize(client, hash = {})
+      @client = client
+      @params = Util.stringify_hash(hash)
+    end
+
+    def merge(hash)
+      self.class.new(@client, @params.merge(Util.stringify_hash(hash)))
+    end
+
+    def to_h
+      @params.dup
+    end
+
+    def to_param
+      to_h.merge('action' => action_name)
+    end
+
+    private
+
+    def action_name
+      self.class.name.scan(/(\w+)Action$/).flatten.first&.downcase or
+        fail ArgumentError, "Can't guess action name from #{self.class.name}"
+    end
+
+    # Used by generated code in methods like
+    #
+    # ```ruby
+    # action.format(:json)
+    # action.format(json: {callback: '__wpcallback__'})
+    # ```
+    #
+    # ...converting param setting and options into flat hash.
+    def module_to_hash(name, arg, prefix: nil)
+      case arg
+      when Symbol, String
+        {name.to_s => arg.to_s}
+      when Hash
+        arg.size == 1 or fail ArgumentError, "Can't merge #{name}(#{arg.inspect})"
+        key, options = arg.first
+        # TODO: more through options type check.
+        {name.to_s => key.to_s}.merge(options.reject { |k, v| !v }.map { |k, v| ["#{prefix}#{k}", v.to_s] }.to_h)
+      else
+        fail ArgumentError, "Can't merge #{name}(#{arg.inspect})"
+      end
+    end
+  end
+end
+
+__END__
   class Mash < Hashie::Mash
     disable_warnings
   end
-  
+
   class Action < MWModule
     attr_reader :client
-    
+
     def initialize(client, **values)
       @client = client
       super(**values)

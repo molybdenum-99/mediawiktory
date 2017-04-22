@@ -1,5 +1,79 @@
 module MediaWiktory
   describe Action do
+    subject(:action) { described_class.new(client) }
+
+    let(:client) { double }
+
+    describe '#initialize' do
+      subject { described_class.new(client, format: :json, version: 1) }
+      its(:to_h) { is_expected.to eq('format' => 'json', 'version' => '1') }
+    end
+
+    describe '#merge' do
+      subject { action.merge(format: :json, version: 1) }
+
+      it { is_expected.to be_a described_class }
+      its(:client) { is_expected.to be client }
+      its(:to_h) { is_expected.to eq('format' => 'json', 'version' => '1') }
+      it 'does not change source' do
+        expect(action.to_h).to be_empty
+      end
+    end
+
+    describe '#module_to_hash' do
+      subject { action.send(:module_to_hash, :format, *args) }
+
+      context 'just symbol passed' do
+        let(:args) { [:json] }
+
+        it { is_expected.to eq('format' => 'json') }
+      end
+
+      context 'with params' do
+        let(:args) { [json: {callback: 'wikiresponse'}] }
+
+        it { is_expected.to eq('format' => 'json', 'callback' => 'wikiresponse') }
+      end
+
+      context 'with prefix' do
+        let(:args) { [{json: {callback: 'wikiresponse'}}, prefix: 'j'] }
+
+        it { is_expected.to eq('format' => 'json', 'jcallback' => 'wikiresponse') }
+      end
+
+      context 'with boolean param' do
+        let(:args) { [{json: {callback: 'wikiresponse', ascii: val}}, prefix: 'j'] }
+
+        context 'true' do
+          let(:val) { true }
+          it { is_expected.to eq('format' => 'json', 'jcallback' => 'wikiresponse', 'jascii' => 'true') }
+        end
+
+        context 'false' do
+          let(:val) { false }
+          it { is_expected.to eq('format' => 'json', 'jcallback' => 'wikiresponse') }
+        end
+      end
+    end
+
+    describe '#modules_to_hash' do
+    end
+
+    describe '#to_param' do
+      let(:action) { described_class.new(client, 'format' => 'json') }
+      subject { action.to_param }
+      before { allow(described_class).to receive(:name).and_return('QueryAction') }
+
+      it { is_expected.to eq('action' => 'query', 'format' => 'json') }
+    end
+
+    describe '#perform' do
+    end
+  end
+end
+
+__END__
+  describe Action do
     let(:client){instance_double(Client)}
     let(:klass){
       Class.new(Action){
@@ -54,7 +128,7 @@ module MediaWiktory
           }
         }
       }}
-      
+
       it 'constructs response' do
         expect(client).to receive(:get).
           with(
