@@ -68,6 +68,25 @@ module MediaWiktory
     end
 
     describe '#perform' do
+      before { allow(action_class).to receive(:name).and_return('QueryAction') }
+      let(:action) { action_class.new(client, 'format' => 'json') }
+
+      subject { action.perform }
+
+      context 'default' do
+        let(:action_class) { described_class }
+        its_call { is_expected.to raise_error NotImplementedError }
+      end
+
+      context 'get' do
+        let(:action_class) { GetAction }
+        its_call { is_expected.to send_message(client, :get).with('action' => 'query', 'format' => 'json') }
+      end
+
+      context 'post' do
+        let(:action_class) { PostAction }
+        its_call { is_expected.to send_message(client, :post).with('action' => 'query', 'format' => 'json') }
+      end
     end
   end
 end

@@ -1,14 +1,14 @@
 module MediaWiktory
-  module ApiParser
+  class Generator
     class Module < Hashie::Mash
       class << self
-        def from_nodes(title, nodes)
-          type, title, prefix = title.scan(/^([a-z]+)=([^(]+)(?:\s+\((.+)\))?$/).flatten
+        def from_html_nodes(title, nodes)
+          type, name, prefix = title.scan(/^([a-z]+)=([^(]+)(?:\s+\((.+)\))?$/).flatten
 
           new(
             #url: url,
             type: type&.to_sym || :main,
-            title: title,
+            name: name,
             prefix: prefix,
             description: extract_description(nodes),
             flags: extract_flags(nodes),
@@ -23,21 +23,41 @@ module MediaWiktory
         end
 
         def extract_flags(nodes)
-          flags = nodes.detect { |n| n.matches?('.apihelp-flags') } or return []
+          flags = nodes.detect { |n| n['class']&.include?('apihelp-flags') } or return []
           flags.search('ul li > span').to_a
             .map { |el| {id: el.attr('class'), text: el.text} }
             .map { |h| h.merge(role: h[:id].sub(/^apihelp-(flag-)?/, '')) }
         end
 
         def extract_params(nodes, prefix)
-          params = nodes.detect { |n| n.matches?('.apihelp-parameters') } or return []
+          params = nodes.detect { |n| n['class']&.include?('apihelp-parameters') } or return []
           params.at('dl').each_term.to_a
             .map{|dts, dds| Param.from_html_nodes(dts.first.text, dds, prefix: prefix)}
         end
       end
 
-      def to_h(api)
-        super().merge('params' => params.map { |p| p.to_h(api) })
+      attr_accessor :api
+
+      def inspect
+        "#<#{self.class.name} #{name}>"
+      end
+
+      #def to_h(api)
+        #super().merge('params' => params.map { |p| p.to_h(api) })
+      #end
+
+      include Renderable
+
+      def main_template
+        'action_class.rb'
+      end
+
+      def to_h
+        super.merge(
+          'class_name' => name.capitalize,
+          'description' => description.split("\n").join("\n#\n# "),
+          'params' => params.map(&:to_h)
+        )
       end
     end
   end

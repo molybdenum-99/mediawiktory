@@ -1,0 +1,20 @@
+# {{ object.description }}
+#
+# Usage:
+#
+# ```ruby
+# api.{{ object.name }}(**options).perform # returns string with raw output
+# # or
+# api.{{ object.name }}(**options).response # returns output parsed and wrapped into Mash-like object
+#
+# # or, with chainable interface:
+# api.{{ object.name }}.{{ object.params.first.name }}(value)....perform
+# ```
+#
+# See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions.
+#
+# All action's parameters are documented as its public methods, see below.
+#
+class {{ namespace }}::{{ object.class_name }} < GetAction
+{% for param in object.params %}{% include 'param_method' %}{% endfor %}
+end

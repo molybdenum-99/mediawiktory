@@ -1,0 +1,24 @@
+  # {{ action.description | replace: '#', '  #' }}
+  #
+  # This method creates an instance of {{"{"}}{{ namespace }}::{{ action.class_name }}} action.
+  #
+  # Action parameters could be passed to this method, like
+  #
+  # ```ruby
+  # api.{{ action.name }}(param: 'value')
+  # ```
+  # ...or by subsequent {{"{"}}{{ namespace }}::{{ action.class_name }}} method calls, like
+  #
+  # ```ruby
+  # api.{{ action.name }}.param('value')
+  # ```
+  #
+  # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
+  # {{"{"}}{{ namespace }}::{{ action.class_name }}} class for a list of parameters and usage.
+  #
+  # @param [Hash] options Action options
+  # @return [{{ namespace }}::{{ action.class_name }}]
+  #
+  def {{ action.name }}(**options)
+    {{ action.class_name }}.new(**options)
+  end

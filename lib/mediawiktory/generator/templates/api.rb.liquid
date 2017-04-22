@@ -1,0 +1,10 @@
+# The base API class for [{{ object.site.name }}]({{ object.site.base }}).
+#
+# Generated from {{ object.source }} at {{ object.friendly_date }} by MediaWiktory {{ version }}.
+#
+# See {MediaWiktory::Api} base class docs for generic usage examples, and this class' methods
+# list and descriptions for MediaWiki features available for this particular API.
+#
+class {{ namespace }}::Api < MediaWiktory::Api
+{% for action in object.actions %}{% include 'action_method' %}{% endfor %}
+end

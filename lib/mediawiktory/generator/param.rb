@@ -1,7 +1,7 @@
 require 'liquid'
 
 module MediaWiktory
-  module ApiParser
+  class Generator
     class Param < Hashie::Mash
       class << self
         def from_html_nodes(name, dds, prefix: nil)
@@ -82,14 +82,16 @@ module MediaWiktory
         end
       end
 
-      def to_h(api)
-        super()
+      attr_accessor :api
+
+      def to_h
+        super
           .merge(
             'real_type' => real_type,
             'ruby_type' => ruby_type,
             'param_docs' => param_docs,
-            'value_conv' => value_conv(api),
-            'modules' => modules(api)&.map { |m| m.to_h(api) }
+            'value_conv' => value_conv,
+            'modules' => modules&.map(&:to_h)
           )
       end
 
@@ -141,16 +143,16 @@ module MediaWiktory
         end
       end
 
-      def value_conv(api)
+      def value_conv
         case real_type
         when 'boolean'
           "'true'" # on false, merge(param: something) not rendered at all
         when 'list of modules'
-          "modules_to_hash(values, #{modules(api).map { |m| m.name.to_sym } })"
+          "modules_to_hash(values, #{modules.map { |m| m.name.to_sym } })"
         when /^list/
           "values.join('|')"
         when 'enum of modules'
-          "module_to_hash(value, #{modules(api).map { |m| m.name.to_sym } })"
+          "module_to_hash(value, #{modules.map { |m| m.name.to_sym } })"
         else
           'value.to_s'
         end
@@ -171,8 +173,8 @@ module MediaWiktory
         vals&.all? { |v| v.is_a?(Hash) && v.key?(:module) }
       end
 
-      def modules(api)
-        modules? ? vals.map { |v| api.modules[v.module] } : nil
+      def modules
+        @module ||= modules? ? vals.map { |v| api.modules[v.module] } : nil
       end
 
       def to_method(api)

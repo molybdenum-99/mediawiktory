@@ -22,6 +22,10 @@ module MediaWiktory
       to_h.merge('action' => action_name)
     end
 
+    def perform
+      fail NotImplementedError, "Action is abstract, all actions should descend from GetAction or PostAction"
+    end
+
     private
 
     def action_name
@@ -49,6 +53,18 @@ module MediaWiktory
       else
         fail ArgumentError, "Can't merge #{name}(#{arg.inspect})"
       end
+    end
+  end
+
+  class GetAction < Action
+    def perform
+      client.get(to_param)
+    end
+  end
+
+  class PostAction < Action
+    def perform
+      client.post(to_param)
     end
   end
 end

@@ -1,0 +1,44 @@
+require 'open-uri'
+require 'json'
+
+module MediaWiktory
+  class Generator
+    class Api < OpenStruct
+      class << self
+        def from_html(source, **metadata)
+          doc = Nokogiri::HTML(source)
+          modules = doc.at('#mw-content-text').children_groups('h3,h4', 'div,p')
+            .map { |title, components| Module.from_html_nodes(title.first&.text.to_s, components) }
+
+          new(**metadata.merge(modules: modules))
+        end
+
+        def from_url(url)
+          uri = Addressable::URI.parse(url)
+          uri.query_values = {action: :query, meta: :siteinfo, siprop: :general, format: :json}
+          meta = JSON.parse(open(uri).read).dig('query', 'general')
+          uri.query_values = {action: :help, recursivesubmodules: true}
+          html = open(uri).read
+          from_html(html, source: url, site: {name: meta['sitename'], base: meta['base']})
+        end
+      end
+
+      def initialize(**source)
+        super(source.merge(
+          main: source[:modules].detect { |m| m.type == :main },
+          actions: source[:modules].select { |m| m.type == :action }
+        ))
+      end
+
+      include Renderable
+
+      def main_template
+        'api.rb'
+      end
+
+      def to_h
+        super.merge('friendly_date' => Time.now.strftime('%B %d, %Y'), 'actions' => actions.map(&:to_h))
+      end
+    end
+  end
+end
