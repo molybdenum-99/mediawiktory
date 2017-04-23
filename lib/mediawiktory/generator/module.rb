@@ -19,7 +19,8 @@ module MediaWiktory
         private
 
         def extract_description(nodes)
-          nodes.select { |n| n.name == 'p' }.map(&:text).map(&:strip).join("\n")
+          #nodes.select { |n| n.name == 'p' }.map(&:text).map(&:strip).join("\n")
+          nodes.detect { |n| n.name == 'p' }&.text.to_s.gsub("\n", ' ')
         end
 
         def extract_flags(nodes)
@@ -46,6 +47,10 @@ module MediaWiktory
         type == :action
       end
 
+      def main?
+        type == :main
+      end
+
       include Renderable
 
       def main_template
@@ -59,9 +64,12 @@ module MediaWiktory
 
       def to_h
         super.merge(
-          'class_name' => name.capitalize,
+          'class_name' => name.split('-').map(&:capitalize).join,
+          'method_name' => name.split('-').join('_'),
           'description' => description.split("\n").join("\n#\n# "),
-          'params' => params.map(&:to_h)
+          'params' => params
+            .reject { |p| p.name == '*' } # TODO: some actions have "rest of parameters, see there". Currently, we ignore it
+            .map(&:to_h)
         )
       end
     end

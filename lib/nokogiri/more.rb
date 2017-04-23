@@ -1,5 +1,7 @@
 require 'naught'
 
+# @private
+# Used only by Generator
 module Nokogiri
   module More
     module NodeChildrenGroups
@@ -11,15 +13,15 @@ module Nokogiri
         end
         groups
       end
-      
+
       #include NodeOnlyFor
-      
+
       def each_term
         children_groups('dt', 'dd')
       end
-      
+
       private
-      
+
       def make_group(flat, selectors)
         sel = selectors.dup
         group = [[]]
@@ -43,7 +45,7 @@ module Nokogiri
 
       # so you can just `at?(selector).tap{|node| ...`
       # and never be inside `tap`, if it's not found
-      def tap 
+      def tap
         self
       end
     end
@@ -60,7 +62,7 @@ module Nokogiri
       def at_xpath?(selector)
         at_xpath(selector) || NodeNaught.new
       end
-      
+
       def find_child?(selector)
         find_child(selector) || NodeNaught.new
       end

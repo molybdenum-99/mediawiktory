@@ -26,9 +26,9 @@ module MediaWiktory
         end
 
         def extract_description(els)
-          els.detect{|e| e.attr('class') == 'description'}.search('p')
-            .map { |p| p.text.strip }.reject(&:empty?)
-            .join("\n")
+          els.detect{|e| e.attr('class') == 'description'}.at('p')&.text.to_s.strip.gsub("\n", ' ')
+          #  .map { |p| p.text.strip }.reject(&:empty?)
+          #  .join("\n")
         end
 
         def extract_type(els)
@@ -57,7 +57,7 @@ module MediaWiktory
           els.detect{|e| e.attr('class') == 'description'}.tap{|d|
             if d.at('dl')
               return d.at('dl').each_term.map{|dts, dds|
-                {name: dts.first.text, description: dds.first.text}
+                {name: dts.first.text, description: dds.first.text.gsub("\n", ' ')}
               }
             end
           }

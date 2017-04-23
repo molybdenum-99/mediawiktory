@@ -302,7 +302,7 @@ RSpec.describe MediaWiktory::Generator::Param do
       it { is_expected.to eq %Q{
         |  # Foobar.
         |  #
-        |  # @param *values [Array<String>]
+        |  # @param values [Array<String>]
         |  # @return [self]
         |  def test(*values)
         |    merge(test: values.join('|'))
@@ -316,7 +316,7 @@ RSpec.describe MediaWiktory::Generator::Param do
       it { is_expected.to eq %Q{
         |  # Foobar.
         |  #
-        |  # @param *values [Array<Integer>]
+        |  # @param values [Array<Integer>]
         |  # @return [self]
         |  def test(*values)
         |    merge(test: values.join('|'))
@@ -331,7 +331,7 @@ RSpec.describe MediaWiktory::Generator::Param do
       it { is_expected.to eq %Q{
         |  # Foobar.
         |  #
-        |  # @param *values [Array<String>] Allowed values: "foo", "bar", "baz".
+        |  # @param values [Array<String>] Allowed values: "foo", "bar", "baz".
         |  # @return [self]
         |  def test(*values)
         |    merge(test: values.join('|'))
@@ -350,7 +350,7 @@ RSpec.describe MediaWiktory::Generator::Param do
       it { is_expected.to eq %Q{
         |  # Foobar.
         |  #
-        |  # @param *values [Array<String>] Allowed values: "foo" (Foo), "bar" (The Bar), "baz" (Pretty baz).
+        |  # @param values [Array<String>] Allowed values: "foo" (Foo), "bar" (The Bar), "baz" (Pretty baz).
         |  # @return [self]
         |  def test(*values)
         |    merge(test: values.join('|'))
@@ -380,7 +380,7 @@ RSpec.describe MediaWiktory::Generator::Param do
         |  # Foobar.
         |  #
         |  # @param value [Symbol] Selecting an option includes tweaking methods from corresponding module:
-        |  #   * `:mod` - {Dummy::Mod} Descr of mod
+        |  #   * `:mod` - {Dummy::Modules::Mod} Descr of mod
         |  # @return [self]
         |  def test(value)
         |    merge(test: module_to_hash(value, [:mod]))
@@ -409,8 +409,8 @@ RSpec.describe MediaWiktory::Generator::Param do
       it { is_expected.to eq %Q{
         |  # Foobar.
         |  #
-        |  # @param *values [Array<Symbol>] All selected options include tweaking methods from corresponding modules:
-        |  #   * `:mod` - {Dummy::Mod} Descr of mod
+        |  # @param values [Array<Symbol>] All selected options include tweaking methods from corresponding modules:
+        |  #   * `:mod` - {Dummy::Modules::Mod} Descr of mod
         |  # @return [self]
         |  def test(*values)
         |    merge(test: modules_to_hash(values, [:mod]))

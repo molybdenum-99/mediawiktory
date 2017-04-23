@@ -1,2698 +1,2650 @@
 # The base API class for [Wikipedia](https://en.wikipedia.org/wiki/Main_Page).
 #
-# Generated from https://en.wikipedia.org/w/api.php at April 22, 2017 by MediaWiktory 0.0.3.
+# Generated from https://en.wikipedia.org/w/api.php at April 23, 2017 by MediaWiktory 0.0.3.
 #
 # See {MediaWiktory::Api} base class docs for generic usage examples, and this class' methods
 # list and descriptions for MediaWiki features available for this particular API.
 #
 class MediaWiktory::Wikipedia::Api < MediaWiktory::Api
-  # Check to see if an AbuseFilter matches a set of variables, editor logged AbuseFilter event.
+  # Check to see if an AbuseFilter matches a set of variables, editor logged AbuseFilter event. 
   #
-  # vars, rcid or logid is required however only one may be used.
-  #
-  # This method creates an instance of {MediaWiktory::Wikipedia::Abusefiltercheckmatch} action.
+  # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Abusefiltercheckmatch} action.
   #
   # Action parameters could be passed to this method, like
   #
   # ```ruby
   # api.abusefiltercheckmatch(param: 'value')
   # ```
-  # ...or by subsequent {MediaWiktory::Wikipedia::Abusefiltercheckmatch} method calls, like
+  # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Abusefiltercheckmatch} method calls, like
   #
   # ```ruby
   # api.abusefiltercheckmatch.param('value')
   # ```
   #
   # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
-  # {MediaWiktory::Wikipedia::Abusefiltercheckmatch} class for a list of parameters and usage.
+  # {MediaWiktory::Wikipedia::Actions::Abusefiltercheckmatch} class for a list of parameters and usage.
   #
   # @param [Hash] options Action options
-  # @return [MediaWiktory::Wikipedia::Abusefiltercheckmatch]
+  # @return [MediaWiktory::Wikipedia::Actions::Abusefiltercheckmatch]
   #
   def abusefiltercheckmatch(**options)
-    Abusefiltercheckmatch.new(**options)
+    Actions::Abusefiltercheckmatch.new(**options)
   end
-  # Check syntax of an AbuseFilter filter.
+  # Check syntax of an AbuseFilter filter. 
   #
-  # This method creates an instance of {MediaWiktory::Wikipedia::Abusefilterchecksyntax} action.
+  # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Abusefilterchecksyntax} action.
   #
   # Action parameters could be passed to this method, like
   #
   # ```ruby
   # api.abusefilterchecksyntax(param: 'value')
   # ```
-  # ...or by subsequent {MediaWiktory::Wikipedia::Abusefilterchecksyntax} method calls, like
+  # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Abusefilterchecksyntax} method calls, like
   #
   # ```ruby
   # api.abusefilterchecksyntax.param('value')
   # ```
   #
   # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
-  # {MediaWiktory::Wikipedia::Abusefilterchecksyntax} class for a list of parameters and usage.
+  # {MediaWiktory::Wikipedia::Actions::Abusefilterchecksyntax} class for a list of parameters and usage.
   #
   # @param [Hash] options Action options
-  # @return [MediaWiktory::Wikipedia::Abusefilterchecksyntax]
+  # @return [MediaWiktory::Wikipedia::Actions::Abusefilterchecksyntax]
   #
   def abusefilterchecksyntax(**options)
-    Abusefilterchecksyntax.new(**options)
+    Actions::Abusefilterchecksyntax.new(**options)
   end
-  # Evaluates an AbuseFilter expression.
+  # Evaluates an AbuseFilter expression. 
   #
-  # This method creates an instance of {MediaWiktory::Wikipedia::Abusefilterevalexpression} action.
+  # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Abusefilterevalexpression} action.
   #
   # Action parameters could be passed to this method, like
   #
   # ```ruby
   # api.abusefilterevalexpression(param: 'value')
   # ```
-  # ...or by subsequent {MediaWiktory::Wikipedia::Abusefilterevalexpression} method calls, like
+  # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Abusefilterevalexpression} method calls, like
   #
   # ```ruby
   # api.abusefilterevalexpression.param('value')
   # ```
   #
   # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
-  # {MediaWiktory::Wikipedia::Abusefilterevalexpression} class for a list of parameters and usage.
+  # {MediaWiktory::Wikipedia::Actions::Abusefilterevalexpression} class for a list of parameters and usage.
   #
   # @param [Hash] options Action options
-  # @return [MediaWiktory::Wikipedia::Abusefilterevalexpression]
+  # @return [MediaWiktory::Wikipedia::Actions::Abusefilterevalexpression]
   #
   def abusefilterevalexpression(**options)
-    Abusefilterevalexpression.new(**options)
+    Actions::Abusefilterevalexpression.new(**options)
   end
-  # Unblocks a user from receiving autopromotions due to an abusefilter consequence.
+  # Unblocks a user from receiving autopromotions due to an abusefilter consequence. 
   #
-  # This method creates an instance of {MediaWiktory::Wikipedia::Abusefilterunblockautopromote} action.
+  # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Abusefilterunblockautopromote} action.
   #
   # Action parameters could be passed to this method, like
   #
   # ```ruby
   # api.abusefilterunblockautopromote(param: 'value')
   # ```
-  # ...or by subsequent {MediaWiktory::Wikipedia::Abusefilterunblockautopromote} method calls, like
+  # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Abusefilterunblockautopromote} method calls, like
   #
   # ```ruby
   # api.abusefilterunblockautopromote.param('value')
   # ```
   #
   # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
-  # {MediaWiktory::Wikipedia::Abusefilterunblockautopromote} class for a list of parameters and usage.
+  # {MediaWiktory::Wikipedia::Actions::Abusefilterunblockautopromote} class for a list of parameters and usage.
   #
   # @param [Hash] options Action options
-  # @return [MediaWiktory::Wikipedia::Abusefilterunblockautopromote]
+  # @return [MediaWiktory::Wikipedia::Actions::Abusefilterunblockautopromote]
   #
   def abusefilterunblockautopromote(**options)
-    Abusefilterunblockautopromote.new(**options)
+    Actions::Abusefilterunblockautopromote.new(**options)
   end
-  # Add multiple students to a course.
+  # Add multiple students to a course. 
   #
-  # This method creates an instance of {MediaWiktory::Wikipedia::Addstudents} action.
+  # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Addstudents} action.
   #
   # Action parameters could be passed to this method, like
   #
   # ```ruby
   # api.addstudents(param: 'value')
   # ```
-  # ...or by subsequent {MediaWiktory::Wikipedia::Addstudents} method calls, like
+  # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Addstudents} method calls, like
   #
   # ```ruby
   # api.addstudents.param('value')
   # ```
   #
   # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
-  # {MediaWiktory::Wikipedia::Addstudents} class for a list of parameters and usage.
+  # {MediaWiktory::Wikipedia::Actions::Addstudents} class for a list of parameters and usage.
   #
   # @param [Hash] options Action options
-  # @return [MediaWiktory::Wikipedia::Addstudents]
+  # @return [MediaWiktory::Wikipedia::Actions::Addstudents]
   #
   def addstudents(**options)
-    Addstudents.new(**options)
+    Actions::Addstudents.new(**options)
   end
-  # Check a username against AntiSpoof's normalisation checks.
+  # Check a username against AntiSpoof's normalisation checks. 
   #
-  # This method creates an instance of {MediaWiktory::Wikipedia::Antispoof} action.
+  # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Antispoof} action.
   #
   # Action parameters could be passed to this method, like
   #
   # ```ruby
   # api.antispoof(param: 'value')
   # ```
-  # ...or by subsequent {MediaWiktory::Wikipedia::Antispoof} method calls, like
+  # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Antispoof} method calls, like
   #
   # ```ruby
   # api.antispoof.param('value')
   # ```
   #
   # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
-  # {MediaWiktory::Wikipedia::Antispoof} class for a list of parameters and usage.
+  # {MediaWiktory::Wikipedia::Actions::Antispoof} class for a list of parameters and usage.
   #
   # @param [Hash] options Action options
-  # @return [MediaWiktory::Wikipedia::Antispoof]
+  # @return [MediaWiktory::Wikipedia::Actions::Antispoof]
   #
   def antispoof(**options)
-    Antispoof.new(**options)
+    Actions::Antispoof.new(**options)
   end
-  # Block a user.
+  # Block a user. 
   #
-  # This method creates an instance of {MediaWiktory::Wikipedia::Block} action.
+  # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Block} action.
   #
   # Action parameters could be passed to this method, like
   #
   # ```ruby
   # api.block(param: 'value')
   # ```
-  # ...or by subsequent {MediaWiktory::Wikipedia::Block} method calls, like
+  # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Block} method calls, like
   #
   # ```ruby
   # api.block.param('value')
   # ```
   #
   # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
-  # {MediaWiktory::Wikipedia::Block} class for a list of parameters and usage.
+  # {MediaWiktory::Wikipedia::Actions::Block} class for a list of parameters and usage.
   #
   # @param [Hash] options Action options
-  # @return [MediaWiktory::Wikipedia::Block]
+  # @return [MediaWiktory::Wikipedia::Actions::Block]
   #
   def block(**options)
-    Block.new(**options)
+    Actions::Block.new(**options)
   end
-  # Receive a bounce email and process it to handle the failing recipient.
+  # Receive a bounce email and process it to handle the failing recipient. 
   #
-  # This method creates an instance of {MediaWiktory::Wikipedia::Bouncehandler} action.
+  # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Bouncehandler} action.
   #
   # Action parameters could be passed to this method, like
   #
   # ```ruby
   # api.bouncehandler(param: 'value')
   # ```
-  # ...or by subsequent {MediaWiktory::Wikipedia::Bouncehandler} method calls, like
+  # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Bouncehandler} method calls, like
   #
   # ```ruby
   # api.bouncehandler.param('value')
   # ```
   #
   # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
-  # {MediaWiktory::Wikipedia::Bouncehandler} class for a list of parameters and usage.
+  # {MediaWiktory::Wikipedia::Actions::Bouncehandler} class for a list of parameters and usage.
   #
   # @param [Hash] options Action options
-  # @return [MediaWiktory::Wikipedia::Bouncehandler]
+  # @return [MediaWiktory::Wikipedia::Actions::Bouncehandler]
   #
   def bouncehandler(**options)
-    Bouncehandler.new(**options)
+    Actions::Bouncehandler.new(**options)
   end
-  # Internal module for the CategoryTree extension.
+  # Internal module for the CategoryTree extension. 
   #
-  # This method creates an instance of {MediaWiktory::Wikipedia::Categorytree} action.
+  # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Categorytree} action.
   #
   # Action parameters could be passed to this method, like
   #
   # ```ruby
   # api.categorytree(param: 'value')
   # ```
-  # ...or by subsequent {MediaWiktory::Wikipedia::Categorytree} method calls, like
+  # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Categorytree} method calls, like
   #
   # ```ruby
   # api.categorytree.param('value')
   # ```
   #
   # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
-  # {MediaWiktory::Wikipedia::Categorytree} class for a list of parameters and usage.
+  # {MediaWiktory::Wikipedia::Actions::Categorytree} class for a list of parameters and usage.
   #
   # @param [Hash] options Action options
-  # @return [MediaWiktory::Wikipedia::Categorytree]
+  # @return [MediaWiktory::Wikipedia::Actions::Categorytree]
   #
   def categorytree(**options)
-    Categorytree.new(**options)
+    Actions::Categorytree.new(**options)
   end
-  # Fetch a centralauthtoken for making an authenticated request to an attached wiki.
+  # Fetch a centralauthtoken for making an authenticated request to an attached wiki. 
   #
-  # This method creates an instance of {MediaWiktory::Wikipedia::Centralauthtoken} action.
+  # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Centralauthtoken} action.
   #
   # Action parameters could be passed to this method, like
   #
   # ```ruby
   # api.centralauthtoken(param: 'value')
   # ```
-  # ...or by subsequent {MediaWiktory::Wikipedia::Centralauthtoken} method calls, like
+  # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Centralauthtoken} method calls, like
   #
   # ```ruby
   # api.centralauthtoken.param('value')
   # ```
   #
   # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
-  # {MediaWiktory::Wikipedia::Centralauthtoken} class for a list of parameters and usage.
+  # {MediaWiktory::Wikipedia::Actions::Centralauthtoken} class for a list of parameters and usage.
   #
   # @param [Hash] options Action options
-  # @return [MediaWiktory::Wikipedia::Centralauthtoken]
+  # @return [MediaWiktory::Wikipedia::Actions::Centralauthtoken]
   #
   def centralauthtoken(**options)
-    Centralauthtoken.new(**options)
+    Actions::Centralauthtoken.new(**options)
   end
-  # Get data needed to choose a banner for a given project and language
+  # Get data needed to choose a banner for a given project and language 
   #
-  # This method creates an instance of {MediaWiktory::Wikipedia::Centralnoticechoicedata} action.
+  # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Centralnoticechoicedata} action.
   #
   # Action parameters could be passed to this method, like
   #
   # ```ruby
   # api.centralnoticechoicedata(param: 'value')
   # ```
-  # ...or by subsequent {MediaWiktory::Wikipedia::Centralnoticechoicedata} method calls, like
+  # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Centralnoticechoicedata} method calls, like
   #
   # ```ruby
   # api.centralnoticechoicedata.param('value')
   # ```
   #
   # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
-  # {MediaWiktory::Wikipedia::Centralnoticechoicedata} class for a list of parameters and usage.
+  # {MediaWiktory::Wikipedia::Actions::Centralnoticechoicedata} class for a list of parameters and usage.
   #
   # @param [Hash] options Action options
-  # @return [MediaWiktory::Wikipedia::Centralnoticechoicedata]
+  # @return [MediaWiktory::Wikipedia::Actions::Centralnoticechoicedata]
   #
   def centralnoticechoicedata(**options)
-    Centralnoticechoicedata.new(**options)
+    Actions::Centralnoticechoicedata.new(**options)
   end
-  # Get all configuration settings for a campaign.
+  # Get all configuration settings for a campaign. 
   #
-  # This method creates an instance of {MediaWiktory::Wikipedia::Centralnoticequerycampaign} action.
+  # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Centralnoticequerycampaign} action.
   #
   # Action parameters could be passed to this method, like
   #
   # ```ruby
   # api.centralnoticequerycampaign(param: 'value')
   # ```
-  # ...or by subsequent {MediaWiktory::Wikipedia::Centralnoticequerycampaign} method calls, like
+  # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Centralnoticequerycampaign} method calls, like
   #
   # ```ruby
   # api.centralnoticequerycampaign.param('value')
   # ```
   #
   # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
-  # {MediaWiktory::Wikipedia::Centralnoticequerycampaign} class for a list of parameters and usage.
+  # {MediaWiktory::Wikipedia::Actions::Centralnoticequerycampaign} class for a list of parameters and usage.
   #
   # @param [Hash] options Action options
-  # @return [MediaWiktory::Wikipedia::Centralnoticequerycampaign]
+  # @return [MediaWiktory::Wikipedia::Actions::Centralnoticequerycampaign]
   #
   def centralnoticequerycampaign(**options)
-    Centralnoticequerycampaign.new(**options)
+    Actions::Centralnoticequerycampaign.new(**options)
   end
-  # Change authentication data for the current user.
+  # Change authentication data for the current user. 
   #
-  # This method creates an instance of {MediaWiktory::Wikipedia::Changeauthenticationdata} action.
+  # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Changeauthenticationdata} action.
   #
   # Action parameters could be passed to this method, like
   #
   # ```ruby
   # api.changeauthenticationdata(param: 'value')
   # ```
-  # ...or by subsequent {MediaWiktory::Wikipedia::Changeauthenticationdata} method calls, like
+  # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Changeauthenticationdata} method calls, like
   #
   # ```ruby
   # api.changeauthenticationdata.param('value')
   # ```
   #
   # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
-  # {MediaWiktory::Wikipedia::Changeauthenticationdata} class for a list of parameters and usage.
+  # {MediaWiktory::Wikipedia::Actions::Changeauthenticationdata} class for a list of parameters and usage.
   #
   # @param [Hash] options Action options
-  # @return [MediaWiktory::Wikipedia::Changeauthenticationdata]
+  # @return [MediaWiktory::Wikipedia::Actions::Changeauthenticationdata]
   #
   def changeauthenticationdata(**options)
-    Changeauthenticationdata.new(**options)
+    Actions::Changeauthenticationdata.new(**options)
   end
-  # Check the validity of a token from action=query&meta=tokens.
+  # Check the validity of a token from action=query&meta=tokens. 
   #
-  # This method creates an instance of {MediaWiktory::Wikipedia::Checktoken} action.
+  # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Checktoken} action.
   #
   # Action parameters could be passed to this method, like
   #
   # ```ruby
   # api.checktoken(param: 'value')
   # ```
-  # ...or by subsequent {MediaWiktory::Wikipedia::Checktoken} method calls, like
+  # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Checktoken} method calls, like
   #
   # ```ruby
   # api.checktoken.param('value')
   # ```
   #
   # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
-  # {MediaWiktory::Wikipedia::Checktoken} class for a list of parameters and usage.
+  # {MediaWiktory::Wikipedia::Actions::Checktoken} class for a list of parameters and usage.
   #
   # @param [Hash] options Action options
-  # @return [MediaWiktory::Wikipedia::Checktoken]
+  # @return [MediaWiktory::Wikipedia::Actions::Checktoken]
   #
   def checktoken(**options)
-    Checktoken.new(**options)
+    Actions::Checktoken.new(**options)
   end
-  # Dump of CirrusSearch configuration.
+  # Dump of CirrusSearch configuration. 
   #
-  # This method creates an instance of {MediaWiktory::Wikipedia::Cirrus-config-dump} action.
+  # This method creates an instance of {MediaWiktory::Wikipedia::Actions::CirrusConfigDump} action.
   #
   # Action parameters could be passed to this method, like
   #
   # ```ruby
-  # api.cirrus-config-dump(param: 'value')
+  # api.cirrus_config_dump(param: 'value')
   # ```
-  # ...or by subsequent {MediaWiktory::Wikipedia::Cirrus-config-dump} method calls, like
+  # ...or by subsequent {MediaWiktory::Wikipedia::Actions::CirrusConfigDump} method calls, like
   #
   # ```ruby
-  # api.cirrus-config-dump.param('value')
+  # api.cirrus_config_dump.param('value')
   # ```
   #
   # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
-  # {MediaWiktory::Wikipedia::Cirrus-config-dump} class for a list of parameters and usage.
+  # {MediaWiktory::Wikipedia::Actions::CirrusConfigDump} class for a list of parameters and usage.
   #
   # @param [Hash] options Action options
-  # @return [MediaWiktory::Wikipedia::Cirrus-config-dump]
+  # @return [MediaWiktory::Wikipedia::Actions::CirrusConfigDump]
   #
-  def cirrus-config-dump(**options)
-    Cirrus-config-dump.new(**options)
+  def cirrus_config_dump(**options)
+    Actions::CirrusConfigDump.new(**options)
   end
-  # Dump of CirrusSearch mapping for this wiki.
+  # Dump of CirrusSearch mapping for this wiki. 
   #
-  # This method creates an instance of {MediaWiktory::Wikipedia::Cirrus-mapping-dump} action.
+  # This method creates an instance of {MediaWiktory::Wikipedia::Actions::CirrusMappingDump} action.
   #
   # Action parameters could be passed to this method, like
   #
   # ```ruby
-  # api.cirrus-mapping-dump(param: 'value')
+  # api.cirrus_mapping_dump(param: 'value')
   # ```
-  # ...or by subsequent {MediaWiktory::Wikipedia::Cirrus-mapping-dump} method calls, like
+  # ...or by subsequent {MediaWiktory::Wikipedia::Actions::CirrusMappingDump} method calls, like
   #
   # ```ruby
-  # api.cirrus-mapping-dump.param('value')
+  # api.cirrus_mapping_dump.param('value')
   # ```
   #
   # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
-  # {MediaWiktory::Wikipedia::Cirrus-mapping-dump} class for a list of parameters and usage.
+  # {MediaWiktory::Wikipedia::Actions::CirrusMappingDump} class for a list of parameters and usage.
   #
   # @param [Hash] options Action options
-  # @return [MediaWiktory::Wikipedia::Cirrus-mapping-dump]
+  # @return [MediaWiktory::Wikipedia::Actions::CirrusMappingDump]
   #
-  def cirrus-mapping-dump(**options)
-    Cirrus-mapping-dump.new(**options)
+  def cirrus_mapping_dump(**options)
+    Actions::CirrusMappingDump.new(**options)
   end
-  # Dump of CirrusSearch settings for this wiki.
+  # Dump of CirrusSearch settings for this wiki. 
   #
-  # This method creates an instance of {MediaWiktory::Wikipedia::Cirrus-settings-dump} action.
+  # This method creates an instance of {MediaWiktory::Wikipedia::Actions::CirrusSettingsDump} action.
   #
   # Action parameters could be passed to this method, like
   #
   # ```ruby
-  # api.cirrus-settings-dump(param: 'value')
+  # api.cirrus_settings_dump(param: 'value')
   # ```
-  # ...or by subsequent {MediaWiktory::Wikipedia::Cirrus-settings-dump} method calls, like
+  # ...or by subsequent {MediaWiktory::Wikipedia::Actions::CirrusSettingsDump} method calls, like
   #
   # ```ruby
-  # api.cirrus-settings-dump.param('value')
+  # api.cirrus_settings_dump.param('value')
   # ```
   #
   # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
-  # {MediaWiktory::Wikipedia::Cirrus-settings-dump} class for a list of parameters and usage.
+  # {MediaWiktory::Wikipedia::Actions::CirrusSettingsDump} class for a list of parameters and usage.
   #
   # @param [Hash] options Action options
-  # @return [MediaWiktory::Wikipedia::Cirrus-settings-dump]
+  # @return [MediaWiktory::Wikipedia::Actions::CirrusSettingsDump]
   #
-  def cirrus-settings-dump(**options)
-    Cirrus-settings-dump.new(**options)
+  def cirrus_settings_dump(**options)
+    Actions::CirrusSettingsDump.new(**options)
   end
-  # Clears the hasmsg flag for the current user.
+  # Clears the hasmsg flag for the current user. 
   #
-  # This method creates an instance of {MediaWiktory::Wikipedia::Clearhasmsg} action.
+  # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Clearhasmsg} action.
   #
   # Action parameters could be passed to this method, like
   #
   # ```ruby
   # api.clearhasmsg(param: 'value')
   # ```
-  # ...or by subsequent {MediaWiktory::Wikipedia::Clearhasmsg} method calls, like
+  # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Clearhasmsg} method calls, like
   #
   # ```ruby
   # api.clearhasmsg.param('value')
   # ```
   #
   # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
-  # {MediaWiktory::Wikipedia::Clearhasmsg} class for a list of parameters and usage.
+  # {MediaWiktory::Wikipedia::Actions::Clearhasmsg} class for a list of parameters and usage.
   #
   # @param [Hash] options Action options
-  # @return [MediaWiktory::Wikipedia::Clearhasmsg]
+  # @return [MediaWiktory::Wikipedia::Actions::Clearhasmsg]
   #
   def clearhasmsg(**options)
-    Clearhasmsg.new(**options)
+    Actions::Clearhasmsg.new(**options)
   end
-  # Log in to the wiki using the interactive flow.
+  # Log in to the wiki using the interactive flow. 
   #
-  # The general procedure to use this module is:
-  #
-  # This method creates an instance of {MediaWiktory::Wikipedia::Clientlogin} action.
+  # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Clientlogin} action.
   #
   # Action parameters could be passed to this method, like
   #
   # ```ruby
   # api.clientlogin(param: 'value')
   # ```
-  # ...or by subsequent {MediaWiktory::Wikipedia::Clientlogin} method calls, like
+  # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Clientlogin} method calls, like
   #
   # ```ruby
   # api.clientlogin.param('value')
   # ```
   #
   # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
-  # {MediaWiktory::Wikipedia::Clientlogin} class for a list of parameters and usage.
+  # {MediaWiktory::Wikipedia::Actions::Clientlogin} class for a list of parameters and usage.
   #
   # @param [Hash] options Action options
-  # @return [MediaWiktory::Wikipedia::Clientlogin]
+  # @return [MediaWiktory::Wikipedia::Actions::Clientlogin]
   #
   def clientlogin(**options)
-    Clientlogin.new(**options)
+    Actions::Clientlogin.new(**options)
   end
-  # Get the difference between 2 pages.
+  # Get the difference between 2 pages. 
   #
-  # A revision number, a page title, or a page ID for both "from" and "to" must be passed.
-  #
-  # This method creates an instance of {MediaWiktory::Wikipedia::Compare} action.
+  # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Compare} action.
   #
   # Action parameters could be passed to this method, like
   #
   # ```ruby
   # api.compare(param: 'value')
   # ```
-  # ...or by subsequent {MediaWiktory::Wikipedia::Compare} method calls, like
+  # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Compare} method calls, like
   #
   # ```ruby
   # api.compare.param('value')
   # ```
   #
   # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
-  # {MediaWiktory::Wikipedia::Compare} class for a list of parameters and usage.
+  # {MediaWiktory::Wikipedia::Actions::Compare} class for a list of parameters and usage.
   #
   # @param [Hash] options Action options
-  # @return [MediaWiktory::Wikipedia::Compare]
+  # @return [MediaWiktory::Wikipedia::Actions::Compare]
   #
   def compare(**options)
-    Compare.new(**options)
+    Actions::Compare.new(**options)
   end
-  # Create a new user account.
+  # Create a new user account. 
   #
-  # The general procedure to use this module is:
-  #
-  # This method creates an instance of {MediaWiktory::Wikipedia::Createaccount} action.
+  # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Createaccount} action.
   #
   # Action parameters could be passed to this method, like
   #
   # ```ruby
   # api.createaccount(param: 'value')
   # ```
-  # ...or by subsequent {MediaWiktory::Wikipedia::Createaccount} method calls, like
+  # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Createaccount} method calls, like
   #
   # ```ruby
   # api.createaccount.param('value')
   # ```
   #
   # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
-  # {MediaWiktory::Wikipedia::Createaccount} class for a list of parameters and usage.
+  # {MediaWiktory::Wikipedia::Actions::Createaccount} class for a list of parameters and usage.
   #
   # @param [Hash] options Action options
-  # @return [MediaWiktory::Wikipedia::Createaccount]
+  # @return [MediaWiktory::Wikipedia::Actions::Createaccount]
   #
   def createaccount(**options)
-    Createaccount.new(**options)
+    Actions::Createaccount.new(**options)
   end
-  # Used by browsers to report violations of the Content Security Policy. This module should never be used, except when used automatically by a CSP compliant web browser.
+  # Used by browsers to report violations of the Content Security Policy. This module should never be used, except when used automatically by a CSP compliant web browser. 
   #
-  # This method creates an instance of {MediaWiktory::Wikipedia::Cspreport} action.
+  # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Cspreport} action.
   #
   # Action parameters could be passed to this method, like
   #
   # ```ruby
   # api.cspreport(param: 'value')
   # ```
-  # ...or by subsequent {MediaWiktory::Wikipedia::Cspreport} method calls, like
+  # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Cspreport} method calls, like
   #
   # ```ruby
   # api.cspreport.param('value')
   # ```
   #
   # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
-  # {MediaWiktory::Wikipedia::Cspreport} class for a list of parameters and usage.
+  # {MediaWiktory::Wikipedia::Actions::Cspreport} class for a list of parameters and usage.
   #
   # @param [Hash] options Action options
-  # @return [MediaWiktory::Wikipedia::Cspreport]
+  # @return [MediaWiktory::Wikipedia::Actions::Cspreport]
   #
   def cspreport(**options)
-    Cspreport.new(**options)
+    Actions::Cspreport.new(**options)
   end
-  # Delete a page.
+  # Delete a page. 
   #
-  # This method creates an instance of {MediaWiktory::Wikipedia::Delete} action.
+  # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Delete} action.
   #
   # Action parameters could be passed to this method, like
   #
   # ```ruby
   # api.delete(param: 'value')
   # ```
-  # ...or by subsequent {MediaWiktory::Wikipedia::Delete} method calls, like
+  # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Delete} method calls, like
   #
   # ```ruby
   # api.delete.param('value')
   # ```
   #
   # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
-  # {MediaWiktory::Wikipedia::Delete} class for a list of parameters and usage.
+  # {MediaWiktory::Wikipedia::Actions::Delete} class for a list of parameters and usage.
   #
   # @param [Hash] options Action options
-  # @return [MediaWiktory::Wikipedia::Delete]
+  # @return [MediaWiktory::Wikipedia::Actions::Delete]
   #
   def delete(**options)
-    Delete.new(**options)
+    Actions::Delete.new(**options)
   end
-  # Delete Education Program objects.
+  # Delete Education Program objects. 
   #
-  # This method creates an instance of {MediaWiktory::Wikipedia::Deleteeducation} action.
+  # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Deleteeducation} action.
   #
   # Action parameters could be passed to this method, like
   #
   # ```ruby
   # api.deleteeducation(param: 'value')
   # ```
-  # ...or by subsequent {MediaWiktory::Wikipedia::Deleteeducation} method calls, like
+  # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Deleteeducation} method calls, like
   #
   # ```ruby
   # api.deleteeducation.param('value')
   # ```
   #
   # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
-  # {MediaWiktory::Wikipedia::Deleteeducation} class for a list of parameters and usage.
+  # {MediaWiktory::Wikipedia::Actions::Deleteeducation} class for a list of parameters and usage.
   #
   # @param [Hash] options Action options
-  # @return [MediaWiktory::Wikipedia::Deleteeducation]
+  # @return [MediaWiktory::Wikipedia::Actions::Deleteeducation]
   #
   def deleteeducation(**options)
-    Deleteeducation.new(**options)
+    Actions::Deleteeducation.new(**options)
   end
-  # Delete a global user.
+  # Delete a global user. 
   #
-  # This method creates an instance of {MediaWiktory::Wikipedia::Deleteglobalaccount} action.
+  # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Deleteglobalaccount} action.
   #
   # Action parameters could be passed to this method, like
   #
   # ```ruby
   # api.deleteglobalaccount(param: 'value')
   # ```
-  # ...or by subsequent {MediaWiktory::Wikipedia::Deleteglobalaccount} method calls, like
+  # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Deleteglobalaccount} method calls, like
   #
   # ```ruby
   # api.deleteglobalaccount.param('value')
   # ```
   #
   # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
-  # {MediaWiktory::Wikipedia::Deleteglobalaccount} class for a list of parameters and usage.
+  # {MediaWiktory::Wikipedia::Actions::Deleteglobalaccount} class for a list of parameters and usage.
   #
   # @param [Hash] options Action options
-  # @return [MediaWiktory::Wikipedia::Deleteglobalaccount]
+  # @return [MediaWiktory::Wikipedia::Actions::Deleteglobalaccount]
   #
   def deleteglobalaccount(**options)
-    Deleteglobalaccount.new(**options)
+    Actions::Deleteglobalaccount.new(**options)
   end
-  # Mark notifications as read for the current user.
+  # Mark notifications as read for the current user. 
   #
-  # This method creates an instance of {MediaWiktory::Wikipedia::Echomarkread} action.
+  # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Echomarkread} action.
   #
   # Action parameters could be passed to this method, like
   #
   # ```ruby
   # api.echomarkread(param: 'value')
   # ```
-  # ...or by subsequent {MediaWiktory::Wikipedia::Echomarkread} method calls, like
+  # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Echomarkread} method calls, like
   #
   # ```ruby
   # api.echomarkread.param('value')
   # ```
   #
   # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
-  # {MediaWiktory::Wikipedia::Echomarkread} class for a list of parameters and usage.
+  # {MediaWiktory::Wikipedia::Actions::Echomarkread} class for a list of parameters and usage.
   #
   # @param [Hash] options Action options
-  # @return [MediaWiktory::Wikipedia::Echomarkread]
+  # @return [MediaWiktory::Wikipedia::Actions::Echomarkread]
   #
   def echomarkread(**options)
-    Echomarkread.new(**options)
+    Actions::Echomarkread.new(**options)
   end
-  # Mark notifications as seen for the current user.
+  # Mark notifications as seen for the current user. 
   #
-  # This method creates an instance of {MediaWiktory::Wikipedia::Echomarkseen} action.
+  # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Echomarkseen} action.
   #
   # Action parameters could be passed to this method, like
   #
   # ```ruby
   # api.echomarkseen(param: 'value')
   # ```
-  # ...or by subsequent {MediaWiktory::Wikipedia::Echomarkseen} method calls, like
+  # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Echomarkseen} method calls, like
   #
   # ```ruby
   # api.echomarkseen.param('value')
   # ```
   #
   # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
-  # {MediaWiktory::Wikipedia::Echomarkseen} class for a list of parameters and usage.
+  # {MediaWiktory::Wikipedia::Actions::Echomarkseen} class for a list of parameters and usage.
   #
   # @param [Hash] options Action options
-  # @return [MediaWiktory::Wikipedia::Echomarkseen]
+  # @return [MediaWiktory::Wikipedia::Actions::Echomarkseen]
   #
   def echomarkseen(**options)
-    Echomarkseen.new(**options)
+    Actions::Echomarkseen.new(**options)
   end
-  # Create and edit pages.
+  # Create and edit pages. 
   #
-  # This method creates an instance of {MediaWiktory::Wikipedia::Edit} action.
+  # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Edit} action.
   #
   # Action parameters could be passed to this method, like
   #
   # ```ruby
   # api.edit(param: 'value')
   # ```
-  # ...or by subsequent {MediaWiktory::Wikipedia::Edit} method calls, like
+  # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Edit} method calls, like
   #
   # ```ruby
   # api.edit.param('value')
   # ```
   #
   # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
-  # {MediaWiktory::Wikipedia::Edit} class for a list of parameters and usage.
+  # {MediaWiktory::Wikipedia::Actions::Edit} class for a list of parameters and usage.
   #
   # @param [Hash] options Action options
-  # @return [MediaWiktory::Wikipedia::Edit]
+  # @return [MediaWiktory::Wikipedia::Actions::Edit]
   #
   def edit(**options)
-    Edit.new(**options)
+    Actions::Edit.new(**options)
   end
-  # Edit a mass message delivery list.
+  # Edit a mass message delivery list. 
   #
-  # This method creates an instance of {MediaWiktory::Wikipedia::Editmassmessagelist} action.
+  # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Editmassmessagelist} action.
   #
   # Action parameters could be passed to this method, like
   #
   # ```ruby
   # api.editmassmessagelist(param: 'value')
   # ```
-  # ...or by subsequent {MediaWiktory::Wikipedia::Editmassmessagelist} method calls, like
+  # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Editmassmessagelist} method calls, like
   #
   # ```ruby
   # api.editmassmessagelist.param('value')
   # ```
   #
   # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
-  # {MediaWiktory::Wikipedia::Editmassmessagelist} class for a list of parameters and usage.
+  # {MediaWiktory::Wikipedia::Actions::Editmassmessagelist} class for a list of parameters and usage.
   #
   # @param [Hash] options Action options
-  # @return [MediaWiktory::Wikipedia::Editmassmessagelist]
+  # @return [MediaWiktory::Wikipedia::Actions::Editmassmessagelist]
   #
   def editmassmessagelist(**options)
-    Editmassmessagelist.new(**options)
+    Actions::Editmassmessagelist.new(**options)
   end
-  # Email a user.
+  # Email a user. 
   #
-  # This method creates an instance of {MediaWiktory::Wikipedia::Emailuser} action.
+  # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Emailuser} action.
   #
   # Action parameters could be passed to this method, like
   #
   # ```ruby
   # api.emailuser(param: 'value')
   # ```
-  # ...or by subsequent {MediaWiktory::Wikipedia::Emailuser} method calls, like
+  # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Emailuser} method calls, like
   #
   # ```ruby
   # api.emailuser.param('value')
   # ```
   #
   # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
-  # {MediaWiktory::Wikipedia::Emailuser} class for a list of parameters and usage.
+  # {MediaWiktory::Wikipedia::Actions::Emailuser} class for a list of parameters and usage.
   #
   # @param [Hash] options Action options
-  # @return [MediaWiktory::Wikipedia::Emailuser]
+  # @return [MediaWiktory::Wikipedia::Actions::Emailuser]
   #
   def emailuser(**options)
-    Emailuser.new(**options)
+    Actions::Emailuser.new(**options)
   end
-  # Associate or disassociate a user as instructor or volunteer for a course.
+  # Associate or disassociate a user as instructor or volunteer for a course. 
   #
-  # This method creates an instance of {MediaWiktory::Wikipedia::Enlist} action.
+  # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Enlist} action.
   #
   # Action parameters could be passed to this method, like
   #
   # ```ruby
   # api.enlist(param: 'value')
   # ```
-  # ...or by subsequent {MediaWiktory::Wikipedia::Enlist} method calls, like
+  # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Enlist} method calls, like
   #
   # ```ruby
   # api.enlist.param('value')
   # ```
   #
   # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
-  # {MediaWiktory::Wikipedia::Enlist} class for a list of parameters and usage.
+  # {MediaWiktory::Wikipedia::Actions::Enlist} class for a list of parameters and usage.
   #
   # @param [Hash] options Action options
-  # @return [MediaWiktory::Wikipedia::Enlist]
+  # @return [MediaWiktory::Wikipedia::Actions::Enlist]
   #
   def enlist(**options)
-    Enlist.new(**options)
+    Actions::Enlist.new(**options)
   end
-  # Expands all templates within wikitext.
+  # Expands all templates within wikitext. 
   #
-  # This method creates an instance of {MediaWiktory::Wikipedia::Expandtemplates} action.
+  # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Expandtemplates} action.
   #
   # Action parameters could be passed to this method, like
   #
   # ```ruby
   # api.expandtemplates(param: 'value')
   # ```
-  # ...or by subsequent {MediaWiktory::Wikipedia::Expandtemplates} method calls, like
+  # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Expandtemplates} method calls, like
   #
   # ```ruby
   # api.expandtemplates.param('value')
   # ```
   #
   # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
-  # {MediaWiktory::Wikipedia::Expandtemplates} class for a list of parameters and usage.
+  # {MediaWiktory::Wikipedia::Actions::Expandtemplates} class for a list of parameters and usage.
   #
   # @param [Hash] options Action options
-  # @return [MediaWiktory::Wikipedia::Expandtemplates]
+  # @return [MediaWiktory::Wikipedia::Actions::Expandtemplates]
   #
   def expandtemplates(**options)
-    Expandtemplates.new(**options)
+    Actions::Expandtemplates.new(**options)
   end
-  # Get a new FancyCaptcha.
+  # Get a new FancyCaptcha. 
   #
-  # This method creates an instance of {MediaWiktory::Wikipedia::Fancycaptchareload} action.
+  # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Fancycaptchareload} action.
   #
   # Action parameters could be passed to this method, like
   #
   # ```ruby
   # api.fancycaptchareload(param: 'value')
   # ```
-  # ...or by subsequent {MediaWiktory::Wikipedia::Fancycaptchareload} method calls, like
+  # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Fancycaptchareload} method calls, like
   #
   # ```ruby
   # api.fancycaptchareload.param('value')
   # ```
   #
   # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
-  # {MediaWiktory::Wikipedia::Fancycaptchareload} class for a list of parameters and usage.
+  # {MediaWiktory::Wikipedia::Actions::Fancycaptchareload} class for a list of parameters and usage.
   #
   # @param [Hash] options Action options
-  # @return [MediaWiktory::Wikipedia::Fancycaptchareload]
+  # @return [MediaWiktory::Wikipedia::Actions::Fancycaptchareload]
   #
   def fancycaptchareload(**options)
-    Fancycaptchareload.new(**options)
+    Actions::Fancycaptchareload.new(**options)
   end
-  # Returns a featured content feed.
+  # Returns a featured content feed. 
   #
-  # This method creates an instance of {MediaWiktory::Wikipedia::Featuredfeed} action.
+  # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Featuredfeed} action.
   #
   # Action parameters could be passed to this method, like
   #
   # ```ruby
   # api.featuredfeed(param: 'value')
   # ```
-  # ...or by subsequent {MediaWiktory::Wikipedia::Featuredfeed} method calls, like
+  # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Featuredfeed} method calls, like
   #
   # ```ruby
   # api.featuredfeed.param('value')
   # ```
   #
   # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
-  # {MediaWiktory::Wikipedia::Featuredfeed} class for a list of parameters and usage.
+  # {MediaWiktory::Wikipedia::Actions::Featuredfeed} class for a list of parameters and usage.
   #
   # @param [Hash] options Action options
-  # @return [MediaWiktory::Wikipedia::Featuredfeed]
+  # @return [MediaWiktory::Wikipedia::Actions::Featuredfeed]
   #
   def featuredfeed(**options)
-    Featuredfeed.new(**options)
+    Actions::Featuredfeed.new(**options)
   end
-  # Returns a user contributions feed.
+  # Returns a user contributions feed. 
   #
-  # This method creates an instance of {MediaWiktory::Wikipedia::Feedcontributions} action.
+  # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Feedcontributions} action.
   #
   # Action parameters could be passed to this method, like
   #
   # ```ruby
   # api.feedcontributions(param: 'value')
   # ```
-  # ...or by subsequent {MediaWiktory::Wikipedia::Feedcontributions} method calls, like
+  # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Feedcontributions} method calls, like
   #
   # ```ruby
   # api.feedcontributions.param('value')
   # ```
   #
   # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
-  # {MediaWiktory::Wikipedia::Feedcontributions} class for a list of parameters and usage.
+  # {MediaWiktory::Wikipedia::Actions::Feedcontributions} class for a list of parameters and usage.
   #
   # @param [Hash] options Action options
-  # @return [MediaWiktory::Wikipedia::Feedcontributions]
+  # @return [MediaWiktory::Wikipedia::Actions::Feedcontributions]
   #
   def feedcontributions(**options)
-    Feedcontributions.new(**options)
+    Actions::Feedcontributions.new(**options)
   end
-  # Returns a recent changes feed.
+  # Returns a recent changes feed. 
   #
-  # This method creates an instance of {MediaWiktory::Wikipedia::Feedrecentchanges} action.
+  # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Feedrecentchanges} action.
   #
   # Action parameters could be passed to this method, like
   #
   # ```ruby
   # api.feedrecentchanges(param: 'value')
   # ```
-  # ...or by subsequent {MediaWiktory::Wikipedia::Feedrecentchanges} method calls, like
+  # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Feedrecentchanges} method calls, like
   #
   # ```ruby
   # api.feedrecentchanges.param('value')
   # ```
   #
   # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
-  # {MediaWiktory::Wikipedia::Feedrecentchanges} class for a list of parameters and usage.
+  # {MediaWiktory::Wikipedia::Actions::Feedrecentchanges} class for a list of parameters and usage.
   #
   # @param [Hash] options Action options
-  # @return [MediaWiktory::Wikipedia::Feedrecentchanges]
+  # @return [MediaWiktory::Wikipedia::Actions::Feedrecentchanges]
   #
   def feedrecentchanges(**options)
-    Feedrecentchanges.new(**options)
+    Actions::Feedrecentchanges.new(**options)
   end
-  # Returns a watchlist feed.
+  # Returns a watchlist feed. 
   #
-  # This method creates an instance of {MediaWiktory::Wikipedia::Feedwatchlist} action.
+  # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Feedwatchlist} action.
   #
   # Action parameters could be passed to this method, like
   #
   # ```ruby
   # api.feedwatchlist(param: 'value')
   # ```
-  # ...or by subsequent {MediaWiktory::Wikipedia::Feedwatchlist} method calls, like
+  # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Feedwatchlist} method calls, like
   #
   # ```ruby
   # api.feedwatchlist.param('value')
   # ```
   #
   # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
-  # {MediaWiktory::Wikipedia::Feedwatchlist} class for a list of parameters and usage.
+  # {MediaWiktory::Wikipedia::Actions::Feedwatchlist} class for a list of parameters and usage.
   #
   # @param [Hash] options Action options
-  # @return [MediaWiktory::Wikipedia::Feedwatchlist]
+  # @return [MediaWiktory::Wikipedia::Actions::Feedwatchlist]
   #
   def feedwatchlist(**options)
-    Feedwatchlist.new(**options)
+    Actions::Feedwatchlist.new(**options)
   end
-  # Revert a file to an old version.
+  # Revert a file to an old version. 
   #
-  # This method creates an instance of {MediaWiktory::Wikipedia::Filerevert} action.
+  # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Filerevert} action.
   #
   # Action parameters could be passed to this method, like
   #
   # ```ruby
   # api.filerevert(param: 'value')
   # ```
-  # ...or by subsequent {MediaWiktory::Wikipedia::Filerevert} method calls, like
+  # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Filerevert} method calls, like
   #
   # ```ruby
   # api.filerevert.param('value')
   # ```
   #
   # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
-  # {MediaWiktory::Wikipedia::Filerevert} class for a list of parameters and usage.
+  # {MediaWiktory::Wikipedia::Actions::Filerevert} class for a list of parameters and usage.
   #
   # @param [Hash] options Action options
-  # @return [MediaWiktory::Wikipedia::Filerevert]
+  # @return [MediaWiktory::Wikipedia::Actions::Filerevert]
   #
   def filerevert(**options)
-    Filerevert.new(**options)
+    Actions::Filerevert.new(**options)
   end
-  # Get basic information about review flag configuration for this site.
+  # Get basic information about review flag configuration for this site. 
   #
-  # The following parameters are returned for each tag:
-  #
-  # Flagged revisions have an assigned level for each tag. The highest tier that all the tags meet is the review tier of the entire revision.
-  #
-  # This method creates an instance of {MediaWiktory::Wikipedia::Flagconfig} action.
+  # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Flagconfig} action.
   #
   # Action parameters could be passed to this method, like
   #
   # ```ruby
   # api.flagconfig(param: 'value')
   # ```
-  # ...or by subsequent {MediaWiktory::Wikipedia::Flagconfig} method calls, like
+  # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Flagconfig} method calls, like
   #
   # ```ruby
   # api.flagconfig.param('value')
   # ```
   #
   # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
-  # {MediaWiktory::Wikipedia::Flagconfig} class for a list of parameters and usage.
+  # {MediaWiktory::Wikipedia::Actions::Flagconfig} class for a list of parameters and usage.
   #
   # @param [Hash] options Action options
-  # @return [MediaWiktory::Wikipedia::Flagconfig]
+  # @return [MediaWiktory::Wikipedia::Actions::Flagconfig]
   #
   def flagconfig(**options)
-    Flagconfig.new(**options)
+    Actions::Flagconfig.new(**options)
   end
-  # Globally block or unblock a user.
+  # Globally block or unblock a user. 
   #
-  # This method creates an instance of {MediaWiktory::Wikipedia::Globalblock} action.
+  # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Globalblock} action.
   #
   # Action parameters could be passed to this method, like
   #
   # ```ruby
   # api.globalblock(param: 'value')
   # ```
-  # ...or by subsequent {MediaWiktory::Wikipedia::Globalblock} method calls, like
+  # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Globalblock} method calls, like
   #
   # ```ruby
   # api.globalblock.param('value')
   # ```
   #
   # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
-  # {MediaWiktory::Wikipedia::Globalblock} class for a list of parameters and usage.
+  # {MediaWiktory::Wikipedia::Actions::Globalblock} class for a list of parameters and usage.
   #
   # @param [Hash] options Action options
-  # @return [MediaWiktory::Wikipedia::Globalblock]
+  # @return [MediaWiktory::Wikipedia::Actions::Globalblock]
   #
   def globalblock(**options)
-    Globalblock.new(**options)
+    Actions::Globalblock.new(**options)
   end
-  # Add/remove a user to/from global groups.
+  # Add/remove a user to/from global groups. 
   #
-  # This method creates an instance of {MediaWiktory::Wikipedia::Globaluserrights} action.
+  # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Globaluserrights} action.
   #
   # Action parameters could be passed to this method, like
   #
   # ```ruby
   # api.globaluserrights(param: 'value')
   # ```
-  # ...or by subsequent {MediaWiktory::Wikipedia::Globaluserrights} method calls, like
+  # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Globaluserrights} method calls, like
   #
   # ```ruby
   # api.globaluserrights.param('value')
   # ```
   #
   # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
-  # {MediaWiktory::Wikipedia::Globaluserrights} class for a list of parameters and usage.
+  # {MediaWiktory::Wikipedia::Actions::Globaluserrights} class for a list of parameters and usage.
   #
   # @param [Hash] options Action options
-  # @return [MediaWiktory::Wikipedia::Globaluserrights]
+  # @return [MediaWiktory::Wikipedia::Actions::Globaluserrights]
   #
   def globaluserrights(**options)
-    Globaluserrights.new(**options)
+    Actions::Globaluserrights.new(**options)
   end
-  # Access graph tag functionality.
+  # Access graph tag functionality. 
   #
-  # This method creates an instance of {MediaWiktory::Wikipedia::Graph} action.
+  # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Graph} action.
   #
   # Action parameters could be passed to this method, like
   #
   # ```ruby
   # api.graph(param: 'value')
   # ```
-  # ...or by subsequent {MediaWiktory::Wikipedia::Graph} method calls, like
+  # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Graph} method calls, like
   #
   # ```ruby
   # api.graph.param('value')
   # ```
   #
   # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
-  # {MediaWiktory::Wikipedia::Graph} class for a list of parameters and usage.
+  # {MediaWiktory::Wikipedia::Actions::Graph} class for a list of parameters and usage.
   #
   # @param [Hash] options Action options
-  # @return [MediaWiktory::Wikipedia::Graph]
+  # @return [MediaWiktory::Wikipedia::Actions::Graph]
   #
   def graph(**options)
-    Graph.new(**options)
+    Actions::Graph.new(**options)
   end
-  # Display help for the specified modules.
+  # Display help for the specified modules. 
   #
-  # This method creates an instance of {MediaWiktory::Wikipedia::Help} action.
+  # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Help} action.
   #
   # Action parameters could be passed to this method, like
   #
   # ```ruby
   # api.help(param: 'value')
   # ```
-  # ...or by subsequent {MediaWiktory::Wikipedia::Help} method calls, like
+  # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Help} method calls, like
   #
   # ```ruby
   # api.help.param('value')
   # ```
   #
   # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
-  # {MediaWiktory::Wikipedia::Help} class for a list of parameters and usage.
+  # {MediaWiktory::Wikipedia::Actions::Help} class for a list of parameters and usage.
   #
   # @param [Hash] options Action options
-  # @return [MediaWiktory::Wikipedia::Help]
+  # @return [MediaWiktory::Wikipedia::Actions::Help]
   #
   def help(**options)
-    Help.new(**options)
+    Actions::Help.new(**options)
   end
-  # This module has been disabled.
+  # This module has been disabled. 
   #
-  # This method creates an instance of {MediaWiktory::Wikipedia::Imagerotate} action.
+  # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Imagerotate} action.
   #
   # Action parameters could be passed to this method, like
   #
   # ```ruby
   # api.imagerotate(param: 'value')
   # ```
-  # ...or by subsequent {MediaWiktory::Wikipedia::Imagerotate} method calls, like
+  # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Imagerotate} method calls, like
   #
   # ```ruby
   # api.imagerotate.param('value')
   # ```
   #
   # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
-  # {MediaWiktory::Wikipedia::Imagerotate} class for a list of parameters and usage.
+  # {MediaWiktory::Wikipedia::Actions::Imagerotate} class for a list of parameters and usage.
   #
   # @param [Hash] options Action options
-  # @return [MediaWiktory::Wikipedia::Imagerotate]
+  # @return [MediaWiktory::Wikipedia::Actions::Imagerotate]
   #
   def imagerotate(**options)
-    Imagerotate.new(**options)
+    Actions::Imagerotate.new(**options)
   end
-  # Import a page from another wiki, or from an XML file.
+  # Import a page from another wiki, or from an XML file. 
   #
-  # Note that the HTTP POST must be done as a file upload (i.e. using multipart/form-data) when sending a file for the xml parameter.
-  #
-  # This method creates an instance of {MediaWiktory::Wikipedia::Import} action.
+  # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Import} action.
   #
   # Action parameters could be passed to this method, like
   #
   # ```ruby
   # api.import(param: 'value')
   # ```
-  # ...or by subsequent {MediaWiktory::Wikipedia::Import} method calls, like
+  # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Import} method calls, like
   #
   # ```ruby
   # api.import.param('value')
   # ```
   #
   # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
-  # {MediaWiktory::Wikipedia::Import} class for a list of parameters and usage.
+  # {MediaWiktory::Wikipedia::Actions::Import} class for a list of parameters and usage.
   #
   # @param [Hash] options Action options
-  # @return [MediaWiktory::Wikipedia::Import]
+  # @return [MediaWiktory::Wikipedia::Actions::Import]
   #
   def import(**options)
-    Import.new(**options)
+    Actions::Import.new(**options)
   end
-  # Allows direct access to JsonConfig subsystem.
+  # Allows direct access to JsonConfig subsystem. 
   #
-  # This method creates an instance of {MediaWiktory::Wikipedia::Jsonconfig} action.
+  # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Jsonconfig} action.
   #
   # Action parameters could be passed to this method, like
   #
   # ```ruby
   # api.jsonconfig(param: 'value')
   # ```
-  # ...or by subsequent {MediaWiktory::Wikipedia::Jsonconfig} method calls, like
+  # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Jsonconfig} method calls, like
   #
   # ```ruby
   # api.jsonconfig.param('value')
   # ```
   #
   # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
-  # {MediaWiktory::Wikipedia::Jsonconfig} class for a list of parameters and usage.
+  # {MediaWiktory::Wikipedia::Actions::Jsonconfig} class for a list of parameters and usage.
   #
   # @param [Hash] options Action options
-  # @return [MediaWiktory::Wikipedia::Jsonconfig]
+  # @return [MediaWiktory::Wikipedia::Actions::Jsonconfig]
   #
   def jsonconfig(**options)
-    Jsonconfig.new(**options)
+    Actions::Jsonconfig.new(**options)
   end
-  # Retrieve localized JSON data.
+  # Retrieve localized JSON data. 
   #
-  # This method creates an instance of {MediaWiktory::Wikipedia::Jsondata} action.
+  # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Jsondata} action.
   #
   # Action parameters could be passed to this method, like
   #
   # ```ruby
   # api.jsondata(param: 'value')
   # ```
-  # ...or by subsequent {MediaWiktory::Wikipedia::Jsondata} method calls, like
+  # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Jsondata} method calls, like
   #
   # ```ruby
   # api.jsondata.param('value')
   # ```
   #
   # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
-  # {MediaWiktory::Wikipedia::Jsondata} class for a list of parameters and usage.
+  # {MediaWiktory::Wikipedia::Actions::Jsondata} class for a list of parameters and usage.
   #
   # @param [Hash] options Action options
-  # @return [MediaWiktory::Wikipedia::Jsondata]
+  # @return [MediaWiktory::Wikipedia::Actions::Jsondata]
   #
   def jsondata(**options)
-    Jsondata.new(**options)
+    Actions::Jsondata.new(**options)
   end
-  # Search for language names in any script.
+  # Search for language names in any script. 
   #
-  # This method creates an instance of {MediaWiktory::Wikipedia::Languagesearch} action.
+  # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Languagesearch} action.
   #
   # Action parameters could be passed to this method, like
   #
   # ```ruby
   # api.languagesearch(param: 'value')
   # ```
-  # ...or by subsequent {MediaWiktory::Wikipedia::Languagesearch} method calls, like
+  # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Languagesearch} method calls, like
   #
   # ```ruby
   # api.languagesearch.param('value')
   # ```
   #
   # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
-  # {MediaWiktory::Wikipedia::Languagesearch} class for a list of parameters and usage.
+  # {MediaWiktory::Wikipedia::Actions::Languagesearch} class for a list of parameters and usage.
   #
   # @param [Hash] options Action options
-  # @return [MediaWiktory::Wikipedia::Languagesearch]
+  # @return [MediaWiktory::Wikipedia::Actions::Languagesearch]
   #
   def languagesearch(**options)
-    Languagesearch.new(**options)
+    Actions::Languagesearch.new(**options)
   end
-  # Link an account from a third-party provider to the current user.
+  # Link an account from a third-party provider to the current user. 
   #
-  # The general procedure to use this module is:
-  #
-  # This method creates an instance of {MediaWiktory::Wikipedia::Linkaccount} action.
+  # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Linkaccount} action.
   #
   # Action parameters could be passed to this method, like
   #
   # ```ruby
   # api.linkaccount(param: 'value')
   # ```
-  # ...or by subsequent {MediaWiktory::Wikipedia::Linkaccount} method calls, like
+  # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Linkaccount} method calls, like
   #
   # ```ruby
   # api.linkaccount.param('value')
   # ```
   #
   # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
-  # {MediaWiktory::Wikipedia::Linkaccount} class for a list of parameters and usage.
+  # {MediaWiktory::Wikipedia::Actions::Linkaccount} class for a list of parameters and usage.
   #
   # @param [Hash] options Action options
-  # @return [MediaWiktory::Wikipedia::Linkaccount]
+  # @return [MediaWiktory::Wikipedia::Actions::Linkaccount]
   #
   def linkaccount(**options)
-    Linkaccount.new(**options)
+    Actions::Linkaccount.new(**options)
   end
-  # Get the usernames and other information for students enrolled in one or more courses.
+  # Get the usernames and other information for students enrolled in one or more courses. 
   #
-  # This method creates an instance of {MediaWiktory::Wikipedia::Liststudents} action.
+  # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Liststudents} action.
   #
   # Action parameters could be passed to this method, like
   #
   # ```ruby
   # api.liststudents(param: 'value')
   # ```
-  # ...or by subsequent {MediaWiktory::Wikipedia::Liststudents} method calls, like
+  # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Liststudents} method calls, like
   #
   # ```ruby
   # api.liststudents.param('value')
   # ```
   #
   # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
-  # {MediaWiktory::Wikipedia::Liststudents} class for a list of parameters and usage.
+  # {MediaWiktory::Wikipedia::Actions::Liststudents} class for a list of parameters and usage.
   #
   # @param [Hash] options Action options
-  # @return [MediaWiktory::Wikipedia::Liststudents]
+  # @return [MediaWiktory::Wikipedia::Actions::Liststudents]
   #
   def liststudents(**options)
-    Liststudents.new(**options)
+    Actions::Liststudents.new(**options)
   end
-  # Log in and get authentication cookies.
+  # Log in and get authentication cookies. 
   #
-  # This action should only be used in combination with Special:BotPasswords; use for main-account login is deprecated and may fail without warning. To safely log in to the main account, use action=clientlogin.
-  #
-  # This method creates an instance of {MediaWiktory::Wikipedia::Login} action.
+  # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Login} action.
   #
   # Action parameters could be passed to this method, like
   #
   # ```ruby
   # api.login(param: 'value')
   # ```
-  # ...or by subsequent {MediaWiktory::Wikipedia::Login} method calls, like
+  # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Login} method calls, like
   #
   # ```ruby
   # api.login.param('value')
   # ```
   #
   # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
-  # {MediaWiktory::Wikipedia::Login} class for a list of parameters and usage.
+  # {MediaWiktory::Wikipedia::Actions::Login} class for a list of parameters and usage.
   #
   # @param [Hash] options Action options
-  # @return [MediaWiktory::Wikipedia::Login]
+  # @return [MediaWiktory::Wikipedia::Actions::Login]
   #
   def login(**options)
-    Login.new(**options)
+    Actions::Login.new(**options)
   end
-  # Log out and clear session data.
+  # Log out and clear session data. 
   #
-  # This method creates an instance of {MediaWiktory::Wikipedia::Logout} action.
+  # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Logout} action.
   #
   # Action parameters could be passed to this method, like
   #
   # ```ruby
   # api.logout(param: 'value')
   # ```
-  # ...or by subsequent {MediaWiktory::Wikipedia::Logout} method calls, like
+  # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Logout} method calls, like
   #
   # ```ruby
   # api.logout.param('value')
   # ```
   #
   # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
-  # {MediaWiktory::Wikipedia::Logout} class for a list of parameters and usage.
+  # {MediaWiktory::Wikipedia::Actions::Logout} class for a list of parameters and usage.
   #
   # @param [Hash] options Action options
-  # @return [MediaWiktory::Wikipedia::Logout]
+  # @return [MediaWiktory::Wikipedia::Actions::Logout]
   #
   def logout(**options)
-    Logout.new(**options)
+    Actions::Logout.new(**options)
   end
-  # Perform management tasks relating to change tags.
+  # Perform management tasks relating to change tags. 
   #
-  # This method creates an instance of {MediaWiktory::Wikipedia::Managetags} action.
+  # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Managetags} action.
   #
   # Action parameters could be passed to this method, like
   #
   # ```ruby
   # api.managetags(param: 'value')
   # ```
-  # ...or by subsequent {MediaWiktory::Wikipedia::Managetags} method calls, like
+  # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Managetags} method calls, like
   #
   # ```ruby
   # api.managetags.param('value')
   # ```
   #
   # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
-  # {MediaWiktory::Wikipedia::Managetags} class for a list of parameters and usage.
+  # {MediaWiktory::Wikipedia::Actions::Managetags} class for a list of parameters and usage.
   #
   # @param [Hash] options Action options
-  # @return [MediaWiktory::Wikipedia::Managetags]
+  # @return [MediaWiktory::Wikipedia::Actions::Managetags]
   #
   def managetags(**options)
-    Managetags.new(**options)
+    Actions::Managetags.new(**options)
   end
-  # Send a message to a list of pages.
+  # Send a message to a list of pages. 
   #
-  # This method creates an instance of {MediaWiktory::Wikipedia::Massmessage} action.
+  # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Massmessage} action.
   #
   # Action parameters could be passed to this method, like
   #
   # ```ruby
   # api.massmessage(param: 'value')
   # ```
-  # ...or by subsequent {MediaWiktory::Wikipedia::Massmessage} method calls, like
+  # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Massmessage} method calls, like
   #
   # ```ruby
   # api.massmessage.param('value')
   # ```
   #
   # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
-  # {MediaWiktory::Wikipedia::Massmessage} class for a list of parameters and usage.
+  # {MediaWiktory::Wikipedia::Actions::Massmessage} class for a list of parameters and usage.
   #
   # @param [Hash] options Action options
-  # @return [MediaWiktory::Wikipedia::Massmessage]
+  # @return [MediaWiktory::Wikipedia::Actions::Massmessage]
   #
   def massmessage(**options)
-    Massmessage.new(**options)
+    Actions::Massmessage.new(**options)
   end
-  # Merge page histories.
+  # Merge page histories. 
   #
-  # This method creates an instance of {MediaWiktory::Wikipedia::Mergehistory} action.
+  # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Mergehistory} action.
   #
   # Action parameters could be passed to this method, like
   #
   # ```ruby
   # api.mergehistory(param: 'value')
   # ```
-  # ...or by subsequent {MediaWiktory::Wikipedia::Mergehistory} method calls, like
+  # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Mergehistory} method calls, like
   #
   # ```ruby
   # api.mergehistory.param('value')
   # ```
   #
   # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
-  # {MediaWiktory::Wikipedia::Mergehistory} class for a list of parameters and usage.
+  # {MediaWiktory::Wikipedia::Actions::Mergehistory} class for a list of parameters and usage.
   #
   # @param [Hash] options Action options
-  # @return [MediaWiktory::Wikipedia::Mergehistory]
+  # @return [MediaWiktory::Wikipedia::Actions::Mergehistory]
   #
   def mergehistory(**options)
-    Mergehistory.new(**options)
+    Actions::Mergehistory.new(**options)
   end
-  # Returns data needed for mobile views.
+  # Returns data needed for mobile views. 
   #
-  # This method creates an instance of {MediaWiktory::Wikipedia::Mobileview} action.
+  # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Mobileview} action.
   #
   # Action parameters could be passed to this method, like
   #
   # ```ruby
   # api.mobileview(param: 'value')
   # ```
-  # ...or by subsequent {MediaWiktory::Wikipedia::Mobileview} method calls, like
+  # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Mobileview} method calls, like
   #
   # ```ruby
   # api.mobileview.param('value')
   # ```
   #
   # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
-  # {MediaWiktory::Wikipedia::Mobileview} class for a list of parameters and usage.
+  # {MediaWiktory::Wikipedia::Actions::Mobileview} class for a list of parameters and usage.
   #
   # @param [Hash] options Action options
-  # @return [MediaWiktory::Wikipedia::Mobileview]
+  # @return [MediaWiktory::Wikipedia::Actions::Mobileview]
   #
   def mobileview(**options)
-    Mobileview.new(**options)
+    Actions::Mobileview.new(**options)
   end
-  # Move a page.
+  # Move a page. 
   #
-  # This method creates an instance of {MediaWiktory::Wikipedia::Move} action.
+  # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Move} action.
   #
   # Action parameters could be passed to this method, like
   #
   # ```ruby
   # api.move(param: 'value')
   # ```
-  # ...or by subsequent {MediaWiktory::Wikipedia::Move} method calls, like
+  # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Move} method calls, like
   #
   # ```ruby
   # api.move.param('value')
   # ```
   #
   # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
-  # {MediaWiktory::Wikipedia::Move} class for a list of parameters and usage.
+  # {MediaWiktory::Wikipedia::Actions::Move} class for a list of parameters and usage.
   #
   # @param [Hash] options Action options
-  # @return [MediaWiktory::Wikipedia::Move]
+  # @return [MediaWiktory::Wikipedia::Actions::Move]
   #
   def move(**options)
-    Move.new(**options)
+    Actions::Move.new(**options)
   end
-  # Validate a two-factor authentication (OATH) token.
+  # Validate a two-factor authentication (OATH) token. 
   #
-  # This method creates an instance of {MediaWiktory::Wikipedia::Oathvalidate} action.
+  # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Oathvalidate} action.
   #
   # Action parameters could be passed to this method, like
   #
   # ```ruby
   # api.oathvalidate(param: 'value')
   # ```
-  # ...or by subsequent {MediaWiktory::Wikipedia::Oathvalidate} method calls, like
+  # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Oathvalidate} method calls, like
   #
   # ```ruby
   # api.oathvalidate.param('value')
   # ```
   #
   # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
-  # {MediaWiktory::Wikipedia::Oathvalidate} class for a list of parameters and usage.
+  # {MediaWiktory::Wikipedia::Actions::Oathvalidate} class for a list of parameters and usage.
   #
   # @param [Hash] options Action options
-  # @return [MediaWiktory::Wikipedia::Oathvalidate]
+  # @return [MediaWiktory::Wikipedia::Actions::Oathvalidate]
   #
   def oathvalidate(**options)
-    Oathvalidate.new(**options)
+    Actions::Oathvalidate.new(**options)
   end
-  # Search the wiki using the OpenSearch protocol.
+  # Search the wiki using the OpenSearch protocol. 
   #
-  # This method creates an instance of {MediaWiktory::Wikipedia::Opensearch} action.
+  # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Opensearch} action.
   #
   # Action parameters could be passed to this method, like
   #
   # ```ruby
   # api.opensearch(param: 'value')
   # ```
-  # ...or by subsequent {MediaWiktory::Wikipedia::Opensearch} method calls, like
+  # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Opensearch} method calls, like
   #
   # ```ruby
   # api.opensearch.param('value')
   # ```
   #
   # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
-  # {MediaWiktory::Wikipedia::Opensearch} class for a list of parameters and usage.
+  # {MediaWiktory::Wikipedia::Actions::Opensearch} class for a list of parameters and usage.
   #
   # @param [Hash] options Action options
-  # @return [MediaWiktory::Wikipedia::Opensearch]
+  # @return [MediaWiktory::Wikipedia::Actions::Opensearch]
   #
   def opensearch(**options)
-    Opensearch.new(**options)
+    Actions::Opensearch.new(**options)
   end
-  # Change preferences of the current user.
+  # Change preferences of the current user. 
   #
-  # Only options which are registered in core or in one of installed extensions, or options with keys prefixed with userjs- (intended to be used by user scripts), can be set.
-  #
-  # This method creates an instance of {MediaWiktory::Wikipedia::Options} action.
+  # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Options} action.
   #
   # Action parameters could be passed to this method, like
   #
   # ```ruby
   # api.options(param: 'value')
   # ```
-  # ...or by subsequent {MediaWiktory::Wikipedia::Options} method calls, like
+  # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Options} method calls, like
   #
   # ```ruby
   # api.options.param('value')
   # ```
   #
   # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
-  # {MediaWiktory::Wikipedia::Options} class for a list of parameters and usage.
+  # {MediaWiktory::Wikipedia::Actions::Options} class for a list of parameters and usage.
   #
   # @param [Hash] options Action options
-  # @return [MediaWiktory::Wikipedia::Options]
+  # @return [MediaWiktory::Wikipedia::Actions::Options]
   #
   def options(**options)
-    Options.new(**options)
+    Actions::Options.new(**options)
   end
-  # Mark an article as reviewed or unreviewed.
+  # Mark an article as reviewed or unreviewed. 
   #
-  # This method creates an instance of {MediaWiktory::Wikipedia::Pagetriageaction} action.
+  # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Pagetriageaction} action.
   #
   # Action parameters could be passed to this method, like
   #
   # ```ruby
   # api.pagetriageaction(param: 'value')
   # ```
-  # ...or by subsequent {MediaWiktory::Wikipedia::Pagetriageaction} method calls, like
+  # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Pagetriageaction} method calls, like
   #
   # ```ruby
   # api.pagetriageaction.param('value')
   # ```
   #
   # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
-  # {MediaWiktory::Wikipedia::Pagetriageaction} class for a list of parameters and usage.
+  # {MediaWiktory::Wikipedia::Actions::Pagetriageaction} class for a list of parameters and usage.
   #
   # @param [Hash] options Action options
-  # @return [MediaWiktory::Wikipedia::Pagetriageaction]
+  # @return [MediaWiktory::Wikipedia::Actions::Pagetriageaction]
   #
   def pagetriageaction(**options)
-    Pagetriageaction.new(**options)
+    Actions::Pagetriageaction.new(**options)
   end
-  # Get a list of page IDs for building a PageTriage queue.
+  # Get a list of page IDs for building a PageTriage queue. 
   #
-  # This method creates an instance of {MediaWiktory::Wikipedia::Pagetriagelist} action.
+  # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Pagetriagelist} action.
   #
   # Action parameters could be passed to this method, like
   #
   # ```ruby
   # api.pagetriagelist(param: 'value')
   # ```
-  # ...or by subsequent {MediaWiktory::Wikipedia::Pagetriagelist} method calls, like
+  # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Pagetriagelist} method calls, like
   #
   # ```ruby
   # api.pagetriagelist.param('value')
   # ```
   #
   # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
-  # {MediaWiktory::Wikipedia::Pagetriagelist} class for a list of parameters and usage.
+  # {MediaWiktory::Wikipedia::Actions::Pagetriagelist} class for a list of parameters and usage.
   #
   # @param [Hash] options Action options
-  # @return [MediaWiktory::Wikipedia::Pagetriagelist]
+  # @return [MediaWiktory::Wikipedia::Actions::Pagetriagelist]
   #
   def pagetriagelist(**options)
-    Pagetriagelist.new(**options)
+    Actions::Pagetriagelist.new(**options)
   end
-  # Get the stats for page triage.
+  # Get the stats for page triage. 
   #
-  # This method creates an instance of {MediaWiktory::Wikipedia::Pagetriagestats} action.
+  # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Pagetriagestats} action.
   #
   # Action parameters could be passed to this method, like
   #
   # ```ruby
   # api.pagetriagestats(param: 'value')
   # ```
-  # ...or by subsequent {MediaWiktory::Wikipedia::Pagetriagestats} method calls, like
+  # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Pagetriagestats} method calls, like
   #
   # ```ruby
   # api.pagetriagestats.param('value')
   # ```
   #
   # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
-  # {MediaWiktory::Wikipedia::Pagetriagestats} class for a list of parameters and usage.
+  # {MediaWiktory::Wikipedia::Actions::Pagetriagestats} class for a list of parameters and usage.
   #
   # @param [Hash] options Action options
-  # @return [MediaWiktory::Wikipedia::Pagetriagestats]
+  # @return [MediaWiktory::Wikipedia::Actions::Pagetriagestats]
   #
   def pagetriagestats(**options)
-    Pagetriagestats.new(**options)
+    Actions::Pagetriagestats.new(**options)
   end
-  # Add tags to an article.
+  # Add tags to an article. 
   #
-  # This method creates an instance of {MediaWiktory::Wikipedia::Pagetriagetagging} action.
+  # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Pagetriagetagging} action.
   #
   # Action parameters could be passed to this method, like
   #
   # ```ruby
   # api.pagetriagetagging(param: 'value')
   # ```
-  # ...or by subsequent {MediaWiktory::Wikipedia::Pagetriagetagging} method calls, like
+  # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Pagetriagetagging} method calls, like
   #
   # ```ruby
   # api.pagetriagetagging.param('value')
   # ```
   #
   # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
-  # {MediaWiktory::Wikipedia::Pagetriagetagging} class for a list of parameters and usage.
+  # {MediaWiktory::Wikipedia::Actions::Pagetriagetagging} class for a list of parameters and usage.
   #
   # @param [Hash] options Action options
-  # @return [MediaWiktory::Wikipedia::Pagetriagetagging]
+  # @return [MediaWiktory::Wikipedia::Actions::Pagetriagetagging]
   #
   def pagetriagetagging(**options)
-    Pagetriagetagging.new(**options)
+    Actions::Pagetriagetagging.new(**options)
   end
-  # Fetch templates that are used within the PageTriage application.
+  # Fetch templates that are used within the PageTriage application. 
   #
-  # This method creates an instance of {MediaWiktory::Wikipedia::Pagetriagetemplate} action.
+  # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Pagetriagetemplate} action.
   #
   # Action parameters could be passed to this method, like
   #
   # ```ruby
   # api.pagetriagetemplate(param: 'value')
   # ```
-  # ...or by subsequent {MediaWiktory::Wikipedia::Pagetriagetemplate} method calls, like
+  # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Pagetriagetemplate} method calls, like
   #
   # ```ruby
   # api.pagetriagetemplate.param('value')
   # ```
   #
   # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
-  # {MediaWiktory::Wikipedia::Pagetriagetemplate} class for a list of parameters and usage.
+  # {MediaWiktory::Wikipedia::Actions::Pagetriagetemplate} class for a list of parameters and usage.
   #
   # @param [Hash] options Action options
-  # @return [MediaWiktory::Wikipedia::Pagetriagetemplate]
+  # @return [MediaWiktory::Wikipedia::Actions::Pagetriagetemplate]
   #
   def pagetriagetemplate(**options)
-    Pagetriagetemplate.new(**options)
+    Actions::Pagetriagetemplate.new(**options)
   end
-  # Obtain information about API modules.
+  # Obtain information about API modules. 
   #
-  # This method creates an instance of {MediaWiktory::Wikipedia::Paraminfo} action.
+  # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Paraminfo} action.
   #
   # Action parameters could be passed to this method, like
   #
   # ```ruby
   # api.paraminfo(param: 'value')
   # ```
-  # ...or by subsequent {MediaWiktory::Wikipedia::Paraminfo} method calls, like
+  # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Paraminfo} method calls, like
   #
   # ```ruby
   # api.paraminfo.param('value')
   # ```
   #
   # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
-  # {MediaWiktory::Wikipedia::Paraminfo} class for a list of parameters and usage.
+  # {MediaWiktory::Wikipedia::Actions::Paraminfo} class for a list of parameters and usage.
   #
   # @param [Hash] options Action options
-  # @return [MediaWiktory::Wikipedia::Paraminfo]
+  # @return [MediaWiktory::Wikipedia::Actions::Paraminfo]
   #
   def paraminfo(**options)
-    Paraminfo.new(**options)
+    Actions::Paraminfo.new(**options)
   end
-  # Parses content and returns parser output.
+  # Parses content and returns parser output. 
   #
-  # See the various prop-modules of action=query to get information from the current version of a page.
-  #
-  # There are several ways to specify the text to parse:
-  #
-  # This method creates an instance of {MediaWiktory::Wikipedia::Parse} action.
+  # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Parse} action.
   #
   # Action parameters could be passed to this method, like
   #
   # ```ruby
   # api.parse(param: 'value')
   # ```
-  # ...or by subsequent {MediaWiktory::Wikipedia::Parse} method calls, like
+  # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Parse} method calls, like
   #
   # ```ruby
   # api.parse.param('value')
   # ```
   #
   # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
-  # {MediaWiktory::Wikipedia::Parse} class for a list of parameters and usage.
+  # {MediaWiktory::Wikipedia::Actions::Parse} class for a list of parameters and usage.
   #
   # @param [Hash] options Action options
-  # @return [MediaWiktory::Wikipedia::Parse]
+  # @return [MediaWiktory::Wikipedia::Actions::Parse]
   #
   def parse(**options)
-    Parse.new(**options)
+    Actions::Parse.new(**options)
   end
   # 
   #
-  # This method creates an instance of {MediaWiktory::Wikipedia::Parsoid-batch} action.
+  # This method creates an instance of {MediaWiktory::Wikipedia::Actions::ParsoidBatch} action.
   #
   # Action parameters could be passed to this method, like
   #
   # ```ruby
-  # api.parsoid-batch(param: 'value')
+  # api.parsoid_batch(param: 'value')
   # ```
-  # ...or by subsequent {MediaWiktory::Wikipedia::Parsoid-batch} method calls, like
+  # ...or by subsequent {MediaWiktory::Wikipedia::Actions::ParsoidBatch} method calls, like
   #
   # ```ruby
-  # api.parsoid-batch.param('value')
+  # api.parsoid_batch.param('value')
   # ```
   #
   # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
-  # {MediaWiktory::Wikipedia::Parsoid-batch} class for a list of parameters and usage.
+  # {MediaWiktory::Wikipedia::Actions::ParsoidBatch} class for a list of parameters and usage.
   #
   # @param [Hash] options Action options
-  # @return [MediaWiktory::Wikipedia::Parsoid-batch]
+  # @return [MediaWiktory::Wikipedia::Actions::ParsoidBatch]
   #
-  def parsoid-batch(**options)
-    Parsoid-batch.new(**options)
+  def parsoid_batch(**options)
+    Actions::ParsoidBatch.new(**options)
   end
-  # Patrol a page or revision.
+  # Patrol a page or revision. 
   #
-  # This method creates an instance of {MediaWiktory::Wikipedia::Patrol} action.
+  # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Patrol} action.
   #
   # Action parameters could be passed to this method, like
   #
   # ```ruby
   # api.patrol(param: 'value')
   # ```
-  # ...or by subsequent {MediaWiktory::Wikipedia::Patrol} method calls, like
+  # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Patrol} method calls, like
   #
   # ```ruby
   # api.patrol.param('value')
   # ```
   #
   # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
-  # {MediaWiktory::Wikipedia::Patrol} class for a list of parameters and usage.
+  # {MediaWiktory::Wikipedia::Actions::Patrol} class for a list of parameters and usage.
   #
   # @param [Hash] options Action options
-  # @return [MediaWiktory::Wikipedia::Patrol]
+  # @return [MediaWiktory::Wikipedia::Actions::Patrol]
   #
   def patrol(**options)
-    Patrol.new(**options)
+    Actions::Patrol.new(**options)
   end
-  # Change the protection level of a page.
+  # Change the protection level of a page. 
   #
-  # This method creates an instance of {MediaWiktory::Wikipedia::Protect} action.
+  # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Protect} action.
   #
   # Action parameters could be passed to this method, like
   #
   # ```ruby
   # api.protect(param: 'value')
   # ```
-  # ...or by subsequent {MediaWiktory::Wikipedia::Protect} method calls, like
+  # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Protect} method calls, like
   #
   # ```ruby
   # api.protect.param('value')
   # ```
   #
   # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
-  # {MediaWiktory::Wikipedia::Protect} class for a list of parameters and usage.
+  # {MediaWiktory::Wikipedia::Actions::Protect} class for a list of parameters and usage.
   #
   # @param [Hash] options Action options
-  # @return [MediaWiktory::Wikipedia::Protect]
+  # @return [MediaWiktory::Wikipedia::Actions::Protect]
   #
   def protect(**options)
-    Protect.new(**options)
+    Actions::Protect.new(**options)
   end
-  # Purge the cache for the given titles.
+  # Purge the cache for the given titles. 
   #
-  # This method creates an instance of {MediaWiktory::Wikipedia::Purge} action.
+  # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Purge} action.
   #
   # Action parameters could be passed to this method, like
   #
   # ```ruby
   # api.purge(param: 'value')
   # ```
-  # ...or by subsequent {MediaWiktory::Wikipedia::Purge} method calls, like
+  # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Purge} method calls, like
   #
   # ```ruby
   # api.purge.param('value')
   # ```
   #
   # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
-  # {MediaWiktory::Wikipedia::Purge} class for a list of parameters and usage.
+  # {MediaWiktory::Wikipedia::Actions::Purge} class for a list of parameters and usage.
   #
   # @param [Hash] options Action options
-  # @return [MediaWiktory::Wikipedia::Purge]
+  # @return [MediaWiktory::Wikipedia::Actions::Purge]
   #
   def purge(**options)
-    Purge.new(**options)
+    Actions::Purge.new(**options)
   end
-  # Fetch data from and about MediaWiki.
+  # Fetch data from and about MediaWiki. 
   #
-  # All data modifications will first have to use query to acquire a token to prevent abuse from malicious sites.
-  #
-  # This method creates an instance of {MediaWiktory::Wikipedia::Query} action.
+  # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Query} action.
   #
   # Action parameters could be passed to this method, like
   #
   # ```ruby
   # api.query(param: 'value')
   # ```
-  # ...or by subsequent {MediaWiktory::Wikipedia::Query} method calls, like
+  # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Query} method calls, like
   #
   # ```ruby
   # api.query.param('value')
   # ```
   #
   # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
-  # {MediaWiktory::Wikipedia::Query} class for a list of parameters and usage.
+  # {MediaWiktory::Wikipedia::Actions::Query} class for a list of parameters and usage.
   #
   # @param [Hash] options Action options
-  # @return [MediaWiktory::Wikipedia::Query]
+  # @return [MediaWiktory::Wikipedia::Actions::Query]
   #
   def query(**options)
-    Query.new(**options)
+    Actions::Query.new(**options)
   end
-  # Rebuild summary data of Education Program objects.
+  # Rebuild summary data of Education Program objects. 
   #
-  # This method creates an instance of {MediaWiktory::Wikipedia::Refresheducation} action.
+  # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Refresheducation} action.
   #
   # Action parameters could be passed to this method, like
   #
   # ```ruby
   # api.refresheducation(param: 'value')
   # ```
-  # ...or by subsequent {MediaWiktory::Wikipedia::Refresheducation} method calls, like
+  # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Refresheducation} method calls, like
   #
   # ```ruby
   # api.refresheducation.param('value')
   # ```
   #
   # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
-  # {MediaWiktory::Wikipedia::Refresheducation} class for a list of parameters and usage.
+  # {MediaWiktory::Wikipedia::Actions::Refresheducation} class for a list of parameters and usage.
   #
   # @param [Hash] options Action options
-  # @return [MediaWiktory::Wikipedia::Refresheducation]
+  # @return [MediaWiktory::Wikipedia::Actions::Refresheducation]
   #
   def refresheducation(**options)
-    Refresheducation.new(**options)
+    Actions::Refresheducation.new(**options)
   end
-  # Remove authentication data for the current user.
+  # Remove authentication data for the current user. 
   #
-  # This method creates an instance of {MediaWiktory::Wikipedia::Removeauthenticationdata} action.
+  # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Removeauthenticationdata} action.
   #
   # Action parameters could be passed to this method, like
   #
   # ```ruby
   # api.removeauthenticationdata(param: 'value')
   # ```
-  # ...or by subsequent {MediaWiktory::Wikipedia::Removeauthenticationdata} method calls, like
+  # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Removeauthenticationdata} method calls, like
   #
   # ```ruby
   # api.removeauthenticationdata.param('value')
   # ```
   #
   # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
-  # {MediaWiktory::Wikipedia::Removeauthenticationdata} class for a list of parameters and usage.
+  # {MediaWiktory::Wikipedia::Actions::Removeauthenticationdata} class for a list of parameters and usage.
   #
   # @param [Hash] options Action options
-  # @return [MediaWiktory::Wikipedia::Removeauthenticationdata]
+  # @return [MediaWiktory::Wikipedia::Actions::Removeauthenticationdata]
   #
   def removeauthenticationdata(**options)
-    Removeauthenticationdata.new(**options)
+    Actions::Removeauthenticationdata.new(**options)
   end
-  # Send a password reset email to a user.
+  # Send a password reset email to a user. 
   #
-  # This method creates an instance of {MediaWiktory::Wikipedia::Resetpassword} action.
+  # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Resetpassword} action.
   #
   # Action parameters could be passed to this method, like
   #
   # ```ruby
   # api.resetpassword(param: 'value')
   # ```
-  # ...or by subsequent {MediaWiktory::Wikipedia::Resetpassword} method calls, like
+  # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Resetpassword} method calls, like
   #
   # ```ruby
   # api.resetpassword.param('value')
   # ```
   #
   # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
-  # {MediaWiktory::Wikipedia::Resetpassword} class for a list of parameters and usage.
+  # {MediaWiktory::Wikipedia::Actions::Resetpassword} class for a list of parameters and usage.
   #
   # @param [Hash] options Action options
-  # @return [MediaWiktory::Wikipedia::Resetpassword]
+  # @return [MediaWiktory::Wikipedia::Actions::Resetpassword]
   #
   def resetpassword(**options)
-    Resetpassword.new(**options)
+    Actions::Resetpassword.new(**options)
   end
-  # Review a revision by approving or de-approving it.
+  # Review a revision by approving or de-approving it. 
   #
-  # This method creates an instance of {MediaWiktory::Wikipedia::Review} action.
+  # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Review} action.
   #
   # Action parameters could be passed to this method, like
   #
   # ```ruby
   # api.review(param: 'value')
   # ```
-  # ...or by subsequent {MediaWiktory::Wikipedia::Review} method calls, like
+  # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Review} method calls, like
   #
   # ```ruby
   # api.review.param('value')
   # ```
   #
   # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
-  # {MediaWiktory::Wikipedia::Review} class for a list of parameters and usage.
+  # {MediaWiktory::Wikipedia::Actions::Review} class for a list of parameters and usage.
   #
   # @param [Hash] options Action options
-  # @return [MediaWiktory::Wikipedia::Review]
+  # @return [MediaWiktory::Wikipedia::Actions::Review]
   #
   def review(**options)
-    Review.new(**options)
+    Actions::Review.new(**options)
   end
-  # Advertise or de-advertise yourself as reviewing an unreviewed page or unreviewed changes.
+  # Advertise or de-advertise yourself as reviewing an unreviewed page or unreviewed changes. 
   #
-  # This method creates an instance of {MediaWiktory::Wikipedia::Reviewactivity} action.
+  # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Reviewactivity} action.
   #
   # Action parameters could be passed to this method, like
   #
   # ```ruby
   # api.reviewactivity(param: 'value')
   # ```
-  # ...or by subsequent {MediaWiktory::Wikipedia::Reviewactivity} method calls, like
+  # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Reviewactivity} method calls, like
   #
   # ```ruby
   # api.reviewactivity.param('value')
   # ```
   #
   # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
-  # {MediaWiktory::Wikipedia::Reviewactivity} class for a list of parameters and usage.
+  # {MediaWiktory::Wikipedia::Actions::Reviewactivity} class for a list of parameters and usage.
   #
   # @param [Hash] options Action options
-  # @return [MediaWiktory::Wikipedia::Reviewactivity]
+  # @return [MediaWiktory::Wikipedia::Actions::Reviewactivity]
   #
   def reviewactivity(**options)
-    Reviewactivity.new(**options)
+    Actions::Reviewactivity.new(**options)
   end
-  # Delete and undelete revisions.
+  # Delete and undelete revisions. 
   #
-  # This method creates an instance of {MediaWiktory::Wikipedia::Revisiondelete} action.
+  # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Revisiondelete} action.
   #
   # Action parameters could be passed to this method, like
   #
   # ```ruby
   # api.revisiondelete(param: 'value')
   # ```
-  # ...or by subsequent {MediaWiktory::Wikipedia::Revisiondelete} method calls, like
+  # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Revisiondelete} method calls, like
   #
   # ```ruby
   # api.revisiondelete.param('value')
   # ```
   #
   # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
-  # {MediaWiktory::Wikipedia::Revisiondelete} class for a list of parameters and usage.
+  # {MediaWiktory::Wikipedia::Actions::Revisiondelete} class for a list of parameters and usage.
   #
   # @param [Hash] options Action options
-  # @return [MediaWiktory::Wikipedia::Revisiondelete]
+  # @return [MediaWiktory::Wikipedia::Actions::Revisiondelete]
   #
   def revisiondelete(**options)
-    Revisiondelete.new(**options)
+    Actions::Revisiondelete.new(**options)
   end
-  # Undo the last edit to the page.
+  # Undo the last edit to the page. 
   #
-  # If the last user who edited the page made multiple edits in a row, they will all be rolled back.
-  #
-  # This method creates an instance of {MediaWiktory::Wikipedia::Rollback} action.
+  # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Rollback} action.
   #
   # Action parameters could be passed to this method, like
   #
   # ```ruby
   # api.rollback(param: 'value')
   # ```
-  # ...or by subsequent {MediaWiktory::Wikipedia::Rollback} method calls, like
+  # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Rollback} method calls, like
   #
   # ```ruby
   # api.rollback.param('value')
   # ```
   #
   # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
-  # {MediaWiktory::Wikipedia::Rollback} class for a list of parameters and usage.
+  # {MediaWiktory::Wikipedia::Actions::Rollback} class for a list of parameters and usage.
   #
   # @param [Hash] options Action options
-  # @return [MediaWiktory::Wikipedia::Rollback]
+  # @return [MediaWiktory::Wikipedia::Actions::Rollback]
   #
   def rollback(**options)
-    Rollback.new(**options)
+    Actions::Rollback.new(**options)
   end
-  # Export an RSD (Really Simple Discovery) schema.
+  # Export an RSD (Really Simple Discovery) schema. 
   #
-  # This method creates an instance of {MediaWiktory::Wikipedia::Rsd} action.
+  # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Rsd} action.
   #
   # Action parameters could be passed to this method, like
   #
   # ```ruby
   # api.rsd(param: 'value')
   # ```
-  # ...or by subsequent {MediaWiktory::Wikipedia::Rsd} method calls, like
+  # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Rsd} method calls, like
   #
   # ```ruby
   # api.rsd.param('value')
   # ```
   #
   # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
-  # {MediaWiktory::Wikipedia::Rsd} class for a list of parameters and usage.
+  # {MediaWiktory::Wikipedia::Actions::Rsd} class for a list of parameters and usage.
   #
   # @param [Hash] options Action options
-  # @return [MediaWiktory::Wikipedia::Rsd]
+  # @return [MediaWiktory::Wikipedia::Actions::Rsd]
   #
   def rsd(**options)
-    Rsd.new(**options)
+    Actions::Rsd.new(**options)
   end
-  # Performs data validation for Kartographer extension
+  # Performs data validation for Kartographer extension 
   #
-  # This method creates an instance of {MediaWiktory::Wikipedia::Sanitize-mapdata} action.
+  # This method creates an instance of {MediaWiktory::Wikipedia::Actions::SanitizeMapdata} action.
   #
   # Action parameters could be passed to this method, like
   #
   # ```ruby
-  # api.sanitize-mapdata(param: 'value')
+  # api.sanitize_mapdata(param: 'value')
   # ```
-  # ...or by subsequent {MediaWiktory::Wikipedia::Sanitize-mapdata} method calls, like
+  # ...or by subsequent {MediaWiktory::Wikipedia::Actions::SanitizeMapdata} method calls, like
   #
   # ```ruby
-  # api.sanitize-mapdata.param('value')
+  # api.sanitize_mapdata.param('value')
   # ```
   #
   # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
-  # {MediaWiktory::Wikipedia::Sanitize-mapdata} class for a list of parameters and usage.
+  # {MediaWiktory::Wikipedia::Actions::SanitizeMapdata} class for a list of parameters and usage.
   #
   # @param [Hash] options Action options
-  # @return [MediaWiktory::Wikipedia::Sanitize-mapdata]
+  # @return [MediaWiktory::Wikipedia::Actions::SanitizeMapdata]
   #
-  def sanitize-mapdata(**options)
-    Sanitize-mapdata.new(**options)
+  def sanitize_mapdata(**options)
+    Actions::SanitizeMapdata.new(**options)
   end
-  # Internal module for servicing XHR requests from the Scribunto console.
+  # Internal module for servicing XHR requests from the Scribunto console. 
   #
-  # This method creates an instance of {MediaWiktory::Wikipedia::Scribunto-console} action.
+  # This method creates an instance of {MediaWiktory::Wikipedia::Actions::ScribuntoConsole} action.
   #
   # Action parameters could be passed to this method, like
   #
   # ```ruby
-  # api.scribunto-console(param: 'value')
+  # api.scribunto_console(param: 'value')
   # ```
-  # ...or by subsequent {MediaWiktory::Wikipedia::Scribunto-console} method calls, like
+  # ...or by subsequent {MediaWiktory::Wikipedia::Actions::ScribuntoConsole} method calls, like
   #
   # ```ruby
-  # api.scribunto-console.param('value')
+  # api.scribunto_console.param('value')
   # ```
   #
   # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
-  # {MediaWiktory::Wikipedia::Scribunto-console} class for a list of parameters and usage.
+  # {MediaWiktory::Wikipedia::Actions::ScribuntoConsole} class for a list of parameters and usage.
   #
   # @param [Hash] options Action options
-  # @return [MediaWiktory::Wikipedia::Scribunto-console]
+  # @return [MediaWiktory::Wikipedia::Actions::ScribuntoConsole]
   #
-  def scribunto-console(**options)
-    Scribunto-console.new(**options)
+  def scribunto_console(**options)
+    Actions::ScribuntoConsole.new(**options)
   end
-  # Set a global user's status.
+  # Set a global user's status. 
   #
-  # This method creates an instance of {MediaWiktory::Wikipedia::Setglobalaccountstatus} action.
+  # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Setglobalaccountstatus} action.
   #
   # Action parameters could be passed to this method, like
   #
   # ```ruby
   # api.setglobalaccountstatus(param: 'value')
   # ```
-  # ...or by subsequent {MediaWiktory::Wikipedia::Setglobalaccountstatus} method calls, like
+  # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Setglobalaccountstatus} method calls, like
   #
   # ```ruby
   # api.setglobalaccountstatus.param('value')
   # ```
   #
   # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
-  # {MediaWiktory::Wikipedia::Setglobalaccountstatus} class for a list of parameters and usage.
+  # {MediaWiktory::Wikipedia::Actions::Setglobalaccountstatus} class for a list of parameters and usage.
   #
   # @param [Hash] options Action options
-  # @return [MediaWiktory::Wikipedia::Setglobalaccountstatus]
+  # @return [MediaWiktory::Wikipedia::Actions::Setglobalaccountstatus]
   #
   def setglobalaccountstatus(**options)
-    Setglobalaccountstatus.new(**options)
+    Actions::Setglobalaccountstatus.new(**options)
   end
-  # Update the notification timestamp for watched pages.
+  # Update the notification timestamp for watched pages. 
   #
-  # This affects the highlighting of changed pages in the watchlist and history, and the sending of email when the "Email me when a page or a file on my watchlist is changed" preference is enabled.
-  #
-  # This method creates an instance of {MediaWiktory::Wikipedia::Setnotificationtimestamp} action.
+  # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Setnotificationtimestamp} action.
   #
   # Action parameters could be passed to this method, like
   #
   # ```ruby
   # api.setnotificationtimestamp(param: 'value')
   # ```
-  # ...or by subsequent {MediaWiktory::Wikipedia::Setnotificationtimestamp} method calls, like
+  # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Setnotificationtimestamp} method calls, like
   #
   # ```ruby
   # api.setnotificationtimestamp.param('value')
   # ```
   #
   # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
-  # {MediaWiktory::Wikipedia::Setnotificationtimestamp} class for a list of parameters and usage.
+  # {MediaWiktory::Wikipedia::Actions::Setnotificationtimestamp} class for a list of parameters and usage.
   #
   # @param [Hash] options Action options
-  # @return [MediaWiktory::Wikipedia::Setnotificationtimestamp]
+  # @return [MediaWiktory::Wikipedia::Actions::Setnotificationtimestamp]
   #
   def setnotificationtimestamp(**options)
-    Setnotificationtimestamp.new(**options)
+    Actions::Setnotificationtimestamp.new(**options)
   end
-  # Changing the language of a page is not allowed on this wiki.
+  # Changing the language of a page is not allowed on this wiki. 
   #
-  # Enable $wgPageLanguageUseDB to use this action.
-  #
-  # This method creates an instance of {MediaWiktory::Wikipedia::Setpagelanguage} action.
+  # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Setpagelanguage} action.
   #
   # Action parameters could be passed to this method, like
   #
   # ```ruby
   # api.setpagelanguage(param: 'value')
   # ```
-  # ...or by subsequent {MediaWiktory::Wikipedia::Setpagelanguage} method calls, like
+  # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Setpagelanguage} method calls, like
   #
   # ```ruby
   # api.setpagelanguage.param('value')
   # ```
   #
   # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
-  # {MediaWiktory::Wikipedia::Setpagelanguage} class for a list of parameters and usage.
+  # {MediaWiktory::Wikipedia::Actions::Setpagelanguage} class for a list of parameters and usage.
   #
   # @param [Hash] options Action options
-  # @return [MediaWiktory::Wikipedia::Setpagelanguage]
+  # @return [MediaWiktory::Wikipedia::Actions::Setpagelanguage]
   #
   def setpagelanguage(**options)
-    Setpagelanguage.new(**options)
+    Actions::Setpagelanguage.new(**options)
   end
-  # Shorten a long URL into a shorter one.
+  # Shorten a long URL into a shorter one. 
   #
-  # This method creates an instance of {MediaWiktory::Wikipedia::Shortenurl} action.
+  # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Shortenurl} action.
   #
   # Action parameters could be passed to this method, like
   #
   # ```ruby
   # api.shortenurl(param: 'value')
   # ```
-  # ...or by subsequent {MediaWiktory::Wikipedia::Shortenurl} method calls, like
+  # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Shortenurl} method calls, like
   #
   # ```ruby
   # api.shortenurl.param('value')
   # ```
   #
   # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
-  # {MediaWiktory::Wikipedia::Shortenurl} class for a list of parameters and usage.
+  # {MediaWiktory::Wikipedia::Actions::Shortenurl} class for a list of parameters and usage.
   #
   # @param [Hash] options Action options
-  # @return [MediaWiktory::Wikipedia::Shortenurl]
+  # @return [MediaWiktory::Wikipedia::Actions::Shortenurl]
   #
   def shortenurl(**options)
-    Shortenurl.new(**options)
+    Actions::Shortenurl.new(**options)
   end
-  # Get Wikimedia sites list.
+  # Get Wikimedia sites list. 
   #
-  # The code (technically dbname/wikiid) is either the language code + project code for content projects or the subdomain + main domain for all the others.
-  #
-  # This method creates an instance of {MediaWiktory::Wikipedia::Sitematrix} action.
+  # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Sitematrix} action.
   #
   # Action parameters could be passed to this method, like
   #
   # ```ruby
   # api.sitematrix(param: 'value')
   # ```
-  # ...or by subsequent {MediaWiktory::Wikipedia::Sitematrix} method calls, like
+  # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Sitematrix} method calls, like
   #
   # ```ruby
   # api.sitematrix.param('value')
   # ```
   #
   # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
-  # {MediaWiktory::Wikipedia::Sitematrix} class for a list of parameters and usage.
+  # {MediaWiktory::Wikipedia::Actions::Sitematrix} class for a list of parameters and usage.
   #
   # @param [Hash] options Action options
-  # @return [MediaWiktory::Wikipedia::Sitematrix]
+  # @return [MediaWiktory::Wikipedia::Actions::Sitematrix]
   #
   def sitematrix(**options)
-    Sitematrix.new(**options)
+    Actions::Sitematrix.new(**options)
   end
-  # Validate one or more URLs against the SpamBlacklist.
+  # Validate one or more URLs against the SpamBlacklist. 
   #
-  # This method creates an instance of {MediaWiktory::Wikipedia::Spamblacklist} action.
+  # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Spamblacklist} action.
   #
   # Action parameters could be passed to this method, like
   #
   # ```ruby
   # api.spamblacklist(param: 'value')
   # ```
-  # ...or by subsequent {MediaWiktory::Wikipedia::Spamblacklist} method calls, like
+  # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Spamblacklist} method calls, like
   #
   # ```ruby
   # api.spamblacklist.param('value')
   # ```
   #
   # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
-  # {MediaWiktory::Wikipedia::Spamblacklist} class for a list of parameters and usage.
+  # {MediaWiktory::Wikipedia::Actions::Spamblacklist} class for a list of parameters and usage.
   #
   # @param [Hash] options Action options
-  # @return [MediaWiktory::Wikipedia::Spamblacklist]
+  # @return [MediaWiktory::Wikipedia::Actions::Spamblacklist]
   #
   def spamblacklist(**options)
-    Spamblacklist.new(**options)
+    Actions::Spamblacklist.new(**options)
   end
-  # Configure review-protection settings for a page.
+  # Configure review-protection settings for a page. 
   #
-  # This method creates an instance of {MediaWiktory::Wikipedia::Stabilize} action.
+  # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Stabilize} action.
   #
   # Action parameters could be passed to this method, like
   #
   # ```ruby
   # api.stabilize(param: 'value')
   # ```
-  # ...or by subsequent {MediaWiktory::Wikipedia::Stabilize} method calls, like
+  # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Stabilize} method calls, like
   #
   # ```ruby
   # api.stabilize.param('value')
   # ```
   #
   # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
-  # {MediaWiktory::Wikipedia::Stabilize} class for a list of parameters and usage.
+  # {MediaWiktory::Wikipedia::Actions::Stabilize} class for a list of parameters and usage.
   #
   # @param [Hash] options Action options
-  # @return [MediaWiktory::Wikipedia::Stabilize]
+  # @return [MediaWiktory::Wikipedia::Actions::Stabilize]
   #
   def stabilize(**options)
-    Stabilize.new(**options)
+    Actions::Stabilize.new(**options)
   end
-  # Prepare an edit in shared cache.
+  # Prepare an edit in shared cache. 
   #
-  # This is intended to be used via AJAX from the edit form to improve the performance of the page save.
-  #
-  # This method creates an instance of {MediaWiktory::Wikipedia::Stashedit} action.
+  # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Stashedit} action.
   #
   # Action parameters could be passed to this method, like
   #
   # ```ruby
   # api.stashedit(param: 'value')
   # ```
-  # ...or by subsequent {MediaWiktory::Wikipedia::Stashedit} method calls, like
+  # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Stashedit} method calls, like
   #
   # ```ruby
   # api.stashedit.param('value')
   # ```
   #
   # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
-  # {MediaWiktory::Wikipedia::Stashedit} class for a list of parameters and usage.
+  # {MediaWiktory::Wikipedia::Actions::Stashedit} class for a list of parameters and usage.
   #
   # @param [Hash] options Action options
-  # @return [MediaWiktory::Wikipedia::Stashedit]
+  # @return [MediaWiktory::Wikipedia::Actions::Stashedit]
   #
   def stashedit(**options)
-    Stashedit.new(**options)
+    Actions::Stashedit.new(**options)
   end
-  # Allows admins to strike or unstrike a vote.
+  # Allows admins to strike or unstrike a vote. 
   #
-  # This method creates an instance of {MediaWiktory::Wikipedia::Strikevote} action.
+  # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Strikevote} action.
   #
   # Action parameters could be passed to this method, like
   #
   # ```ruby
   # api.strikevote(param: 'value')
   # ```
-  # ...or by subsequent {MediaWiktory::Wikipedia::Strikevote} method calls, like
+  # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Strikevote} method calls, like
   #
   # ```ruby
   # api.strikevote.param('value')
   # ```
   #
   # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
-  # {MediaWiktory::Wikipedia::Strikevote} class for a list of parameters and usage.
+  # {MediaWiktory::Wikipedia::Actions::Strikevote} class for a list of parameters and usage.
   #
   # @param [Hash] options Action options
-  # @return [MediaWiktory::Wikipedia::Strikevote]
+  # @return [MediaWiktory::Wikipedia::Actions::Strikevote]
   #
   def strikevote(**options)
-    Strikevote.new(**options)
+    Actions::Strikevote.new(**options)
   end
-  # Add or remove change tags from individual revisions or log entries.
+  # Add or remove change tags from individual revisions or log entries. 
   #
-  # This method creates an instance of {MediaWiktory::Wikipedia::Tag} action.
+  # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Tag} action.
   #
   # Action parameters could be passed to this method, like
   #
   # ```ruby
   # api.tag(param: 'value')
   # ```
-  # ...or by subsequent {MediaWiktory::Wikipedia::Tag} method calls, like
+  # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Tag} method calls, like
   #
   # ```ruby
   # api.tag.param('value')
   # ```
   #
   # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
-  # {MediaWiktory::Wikipedia::Tag} class for a list of parameters and usage.
+  # {MediaWiktory::Wikipedia::Actions::Tag} class for a list of parameters and usage.
   #
   # @param [Hash] options Action options
-  # @return [MediaWiktory::Wikipedia::Tag]
+  # @return [MediaWiktory::Wikipedia::Actions::Tag]
   #
   def tag(**options)
-    Tag.new(**options)
+    Actions::Tag.new(**options)
   end
-  # Fetch data stored by the TemplateData extension.
+  # Fetch data stored by the TemplateData extension. 
   #
-  # This method creates an instance of {MediaWiktory::Wikipedia::Templatedata} action.
+  # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Templatedata} action.
   #
   # Action parameters could be passed to this method, like
   #
   # ```ruby
   # api.templatedata(param: 'value')
   # ```
-  # ...or by subsequent {MediaWiktory::Wikipedia::Templatedata} method calls, like
+  # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Templatedata} method calls, like
   #
   # ```ruby
   # api.templatedata.param('value')
   # ```
   #
   # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
-  # {MediaWiktory::Wikipedia::Templatedata} class for a list of parameters and usage.
+  # {MediaWiktory::Wikipedia::Actions::Templatedata} class for a list of parameters and usage.
   #
   # @param [Hash] options Action options
-  # @return [MediaWiktory::Wikipedia::Templatedata]
+  # @return [MediaWiktory::Wikipedia::Actions::Templatedata]
   #
   def templatedata(**options)
-    Templatedata.new(**options)
+    Actions::Templatedata.new(**options)
   end
-  # Send a thank-you notification to an editor.
+  # Send a thank-you notification to an editor. 
   #
-  # This method creates an instance of {MediaWiktory::Wikipedia::Thank} action.
+  # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Thank} action.
   #
   # Action parameters could be passed to this method, like
   #
   # ```ruby
   # api.thank(param: 'value')
   # ```
-  # ...or by subsequent {MediaWiktory::Wikipedia::Thank} method calls, like
+  # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Thank} method calls, like
   #
   # ```ruby
   # api.thank.param('value')
   # ```
   #
   # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
-  # {MediaWiktory::Wikipedia::Thank} class for a list of parameters and usage.
+  # {MediaWiktory::Wikipedia::Actions::Thank} class for a list of parameters and usage.
   #
   # @param [Hash] options Action options
-  # @return [MediaWiktory::Wikipedia::Thank]
+  # @return [MediaWiktory::Wikipedia::Actions::Thank]
   #
   def thank(**options)
-    Thank.new(**options)
+    Actions::Thank.new(**options)
   end
-  # Validate an article title, filename, or username against the TitleBlacklist.
+  # Validate an article title, filename, or username against the TitleBlacklist. 
   #
-  # This method creates an instance of {MediaWiktory::Wikipedia::Titleblacklist} action.
+  # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Titleblacklist} action.
   #
   # Action parameters could be passed to this method, like
   #
   # ```ruby
   # api.titleblacklist(param: 'value')
   # ```
-  # ...or by subsequent {MediaWiktory::Wikipedia::Titleblacklist} method calls, like
+  # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Titleblacklist} method calls, like
   #
   # ```ruby
   # api.titleblacklist.param('value')
   # ```
   #
   # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
-  # {MediaWiktory::Wikipedia::Titleblacklist} class for a list of parameters and usage.
+  # {MediaWiktory::Wikipedia::Actions::Titleblacklist} class for a list of parameters and usage.
   #
   # @param [Hash] options Action options
-  # @return [MediaWiktory::Wikipedia::Titleblacklist]
+  # @return [MediaWiktory::Wikipedia::Actions::Titleblacklist]
   #
   def titleblacklist(**options)
-    Titleblacklist.new(**options)
+    Actions::Titleblacklist.new(**options)
   end
-  # Get tokens for data-modifying actions.
+  # Get tokens for data-modifying actions. 
   #
-  # This module is deprecated in favor of action=query&meta=tokens.
-  #
-  # This method creates an instance of {MediaWiktory::Wikipedia::Tokens} action.
+  # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Tokens} action.
   #
   # Action parameters could be passed to this method, like
   #
   # ```ruby
   # api.tokens(param: 'value')
   # ```
-  # ...or by subsequent {MediaWiktory::Wikipedia::Tokens} method calls, like
+  # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Tokens} method calls, like
   #
   # ```ruby
   # api.tokens.param('value')
   # ```
   #
   # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
-  # {MediaWiktory::Wikipedia::Tokens} class for a list of parameters and usage.
+  # {MediaWiktory::Wikipedia::Actions::Tokens} class for a list of parameters and usage.
   #
   # @param [Hash] options Action options
-  # @return [MediaWiktory::Wikipedia::Tokens]
+  # @return [MediaWiktory::Wikipedia::Actions::Tokens]
   #
   def tokens(**options)
-    Tokens.new(**options)
+    Actions::Tokens.new(**options)
   end
-  # Users with the 'transcode-reset' right can reset and re-run a transcode job.
+  # Users with the 'transcode-reset' right can reset and re-run a transcode job. 
   #
-  # This method creates an instance of {MediaWiktory::Wikipedia::Transcodereset} action.
+  # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Transcodereset} action.
   #
   # Action parameters could be passed to this method, like
   #
   # ```ruby
   # api.transcodereset(param: 'value')
   # ```
-  # ...or by subsequent {MediaWiktory::Wikipedia::Transcodereset} method calls, like
+  # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Transcodereset} method calls, like
   #
   # ```ruby
   # api.transcodereset.param('value')
   # ```
   #
   # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
-  # {MediaWiktory::Wikipedia::Transcodereset} class for a list of parameters and usage.
+  # {MediaWiktory::Wikipedia::Actions::Transcodereset} class for a list of parameters and usage.
   #
   # @param [Hash] options Action options
-  # @return [MediaWiktory::Wikipedia::Transcodereset]
+  # @return [MediaWiktory::Wikipedia::Actions::Transcodereset]
   #
   def transcodereset(**options)
-    Transcodereset.new(**options)
+    Actions::Transcodereset.new(**options)
   end
-  # Get the localization of ULS in the given language.
+  # Get the localization of ULS in the given language. 
   #
-  # This method creates an instance of {MediaWiktory::Wikipedia::Ulslocalization} action.
+  # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Ulslocalization} action.
   #
   # Action parameters could be passed to this method, like
   #
   # ```ruby
   # api.ulslocalization(param: 'value')
   # ```
-  # ...or by subsequent {MediaWiktory::Wikipedia::Ulslocalization} method calls, like
+  # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Ulslocalization} method calls, like
   #
   # ```ruby
   # api.ulslocalization.param('value')
   # ```
   #
   # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
-  # {MediaWiktory::Wikipedia::Ulslocalization} class for a list of parameters and usage.
+  # {MediaWiktory::Wikipedia::Actions::Ulslocalization} class for a list of parameters and usage.
   #
   # @param [Hash] options Action options
-  # @return [MediaWiktory::Wikipedia::Ulslocalization]
+  # @return [MediaWiktory::Wikipedia::Actions::Ulslocalization]
   #
   def ulslocalization(**options)
-    Ulslocalization.new(**options)
+    Actions::Ulslocalization.new(**options)
   end
-  # Unblock a user.
+  # Unblock a user. 
   #
-  # This method creates an instance of {MediaWiktory::Wikipedia::Unblock} action.
+  # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Unblock} action.
   #
   # Action parameters could be passed to this method, like
   #
   # ```ruby
   # api.unblock(param: 'value')
   # ```
-  # ...or by subsequent {MediaWiktory::Wikipedia::Unblock} method calls, like
+  # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Unblock} method calls, like
   #
   # ```ruby
   # api.unblock.param('value')
   # ```
   #
   # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
-  # {MediaWiktory::Wikipedia::Unblock} class for a list of parameters and usage.
+  # {MediaWiktory::Wikipedia::Actions::Unblock} class for a list of parameters and usage.
   #
   # @param [Hash] options Action options
-  # @return [MediaWiktory::Wikipedia::Unblock]
+  # @return [MediaWiktory::Wikipedia::Actions::Unblock]
   #
   def unblock(**options)
-    Unblock.new(**options)
+    Actions::Unblock.new(**options)
   end
-  # Restore revisions of a deleted page.
+  # Restore revisions of a deleted page. 
   #
-  # A list of deleted revisions (including timestamps) can be retrieved through prop=deletedrevisions, and a list of deleted file IDs can be retrieved through list=filearchive.
-  #
-  # This method creates an instance of {MediaWiktory::Wikipedia::Undelete} action.
+  # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Undelete} action.
   #
   # Action parameters could be passed to this method, like
   #
   # ```ruby
   # api.undelete(param: 'value')
   # ```
-  # ...or by subsequent {MediaWiktory::Wikipedia::Undelete} method calls, like
+  # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Undelete} method calls, like
   #
   # ```ruby
   # api.undelete.param('value')
   # ```
   #
   # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
-  # {MediaWiktory::Wikipedia::Undelete} class for a list of parameters and usage.
+  # {MediaWiktory::Wikipedia::Actions::Undelete} class for a list of parameters and usage.
   #
   # @param [Hash] options Action options
-  # @return [MediaWiktory::Wikipedia::Undelete]
+  # @return [MediaWiktory::Wikipedia::Actions::Undelete]
   #
   def undelete(**options)
-    Undelete.new(**options)
+    Actions::Undelete.new(**options)
   end
-  # Remove a linked third-party account from the current user.
+  # Remove a linked third-party account from the current user. 
   #
-  # This method creates an instance of {MediaWiktory::Wikipedia::Unlinkaccount} action.
+  # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Unlinkaccount} action.
   #
   # Action parameters could be passed to this method, like
   #
   # ```ruby
   # api.unlinkaccount(param: 'value')
   # ```
-  # ...or by subsequent {MediaWiktory::Wikipedia::Unlinkaccount} method calls, like
+  # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Unlinkaccount} method calls, like
   #
   # ```ruby
   # api.unlinkaccount.param('value')
   # ```
   #
   # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
-  # {MediaWiktory::Wikipedia::Unlinkaccount} class for a list of parameters and usage.
+  # {MediaWiktory::Wikipedia::Actions::Unlinkaccount} class for a list of parameters and usage.
   #
   # @param [Hash] options Action options
-  # @return [MediaWiktory::Wikipedia::Unlinkaccount]
+  # @return [MediaWiktory::Wikipedia::Actions::Unlinkaccount]
   #
   def unlinkaccount(**options)
-    Unlinkaccount.new(**options)
+    Actions::Unlinkaccount.new(**options)
   end
-  # Upload a file, or get the status of pending uploads.
+  # Upload a file, or get the status of pending uploads. 
   #
-  # Several methods are available:
-  #
-  # Note that the HTTP POST must be done as a file upload (i.e. using multipart/form-data) when sending the file.
-  #
-  # This method creates an instance of {MediaWiktory::Wikipedia::Upload} action.
+  # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Upload} action.
   #
   # Action parameters could be passed to this method, like
   #
   # ```ruby
   # api.upload(param: 'value')
   # ```
-  # ...or by subsequent {MediaWiktory::Wikipedia::Upload} method calls, like
+  # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Upload} method calls, like
   #
   # ```ruby
   # api.upload.param('value')
   # ```
   #
   # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
-  # {MediaWiktory::Wikipedia::Upload} class for a list of parameters and usage.
+  # {MediaWiktory::Wikipedia::Actions::Upload} class for a list of parameters and usage.
   #
   # @param [Hash] options Action options
-  # @return [MediaWiktory::Wikipedia::Upload]
+  # @return [MediaWiktory::Wikipedia::Actions::Upload]
   #
   def upload(**options)
-    Upload.new(**options)
+    Actions::Upload.new(**options)
   end
-  # Change a user's group membership.
+  # Change a user's group membership. 
   #
-  # This method creates an instance of {MediaWiktory::Wikipedia::Userrights} action.
+  # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Userrights} action.
   #
   # Action parameters could be passed to this method, like
   #
   # ```ruby
   # api.userrights(param: 'value')
   # ```
-  # ...or by subsequent {MediaWiktory::Wikipedia::Userrights} method calls, like
+  # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Userrights} method calls, like
   #
   # ```ruby
   # api.userrights.param('value')
   # ```
   #
   # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
-  # {MediaWiktory::Wikipedia::Userrights} class for a list of parameters and usage.
+  # {MediaWiktory::Wikipedia::Actions::Userrights} class for a list of parameters and usage.
   #
   # @param [Hash] options Action options
-  # @return [MediaWiktory::Wikipedia::Userrights]
+  # @return [MediaWiktory::Wikipedia::Actions::Userrights]
   #
   def userrights(**options)
-    Userrights.new(**options)
+    Actions::Userrights.new(**options)
   end
-  # Validate a password against the wiki's password policies.
+  # Validate a password against the wiki's password policies. 
   #
-  # Validity is reported as Good if the password is acceptable, Change if the password may be used for login but must be changed, or Invalid if the password is not usable.
-  #
-  # This method creates an instance of {MediaWiktory::Wikipedia::Validatepassword} action.
+  # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Validatepassword} action.
   #
   # Action parameters could be passed to this method, like
   #
   # ```ruby
   # api.validatepassword(param: 'value')
   # ```
-  # ...or by subsequent {MediaWiktory::Wikipedia::Validatepassword} method calls, like
+  # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Validatepassword} method calls, like
   #
   # ```ruby
   # api.validatepassword.param('value')
   # ```
   #
   # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
-  # {MediaWiktory::Wikipedia::Validatepassword} class for a list of parameters and usage.
+  # {MediaWiktory::Wikipedia::Actions::Validatepassword} class for a list of parameters and usage.
   #
   # @param [Hash] options Action options
-  # @return [MediaWiktory::Wikipedia::Validatepassword]
+  # @return [MediaWiktory::Wikipedia::Actions::Validatepassword]
   #
   def validatepassword(**options)
-    Validatepassword.new(**options)
+    Actions::Validatepassword.new(**options)
   end
-  # Returns HTML5 for a page from the Parsoid service.
+  # Returns HTML5 for a page from the Parsoid service. 
   #
-  # This method creates an instance of {MediaWiktory::Wikipedia::Visualeditor} action.
+  # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Visualeditor} action.
   #
   # Action parameters could be passed to this method, like
   #
   # ```ruby
   # api.visualeditor(param: 'value')
   # ```
-  # ...or by subsequent {MediaWiktory::Wikipedia::Visualeditor} method calls, like
+  # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Visualeditor} method calls, like
   #
   # ```ruby
   # api.visualeditor.param('value')
   # ```
   #
   # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
-  # {MediaWiktory::Wikipedia::Visualeditor} class for a list of parameters and usage.
+  # {MediaWiktory::Wikipedia::Actions::Visualeditor} class for a list of parameters and usage.
   #
   # @param [Hash] options Action options
-  # @return [MediaWiktory::Wikipedia::Visualeditor]
+  # @return [MediaWiktory::Wikipedia::Actions::Visualeditor]
   #
   def visualeditor(**options)
-    Visualeditor.new(**options)
+    Actions::Visualeditor.new(**options)
   end
-  # Save an HTML5 page to MediaWiki (converted to wikitext via the Parsoid service).
+  # Save an HTML5 page to MediaWiki (converted to wikitext via the Parsoid service). 
   #
-  # This method creates an instance of {MediaWiktory::Wikipedia::Visualeditoredit} action.
+  # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Visualeditoredit} action.
   #
   # Action parameters could be passed to this method, like
   #
   # ```ruby
   # api.visualeditoredit(param: 'value')
   # ```
-  # ...or by subsequent {MediaWiktory::Wikipedia::Visualeditoredit} method calls, like
+  # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Visualeditoredit} method calls, like
   #
   # ```ruby
   # api.visualeditoredit.param('value')
   # ```
   #
   # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
-  # {MediaWiktory::Wikipedia::Visualeditoredit} class for a list of parameters and usage.
+  # {MediaWiktory::Wikipedia::Actions::Visualeditoredit} class for a list of parameters and usage.
   #
   # @param [Hash] options Action options
-  # @return [MediaWiktory::Wikipedia::Visualeditoredit]
+  # @return [MediaWiktory::Wikipedia::Actions::Visualeditoredit]
   #
   def visualeditoredit(**options)
-    Visualeditoredit.new(**options)
+    Actions::Visualeditoredit.new(**options)
   end
-  # Add or remove pages from the current user's watchlist.
+  # Add or remove pages from the current user's watchlist. 
   #
-  # This method creates an instance of {MediaWiktory::Wikipedia::Watch} action.
+  # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Watch} action.
   #
   # Action parameters could be passed to this method, like
   #
   # ```ruby
   # api.watch(param: 'value')
   # ```
-  # ...or by subsequent {MediaWiktory::Wikipedia::Watch} method calls, like
+  # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Watch} method calls, like
   #
   # ```ruby
   # api.watch.param('value')
   # ```
   #
   # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
-  # {MediaWiktory::Wikipedia::Watch} class for a list of parameters and usage.
+  # {MediaWiktory::Wikipedia::Actions::Watch} class for a list of parameters and usage.
   #
   # @param [Hash] options Action options
-  # @return [MediaWiktory::Wikipedia::Watch]
+  # @return [MediaWiktory::Wikipedia::Actions::Watch]
   #
   def watch(**options)
-    Watch.new(**options)
+    Actions::Watch.new(**options)
   end
-  # Returns a webapp manifest.
+  # Returns a webapp manifest. 
   #
-  # This method creates an instance of {MediaWiktory::Wikipedia::Webapp-manifest} action.
+  # This method creates an instance of {MediaWiktory::Wikipedia::Actions::WebappManifest} action.
   #
   # Action parameters could be passed to this method, like
   #
   # ```ruby
-  # api.webapp-manifest(param: 'value')
+  # api.webapp_manifest(param: 'value')
   # ```
-  # ...or by subsequent {MediaWiktory::Wikipedia::Webapp-manifest} method calls, like
+  # ...or by subsequent {MediaWiktory::Wikipedia::Actions::WebappManifest} method calls, like
   #
   # ```ruby
-  # api.webapp-manifest.param('value')
+  # api.webapp_manifest.param('value')
   # ```
   #
   # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
-  # {MediaWiktory::Wikipedia::Webapp-manifest} class for a list of parameters and usage.
+  # {MediaWiktory::Wikipedia::Actions::WebappManifest} class for a list of parameters and usage.
   #
   # @param [Hash] options Action options
-  # @return [MediaWiktory::Wikipedia::Webapp-manifest]
+  # @return [MediaWiktory::Wikipedia::Actions::WebappManifest]
   #
-  def webapp-manifest(**options)
-    Webapp-manifest.new(**options)
+  def webapp_manifest(**options)
+    Actions::WebappManifest.new(**options)
   end
-  # Give WikiLove to another user.
+  # Give WikiLove to another user. 
   #
-  # WikiLove is a positive message posted to a user's talk page through a convenient interface with preset or locally defined templates. This action adds the specified wikitext to a certain talk page. For statistical purposes, the type and other data are logged.
-  #
-  # This method creates an instance of {MediaWiktory::Wikipedia::Wikilove} action.
+  # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Wikilove} action.
   #
   # Action parameters could be passed to this method, like
   #
   # ```ruby
   # api.wikilove(param: 'value')
   # ```
-  # ...or by subsequent {MediaWiktory::Wikipedia::Wikilove} method calls, like
+  # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Wikilove} method calls, like
   #
   # ```ruby
   # api.wikilove.param('value')
   # ```
   #
   # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
-  # {MediaWiktory::Wikipedia::Wikilove} class for a list of parameters and usage.
+  # {MediaWiktory::Wikipedia::Actions::Wikilove} class for a list of parameters and usage.
   #
   # @param [Hash] options Action options
-  # @return [MediaWiktory::Wikipedia::Wikilove]
+  # @return [MediaWiktory::Wikipedia::Actions::Wikilove]
   #
   def wikilove(**options)
-    Wikilove.new(**options)
+    Actions::Wikilove.new(**options)
   end
-  # Get configuration of the Zero extension.
+  # Get configuration of the Zero extension. 
   #
-  # This method creates an instance of {MediaWiktory::Wikipedia::Zeroconfig} action.
+  # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Zeroconfig} action.
   #
   # Action parameters could be passed to this method, like
   #
   # ```ruby
   # api.zeroconfig(param: 'value')
   # ```
-  # ...or by subsequent {MediaWiktory::Wikipedia::Zeroconfig} method calls, like
+  # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Zeroconfig} method calls, like
   #
   # ```ruby
   # api.zeroconfig.param('value')
   # ```
   #
   # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
-  # {MediaWiktory::Wikipedia::Zeroconfig} class for a list of parameters and usage.
+  # {MediaWiktory::Wikipedia::Actions::Zeroconfig} class for a list of parameters and usage.
   #
   # @param [Hash] options Action options
-  # @return [MediaWiktory::Wikipedia::Zeroconfig]
+  # @return [MediaWiktory::Wikipedia::Actions::Zeroconfig]
   #
   def zeroconfig(**options)
-    Zeroconfig.new(**options)
+    Actions::Zeroconfig.new(**options)
   end
 
 end

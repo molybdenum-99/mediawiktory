@@ -25,8 +25,9 @@ module MediaWiktory
 
       def initialize(**source)
         super(source.merge(
-          main: source[:modules].detect { |m| m.type == :main },
-          actions: source[:modules].select(&:action?)
+          main: source[:modules].detect(&:main?),
+          actions: source[:modules].select(&:action?),
+          non_actions: source[:modules].reject { |m| m.main? || m.action? }
         ))
         modules.each { |m| m.api = self }
       end

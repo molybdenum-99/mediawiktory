@@ -8,11 +8,12 @@ module MediaWiktory
       end
 
       def render_to(path, **vars)
+        FileUtils.mkdir_p File.dirname(path)
         File.write(path, to_html(**vars))
       end
 
       def to_html(**vars)
-        liquid(main_template, **vars)
+        liquid(vars.fetch(:template, main_template), **vars)
       end
 
       def liquid(template, **vars)

@@ -73,17 +73,17 @@ RSpec.describe MediaWiktory::Generator::Api do
     it 'creates action methods' do
       is_expected
         .to include(%Q{
-          |  # @return [Dummy::Abusefiltercheckmatch]
+          |  # @return [Dummy::Actions::Abusefiltercheckmatch]
           |  #
           |  def abusefiltercheckmatch(**options)
-          |    Abusefiltercheckmatch.new(**options)
+          |    Actions::Abusefiltercheckmatch.new(**options)
           |  end
         }.unindent)
     end
 
     it 'creates action docs' do
       is_expected
-        .to include('This method creates an instance of {Dummy::Abusefiltercheckmatch} action.')
+        .to include('This method creates an instance of {Dummy::Actions::Abusefiltercheckmatch} action.')
         .and include("api.abusefiltercheckmatch(param: 'value')")
         .and include(
           "  # Check to see if an AbuseFilter matches a set of variables, editor logged AbuseFilter event.\n"\
