@@ -1,5 +1,3 @@
-inherit_from: .rubocop_todo.yml
-
 AllCops:
   Include:
     - 'lib/**/*'
@@ -16,8 +14,14 @@ AllCops:
     - 'lib/**/*.liquid'
     - 'deprecated/**/*'
     - '*'
+    - 'lib/mediawiktory/page.rb'
+    - 'lib/mediawiktory/query.rb'
   DisplayCopNames: true
   TargetRubyVersion: '2.3'
+
+# TODO
+Style/Documentation:
+  Enabled: false
 
 # My personal style
 # -----------------
@@ -37,6 +41,26 @@ Style/FrozenStringLiteralComment:
 Style/SignalException:
   EnforcedStyle: semantic
 
+# Proper parsing is hard!
+# -----------------------
+
+Metrics/MethodLength:
+  Exclude:
+    - 'lib/mediawiktory/generator.rb'
+    - 'lib/mediawiktory/generator/*'
+    - 'lib/nokogiri/more.rb'
+
+Metrics/CyclomaticComplexity:
+  Exclude:
+    - 'lib/mediawiktory/generator/*'
+
+Metrics/AbcSize:
+  Exclude:
+    - 'lib/mediawiktory/generator.rb'
+    - 'lib/mediawiktory/generator/*'
+    - 'lib/nokogiri/more.rb'
+
+
 # Generated code: hard to support some conventions:
 # -------------------------------------------------
 
@@ -49,6 +73,11 @@ Style/MethodName:
     - 'lib/mediawiktory/wikipedia/**/*'
 
 Style/ClassAndModuleChildren:
+  Exclude:
+    - 'lib/mediawiktory/wikipedia/**/*'
+
+Metrics/ClassLength:
+  Max: 200
   Exclude:
     - 'lib/mediawiktory/wikipedia/**/*'
 
