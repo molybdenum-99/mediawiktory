@@ -17,4 +17,5 @@ group :development do
   gem 'rubygems-tasks'
   gem 'byebug'
   gem 'rake'
+  gem 'rubocop'
 end

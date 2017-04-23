@@ -23,7 +23,6 @@ module MediaWiktory
         Liquid::Template
           .parse(File.read(File.expand_path("../templates/#{template}.liquid", __FILE__)))
           .render({name => to_h}.merge(Util.stringify_hash(vars)))
-          .chomp # templates files in most editors add empty line to an ending
       end
     end
   end

@@ -1,0 +1,25 @@
+inherit_from: .rubocop_todo.yml
+
+AllCops:
+  Include:
+    - 'lib/**/*'
+  Exclude:
+    - 'bin/*'
+    - 'spec/*'
+    - 'spec/**/*'
+    - 'script/**/*'
+    - 'test/*'
+    - 'vendor/**/*'
+    - 'examples/**/*'
+    - 'profile/**/*'
+    - 'tmp/**/*'
+    - 'lib/**/*.liquid'
+    - 'deprecated/**/*'
+  DisplayCopNames: true
+  TargetRubyVersion: '2.3'
+
+# My personal style
+# -----------------
+# See http://zverok.github.io/blog/2016-02-23-control-flow.html
+Style/AndOr:
+  Enabled: false

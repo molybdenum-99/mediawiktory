@@ -198,15 +198,6 @@ module MediaWiktory
       end
 
       include Renderable
-
-      #def to_method(api)
-        ## :facepalm:
-        #Liquid::Template.file_system = Liquid::LocalFileSystem.new('lib/mediawiktory/api_parser/templates/')
-        #Liquid::Template
-          #.parse(File.read('lib/mediawiktory/api_parser/templates/param_method.rb.liquid'))
-          #.render('param' => to_h(api))
-          #.chomp # templates files in most editors add empty line to an ending
-      #end
     end
   end
 end
