@@ -51,6 +51,5 @@ module MediaWiktory::Wikipedia::Actions
     def clear()
       merge(clear: 'true')
     end
-
   end
 end

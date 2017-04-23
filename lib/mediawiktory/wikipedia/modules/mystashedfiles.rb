@@ -17,7 +17,7 @@ module MediaWiktory::Wikipedia::Modules
   #
   # All submodule's parameters are documented as its public methods, see below.
   #
-  class Mystashedfiles < MediaWiktory::Submodule
+  module Mystashedfiles
     # Which properties to fetch for the files.
     #
     # @param values [Array<String>] Allowed values: "size" (Fetch the file size and image dimensions), "type" (Fetch the file's MIME type and media type).
@@ -39,6 +39,5 @@ module MediaWiktory::Wikipedia::Modules
     def continue(value)
       merge(msfcontinue: value.to_s)
     end
-
   end
 end

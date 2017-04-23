@@ -17,7 +17,7 @@ module MediaWiktory::Wikipedia::Modules
   #
   # All submodule's parameters are documented as its public methods, see below.
   #
-  class Watchlist < MediaWiktory::Submodule
+  module Watchlist
     # Include multiple revisions of the same page within given timeframe.
     #
     # @return [self]
@@ -115,6 +115,5 @@ module MediaWiktory::Wikipedia::Modules
     def continue(value)
       merge(wlcontinue: value.to_s)
     end
-
   end
 end

@@ -17,7 +17,7 @@ module MediaWiktory::Wikipedia::Modules
   #
   # All submodule's parameters are documented as its public methods, see below.
   #
-  class Centralnoticelogs < MediaWiktory::Submodule
+  module Centralnoticelogs
     # Campaign name (optional). Separate multiple values with a "|" (vertical bar).
     #
     # @param value [String]
@@ -60,6 +60,5 @@ module MediaWiktory::Wikipedia::Modules
     def end(value)
       merge(end: value.iso8601)
     end
-
   end
 end

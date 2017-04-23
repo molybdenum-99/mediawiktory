@@ -17,7 +17,6 @@ module MediaWiktory::Wikipedia::Modules
   #
   # All submodule's parameters are documented as its public methods, see below.
   #
-  class Transcodestatus < MediaWiktory::Submodule
-
+  module Transcodestatus
   end
 end

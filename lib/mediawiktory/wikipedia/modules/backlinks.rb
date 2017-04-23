@@ -17,7 +17,7 @@ module MediaWiktory::Wikipedia::Modules
   #
   # All submodule's parameters are documented as its public methods, see below.
   #
-  class Backlinks < MediaWiktory::Submodule
+  module Backlinks
     # Title to search. Cannot be used together with blpageid.
     #
     # @param value [String]
@@ -73,6 +73,5 @@ module MediaWiktory::Wikipedia::Modules
     def redirect()
       merge(blredirect: 'true')
     end
-
   end
 end

@@ -17,7 +17,7 @@ module MediaWiktory::Wikipedia::Modules
   #
   # All submodule's parameters are documented as its public methods, see below.
   #
-  class Allpages < MediaWiktory::Submodule
+  module Allpages
     # The page title to start enumerating from.
     #
     # @param value [String]
@@ -123,6 +123,5 @@ module MediaWiktory::Wikipedia::Modules
     def prexpiry(value)
       merge(apprexpiry: value.to_s)
     end
-
   end
 end

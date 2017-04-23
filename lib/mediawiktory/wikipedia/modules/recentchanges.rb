@@ -17,7 +17,7 @@ module MediaWiktory::Wikipedia::Modules
   #
   # All submodule's parameters are documented as its public methods, see below.
   #
-  class Recentchanges < MediaWiktory::Submodule
+  module Recentchanges
     # The timestamp to start enumerating from.
     #
     # @param value [Time]
@@ -121,6 +121,5 @@ module MediaWiktory::Wikipedia::Modules
     def generaterevisions()
       merge(rcgeneraterevisions: 'true')
     end
-
   end
 end

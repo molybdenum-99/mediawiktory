@@ -17,7 +17,7 @@ module MediaWiktory::Wikipedia::Modules
   #
   # All submodule's parameters are documented as its public methods, see below.
   #
-  class Json < MediaWiktory::Submodule
+  module Json
     # If specified, wraps the output into a given function call. For safety, all user-specific data will be restricted.
     #
     # @param value [String]
@@ -44,6 +44,5 @@ module MediaWiktory::Wikipedia::Modules
     def formatversion(value)
       merge(formatversion: value.to_s)
     end
-
   end
 end

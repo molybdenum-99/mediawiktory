@@ -17,7 +17,7 @@ module MediaWiktory::Wikipedia::Modules
   #
   # All submodule's parameters are documented as its public methods, see below.
   #
-  class Duplicatefiles < MediaWiktory::Submodule
+  module Duplicatefiles
     # How many duplicate files to return.
     #
     # @param value [Integer, "max"]
@@ -45,6 +45,5 @@ module MediaWiktory::Wikipedia::Modules
     def localonly()
       merge(dflocalonly: 'true')
     end
-
   end
 end

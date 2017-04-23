@@ -24,6 +24,5 @@ module MediaWiktory::Wikipedia::Actions
     def type(*values)
       merge(type: values.join('|'))
     end
-
   end
 end

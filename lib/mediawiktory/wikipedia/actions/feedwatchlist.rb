@@ -78,6 +78,5 @@ module MediaWiktory::Wikipedia::Actions
     def wlexcludeuser(value)
       merge(wlexcludeuser: value.to_s)
     end
-
   end
 end

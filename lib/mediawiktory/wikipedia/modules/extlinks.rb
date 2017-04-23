@@ -17,7 +17,7 @@ module MediaWiktory::Wikipedia::Modules
   #
   # All submodule's parameters are documented as its public methods, see below.
   #
-  class Extlinks < MediaWiktory::Submodule
+  module Extlinks
     # How many links to return.
     #
     # @param value [Integer, "max"]
@@ -52,6 +52,5 @@ module MediaWiktory::Wikipedia::Modules
     def expandurl()
       merge(elexpandurl: 'true')
     end
-
   end
 end

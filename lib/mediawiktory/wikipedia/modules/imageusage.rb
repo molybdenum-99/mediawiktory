@@ -17,7 +17,7 @@ module MediaWiktory::Wikipedia::Modules
   #
   # All submodule's parameters are documented as its public methods, see below.
   #
-  class Imageusage < MediaWiktory::Submodule
+  module Imageusage
     # Title to search. Cannot be used together with iupageid.
     #
     # @param value [String]
@@ -73,6 +73,5 @@ module MediaWiktory::Wikipedia::Modules
     def redirect()
       merge(iuredirect: 'true')
     end
-
   end
 end

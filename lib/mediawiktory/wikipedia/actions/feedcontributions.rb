@@ -89,6 +89,5 @@ module MediaWiktory::Wikipedia::Actions
     def showsizediff()
       merge(showsizediff: 'true')
     end
-
   end
 end

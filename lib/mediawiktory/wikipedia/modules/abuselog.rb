@@ -17,7 +17,7 @@ module MediaWiktory::Wikipedia::Modules
   #
   # All submodule's parameters are documented as its public methods, see below.
   #
-  class Abuselog < MediaWiktory::Submodule
+  module Abuselog
     # The timestamp to start enumerating from.
     #
     # @param value [Time]
@@ -74,6 +74,5 @@ module MediaWiktory::Wikipedia::Modules
     def prop(*values)
       merge(aflprop: values.join('|'))
     end
-
   end
 end

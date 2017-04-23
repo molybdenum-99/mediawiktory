@@ -17,7 +17,7 @@ module MediaWiktory::Wikipedia::Modules
   #
   # All submodule's parameters are documented as its public methods, see below.
   #
-  class Authmanagerinfo < MediaWiktory::Submodule
+  module Authmanagerinfo
     # Test whether the user's current authentication status is sufficient for the specified security-sensitive operation.
     #
     # @param value [String]
@@ -45,6 +45,5 @@ module MediaWiktory::Wikipedia::Modules
     def messageformat(value)
       merge(amimessageformat: value.to_s)
     end
-
   end
 end

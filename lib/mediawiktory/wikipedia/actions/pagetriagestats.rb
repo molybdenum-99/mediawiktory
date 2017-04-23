@@ -48,6 +48,5 @@ module MediaWiktory::Wikipedia::Actions
     def showdeleted()
       merge(showdeleted: 'true')
     end
-
   end
 end

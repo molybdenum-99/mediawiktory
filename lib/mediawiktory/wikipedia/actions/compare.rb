@@ -59,6 +59,5 @@ module MediaWiktory::Wikipedia::Actions
     def torev(value)
       merge(torev: value.to_s)
     end
-
   end
 end

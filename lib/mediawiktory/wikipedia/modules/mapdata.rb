@@ -17,7 +17,7 @@ module MediaWiktory::Wikipedia::Modules
   #
   # All submodule's parameters are documented as its public methods, see below.
   #
-  class Mapdata < MediaWiktory::Submodule
+  module Mapdata
     # Pipe-separated groups to return data for
     #
     # @param value [String]
@@ -39,6 +39,5 @@ module MediaWiktory::Wikipedia::Modules
     def continue(value)
       merge(mpdcontinue: value.to_s)
     end
-
   end
 end

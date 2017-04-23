@@ -132,6 +132,5 @@ module MediaWiktory::Wikipedia::Actions
     def thumbsize(value)
       merge(thumbsize: value.to_s)
     end
-
   end
 end

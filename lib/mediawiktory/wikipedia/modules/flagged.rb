@@ -17,7 +17,6 @@ module MediaWiktory::Wikipedia::Modules
   #
   # All submodule's parameters are documented as its public methods, see below.
   #
-  class Flagged < MediaWiktory::Submodule
-
+  module Flagged
   end
 end

@@ -24,6 +24,5 @@ module MediaWiktory::Wikipedia::Actions
     def batch(value)
       merge(batch: value.to_s)
     end
-
   end
 end

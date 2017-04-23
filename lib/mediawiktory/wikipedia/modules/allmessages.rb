@@ -17,7 +17,7 @@ module MediaWiktory::Wikipedia::Modules
   #
   # All submodule's parameters are documented as its public methods, see below.
   #
-  class Allmessages < MediaWiktory::Submodule
+  module Allmessages
     # Which messages to output. * (default) means all messages.
     #
     # @param values [Array<String>]
@@ -106,6 +106,5 @@ module MediaWiktory::Wikipedia::Modules
     def prefix(value)
       merge(amprefix: value.to_s)
     end
-
   end
 end

@@ -17,7 +17,7 @@ module MediaWiktory::Wikipedia::Modules
   #
   # All submodule's parameters are documented as its public methods, see below.
   #
-  class Checkuserlog < MediaWiktory::Submodule
+  module Checkuserlog
     # Username of the CheckUser.
     #
     # @param value [String]
@@ -67,6 +67,5 @@ module MediaWiktory::Wikipedia::Modules
     def continue(value)
       merge(culcontinue: value.to_s)
     end
-
   end
 end

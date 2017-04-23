@@ -17,7 +17,7 @@ module MediaWiktory::Wikipedia::Modules
   #
   # All submodule's parameters are documented as its public methods, see below.
   #
-  class Langlinks < MediaWiktory::Submodule
+  module Langlinks
     # Which additional properties to get for each interlanguage link:
     #
     # @param values [Array<String>] Allowed values: "url" (Adds the full URL), "langname" (Adds the localised language name (best effort). Use llinlanguagecode to control the language), "autonym" (Adds the native language name).
@@ -73,6 +73,5 @@ module MediaWiktory::Wikipedia::Modules
     def url()
       merge(llurl: 'true')
     end
-
   end
 end

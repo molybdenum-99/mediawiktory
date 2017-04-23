@@ -17,7 +17,7 @@ module MediaWiktory::Wikipedia::Modules
   #
   # All submodule's parameters are documented as its public methods, see below.
   #
-  class Deletedrevs < MediaWiktory::Submodule
+  module Deletedrevs
     # The timestamp to start enumerating from.
     #
     # @param value [Time]
@@ -115,6 +115,5 @@ module MediaWiktory::Wikipedia::Modules
     def continue(value)
       merge(drcontinue: value.to_s)
     end
-
   end
 end

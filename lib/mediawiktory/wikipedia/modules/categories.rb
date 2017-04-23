@@ -17,7 +17,7 @@ module MediaWiktory::Wikipedia::Modules
   #
   # All submodule's parameters are documented as its public methods, see below.
   #
-  class Categories < MediaWiktory::Submodule
+  module Categories
     # Which additional properties to get for each category:
     #
     # @param values [Array<String>] Allowed values: "sortkey" (Adds the sortkey (hexadecimal string) and sortkey prefix (human-readable part) for the category), "timestamp" (Adds timestamp of when the category was added), "hidden" (Tags categories that are hidden with __HIDDENCAT__).
@@ -60,6 +60,5 @@ module MediaWiktory::Wikipedia::Modules
     def dir(value)
       merge(cldir: value.to_s)
     end
-
   end
 end

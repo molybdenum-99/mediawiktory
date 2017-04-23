@@ -17,7 +17,7 @@ module MediaWiktory::Wikipedia::Modules
   #
   # All submodule's parameters are documented as its public methods, see below.
   #
-  class Coordinates < MediaWiktory::Submodule
+  module Coordinates
     # How many coordinates to return.
     #
     # @param value [Integer, "max"]
@@ -60,6 +60,5 @@ module MediaWiktory::Wikipedia::Modules
     def distancefrompage(value)
       merge(codistancefrompage: value.to_s)
     end
-
   end
 end

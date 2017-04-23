@@ -37,6 +37,5 @@ module MediaWiktory::Wikipedia::Actions
     def nooverride()
       merge(tbnooverride: 'true')
     end
-
   end
 end

@@ -17,7 +17,7 @@ module MediaWiktory::Wikipedia::Modules
   #
   # All submodule's parameters are documented as its public methods, see below.
   #
-  class Pageprops < MediaWiktory::Submodule
+  module Pageprops
     # When more results are available, use this to continue.
     #
     # @param value [String]
@@ -32,6 +32,5 @@ module MediaWiktory::Wikipedia::Modules
     def prop(*values)
       merge(ppprop: values.join('|'))
     end
-
   end
 end

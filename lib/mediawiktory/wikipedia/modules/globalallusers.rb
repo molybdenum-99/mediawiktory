@@ -17,7 +17,7 @@ module MediaWiktory::Wikipedia::Modules
   #
   # All submodule's parameters are documented as its public methods, see below.
   #
-  class Globalallusers < MediaWiktory::Submodule
+  module Globalallusers
     # The user name to start enumerating from.
     #
     # @param value [String]
@@ -74,6 +74,5 @@ module MediaWiktory::Wikipedia::Modules
     def limit(value)
       merge(agulimit: value.to_s)
     end
-
   end
 end

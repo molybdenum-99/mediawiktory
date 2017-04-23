@@ -219,6 +219,5 @@ module MediaWiktory::Wikipedia::Actions
     def templatesandboxcontentformat(value)
       merge(templatesandboxcontentformat: value.to_s)
     end
-
   end
 end

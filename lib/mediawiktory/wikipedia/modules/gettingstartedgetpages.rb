@@ -17,7 +17,7 @@ module MediaWiktory::Wikipedia::Modules
   #
   # All submodule's parameters are documented as its public methods, see below.
   #
-  class Gettingstartedgetpages < MediaWiktory::Submodule
+  module Gettingstartedgetpages
     # Task name, generally either "copyedit" (copy-editing suggestions) or "morelike" (pages similar to the base page/excluded title)
     #
     # @param value [String]
@@ -39,6 +39,5 @@ module MediaWiktory::Wikipedia::Modules
     def count(value)
       merge(gsgpcount: value.to_s)
     end
-
   end
 end

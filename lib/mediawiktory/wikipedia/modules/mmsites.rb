@@ -17,7 +17,7 @@ module MediaWiktory::Wikipedia::Modules
   #
   # All submodule's parameters are documented as its public methods, see below.
   #
-  class Mmsites < MediaWiktory::Submodule
+  module Mmsites
     # The prefix to search for.
     #
     # @param value [String]
@@ -25,6 +25,5 @@ module MediaWiktory::Wikipedia::Modules
     def term(value)
       merge(term: value.to_s)
     end
-
   end
 end

@@ -17,7 +17,7 @@ module MediaWiktory::Wikipedia::Modules
   #
   # All submodule's parameters are documented as its public methods, see below.
   #
-  class Xmlfm < MediaWiktory::Submodule
+  module Xmlfm
     # Return the pretty-printed HTML and associated ResourceLoader modules as a JSON object.
     #
     # @return [self]
@@ -37,6 +37,5 @@ module MediaWiktory::Wikipedia::Modules
     def includexmlnamespace()
       merge(includexmlnamespace: 'true')
     end
-
   end
 end

@@ -17,7 +17,7 @@ module MediaWiktory::Wikipedia::Modules
   #
   # All submodule's parameters are documented as its public methods, see below.
   #
-  class Globaluserinfo < MediaWiktory::Submodule
+  module Globaluserinfo
     # User to get information about. Defaults to the current user.
     #
     # @param value [String]
@@ -32,6 +32,5 @@ module MediaWiktory::Wikipedia::Modules
     def prop(*values)
       merge(guiprop: values.join('|'))
     end
-
   end
 end

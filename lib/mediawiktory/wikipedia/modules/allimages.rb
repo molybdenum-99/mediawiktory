@@ -17,7 +17,7 @@ module MediaWiktory::Wikipedia::Modules
   #
   # All submodule's parameters are documented as its public methods, see below.
   #
-  class Allimages < MediaWiktory::Submodule
+  module Allimages
     # Property to sort by.
     #
     # @param value [String] One of "name", "timestamp".
@@ -137,6 +137,5 @@ module MediaWiktory::Wikipedia::Modules
     def limit(value)
       merge(ailimit: value.to_s)
     end
-
   end
 end

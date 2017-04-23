@@ -17,7 +17,7 @@ module MediaWiktory::Wikipedia::Modules
   #
   # All submodule's parameters are documented as its public methods, see below.
   #
-  class Allcategories < MediaWiktory::Submodule
+  module Allcategories
     # The category to start enumerating from.
     #
     # @param value [String]
@@ -81,6 +81,5 @@ module MediaWiktory::Wikipedia::Modules
     def prop(*values)
       merge(acprop: values.join('|'))
     end
-
   end
 end

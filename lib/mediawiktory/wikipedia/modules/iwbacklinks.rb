@@ -17,7 +17,7 @@ module MediaWiktory::Wikipedia::Modules
   #
   # All submodule's parameters are documented as its public methods, see below.
   #
-  class Iwbacklinks < MediaWiktory::Submodule
+  module Iwbacklinks
     # Prefix for the interwiki.
     #
     # @param value [String]
@@ -60,6 +60,5 @@ module MediaWiktory::Wikipedia::Modules
     def dir(value)
       merge(iwbldir: value.to_s)
     end
-
   end
 end

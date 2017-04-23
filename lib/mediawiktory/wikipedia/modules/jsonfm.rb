@@ -17,7 +17,7 @@ module MediaWiktory::Wikipedia::Modules
   #
   # All submodule's parameters are documented as its public methods, see below.
   #
-  class Jsonfm < MediaWiktory::Submodule
+  module Jsonfm
     # Return the pretty-printed HTML and associated ResourceLoader modules as a JSON object.
     #
     # @return [self]
@@ -50,6 +50,5 @@ module MediaWiktory::Wikipedia::Modules
     def formatversion(value)
       merge(formatversion: value.to_s)
     end
-
   end
 end

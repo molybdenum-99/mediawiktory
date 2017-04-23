@@ -17,7 +17,7 @@ module MediaWiktory::Wikipedia::Modules
   #
   # All submodule's parameters are documented as its public methods, see below.
   #
-  class Usercontribs < MediaWiktory::Submodule
+  module Usercontribs
     # The maximum number of contributions to return.
     #
     # @param value [Integer, "max"]
@@ -108,6 +108,5 @@ module MediaWiktory::Wikipedia::Modules
     def toponly()
       merge(uctoponly: 'true')
     end
-
   end
 end

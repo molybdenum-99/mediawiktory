@@ -38,6 +38,5 @@ module MediaWiktory::Wikipedia::Actions
     def timestampFormat(value)
       merge(timestampFormat: value.to_s)
     end
-
   end
 end

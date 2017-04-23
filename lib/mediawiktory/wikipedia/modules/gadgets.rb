@@ -17,7 +17,7 @@ module MediaWiktory::Wikipedia::Modules
   #
   # All submodule's parameters are documented as its public methods, see below.
   #
-  class Gadgets < MediaWiktory::Submodule
+  module Gadgets
     # What gadget information to get:
     #
     # @param values [Array<String>] Allowed values: "id" (Internal gadget ID), "metadata" (The gadget metadata), "desc" (Gadget description transformed into HTML (can be slow, use only if really needed)).
@@ -51,6 +51,5 @@ module MediaWiktory::Wikipedia::Modules
     def enabledonly()
       merge(gaenabledonly: 'true')
     end
-
   end
 end

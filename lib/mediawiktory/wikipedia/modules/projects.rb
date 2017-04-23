@@ -17,13 +17,12 @@ module MediaWiktory::Wikipedia::Modules
   #
   # All submodule's parameters are documented as its public methods, see below.
   #
-  class Projects < MediaWiktory::Submodule
+  module Projects
     # Also include subprojects.
     #
     # @return [self]
     def subprojects()
       merge(pjsubprojects: 'true')
     end
-
   end
 end

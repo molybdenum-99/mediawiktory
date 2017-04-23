@@ -17,7 +17,7 @@ module MediaWiktory::Wikipedia::Modules
   #
   # All submodule's parameters are documented as its public methods, see below.
   #
-  class Categorymembers < MediaWiktory::Submodule
+  module Categorymembers
     # Which category to enumerate (required). Must include the Category: prefix. Cannot be used together with cmpageid.
     #
     # @param value [String]
@@ -137,6 +137,5 @@ module MediaWiktory::Wikipedia::Modules
     def endsortkey(value)
       merge(cmendsortkey: value.to_s)
     end
-
   end
 end

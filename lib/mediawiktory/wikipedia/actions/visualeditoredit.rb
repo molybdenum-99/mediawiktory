@@ -136,6 +136,5 @@ module MediaWiktory::Wikipedia::Actions
     def cachekey(value)
       merge(cachekey: value.to_s)
     end
-
   end
 end

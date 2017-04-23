@@ -17,7 +17,7 @@ module MediaWiktory::Wikipedia::Modules
   #
   # All submodule's parameters are documented as its public methods, see below.
   #
-  class Watchlistraw < MediaWiktory::Submodule
+  module Watchlistraw
     # When more results are available, use this to continue.
     #
     # @param value [String]
@@ -88,6 +88,5 @@ module MediaWiktory::Wikipedia::Modules
     def totitle(value)
       merge(wrtotitle: value.to_s)
     end
-
   end
 end

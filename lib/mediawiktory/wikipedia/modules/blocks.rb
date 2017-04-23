@@ -17,7 +17,7 @@ module MediaWiktory::Wikipedia::Modules
   #
   # All submodule's parameters are documented as its public methods, see below.
   #
-  class Blocks < MediaWiktory::Submodule
+  module Blocks
     # The timestamp to start enumerating from.
     #
     # @param value [Time]
@@ -88,6 +88,5 @@ module MediaWiktory::Wikipedia::Modules
     def continue(value)
       merge(bkcontinue: value.to_s)
     end
-
   end
 end

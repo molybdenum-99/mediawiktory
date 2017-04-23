@@ -38,6 +38,5 @@ module MediaWiktory::Wikipedia::Actions
     def maxtokenage(value)
       merge(maxtokenage: value.to_s)
     end
-
   end
 end

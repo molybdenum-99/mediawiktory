@@ -17,7 +17,7 @@ module MediaWiktory::Wikipedia::Modules
   #
   # All submodule's parameters are documented as its public methods, see below.
   #
-  class Fileusage < MediaWiktory::Submodule
+  module Fileusage
     # Which properties to get:
     #
     # @param values [Array<String>] Allowed values: "pageid" (Page ID of each page), "title" (Title of each page), "redirect" (Flag if the page is a redirect).
@@ -53,6 +53,5 @@ module MediaWiktory::Wikipedia::Modules
     def continue(value)
       merge(fucontinue: value.to_s)
     end
-
   end
 end

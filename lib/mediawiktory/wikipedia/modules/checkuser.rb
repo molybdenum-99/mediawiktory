@@ -17,7 +17,7 @@ module MediaWiktory::Wikipedia::Modules
   #
   # All submodule's parameters are documented as its public methods, see below.
   #
-  class Checkuser < MediaWiktory::Submodule
+  module Checkuser
     # Type of CheckUser request:
     #
     # @param value [String] One of "userips" (Get IP address of target user), "edits" (Get changes from target IP address or range), "ipusers" (Get users from target IP address or range).
@@ -67,6 +67,5 @@ module MediaWiktory::Wikipedia::Modules
     def token(value)
       merge(cutoken: value.to_s)
     end
-
   end
 end

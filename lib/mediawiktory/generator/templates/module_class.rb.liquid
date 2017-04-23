@@ -17,7 +17,6 @@ module {{ namespace }}::Modules
   #
   # All submodule's parameters are documented as its public methods, see below.
   #
-  class {{ object.class_name }} < MediaWiktory::Submodule
-{% for param in object.params %}{% include 'param_method' %}{% endfor %}
-  end
+  module {{ object.class_name }}
+{% for param in object.params %}{% include 'param_method' %}{% endfor %}  end
 end

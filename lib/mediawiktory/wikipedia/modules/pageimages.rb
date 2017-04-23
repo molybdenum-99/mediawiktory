@@ -17,7 +17,7 @@ module MediaWiktory::Wikipedia::Modules
   #
   # All submodule's parameters are documented as its public methods, see below.
   #
-  class Pageimages < MediaWiktory::Submodule
+  module Pageimages
     # Which information to return:
     #
     # @param values [Array<String>] Allowed values: "thumbnail" (URL and dimensions of thumbnail image associated with page, if any), "original" (URL and original dimensions of image associated with page, if any), "name" (Image title).
@@ -53,6 +53,5 @@ module MediaWiktory::Wikipedia::Modules
     def continue(value)
       merge(picontinue: value.to_s)
     end
-
   end
 end

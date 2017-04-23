@@ -72,6 +72,5 @@ module MediaWiktory::Wikipedia::Actions
     def pst()
       merge(pst: 'true')
     end
-
   end
 end

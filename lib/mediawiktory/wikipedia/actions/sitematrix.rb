@@ -59,6 +59,5 @@ module MediaWiktory::Wikipedia::Actions
     def continue(value)
       merge(smcontinue: value.to_s)
     end
-
   end
 end

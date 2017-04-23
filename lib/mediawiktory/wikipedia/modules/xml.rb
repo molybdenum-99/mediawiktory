@@ -17,7 +17,7 @@ module MediaWiktory::Wikipedia::Modules
   #
   # All submodule's parameters are documented as its public methods, see below.
   #
-  class Xml < MediaWiktory::Submodule
+  module Xml
     # If specified, adds the named page as an XSL stylesheet. The value must be a title in the MediaWiki namespace ending in .xsl.
     #
     # @param value [String]
@@ -31,6 +31,5 @@ module MediaWiktory::Wikipedia::Modules
     def includexmlnamespace()
       merge(includexmlnamespace: 'true')
     end
-
   end
 end

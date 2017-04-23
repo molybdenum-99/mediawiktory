@@ -7,8 +7,8 @@ module Nokogiri
     module NodeChildrenGroups
       def children_groups(*selectors)
         groups = []
-        flat = children.select{|node| selectors.any?{|s| node.matches?(s)}}
-        while !flat.empty?
+        flat = children.select{ |node| selectors.any?{ |s| node.matches?(s) } }
+        until flat.empty?
           groups << make_group(flat, selectors)
         end
         groups
@@ -25,7 +25,7 @@ module Nokogiri
       def make_group(flat, selectors)
         sel = selectors.dup
         group = [[]]
-        while !flat.empty?
+        until flat.empty?
           if flat.first.matches?(sel.first)
             group.last << flat.shift
           elsif sel.size > 1 && flat.first.matches?(sel[1])

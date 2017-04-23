@@ -211,6 +211,5 @@ module MediaWiktory::Wikipedia::Actions
     def captchaid(value)
       merge(captchaid: value.to_s)
     end
-
   end
 end

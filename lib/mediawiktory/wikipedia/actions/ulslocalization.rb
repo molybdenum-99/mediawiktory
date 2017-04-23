@@ -24,6 +24,5 @@ module MediaWiktory::Wikipedia::Actions
     def language(value)
       merge(language: value.to_s)
     end
-
   end
 end

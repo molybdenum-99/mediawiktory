@@ -17,7 +17,7 @@ module MediaWiktory::Wikipedia::Modules
   #
   # All submodule's parameters are documented as its public methods, see below.
   #
-  class Iwlinks < MediaWiktory::Submodule
+  module Iwlinks
     # Which additional properties to get for each interlanguage link:
     #
     # @param values [Array<String>] Allowed values: "url" (Adds the full URL).
@@ -66,6 +66,5 @@ module MediaWiktory::Wikipedia::Modules
     def url()
       merge(iwurl: 'true')
     end
-
   end
 end

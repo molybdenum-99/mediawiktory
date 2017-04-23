@@ -24,6 +24,5 @@ module MediaWiktory::Wikipedia::Actions
     def expression(value)
       merge(expression: value.to_s)
     end
-
   end
 end

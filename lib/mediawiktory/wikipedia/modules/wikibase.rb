@@ -17,7 +17,7 @@ module MediaWiktory::Wikipedia::Modules
   #
   # All submodule's parameters are documented as its public methods, see below.
   #
-  class Wikibase < MediaWiktory::Submodule
+  module Wikibase
     # Which properties to get:
     #
     # @param values [Array<String>] Allowed values: "url" ( Base URL, script path and article path of the Wikibase repository), "siteid" ( The siteid of this site).
@@ -25,6 +25,5 @@ module MediaWiktory::Wikipedia::Modules
     def prop(*values)
       merge(wbprop: values.join('|'))
     end
-
   end
 end

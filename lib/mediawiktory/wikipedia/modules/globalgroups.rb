@@ -17,7 +17,7 @@ module MediaWiktory::Wikipedia::Modules
   #
   # All submodule's parameters are documented as its public methods, see below.
   #
-  class Globalgroups < MediaWiktory::Submodule
+  module Globalgroups
     # What pieces of information to include.
     #
     # @param values [Array<String>] Allowed values: "rights".
@@ -25,6 +25,5 @@ module MediaWiktory::Wikipedia::Modules
     def prop(*values)
       merge(ggpprop: values.join('|'))
     end
-
   end
 end

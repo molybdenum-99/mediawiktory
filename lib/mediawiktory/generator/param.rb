@@ -26,17 +26,17 @@ module MediaWiktory
         end
 
         def extract_description(els)
-          els.detect{|e| e.attr('class') == 'description'}.at('p')&.text.to_s.strip.gsub("\n", ' ')
+          els.detect{ |e| e.attr('class') == 'description' }.at('p')&.text.to_s.strip.gsub("\n", ' ')
           #  .map { |p| p.text.strip }.reject(&:empty?)
           #  .join("\n")
         end
 
         def extract_type(els)
           # TODO: "Expiry time. May be relative (e.g. 5 months or 2 weeks) or absolute (e.g. 2014-09-18T12:34:56Z). If set to infinite, indefinite, or never, the block will never expire."
-          els.select{|e| e.attr('class') == 'info'}.each do |el|
+          els.select{ |e| e.attr('class') == 'info' }.each do |el|
             case el.text
             when /^Type: ([^\(]+)\s*($|\()/
-              return $1.strip
+              return Regexp.last_match(1).strip
             when /^Values \(separate with \|/,
                  /^Separate values with \|/
               return 'list'
@@ -48,31 +48,29 @@ module MediaWiktory
         end
 
         def extract_default(els)
-          els.each{|el| return $1 if el =~ /^Default:\s*(.+)$/}
+          els.each{ |el| return Regexp.last_match(1) if el =~ /^Default:\s*(.+)$/ }
           nil
         end
 
         def extract_values(els)
           # 1. try dl from definition
-          els.detect{|e| e.attr('class') == 'description'}.tap{|d|
+          els.detect{ |e| e.attr('class') == 'description' }.tap{ |d|
             if d.at('dl')
-              return d.at('dl').each_term.map{|dts, dds|
+              return d.at('dl').each_term.map{ |dts, dds|
                 {name: dts.first.text, description: dds.first.text.gsub("\n", ' ')}
               }
             end
           }
 
           # 2. ...or take from info
-          els.select{|e| e.attr('class') == 'info'}.each do |el|
+          els.select{ |e| e.attr('class') == 'info' }.each do |el|
             if el.text =~ /^(?:One of the following values||Values \(separate with \|.*?\)):\s*(.+)$/
               if el.search('a').count > 1
-                return el.search('a').reject { |a| a.text == 'alternative' }.
-                  map{|a|
-                    {name: a.text, module: a.attr('href').sub(/^.*[\#+]/, '')}
-                  }
+                return el.search('a').reject { |a| a.text == 'alternative' }
+                         .map{ |a| {name: a.text, module: a.attr('href').sub(/^.*[\#+]/, '')} }
               else
-                return $1.sub(/^Can be empty, or/, '').split(',')
-                  .map{|s| s.gsub(/^[[:space:]]|[[:space:]]$/, '')}
+                return Regexp.last_match(1).sub(/^Can be empty, or/, '').split(',')
+                             .map{ |s| s.gsub(/^[[:space:]]|[[:space:]]$/, '') }
                   #.map{|n| {name: n}}
               end
             end
@@ -92,7 +90,8 @@ module MediaWiktory
             'param_docs' => param_docs,
             'value_conv' => value_conv,
             'modules' => modules&.map(&:to_h),
-            'param_def' => param_def
+            'param_def' => param_def,
+            'modules_hash' => modules&.map { |m| "#{m.name}: Modules::#{m.class_name}" }&.join(', ')
           )
       end
 

@@ -26,14 +26,14 @@ module MediaWiktory
         def extract_flags(nodes)
           flags = nodes.detect { |n| n['class']&.include?('apihelp-flags') } or return []
           flags.search('ul li > span').to_a
-            .map { |el| {id: el.attr('class'), text: el.text} }
-            .map { |h| h.merge(role: h[:id].sub(/^apihelp-(flag-)?/, '')) }
+               .map { |el| {id: el.attr('class'), text: el.text} }
+               .map { |h| h.merge(role: h[:id].sub(/^apihelp-(flag-)?/, '')) }
         end
 
         def extract_params(nodes, prefix)
           params = nodes.detect { |n| n['class']&.include?('apihelp-parameters') } or return []
           params.at('dl').each_term.to_a
-            .map{|dts, dds| Param.from_html_nodes(dts.first.text, dds, prefix: prefix)}
+                .map{ |dts, dds| Param.from_html_nodes(dts.first.text, dds, prefix: prefix) }
         end
       end
 
@@ -64,13 +64,17 @@ module MediaWiktory
 
       def to_h
         super.merge(
-          'class_name' => name.split('-').map(&:capitalize).join,
+          'class_name' => class_name,
           'method_name' => name.split('-').join('_'),
           'description' => description.split("\n").join("\n#\n# "),
           'params' => params
             .reject { |p| p.name == '*' } # TODO: some actions have "rest of parameters, see there". Currently, we ignore it
             .map(&:to_h)
         )
+      end
+
+      def class_name
+        name.split('-').map(&:capitalize).join
       end
     end
   end

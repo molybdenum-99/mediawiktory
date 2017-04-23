@@ -8,7 +8,7 @@ module MediaWiktory
         def from_html(source, **metadata)
           doc = Nokogiri::HTML(source)
           modules = doc.at('#mw-content-text').children_groups('h3,h4', 'div,p')
-            .map { |title, components| Module.from_html_nodes(title.first&.text.to_s, components) }
+                       .map { |title, components| Module.from_html_nodes(title.first&.text.to_s, components) }
 
           new(**metadata.merge(modules: modules))
         end

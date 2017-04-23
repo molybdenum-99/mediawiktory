@@ -17,7 +17,7 @@ module MediaWiktory::Wikipedia::Modules
   #
   # All submodule's parameters are documented as its public methods, see below.
   #
-  class Featureusage < MediaWiktory::Submodule
+  module Featureusage
     # Start of date range to query.
     #
     # @param value [Time]
@@ -46,6 +46,5 @@ module MediaWiktory::Wikipedia::Modules
     def features(*values)
       merge(afufeatures: values.join('|'))
     end
-
   end
 end

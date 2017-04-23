@@ -17,7 +17,7 @@ module MediaWiktory::Wikipedia::Modules
   #
   # All submodule's parameters are documented as its public methods, see below.
   #
-  class Contributors < MediaWiktory::Submodule
+  module Contributors
     # Only include users in the given groups. Does not include implicit or auto-promoted groups like *, user, or autoconfirmed.
     #
     # @param values [Array<String>] Allowed values: "bot", "sysop", "bureaucrat", "reviewer", "steward", "accountcreator", "import", "transwiki", "ipblock-exempt", "oversight", "founder", "rollbacker", "autoreviewer", "researcher", "filemover", "checkuser", "templateeditor", "massmessage-sender", "extendedconfirmed", "extendedmover", "patroller", "abusefilter", "confirmed", "epcoordinator", "eponline", "epcampus", "epinstructor".
@@ -60,6 +60,5 @@ module MediaWiktory::Wikipedia::Modules
     def continue(value)
       merge(pccontinue: value.to_s)
     end
-
   end
 end

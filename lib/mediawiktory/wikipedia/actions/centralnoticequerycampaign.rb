@@ -24,6 +24,5 @@ module MediaWiktory::Wikipedia::Actions
     def campaign(value)
       merge(campaign: value.to_s)
     end
-
   end
 end

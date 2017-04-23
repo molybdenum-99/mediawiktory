@@ -17,7 +17,7 @@ module MediaWiktory::Wikipedia::Modules
   #
   # All submodule's parameters are documented as its public methods, see below.
   #
-  class Embeddedin < MediaWiktory::Submodule
+  module Embeddedin
     # Title to search. Cannot be used together with eipageid.
     #
     # @param value [String]
@@ -67,6 +67,5 @@ module MediaWiktory::Wikipedia::Modules
     def limit(value)
       merge(eilimit: value.to_s)
     end
-
   end
 end

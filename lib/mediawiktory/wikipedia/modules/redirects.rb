@@ -17,7 +17,7 @@ module MediaWiktory::Wikipedia::Modules
   #
   # All submodule's parameters are documented as its public methods, see below.
   #
-  class Redirects < MediaWiktory::Submodule
+  module Redirects
     # Which properties to get:
     #
     # @param values [Array<String>] Allowed values: "pageid" (Page ID of each redirect), "title" (Title of each redirect), "fragment" (Fragment of each redirect, if any).
@@ -53,6 +53,5 @@ module MediaWiktory::Wikipedia::Modules
     def continue(value)
       merge(rdcontinue: value.to_s)
     end
-
   end
 end

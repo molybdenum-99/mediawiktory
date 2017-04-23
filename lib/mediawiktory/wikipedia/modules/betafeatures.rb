@@ -17,7 +17,7 @@ module MediaWiktory::Wikipedia::Modules
   #
   # All submodule's parameters are documented as its public methods, see below.
   #
-  class Betafeatures < MediaWiktory::Submodule
+  module Betafeatures
     # Whether to fetch how many users have enabled a certain preference.
     #
     # @param value [String]
@@ -25,6 +25,5 @@ module MediaWiktory::Wikipedia::Modules
     def counts(value)
       merge(bfcounts: value.to_s)
     end
-
   end
 end

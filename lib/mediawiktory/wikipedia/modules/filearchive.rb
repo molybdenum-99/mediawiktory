@@ -17,7 +17,7 @@ module MediaWiktory::Wikipedia::Modules
   #
   # All submodule's parameters are documented as its public methods, see below.
   #
-  class Filearchive < MediaWiktory::Submodule
+  module Filearchive
     # The image title to start enumerating from.
     #
     # @param value [String]
@@ -81,6 +81,5 @@ module MediaWiktory::Wikipedia::Modules
     def continue(value)
       merge(facontinue: value.to_s)
     end
-
   end
 end

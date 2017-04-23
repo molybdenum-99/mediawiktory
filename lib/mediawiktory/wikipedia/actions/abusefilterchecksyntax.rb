@@ -24,6 +24,5 @@ module MediaWiktory::Wikipedia::Actions
     def filter(value)
       merge(filter: value.to_s)
     end
-
   end
 end

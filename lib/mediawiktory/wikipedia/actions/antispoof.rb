@@ -24,6 +24,5 @@ module MediaWiktory::Wikipedia::Actions
     def username(value)
       merge(username: value.to_s)
     end
-
   end
 end

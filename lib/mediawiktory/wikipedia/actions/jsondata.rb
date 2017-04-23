@@ -24,6 +24,5 @@ module MediaWiktory::Wikipedia::Actions
     def title(value)
       merge(title: value.to_s)
     end
-
   end
 end

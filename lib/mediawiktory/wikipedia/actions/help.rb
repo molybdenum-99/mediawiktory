@@ -48,6 +48,5 @@ module MediaWiktory::Wikipedia::Actions
     def toc()
       merge(toc: 'true')
     end
-
   end
 end

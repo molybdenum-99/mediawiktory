@@ -17,7 +17,7 @@ module MediaWiktory::Wikipedia::Modules
   #
   # All submodule's parameters are documented as its public methods, see below.
   #
-  class Imageinfo < MediaWiktory::Submodule
+  module Imageinfo
     # Which file information to get:
     #
     # @param values [Array<String>] Allowed values: "timestamp" (Adds timestamp for the uploaded version), "user" (Adds the user who uploaded each file version), "userid" (Add the ID of the user that uploaded each file version), "comment" (Comment on the version), "parsedcomment" (Parse the comment on the version), "canonicaltitle" (Adds the canonical title of the file), "url" (Gives URL to the file and the description page), "size" (Adds the size of the file in bytes and the height, width and page count (if applicable)), "dimensions" (Alias for size), "sha1" (Adds SHA-1 hash for the file), "mime" (Adds MIME type of the file), "thumbmime" (Adds MIME type of the image thumbnail (requires url and param iiurlwidth)), "mediatype" (Adds the media type of the file), "metadata" (Lists Exif metadata for the version of the file), "commonmetadata" (Lists file format generic metadata for the version of the file), "extmetadata" (Lists formatted metadata combined from multiple sources. Results are HTML formatted), "archivename" (Adds the filename of the archive version for non-latest versions), "bitdepth" (Adds the bit depth of the version), "uploadwarning" (Used by the Special:Upload page to get information about an existing file. Not intended for use outside MediaWiki core), "badfile" (Adds whether the file is on the MediaWiki:Bad image list).
@@ -114,6 +114,5 @@ module MediaWiktory::Wikipedia::Modules
     def localonly()
       merge(iilocalonly: 'true')
     end
-
   end
 end

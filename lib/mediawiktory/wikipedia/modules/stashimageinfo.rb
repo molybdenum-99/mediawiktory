@@ -17,7 +17,7 @@ module MediaWiktory::Wikipedia::Modules
   #
   # All submodule's parameters are documented as its public methods, see below.
   #
-  class Stashimageinfo < MediaWiktory::Submodule
+  module Stashimageinfo
     # Key that identifies a previous upload that was stashed temporarily.
     #
     # @param values [Array<String>]
@@ -60,6 +60,5 @@ module MediaWiktory::Wikipedia::Modules
     def urlparam(value)
       merge(siiurlparam: value.to_s)
     end
-
   end
 end

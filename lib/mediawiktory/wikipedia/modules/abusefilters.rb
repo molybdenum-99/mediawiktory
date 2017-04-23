@@ -17,7 +17,7 @@ module MediaWiktory::Wikipedia::Modules
   #
   # All submodule's parameters are documented as its public methods, see below.
   #
-  class Abusefilters < MediaWiktory::Submodule
+  module Abusefilters
     # The filter ID to start enumerating from.
     #
     # @param value [Integer]
@@ -60,6 +60,5 @@ module MediaWiktory::Wikipedia::Modules
     def prop(*values)
       merge(abfprop: values.join('|'))
     end
-
   end
 end

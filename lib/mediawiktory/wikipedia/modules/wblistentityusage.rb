@@ -17,7 +17,7 @@ module MediaWiktory::Wikipedia::Modules
   #
   # All submodule's parameters are documented as its public methods, see below.
   #
-  class Wblistentityusage < MediaWiktory::Submodule
+  module Wblistentityusage
     # Properties to add to the result.
     #
     # @param values [Array<String>] Allowed values: "url" (If enabled the url of the entity will be added to the result).
@@ -53,6 +53,5 @@ module MediaWiktory::Wikipedia::Modules
     def continue(value)
       merge(wbeucontinue: value.to_s)
     end
-
   end
 end

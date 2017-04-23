@@ -17,7 +17,7 @@ module MediaWiktory::Wikipedia::Modules
   #
   # All submodule's parameters are documented as its public methods, see below.
   #
-  class Templates < MediaWiktory::Submodule
+  module Templates
     # Show templates in this namespaces only.
     #
     # @param values [Array<String>] Allowed values: "-2", "-1", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "100", "101", "108", "109", "118", "119", "446", "447", "710", "711", "828", "829", "2300", "2301", "2302", "2303".
@@ -53,6 +53,5 @@ module MediaWiktory::Wikipedia::Modules
     def dir(value)
       merge(tldir: value.to_s)
     end
-
   end
 end

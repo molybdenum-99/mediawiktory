@@ -31,6 +31,5 @@ module MediaWiktory::Wikipedia::Actions
     def template(value)
       merge(template: value.to_s)
     end
-
   end
 end

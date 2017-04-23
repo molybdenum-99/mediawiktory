@@ -17,7 +17,7 @@ module MediaWiktory::Wikipedia::Modules
   #
   # All submodule's parameters are documented as its public methods, see below.
   #
-  class Siteviews < MediaWiktory::Submodule
+  module Siteviews
     # The metric to use for counting views. Depending on what backend is used, not all metrics might be supported. You can use the siteinfo API (action=query&meta=siteinfo) to check, under pageviewservice-supported-metrics / <module name>
     #
     # @param value [String] One of "pageviews" (Plain pageviews), "uniques" (Unique visitors).
@@ -32,6 +32,5 @@ module MediaWiktory::Wikipedia::Modules
     def days(value)
       merge(pvisdays: value.to_s)
     end
-
   end
 end

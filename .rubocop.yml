@@ -15,6 +15,7 @@ AllCops:
     - 'tmp/**/*'
     - 'lib/**/*.liquid'
     - 'deprecated/**/*'
+    - '*'
   DisplayCopNames: true
   TargetRubyVersion: '2.3'
 
@@ -23,3 +24,15 @@ AllCops:
 # See http://zverok.github.io/blog/2016-02-23-control-flow.html
 Style/AndOr:
   Enabled: false
+
+
+# Generated code: hard to support some conventions:
+# -------------------------------------------------
+
+Style/DefWithParentheses:
+  Exclude:
+    - 'lib/mediawiktory/wikipedia/**/*'
+
+Style/MethodName:
+  Exclude:
+    - 'lib/mediawiktory/wikipedia/**/*'

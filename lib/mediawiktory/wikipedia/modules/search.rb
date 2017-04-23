@@ -17,7 +17,7 @@ module MediaWiktory::Wikipedia::Modules
   #
   # All submodule's parameters are documented as its public methods, see below.
   #
-  class Search < MediaWiktory::Submodule
+  module Search
     # Search for page titles or content matching this value. You can use the search string to invoke special search features, depending on what the wiki's search backend implements.
     #
     # @param value [String]
@@ -86,6 +86,5 @@ module MediaWiktory::Wikipedia::Modules
     def enablerewrites()
       merge(srenablerewrites: 'true')
     end
-
   end
 end

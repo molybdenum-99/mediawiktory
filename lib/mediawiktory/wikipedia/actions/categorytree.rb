@@ -31,6 +31,5 @@ module MediaWiktory::Wikipedia::Actions
     def options(value)
       merge(options: value.to_s)
     end
-
   end
 end

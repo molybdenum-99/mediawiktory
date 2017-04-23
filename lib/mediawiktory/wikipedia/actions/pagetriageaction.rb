@@ -51,6 +51,5 @@ module MediaWiktory::Wikipedia::Actions
     def skipnotif()
       merge(skipnotif: 'true')
     end
-
   end
 end

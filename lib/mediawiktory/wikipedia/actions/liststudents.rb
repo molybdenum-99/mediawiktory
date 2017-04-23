@@ -43,6 +43,5 @@ module MediaWiktory::Wikipedia::Actions
     def csv()
       merge(csv: 'true')
     end
-
   end
 end

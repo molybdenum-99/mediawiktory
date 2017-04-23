@@ -17,7 +17,7 @@ module MediaWiktory::Wikipedia::Modules
   #
   # All submodule's parameters are documented as its public methods, see below.
   #
-  class Pageterms < MediaWiktory::Submodule
+  module Pageterms
     # When more results are available, use this to continue.
     #
     # @param value [Integer]
@@ -32,6 +32,5 @@ module MediaWiktory::Wikipedia::Modules
     def terms(*values)
       merge(wbptterms: values.join('|'))
     end
-
   end
 end

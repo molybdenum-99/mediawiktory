@@ -17,7 +17,7 @@ module MediaWiktory::Wikipedia::Modules
   #
   # All submodule's parameters are documented as its public methods, see below.
   #
-  class Pageswithprop < MediaWiktory::Submodule
+  module Pageswithprop
     # Page property for which to enumerate pages (action=query&list=pagepropnames returns page property names in use).
     #
     # @param value [String]
@@ -53,6 +53,5 @@ module MediaWiktory::Wikipedia::Modules
     def dir(value)
       merge(pwpdir: value.to_s)
     end
-
   end
 end

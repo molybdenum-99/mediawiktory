@@ -45,6 +45,5 @@ module MediaWiktory::Wikipedia::Actions
     def realname(value)
       merge(realname: value.to_s)
     end
-
   end
 end

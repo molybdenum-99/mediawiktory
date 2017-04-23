@@ -17,7 +17,7 @@ module MediaWiktory::Wikipedia::Modules
   #
   # All submodule's parameters are documented as its public methods, see below.
   #
-  class Projectpages < MediaWiktory::Submodule
+  module Projectpages
     # Also return assessments for the pages returned.
     #
     # @return [self]
@@ -45,6 +45,5 @@ module MediaWiktory::Wikipedia::Modules
     def continue(value)
       merge(wppcontinue: value.to_s)
     end
-
   end
 end

@@ -17,7 +17,7 @@ module MediaWiktory::Wikipedia::Modules
   #
   # All submodule's parameters are documented as its public methods, see below.
   #
-  class Exturlusage < MediaWiktory::Submodule
+  module Exturlusage
     # Which pieces of information to include:
     #
     # @param values [Array<String>] Allowed values: "ids" (Adds the ID of page), "title" (Adds the title and namespace ID of the page), "url" (Adds the URL used in the page).
@@ -66,6 +66,5 @@ module MediaWiktory::Wikipedia::Modules
     def expandurl()
       merge(euexpandurl: 'true')
     end
-
   end
 end

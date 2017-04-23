@@ -17,7 +17,7 @@ module MediaWiktory::Wikipedia::Modules
   #
   # All submodule's parameters are documented as its public methods, see below.
   #
-  class Wikisets < MediaWiktory::Submodule
+  module Wikisets
     # The name of the wiki set to start from.
     #
     # @param value [String]
@@ -45,6 +45,5 @@ module MediaWiktory::Wikipedia::Modules
     def orderbyname()
       merge(wsorderbyname: 'true')
     end
-
   end
 end

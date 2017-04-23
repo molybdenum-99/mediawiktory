@@ -17,7 +17,7 @@ module MediaWiktory::Wikipedia::Modules
   #
   # All submodule's parameters are documented as its public methods, see below.
   #
-  class Prefixsearch < MediaWiktory::Submodule
+  module Prefixsearch
     # Search string.
     #
     # @param value [String]
@@ -53,6 +53,5 @@ module MediaWiktory::Wikipedia::Modules
     def profile(value)
       merge(psprofile: value.to_s)
     end
-
   end
 end

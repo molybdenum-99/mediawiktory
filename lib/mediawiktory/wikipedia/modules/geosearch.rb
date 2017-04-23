@@ -17,7 +17,7 @@ module MediaWiktory::Wikipedia::Modules
   #
   # All submodule's parameters are documented as its public methods, see below.
   #
-  class Geosearch < MediaWiktory::Submodule
+  module Geosearch
     # Coordinate around which to search.
     #
     # @param value [String]
@@ -94,6 +94,5 @@ module MediaWiktory::Wikipedia::Modules
     def debug()
       merge(gsdebug: 'true')
     end
-
   end
 end

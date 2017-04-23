@@ -29,7 +29,9 @@ module MediaWiktory
     private
 
     def action_name
-      self.class.name.scan(/(\w+)Action$/).flatten.first&.downcase or
+      self.class.name.scan(/(\w+)Action$/).flatten.first
+        &.gsub(/([a-z])([A-Z])/, '\1-\2') # ParsoidBatchAction # => parsoid-batch
+        &.downcase or
         fail ArgumentError, "Can't guess action name from #{self.class.name}"
     end
 
@@ -37,22 +39,18 @@ module MediaWiktory
     #
     # ```ruby
     # action.format(:json)
-    # action.format(json: {callback: '__wpcallback__'})
     # ```
     #
-    # ...converting param setting and options into flat hash.
-    def module_to_hash(name, arg, prefix: nil)
-      case arg
-      when Symbol, String
-        {name.to_s => arg.to_s}
-      when Hash
-        arg.size == 1 or fail ArgumentError, "Can't merge #{name}(#{arg.inspect})"
-        key, options = arg.first
-        # TODO: more through options type check.
-        {name.to_s => key.to_s}.merge(options.reject { |k, v| !v }.map { |k, v| ["#{prefix}#{k}", v.to_s] }.to_h)
-      else
-        fail ArgumentError, "Can't merge #{name}(#{arg.inspect})"
-      end
+    # It merges used module name into action params and includes submodule's methods into action
+    # for further tweaking.
+    def merge_module(name, val, modules)
+      mod = modules.fetch(val) { fail ArgumentError, "Module #{val} is not defined" }
+      merge(name => val).extend(mod)
+    end
+
+    def merge_modules(name, vals, modules)
+      mods = vals.map { |val| modules.fetch(val) { fail ArgumentError, "Module #{val} is not defined" } }
+      merge(name => vals.join('|')).tap { |res| mods.each { |mod| res.extend(mod) } }
     end
   end
 

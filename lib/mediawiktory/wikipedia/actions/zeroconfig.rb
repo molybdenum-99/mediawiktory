@@ -31,6 +31,5 @@ module MediaWiktory::Wikipedia::Actions
     def agent(value)
       merge(agent: value.to_s)
     end
-
   end
 end

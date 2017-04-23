@@ -17,13 +17,12 @@ module MediaWiktory::Wikipedia::Modules
   #
   # All submodule's parameters are documented as its public methods, see below.
   #
-  class Rawfm < MediaWiktory::Submodule
+  module Rawfm
     # Return the pretty-printed HTML and associated ResourceLoader modules as a JSON object.
     #
     # @return [self]
     def wrappedhtml()
       merge(wrappedhtml: 'true')
     end
-
   end
 end

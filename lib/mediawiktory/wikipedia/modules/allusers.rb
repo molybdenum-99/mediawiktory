@@ -17,7 +17,7 @@ module MediaWiktory::Wikipedia::Modules
   #
   # All submodule's parameters are documented as its public methods, see below.
   #
-  class Allusers < MediaWiktory::Submodule
+  module Allusers
     # The user name to start enumerating from.
     #
     # @param value [String]
@@ -100,6 +100,5 @@ module MediaWiktory::Wikipedia::Modules
     def attachedwiki(value)
       merge(auattachedwiki: value.to_s)
     end
-
   end
 end

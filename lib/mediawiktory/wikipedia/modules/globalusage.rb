@@ -17,7 +17,7 @@ module MediaWiktory::Wikipedia::Modules
   #
   # All submodule's parameters are documented as its public methods, see below.
   #
-  class Globalusage < MediaWiktory::Submodule
+  module Globalusage
     # Which properties to return:
     #
     # @param values [Array<String>] Allowed values: "url" (Adds url), "pageid" (Adds page ID), "namespace" (Adds namespace ID).
@@ -45,6 +45,5 @@ module MediaWiktory::Wikipedia::Modules
     def filterlocal()
       merge(gufilterlocal: 'true')
     end
-
   end
 end

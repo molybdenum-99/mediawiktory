@@ -24,6 +24,5 @@ module MediaWiktory::Wikipedia::Actions
     def email(value)
       merge(email: value.to_s)
     end
-
   end
 end

@@ -17,7 +17,7 @@ module MediaWiktory::Wikipedia::Modules
   #
   # All submodule's parameters are documented as its public methods, see below.
   #
-  class Alllinks < MediaWiktory::Submodule
+  module Alllinks
     # When more results are available, use this to continue.
     #
     # @param value [String]
@@ -80,6 +80,5 @@ module MediaWiktory::Wikipedia::Modules
     def dir(value)
       merge(aldir: value.to_s)
     end
-
   end
 end

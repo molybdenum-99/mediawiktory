@@ -17,7 +17,7 @@ module MediaWiktory::Wikipedia::Modules
   #
   # All submodule's parameters are documented as its public methods, see below.
   #
-  class Php < MediaWiktory::Submodule
+  module Php
     # Output formatting:
     #
     # @param value [String] One of "1" (Backwards-compatible format (XML-style booleans, * keys for content nodes, etc.)), "2" (Experimental modern format. Details may change!), "latest" (Use the latest format (currently 2), may change without warning).
@@ -25,6 +25,5 @@ module MediaWiktory::Wikipedia::Modules
     def formatversion(value)
       merge(formatversion: value.to_s)
     end
-
   end
 end

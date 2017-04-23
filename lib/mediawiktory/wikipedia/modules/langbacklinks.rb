@@ -17,7 +17,7 @@ module MediaWiktory::Wikipedia::Modules
   #
   # All submodule's parameters are documented as its public methods, see below.
   #
-  class Langbacklinks < MediaWiktory::Submodule
+  module Langbacklinks
     # Language for the language link.
     #
     # @param value [String]
@@ -60,6 +60,5 @@ module MediaWiktory::Wikipedia::Modules
     def dir(value)
       merge(lbldir: value.to_s)
     end
-
   end
 end

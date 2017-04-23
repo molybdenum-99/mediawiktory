@@ -17,7 +17,7 @@ module MediaWiktory::Wikipedia::Modules
   #
   # All submodule's parameters are documented as its public methods, see below.
   #
-  class Pageassessments < MediaWiktory::Submodule
+  module Pageassessments
     # When more results are available, use this to continue.
     #
     # @param value [String]
@@ -38,6 +38,5 @@ module MediaWiktory::Wikipedia::Modules
     def subprojects()
       merge(pasubprojects: 'true')
     end
-
   end
 end

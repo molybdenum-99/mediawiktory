@@ -45,6 +45,5 @@ module MediaWiktory::Wikipedia::Actions
     def content(value)
       merge(content: value.to_s)
     end
-
   end
 end

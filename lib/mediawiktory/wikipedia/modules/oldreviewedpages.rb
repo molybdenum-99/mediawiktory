@@ -17,7 +17,7 @@ module MediaWiktory::Wikipedia::Modules
   #
   # All submodule's parameters are documented as its public methods, see below.
   #
-  class Oldreviewedpages < MediaWiktory::Submodule
+  module Oldreviewedpages
     # Start listing at this timestamp.
     #
     # @param value [Time]
@@ -81,6 +81,5 @@ module MediaWiktory::Wikipedia::Modules
     def limit(value)
       merge(orlimit: value.to_s)
     end
-
   end
 end

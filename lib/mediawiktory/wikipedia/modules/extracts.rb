@@ -17,7 +17,7 @@ module MediaWiktory::Wikipedia::Modules
   #
   # All submodule's parameters are documented as its public methods, see below.
   #
-  class Extracts < MediaWiktory::Submodule
+  module Extracts
     # How many characters to return. Actual text returned might be slightly longer.
     #
     # @param value [Integer]
@@ -65,6 +65,5 @@ module MediaWiktory::Wikipedia::Modules
     def continue(value)
       merge(excontinue: value.to_s)
     end
-
   end
 end

@@ -17,7 +17,7 @@ module MediaWiktory::Wikipedia::Modules
   #
   # All submodule's parameters are documented as its public methods, see below.
   #
-  class Babel < MediaWiktory::Submodule
+  module Babel
     # User to get information about
     #
     # @param value [String]
@@ -25,6 +25,5 @@ module MediaWiktory::Wikipedia::Modules
     def user(value)
       merge(babuser: value.to_s)
     end
-
   end
 end

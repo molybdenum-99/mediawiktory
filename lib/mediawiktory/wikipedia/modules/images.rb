@@ -17,7 +17,7 @@ module MediaWiktory::Wikipedia::Modules
   #
   # All submodule's parameters are documented as its public methods, see below.
   #
-  class Images < MediaWiktory::Submodule
+  module Images
     # How many files to return.
     #
     # @param value [Integer, "max"]
@@ -46,6 +46,5 @@ module MediaWiktory::Wikipedia::Modules
     def dir(value)
       merge(imdir: value.to_s)
     end
-
   end
 end

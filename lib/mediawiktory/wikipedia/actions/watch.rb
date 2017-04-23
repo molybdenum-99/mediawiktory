@@ -105,7 +105,7 @@ module MediaWiktory::Wikipedia::Actions
     #   * `:wblistentityusage` - {MediaWiktory::Wikipedia::Modules::Wblistentityusage} Returns all pages that use the given entity IDs. 
     # @return [self]
     def generator(value)
-      merge(generator: module_to_hash(value, [:allcategories, :alldeletedrevisions, :allfileusages, :allimages, :alllinks, :allpages, :allredirects, :allrevisions, :alltransclusions, :backlinks, :categories, :categorymembers, :deletedrevisions, :duplicatefiles, :embeddedin, :exturlusage, :fileusage, :geosearch, :gettingstartedgetpages, :images, :imageusage, :iwbacklinks, :langbacklinks, :links, :linkshere, :mostviewed, :oldreviewedpages, :pageswithprop, :prefixsearch, :projectpages, :protectedtitles, :querypage, :random, :recentchanges, :redirects, :revisions, :search, :templates, :transcludedin, :watchlist, :watchlistraw, :wblistentityusage]))
+      merge_module(:generator, value, allcategories: Modules::Allcategories, alldeletedrevisions: Modules::Alldeletedrevisions, allfileusages: Modules::Allfileusages, allimages: Modules::Allimages, alllinks: Modules::Alllinks, allpages: Modules::Allpages, allredirects: Modules::Allredirects, allrevisions: Modules::Allrevisions, alltransclusions: Modules::Alltransclusions, backlinks: Modules::Backlinks, categories: Modules::Categories, categorymembers: Modules::Categorymembers, deletedrevisions: Modules::Deletedrevisions, duplicatefiles: Modules::Duplicatefiles, embeddedin: Modules::Embeddedin, exturlusage: Modules::Exturlusage, fileusage: Modules::Fileusage, geosearch: Modules::Geosearch, gettingstartedgetpages: Modules::Gettingstartedgetpages, images: Modules::Images, imageusage: Modules::Imageusage, iwbacklinks: Modules::Iwbacklinks, langbacklinks: Modules::Langbacklinks, links: Modules::Links, linkshere: Modules::Linkshere, mostviewed: Modules::Mostviewed, oldreviewedpages: Modules::Oldreviewedpages, pageswithprop: Modules::Pageswithprop, prefixsearch: Modules::Prefixsearch, projectpages: Modules::Projectpages, protectedtitles: Modules::Protectedtitles, querypage: Modules::Querypage, random: Modules::Random, recentchanges: Modules::Recentchanges, redirects: Modules::Redirects, revisions: Modules::Revisions, search: Modules::Search, templates: Modules::Templates, transcludedin: Modules::Transcludedin, watchlist: Modules::Watchlist, watchlistraw: Modules::Watchlistraw, wblistentityusage: Modules::Wblistentityusage)
     end
     # Automatically resolve redirects in titles, pageids, and revids, and in pages returned by generator.
     #
@@ -126,6 +126,5 @@ module MediaWiktory::Wikipedia::Actions
     def token(value)
       merge(token: value.to_s)
     end
-
   end
 end

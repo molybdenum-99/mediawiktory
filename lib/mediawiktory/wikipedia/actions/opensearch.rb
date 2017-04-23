@@ -71,6 +71,5 @@ module MediaWiktory::Wikipedia::Actions
     def warningsaserror()
       merge(warningsaserror: 'true')
     end
-
   end
 end

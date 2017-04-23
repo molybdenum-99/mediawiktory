@@ -45,6 +45,5 @@ module MediaWiktory::Wikipedia::Actions
     def logid(value)
       merge(logid: value.to_s)
     end
-
   end
 end

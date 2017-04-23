@@ -17,7 +17,7 @@ module MediaWiktory::Wikipedia::Modules
   #
   # All submodule's parameters are documented as its public methods, see below.
   #
-  class Categoryinfo < MediaWiktory::Submodule
+  module Categoryinfo
     # When more results are available, use this to continue.
     #
     # @param value [String]
@@ -25,6 +25,5 @@ module MediaWiktory::Wikipedia::Modules
     def continue(value)
       merge(cicontinue: value.to_s)
     end
-
   end
 end
