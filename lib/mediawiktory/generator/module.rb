@@ -68,8 +68,8 @@ module MediaWiktory
           'method_name' => name.split('-').join('_'),
           'description' => description.split("\n").join("\n#\n# "),
           'params' => params
-            .reject { |p| p.name == '*' } # TODO: some actions have "rest of parameters, see there". Currently, we ignore it
-            .map(&:to_h)
+            .reject { |p| p.name == '*' } # TODO: some actions have "rest of parameters, see there".
+            .map(&:to_h)                  # Currently, we ignore it
         )
       end
 

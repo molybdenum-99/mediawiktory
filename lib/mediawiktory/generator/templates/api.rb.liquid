@@ -6,5 +6,4 @@
 # list and descriptions for MediaWiki features available for this particular API.
 #
 class {{ namespace }}::Api < MediaWiktory::Api
-{% for action in object.actions %}{% include 'action_method' %}{% endfor %}
-end
+{% for action in object.actions %}{% include 'action_method' %}{% endfor %}end

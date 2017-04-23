@@ -23,7 +23,8 @@ module MediaWiktory
     end
 
     def perform
-      fail NotImplementedError, "Action is abstract, all actions should descend from GetAction or PostAction"
+      fail NotImplementedError,
+           'Action is abstract, all actions should descend from GetAction or PostAction'
     end
 
     private
@@ -49,7 +50,9 @@ module MediaWiktory
     end
 
     def merge_modules(name, vals, modules)
-      mods = vals.map { |val| modules.fetch(val) { fail ArgumentError, "Module #{val} is not defined" } }
+      mods =
+        vals
+        .map { |val| modules.fetch(val) { fail ArgumentError, "Module #{val} is not defined" } }
       merge(name => vals.join('|')).tap { |res| mods.each { |mod| res.extend(mod) } }
     end
   end

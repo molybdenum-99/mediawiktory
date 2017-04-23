@@ -7,8 +7,10 @@ module MediaWiktory
       class << self
         def from_html(source, **metadata)
           doc = Nokogiri::HTML(source)
-          modules = doc.at('#mw-content-text').children_groups('h3,h4', 'div,p')
-                       .map { |title, components| Module.from_html_nodes(title.first&.text.to_s, components) }
+          modules =
+            doc
+            .at('#mw-content-text').children_groups('h3,h4', 'div,p')
+            .map { |title, components| Module.from_html_nodes(title.first&.text.to_s, components) }
 
           new(**metadata.merge(modules: modules))
         end
@@ -46,7 +48,10 @@ module MediaWiktory
       end
 
       def to_h
-        super.merge('friendly_date' => Time.now.strftime('%B %d, %Y'), 'actions' => actions.map(&:to_h))
+        super.merge(
+          'friendly_date' => Time.now.strftime('%B %d, %Y'),
+          'actions' => actions.map(&:to_h)
+        )
       end
     end
   end

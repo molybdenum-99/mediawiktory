@@ -25,6 +25,8 @@ AllCops:
 Style/AndOr:
   Enabled: false
 
+Style/SpaceInsideHashLiteralBraces:
+  EnforcedStyle: no_space
 
 # Generated code: hard to support some conventions:
 # -------------------------------------------------
@@ -38,5 +40,10 @@ Style/MethodName:
     - 'lib/mediawiktory/wikipedia/**/*'
 
 Style/ClassAndModuleChildren:
+  Exclude:
+    - 'lib/mediawiktory/wikipedia/**/*'
+
+Metrics/LineLength:
+  Max: 100
   Exclude:
     - 'lib/mediawiktory/wikipedia/**/*'

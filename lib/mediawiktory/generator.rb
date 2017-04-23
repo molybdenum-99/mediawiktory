@@ -13,14 +13,18 @@ module MediaWiktory
     end
 
     def generate(path:, namespace:)
+      opts = {namespace: namespace, version: VERSION}
       FileUtils.rm_rf path
       FileUtils.mkdir_p path
-      @api.render_to(File.join(path, 'api.rb'), namespace: namespace, version: MediaWiktory::VERSION)
+      @api.render_to(File.join(path, 'api.rb'), opts)
       @api.actions.each do |a|
-        a.render_to(File.join(path, "actions/#{a.name}.rb"), namespace: namespace, version: MediaWiktory::VERSION)
+        a.render_to(File.join(path, "actions/#{a.name}.rb"), opts)
       end
       @api.non_actions.each do |a|
-        a.render_to(File.join(path, "modules/#{a.name}.rb"), namespace: namespace, version: MediaWiktory::VERSION, template: 'module_class.rb')
+        a.render_to(
+          File.join(path, "modules/#{a.name}.rb"),
+          opts.merge(template: 'module_class.rb')
+        )
       end
     end
   end

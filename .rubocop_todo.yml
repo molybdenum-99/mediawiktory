@@ -19,12 +19,6 @@ Metrics/ClassLength:
 Metrics/CyclomaticComplexity:
   Max: 11
 
-# Offense count: 1851
-# Configuration parameters: AllowHeredoc, AllowURI, URISchemes, IgnoreCopDirectives, IgnoredPatterns.
-# URISchemes: http, https
-Metrics/LineLength:
-  Max: 12764
-
 # Offense count: 6
 # Configuration parameters: CountComments.
 Metrics/MethodLength:
@@ -41,13 +35,6 @@ Style/BlockDelimiters:
   Exclude:
     - 'lib/mediawiktory/generator/param.rb'
     - 'lib/mediawiktory/util.rb'
-
-# Offense count: 5
-# Cop supports --auto-correct.
-#Style/CommentIndentation:
-  #Exclude:
-    #- 'lib/mediawiktory.rb'
-    #- 'lib/mediawiktory/generator/param.rb'
 
 # Offense count: 15
 Style/Documentation:
@@ -77,14 +64,6 @@ Style/DoubleNegation:
 Style/EmptyLineBetweenDefs:
   Enabled: false
 
-# Offense count: 1
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle, SupportedStyles.
-# SupportedStyles: empty_lines, empty_lines_except_namespace, empty_lines_special, no_empty_lines
-Style/EmptyLinesAroundClassBody:
-  Exclude:
-    - 'lib/mediawiktory/wikipedia/api.rb'
-
 # Offense count: 237
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle, SupportedStyles.
@@ -94,12 +73,12 @@ Style/FrozenStringLiteralComment:
 
 # Offense count: 12
 # Cop supports --auto-correct.
-Style/LeadingCommentSpace:
-  Exclude:
-    - 'lib/mediawiktory.rb'
-    - 'lib/mediawiktory/generator/module.rb'
-    - 'lib/mediawiktory/generator/param.rb'
-    - 'lib/nokogiri/more.rb'
+#Style/LeadingCommentSpace:
+  #Exclude:
+    #- 'lib/mediawiktory.rb'
+    #- 'lib/mediawiktory/generator/module.rb'
+    #- 'lib/mediawiktory/generator/param.rb'
+    #- 'lib/nokogiri/more.rb'
 
 # Offense count: 1
 Style/MethodMissing:
@@ -165,19 +144,6 @@ Style/SpaceBeforeBlockBraces:
     - 'lib/mediawiktory/generator/param.rb'
     - 'lib/mediawiktory/query.rb'
     - 'lib/nokogiri/more.rb'
-
-# Offense count: 16
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle, SupportedStyles, EnforcedStyleForEmptyBraces, SupportedStylesForEmptyBraces.
-# SupportedStyles: space, no_space, compact
-# SupportedStylesForEmptyBraces: space, no_space
-Style/SpaceInsideHashLiteralBraces:
-  Exclude:
-    - 'lib/mediawiktory/client.rb'
-    - 'lib/mediawiktory/generator/api.rb'
-    - 'lib/mediawiktory/generator/module.rb'
-    - 'lib/mediawiktory/generator/param.rb'
-    - 'lib/mediawiktory/generator/renderable.rb'
 
 # Offense count: 2
 # Cop supports --auto-correct.

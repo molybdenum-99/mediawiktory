@@ -3,7 +3,8 @@ module MediaWiktory
     # Default MediaWiktory User-Agent header.
     #
     # You can set yours as an option to {#initialize}
-    UA = "MediaWiktory/#{MediaWiktory::VERSION} (https://github.com/molybdenum-99/mediawiktory; zverok.offline@gmail.com)"
+    UA = "MediaWiktory/#{MediaWiktory::VERSION} "\
+         '(https://github.com/molybdenum-99/mediawiktory; zverok.offline@gmail.com)'
 
     class << self
       # User agent getter/setter.

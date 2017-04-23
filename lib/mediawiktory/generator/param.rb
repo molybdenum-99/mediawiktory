@@ -32,7 +32,9 @@ module MediaWiktory
         end
 
         def extract_type(els)
-          # TODO: "Expiry time. May be relative (e.g. 5 months or 2 weeks) or absolute (e.g. 2014-09-18T12:34:56Z). If set to infinite, indefinite, or never, the block will never expire."
+          # TODO: "Expiry time. May be relative (e.g. 5 months or 2 weeks) or absolute
+          #   (e.g. 2014-09-18T12:34:56Z). If set to infinite, indefinite, or never, the block will
+          #   never expire."
           els.select{ |e| e.attr('class') == 'info' }.each do |el|
             case el.text
             when /^Type: ([^\(]+)\s*($|\()/
@@ -64,7 +66,8 @@ module MediaWiktory
 
           # 2. ...or take from info
           els.select{ |e| e.attr('class') == 'info' }.each do |el|
-            if el.text =~ /^(?:One of the following values||Values \(separate with \|.*?\)):\s*(.+)$/
+            if el.text =~
+               /^(?:One of the following values||Values \(separate with \|.*?\)):\s*(.+)$/
               if el.search('a').count > 1
                 return el.search('a').reject { |a| a.text == 'alternative' }
                          .map{ |a| {name: a.text, module: a.attr('href').sub(/^.*[\#+]/, '')} }
