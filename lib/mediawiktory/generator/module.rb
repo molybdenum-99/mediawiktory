@@ -20,7 +20,7 @@ module MediaWiktory
 
         def extract_description(nodes)
           #nodes.select { |n| n.name == 'p' }.map(&:text).map(&:strip).join("\n")
-          nodes.detect { |n| n.name == 'p' }&.text.to_s.gsub("\n", ' ')
+          nodes.detect { |n| n.name == 'p' }&.text.to_s.tr("\n", ' ')
         end
 
         def extract_flags(nodes)

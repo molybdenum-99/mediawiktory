@@ -36,3 +36,7 @@ Style/DefWithParentheses:
 Style/MethodName:
   Exclude:
     - 'lib/mediawiktory/wikipedia/**/*'
+
+Style/ClassAndModuleChildren:
+  Exclude:
+    - 'lib/mediawiktory/wikipedia/**/*'

@@ -26,7 +26,7 @@ module MediaWiktory
         end
 
         def extract_description(els)
-          els.detect{ |e| e.attr('class') == 'description' }.at('p')&.text.to_s.strip.gsub("\n", ' ')
+          els.detect{ |e| e.attr('class') == 'description' }.at('p')&.text.to_s.strip.tr("\n", ' ')
           #  .map { |p| p.text.strip }.reject(&:empty?)
           #  .join("\n")
         end
@@ -57,7 +57,7 @@ module MediaWiktory
           els.detect{ |e| e.attr('class') == 'description' }.tap{ |d|
             if d.at('dl')
               return d.at('dl').each_term.map{ |dts, dds|
-                {name: dts.first.text, description: dds.first.text.gsub("\n", ' ')}
+                {name: dts.first.text, description: dds.first.text.tr("\n", ' ')}
               }
             end
           }
@@ -71,7 +71,6 @@ module MediaWiktory
               else
                 return Regexp.last_match(1).sub(/^Can be empty, or/, '').split(',')
                              .map{ |s| s.gsub(/^[[:space:]]|[[:space:]]$/, '') }
-                  #.map{|n| {name: n}}
               end
             end
           end
