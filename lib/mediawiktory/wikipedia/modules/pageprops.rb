@@ -20,6 +20,7 @@ module MediaWiktory::Wikipedia::Modules
   # All submodule's parameters are documented as its public methods, see below.
   #
   module Pageprops
+
     # When more results are available, use this to continue.
     #
     # @param value [String]
@@ -27,6 +28,7 @@ module MediaWiktory::Wikipedia::Modules
     def continue(value)
       merge(ppcontinue: value.to_s)
     end
+
     # Only list these page properties (action=query&list=pagepropnames returns page property names in use). Useful for checking whether pages use a certain page property.
     #
     # @param values [Array<String>]

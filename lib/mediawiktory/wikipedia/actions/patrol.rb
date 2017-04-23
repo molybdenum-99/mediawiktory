@@ -19,6 +19,7 @@ module MediaWiktory::Wikipedia::Actions
   # All action's parameters are documented as its public methods, see below.
   #
   class Patrol < MediaWiktory::GetAction
+
     # Recentchanges ID to patrol.
     #
     # @param value [Integer]
@@ -26,6 +27,7 @@ module MediaWiktory::Wikipedia::Actions
     def rcid(value)
       merge(rcid: value.to_s)
     end
+
     # Revision ID to patrol.
     #
     # @param value [Integer]
@@ -33,6 +35,7 @@ module MediaWiktory::Wikipedia::Actions
     def revid(value)
       merge(revid: value.to_s)
     end
+
     # Change tags to apply to the entry in the patrol log.
     #
     # @param values [Array<String>] Allowed values: "ProveIt edit", "WPCleaner", "huggle", "large plot addition".
@@ -40,6 +43,7 @@ module MediaWiktory::Wikipedia::Actions
     def tags(*values)
       merge(tags: values.join('|'))
     end
+
     # A "patrol" token retrieved from action=query&meta=tokens
     #
     # @param value [String]

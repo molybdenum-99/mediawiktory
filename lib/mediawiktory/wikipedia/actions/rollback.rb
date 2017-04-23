@@ -19,6 +19,7 @@ module MediaWiktory::Wikipedia::Actions
   # All action's parameters are documented as its public methods, see below.
   #
   class Rollback < MediaWiktory::GetAction
+
     # Title of the page to roll back. Cannot be used together with pageid.
     #
     # @param value [String]
@@ -26,6 +27,7 @@ module MediaWiktory::Wikipedia::Actions
     def title(value)
       merge(title: value.to_s)
     end
+
     # Page ID of the page to roll back. Cannot be used together with title.
     #
     # @param value [Integer]
@@ -33,6 +35,7 @@ module MediaWiktory::Wikipedia::Actions
     def pageid(value)
       merge(pageid: value.to_s)
     end
+
     # Tags to apply to the rollback.
     #
     # @param values [Array<String>] Allowed values: "ProveIt edit", "WPCleaner", "huggle", "large plot addition".
@@ -40,6 +43,7 @@ module MediaWiktory::Wikipedia::Actions
     def tags(*values)
       merge(tags: values.join('|'))
     end
+
     # Name of the user whose edits are to be rolled back.
     #
     # @param value [String]
@@ -47,6 +51,7 @@ module MediaWiktory::Wikipedia::Actions
     def user(value)
       merge(user: value.to_s)
     end
+
     # Custom edit summary. If empty, default summary will be used.
     #
     # @param value [String]
@@ -54,12 +59,14 @@ module MediaWiktory::Wikipedia::Actions
     def summary(value)
       merge(summary: value.to_s)
     end
+
     # Mark the reverted edits and the revert as bot edits.
     #
     # @return [self]
     def markbot()
       merge(markbot: 'true')
     end
+
     # Unconditionally add or remove the page from the current user's watchlist, use preferences or do not change watch.
     #
     # @param value [String] One of "watch", "unwatch", "preferences", "nochange".
@@ -67,6 +74,7 @@ module MediaWiktory::Wikipedia::Actions
     def watchlist(value)
       merge(watchlist: value.to_s)
     end
+
     # A "rollback" token retrieved from action=query&meta=tokens
     #
     # @param value [String]

@@ -20,6 +20,7 @@ module MediaWiktory::Wikipedia::Modules
   # All submodule's parameters are documented as its public methods, see below.
   #
   module Mostviewed
+
     # The metric to use for counting views. Depending on what backend is used, not all metrics might be supported. You can use the siteinfo API (action=query&meta=siteinfo) to check, under pageviewservice-supported-metrics / <module name>
     #
     # @param value [String] One of "pageviews" (Plain pageviews).
@@ -27,6 +28,7 @@ module MediaWiktory::Wikipedia::Modules
     def metric(value)
       merge(pvimmetric: value.to_s)
     end
+
     # The number of pages to return.
     #
     # @param value [Integer, "max"]
@@ -34,6 +36,7 @@ module MediaWiktory::Wikipedia::Modules
     def limit(value)
       merge(pvimlimit: value.to_s)
     end
+
     # When more results are available, use this to continue.
     #
     # @param value [Integer]

@@ -19,6 +19,7 @@ module MediaWiktory::Wikipedia::Actions
   # All action's parameters are documented as its public methods, see below.
   #
   class Deleteeducation < MediaWiktory::GetAction
+
     # The IDs of the objects to delete.
     #
     # @param values [Array<Integer>]
@@ -26,6 +27,7 @@ module MediaWiktory::Wikipedia::Actions
     def ids(*values)
       merge(ids: values.join('|'))
     end
+
     # Type of object to delete.
     #
     # @param value [String] One of "org", "course".
@@ -33,6 +35,7 @@ module MediaWiktory::Wikipedia::Actions
     def type(value)
       merge(type: value.to_s)
     end
+
     # Reason for this deletion, for the log.
     #
     # @param value [String]
@@ -40,6 +43,7 @@ module MediaWiktory::Wikipedia::Actions
     def comment(value)
       merge(comment: value.to_s)
     end
+
     # A "csrf" token retrieved from action=query&meta=tokens
     #
     # @param value [String]

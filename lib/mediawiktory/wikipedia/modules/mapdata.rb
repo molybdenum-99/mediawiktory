@@ -20,6 +20,7 @@ module MediaWiktory::Wikipedia::Modules
   # All submodule's parameters are documented as its public methods, see below.
   #
   module Mapdata
+
     # Pipe-separated groups to return data for
     #
     # @param value [String]
@@ -27,6 +28,7 @@ module MediaWiktory::Wikipedia::Modules
     def groups(value)
       merge(mpdgroups: value.to_s)
     end
+
     # Data for how many pages to return
     #
     # @param value [Integer, "max"]
@@ -34,6 +36,7 @@ module MediaWiktory::Wikipedia::Modules
     def limit(value)
       merge(mpdlimit: value.to_s)
     end
+
     # When more results are available, use this to continue.
     #
     # @param value [Integer]

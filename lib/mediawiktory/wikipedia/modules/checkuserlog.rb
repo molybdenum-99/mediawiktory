@@ -20,6 +20,7 @@ module MediaWiktory::Wikipedia::Modules
   # All submodule's parameters are documented as its public methods, see below.
   #
   module Checkuserlog
+
     # Username of the CheckUser.
     #
     # @param value [String]
@@ -27,6 +28,7 @@ module MediaWiktory::Wikipedia::Modules
     def user(value)
       merge(culuser: value.to_s)
     end
+
     # Checked user, IP address, or CIDR range.
     #
     # @param value [String]
@@ -34,6 +36,7 @@ module MediaWiktory::Wikipedia::Modules
     def target(value)
       merge(cultarget: value.to_s)
     end
+
     # Limit of rows.
     #
     # @param value [Integer, "max"]
@@ -41,6 +44,7 @@ module MediaWiktory::Wikipedia::Modules
     def limit(value)
       merge(cullimit: value.to_s)
     end
+
     # In which direction to enumerate:
     #
     # @param value [String] One of "newer" (List oldest first. Note: culstart has to be before culend), "older" (List newest first (default). Note: culstart has to be later than culend).
@@ -48,6 +52,7 @@ module MediaWiktory::Wikipedia::Modules
     def dir(value)
       merge(culdir: value.to_s)
     end
+
     # The timestamp to start enumerating from.
     #
     # @param value [Time]
@@ -55,6 +60,7 @@ module MediaWiktory::Wikipedia::Modules
     def from(value)
       merge(culfrom: value.iso8601)
     end
+
     # The timestamp to end enumerating.
     #
     # @param value [Time]
@@ -62,6 +68,7 @@ module MediaWiktory::Wikipedia::Modules
     def to(value)
       merge(culto: value.iso8601)
     end
+
     # When more results are available, use this to continue.
     #
     # @param value [String]

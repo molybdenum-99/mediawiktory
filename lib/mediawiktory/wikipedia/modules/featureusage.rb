@@ -20,6 +20,7 @@ module MediaWiktory::Wikipedia::Modules
   # All submodule's parameters are documented as its public methods, see below.
   #
   module Featureusage
+
     # Start of date range to query.
     #
     # @param value [Time]
@@ -27,6 +28,7 @@ module MediaWiktory::Wikipedia::Modules
     def start(value)
       merge(afustart: value.iso8601)
     end
+
     # End of date range to query.
     #
     # @param value [Time]
@@ -34,6 +36,7 @@ module MediaWiktory::Wikipedia::Modules
     def end(value)
       merge(afuend: value.iso8601)
     end
+
     # User agent to query. If not specified, the agent in the request will be queried.
     #
     # @param value [String]
@@ -41,6 +44,7 @@ module MediaWiktory::Wikipedia::Modules
     def agent(value)
       merge(afuagent: value.to_s)
     end
+
     # If specified, return details on only these features.
     #
     # @param values [Array<String>]

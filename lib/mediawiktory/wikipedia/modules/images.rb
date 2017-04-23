@@ -20,6 +20,7 @@ module MediaWiktory::Wikipedia::Modules
   # All submodule's parameters are documented as its public methods, see below.
   #
   module Images
+
     # How many files to return.
     #
     # @param value [Integer, "max"]
@@ -27,6 +28,7 @@ module MediaWiktory::Wikipedia::Modules
     def limit(value)
       merge(imlimit: value.to_s)
     end
+
     # When more results are available, use this to continue.
     #
     # @param value [String]
@@ -34,6 +36,7 @@ module MediaWiktory::Wikipedia::Modules
     def continue(value)
       merge(imcontinue: value.to_s)
     end
+
     # Only list these files. Useful for checking whether a certain page has a certain file.
     #
     # @param values [Array<String>]
@@ -41,6 +44,7 @@ module MediaWiktory::Wikipedia::Modules
     def images(*values)
       merge(imimages: values.join('|'))
     end
+
     # The direction in which to list.
     #
     # @param value [String] One of "ascending", "descending".

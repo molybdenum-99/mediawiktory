@@ -19,6 +19,7 @@ module MediaWiktory::Wikipedia::Actions
   # All action's parameters are documented as its public methods, see below.
   #
   class Changeauthenticationdata < MediaWiktory::GetAction
+
     # Use this authentication request, by the id returned from action=query&meta=authmanagerinfo with amirequestsfor=change.
     #
     # @param value [String]
@@ -26,6 +27,7 @@ module MediaWiktory::Wikipedia::Actions
     def request(value)
       merge(changeauthrequest: value.to_s)
     end
+
     # A "csrf" token retrieved from action=query&meta=tokens
     #
     # @param value [String]

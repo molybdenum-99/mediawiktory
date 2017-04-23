@@ -20,6 +20,7 @@ module MediaWiktory::Wikipedia::Modules
   # All submodule's parameters are documented as its public methods, see below.
   #
   module Prefixsearch
+
     # Search string.
     #
     # @param value [String]
@@ -27,6 +28,7 @@ module MediaWiktory::Wikipedia::Modules
     def search(value)
       merge(pssearch: value.to_s)
     end
+
     # Namespaces to search.
     #
     # @param values [Array<String>] Allowed values: "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "100", "101", "108", "109", "118", "119", "446", "447", "710", "711", "828", "829", "2300", "2301", "2302", "2303".
@@ -34,6 +36,7 @@ module MediaWiktory::Wikipedia::Modules
     def namespace(*values)
       merge(psnamespace: values.join('|'))
     end
+
     # Maximum number of results to return.
     #
     # @param value [Integer, "max"]
@@ -41,6 +44,7 @@ module MediaWiktory::Wikipedia::Modules
     def limit(value)
       merge(pslimit: value.to_s)
     end
+
     # When more results are available, use this to continue.
     #
     # @param value [Integer]
@@ -48,6 +52,7 @@ module MediaWiktory::Wikipedia::Modules
     def offset(value)
       merge(psoffset: value.to_s)
     end
+
     # Search profile to use.
     #
     # @param value [String] One of "strict" (Strict profile with few punctuation characters removed but diacritics and stress marks are kept), "normal" (Few punctuation characters, some diacritics and stopwords removed), "fuzzy" (Similar to normal with typo correction (two typos supported)), "fast-fuzzy" ((no description)), "classic" (Classic prefix, few punctuation characters and some diacritics removed).

@@ -19,6 +19,7 @@ module MediaWiktory::Wikipedia::Actions
   # All action's parameters are documented as its public methods, see below.
   #
   class Languagesearch < MediaWiktory::GetAction
+
     # Search string.
     #
     # @param value [String]
@@ -26,6 +27,7 @@ module MediaWiktory::Wikipedia::Actions
     def search(value)
       merge(search: value.to_s)
     end
+
     # Number of spelling mistakes allowed in the search string.
     #
     # @param value [Integer]

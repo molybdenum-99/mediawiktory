@@ -20,6 +20,7 @@ module MediaWiktory::Wikipedia::Modules
   # All submodule's parameters are documented as its public methods, see below.
   #
   module Extlinks
+
     # How many links to return.
     #
     # @param value [Integer, "max"]
@@ -27,6 +28,7 @@ module MediaWiktory::Wikipedia::Modules
     def limit(value)
       merge(ellimit: value.to_s)
     end
+
     # When more results are available, use this to continue.
     #
     # @param value [Integer]
@@ -34,6 +36,7 @@ module MediaWiktory::Wikipedia::Modules
     def offset(value)
       merge(eloffset: value.to_s)
     end
+
     # Protocol of the URL. If empty and elquery is set, the protocol is http. Leave both this and elquery empty to list all external links.
     #
     # @param value [String] One of "bitcoin", "ftp", "ftps", "geo", "git", "gopher", "http", "https", "irc", "ircs", "magnet", "mailto", "mms", "news", "nntp", "redis", "sftp", "sip", "sips", "sms", "ssh", "svn", "tel", "telnet", "urn", "worldwind", "xmpp".
@@ -41,6 +44,7 @@ module MediaWiktory::Wikipedia::Modules
     def protocol(value)
       merge(elprotocol: value.to_s)
     end
+
     # Search string without protocol. Useful for checking whether a certain page contains a certain external url.
     #
     # @param value [String]
@@ -48,6 +52,7 @@ module MediaWiktory::Wikipedia::Modules
     def query(value)
       merge(elquery: value.to_s)
     end
+
     # Expand protocol-relative URLs with the canonical protocol.
     #
     # @return [self]

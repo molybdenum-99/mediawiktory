@@ -20,6 +20,7 @@ module MediaWiktory::Wikipedia::Modules
   # All submodule's parameters are documented as its public methods, see below.
   #
   module Allfileusages
+
     # When more results are available, use this to continue.
     #
     # @param value [String]
@@ -27,6 +28,7 @@ module MediaWiktory::Wikipedia::Modules
     def continue(value)
       merge(afcontinue: value.to_s)
     end
+
     # The title of the file to start enumerating from.
     #
     # @param value [String]
@@ -34,6 +36,7 @@ module MediaWiktory::Wikipedia::Modules
     def from(value)
       merge(affrom: value.to_s)
     end
+
     # The title of the file to stop enumerating at.
     #
     # @param value [String]
@@ -41,6 +44,7 @@ module MediaWiktory::Wikipedia::Modules
     def to(value)
       merge(afto: value.to_s)
     end
+
     # Search for all file titles that begin with this value.
     #
     # @param value [String]
@@ -48,12 +52,14 @@ module MediaWiktory::Wikipedia::Modules
     def prefix(value)
       merge(afprefix: value.to_s)
     end
+
     # Only show distinct file titles. Cannot be used with afprop=ids. When used as a generator, yields target pages instead of source pages.
     #
     # @return [self]
     def unique()
       merge(afunique: 'true')
     end
+
     # Which pieces of information to include:
     #
     # @param values [Array<String>] Allowed values: "ids" (Adds the page IDs of the using pages (cannot be used with afunique)), "title" (Adds the title of the file).
@@ -61,6 +67,7 @@ module MediaWiktory::Wikipedia::Modules
     def prop(*values)
       merge(afprop: values.join('|'))
     end
+
     # How many total items to return.
     #
     # @param value [Integer, "max"]
@@ -68,6 +75,7 @@ module MediaWiktory::Wikipedia::Modules
     def limit(value)
       merge(aflimit: value.to_s)
     end
+
     # The direction in which to list.
     #
     # @param value [String] One of "ascending", "descending".

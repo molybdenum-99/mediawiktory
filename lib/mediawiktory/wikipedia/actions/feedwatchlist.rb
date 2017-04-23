@@ -19,6 +19,7 @@ module MediaWiktory::Wikipedia::Actions
   # All action's parameters are documented as its public methods, see below.
   #
   class Feedwatchlist < MediaWiktory::GetAction
+
     # The format of the feed.
     #
     # @param value [String] One of "rss", "atom".
@@ -26,6 +27,7 @@ module MediaWiktory::Wikipedia::Actions
     def feedformat(value)
       merge(feedformat: value.to_s)
     end
+
     # List pages modified within this many hours from now.
     #
     # @param value [Integer]
@@ -33,18 +35,21 @@ module MediaWiktory::Wikipedia::Actions
     def hours(value)
       merge(hours: value.to_s)
     end
+
     # Link directly to changed sections if possible.
     #
     # @return [self]
     def linktosections()
       merge(linktosections: 'true')
     end
+
     # Include multiple revisions of the same page within given timeframe.
     #
     # @return [self]
     def allrev()
       merge(allrev: 'true')
     end
+
     # Used along with token to access a different user's watchlist.
     #
     # @param value [String]
@@ -52,6 +57,7 @@ module MediaWiktory::Wikipedia::Actions
     def wlowner(value)
       merge(wlowner: value.to_s)
     end
+
     # A security token (available in the user's preferences) to allow access to another user's watchlist.
     #
     # @param value [String]
@@ -59,6 +65,7 @@ module MediaWiktory::Wikipedia::Actions
     def wltoken(value)
       merge(wltoken: value.to_s)
     end
+
     # Show only items that meet these criteria. For example, to see only minor edits done by logged-in users, set show=minor|!anon.
     #
     # @param values [Array<String>] Allowed values: "minor", "!minor", "bot", "!bot", "anon", "!anon", "patrolled", "!patrolled", "unread", "!unread".
@@ -66,6 +73,7 @@ module MediaWiktory::Wikipedia::Actions
     def wlshow(*values)
       merge(wlshow: values.join('|'))
     end
+
     # Which types of changes to show:
     #
     # @param values [Array<String>] Allowed values: "edit" (Regular page edits), "new" (Page creations), "log" (Log entries), "external" (External changes), "categorize" (Category membership changes).
@@ -73,6 +81,7 @@ module MediaWiktory::Wikipedia::Actions
     def wltype(*values)
       merge(wltype: values.join('|'))
     end
+
     # Don't list changes by this user.
     #
     # @param value [String]

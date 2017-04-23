@@ -19,6 +19,7 @@ module MediaWiktory::Wikipedia::Actions
   # All action's parameters are documented as its public methods, see below.
   #
   class Stabilize < MediaWiktory::GetAction
+
     # The review-protection level.
     #
     # @param value [String] One of "autoconfirmed", "none".
@@ -26,6 +27,7 @@ module MediaWiktory::Wikipedia::Actions
     def protectlevel(value)
       merge(protectlevel: value.to_s)
     end
+
     # Review-protection expiry.
     #
     # @param value [String]
@@ -33,6 +35,7 @@ module MediaWiktory::Wikipedia::Actions
     def expiry(value)
       merge(expiry: value.to_s)
     end
+
     # Reason.
     #
     # @param value [String]
@@ -40,6 +43,7 @@ module MediaWiktory::Wikipedia::Actions
     def reason(value)
       merge(reason: value.to_s)
     end
+
     # Watch this page.
     #
     # @param value [String]
@@ -47,6 +51,7 @@ module MediaWiktory::Wikipedia::Actions
     def watch(value)
       merge(watch: value.to_s)
     end
+
     # A "csrf" token retrieved from action=query&meta=tokens
     #
     # @param value [String]
@@ -54,6 +59,7 @@ module MediaWiktory::Wikipedia::Actions
     def token(value)
       merge(token: value.to_s)
     end
+
     # Title of the page to be review-protected.
     #
     # @param value [String]

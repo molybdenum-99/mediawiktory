@@ -56,3 +56,15 @@ Metrics/LineLength:
   Max: 100
   Exclude:
     - 'lib/mediawiktory/wikipedia/**/*'
+
+Style/EmptyLinesAroundClassBody:
+  Exclude:
+    - 'lib/mediawiktory/wikipedia/**/*'
+
+Style/EmptyLinesAroundModuleBody:
+  Exclude:
+    - 'lib/mediawiktory/wikipedia/**/*'
+
+Style/TrailingWhitespace:
+  Exclude:
+    - 'lib/mediawiktory/wikipedia/**/*'

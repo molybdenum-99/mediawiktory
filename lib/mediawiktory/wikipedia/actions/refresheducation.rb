@@ -19,6 +19,7 @@ module MediaWiktory::Wikipedia::Actions
   # All action's parameters are documented as its public methods, see below.
   #
   class Refresheducation < MediaWiktory::GetAction
+
     # The IDs of the objects to refresh.
     #
     # @param values [Array<Integer>]
@@ -26,6 +27,7 @@ module MediaWiktory::Wikipedia::Actions
     def ids(*values)
       merge(ids: values.join('|'))
     end
+
     # Type of object to refresh.
     #
     # @param value [String] One of "org", "course", "student".
@@ -33,6 +35,7 @@ module MediaWiktory::Wikipedia::Actions
     def type(value)
       merge(type: value.to_s)
     end
+
     # A "csrf" token retrieved from action=query&meta=tokens
     #
     # @param value [String]

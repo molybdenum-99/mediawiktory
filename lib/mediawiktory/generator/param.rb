@@ -166,15 +166,15 @@ module MediaWiktory
         when 'boolean'
           "'true'" # on false, merge(param: something) not rendered at all
         when 'list of modules'
-          "modules_to_hash(values, #{modules.map { |m| m.name.to_sym } })"
+          "modules_to_hash(values, #{modules.map { |m| m.name.to_sym }})"
         when 'list of timestamps'
           "values.map(&:iso8601).join('|')"
         when /^list/
           "values.join('|')"
         when 'enum of modules'
-          "module_to_hash(value, #{modules.map { |m| m.name.to_sym } })"
+          "module_to_hash(value, #{modules.map { |m| m.name.to_sym }})"
         when 'timestamp'
-          "value.iso8601"
+          'value.iso8601'
         else
           'value.to_s'
         end

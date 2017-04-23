@@ -20,6 +20,7 @@ module MediaWiktory::Wikipedia::Modules
   # All submodule's parameters are documented as its public methods, see below.
   #
   module Coordinates
+
     # How many coordinates to return.
     #
     # @param value [Integer, "max"]
@@ -27,6 +28,7 @@ module MediaWiktory::Wikipedia::Modules
     def limit(value)
       merge(colimit: value.to_s)
     end
+
     # When more results are available, use this to continue.
     #
     # @param value [String]
@@ -34,6 +36,7 @@ module MediaWiktory::Wikipedia::Modules
     def continue(value)
       merge(cocontinue: value.to_s)
     end
+
     # Which additional coordinate properties to return.
     #
     # @param values [Array<String>] Allowed values: "type", "name", "dim", "country", "region", "globe".
@@ -41,6 +44,7 @@ module MediaWiktory::Wikipedia::Modules
     def prop(*values)
       merge(coprop: values.join('|'))
     end
+
     # Whether to return only primary coordinates ("primary"), secondary ("secondary") or both ("all").
     #
     # @param value [String] One of "primary", "secondary", "all".
@@ -48,6 +52,7 @@ module MediaWiktory::Wikipedia::Modules
     def primary(value)
       merge(coprimary: value.to_s)
     end
+
     # Return distance in meters from the geographical coordinates of every valid result from the given coordinates.
     #
     # @param value [String]
@@ -55,6 +60,7 @@ module MediaWiktory::Wikipedia::Modules
     def distancefrompoint(value)
       merge(codistancefrompoint: value.to_s)
     end
+
     # Return distance in meters from the geographical coordinates of every valid result from the coordinates of this page.
     #
     # @param value [String]

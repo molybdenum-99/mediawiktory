@@ -20,6 +20,7 @@ module MediaWiktory::Wikipedia::Modules
   # All submodule's parameters are documented as its public methods, see below.
   #
   module Filearchive
+
     # The image title to start enumerating from.
     #
     # @param value [String]
@@ -27,6 +28,7 @@ module MediaWiktory::Wikipedia::Modules
     def from(value)
       merge(fafrom: value.to_s)
     end
+
     # The image title to stop enumerating at.
     #
     # @param value [String]
@@ -34,6 +36,7 @@ module MediaWiktory::Wikipedia::Modules
     def to(value)
       merge(fato: value.to_s)
     end
+
     # Search for all image titles that begin with this value.
     #
     # @param value [String]
@@ -41,6 +44,7 @@ module MediaWiktory::Wikipedia::Modules
     def prefix(value)
       merge(faprefix: value.to_s)
     end
+
     # The direction in which to list.
     #
     # @param value [String] One of "ascending", "descending".
@@ -48,6 +52,7 @@ module MediaWiktory::Wikipedia::Modules
     def dir(value)
       merge(fadir: value.to_s)
     end
+
     # SHA1 hash of image. Overrides fasha1base36.
     #
     # @param value [String]
@@ -55,6 +60,7 @@ module MediaWiktory::Wikipedia::Modules
     def sha1(value)
       merge(fasha1: value.to_s)
     end
+
     # SHA1 hash of image in base 36 (used in MediaWiki).
     #
     # @param value [String]
@@ -62,6 +68,7 @@ module MediaWiktory::Wikipedia::Modules
     def sha1base36(value)
       merge(fasha1base36: value.to_s)
     end
+
     # Which image information to get:
     #
     # @param values [Array<String>] Allowed values: "sha1" (Adds SHA-1 hash for the image), "timestamp" (Adds timestamp for the uploaded version), "user" (Adds user who uploaded the image version), "size" (Adds the size of the image in bytes and the height, width and page count (if applicable)), "dimensions" (Alias for size), "description" (Adds description of the image version), "parseddescription" (Parse the description of the version), "mime" (Adds MIME of the image), "mediatype" (Adds the media type of the image), "metadata" (Lists Exif metadata for the version of the image), "bitdepth" (Adds the bit depth of the version), "archivename" (Adds the filename of the archive version for non-latest versions).
@@ -69,6 +76,7 @@ module MediaWiktory::Wikipedia::Modules
     def prop(*values)
       merge(faprop: values.join('|'))
     end
+
     # How many images to return in total.
     #
     # @param value [Integer, "max"]
@@ -76,6 +84,7 @@ module MediaWiktory::Wikipedia::Modules
     def limit(value)
       merge(falimit: value.to_s)
     end
+
     # When more results are available, use this to continue.
     #
     # @param value [String]

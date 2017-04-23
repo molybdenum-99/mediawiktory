@@ -19,6 +19,7 @@ module MediaWiktory::Wikipedia::Actions
   # All action's parameters are documented as its public methods, see below.
   #
   class Revisiondelete < MediaWiktory::GetAction
+
     # Type of revision deletion being performed.
     #
     # @param value [String] One of "revision", "archive", "oldimage", "filearchive", "logging".
@@ -26,6 +27,7 @@ module MediaWiktory::Wikipedia::Actions
     def type(value)
       merge(type: value.to_s)
     end
+
     # Page title for the revision deletion, if required for the type.
     #
     # @param value [String]
@@ -33,6 +35,7 @@ module MediaWiktory::Wikipedia::Actions
     def target(value)
       merge(target: value.to_s)
     end
+
     # Identifiers for the revisions to be deleted.
     #
     # @param values [Array<String>]
@@ -40,6 +43,7 @@ module MediaWiktory::Wikipedia::Actions
     def ids(*values)
       merge(ids: values.join('|'))
     end
+
     # What to hide for each revision.
     #
     # @param values [Array<String>] Allowed values: "content", "comment", "user".
@@ -47,6 +51,7 @@ module MediaWiktory::Wikipedia::Actions
     def hide(*values)
       merge(hide: values.join('|'))
     end
+
     # What to unhide for each revision.
     #
     # @param values [Array<String>] Allowed values: "content", "comment", "user".
@@ -54,6 +59,7 @@ module MediaWiktory::Wikipedia::Actions
     def show(*values)
       merge(show: values.join('|'))
     end
+
     # Whether to suppress data from administrators as well as others.
     #
     # @param value [String] One of "yes", "no", "nochange".
@@ -61,6 +67,7 @@ module MediaWiktory::Wikipedia::Actions
     def suppress(value)
       merge(suppress: value.to_s)
     end
+
     # Reason for the deletion or undeletion.
     #
     # @param value [String]
@@ -68,6 +75,7 @@ module MediaWiktory::Wikipedia::Actions
     def reason(value)
       merge(reason: value.to_s)
     end
+
     # Tags to apply to the entry in the deletion log.
     #
     # @param values [Array<String>] Allowed values: "ProveIt edit", "WPCleaner", "huggle", "large plot addition".
@@ -75,6 +83,7 @@ module MediaWiktory::Wikipedia::Actions
     def tags(*values)
       merge(tags: values.join('|'))
     end
+
     # A "csrf" token retrieved from action=query&meta=tokens
     #
     # @param value [String]

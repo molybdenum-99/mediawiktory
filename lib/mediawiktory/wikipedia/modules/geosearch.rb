@@ -20,6 +20,7 @@ module MediaWiktory::Wikipedia::Modules
   # All submodule's parameters are documented as its public methods, see below.
   #
   module Geosearch
+
     # Coordinate around which to search.
     #
     # @param value [String]
@@ -27,6 +28,7 @@ module MediaWiktory::Wikipedia::Modules
     def coord(value)
       merge(gscoord: value.to_s)
     end
+
     # Title of page around which to search.
     #
     # @param value [String]
@@ -34,6 +36,7 @@ module MediaWiktory::Wikipedia::Modules
     def page(value)
       merge(gspage: value.to_s)
     end
+
     # Bounding box to search in: pipe (|) separated coordinates of top left and bottom right corners.
     #
     # @param value [String]
@@ -41,6 +44,7 @@ module MediaWiktory::Wikipedia::Modules
     def bbox(value)
       merge(gsbbox: value.to_s)
     end
+
     # Search radius in meters.
     #
     # @param value [Integer]
@@ -48,6 +52,7 @@ module MediaWiktory::Wikipedia::Modules
     def radius(value)
       merge(gsradius: value.to_s)
     end
+
     # Restrict search to objects no larger than this, in meters.
     #
     # @param value [Integer]
@@ -55,6 +60,7 @@ module MediaWiktory::Wikipedia::Modules
     def maxdim(value)
       merge(gsmaxdim: value.to_s)
     end
+
     # Maximum number of pages to return.
     #
     # @param value [Integer, "max"]
@@ -62,6 +68,7 @@ module MediaWiktory::Wikipedia::Modules
     def limit(value)
       merge(gslimit: value.to_s)
     end
+
     # Globe to search on (by default "earth").
     #
     # @param value [String] One of "earth".
@@ -69,6 +76,7 @@ module MediaWiktory::Wikipedia::Modules
     def globe(value)
       merge(gsglobe: value.to_s)
     end
+
     # Namespaces to search.
     #
     # @param values [Array<String>] Allowed values: "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "100", "101", "108", "109", "118", "119", "446", "447", "710", "711", "828", "829", "2300", "2301", "2302", "2303".
@@ -76,6 +84,7 @@ module MediaWiktory::Wikipedia::Modules
     def namespace(*values)
       merge(gsnamespace: values.join('|'))
     end
+
     # Which additional coordinate properties to return.
     #
     # @param values [Array<String>] Allowed values: "type", "name", "dim", "country", "region", "globe".
@@ -83,6 +92,7 @@ module MediaWiktory::Wikipedia::Modules
     def prop(*values)
       merge(gsprop: values.join('|'))
     end
+
     # Whether to return only primary coordinates ("primary"), secondary ("secondary") or both ("all").
     #
     # @param value [String] One of "primary", "secondary", "all".
@@ -90,6 +100,7 @@ module MediaWiktory::Wikipedia::Modules
     def primary(value)
       merge(gsprimary: value.to_s)
     end
+
     # Whether debug information should be returned.
     #
     # @return [self]

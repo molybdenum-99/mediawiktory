@@ -20,6 +20,7 @@ module MediaWiktory::Wikipedia::Modules
   # All submodule's parameters are documented as its public methods, see below.
   #
   module Abusefilters
+
     # The filter ID to start enumerating from.
     #
     # @param value [Integer]
@@ -27,6 +28,7 @@ module MediaWiktory::Wikipedia::Modules
     def startid(value)
       merge(abfstartid: value.to_s)
     end
+
     # The filter ID to stop enumerating at.
     #
     # @param value [Integer]
@@ -34,6 +36,7 @@ module MediaWiktory::Wikipedia::Modules
     def endid(value)
       merge(abfendid: value.to_s)
     end
+
     # In which direction to enumerate:
     #
     # @param value [String] One of "newer" (List oldest first. Note: abfstart has to be before abfend), "older" (List newest first (default). Note: abfstart has to be later than abfend).
@@ -41,6 +44,7 @@ module MediaWiktory::Wikipedia::Modules
     def dir(value)
       merge(abfdir: value.to_s)
     end
+
     # Show only filters which meet these criteria.
     #
     # @param values [Array<String>] Allowed values: "enabled", "!enabled", "deleted", "!deleted", "private", "!private".
@@ -48,6 +52,7 @@ module MediaWiktory::Wikipedia::Modules
     def show(*values)
       merge(abfshow: values.join('|'))
     end
+
     # The maximum number of filters to list.
     #
     # @param value [Integer, "max"]
@@ -55,6 +60,7 @@ module MediaWiktory::Wikipedia::Modules
     def limit(value)
       merge(abflimit: value.to_s)
     end
+
     # Which properties to get.
     #
     # @param values [Array<String>] Allowed values: "id", "description", "pattern", "actions", "hits", "comments", "lasteditor", "lastedittime", "status", "private".

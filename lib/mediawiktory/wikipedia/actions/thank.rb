@@ -19,6 +19,7 @@ module MediaWiktory::Wikipedia::Actions
   # All action's parameters are documented as its public methods, see below.
   #
   class Thank < MediaWiktory::GetAction
+
     # Revision ID to thank someone for.
     #
     # @param value [Integer]
@@ -26,6 +27,7 @@ module MediaWiktory::Wikipedia::Actions
     def rev(value)
       merge(rev: value.to_s)
     end
+
     # A "csrf" token retrieved from action=query&meta=tokens
     #
     # @param value [String]
@@ -33,6 +35,7 @@ module MediaWiktory::Wikipedia::Actions
     def token(value)
       merge(token: value.to_s)
     end
+
     # A short string describing the source of the request, for example diff or history.
     #
     # @param value [String]

@@ -19,6 +19,7 @@ module MediaWiktory::Wikipedia::Actions
   # All action's parameters are documented as its public methods, see below.
   #
   class Jsonconfig < MediaWiktory::GetAction
+
     # Which sub-action to perform on JsonConfig:
     #
     # @param value [String] One of "status" (Shows JsonConfig configuration), "reset" (Clears configurations from cache. Requires title parameter and jsonconfig-reset right), "reload" (Reloads and caches configurations from config store. Requires title parameter and jsonconfig-reset right).
@@ -26,6 +27,7 @@ module MediaWiktory::Wikipedia::Actions
     def command(value)
       merge(command: value.to_s)
     end
+
     # Namespace number of the title to process.
     #
     # @param value [Integer]
@@ -33,6 +35,7 @@ module MediaWiktory::Wikipedia::Actions
     def namespace(value)
       merge(namespace: value.to_s)
     end
+
     # Title to process without namespace prefix.
     #
     # @param value [String]
@@ -40,6 +43,7 @@ module MediaWiktory::Wikipedia::Actions
     def title(value)
       merge(title: value.to_s)
     end
+
     # For command=reload, use this content instead.
     #
     # @param value [String]

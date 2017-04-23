@@ -19,6 +19,7 @@ module MediaWiktory::Wikipedia::Actions
   # All action's parameters are documented as its public methods, see below.
   #
   class Deleteglobalaccount < MediaWiktory::GetAction
+
     # User to delete.
     #
     # @param value [String]
@@ -26,6 +27,7 @@ module MediaWiktory::Wikipedia::Actions
     def user(value)
       merge(user: value.to_s)
     end
+
     # Reason for deleting the user.
     #
     # @param value [String]
@@ -33,6 +35,7 @@ module MediaWiktory::Wikipedia::Actions
     def reason(value)
       merge(reason: value.to_s)
     end
+
     # A "deleteglobalaccount" token retrieved from action=query&meta=tokens
     #
     # @param value [String]

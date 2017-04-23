@@ -19,6 +19,7 @@ module MediaWiktory::Wikipedia::Actions
   # All action's parameters are documented as its public methods, see below.
   #
   class Mergehistory < MediaWiktory::GetAction
+
     # Title of the page from which history will be merged. Cannot be used together with fromid.
     #
     # @param value [String]
@@ -26,6 +27,7 @@ module MediaWiktory::Wikipedia::Actions
     def from(value)
       merge(from: value.to_s)
     end
+
     # Page ID of the page from which history will be merged. Cannot be used together with from.
     #
     # @param value [Integer]
@@ -33,6 +35,7 @@ module MediaWiktory::Wikipedia::Actions
     def fromid(value)
       merge(fromid: value.to_s)
     end
+
     # Title of the page to which history will be merged. Cannot be used together with toid.
     #
     # @param value [String]
@@ -40,6 +43,7 @@ module MediaWiktory::Wikipedia::Actions
     def to(value)
       merge(to: value.to_s)
     end
+
     # Page ID of the page to which history will be merged. Cannot be used together with to.
     #
     # @param value [Integer]
@@ -47,6 +51,7 @@ module MediaWiktory::Wikipedia::Actions
     def toid(value)
       merge(toid: value.to_s)
     end
+
     # Timestamp up to which revisions will be moved from the source page's history to the destination page's history. If omitted, the entire page history of the source page will be merged into the destination page.
     #
     # @param value [Time]
@@ -54,6 +59,7 @@ module MediaWiktory::Wikipedia::Actions
     def timestamp(value)
       merge(timestamp: value.iso8601)
     end
+
     # Reason for the history merge.
     #
     # @param value [String]
@@ -61,6 +67,7 @@ module MediaWiktory::Wikipedia::Actions
     def reason(value)
       merge(reason: value.to_s)
     end
+
     # A "csrf" token retrieved from action=query&meta=tokens
     #
     # @param value [String]

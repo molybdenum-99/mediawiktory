@@ -20,6 +20,7 @@ module MediaWiktory::Wikipedia::Modules
   # All submodule's parameters are documented as its public methods, see below.
   #
   module Globalusage
+
     # Which properties to return:
     #
     # @param values [Array<String>] Allowed values: "url" (Adds url), "pageid" (Adds page ID), "namespace" (Adds namespace ID).
@@ -27,6 +28,7 @@ module MediaWiktory::Wikipedia::Modules
     def prop(*values)
       merge(guprop: values.join('|'))
     end
+
     # How many links to return.
     #
     # @param value [Integer, "max"]
@@ -34,6 +36,7 @@ module MediaWiktory::Wikipedia::Modules
     def limit(value)
       merge(gulimit: value.to_s)
     end
+
     # When more results are available, use this to continue.
     #
     # @param value [String]
@@ -41,6 +44,7 @@ module MediaWiktory::Wikipedia::Modules
     def continue(value)
       merge(gucontinue: value.to_s)
     end
+
     # Filter local usage of the file.
     #
     # @return [self]

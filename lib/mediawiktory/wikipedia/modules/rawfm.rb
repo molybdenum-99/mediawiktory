@@ -20,6 +20,7 @@ module MediaWiktory::Wikipedia::Modules
   # All submodule's parameters are documented as its public methods, see below.
   #
   module Rawfm
+
     # Return the pretty-printed HTML and associated ResourceLoader modules as a JSON object.
     #
     # @return [self]

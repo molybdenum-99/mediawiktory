@@ -20,6 +20,7 @@ module MediaWiktory::Wikipedia::Modules
   # All submodule's parameters are documented as its public methods, see below.
   #
   module Wblistentityusage
+
     # Properties to add to the result.
     #
     # @param values [Array<String>] Allowed values: "url" (If enabled the url of the entity will be added to the result).
@@ -27,6 +28,7 @@ module MediaWiktory::Wikipedia::Modules
     def prop(*values)
       merge(wbeuprop: values.join('|'))
     end
+
     # Only return entity IDs that used this aspect.
     #
     # @param values [Array<String>] Allowed values: "S", "L", "T", "X", "O".
@@ -34,6 +36,7 @@ module MediaWiktory::Wikipedia::Modules
     def aspect(*values)
       merge(wbeuaspect: values.join('|'))
     end
+
     # Entities that have been used.
     #
     # @param values [Array<String>]
@@ -41,6 +44,7 @@ module MediaWiktory::Wikipedia::Modules
     def entities(*values)
       merge(wbeuentities: values.join('|'))
     end
+
     # How many entity usages to return.
     #
     # @param value [Integer, "max"]
@@ -48,6 +52,7 @@ module MediaWiktory::Wikipedia::Modules
     def limit(value)
       merge(wbeulimit: value.to_s)
     end
+
     # When more results are available, use this to continue.
     #
     # @param value [String]

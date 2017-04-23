@@ -19,6 +19,7 @@ module MediaWiktory::Wikipedia::Actions
   # All action's parameters are documented as its public methods, see below.
   #
   class Validatepassword < MediaWiktory::GetAction
+
     # Password to validate.
     #
     # @param value [String]
@@ -26,6 +27,7 @@ module MediaWiktory::Wikipedia::Actions
     def password(value)
       merge(password: value.to_s)
     end
+
     # User name, for use when testing account creation. The named user must not exist.
     #
     # @param value [String]
@@ -33,6 +35,7 @@ module MediaWiktory::Wikipedia::Actions
     def user(value)
       merge(user: value.to_s)
     end
+
     # Email address, for use when testing account creation.
     #
     # @param value [String]
@@ -40,6 +43,7 @@ module MediaWiktory::Wikipedia::Actions
     def email(value)
       merge(email: value.to_s)
     end
+
     # Real name, for use when testing account creation.
     #
     # @param value [String]

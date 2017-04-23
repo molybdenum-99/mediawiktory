@@ -19,6 +19,7 @@ module MediaWiktory::Wikipedia::Actions
   # All action's parameters are documented as its public methods, see below.
   #
   class Reviewactivity < MediaWiktory::GetAction
+
     # The prior revision ID (for reviewing changes only).
     #
     # @param value [String]
@@ -26,6 +27,7 @@ module MediaWiktory::Wikipedia::Actions
     def previd(value)
       merge(previd: value.to_s)
     end
+
     # The ID of the revision being reviewed.
     #
     # @param value [String]
@@ -33,6 +35,7 @@ module MediaWiktory::Wikipedia::Actions
     def oldid(value)
       merge(oldid: value.to_s)
     end
+
     # Whether to advertise yourself as reviewing or no longer reviewing.
     #
     # @param value [String] One of "0", "1".
@@ -40,6 +43,7 @@ module MediaWiktory::Wikipedia::Actions
     def reviewing(value)
       merge(reviewing: value.to_s)
     end
+
     # A "csrf" token retrieved from action=query&meta=tokens
     #
     # @param value [String]

@@ -19,6 +19,7 @@ module MediaWiktory::Wikipedia::Actions
   # All action's parameters are documented as its public methods, see below.
   #
   class Sitematrix < MediaWiktory::GetAction
+
     # Filter the Site Matrix by type:
     #
     # @param values [Array<String>] Allowed values: "special" (One off and multilingual Wikimedia projects), "language" (Wikimedia projects under this language code).
@@ -26,6 +27,7 @@ module MediaWiktory::Wikipedia::Actions
     def type(*values)
       merge(smtype: values.join('|'))
     end
+
     # Filter the Site Matrix by wiki state:
     #
     # @param values [Array<String>] Allowed values: "all", "closed", "private", "fishbowl", "nonglobal".
@@ -33,6 +35,7 @@ module MediaWiktory::Wikipedia::Actions
     def state(*values)
       merge(smstate: values.join('|'))
     end
+
     # Which information about a language to return.
     #
     # @param values [Array<String>] Allowed values: "code", "name", "site", "localname".
@@ -40,6 +43,7 @@ module MediaWiktory::Wikipedia::Actions
     def langprop(*values)
       merge(smlangprop: values.join('|'))
     end
+
     # Which information about a site to return.
     #
     # @param values [Array<String>] Allowed values: "url", "dbname", "code", "sitename".
@@ -47,6 +51,7 @@ module MediaWiktory::Wikipedia::Actions
     def siteprop(*values)
       merge(smsiteprop: values.join('|'))
     end
+
     # Maximum number of results.
     #
     # @param value [Integer, "max"]
@@ -54,6 +59,7 @@ module MediaWiktory::Wikipedia::Actions
     def limit(value)
       merge(smlimit: value.to_s)
     end
+
     # When more results are available, use this to continue.
     #
     # @param value [String]

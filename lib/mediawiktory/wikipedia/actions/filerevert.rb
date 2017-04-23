@@ -19,6 +19,7 @@ module MediaWiktory::Wikipedia::Actions
   # All action's parameters are documented as its public methods, see below.
   #
   class Filerevert < MediaWiktory::GetAction
+
     # Target filename, without the File: prefix.
     #
     # @param value [String]
@@ -26,6 +27,7 @@ module MediaWiktory::Wikipedia::Actions
     def filename(value)
       merge(filename: value.to_s)
     end
+
     # Upload comment.
     #
     # @param value [String]
@@ -33,6 +35,7 @@ module MediaWiktory::Wikipedia::Actions
     def comment(value)
       merge(comment: value.to_s)
     end
+
     # Archive name of the revision to revert to.
     #
     # @param value [String]
@@ -40,6 +43,7 @@ module MediaWiktory::Wikipedia::Actions
     def archivename(value)
       merge(archivename: value.to_s)
     end
+
     # A "csrf" token retrieved from action=query&meta=tokens
     #
     # @param value [String]

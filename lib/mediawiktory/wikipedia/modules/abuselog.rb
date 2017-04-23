@@ -20,6 +20,7 @@ module MediaWiktory::Wikipedia::Modules
   # All submodule's parameters are documented as its public methods, see below.
   #
   module Abuselog
+
     # The timestamp to start enumerating from.
     #
     # @param value [Time]
@@ -27,6 +28,7 @@ module MediaWiktory::Wikipedia::Modules
     def start(value)
       merge(aflstart: value.iso8601)
     end
+
     # The timestamp to stop enumerating at.
     #
     # @param value [Time]
@@ -34,6 +36,7 @@ module MediaWiktory::Wikipedia::Modules
     def end(value)
       merge(aflend: value.iso8601)
     end
+
     # In which direction to enumerate:
     #
     # @param value [String] One of "newer" (List oldest first. Note: aflstart has to be before aflend), "older" (List newest first (default). Note: aflstart has to be later than aflend).
@@ -41,6 +44,7 @@ module MediaWiktory::Wikipedia::Modules
     def dir(value)
       merge(afldir: value.to_s)
     end
+
     # Show only entries done by a given user or IP address.
     #
     # @param value [String]
@@ -48,6 +52,7 @@ module MediaWiktory::Wikipedia::Modules
     def user(value)
       merge(afluser: value.to_s)
     end
+
     # Show only entries occurring on a given page.
     #
     # @param value [String]
@@ -55,6 +60,7 @@ module MediaWiktory::Wikipedia::Modules
     def title(value)
       merge(afltitle: value.to_s)
     end
+
     # Show only entries that were caught by a given filter ID.
     #
     # @param values [Array<String>]
@@ -62,6 +68,7 @@ module MediaWiktory::Wikipedia::Modules
     def filter(*values)
       merge(aflfilter: values.join('|'))
     end
+
     # The maximum amount of entries to list.
     #
     # @param value [Integer, "max"]
@@ -69,6 +76,7 @@ module MediaWiktory::Wikipedia::Modules
     def limit(value)
       merge(afllimit: value.to_s)
     end
+
     # Which properties to get.
     #
     # @param values [Array<String>] Allowed values: "ids", "filter", "user", "ip", "title", "action", "details", "result", "timestamp", "hidden", "revid".

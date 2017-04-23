@@ -20,6 +20,7 @@ module MediaWiktory::Wikipedia::Modules
   # All submodule's parameters are documented as its public methods, see below.
   #
   module Gadgetcategories
+
     # What gadget category information to get:
     #
     # @param values [Array<String>] Allowed values: "name" (Internal category name), "title" (Category title), "members" (Number of gadgets in category).
@@ -27,6 +28,7 @@ module MediaWiktory::Wikipedia::Modules
     def prop(*values)
       merge(gcprop: values.join('|'))
     end
+
     # Names of categories to retrieve.
     #
     # @param values [Array<String>]

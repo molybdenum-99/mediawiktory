@@ -19,6 +19,7 @@ module MediaWiktory::Wikipedia::Actions
   # All action's parameters are documented as its public methods, see below.
   #
   class Compare < MediaWiktory::GetAction
+
     # First title to compare.
     #
     # @param value [String]
@@ -26,6 +27,7 @@ module MediaWiktory::Wikipedia::Actions
     def fromtitle(value)
       merge(fromtitle: value.to_s)
     end
+
     # First page ID to compare.
     #
     # @param value [Integer]
@@ -33,6 +35,7 @@ module MediaWiktory::Wikipedia::Actions
     def fromid(value)
       merge(fromid: value.to_s)
     end
+
     # First revision to compare.
     #
     # @param value [Integer]
@@ -40,6 +43,7 @@ module MediaWiktory::Wikipedia::Actions
     def fromrev(value)
       merge(fromrev: value.to_s)
     end
+
     # Second title to compare.
     #
     # @param value [String]
@@ -47,6 +51,7 @@ module MediaWiktory::Wikipedia::Actions
     def totitle(value)
       merge(totitle: value.to_s)
     end
+
     # Second page ID to compare.
     #
     # @param value [Integer]
@@ -54,6 +59,7 @@ module MediaWiktory::Wikipedia::Actions
     def toid(value)
       merge(toid: value.to_s)
     end
+
     # Second revision to compare.
     #
     # @param value [Integer]

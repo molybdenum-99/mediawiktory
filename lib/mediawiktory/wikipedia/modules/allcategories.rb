@@ -20,6 +20,7 @@ module MediaWiktory::Wikipedia::Modules
   # All submodule's parameters are documented as its public methods, see below.
   #
   module Allcategories
+
     # The category to start enumerating from.
     #
     # @param value [String]
@@ -27,6 +28,7 @@ module MediaWiktory::Wikipedia::Modules
     def from(value)
       merge(acfrom: value.to_s)
     end
+
     # When more results are available, use this to continue.
     #
     # @param value [String]
@@ -34,6 +36,7 @@ module MediaWiktory::Wikipedia::Modules
     def continue(value)
       merge(accontinue: value.to_s)
     end
+
     # The category to stop enumerating at.
     #
     # @param value [String]
@@ -41,6 +44,7 @@ module MediaWiktory::Wikipedia::Modules
     def to(value)
       merge(acto: value.to_s)
     end
+
     # Search for all category titles that begin with this value.
     #
     # @param value [String]
@@ -48,6 +52,7 @@ module MediaWiktory::Wikipedia::Modules
     def prefix(value)
       merge(acprefix: value.to_s)
     end
+
     # Direction to sort in.
     #
     # @param value [String] One of "ascending", "descending".
@@ -55,6 +60,7 @@ module MediaWiktory::Wikipedia::Modules
     def dir(value)
       merge(acdir: value.to_s)
     end
+
     # Only return categories with at least this many members.
     #
     # @param value [Integer]
@@ -62,6 +68,7 @@ module MediaWiktory::Wikipedia::Modules
     def min(value)
       merge(acmin: value.to_s)
     end
+
     # Only return categories with at most this many members.
     #
     # @param value [Integer]
@@ -69,6 +76,7 @@ module MediaWiktory::Wikipedia::Modules
     def max(value)
       merge(acmax: value.to_s)
     end
+
     # How many categories to return.
     #
     # @param value [Integer, "max"]
@@ -76,6 +84,7 @@ module MediaWiktory::Wikipedia::Modules
     def limit(value)
       merge(aclimit: value.to_s)
     end
+
     # Which properties to get:
     #
     # @param values [Array<String>] Allowed values: "size" (Adds number of pages in the category), "hidden" (Tags categories that are hidden with __HIDDENCAT__).

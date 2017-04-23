@@ -20,6 +20,7 @@ module MediaWiktory::Wikipedia::Modules
   # All submodule's parameters are documented as its public methods, see below.
   #
   module Pageviews
+
     # The metric to use for counting views. Depending on what backend is used, not all metrics might be supported. You can use the siteinfo API (action=query&meta=siteinfo) to check, under pageviewservice-supported-metrics / <module name>
     #
     # @param value [String] One of "pageviews" (Plain pageviews).
@@ -27,6 +28,7 @@ module MediaWiktory::Wikipedia::Modules
     def metric(value)
       merge(pvipmetric: value.to_s)
     end
+
     # The number of days to show.
     #
     # @param value [Integer]
@@ -34,6 +36,7 @@ module MediaWiktory::Wikipedia::Modules
     def days(value)
       merge(pvipdays: value.to_s)
     end
+
     # When more results are available, use this to continue.
     #
     # @param value [String]

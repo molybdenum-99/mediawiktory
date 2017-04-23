@@ -19,6 +19,7 @@ module MediaWiktory::Wikipedia::Actions
   # All action's parameters are documented as its public methods, see below.
   #
   class Visualeditor < MediaWiktory::GetAction
+
     # The page to perform actions on.
     #
     # @param value [String]
@@ -26,6 +27,7 @@ module MediaWiktory::Wikipedia::Actions
     def page(value)
       merge(page: value.to_s)
     end
+
     # 
     #
     # @param value [String] One of "json", "jsonfm".
@@ -33,6 +35,7 @@ module MediaWiktory::Wikipedia::Actions
     def format(value)
       merge(format: value.to_s)
     end
+
     # Action to perform.
     #
     # @param value [String] One of "parse", "metadata", "wikitext", "parsefragment", "getlanglinks".
@@ -40,6 +43,7 @@ module MediaWiktory::Wikipedia::Actions
     def paction(value)
       merge(paction: value.to_s)
     end
+
     # Wikitext to send to Parsoid to convert to HTML (paction=parsefragment).
     #
     # @param value [String]
@@ -47,6 +51,7 @@ module MediaWiktory::Wikipedia::Actions
     def wikitext(value)
       merge(wikitext: value.to_s)
     end
+
     # The section on which to act.
     #
     # @param value [String]
@@ -54,6 +59,7 @@ module MediaWiktory::Wikipedia::Actions
     def section(value)
       merge(section: value.to_s)
     end
+
     # The revision number to use (defaults to latest revision).
     #
     # @param value [String]
@@ -61,6 +67,7 @@ module MediaWiktory::Wikipedia::Actions
     def oldid(value)
       merge(oldid: value.to_s)
     end
+
     # Edit intro to add to notices.
     #
     # @param value [String]
@@ -68,6 +75,7 @@ module MediaWiktory::Wikipedia::Actions
     def editintro(value)
       merge(editintro: value.to_s)
     end
+
     # Pre-save transform wikitext before sending it to Parsoid (paction=parsefragment).
     #
     # @return [self]

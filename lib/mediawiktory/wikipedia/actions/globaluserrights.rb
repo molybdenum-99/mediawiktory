@@ -19,6 +19,7 @@ module MediaWiktory::Wikipedia::Actions
   # All action's parameters are documented as its public methods, see below.
   #
   class Globaluserrights < MediaWiktory::GetAction
+
     # Global user name.
     #
     # @param value [String]
@@ -26,6 +27,7 @@ module MediaWiktory::Wikipedia::Actions
     def user(value)
       merge(user: value.to_s)
     end
+
     # Global user ID.
     #
     # @param value [Integer]
@@ -33,6 +35,7 @@ module MediaWiktory::Wikipedia::Actions
     def userid(value)
       merge(userid: value.to_s)
     end
+
     # Add the user to these global groups.
     #
     # @param values [Array<String>] Allowed values: "OTRS-member", "abusefilter-helper", "apihighlimits-requestor", "captcha-exempt", "delete-global", "founder", "global-bot", "global-flow-create", "global-interface-editor", "global-ipblock-exempt", "global-rollbacker", "global-sysop", "new-wikis-importer", "oathauth-tester", "ombudsman", "recursive-export", "staff", "steward", "sysadmin", "wmf-ops-monitoring", "wmf-researcher".
@@ -40,6 +43,7 @@ module MediaWiktory::Wikipedia::Actions
     def add(*values)
       merge(add: values.join('|'))
     end
+
     # Remove the user from these global groups.
     #
     # @param values [Array<String>] Allowed values: "OTRS-member", "abusefilter-helper", "apihighlimits-requestor", "captcha-exempt", "delete-global", "founder", "global-bot", "global-flow-create", "global-interface-editor", "global-ipblock-exempt", "global-rollbacker", "global-sysop", "new-wikis-importer", "oathauth-tester", "ombudsman", "recursive-export", "staff", "steward", "sysadmin", "wmf-ops-monitoring", "wmf-researcher".
@@ -47,6 +51,7 @@ module MediaWiktory::Wikipedia::Actions
     def remove(*values)
       merge(remove: values.join('|'))
     end
+
     # Reason for the change.
     #
     # @param value [String]
@@ -54,6 +59,7 @@ module MediaWiktory::Wikipedia::Actions
     def reason(value)
       merge(reason: value.to_s)
     end
+
     # A "userrights" token retrieved from action=query&meta=tokens
     #
     # @param value [String]
@@ -61,6 +67,7 @@ module MediaWiktory::Wikipedia::Actions
     def token(value)
       merge(token: value.to_s)
     end
+
     # This parameter is currently unused.
     #
     # @param values [Array<String>] Allowed values: "ProveIt edit", "WPCleaner", "huggle", "large plot addition".

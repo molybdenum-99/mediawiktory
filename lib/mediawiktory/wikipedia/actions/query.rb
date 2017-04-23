@@ -19,6 +19,7 @@ module MediaWiktory::Wikipedia::Actions
   # All action's parameters are documented as its public methods, see below.
   #
   class Query < MediaWiktory::GetAction
+
     # Which properties to get for the queried pages.
     #
     # @param values [Array<Symbol>] All selected options include tweaking methods from corresponding modules:
@@ -59,6 +60,7 @@ module MediaWiktory::Wikipedia::Actions
     def prop(*values)
       merge_modules(:prop, values, categories: Modules::Categories, categoryinfo: Modules::Categoryinfo, contributors: Modules::Contributors, coordinates: Modules::Coordinates, deletedrevisions: Modules::Deletedrevisions, duplicatefiles: Modules::Duplicatefiles, extlinks: Modules::Extlinks, extracts: Modules::Extracts, fileusage: Modules::Fileusage, flagged: Modules::Flagged, globalusage: Modules::Globalusage, imageinfo: Modules::Imageinfo, images: Modules::Images, info: Modules::Info, iwlinks: Modules::Iwlinks, langlinks: Modules::Langlinks, links: Modules::Links, linkshere: Modules::Linkshere, mapdata: Modules::Mapdata, pageassessments: Modules::Pageassessments, pageimages: Modules::Pageimages, pageprops: Modules::Pageprops, pageterms: Modules::Pageterms, pageviews: Modules::Pageviews, redirects: Modules::Redirects, references: Modules::References, revisions: Modules::Revisions, stashimageinfo: Modules::Stashimageinfo, templates: Modules::Templates, transcludedin: Modules::Transcludedin, transcodestatus: Modules::Transcodestatus, videoinfo: Modules::Videoinfo, wbentityusage: Modules::Wbentityusage)
     end
+
     # Which lists to get.
     #
     # @param values [Array<Symbol>] All selected options include tweaking methods from corresponding modules:
@@ -121,6 +123,7 @@ module MediaWiktory::Wikipedia::Actions
     def list(*values)
       merge_modules(:list, values, abusefilters: Modules::Abusefilters, abuselog: Modules::Abuselog, allcategories: Modules::Allcategories, alldeletedrevisions: Modules::Alldeletedrevisions, allfileusages: Modules::Allfileusages, allimages: Modules::Allimages, alllinks: Modules::Alllinks, allpages: Modules::Allpages, allredirects: Modules::Allredirects, allrevisions: Modules::Allrevisions, alltransclusions: Modules::Alltransclusions, allusers: Modules::Allusers, backlinks: Modules::Backlinks, betafeatures: Modules::Betafeatures, blocks: Modules::Blocks, categorymembers: Modules::Categorymembers, centralnoticelogs: Modules::Centralnoticelogs, checkuser: Modules::Checkuser, checkuserlog: Modules::Checkuserlog, deletedrevs: Modules::Deletedrevs, embeddedin: Modules::Embeddedin, exturlusage: Modules::Exturlusage, filearchive: Modules::Filearchive, gadgetcategories: Modules::Gadgetcategories, gadgets: Modules::Gadgets, geosearch: Modules::Geosearch, gettingstartedgetpages: Modules::Gettingstartedgetpages, globalallusers: Modules::Globalallusers, globalblocks: Modules::Globalblocks, globalgroups: Modules::Globalgroups, imageusage: Modules::Imageusage, iwbacklinks: Modules::Iwbacklinks, langbacklinks: Modules::Langbacklinks, logevents: Modules::Logevents, mmsites: Modules::Mmsites, mostviewed: Modules::Mostviewed, mystashedfiles: Modules::Mystashedfiles, oldreviewedpages: Modules::Oldreviewedpages, pagepropnames: Modules::Pagepropnames, pageswithprop: Modules::Pageswithprop, prefixsearch: Modules::Prefixsearch, projectpages: Modules::Projectpages, projects: Modules::Projects, protectedtitles: Modules::Protectedtitles, querypage: Modules::Querypage, random: Modules::Random, recentchanges: Modules::Recentchanges, search: Modules::Search, tags: Modules::Tags, usercontribs: Modules::Usercontribs, users: Modules::Users, watchlist: Modules::Watchlist, watchlistraw: Modules::Watchlistraw, wblistentityusage: Modules::Wblistentityusage, wikisets: Modules::Wikisets)
     end
+
     # Which metadata to get.
     #
     # @param values [Array<Symbol>] All selected options include tweaking methods from corresponding modules:
@@ -143,30 +146,35 @@ module MediaWiktory::Wikipedia::Actions
     def meta(*values)
       merge_modules(:meta, values, allmessages: Modules::Allmessages, authmanagerinfo: Modules::Authmanagerinfo, babel: Modules::Babel, featureusage: Modules::Featureusage, filerepoinfo: Modules::Filerepoinfo, globaluserinfo: Modules::Globaluserinfo, notifications: Modules::Notifications, oath: Modules::Oath, ores: Modules::Ores, siteinfo: Modules::Siteinfo, siteviews: Modules::Siteviews, tokens: Modules::Tokens, unreadnotificationpages: Modules::Unreadnotificationpages, userinfo: Modules::Userinfo, wikibase: Modules::Wikibase)
     end
+
     # Include an additional pageids section listing all returned page IDs.
     #
     # @return [self]
     def indexpageids()
       merge(indexpageids: 'true')
     end
+
     # Export the current revisions of all given or generated pages.
     #
     # @return [self]
     def export()
       merge(export: 'true')
     end
+
     # Return the export XML without wrapping it in an XML result (same format as Special:Export). Can only be used with export.
     #
     # @return [self]
     def exportnowrap()
       merge(exportnowrap: 'true')
     end
+
     # Whether to get the full URL if the title is an interwiki link.
     #
     # @return [self]
     def iwurl()
       merge(iwurl: 'true')
     end
+
     # When more results are available, use this to continue.
     #
     # @param value [String]
@@ -174,12 +182,14 @@ module MediaWiktory::Wikipedia::Actions
     def continue(value)
       merge(continue: value.to_s)
     end
+
     # Return raw query-continue data for continuation.
     #
     # @return [self]
     def rawcontinue()
       merge(rawcontinue: 'true')
     end
+
     # A list of titles to work on.
     #
     # @param values [Array<String>]
@@ -187,6 +197,7 @@ module MediaWiktory::Wikipedia::Actions
     def titles(*values)
       merge(titles: values.join('|'))
     end
+
     # A list of page IDs to work on.
     #
     # @param values [Array<Integer>]
@@ -194,6 +205,7 @@ module MediaWiktory::Wikipedia::Actions
     def pageids(*values)
       merge(pageids: values.join('|'))
     end
+
     # A list of revision IDs to work on.
     #
     # @param values [Array<Integer>]
@@ -201,6 +213,7 @@ module MediaWiktory::Wikipedia::Actions
     def revids(*values)
       merge(revids: values.join('|'))
     end
+
     # Get the list of pages to work on by executing the specified query module.
     #
     # @param value [Symbol] Selecting an option includes tweaking methods from corresponding module:
@@ -250,12 +263,14 @@ module MediaWiktory::Wikipedia::Actions
     def generator(value)
       merge_module(:generator, value, allcategories: Modules::Allcategories, alldeletedrevisions: Modules::Alldeletedrevisions, allfileusages: Modules::Allfileusages, allimages: Modules::Allimages, alllinks: Modules::Alllinks, allpages: Modules::Allpages, allredirects: Modules::Allredirects, allrevisions: Modules::Allrevisions, alltransclusions: Modules::Alltransclusions, backlinks: Modules::Backlinks, categories: Modules::Categories, categorymembers: Modules::Categorymembers, deletedrevisions: Modules::Deletedrevisions, duplicatefiles: Modules::Duplicatefiles, embeddedin: Modules::Embeddedin, exturlusage: Modules::Exturlusage, fileusage: Modules::Fileusage, geosearch: Modules::Geosearch, gettingstartedgetpages: Modules::Gettingstartedgetpages, images: Modules::Images, imageusage: Modules::Imageusage, iwbacklinks: Modules::Iwbacklinks, langbacklinks: Modules::Langbacklinks, links: Modules::Links, linkshere: Modules::Linkshere, mostviewed: Modules::Mostviewed, oldreviewedpages: Modules::Oldreviewedpages, pageswithprop: Modules::Pageswithprop, prefixsearch: Modules::Prefixsearch, projectpages: Modules::Projectpages, protectedtitles: Modules::Protectedtitles, querypage: Modules::Querypage, random: Modules::Random, recentchanges: Modules::Recentchanges, redirects: Modules::Redirects, revisions: Modules::Revisions, search: Modules::Search, templates: Modules::Templates, transcludedin: Modules::Transcludedin, watchlist: Modules::Watchlist, watchlistraw: Modules::Watchlistraw, wblistentityusage: Modules::Wblistentityusage)
     end
+
     # Automatically resolve redirects in titles, pageids, and revids, and in pages returned by generator.
     #
     # @return [self]
     def redirects()
       merge(redirects: 'true')
     end
+
     # Convert titles to other variants if necessary. Only works if the wiki's content language supports variant conversion. Languages that support variant conversion include gan, iu, kk, ku, shi, sr, tg, uz and zh.
     #
     # @return [self]

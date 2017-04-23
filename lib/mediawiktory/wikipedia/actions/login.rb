@@ -19,6 +19,7 @@ module MediaWiktory::Wikipedia::Actions
   # All action's parameters are documented as its public methods, see below.
   #
   class Login < MediaWiktory::GetAction
+
     # User name.
     #
     # @param value [String]
@@ -26,6 +27,7 @@ module MediaWiktory::Wikipedia::Actions
     def name(value)
       merge(lgname: value.to_s)
     end
+
     # Password.
     #
     # @param value [String]
@@ -33,6 +35,7 @@ module MediaWiktory::Wikipedia::Actions
     def password(value)
       merge(lgpassword: value.to_s)
     end
+
     # Domain (optional).
     #
     # @param value [String]
@@ -40,6 +43,7 @@ module MediaWiktory::Wikipedia::Actions
     def domain(value)
       merge(lgdomain: value.to_s)
     end
+
     # A "login" token retrieved from action=query&meta=tokens
     #
     # @param value [String]

@@ -19,6 +19,7 @@ module MediaWiktory::Wikipedia::Actions
   # All action's parameters are documented as its public methods, see below.
   #
   class Echomarkread < MediaWiktory::GetAction
+
     # A list of notification IDs to mark as read.
     #
     # @param values [Array<String>]
@@ -26,6 +27,7 @@ module MediaWiktory::Wikipedia::Actions
     def list(*values)
       merge(list: values.join('|'))
     end
+
     # A list of notification IDs to mark as unread.
     #
     # @param values [Array<String>]
@@ -33,12 +35,14 @@ module MediaWiktory::Wikipedia::Actions
     def unreadlist(*values)
       merge(unreadlist: values.join('|'))
     end
+
     # If set, marks all of a user's notifications as read.
     #
     # @return [self]
     def all()
       merge(all: 'true')
     end
+
     # A list of sections to mark as read.
     #
     # @param values [Array<String>] Allowed values: "alert", "message".
@@ -46,6 +50,7 @@ module MediaWiktory::Wikipedia::Actions
     def sections(*values)
       merge(sections: values.join('|'))
     end
+
     # A "csrf" token retrieved from action=query&meta=tokens
     #
     # @param value [String]

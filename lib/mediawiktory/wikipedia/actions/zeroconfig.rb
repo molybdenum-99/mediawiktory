@@ -19,6 +19,7 @@ module MediaWiktory::Wikipedia::Actions
   # All action's parameters are documented as its public methods, see below.
   #
   class Zeroconfig < MediaWiktory::GetAction
+
     # What kind of Zero info is needed:
     #
     # @param value [String] One of "config" (Get a trimmed-down carrier configuration based on the X-CS header), "message" (Get language-appropriate verbiage based on X-CS header; requires agent param).
@@ -26,6 +27,7 @@ module MediaWiktory::Wikipedia::Actions
     def type(value)
       merge(type: value.to_s)
     end
+
     # When setting type to message, include a source agent value as well.
     #
     # @param value [String]

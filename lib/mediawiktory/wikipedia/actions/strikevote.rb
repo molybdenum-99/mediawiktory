@@ -19,6 +19,7 @@ module MediaWiktory::Wikipedia::Actions
   # All action's parameters are documented as its public methods, see below.
   #
   class Strikevote < MediaWiktory::GetAction
+
     # Which action to take: strike or unstrike a vote.
     #
     # @param value [String] One of "strike" (Strike a vote (remove it from the count)), "unstrike" (Unstrike a vote (restore it to the count)).
@@ -26,6 +27,7 @@ module MediaWiktory::Wikipedia::Actions
     def option(value)
       merge(option: value.to_s)
     end
+
     # The reason for striking or unstriking the vote.
     #
     # @param value [String]
@@ -33,6 +35,7 @@ module MediaWiktory::Wikipedia::Actions
     def reason(value)
       merge(reason: value.to_s)
     end
+
     # The ID of the vote to be struck or unstruck.
     #
     # @param value [Integer]
@@ -40,6 +43,7 @@ module MediaWiktory::Wikipedia::Actions
     def voteid(value)
       merge(voteid: value.to_s)
     end
+
     # A "csrf" token retrieved from action=query&meta=tokens
     #
     # @param value [String]

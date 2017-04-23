@@ -19,6 +19,7 @@ module MediaWiktory::Wikipedia::Actions
   # All action's parameters are documented as its public methods, see below.
   #
   class Liststudents < MediaWiktory::GetAction
+
     # IDs of the courses.
     #
     # @param values [Array<Integer>]
@@ -26,6 +27,7 @@ module MediaWiktory::Wikipedia::Actions
     def courseids(*values)
       merge(courseids: values.join('|'))
     end
+
     # Which property to get for each student:
     #
     # @param value [String] One of "username" (The username of the student), "id" (The user ID of the student).
@@ -33,12 +35,14 @@ module MediaWiktory::Wikipedia::Actions
     def prop(value)
       merge(prop: value.to_s)
     end
+
     # If given, the query will group students by course.
     #
     # @return [self]
     def group()
       merge(group: 'true')
     end
+
     # If given, the query will return usernames in CSV format, and it will return the articles assigned to those students.
     #
     # @return [self]

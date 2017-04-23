@@ -20,6 +20,7 @@ module MediaWiktory::Wikipedia::Modules
   # All submodule's parameters are documented as its public methods, see below.
   #
   module Iwlinks
+
     # Which additional properties to get for each interlanguage link:
     #
     # @param values [Array<String>] Allowed values: "url" (Adds the full URL).
@@ -27,6 +28,7 @@ module MediaWiktory::Wikipedia::Modules
     def prop(*values)
       merge(iwprop: values.join('|'))
     end
+
     # Only return interwiki links with this prefix.
     #
     # @param value [String]
@@ -34,6 +36,7 @@ module MediaWiktory::Wikipedia::Modules
     def prefix(value)
       merge(iwprefix: value.to_s)
     end
+
     # Interwiki link to search for. Must be used with iwprefix.
     #
     # @param value [String]
@@ -41,6 +44,7 @@ module MediaWiktory::Wikipedia::Modules
     def title(value)
       merge(iwtitle: value.to_s)
     end
+
     # The direction in which to list.
     #
     # @param value [String] One of "ascending", "descending".
@@ -48,6 +52,7 @@ module MediaWiktory::Wikipedia::Modules
     def dir(value)
       merge(iwdir: value.to_s)
     end
+
     # How many interwiki links to return.
     #
     # @param value [Integer, "max"]
@@ -55,6 +60,7 @@ module MediaWiktory::Wikipedia::Modules
     def limit(value)
       merge(iwlimit: value.to_s)
     end
+
     # When more results are available, use this to continue.
     #
     # @param value [String]
@@ -62,6 +68,7 @@ module MediaWiktory::Wikipedia::Modules
     def continue(value)
       merge(iwcontinue: value.to_s)
     end
+
     # Whether to get the full URL (cannot be used with iwprop).
     #
     # @return [self]

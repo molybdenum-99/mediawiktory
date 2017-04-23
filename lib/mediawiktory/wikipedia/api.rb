@@ -8,6 +8,7 @@
 # list and descriptions for MediaWiki features available for this particular API.
 #
 class MediaWiktory::Wikipedia::Api < MediaWiktory::Api
+
   # Check to see if an AbuseFilter matches a set of variables, editor logged AbuseFilter event. 
   #
   # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Abusefiltercheckmatch} action.
@@ -32,6 +33,7 @@ class MediaWiktory::Wikipedia::Api < MediaWiktory::Api
   def abusefiltercheckmatch(**options)
     Actions::Abusefiltercheckmatch.new(**options)
   end
+
   # Check syntax of an AbuseFilter filter. 
   #
   # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Abusefilterchecksyntax} action.
@@ -56,6 +58,7 @@ class MediaWiktory::Wikipedia::Api < MediaWiktory::Api
   def abusefilterchecksyntax(**options)
     Actions::Abusefilterchecksyntax.new(**options)
   end
+
   # Evaluates an AbuseFilter expression. 
   #
   # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Abusefilterevalexpression} action.
@@ -80,6 +83,7 @@ class MediaWiktory::Wikipedia::Api < MediaWiktory::Api
   def abusefilterevalexpression(**options)
     Actions::Abusefilterevalexpression.new(**options)
   end
+
   # Unblocks a user from receiving autopromotions due to an abusefilter consequence. 
   #
   # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Abusefilterunblockautopromote} action.
@@ -104,6 +108,7 @@ class MediaWiktory::Wikipedia::Api < MediaWiktory::Api
   def abusefilterunblockautopromote(**options)
     Actions::Abusefilterunblockautopromote.new(**options)
   end
+
   # Add multiple students to a course. 
   #
   # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Addstudents} action.
@@ -128,6 +133,7 @@ class MediaWiktory::Wikipedia::Api < MediaWiktory::Api
   def addstudents(**options)
     Actions::Addstudents.new(**options)
   end
+
   # Check a username against AntiSpoof's normalisation checks. 
   #
   # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Antispoof} action.
@@ -152,6 +158,7 @@ class MediaWiktory::Wikipedia::Api < MediaWiktory::Api
   def antispoof(**options)
     Actions::Antispoof.new(**options)
   end
+
   # Block a user. 
   #
   # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Block} action.
@@ -176,6 +183,7 @@ class MediaWiktory::Wikipedia::Api < MediaWiktory::Api
   def block(**options)
     Actions::Block.new(**options)
   end
+
   # Receive a bounce email and process it to handle the failing recipient. 
   #
   # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Bouncehandler} action.
@@ -200,6 +208,7 @@ class MediaWiktory::Wikipedia::Api < MediaWiktory::Api
   def bouncehandler(**options)
     Actions::Bouncehandler.new(**options)
   end
+
   # Internal module for the CategoryTree extension. 
   #
   # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Categorytree} action.
@@ -224,6 +233,7 @@ class MediaWiktory::Wikipedia::Api < MediaWiktory::Api
   def categorytree(**options)
     Actions::Categorytree.new(**options)
   end
+
   # Fetch a centralauthtoken for making an authenticated request to an attached wiki. 
   #
   # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Centralauthtoken} action.
@@ -248,6 +258,7 @@ class MediaWiktory::Wikipedia::Api < MediaWiktory::Api
   def centralauthtoken(**options)
     Actions::Centralauthtoken.new(**options)
   end
+
   # Get data needed to choose a banner for a given project and language 
   #
   # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Centralnoticechoicedata} action.
@@ -272,6 +283,7 @@ class MediaWiktory::Wikipedia::Api < MediaWiktory::Api
   def centralnoticechoicedata(**options)
     Actions::Centralnoticechoicedata.new(**options)
   end
+
   # Get all configuration settings for a campaign. 
   #
   # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Centralnoticequerycampaign} action.
@@ -296,6 +308,7 @@ class MediaWiktory::Wikipedia::Api < MediaWiktory::Api
   def centralnoticequerycampaign(**options)
     Actions::Centralnoticequerycampaign.new(**options)
   end
+
   # Change authentication data for the current user. 
   #
   # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Changeauthenticationdata} action.
@@ -320,6 +333,7 @@ class MediaWiktory::Wikipedia::Api < MediaWiktory::Api
   def changeauthenticationdata(**options)
     Actions::Changeauthenticationdata.new(**options)
   end
+
   # Check the validity of a token from action=query&meta=tokens. 
   #
   # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Checktoken} action.
@@ -344,6 +358,7 @@ class MediaWiktory::Wikipedia::Api < MediaWiktory::Api
   def checktoken(**options)
     Actions::Checktoken.new(**options)
   end
+
   # Dump of CirrusSearch configuration. 
   #
   # This method creates an instance of {MediaWiktory::Wikipedia::Actions::CirrusConfigDump} action.
@@ -368,6 +383,7 @@ class MediaWiktory::Wikipedia::Api < MediaWiktory::Api
   def cirrus_config_dump(**options)
     Actions::CirrusConfigDump.new(**options)
   end
+
   # Dump of CirrusSearch mapping for this wiki. 
   #
   # This method creates an instance of {MediaWiktory::Wikipedia::Actions::CirrusMappingDump} action.
@@ -392,6 +408,7 @@ class MediaWiktory::Wikipedia::Api < MediaWiktory::Api
   def cirrus_mapping_dump(**options)
     Actions::CirrusMappingDump.new(**options)
   end
+
   # Dump of CirrusSearch settings for this wiki. 
   #
   # This method creates an instance of {MediaWiktory::Wikipedia::Actions::CirrusSettingsDump} action.
@@ -416,6 +433,7 @@ class MediaWiktory::Wikipedia::Api < MediaWiktory::Api
   def cirrus_settings_dump(**options)
     Actions::CirrusSettingsDump.new(**options)
   end
+
   # Clears the hasmsg flag for the current user. 
   #
   # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Clearhasmsg} action.
@@ -440,6 +458,7 @@ class MediaWiktory::Wikipedia::Api < MediaWiktory::Api
   def clearhasmsg(**options)
     Actions::Clearhasmsg.new(**options)
   end
+
   # Log in to the wiki using the interactive flow. 
   #
   # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Clientlogin} action.
@@ -464,6 +483,7 @@ class MediaWiktory::Wikipedia::Api < MediaWiktory::Api
   def clientlogin(**options)
     Actions::Clientlogin.new(**options)
   end
+
   # Get the difference between 2 pages. 
   #
   # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Compare} action.
@@ -488,6 +508,7 @@ class MediaWiktory::Wikipedia::Api < MediaWiktory::Api
   def compare(**options)
     Actions::Compare.new(**options)
   end
+
   # Create a new user account. 
   #
   # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Createaccount} action.
@@ -512,6 +533,7 @@ class MediaWiktory::Wikipedia::Api < MediaWiktory::Api
   def createaccount(**options)
     Actions::Createaccount.new(**options)
   end
+
   # Used by browsers to report violations of the Content Security Policy. This module should never be used, except when used automatically by a CSP compliant web browser. 
   #
   # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Cspreport} action.
@@ -536,6 +558,7 @@ class MediaWiktory::Wikipedia::Api < MediaWiktory::Api
   def cspreport(**options)
     Actions::Cspreport.new(**options)
   end
+
   # Delete a page. 
   #
   # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Delete} action.
@@ -560,6 +583,7 @@ class MediaWiktory::Wikipedia::Api < MediaWiktory::Api
   def delete(**options)
     Actions::Delete.new(**options)
   end
+
   # Delete Education Program objects. 
   #
   # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Deleteeducation} action.
@@ -584,6 +608,7 @@ class MediaWiktory::Wikipedia::Api < MediaWiktory::Api
   def deleteeducation(**options)
     Actions::Deleteeducation.new(**options)
   end
+
   # Delete a global user. 
   #
   # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Deleteglobalaccount} action.
@@ -608,6 +633,7 @@ class MediaWiktory::Wikipedia::Api < MediaWiktory::Api
   def deleteglobalaccount(**options)
     Actions::Deleteglobalaccount.new(**options)
   end
+
   # Mark notifications as read for the current user. 
   #
   # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Echomarkread} action.
@@ -632,6 +658,7 @@ class MediaWiktory::Wikipedia::Api < MediaWiktory::Api
   def echomarkread(**options)
     Actions::Echomarkread.new(**options)
   end
+
   # Mark notifications as seen for the current user. 
   #
   # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Echomarkseen} action.
@@ -656,6 +683,7 @@ class MediaWiktory::Wikipedia::Api < MediaWiktory::Api
   def echomarkseen(**options)
     Actions::Echomarkseen.new(**options)
   end
+
   # Create and edit pages. 
   #
   # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Edit} action.
@@ -680,6 +708,7 @@ class MediaWiktory::Wikipedia::Api < MediaWiktory::Api
   def edit(**options)
     Actions::Edit.new(**options)
   end
+
   # Edit a mass message delivery list. 
   #
   # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Editmassmessagelist} action.
@@ -704,6 +733,7 @@ class MediaWiktory::Wikipedia::Api < MediaWiktory::Api
   def editmassmessagelist(**options)
     Actions::Editmassmessagelist.new(**options)
   end
+
   # Email a user. 
   #
   # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Emailuser} action.
@@ -728,6 +758,7 @@ class MediaWiktory::Wikipedia::Api < MediaWiktory::Api
   def emailuser(**options)
     Actions::Emailuser.new(**options)
   end
+
   # Associate or disassociate a user as instructor or volunteer for a course. 
   #
   # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Enlist} action.
@@ -752,6 +783,7 @@ class MediaWiktory::Wikipedia::Api < MediaWiktory::Api
   def enlist(**options)
     Actions::Enlist.new(**options)
   end
+
   # Expands all templates within wikitext. 
   #
   # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Expandtemplates} action.
@@ -776,6 +808,7 @@ class MediaWiktory::Wikipedia::Api < MediaWiktory::Api
   def expandtemplates(**options)
     Actions::Expandtemplates.new(**options)
   end
+
   # Get a new FancyCaptcha. 
   #
   # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Fancycaptchareload} action.
@@ -800,6 +833,7 @@ class MediaWiktory::Wikipedia::Api < MediaWiktory::Api
   def fancycaptchareload(**options)
     Actions::Fancycaptchareload.new(**options)
   end
+
   # Returns a featured content feed. 
   #
   # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Featuredfeed} action.
@@ -824,6 +858,7 @@ class MediaWiktory::Wikipedia::Api < MediaWiktory::Api
   def featuredfeed(**options)
     Actions::Featuredfeed.new(**options)
   end
+
   # Returns a user contributions feed. 
   #
   # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Feedcontributions} action.
@@ -848,6 +883,7 @@ class MediaWiktory::Wikipedia::Api < MediaWiktory::Api
   def feedcontributions(**options)
     Actions::Feedcontributions.new(**options)
   end
+
   # Returns a recent changes feed. 
   #
   # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Feedrecentchanges} action.
@@ -872,6 +908,7 @@ class MediaWiktory::Wikipedia::Api < MediaWiktory::Api
   def feedrecentchanges(**options)
     Actions::Feedrecentchanges.new(**options)
   end
+
   # Returns a watchlist feed. 
   #
   # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Feedwatchlist} action.
@@ -896,6 +933,7 @@ class MediaWiktory::Wikipedia::Api < MediaWiktory::Api
   def feedwatchlist(**options)
     Actions::Feedwatchlist.new(**options)
   end
+
   # Revert a file to an old version. 
   #
   # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Filerevert} action.
@@ -920,6 +958,7 @@ class MediaWiktory::Wikipedia::Api < MediaWiktory::Api
   def filerevert(**options)
     Actions::Filerevert.new(**options)
   end
+
   # Get basic information about review flag configuration for this site. 
   #
   # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Flagconfig} action.
@@ -944,6 +983,7 @@ class MediaWiktory::Wikipedia::Api < MediaWiktory::Api
   def flagconfig(**options)
     Actions::Flagconfig.new(**options)
   end
+
   # Globally block or unblock a user. 
   #
   # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Globalblock} action.
@@ -968,6 +1008,7 @@ class MediaWiktory::Wikipedia::Api < MediaWiktory::Api
   def globalblock(**options)
     Actions::Globalblock.new(**options)
   end
+
   # Add/remove a user to/from global groups. 
   #
   # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Globaluserrights} action.
@@ -992,6 +1033,7 @@ class MediaWiktory::Wikipedia::Api < MediaWiktory::Api
   def globaluserrights(**options)
     Actions::Globaluserrights.new(**options)
   end
+
   # Access graph tag functionality. 
   #
   # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Graph} action.
@@ -1016,6 +1058,7 @@ class MediaWiktory::Wikipedia::Api < MediaWiktory::Api
   def graph(**options)
     Actions::Graph.new(**options)
   end
+
   # Display help for the specified modules. 
   #
   # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Help} action.
@@ -1040,6 +1083,7 @@ class MediaWiktory::Wikipedia::Api < MediaWiktory::Api
   def help(**options)
     Actions::Help.new(**options)
   end
+
   # This module has been disabled. 
   #
   # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Imagerotate} action.
@@ -1064,6 +1108,7 @@ class MediaWiktory::Wikipedia::Api < MediaWiktory::Api
   def imagerotate(**options)
     Actions::Imagerotate.new(**options)
   end
+
   # Import a page from another wiki, or from an XML file. 
   #
   # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Import} action.
@@ -1088,6 +1133,7 @@ class MediaWiktory::Wikipedia::Api < MediaWiktory::Api
   def import(**options)
     Actions::Import.new(**options)
   end
+
   # Allows direct access to JsonConfig subsystem. 
   #
   # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Jsonconfig} action.
@@ -1112,6 +1158,7 @@ class MediaWiktory::Wikipedia::Api < MediaWiktory::Api
   def jsonconfig(**options)
     Actions::Jsonconfig.new(**options)
   end
+
   # Retrieve localized JSON data. 
   #
   # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Jsondata} action.
@@ -1136,6 +1183,7 @@ class MediaWiktory::Wikipedia::Api < MediaWiktory::Api
   def jsondata(**options)
     Actions::Jsondata.new(**options)
   end
+
   # Search for language names in any script. 
   #
   # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Languagesearch} action.
@@ -1160,6 +1208,7 @@ class MediaWiktory::Wikipedia::Api < MediaWiktory::Api
   def languagesearch(**options)
     Actions::Languagesearch.new(**options)
   end
+
   # Link an account from a third-party provider to the current user. 
   #
   # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Linkaccount} action.
@@ -1184,6 +1233,7 @@ class MediaWiktory::Wikipedia::Api < MediaWiktory::Api
   def linkaccount(**options)
     Actions::Linkaccount.new(**options)
   end
+
   # Get the usernames and other information for students enrolled in one or more courses. 
   #
   # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Liststudents} action.
@@ -1208,6 +1258,7 @@ class MediaWiktory::Wikipedia::Api < MediaWiktory::Api
   def liststudents(**options)
     Actions::Liststudents.new(**options)
   end
+
   # Log in and get authentication cookies. 
   #
   # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Login} action.
@@ -1232,6 +1283,7 @@ class MediaWiktory::Wikipedia::Api < MediaWiktory::Api
   def login(**options)
     Actions::Login.new(**options)
   end
+
   # Log out and clear session data. 
   #
   # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Logout} action.
@@ -1256,6 +1308,7 @@ class MediaWiktory::Wikipedia::Api < MediaWiktory::Api
   def logout(**options)
     Actions::Logout.new(**options)
   end
+
   # Perform management tasks relating to change tags. 
   #
   # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Managetags} action.
@@ -1280,6 +1333,7 @@ class MediaWiktory::Wikipedia::Api < MediaWiktory::Api
   def managetags(**options)
     Actions::Managetags.new(**options)
   end
+
   # Send a message to a list of pages. 
   #
   # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Massmessage} action.
@@ -1304,6 +1358,7 @@ class MediaWiktory::Wikipedia::Api < MediaWiktory::Api
   def massmessage(**options)
     Actions::Massmessage.new(**options)
   end
+
   # Merge page histories. 
   #
   # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Mergehistory} action.
@@ -1328,6 +1383,7 @@ class MediaWiktory::Wikipedia::Api < MediaWiktory::Api
   def mergehistory(**options)
     Actions::Mergehistory.new(**options)
   end
+
   # Returns data needed for mobile views. 
   #
   # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Mobileview} action.
@@ -1352,6 +1408,7 @@ class MediaWiktory::Wikipedia::Api < MediaWiktory::Api
   def mobileview(**options)
     Actions::Mobileview.new(**options)
   end
+
   # Move a page. 
   #
   # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Move} action.
@@ -1376,6 +1433,7 @@ class MediaWiktory::Wikipedia::Api < MediaWiktory::Api
   def move(**options)
     Actions::Move.new(**options)
   end
+
   # Validate a two-factor authentication (OATH) token. 
   #
   # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Oathvalidate} action.
@@ -1400,6 +1458,7 @@ class MediaWiktory::Wikipedia::Api < MediaWiktory::Api
   def oathvalidate(**options)
     Actions::Oathvalidate.new(**options)
   end
+
   # Search the wiki using the OpenSearch protocol. 
   #
   # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Opensearch} action.
@@ -1424,6 +1483,7 @@ class MediaWiktory::Wikipedia::Api < MediaWiktory::Api
   def opensearch(**options)
     Actions::Opensearch.new(**options)
   end
+
   # Change preferences of the current user. 
   #
   # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Options} action.
@@ -1448,6 +1508,7 @@ class MediaWiktory::Wikipedia::Api < MediaWiktory::Api
   def options(**options)
     Actions::Options.new(**options)
   end
+
   # Mark an article as reviewed or unreviewed. 
   #
   # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Pagetriageaction} action.
@@ -1472,6 +1533,7 @@ class MediaWiktory::Wikipedia::Api < MediaWiktory::Api
   def pagetriageaction(**options)
     Actions::Pagetriageaction.new(**options)
   end
+
   # Get a list of page IDs for building a PageTriage queue. 
   #
   # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Pagetriagelist} action.
@@ -1496,6 +1558,7 @@ class MediaWiktory::Wikipedia::Api < MediaWiktory::Api
   def pagetriagelist(**options)
     Actions::Pagetriagelist.new(**options)
   end
+
   # Get the stats for page triage. 
   #
   # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Pagetriagestats} action.
@@ -1520,6 +1583,7 @@ class MediaWiktory::Wikipedia::Api < MediaWiktory::Api
   def pagetriagestats(**options)
     Actions::Pagetriagestats.new(**options)
   end
+
   # Add tags to an article. 
   #
   # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Pagetriagetagging} action.
@@ -1544,6 +1608,7 @@ class MediaWiktory::Wikipedia::Api < MediaWiktory::Api
   def pagetriagetagging(**options)
     Actions::Pagetriagetagging.new(**options)
   end
+
   # Fetch templates that are used within the PageTriage application. 
   #
   # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Pagetriagetemplate} action.
@@ -1568,6 +1633,7 @@ class MediaWiktory::Wikipedia::Api < MediaWiktory::Api
   def pagetriagetemplate(**options)
     Actions::Pagetriagetemplate.new(**options)
   end
+
   # Obtain information about API modules. 
   #
   # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Paraminfo} action.
@@ -1592,6 +1658,7 @@ class MediaWiktory::Wikipedia::Api < MediaWiktory::Api
   def paraminfo(**options)
     Actions::Paraminfo.new(**options)
   end
+
   # Parses content and returns parser output. 
   #
   # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Parse} action.
@@ -1616,6 +1683,7 @@ class MediaWiktory::Wikipedia::Api < MediaWiktory::Api
   def parse(**options)
     Actions::Parse.new(**options)
   end
+
   # 
   #
   # This method creates an instance of {MediaWiktory::Wikipedia::Actions::ParsoidBatch} action.
@@ -1640,6 +1708,7 @@ class MediaWiktory::Wikipedia::Api < MediaWiktory::Api
   def parsoid_batch(**options)
     Actions::ParsoidBatch.new(**options)
   end
+
   # Patrol a page or revision. 
   #
   # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Patrol} action.
@@ -1664,6 +1733,7 @@ class MediaWiktory::Wikipedia::Api < MediaWiktory::Api
   def patrol(**options)
     Actions::Patrol.new(**options)
   end
+
   # Change the protection level of a page. 
   #
   # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Protect} action.
@@ -1688,6 +1758,7 @@ class MediaWiktory::Wikipedia::Api < MediaWiktory::Api
   def protect(**options)
     Actions::Protect.new(**options)
   end
+
   # Purge the cache for the given titles. 
   #
   # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Purge} action.
@@ -1712,6 +1783,7 @@ class MediaWiktory::Wikipedia::Api < MediaWiktory::Api
   def purge(**options)
     Actions::Purge.new(**options)
   end
+
   # Fetch data from and about MediaWiki. 
   #
   # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Query} action.
@@ -1736,6 +1808,7 @@ class MediaWiktory::Wikipedia::Api < MediaWiktory::Api
   def query(**options)
     Actions::Query.new(**options)
   end
+
   # Rebuild summary data of Education Program objects. 
   #
   # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Refresheducation} action.
@@ -1760,6 +1833,7 @@ class MediaWiktory::Wikipedia::Api < MediaWiktory::Api
   def refresheducation(**options)
     Actions::Refresheducation.new(**options)
   end
+
   # Remove authentication data for the current user. 
   #
   # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Removeauthenticationdata} action.
@@ -1784,6 +1858,7 @@ class MediaWiktory::Wikipedia::Api < MediaWiktory::Api
   def removeauthenticationdata(**options)
     Actions::Removeauthenticationdata.new(**options)
   end
+
   # Send a password reset email to a user. 
   #
   # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Resetpassword} action.
@@ -1808,6 +1883,7 @@ class MediaWiktory::Wikipedia::Api < MediaWiktory::Api
   def resetpassword(**options)
     Actions::Resetpassword.new(**options)
   end
+
   # Review a revision by approving or de-approving it. 
   #
   # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Review} action.
@@ -1832,6 +1908,7 @@ class MediaWiktory::Wikipedia::Api < MediaWiktory::Api
   def review(**options)
     Actions::Review.new(**options)
   end
+
   # Advertise or de-advertise yourself as reviewing an unreviewed page or unreviewed changes. 
   #
   # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Reviewactivity} action.
@@ -1856,6 +1933,7 @@ class MediaWiktory::Wikipedia::Api < MediaWiktory::Api
   def reviewactivity(**options)
     Actions::Reviewactivity.new(**options)
   end
+
   # Delete and undelete revisions. 
   #
   # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Revisiondelete} action.
@@ -1880,6 +1958,7 @@ class MediaWiktory::Wikipedia::Api < MediaWiktory::Api
   def revisiondelete(**options)
     Actions::Revisiondelete.new(**options)
   end
+
   # Undo the last edit to the page. 
   #
   # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Rollback} action.
@@ -1904,6 +1983,7 @@ class MediaWiktory::Wikipedia::Api < MediaWiktory::Api
   def rollback(**options)
     Actions::Rollback.new(**options)
   end
+
   # Export an RSD (Really Simple Discovery) schema. 
   #
   # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Rsd} action.
@@ -1928,6 +2008,7 @@ class MediaWiktory::Wikipedia::Api < MediaWiktory::Api
   def rsd(**options)
     Actions::Rsd.new(**options)
   end
+
   # Performs data validation for Kartographer extension 
   #
   # This method creates an instance of {MediaWiktory::Wikipedia::Actions::SanitizeMapdata} action.
@@ -1952,6 +2033,7 @@ class MediaWiktory::Wikipedia::Api < MediaWiktory::Api
   def sanitize_mapdata(**options)
     Actions::SanitizeMapdata.new(**options)
   end
+
   # Internal module for servicing XHR requests from the Scribunto console. 
   #
   # This method creates an instance of {MediaWiktory::Wikipedia::Actions::ScribuntoConsole} action.
@@ -1976,6 +2058,7 @@ class MediaWiktory::Wikipedia::Api < MediaWiktory::Api
   def scribunto_console(**options)
     Actions::ScribuntoConsole.new(**options)
   end
+
   # Set a global user's status. 
   #
   # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Setglobalaccountstatus} action.
@@ -2000,6 +2083,7 @@ class MediaWiktory::Wikipedia::Api < MediaWiktory::Api
   def setglobalaccountstatus(**options)
     Actions::Setglobalaccountstatus.new(**options)
   end
+
   # Update the notification timestamp for watched pages. 
   #
   # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Setnotificationtimestamp} action.
@@ -2024,6 +2108,7 @@ class MediaWiktory::Wikipedia::Api < MediaWiktory::Api
   def setnotificationtimestamp(**options)
     Actions::Setnotificationtimestamp.new(**options)
   end
+
   # Changing the language of a page is not allowed on this wiki. 
   #
   # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Setpagelanguage} action.
@@ -2048,6 +2133,7 @@ class MediaWiktory::Wikipedia::Api < MediaWiktory::Api
   def setpagelanguage(**options)
     Actions::Setpagelanguage.new(**options)
   end
+
   # Shorten a long URL into a shorter one. 
   #
   # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Shortenurl} action.
@@ -2072,6 +2158,7 @@ class MediaWiktory::Wikipedia::Api < MediaWiktory::Api
   def shortenurl(**options)
     Actions::Shortenurl.new(**options)
   end
+
   # Get Wikimedia sites list. 
   #
   # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Sitematrix} action.
@@ -2096,6 +2183,7 @@ class MediaWiktory::Wikipedia::Api < MediaWiktory::Api
   def sitematrix(**options)
     Actions::Sitematrix.new(**options)
   end
+
   # Validate one or more URLs against the SpamBlacklist. 
   #
   # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Spamblacklist} action.
@@ -2120,6 +2208,7 @@ class MediaWiktory::Wikipedia::Api < MediaWiktory::Api
   def spamblacklist(**options)
     Actions::Spamblacklist.new(**options)
   end
+
   # Configure review-protection settings for a page. 
   #
   # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Stabilize} action.
@@ -2144,6 +2233,7 @@ class MediaWiktory::Wikipedia::Api < MediaWiktory::Api
   def stabilize(**options)
     Actions::Stabilize.new(**options)
   end
+
   # Prepare an edit in shared cache. 
   #
   # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Stashedit} action.
@@ -2168,6 +2258,7 @@ class MediaWiktory::Wikipedia::Api < MediaWiktory::Api
   def stashedit(**options)
     Actions::Stashedit.new(**options)
   end
+
   # Allows admins to strike or unstrike a vote. 
   #
   # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Strikevote} action.
@@ -2192,6 +2283,7 @@ class MediaWiktory::Wikipedia::Api < MediaWiktory::Api
   def strikevote(**options)
     Actions::Strikevote.new(**options)
   end
+
   # Add or remove change tags from individual revisions or log entries. 
   #
   # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Tag} action.
@@ -2216,6 +2308,7 @@ class MediaWiktory::Wikipedia::Api < MediaWiktory::Api
   def tag(**options)
     Actions::Tag.new(**options)
   end
+
   # Fetch data stored by the TemplateData extension. 
   #
   # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Templatedata} action.
@@ -2240,6 +2333,7 @@ class MediaWiktory::Wikipedia::Api < MediaWiktory::Api
   def templatedata(**options)
     Actions::Templatedata.new(**options)
   end
+
   # Send a thank-you notification to an editor. 
   #
   # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Thank} action.
@@ -2264,6 +2358,7 @@ class MediaWiktory::Wikipedia::Api < MediaWiktory::Api
   def thank(**options)
     Actions::Thank.new(**options)
   end
+
   # Validate an article title, filename, or username against the TitleBlacklist. 
   #
   # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Titleblacklist} action.
@@ -2288,6 +2383,7 @@ class MediaWiktory::Wikipedia::Api < MediaWiktory::Api
   def titleblacklist(**options)
     Actions::Titleblacklist.new(**options)
   end
+
   # Get tokens for data-modifying actions. 
   #
   # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Tokens} action.
@@ -2312,6 +2408,7 @@ class MediaWiktory::Wikipedia::Api < MediaWiktory::Api
   def tokens(**options)
     Actions::Tokens.new(**options)
   end
+
   # Users with the 'transcode-reset' right can reset and re-run a transcode job. 
   #
   # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Transcodereset} action.
@@ -2336,6 +2433,7 @@ class MediaWiktory::Wikipedia::Api < MediaWiktory::Api
   def transcodereset(**options)
     Actions::Transcodereset.new(**options)
   end
+
   # Get the localization of ULS in the given language. 
   #
   # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Ulslocalization} action.
@@ -2360,6 +2458,7 @@ class MediaWiktory::Wikipedia::Api < MediaWiktory::Api
   def ulslocalization(**options)
     Actions::Ulslocalization.new(**options)
   end
+
   # Unblock a user. 
   #
   # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Unblock} action.
@@ -2384,6 +2483,7 @@ class MediaWiktory::Wikipedia::Api < MediaWiktory::Api
   def unblock(**options)
     Actions::Unblock.new(**options)
   end
+
   # Restore revisions of a deleted page. 
   #
   # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Undelete} action.
@@ -2408,6 +2508,7 @@ class MediaWiktory::Wikipedia::Api < MediaWiktory::Api
   def undelete(**options)
     Actions::Undelete.new(**options)
   end
+
   # Remove a linked third-party account from the current user. 
   #
   # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Unlinkaccount} action.
@@ -2432,6 +2533,7 @@ class MediaWiktory::Wikipedia::Api < MediaWiktory::Api
   def unlinkaccount(**options)
     Actions::Unlinkaccount.new(**options)
   end
+
   # Upload a file, or get the status of pending uploads. 
   #
   # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Upload} action.
@@ -2456,6 +2558,7 @@ class MediaWiktory::Wikipedia::Api < MediaWiktory::Api
   def upload(**options)
     Actions::Upload.new(**options)
   end
+
   # Change a user's group membership. 
   #
   # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Userrights} action.
@@ -2480,6 +2583,7 @@ class MediaWiktory::Wikipedia::Api < MediaWiktory::Api
   def userrights(**options)
     Actions::Userrights.new(**options)
   end
+
   # Validate a password against the wiki's password policies. 
   #
   # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Validatepassword} action.
@@ -2504,6 +2608,7 @@ class MediaWiktory::Wikipedia::Api < MediaWiktory::Api
   def validatepassword(**options)
     Actions::Validatepassword.new(**options)
   end
+
   # Returns HTML5 for a page from the Parsoid service. 
   #
   # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Visualeditor} action.
@@ -2528,6 +2633,7 @@ class MediaWiktory::Wikipedia::Api < MediaWiktory::Api
   def visualeditor(**options)
     Actions::Visualeditor.new(**options)
   end
+
   # Save an HTML5 page to MediaWiki (converted to wikitext via the Parsoid service). 
   #
   # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Visualeditoredit} action.
@@ -2552,6 +2658,7 @@ class MediaWiktory::Wikipedia::Api < MediaWiktory::Api
   def visualeditoredit(**options)
     Actions::Visualeditoredit.new(**options)
   end
+
   # Add or remove pages from the current user's watchlist. 
   #
   # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Watch} action.
@@ -2576,6 +2683,7 @@ class MediaWiktory::Wikipedia::Api < MediaWiktory::Api
   def watch(**options)
     Actions::Watch.new(**options)
   end
+
   # Returns a webapp manifest. 
   #
   # This method creates an instance of {MediaWiktory::Wikipedia::Actions::WebappManifest} action.
@@ -2600,6 +2708,7 @@ class MediaWiktory::Wikipedia::Api < MediaWiktory::Api
   def webapp_manifest(**options)
     Actions::WebappManifest.new(**options)
   end
+
   # Give WikiLove to another user. 
   #
   # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Wikilove} action.
@@ -2624,6 +2733,7 @@ class MediaWiktory::Wikipedia::Api < MediaWiktory::Api
   def wikilove(**options)
     Actions::Wikilove.new(**options)
   end
+
   # Get configuration of the Zero extension. 
   #
   # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Zeroconfig} action.

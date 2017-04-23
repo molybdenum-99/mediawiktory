@@ -19,6 +19,7 @@ module MediaWiktory::Wikipedia::Actions
   # All action's parameters are documented as its public methods, see below.
   #
   class Pagetriagetagging < MediaWiktory::GetAction
+
     # The article for which to be tagged.
     #
     # @param value [Integer]
@@ -26,6 +27,7 @@ module MediaWiktory::Wikipedia::Actions
     def pageid(value)
       merge(pageid: value.to_s)
     end
+
     # A "csrf" token retrieved from action=query&meta=tokens
     #
     # @param value [String]
@@ -33,6 +35,7 @@ module MediaWiktory::Wikipedia::Actions
     def token(value)
       merge(token: value.to_s)
     end
+
     # The tagging text to be added to the top of an article.
     #
     # @param value [String]
@@ -40,6 +43,7 @@ module MediaWiktory::Wikipedia::Actions
     def top(value)
       merge(top: value.to_s)
     end
+
     # The tagging text to be added to the bottom of an article.
     #
     # @param value [String]
@@ -47,12 +51,14 @@ module MediaWiktory::Wikipedia::Actions
     def bottom(value)
       merge(bottom: value.to_s)
     end
+
     # Whether or not the tagging is for a deletion nomination.
     #
     # @return [self]
     def deletion()
       merge(deletion: 'true')
     end
+
     # Personal note to page creators from reviewers.
     #
     # @param value [String]
@@ -60,6 +66,7 @@ module MediaWiktory::Wikipedia::Actions
     def note(value)
       merge(note: value.to_s)
     end
+
     # Pipe-separated list of tags.
     #
     # @param values [Array<String>]

@@ -20,6 +20,7 @@ module MediaWiktory::Wikipedia::Modules
   # All submodule's parameters are documented as its public methods, see below.
   #
   module Centralnoticelogs
+
     # Campaign name (optional). Separate multiple values with a "|" (vertical bar).
     #
     # @param value [String]
@@ -27,6 +28,7 @@ module MediaWiktory::Wikipedia::Modules
     def campaign(value)
       merge(campaign: value.to_s)
     end
+
     # Username (optional).
     #
     # @param value [String]
@@ -34,6 +36,7 @@ module MediaWiktory::Wikipedia::Modules
     def user(value)
       merge(user: value.to_s)
     end
+
     # Maximum rows to return (optional).
     #
     # @param value [Integer, "max"]
@@ -41,6 +44,7 @@ module MediaWiktory::Wikipedia::Modules
     def limit(value)
       merge(limit: value.to_s)
     end
+
     # Offset into result set (optional).
     #
     # @param value [Integer]
@@ -48,6 +52,7 @@ module MediaWiktory::Wikipedia::Modules
     def offset(value)
       merge(offset: value.to_s)
     end
+
     # Start time of range (optional).
     #
     # @param value [Time]
@@ -55,6 +60,7 @@ module MediaWiktory::Wikipedia::Modules
     def start(value)
       merge(start: value.iso8601)
     end
+
     # End time of range (optional).
     #
     # @param value [Time]

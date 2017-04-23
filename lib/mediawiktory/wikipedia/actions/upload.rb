@@ -19,6 +19,7 @@ module MediaWiktory::Wikipedia::Actions
   # All action's parameters are documented as its public methods, see below.
   #
   class Upload < MediaWiktory::GetAction
+
     # Target filename.
     #
     # @param value [String]
@@ -26,6 +27,7 @@ module MediaWiktory::Wikipedia::Actions
     def filename(value)
       merge(filename: value.to_s)
     end
+
     # Upload comment. Also used as the initial page text for new files if text is not specified.
     #
     # @param value [String]
@@ -33,6 +35,7 @@ module MediaWiktory::Wikipedia::Actions
     def comment(value)
       merge(comment: value.to_s)
     end
+
     # Change tags to apply to the upload log entry and file page revision.
     #
     # @param values [Array<String>] Allowed values: "ProveIt edit", "WPCleaner", "huggle", "large plot addition".
@@ -40,6 +43,7 @@ module MediaWiktory::Wikipedia::Actions
     def tags(*values)
       merge(tags: values.join('|'))
     end
+
     # Initial page text for new files.
     #
     # @param value [String]
@@ -47,12 +51,14 @@ module MediaWiktory::Wikipedia::Actions
     def text(value)
       merge(text: value.to_s)
     end
+
     # Watch the page.
     #
     # @return [self]
     def watch()
       merge(watch: 'true')
     end
+
     # Unconditionally add or remove the page from the current user's watchlist, use preferences or do not change watch.
     #
     # @param value [String] One of "watch", "preferences", "nochange".
@@ -60,12 +66,14 @@ module MediaWiktory::Wikipedia::Actions
     def watchlist(value)
       merge(watchlist: value.to_s)
     end
+
     # Ignore any warnings.
     #
     # @return [self]
     def ignorewarnings()
       merge(ignorewarnings: 'true')
     end
+
     # File contents.
     #
     # @param value [String]
@@ -73,6 +81,7 @@ module MediaWiktory::Wikipedia::Actions
     def file(value)
       merge(file: value.to_s)
     end
+
     # URL to fetch the file from.
     #
     # @param value [String]
@@ -80,6 +89,7 @@ module MediaWiktory::Wikipedia::Actions
     def url(value)
       merge(url: value.to_s)
     end
+
     # Key that identifies a previous upload that was stashed temporarily.
     #
     # @param value [String]
@@ -87,6 +97,7 @@ module MediaWiktory::Wikipedia::Actions
     def filekey(value)
       merge(filekey: value.to_s)
     end
+
     # Same as filekey, maintained for backward compatibility.
     #
     # @param value [String]
@@ -94,12 +105,14 @@ module MediaWiktory::Wikipedia::Actions
     def sessionkey(value)
       merge(sessionkey: value.to_s)
     end
+
     # If set, the server will stash the file temporarily instead of adding it to the repository.
     #
     # @return [self]
     def stash()
       merge(stash: 'true')
     end
+
     # Filesize of entire upload.
     #
     # @param value [Integer]
@@ -107,6 +120,7 @@ module MediaWiktory::Wikipedia::Actions
     def filesize(value)
       merge(filesize: value.to_s)
     end
+
     # Offset of chunk in bytes.
     #
     # @param value [Integer]
@@ -114,6 +128,7 @@ module MediaWiktory::Wikipedia::Actions
     def offset(value)
       merge(offset: value.to_s)
     end
+
     # Chunk contents.
     #
     # @param value [String]
@@ -121,18 +136,21 @@ module MediaWiktory::Wikipedia::Actions
     def chunk(value)
       merge(chunk: value.to_s)
     end
+
     # Make potentially large file operations asynchronous when possible.
     #
     # @return [self]
     def async()
       merge(async: 'true')
     end
+
     # Only fetch the upload status for the given file key.
     #
     # @return [self]
     def checkstatus()
       merge(checkstatus: 'true')
     end
+
     # A "csrf" token retrieved from action=query&meta=tokens
     #
     # @param value [String]

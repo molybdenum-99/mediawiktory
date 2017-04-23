@@ -19,6 +19,7 @@ module MediaWiktory::Wikipedia::Actions
   # All action's parameters are documented as its public methods, see below.
   #
   class Titleblacklist < MediaWiktory::GetAction
+
     # The string to validate against the blacklist.
     #
     # @param value [String]
@@ -26,6 +27,7 @@ module MediaWiktory::Wikipedia::Actions
     def title(value)
       merge(tbtitle: value.to_s)
     end
+
     # The action to be checked.
     #
     # @param value [String] One of "create", "edit", "upload", "createtalk", "createpage", "move", "new-account".
@@ -33,6 +35,7 @@ module MediaWiktory::Wikipedia::Actions
     def action(value)
       merge(tbaction: value.to_s)
     end
+
     # Don't try to override the titleblacklist.
     #
     # @return [self]

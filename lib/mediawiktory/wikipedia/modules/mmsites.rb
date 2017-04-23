@@ -20,6 +20,7 @@ module MediaWiktory::Wikipedia::Modules
   # All submodule's parameters are documented as its public methods, see below.
   #
   module Mmsites
+
     # The prefix to search for.
     #
     # @param value [String]

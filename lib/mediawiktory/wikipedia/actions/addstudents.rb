@@ -19,6 +19,7 @@ module MediaWiktory::Wikipedia::Actions
   # All action's parameters are documented as its public methods, see below.
   #
   class Addstudents < MediaWiktory::GetAction
+
     # The usernames of the students to add to the course.
     #
     # @param values [Array<String>]
@@ -26,6 +27,7 @@ module MediaWiktory::Wikipedia::Actions
     def studentusernames(*values)
       merge(studentusernames: values.join('|'))
     end
+
     # The ID of the course to which the students should be added/removed.
     #
     # @param value [Integer]
@@ -33,6 +35,7 @@ module MediaWiktory::Wikipedia::Actions
     def courseid(value)
       merge(courseid: value.to_s)
     end
+
     # A "csrf" token retrieved from action=query&meta=tokens
     #
     # @param value [String]

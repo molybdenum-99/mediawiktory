@@ -20,6 +20,7 @@ module MediaWiktory::Wikipedia::Modules
   # All submodule's parameters are documented as its public methods, see below.
   #
   module Pagepropnames
+
     # When more results are available, use this to continue.
     #
     # @param value [String]
@@ -27,6 +28,7 @@ module MediaWiktory::Wikipedia::Modules
     def continue(value)
       merge(ppncontinue: value.to_s)
     end
+
     # The maximum number of names to return.
     #
     # @param value [Integer, "max"]

@@ -20,12 +20,14 @@ module MediaWiktory::Wikipedia::Modules
   # All submodule's parameters are documented as its public methods, see below.
   #
   module Watchlist
+
     # Include multiple revisions of the same page within given timeframe.
     #
     # @return [self]
     def allrev()
       merge(wlallrev: 'true')
     end
+
     # The timestamp to start enumerating from.
     #
     # @param value [Time]
@@ -33,6 +35,7 @@ module MediaWiktory::Wikipedia::Modules
     def start(value)
       merge(wlstart: value.iso8601)
     end
+
     # The timestamp to end enumerating.
     #
     # @param value [Time]
@@ -40,6 +43,7 @@ module MediaWiktory::Wikipedia::Modules
     def end(value)
       merge(wlend: value.iso8601)
     end
+
     # Filter changes to only the given namespaces.
     #
     # @param values [Array<String>] Allowed values: "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "100", "101", "108", "109", "118", "119", "446", "447", "710", "711", "828", "829", "2300", "2301", "2302", "2303".
@@ -47,6 +51,7 @@ module MediaWiktory::Wikipedia::Modules
     def namespace(*values)
       merge(wlnamespace: values.join('|'))
     end
+
     # Only list changes by this user.
     #
     # @param value [String]
@@ -54,6 +59,7 @@ module MediaWiktory::Wikipedia::Modules
     def user(value)
       merge(wluser: value.to_s)
     end
+
     # Don't list changes by this user.
     #
     # @param value [String]
@@ -61,6 +67,7 @@ module MediaWiktory::Wikipedia::Modules
     def excludeuser(value)
       merge(wlexcludeuser: value.to_s)
     end
+
     # In which direction to enumerate:
     #
     # @param value [String] One of "newer" (List oldest first. Note: wlstart has to be before wlend), "older" (List newest first (default). Note: wlstart has to be later than wlend).
@@ -68,6 +75,7 @@ module MediaWiktory::Wikipedia::Modules
     def dir(value)
       merge(wldir: value.to_s)
     end
+
     # How many total results to return per request.
     #
     # @param value [Integer, "max"]
@@ -75,6 +83,7 @@ module MediaWiktory::Wikipedia::Modules
     def limit(value)
       merge(wllimit: value.to_s)
     end
+
     # Which additional properties to get:
     #
     # @param values [Array<String>] Allowed values: "ids" (Adds revision IDs and page IDs), "title" (Adds title of the page), "flags" (Adds flags for the edit), "user" (Adds the user who made the edit), "userid" (Adds user ID of whoever made the edit), "comment" (Adds comment of the edit), "parsedcomment" (Adds parsed comment of the edit), "timestamp" (Adds timestamp of the edit), "patrol" (Tags edits that are patrolled), "sizes" (Adds the old and new lengths of the page), "notificationtimestamp" (Adds timestamp of when the user was last notified about the edit), "loginfo" (Adds log information where appropriate).
@@ -82,6 +91,7 @@ module MediaWiktory::Wikipedia::Modules
     def prop(*values)
       merge(wlprop: values.join('|'))
     end
+
     # Show only items that meet these criteria. For example, to see only minor edits done by logged-in users, set wlshow=minor|!anon.
     #
     # @param values [Array<String>] Allowed values: "minor", "!minor", "bot", "!bot", "anon", "!anon", "patrolled", "!patrolled", "unread", "!unread".
@@ -89,6 +99,7 @@ module MediaWiktory::Wikipedia::Modules
     def show(*values)
       merge(wlshow: values.join('|'))
     end
+
     # Which types of changes to show:
     #
     # @param values [Array<String>] Allowed values: "edit" (Regular page edits), "new" (Page creations), "log" (Log entries), "external" (External changes), "categorize" (Category membership changes).
@@ -96,6 +107,7 @@ module MediaWiktory::Wikipedia::Modules
     def type(*values)
       merge(wltype: values.join('|'))
     end
+
     # Used along with wltoken to access a different user's watchlist.
     #
     # @param value [String]
@@ -103,6 +115,7 @@ module MediaWiktory::Wikipedia::Modules
     def owner(value)
       merge(wlowner: value.to_s)
     end
+
     # A security token (available in the user's preferences) to allow access to another user's watchlist.
     #
     # @param value [String]
@@ -110,6 +123,7 @@ module MediaWiktory::Wikipedia::Modules
     def token(value)
       merge(wltoken: value.to_s)
     end
+
     # When more results are available, use this to continue.
     #
     # @param value [String]

@@ -20,6 +20,7 @@ module MediaWiktory::Wikipedia::Modules
   # All submodule's parameters are documented as its public methods, see below.
   #
   module Redirects
+
     # Which properties to get:
     #
     # @param values [Array<String>] Allowed values: "pageid" (Page ID of each redirect), "title" (Title of each redirect), "fragment" (Fragment of each redirect, if any).
@@ -27,6 +28,7 @@ module MediaWiktory::Wikipedia::Modules
     def prop(*values)
       merge(rdprop: values.join('|'))
     end
+
     # Only include pages in these namespaces.
     #
     # @param values [Array<String>] Allowed values: "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "100", "101", "108", "109", "118", "119", "446", "447", "710", "711", "828", "829", "2300", "2301", "2302", "2303".
@@ -34,6 +36,7 @@ module MediaWiktory::Wikipedia::Modules
     def namespace(*values)
       merge(rdnamespace: values.join('|'))
     end
+
     # Show only items that meet these criteria:
     #
     # @param values [Array<String>] Allowed values: "fragment" (Only show redirects with a fragment), "!fragment" (Only show redirects without a fragment).
@@ -41,6 +44,7 @@ module MediaWiktory::Wikipedia::Modules
     def show(*values)
       merge(rdshow: values.join('|'))
     end
+
     # How many redirects to return.
     #
     # @param value [Integer, "max"]
@@ -48,6 +52,7 @@ module MediaWiktory::Wikipedia::Modules
     def limit(value)
       merge(rdlimit: value.to_s)
     end
+
     # When more results are available, use this to continue.
     #
     # @param value [String]

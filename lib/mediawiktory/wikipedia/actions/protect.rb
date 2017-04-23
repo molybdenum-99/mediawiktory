@@ -19,6 +19,7 @@ module MediaWiktory::Wikipedia::Actions
   # All action's parameters are documented as its public methods, see below.
   #
   class Protect < MediaWiktory::GetAction
+
     # Title of the page to (un)protect. Cannot be used together with pageid.
     #
     # @param value [String]
@@ -26,6 +27,7 @@ module MediaWiktory::Wikipedia::Actions
     def title(value)
       merge(title: value.to_s)
     end
+
     # ID of the page to (un)protect. Cannot be used together with title.
     #
     # @param value [Integer]
@@ -33,6 +35,7 @@ module MediaWiktory::Wikipedia::Actions
     def pageid(value)
       merge(pageid: value.to_s)
     end
+
     # List of protection levels, formatted action=level (e.g. edit=sysop). A level of all means everyone is allowed to take the action, i.e. no restriction.
     #
     # @param values [Array<String>]
@@ -40,6 +43,7 @@ module MediaWiktory::Wikipedia::Actions
     def protections(*values)
       merge(protections: values.join('|'))
     end
+
     # Expiry timestamps. If only one timestamp is set, it'll be used for all protections. Use infinite, indefinite, infinity, or never, for a never-expiring protection.
     #
     # @param values [Array<String>]
@@ -47,6 +51,7 @@ module MediaWiktory::Wikipedia::Actions
     def expiry(*values)
       merge(expiry: values.join('|'))
     end
+
     # Reason for (un)protecting.
     #
     # @param value [String]
@@ -54,6 +59,7 @@ module MediaWiktory::Wikipedia::Actions
     def reason(value)
       merge(reason: value.to_s)
     end
+
     # Change tags to apply to the entry in the protection log.
     #
     # @param values [Array<String>] Allowed values: "ProveIt edit", "WPCleaner", "huggle", "large plot addition".
@@ -61,18 +67,21 @@ module MediaWiktory::Wikipedia::Actions
     def tags(*values)
       merge(tags: values.join('|'))
     end
+
     # Enable cascading protection (i.e. protect transcluded templates and images used in this page). Ignored if none of the given protection levels support cascading.
     #
     # @return [self]
     def cascade()
       merge(cascade: 'true')
     end
+
     # If set, add the page being (un)protected to the current user's watchlist.
     #
     # @return [self]
     def watch()
       merge(watch: 'true')
     end
+
     # Unconditionally add or remove the page from the current user's watchlist, use preferences or do not change watch.
     #
     # @param value [String] One of "watch", "unwatch", "preferences", "nochange".
@@ -80,6 +89,7 @@ module MediaWiktory::Wikipedia::Actions
     def watchlist(value)
       merge(watchlist: value.to_s)
     end
+
     # A "csrf" token retrieved from action=query&meta=tokens
     #
     # @param value [String]

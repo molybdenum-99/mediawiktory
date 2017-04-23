@@ -20,6 +20,7 @@ module MediaWiktory::Wikipedia::Modules
   # All submodule's parameters are documented as its public methods, see below.
   #
   module Gettingstartedgetpages
+
     # Task name, generally either "copyedit" (copy-editing suggestions) or "morelike" (pages similar to the base page/excluded title)
     #
     # @param value [String]
@@ -27,6 +28,7 @@ module MediaWiktory::Wikipedia::Modules
     def taskname(value)
       merge(gsgptaskname: value.to_s)
     end
+
     # Full title of a page to exclude from the list; also used as the base title for recommendations based on a given page
     #
     # @param value [String]
@@ -34,6 +36,7 @@ module MediaWiktory::Wikipedia::Modules
     def excludedtitle(value)
       merge(gsgpexcludedtitle: value.to_s)
     end
+
     # Requested count; will attempt to fetch this exact number, but may fetch fewer if no more are found after multiple attempts
     #
     # @param value [Integer]

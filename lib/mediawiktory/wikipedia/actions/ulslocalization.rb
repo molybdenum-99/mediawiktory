@@ -19,6 +19,7 @@ module MediaWiktory::Wikipedia::Actions
   # All action's parameters are documented as its public methods, see below.
   #
   class Ulslocalization < MediaWiktory::GetAction
+
     # Language code.
     #
     # @param value [String]

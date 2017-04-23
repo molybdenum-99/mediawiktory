@@ -19,6 +19,7 @@ module MediaWiktory::Wikipedia::Actions
   # All action's parameters are documented as its public methods, see below.
   #
   class Setglobalaccountstatus < MediaWiktory::GetAction
+
     # User to change the status of.
     #
     # @param value [String]
@@ -26,6 +27,7 @@ module MediaWiktory::Wikipedia::Actions
     def user(value)
       merge(user: value.to_s)
     end
+
     # Change whether this user is locked or not.
     #
     # @param value [String] One of "lock", "unlock".
@@ -33,6 +35,7 @@ module MediaWiktory::Wikipedia::Actions
     def locked(value)
       merge(locked: value.to_s)
     end
+
     # Change whether this user is not hidden, hidden from lists, or suppressed.
     #
     # @param value [String] One of "lists", "suppressed".
@@ -40,6 +43,7 @@ module MediaWiktory::Wikipedia::Actions
     def hidden(value)
       merge(hidden: value.to_s)
     end
+
     # Reason for changing the user's status.
     #
     # @param value [String]
@@ -47,6 +51,7 @@ module MediaWiktory::Wikipedia::Actions
     def reason(value)
       merge(reason: value.to_s)
     end
+
     # Optional MD5 of the expected current <username>:<hidden>:<locked>, to detect edit conflicts. Set <locked> to 1 for locked, 0 for unlocked.
     #
     # @param value [String]
@@ -54,6 +59,7 @@ module MediaWiktory::Wikipedia::Actions
     def statecheck(value)
       merge(statecheck: value.to_s)
     end
+
     # A "setglobalaccountstatus" token retrieved from action=query&meta=tokens
     #
     # @param value [String]

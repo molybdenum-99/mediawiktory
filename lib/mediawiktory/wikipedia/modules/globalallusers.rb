@@ -20,6 +20,7 @@ module MediaWiktory::Wikipedia::Modules
   # All submodule's parameters are documented as its public methods, see below.
   #
   module Globalallusers
+
     # The user name to start enumerating from.
     #
     # @param value [String]
@@ -27,6 +28,7 @@ module MediaWiktory::Wikipedia::Modules
     def from(value)
       merge(agufrom: value.to_s)
     end
+
     # The user name to stop enumerating at.
     #
     # @param value [String]
@@ -34,6 +36,7 @@ module MediaWiktory::Wikipedia::Modules
     def to(value)
       merge(aguto: value.to_s)
     end
+
     # Search for all users that begin with this value.
     #
     # @param value [String]
@@ -41,6 +44,7 @@ module MediaWiktory::Wikipedia::Modules
     def prefix(value)
       merge(aguprefix: value.to_s)
     end
+
     # Direction to sort in.
     #
     # @param value [String] One of "ascending", "descending".
@@ -48,6 +52,7 @@ module MediaWiktory::Wikipedia::Modules
     def dir(value)
       merge(agudir: value.to_s)
     end
+
     # Limit users to given global groups.
     #
     # @param values [Array<String>] Allowed values: "OTRS-member", "abusefilter-helper", "apihighlimits-requestor", "captcha-exempt", "delete-global", "founder", "global-bot", "global-flow-create", "global-interface-editor", "global-ipblock-exempt", "global-rollbacker", "global-sysop", "new-wikis-importer", "oathauth-tester", "ombudsman", "recursive-export", "staff", "steward", "sysadmin", "wmf-ops-monitoring", "wmf-researcher".
@@ -55,6 +60,7 @@ module MediaWiktory::Wikipedia::Modules
     def group(*values)
       merge(agugroup: values.join('|'))
     end
+
     # Exclude users in given global groups.
     #
     # @param values [Array<String>] Allowed values: "OTRS-member", "abusefilter-helper", "apihighlimits-requestor", "captcha-exempt", "delete-global", "founder", "global-bot", "global-flow-create", "global-interface-editor", "global-ipblock-exempt", "global-rollbacker", "global-sysop", "new-wikis-importer", "oathauth-tester", "ombudsman", "recursive-export", "staff", "steward", "sysadmin", "wmf-ops-monitoring", "wmf-researcher".
@@ -62,6 +68,7 @@ module MediaWiktory::Wikipedia::Modules
     def excludegroup(*values)
       merge(aguexcludegroup: values.join('|'))
     end
+
     # What pieces of information to include:
     #
     # @param values [Array<String>] Allowed values: "lockinfo" (Whether the user account is locked), "groups" (Lists global groups that the user is in. This uses more server resources and may return fewer results than the limit), "existslocally" (Adds the information if the user exists locally).
@@ -69,6 +76,7 @@ module MediaWiktory::Wikipedia::Modules
     def prop(*values)
       merge(aguprop: values.join('|'))
     end
+
     # How many total user names to return.
     #
     # @param value [Integer, "max"]

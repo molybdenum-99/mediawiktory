@@ -19,6 +19,7 @@ module MediaWiktory::Wikipedia::Actions
   # All action's parameters are documented as its public methods, see below.
   #
   class Emailuser < MediaWiktory::GetAction
+
     # User to send email to.
     #
     # @param value [String]
@@ -26,6 +27,7 @@ module MediaWiktory::Wikipedia::Actions
     def target(value)
       merge(target: value.to_s)
     end
+
     # Subject header.
     #
     # @param value [String]
@@ -33,6 +35,7 @@ module MediaWiktory::Wikipedia::Actions
     def subject(value)
       merge(subject: value.to_s)
     end
+
     # Mail body.
     #
     # @param value [String]
@@ -40,12 +43,14 @@ module MediaWiktory::Wikipedia::Actions
     def text(value)
       merge(text: value.to_s)
     end
+
     # Send a copy of this mail to me.
     #
     # @return [self]
     def ccme()
       merge(ccme: 'true')
     end
+
     # A "csrf" token retrieved from action=query&meta=tokens
     #
     # @param value [String]

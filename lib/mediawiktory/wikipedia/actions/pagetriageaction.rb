@@ -19,6 +19,7 @@ module MediaWiktory::Wikipedia::Actions
   # All action's parameters are documented as its public methods, see below.
   #
   class Pagetriageaction < MediaWiktory::GetAction
+
     # The article for which to be marked as reviewed or unreviewed.
     #
     # @param value [Integer]
@@ -26,6 +27,7 @@ module MediaWiktory::Wikipedia::Actions
     def pageid(value)
       merge(pageid: value.to_s)
     end
+
     # Whether the article is reviewed.
     #
     # @param value [String] One of "1", "0".
@@ -33,6 +35,7 @@ module MediaWiktory::Wikipedia::Actions
     def reviewed(value)
       merge(reviewed: value.to_s)
     end
+
     # A "csrf" token retrieved from action=query&meta=tokens
     #
     # @param value [String]
@@ -40,6 +43,7 @@ module MediaWiktory::Wikipedia::Actions
     def token(value)
       merge(token: value.to_s)
     end
+
     # Personal note to page creators from reviewers.
     #
     # @param value [String]
@@ -47,6 +51,7 @@ module MediaWiktory::Wikipedia::Actions
     def note(value)
       merge(note: value.to_s)
     end
+
     # Whether to skip notification.
     #
     # @return [self]

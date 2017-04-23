@@ -20,6 +20,7 @@ module MediaWiktory::Wikipedia::Modules
   # All submodule's parameters are documented as its public methods, see below.
   #
   module Duplicatefiles
+
     # How many duplicate files to return.
     #
     # @param value [Integer, "max"]
@@ -27,6 +28,7 @@ module MediaWiktory::Wikipedia::Modules
     def limit(value)
       merge(dflimit: value.to_s)
     end
+
     # When more results are available, use this to continue.
     #
     # @param value [String]
@@ -34,6 +36,7 @@ module MediaWiktory::Wikipedia::Modules
     def continue(value)
       merge(dfcontinue: value.to_s)
     end
+
     # The direction in which to list.
     #
     # @param value [String] One of "ascending", "descending".
@@ -41,6 +44,7 @@ module MediaWiktory::Wikipedia::Modules
     def dir(value)
       merge(dfdir: value.to_s)
     end
+
     # Look only for files in the local repository.
     #
     # @return [self]

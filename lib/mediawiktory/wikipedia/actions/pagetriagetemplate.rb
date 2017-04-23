@@ -19,6 +19,7 @@ module MediaWiktory::Wikipedia::Actions
   # All action's parameters are documented as its public methods, see below.
   #
   class Pagetriagetemplate < MediaWiktory::GetAction
+
     # The PageTriage view for which you need the templates.
     #
     # @param value [String]
@@ -26,6 +27,7 @@ module MediaWiktory::Wikipedia::Actions
     def view(value)
       merge(view: value.to_s)
     end
+
     # The template to fetch. Separate multiple with the | character.
     #
     # @param value [String]

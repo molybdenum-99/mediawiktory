@@ -20,6 +20,7 @@ module MediaWiktory::Wikipedia::Modules
   # All submodule's parameters are documented as its public methods, see below.
   #
   module Pageassessments
+
     # When more results are available, use this to continue.
     #
     # @param value [String]
@@ -27,6 +28,7 @@ module MediaWiktory::Wikipedia::Modules
     def continue(value)
       merge(pacontinue: value.to_s)
     end
+
     # Limit for total number of projects returned (total for all pages).
     #
     # @param value [Integer, "max"]
@@ -34,6 +36,7 @@ module MediaWiktory::Wikipedia::Modules
     def limit(value)
       merge(palimit: value.to_s)
     end
+
     # Also return assessments by subprojects.
     #
     # @return [self]

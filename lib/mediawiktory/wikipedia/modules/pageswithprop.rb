@@ -20,6 +20,7 @@ module MediaWiktory::Wikipedia::Modules
   # All submodule's parameters are documented as its public methods, see below.
   #
   module Pageswithprop
+
     # Page property for which to enumerate pages (action=query&list=pagepropnames returns page property names in use).
     #
     # @param value [String]
@@ -27,6 +28,7 @@ module MediaWiktory::Wikipedia::Modules
     def propname(value)
       merge(pwppropname: value.to_s)
     end
+
     # Which pieces of information to include:
     #
     # @param values [Array<String>] Allowed values: "ids" (Adds the page ID), "title" (Adds the title and namespace ID of the page), "value" (Adds the value of the page property).
@@ -34,6 +36,7 @@ module MediaWiktory::Wikipedia::Modules
     def prop(*values)
       merge(pwpprop: values.join('|'))
     end
+
     # When more results are available, use this to continue.
     #
     # @param value [String]
@@ -41,6 +44,7 @@ module MediaWiktory::Wikipedia::Modules
     def continue(value)
       merge(pwpcontinue: value.to_s)
     end
+
     # The maximum number of pages to return.
     #
     # @param value [Integer, "max"]
@@ -48,6 +52,7 @@ module MediaWiktory::Wikipedia::Modules
     def limit(value)
       merge(pwplimit: value.to_s)
     end
+
     # In which direction to sort.
     #
     # @param value [String] One of "ascending", "descending".

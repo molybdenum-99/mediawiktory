@@ -19,6 +19,7 @@ module MediaWiktory::Wikipedia::Actions
   # All action's parameters are documented as its public methods, see below.
   #
   class SanitizeMapdata < MediaWiktory::GetAction
+
     # Title of page on which this GeoJSON is supposed to be located. If no title is provided, a dummy one will be used.
     #
     # @param value [String]
@@ -26,6 +27,7 @@ module MediaWiktory::Wikipedia::Actions
     def title(value)
       merge(title: value.to_s)
     end
+
     # GeoJSON to sanitize
     #
     # @param value [String]

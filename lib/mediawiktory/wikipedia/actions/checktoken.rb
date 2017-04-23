@@ -19,6 +19,7 @@ module MediaWiktory::Wikipedia::Actions
   # All action's parameters are documented as its public methods, see below.
   #
   class Checktoken < MediaWiktory::GetAction
+
     # Type of token being tested.
     #
     # @param value [String] One of "createaccount", "csrf", "deleteglobalaccount", "login", "patrol", "rollback", "setglobalaccountstatus", "userrights", "watch".
@@ -26,6 +27,7 @@ module MediaWiktory::Wikipedia::Actions
     def type(value)
       merge(type: value.to_s)
     end
+
     # Token to test.
     #
     # @param value [String]
@@ -33,6 +35,7 @@ module MediaWiktory::Wikipedia::Actions
     def token(value)
       merge(token: value.to_s)
     end
+
     # Maximum allowed age of the token, in seconds.
     #
     # @param value [Integer]

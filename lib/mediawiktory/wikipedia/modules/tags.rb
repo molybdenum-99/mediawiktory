@@ -20,6 +20,7 @@ module MediaWiktory::Wikipedia::Modules
   # All submodule's parameters are documented as its public methods, see below.
   #
   module Tags
+
     # When more results are available, use this to continue.
     #
     # @param value [String]
@@ -27,6 +28,7 @@ module MediaWiktory::Wikipedia::Modules
     def continue(value)
       merge(tgcontinue: value.to_s)
     end
+
     # The maximum number of tags to list.
     #
     # @param value [Integer, "max"]
@@ -34,6 +36,7 @@ module MediaWiktory::Wikipedia::Modules
     def limit(value)
       merge(tglimit: value.to_s)
     end
+
     # Which properties to get:
     #
     # @param values [Array<String>] Allowed values: "name" (Adds name of tag), "displayname" (Adds system message for the tag), "description" (Adds description of the tag), "hitcount" (Adds the number of revisions and log entries that have this tag), "defined" (Indicate whether the tag is defined), "source" (Gets the sources of the tag, which may include extension for extension-defined tags and manual for tags that may be applied manually by users), "active" (Whether the tag is still being applied).

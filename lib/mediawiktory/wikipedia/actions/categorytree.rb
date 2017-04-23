@@ -19,6 +19,7 @@ module MediaWiktory::Wikipedia::Actions
   # All action's parameters are documented as its public methods, see below.
   #
   class Categorytree < MediaWiktory::GetAction
+
     # Title in the category namespace, prefix will be ignored if given.
     #
     # @param value [String]
@@ -26,6 +27,7 @@ module MediaWiktory::Wikipedia::Actions
     def category(value)
       merge(category: value.to_s)
     end
+
     # Options for the CategoryTree constructor as a JSON object. The depth option defaults to 1.
     #
     # @param value [String]

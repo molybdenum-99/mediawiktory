@@ -10,9 +10,7 @@ module Nokogiri
       def children_groups(*selectors)
         groups = []
         flat = children.select { |node| selectors.any? { |s| node.matches?(s) } }
-        until flat.empty?
-          groups << make_group(flat, selectors)
-        end
+        groups << make_group(flat, selectors) until flat.empty?
         groups
       end
 

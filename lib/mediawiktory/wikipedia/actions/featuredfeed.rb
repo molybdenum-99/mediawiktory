@@ -19,6 +19,7 @@ module MediaWiktory::Wikipedia::Actions
   # All action's parameters are documented as its public methods, see below.
   #
   class Featuredfeed < MediaWiktory::GetAction
+
     # The format of the feed.
     #
     # @param value [String] One of "rss", "atom".
@@ -26,6 +27,7 @@ module MediaWiktory::Wikipedia::Actions
     def feedformat(value)
       merge(feedformat: value.to_s)
     end
+
     # Feed name.
     #
     # @param value [String] One of "potd", "featured", "onthisday".
@@ -33,6 +35,7 @@ module MediaWiktory::Wikipedia::Actions
     def feed(value)
       merge(feed: value.to_s)
     end
+
     # Feed language code. Ignored by some feeds.
     #
     # @param value [String]

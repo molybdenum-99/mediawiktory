@@ -20,6 +20,7 @@ module MediaWiktory::Wikipedia::Modules
   # All submodule's parameters are documented as its public methods, see below.
   #
   module Querypage
+
     # The name of the special page. Note, this is case sensitive.
     #
     # @param value [String] One of "Ancientpages", "BrokenRedirects", "Deadendpages", "DoubleRedirects", "ListDuplicatedFiles", "Listredirects", "Lonelypages", "Longpages", "MediaStatistics", "Mostcategories", "Mostimages", "Mostinterwikis", "Mostlinkedcategories", "Mostlinkedtemplates", "Mostlinked", "Mostrevisions", "Fewestrevisions", "Shortpages", "Uncategorizedcategories", "Uncategorizedpages", "Uncategorizedimages", "Uncategorizedtemplates", "Unusedcategories", "Unusedimages", "Wantedcategories", "Wantedfiles", "Wantedpages", "Wantedtemplates", "Unwatchedpages", "Unusedtemplates", "Withoutinterwiki", "UnconnectedPages", "PagesWithBadges", "EntityUsage", "GadgetUsage", "MostGloballyLinkedFiles", "GloballyWantedFiles", "DisambiguationPages", "DisambiguationPageLinks".
@@ -27,6 +28,7 @@ module MediaWiktory::Wikipedia::Modules
     def page(value)
       merge(qppage: value.to_s)
     end
+
     # When more results are available, use this to continue.
     #
     # @param value [Integer]
@@ -34,6 +36,7 @@ module MediaWiktory::Wikipedia::Modules
     def offset(value)
       merge(qpoffset: value.to_s)
     end
+
     # Number of results to return.
     #
     # @param value [Integer, "max"]

@@ -20,6 +20,7 @@ module MediaWiktory::Wikipedia::Modules
   # All submodule's parameters are documented as its public methods, see below.
   #
   module Checkuser
+
     # Type of CheckUser request:
     #
     # @param value [String] One of "userips" (Get IP address of target user), "edits" (Get changes from target IP address or range), "ipusers" (Get users from target IP address or range).
@@ -27,6 +28,7 @@ module MediaWiktory::Wikipedia::Modules
     def request(value)
       merge(curequest: value.to_s)
     end
+
     # Username, IP address, or CIDR range to check.
     #
     # @param value [String]
@@ -34,6 +36,7 @@ module MediaWiktory::Wikipedia::Modules
     def target(value)
       merge(cutarget: value.to_s)
     end
+
     # Reason to check.
     #
     # @param value [String]
@@ -41,6 +44,7 @@ module MediaWiktory::Wikipedia::Modules
     def reason(value)
       merge(cureason: value.to_s)
     end
+
     # Limit of rows.
     #
     # @param value [Integer, "max"]
@@ -48,6 +52,7 @@ module MediaWiktory::Wikipedia::Modules
     def limit(value)
       merge(culimit: value.to_s)
     end
+
     # Time limit of user data (like "-2 weeks" or "2 weeks ago").
     #
     # @param value [String]
@@ -55,6 +60,7 @@ module MediaWiktory::Wikipedia::Modules
     def timecond(value)
       merge(cutimecond: value.to_s)
     end
+
     # Use XFF data instead of IP address.
     #
     # @param value [String]
@@ -62,6 +68,7 @@ module MediaWiktory::Wikipedia::Modules
     def xff(value)
       merge(cuxff: value.to_s)
     end
+
     # A "csrf" token retrieved from action=query&meta=tokens
     #
     # @param value [String]

@@ -19,12 +19,14 @@ module MediaWiktory::Wikipedia::Actions
   # All action's parameters are documented as its public methods, see below.
   #
   class Setnotificationtimestamp < MediaWiktory::GetAction
+
     # Work on all watched pages.
     #
     # @return [self]
     def entirewatchlist()
       merge(entirewatchlist: 'true')
     end
+
     # Timestamp to which to set the notification timestamp.
     #
     # @param value [Time]
@@ -32,6 +34,7 @@ module MediaWiktory::Wikipedia::Actions
     def timestamp(value)
       merge(timestamp: value.iso8601)
     end
+
     # Revision to set the notification timestamp to (one page only).
     #
     # @param value [Integer]
@@ -39,6 +42,7 @@ module MediaWiktory::Wikipedia::Actions
     def torevid(value)
       merge(torevid: value.to_s)
     end
+
     # Revision to set the notification timestamp newer than (one page only).
     #
     # @param value [Integer]
@@ -46,6 +50,7 @@ module MediaWiktory::Wikipedia::Actions
     def newerthanrevid(value)
       merge(newerthanrevid: value.to_s)
     end
+
     # When more results are available, use this to continue.
     #
     # @param value [String]
@@ -53,6 +58,7 @@ module MediaWiktory::Wikipedia::Actions
     def continue(value)
       merge(continue: value.to_s)
     end
+
     # A list of titles to work on.
     #
     # @param values [Array<String>]
@@ -60,6 +66,7 @@ module MediaWiktory::Wikipedia::Actions
     def titles(*values)
       merge(titles: values.join('|'))
     end
+
     # A list of page IDs to work on.
     #
     # @param values [Array<Integer>]
@@ -67,6 +74,7 @@ module MediaWiktory::Wikipedia::Actions
     def pageids(*values)
       merge(pageids: values.join('|'))
     end
+
     # A list of revision IDs to work on.
     #
     # @param values [Array<Integer>]
@@ -74,6 +82,7 @@ module MediaWiktory::Wikipedia::Actions
     def revids(*values)
       merge(revids: values.join('|'))
     end
+
     # Get the list of pages to work on by executing the specified query module.
     #
     # @param value [Symbol] Selecting an option includes tweaking methods from corresponding module:
@@ -123,18 +132,21 @@ module MediaWiktory::Wikipedia::Actions
     def generator(value)
       merge_module(:generator, value, allcategories: Modules::Allcategories, alldeletedrevisions: Modules::Alldeletedrevisions, allfileusages: Modules::Allfileusages, allimages: Modules::Allimages, alllinks: Modules::Alllinks, allpages: Modules::Allpages, allredirects: Modules::Allredirects, allrevisions: Modules::Allrevisions, alltransclusions: Modules::Alltransclusions, backlinks: Modules::Backlinks, categories: Modules::Categories, categorymembers: Modules::Categorymembers, deletedrevisions: Modules::Deletedrevisions, duplicatefiles: Modules::Duplicatefiles, embeddedin: Modules::Embeddedin, exturlusage: Modules::Exturlusage, fileusage: Modules::Fileusage, geosearch: Modules::Geosearch, gettingstartedgetpages: Modules::Gettingstartedgetpages, images: Modules::Images, imageusage: Modules::Imageusage, iwbacklinks: Modules::Iwbacklinks, langbacklinks: Modules::Langbacklinks, links: Modules::Links, linkshere: Modules::Linkshere, mostviewed: Modules::Mostviewed, oldreviewedpages: Modules::Oldreviewedpages, pageswithprop: Modules::Pageswithprop, prefixsearch: Modules::Prefixsearch, projectpages: Modules::Projectpages, protectedtitles: Modules::Protectedtitles, querypage: Modules::Querypage, random: Modules::Random, recentchanges: Modules::Recentchanges, redirects: Modules::Redirects, revisions: Modules::Revisions, search: Modules::Search, templates: Modules::Templates, transcludedin: Modules::Transcludedin, watchlist: Modules::Watchlist, watchlistraw: Modules::Watchlistraw, wblistentityusage: Modules::Wblistentityusage)
     end
+
     # Automatically resolve redirects in titles, pageids, and revids, and in pages returned by generator.
     #
     # @return [self]
     def redirects()
       merge(redirects: 'true')
     end
+
     # Convert titles to other variants if necessary. Only works if the wiki's content language supports variant conversion. Languages that support variant conversion include gan, iu, kk, ku, shi, sr, tg, uz and zh.
     #
     # @return [self]
     def converttitles()
       merge(converttitles: 'true')
     end
+
     # A "csrf" token retrieved from action=query&meta=tokens
     #
     # @param value [String]

@@ -19,6 +19,7 @@ module MediaWiktory::Wikipedia::Actions
   # All action's parameters are documented as its public methods, see below.
   #
   class Abusefiltercheckmatch < MediaWiktory::GetAction
+
     # The full filter text to check for a match.
     #
     # @param value [String]
@@ -26,6 +27,7 @@ module MediaWiktory::Wikipedia::Actions
     def filter(value)
       merge(filter: value.to_s)
     end
+
     # JSON encoded array of variables to test against.
     #
     # @param value [String]
@@ -33,6 +35,7 @@ module MediaWiktory::Wikipedia::Actions
     def vars(value)
       merge(vars: value.to_s)
     end
+
     # Recent change ID to check against.
     #
     # @param value [Integer]
@@ -40,6 +43,7 @@ module MediaWiktory::Wikipedia::Actions
     def rcid(value)
       merge(rcid: value.to_s)
     end
+
     # Abuse filter log ID to check against.
     #
     # @param value [Integer]

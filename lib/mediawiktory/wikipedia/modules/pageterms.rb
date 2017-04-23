@@ -20,6 +20,7 @@ module MediaWiktory::Wikipedia::Modules
   # All submodule's parameters are documented as its public methods, see below.
   #
   module Pageterms
+
     # When more results are available, use this to continue.
     #
     # @param value [Integer]
@@ -27,6 +28,7 @@ module MediaWiktory::Wikipedia::Modules
     def continue(value)
       merge(wbptcontinue: value.to_s)
     end
+
     # The types of terms to get, e.g. 'description'. If not specified, all types are returned.
     #
     # @param values [Array<String>] Allowed values: "alias", "description", "label".

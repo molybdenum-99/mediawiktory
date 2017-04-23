@@ -20,6 +20,7 @@ module MediaWiktory::Wikipedia::Modules
   # All submodule's parameters are documented as its public methods, see below.
   #
   module Pageimages
+
     # Which information to return:
     #
     # @param values [Array<String>] Allowed values: "thumbnail" (URL and dimensions of thumbnail image associated with page, if any), "original" (URL and original dimensions of image associated with page, if any), "name" (Image title).
@@ -27,6 +28,7 @@ module MediaWiktory::Wikipedia::Modules
     def prop(*values)
       merge(piprop: values.join('|'))
     end
+
     # Maximum thumbnail dimension.
     #
     # @param value [Integer]
@@ -34,6 +36,7 @@ module MediaWiktory::Wikipedia::Modules
     def thumbsize(value)
       merge(pithumbsize: value.to_s)
     end
+
     # Properties of how many pages to return.
     #
     # @param value [Integer, "max"]
@@ -41,6 +44,7 @@ module MediaWiktory::Wikipedia::Modules
     def limit(value)
       merge(pilimit: value.to_s)
     end
+
     # Limit page images to a certain license type
     #
     # @param value [String] One of "free", "any".
@@ -48,6 +52,7 @@ module MediaWiktory::Wikipedia::Modules
     def license(value)
       merge(pilicense: value.to_s)
     end
+
     # When more results are available, use this to continue.
     #
     # @param value [Integer]

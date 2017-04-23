@@ -20,12 +20,14 @@ module MediaWiktory::Wikipedia::Modules
   # All submodule's parameters are documented as its public methods, see below.
   #
   module Projectpages
+
     # Also return assessments for the pages returned.
     #
     # @return [self]
     def assessments()
       merge(wppassessments: 'true')
     end
+
     # The projects to list pages for. If this parameter is omitted, all projects will be included.
     #
     # @param values [Array<String>]
@@ -33,6 +35,7 @@ module MediaWiktory::Wikipedia::Modules
     def projects(*values)
       merge(wppprojects: values.join('|'))
     end
+
     # The maximum number of pages to return.
     #
     # @param value [Integer, "max"]
@@ -40,6 +43,7 @@ module MediaWiktory::Wikipedia::Modules
     def limit(value)
       merge(wpplimit: value.to_s)
     end
+
     # When more results are available, use this to continue.
     #
     # @param value [String]

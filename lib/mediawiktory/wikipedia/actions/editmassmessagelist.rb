@@ -19,6 +19,7 @@ module MediaWiktory::Wikipedia::Actions
   # All action's parameters are documented as its public methods, see below.
   #
   class Editmassmessagelist < MediaWiktory::GetAction
+
     # Title of the delivery list to update.
     #
     # @param value [String]
@@ -26,6 +27,7 @@ module MediaWiktory::Wikipedia::Actions
     def spamlist(value)
       merge(spamlist: value.to_s)
     end
+
     # Titles to add to the list.
     #
     # @param values [Array<String>]
@@ -33,6 +35,7 @@ module MediaWiktory::Wikipedia::Actions
     def add(*values)
       merge(add: values.join('|'))
     end
+
     # Titles to remove from the list.
     #
     # @param values [Array<String>]
@@ -40,6 +43,7 @@ module MediaWiktory::Wikipedia::Actions
     def remove(*values)
       merge(remove: values.join('|'))
     end
+
     # A "csrf" token retrieved from action=query&meta=tokens
     #
     # @param value [String]

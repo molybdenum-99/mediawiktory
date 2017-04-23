@@ -20,6 +20,7 @@ module MediaWiktory::Wikipedia::Modules
   # All submodule's parameters are documented as its public methods, see below.
   #
   module Json
+
     # If specified, wraps the output into a given function call. For safety, all user-specific data will be restricted.
     #
     # @param value [String]
@@ -27,18 +28,21 @@ module MediaWiktory::Wikipedia::Modules
     def callback(value)
       merge(callback: value.to_s)
     end
+
     # If specified, encodes most (but not all) non-ASCII characters as UTF-8 instead of replacing them with hexadecimal escape sequences. Default when formatversion is not 1.
     #
     # @return [self]
     def utf8()
       merge(utf8: 'true')
     end
+
     # If specified, encodes all non-ASCII using hexadecimal escape sequences. Default when formatversion is 1.
     #
     # @return [self]
     def ascii()
       merge(ascii: 'true')
     end
+
     # Output formatting:
     #
     # @param value [String] One of "1" (Backwards-compatible format (XML-style booleans, * keys for content nodes, etc.)), "2" (Experimental modern format. Details may change!), "latest" (Use the latest format (currently 2), may change without warning).

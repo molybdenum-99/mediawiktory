@@ -19,6 +19,7 @@ module MediaWiktory::Wikipedia::Actions
   # All action's parameters are documented as its public methods, see below.
   #
   class Linkaccount < MediaWiktory::GetAction
+
     # Only use these authentication requests, by the id returned from action=query&meta=authmanagerinfo with amirequestsfor=link or from a previous response from this module.
     #
     # @param values [Array<String>]
@@ -26,6 +27,7 @@ module MediaWiktory::Wikipedia::Actions
     def requests(*values)
       merge(linkrequests: values.join('|'))
     end
+
     # Format to use for returning messages.
     #
     # @param value [String] One of "html", "wikitext", "raw", "none".
@@ -33,12 +35,14 @@ module MediaWiktory::Wikipedia::Actions
     def messageformat(value)
       merge(linkmessageformat: value.to_s)
     end
+
     # Merge field information for all authentication requests into one array.
     #
     # @return [self]
     def mergerequestfields()
       merge(linkmergerequestfields: 'true')
     end
+
     # Return URL for third-party authentication flows, must be absolute. Either this or linkcontinue is required.
     #
     # @param value [String]
@@ -46,12 +50,14 @@ module MediaWiktory::Wikipedia::Actions
     def returnurl(value)
       merge(linkreturnurl: value.to_s)
     end
+
     # This request is a continuation after an earlier UI or REDIRECT response. Either this or linkreturnurl is required.
     #
     # @return [self]
     def continue()
       merge(linkcontinue: 'true')
     end
+
     # A "csrf" token retrieved from action=query&meta=tokens
     #
     # @param value [String]

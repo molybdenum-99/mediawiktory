@@ -20,6 +20,7 @@ module MediaWiktory::Wikipedia::Modules
   # All submodule's parameters are documented as its public methods, see below.
   #
   module Globaluserinfo
+
     # User to get information about. Defaults to the current user.
     #
     # @param value [String]
@@ -27,6 +28,7 @@ module MediaWiktory::Wikipedia::Modules
     def user(value)
       merge(guiuser: value.to_s)
     end
+
     # Which properties to get:
     #
     # @param values [Array<String>] Allowed values: "groups" (Get a list of global groups this user belongs to), "rights" (Get a list of global rights this user has), "merged" (Get a list of merged accounts), "unattached" (Get a list of unattached accounts), "editcount" (Get the user's global edit count).

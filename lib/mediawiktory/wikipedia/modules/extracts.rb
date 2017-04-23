@@ -20,6 +20,7 @@ module MediaWiktory::Wikipedia::Modules
   # All submodule's parameters are documented as its public methods, see below.
   #
   module Extracts
+
     # How many characters to return. Actual text returned might be slightly longer.
     #
     # @param value [Integer]
@@ -27,6 +28,7 @@ module MediaWiktory::Wikipedia::Modules
     def chars(value)
       merge(exchars: value.to_s)
     end
+
     # How many sentences to return.
     #
     # @param value [Integer]
@@ -34,6 +36,7 @@ module MediaWiktory::Wikipedia::Modules
     def sentences(value)
       merge(exsentences: value.to_s)
     end
+
     # How many extracts to return. (Multiple extracts can only be returned if exintro is set to true.)
     #
     # @param value [Integer, "max"]
@@ -41,18 +44,21 @@ module MediaWiktory::Wikipedia::Modules
     def limit(value)
       merge(exlimit: value.to_s)
     end
+
     # Return only content before the first section.
     #
     # @return [self]
     def intro()
       merge(exintro: 'true')
     end
+
     # Return extracts as plain text instead of limited HTML.
     #
     # @return [self]
     def plaintext()
       merge(explaintext: 'true')
     end
+
     # How to format sections in plaintext mode:
     #
     # @param value [String] One of "plain" (No formatting), "wiki" (Wikitext-style formatting (== like this ==)), "raw" (This module's internal representation (section titles prefixed with <ASCII 1><ASCII 2><section level><ASCII 2><ASCII 1>)).
@@ -60,6 +66,7 @@ module MediaWiktory::Wikipedia::Modules
     def sectionformat(value)
       merge(exsectionformat: value.to_s)
     end
+
     # When more results are available, use this to continue.
     #
     # @param value [Integer]

@@ -19,6 +19,7 @@ module MediaWiktory::Wikipedia::Actions
   # All action's parameters are documented as its public methods, see below.
   #
   class Import < MediaWiktory::GetAction
+
     # Log entry import summary.
     #
     # @param value [String]
@@ -26,6 +27,7 @@ module MediaWiktory::Wikipedia::Actions
     def summary(value)
       merge(summary: value.to_s)
     end
+
     # Uploaded XML file.
     #
     # @param value [String]
@@ -33,6 +35,7 @@ module MediaWiktory::Wikipedia::Actions
     def xml(value)
       merge(xml: value.to_s)
     end
+
     # For interwiki imports: wiki to import from.
     #
     # @param value [String] One of "meta", "nost", "de", "es", "fr", "it", "pl", "outreachwiki", "test2wiki".
@@ -40,6 +43,7 @@ module MediaWiktory::Wikipedia::Actions
     def interwikisource(value)
       merge(interwikisource: value.to_s)
     end
+
     # For interwiki imports: page to import.
     #
     # @param value [String]
@@ -47,18 +51,21 @@ module MediaWiktory::Wikipedia::Actions
     def interwikipage(value)
       merge(interwikipage: value.to_s)
     end
+
     # For interwiki imports: import the full history, not just the current version.
     #
     # @return [self]
     def fullhistory()
       merge(fullhistory: 'true')
     end
+
     # For interwiki imports: import all included templates as well.
     #
     # @return [self]
     def templates()
       merge(templates: 'true')
     end
+
     # Import to this namespace. Cannot be used together with rootpage.
     #
     # @param value [String] One of "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "100", "101", "108", "109", "118", "119", "446", "447", "710", "711", "828", "829", "2300", "2301", "2302", "2303".
@@ -66,6 +73,7 @@ module MediaWiktory::Wikipedia::Actions
     def namespace(value)
       merge(namespace: value.to_s)
     end
+
     # Import as subpage of this page. Cannot be used together with namespace.
     #
     # @param value [String]
@@ -73,6 +81,7 @@ module MediaWiktory::Wikipedia::Actions
     def rootpage(value)
       merge(rootpage: value.to_s)
     end
+
     # Change tags to apply to the entry in the import log and to the null revision on the imported pages.
     #
     # @param values [Array<String>] Allowed values: "ProveIt edit", "WPCleaner", "huggle", "large plot addition".
@@ -80,6 +89,7 @@ module MediaWiktory::Wikipedia::Actions
     def tags(*values)
       merge(tags: values.join('|'))
     end
+
     # A "csrf" token retrieved from action=query&meta=tokens
     #
     # @param value [String]

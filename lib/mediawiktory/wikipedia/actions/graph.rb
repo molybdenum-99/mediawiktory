@@ -19,6 +19,7 @@ module MediaWiktory::Wikipedia::Actions
   # All action's parameters are documented as its public methods, see below.
   #
   class Graph < MediaWiktory::GetAction
+
     # Hash value of the graph
     #
     # @param value [String]
@@ -26,6 +27,7 @@ module MediaWiktory::Wikipedia::Actions
     def hash(value)
       merge(hash: value.to_s)
     end
+
     # Title of the article with the graph
     #
     # @param value [String]
@@ -33,6 +35,7 @@ module MediaWiktory::Wikipedia::Actions
     def title(value)
       merge(title: value.to_s)
     end
+
     # Text of the graph to be converted to JSON. Must be posted and used without title and hash parameters
     #
     # @param value [String]

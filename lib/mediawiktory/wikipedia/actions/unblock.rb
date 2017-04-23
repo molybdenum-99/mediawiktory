@@ -19,6 +19,7 @@ module MediaWiktory::Wikipedia::Actions
   # All action's parameters are documented as its public methods, see below.
   #
   class Unblock < MediaWiktory::GetAction
+
     # ID of the block to unblock (obtained through list=blocks). Cannot be used together with user or userid.
     #
     # @param value [Integer]
@@ -26,6 +27,7 @@ module MediaWiktory::Wikipedia::Actions
     def id(value)
       merge(id: value.to_s)
     end
+
     # Username, IP address or IP address range to unblock. Cannot be used together with id or userid.
     #
     # @param value [String]
@@ -33,6 +35,7 @@ module MediaWiktory::Wikipedia::Actions
     def user(value)
       merge(user: value.to_s)
     end
+
     # User ID to unblock. Cannot be used together with id or user.
     #
     # @param value [Integer]
@@ -40,6 +43,7 @@ module MediaWiktory::Wikipedia::Actions
     def userid(value)
       merge(userid: value.to_s)
     end
+
     # Reason for unblock.
     #
     # @param value [String]
@@ -47,6 +51,7 @@ module MediaWiktory::Wikipedia::Actions
     def reason(value)
       merge(reason: value.to_s)
     end
+
     # Change tags to apply to the entry in the block log.
     #
     # @param values [Array<String>] Allowed values: "ProveIt edit", "WPCleaner", "huggle", "large plot addition".
@@ -54,6 +59,7 @@ module MediaWiktory::Wikipedia::Actions
     def tags(*values)
       merge(tags: values.join('|'))
     end
+
     # A "csrf" token retrieved from action=query&meta=tokens
     #
     # @param value [String]

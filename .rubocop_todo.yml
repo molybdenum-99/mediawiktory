@@ -46,22 +46,10 @@ Style/DoubleNegation:
   Exclude:
     - 'lib/mediawiktory/page.rb'
 
-# Offense count: 1215
-# Cop supports --auto-correct.
-# Configuration parameters: AllowAdjacentOneLineDefs, NumberOfEmptyLines.
-Style/EmptyLineBetweenDefs:
-  Enabled: false
-
 # Offense count: 1
 Style/MethodMissing:
   Exclude:
     - 'lib/mediawiktory/page.rb'
-
-# Offense count: 1
-# Cop supports --auto-correct.
-Style/MutableConstant:
-  Exclude:
-    - 'lib/mediawiktory/client.rb'
 
 # Offense count: 1
 # Configuration parameters: NamePrefix, NamePrefixBlacklist, NameWhitelist.
@@ -93,44 +81,3 @@ Style/RedundantException:
 Style/SafeNavigation:
   Exclude:
     - 'lib/mediawiktory/query.rb'
-
-# Offense count: 13
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle, SupportedStyles.
-# SupportedStyles: space, no_space
-#Style/SpaceBeforeBlockBraces:
-  #Exclude:
-    #- 'lib/mediawiktory/generator/module.rb'
-    #- 'lib/mediawiktory/generator/param.rb'
-    #- 'lib/mediawiktory/query.rb'
-    #- 'lib/nokogiri/more.rb'
-
-# Offense count: 2
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle, SupportedStyles.
-# SupportedStyles: space, no_space
-Style/SpaceInsideStringInterpolation:
-  Exclude:
-    - 'lib/mediawiktory/generator/param.rb'
-
-# Offense count: 3
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle, SupportedStyles, ConsistentQuotesInMultiline.
-# SupportedStyles: single_quotes, double_quotes
-Style/StringLiterals:
-  Exclude:
-    - 'lib/mediawiktory/action.rb'
-    - 'lib/mediawiktory/generator/param.rb'
-    - 'lib/mediawiktory/query.rb'
-
-# Offense count: 652
-# Cop supports --auto-correct.
-Style/TrailingWhitespace:
-  Enabled: false
-
-# Offense count: 1
-# Cop supports --auto-correct.
-# Configuration parameters: MaxLineLength.
-Style/WhileUntilModifier:
-  Exclude:
-    - 'lib/nokogiri/more.rb'

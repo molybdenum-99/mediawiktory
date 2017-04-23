@@ -19,6 +19,7 @@ module MediaWiktory::Wikipedia::Actions
   # All action's parameters are documented as its public methods, see below.
   #
   class Centralnoticechoicedata < MediaWiktory::GetAction
+
     # The project to get banner choice data for.
     #
     # @param value [String]
@@ -26,6 +27,7 @@ module MediaWiktory::Wikipedia::Actions
     def project(value)
       merge(project: value.to_s)
     end
+
     # The language to get banner choice data for.
     #
     # @param value [String]

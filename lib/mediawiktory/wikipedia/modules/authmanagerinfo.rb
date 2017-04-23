@@ -20,6 +20,7 @@ module MediaWiktory::Wikipedia::Modules
   # All submodule's parameters are documented as its public methods, see below.
   #
   module Authmanagerinfo
+
     # Test whether the user's current authentication status is sufficient for the specified security-sensitive operation.
     #
     # @param value [String]
@@ -27,6 +28,7 @@ module MediaWiktory::Wikipedia::Modules
     def securitysensitiveoperation(value)
       merge(amisecuritysensitiveoperation: value.to_s)
     end
+
     # Fetch information about the authentication requests needed for the specified authentication action.
     #
     # @param value [String] One of "login", "login-continue", "create", "create-continue", "link", "link-continue", "change", "remove", "unlink".
@@ -34,12 +36,14 @@ module MediaWiktory::Wikipedia::Modules
     def requestsfor(value)
       merge(amirequestsfor: value.to_s)
     end
+
     # Merge field information for all authentication requests into one array.
     #
     # @return [self]
     def mergerequestfields()
       merge(amimergerequestfields: 'true')
     end
+
     # Format to use for returning messages.
     #
     # @param value [String] One of "html", "wikitext", "raw", "none".

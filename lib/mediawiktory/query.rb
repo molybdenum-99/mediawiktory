@@ -7,10 +7,10 @@ module MediaWiktory
     def continue(additional_params)
       client.get(to_param.merge(additional_params))
     end
-  
+
     class Response < Action::Response
       attr_reader :pages, :continue_params
-      
+
       def initialize(*)
         super
         @pages = ((raw.query.pages if raw.query) || {}).values.map(&Page.method(:new))
@@ -27,8 +27,8 @@ module MediaWiktory
       end
 
       def continue!
-        continue? or fail(RuntimeError, "Response can not be continued")
-        
+        continue? or fail(RuntimeError, 'Response can not be continued')
+
         merge!(action.perform(@continue_params))
 
         self
@@ -45,7 +45,7 @@ module MediaWiktory
         # FIXME2: after this merge, only @pages are updated, but @raw.query.pages IS NOT
         other.pages.each do |other_page|
           existing = pages.detect { |p| p.id == other_page.id }
-          
+
           if existing
             existing.merge!(other_page)
           else

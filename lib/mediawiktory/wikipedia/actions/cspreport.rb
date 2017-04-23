@@ -19,12 +19,14 @@ module MediaWiktory::Wikipedia::Actions
   # All action's parameters are documented as its public methods, see below.
   #
   class Cspreport < MediaWiktory::GetAction
+
     # Mark as being a report from a monitoring policy, not an enforced policy
     #
     # @return [self]
     def reportonly()
       merge(reportonly: 'true')
     end
+
     # What generated the CSP header that triggered this report
     #
     # @param value [String]

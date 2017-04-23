@@ -19,6 +19,7 @@ module MediaWiktory::Wikipedia::Actions
   # All action's parameters are documented as its public methods, see below.
   #
   class ScribuntoConsole < MediaWiktory::GetAction
+
     # The title of the module to test.
     #
     # @param value [String]
@@ -26,6 +27,7 @@ module MediaWiktory::Wikipedia::Actions
     def title(value)
       merge(title: value.to_s)
     end
+
     # The new content of the module.
     #
     # @param value [String]
@@ -33,6 +35,7 @@ module MediaWiktory::Wikipedia::Actions
     def content(value)
       merge(content: value.to_s)
     end
+
     # Session token.
     #
     # @param value [Integer]
@@ -40,6 +43,7 @@ module MediaWiktory::Wikipedia::Actions
     def session(value)
       merge(session: value.to_s)
     end
+
     # The next line to evaluate as a script.
     #
     # @param value [String]
@@ -47,6 +51,7 @@ module MediaWiktory::Wikipedia::Actions
     def question(value)
       merge(question: value.to_s)
     end
+
     # Set to clear the current session state.
     #
     # @return [self]
