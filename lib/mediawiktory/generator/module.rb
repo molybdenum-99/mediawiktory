@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module MediaWiktory
   class Generator
     class Module < Hashie::Mash
@@ -31,7 +33,7 @@ module MediaWiktory
         def extract_params(nodes, prefix)
           params = nodes.detect { |n| n['class']&.include?('apihelp-parameters') } or return []
           params.at('dl').each_term.to_a
-                .map{ |dts, dds| Param.from_html_nodes(dts.first.text, dds, prefix: prefix) }
+                .map { |dts, dds| Param.from_html_nodes(dts.first.text, dds, prefix: prefix) }
         end
       end
 

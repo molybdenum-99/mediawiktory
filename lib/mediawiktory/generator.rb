@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'nokogiri' # FIXME: catch if unavailable
 require 'nokogiri/more'
 require 'hashie'

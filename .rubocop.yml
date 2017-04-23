@@ -34,6 +34,9 @@ Style/BlockDelimiters:
 Style/FrozenStringLiteralComment:
   EnforcedStyle: when_needed
 
+Style/SignalException:
+  EnforcedStyle: semantic
+
 # Generated code: hard to support some conventions:
 # -------------------------------------------------
 

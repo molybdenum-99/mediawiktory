@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'naught'
 
 # @private
@@ -7,7 +9,7 @@ module Nokogiri
     module NodeChildrenGroups
       def children_groups(*selectors)
         groups = []
-        flat = children.select{ |node| selectors.any?{ |s| node.matches?(s) } }
+        flat = children.select { |node| selectors.any? { |s| node.matches?(s) } }
         until flat.empty?
           groups << make_group(flat, selectors)
         end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'page'
 
 module MediaWiktory
@@ -42,7 +44,7 @@ module MediaWiktory
         # FIXME: not the brightest code in my life, faithfully
         # FIXME2: after this merge, only @pages are updated, but @raw.query.pages IS NOT
         other.pages.each do |other_page|
-          existing = pages.detect{ |p| p.id == other_page.id }
+          existing = pages.detect { |p| p.id == other_page.id }
           
           if existing
             existing.merge!(other_page)

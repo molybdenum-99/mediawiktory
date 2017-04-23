@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module MediaWiktory
   class Page
     attr_reader :id, :title, :raw

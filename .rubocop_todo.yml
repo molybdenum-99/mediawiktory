@@ -52,13 +52,6 @@ Style/DoubleNegation:
 Style/EmptyLineBetweenDefs:
   Enabled: false
 
-# Offense count: 237
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle, SupportedStyles.
-# SupportedStyles: when_needed, always, never
-#Style/FrozenStringLiteralComment:
-  #Enabled: false
-
 # Offense count: 1
 Style/MethodMissing:
   Exclude:
@@ -101,28 +94,16 @@ Style/SafeNavigation:
   Exclude:
     - 'lib/mediawiktory/query.rb'
 
-# Offense count: 12
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle, SupportedStyles.
-# SupportedStyles: only_raise, only_fail, semantic
-Style/SignalException:
-  Exclude:
-    - 'lib/mediawiktory/action.rb'
-    - 'lib/mediawiktory/generator/api.rb'
-    - 'lib/mediawiktory/generator/param.rb'
-    - 'lib/mediawiktory/page.rb'
-    - 'lib/mediawiktory/query.rb'
-
 # Offense count: 13
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle, SupportedStyles.
 # SupportedStyles: space, no_space
-Style/SpaceBeforeBlockBraces:
-  Exclude:
-    - 'lib/mediawiktory/generator/module.rb'
-    - 'lib/mediawiktory/generator/param.rb'
-    - 'lib/mediawiktory/query.rb'
-    - 'lib/nokogiri/more.rb'
+#Style/SpaceBeforeBlockBraces:
+  #Exclude:
+    #- 'lib/mediawiktory/generator/module.rb'
+    #- 'lib/mediawiktory/generator/param.rb'
+    #- 'lib/mediawiktory/query.rb'
+    #- 'lib/nokogiri/more.rb'
 
 # Offense count: 2
 # Cop supports --auto-correct.
