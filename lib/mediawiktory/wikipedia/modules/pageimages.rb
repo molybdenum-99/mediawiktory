@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module MediaWiktory::Wikipedia::Modules
   # Returns information about images on the page, such as thumbnail and presence of photos. 
   #

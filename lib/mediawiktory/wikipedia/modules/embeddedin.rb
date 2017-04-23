@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module MediaWiktory::Wikipedia::Modules
   # Find all pages that embed (transclude) the given title. 
   #

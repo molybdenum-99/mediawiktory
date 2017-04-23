@@ -6,7 +6,6 @@ module MediaWiktory
           type, name, prefix = title.scan(/^([a-z]+)=([^(]+)(?:\s+\((.+)\))?$/).flatten
 
           new(
-            #url: url,
             type: type&.to_sym || :main,
             name: name,
             prefix: prefix,
@@ -19,7 +18,6 @@ module MediaWiktory
         private
 
         def extract_description(nodes)
-          #nodes.select { |n| n.name == 'p' }.map(&:text).map(&:strip).join("\n")
           nodes.detect { |n| n.name == 'p' }&.text.to_s.tr("\n", ' ')
         end
 

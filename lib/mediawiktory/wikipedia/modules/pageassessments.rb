@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module MediaWiktory::Wikipedia::Modules
   # Return associated projects and assessments for the given pages. 
   #

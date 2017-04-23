@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module MediaWiktory::Wikipedia::Actions
   # Add or remove change tags from individual revisions or log entries. 
   #

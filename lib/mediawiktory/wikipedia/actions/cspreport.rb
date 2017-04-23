@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module MediaWiktory::Wikipedia::Actions
   # Used by browsers to report violations of the Content Security Policy. This module should never be used, except when used automatically by a CSP compliant web browser. 
   #

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module MediaWiktory::Wikipedia::Actions
   # Restore revisions of a deleted page. 
   #

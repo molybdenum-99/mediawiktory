@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module MediaWiktory::Wikipedia::Modules
   # Get a summary of logged API feature usages for a user agent. 
   #

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module MediaWiktory::Wikipedia::Actions
   # Log in to the wiki using the interactive flow. 
   #

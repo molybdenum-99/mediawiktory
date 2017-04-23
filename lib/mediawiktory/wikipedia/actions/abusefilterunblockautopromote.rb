@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module MediaWiktory::Wikipedia::Actions
   # Unblocks a user from receiving autopromotions due to an abusefilter consequence. 
   #

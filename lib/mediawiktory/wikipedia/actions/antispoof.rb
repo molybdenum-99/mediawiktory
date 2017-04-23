@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module MediaWiktory::Wikipedia::Actions
   # Check a username against AntiSpoof's normalisation checks. 
   #

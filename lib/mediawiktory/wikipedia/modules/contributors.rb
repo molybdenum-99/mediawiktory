@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module MediaWiktory::Wikipedia::Modules
   # Get the list of logged-in contributors and the count of anonymous contributors to a page. 
   #

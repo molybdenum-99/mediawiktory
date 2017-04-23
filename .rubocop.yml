@@ -28,6 +28,12 @@ Style/AndOr:
 Style/SpaceInsideHashLiteralBraces:
   EnforcedStyle: no_space
 
+Style/BlockDelimiters:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  EnforcedStyle: when_needed
+
 # Generated code: hard to support some conventions:
 # -------------------------------------------------
 

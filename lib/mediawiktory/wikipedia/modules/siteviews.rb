@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module MediaWiktory::Wikipedia::Modules
   # Shows sitewide pageview data (daily pageview totals for each of the last pvisdays days). The result format is date (Ymd) => count. 
   #

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module MediaWiktory::Wikipedia::Modules
   # Returns plain-text or limited HTML extracts of the given pages. 
   #

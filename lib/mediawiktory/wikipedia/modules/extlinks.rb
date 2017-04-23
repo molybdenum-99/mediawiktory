@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module MediaWiktory::Wikipedia::Modules
   # Returns all external URLs (not interwikis) from the given pages. 
   #

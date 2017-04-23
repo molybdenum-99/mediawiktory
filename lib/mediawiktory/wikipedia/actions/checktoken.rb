@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module MediaWiktory::Wikipedia::Actions
   # Check the validity of a token from action=query&meta=tokens. 
   #

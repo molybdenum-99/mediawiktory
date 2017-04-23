@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module MediaWiktory::Wikipedia::Actions
   # Users with the 'transcode-reset' right can reset and re-run a transcode job. 
   #

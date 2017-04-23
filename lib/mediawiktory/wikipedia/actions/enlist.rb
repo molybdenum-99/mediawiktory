@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module MediaWiktory::Wikipedia::Actions
   # Associate or disassociate a user as instructor or volunteer for a course. 
   #

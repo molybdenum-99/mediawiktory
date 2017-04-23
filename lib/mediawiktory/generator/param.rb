@@ -11,10 +11,11 @@ module MediaWiktory
             prefix: prefix,
             description: extract_description(dds),
             type: extract_type(dds),
-            vals: extract_values(dds) #,
-            #default: extract_default(dds)
+            vals: extract_values(dds)
 
-            # TODO: limit: extract_limit(dds),
+            # TODO: lost params
+            #   limit: extract_limit(dds),
+            #   default: extract_default(dds)
 
             # TODO: mandatoriness:
             # * optional
@@ -27,8 +28,6 @@ module MediaWiktory
 
         def extract_description(els)
           els.detect{ |e| e.attr('class') == 'description' }.at('p')&.text.to_s.strip.tr("\n", ' ')
-          #  .map { |p| p.text.strip }.reject(&:empty?)
-          #  .join("\n")
         end
 
         def extract_type(els)

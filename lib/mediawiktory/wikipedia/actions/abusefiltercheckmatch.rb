@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module MediaWiktory::Wikipedia::Actions
   # Check to see if an AbuseFilter matches a set of variables, editor logged AbuseFilter event. 
   #

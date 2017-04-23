@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # The base API class for [Wikipedia](https://en.wikipedia.org/wiki/Main_Page).
 #
 # Generated from https://en.wikipedia.org/w/api.php at April 23, 2017 by MediaWiktory 0.1.0.
@@ -2646,5 +2648,4 @@ class MediaWiktory::Wikipedia::Api < MediaWiktory::Api
   def zeroconfig(**options)
     Actions::Zeroconfig.new(**options)
   end
-
 end

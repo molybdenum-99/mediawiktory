@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module MediaWiktory::Wikipedia::Actions
   # Get the usernames and other information for students enrolled in one or more courses. 
   #

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module MediaWiktory::Wikipedia::Actions
   # Save an HTML5 page to MediaWiki (converted to wikitext via the Parsoid service). 
   #

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module MediaWiktory::Wikipedia::Actions
   # Advertise or de-advertise yourself as reviewing an unreviewed page or unreviewed changes. 
   #

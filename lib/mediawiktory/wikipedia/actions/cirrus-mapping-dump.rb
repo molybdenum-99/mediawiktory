@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module MediaWiktory::Wikipedia::Actions
   # Dump of CirrusSearch mapping for this wiki. 
   #

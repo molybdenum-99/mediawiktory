@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module MediaWiktory::Wikipedia::Actions
   # Get a list of page IDs for building a PageTriage queue. 
   #

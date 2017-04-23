@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module MediaWiktory::Wikipedia::Actions
   # Validate one or more URLs against the SpamBlacklist. 
   #

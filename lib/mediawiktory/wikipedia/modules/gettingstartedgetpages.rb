@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module MediaWiktory::Wikipedia::Modules
   # This API is for getting a list of one or more pages related to a particular GettingStarted task. 
   #

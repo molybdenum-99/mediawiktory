@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module MediaWiktory::Wikipedia::Actions
   # Validate an article title, filename, or username against the TitleBlacklist. 
   #

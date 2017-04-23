@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module MediaWiktory::Wikipedia::Modules
   # Check which IP addresses are used by a given username or which usernames are used by a given IP address. 
   #

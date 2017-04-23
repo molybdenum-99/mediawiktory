@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module MediaWiktory::Wikipedia::Actions
   # Receive a bounce email and process it to handle the failing recipient. 
   #

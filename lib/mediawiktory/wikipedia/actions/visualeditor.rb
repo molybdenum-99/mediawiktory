@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module MediaWiktory::Wikipedia::Actions
   # Returns HTML5 for a page from the Parsoid service. 
   #

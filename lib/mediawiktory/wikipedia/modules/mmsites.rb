@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module MediaWiktory::Wikipedia::Modules
   # Serve autocomplete requests for the site field in MassMessage. 
   #

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module MediaWiktory::Wikipedia::Actions
   # Internal module for servicing XHR requests from the Scribunto console. 
   #

@@ -24,18 +24,6 @@ Metrics/CyclomaticComplexity:
 Metrics/MethodLength:
   Max: 24
 
-# Offense count: 3
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle, SupportedStyles, ProceduralMethods, FunctionalMethods, IgnoredMethods.
-# SupportedStyles: line_count_based, semantic, braces_for_chaining
-# ProceduralMethods: benchmark, bm, bmbm, create, each_with_object, measure, new, realtime, tap, with_object
-# FunctionalMethods: let, let!, subject, watch
-# IgnoredMethods: lambda, proc, it
-Style/BlockDelimiters:
-  Exclude:
-    - 'lib/mediawiktory/generator/param.rb'
-    - 'lib/mediawiktory/util.rb'
-
 # Offense count: 15
 Style/Documentation:
   Exclude:
@@ -68,17 +56,8 @@ Style/EmptyLineBetweenDefs:
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle, SupportedStyles.
 # SupportedStyles: when_needed, always, never
-Style/FrozenStringLiteralComment:
-  Enabled: false
-
-# Offense count: 12
-# Cop supports --auto-correct.
-#Style/LeadingCommentSpace:
-  #Exclude:
-    #- 'lib/mediawiktory.rb'
-    #- 'lib/mediawiktory/generator/module.rb'
-    #- 'lib/mediawiktory/generator/param.rb'
-    #- 'lib/nokogiri/more.rb'
+#Style/FrozenStringLiteralComment:
+  #Enabled: false
 
 # Offense count: 1
 Style/MethodMissing:

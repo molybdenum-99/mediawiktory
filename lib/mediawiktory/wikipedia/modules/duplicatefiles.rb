@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module MediaWiktory::Wikipedia::Modules
   # List all files that are duplicates of the given files based on hash values. 
   #

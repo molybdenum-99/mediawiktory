@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module MediaWiktory::Wikipedia::Modules
   # Lists the most viewed pages (based on last day's pageview count). 
   #

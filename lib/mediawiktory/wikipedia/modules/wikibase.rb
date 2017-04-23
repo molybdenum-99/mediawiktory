@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module MediaWiktory::Wikipedia::Modules
   # Get information about the Wikibase client and the associated Wikibase repository. 
   #

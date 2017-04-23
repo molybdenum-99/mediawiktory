@@ -14,8 +14,6 @@ module Nokogiri
         groups
       end
 
-      #include NodeOnlyFor
-
       def each_term
         children_groups('dt', 'dd')
       end

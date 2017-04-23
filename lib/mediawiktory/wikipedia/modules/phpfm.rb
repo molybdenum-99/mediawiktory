@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module MediaWiktory::Wikipedia::Modules
   # Output data in serialized PHP format (pretty-print in HTML). 
   #

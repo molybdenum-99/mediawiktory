@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module MediaWiktory::Wikipedia::Modules
   # Check to see if two-factor authentication (OATH) is enabled for a user. 
   #

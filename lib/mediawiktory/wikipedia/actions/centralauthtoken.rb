@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module MediaWiktory::Wikipedia::Actions
   # Fetch a centralauthtoken for making an authenticated request to an attached wiki. 
   #
