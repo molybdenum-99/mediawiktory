@@ -36,20 +36,25 @@ module MediaWiktory
         end
       end
 
-      attr_accessor :api
+      attr_reader :api
 
       def inspect
         "#<#{self.class.name} #{name}>"
       end
 
-      #def to_h(api)
-        #super().merge('params' => params.map { |p| p.to_h(api) })
-      #end
+      def action?
+        type == :action
+      end
 
       include Renderable
 
       def main_template
         'action_class.rb'
+      end
+
+      def api=(api)
+        @api = api
+        params.each { |p| p.api = api }
       end
 
       def to_h

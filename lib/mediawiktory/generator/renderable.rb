@@ -16,10 +16,12 @@ module MediaWiktory
       end
 
       def liquid(template, **vars)
+        name = vars.fetch(:name, 'object') # for tests only
+
         Liquid::Template.file_system = Liquid::LocalFileSystem.new(File.expand_path('../templates/', __FILE__))
         Liquid::Template
           .parse(File.read(File.expand_path("../templates/#{template}.liquid", __FILE__)))
-          .render({'object' => to_h}.merge(Util.stringify_hash(vars)))
+          .render({name => to_h}.merge(Util.stringify_hash(vars)))
           .chomp # templates files in most editors add empty line to an ending
       end
     end

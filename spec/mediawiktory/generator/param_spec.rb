@@ -1,6 +1,6 @@
-require 'mediawiktory/api_parser'
+require 'mediawiktory/generator'
 
-RSpec.describe MediaWiktory::ApiParser::Param do
+RSpec.describe MediaWiktory::Generator::Param do
   describe '.from_html_nodes' do
     subject(:param) { described_class.from_html_nodes(name, dds) }
 
@@ -203,7 +203,7 @@ RSpec.describe MediaWiktory::ApiParser::Param do
   end
 
   describe '#to_method' do
-    subject { param.to_method(api) }
+    subject { param.liquid('_param_method', namespace: 'Dummy', name: 'param') }
 
     let(:api) { instance_double('MediaWiktory::ApiParser::Api') }
     let(:full_name) { prefix + name  }
@@ -246,10 +246,9 @@ RSpec.describe MediaWiktory::ApiParser::Param do
       it { is_expected.to eq %Q{
         |  # Foobar.
         |  #
-        |  # @param value [true, false]
         |  # @return [self]
-        |  def test(value = true)
-        |    merge(test: 'true') if value
+        |  def test()
+        |    merge(test: 'true')
         |  end
       }.unindent }
     end
@@ -303,7 +302,7 @@ RSpec.describe MediaWiktory::ApiParser::Param do
       it { is_expected.to eq %Q{
         |  # Foobar.
         |  #
-        |  # @param values [Array<String>]
+        |  # @param *values [Array<String>]
         |  # @return [self]
         |  def test(*values)
         |    merge(test: values.join('|'))
@@ -317,7 +316,7 @@ RSpec.describe MediaWiktory::ApiParser::Param do
       it { is_expected.to eq %Q{
         |  # Foobar.
         |  #
-        |  # @param values [Array<Integer>]
+        |  # @param *values [Array<Integer>]
         |  # @return [self]
         |  def test(*values)
         |    merge(test: values.join('|'))
@@ -332,7 +331,7 @@ RSpec.describe MediaWiktory::ApiParser::Param do
       it { is_expected.to eq %Q{
         |  # Foobar.
         |  #
-        |  # @param values [Array<String>] Allowed values: "foo", "bar", "baz".
+        |  # @param *values [Array<String>] Allowed values: "foo", "bar", "baz".
         |  # @return [self]
         |  def test(*values)
         |    merge(test: values.join('|'))
@@ -351,7 +350,7 @@ RSpec.describe MediaWiktory::ApiParser::Param do
       it { is_expected.to eq %Q{
         |  # Foobar.
         |  #
-        |  # @param values [Array<String>] Allowed values: "foo" (Foo), "bar" (The Bar), "baz" (Pretty baz).
+        |  # @param *values [Array<String>] Allowed values: "foo" (Foo), "bar" (The Bar), "baz" (Pretty baz).
         |  # @return [self]
         |  def test(*values)
         |    merge(test: values.join('|'))
@@ -361,29 +360,27 @@ RSpec.describe MediaWiktory::ApiParser::Param do
 
     context 'enum - other modules' do
       let(:type) { 'enum' }
-      let(:vals) { [{name: 'foo', module: 'foo'}] }
+      let(:vals) { [{name: 'mod', module: 'foo'}] }
       let(:mod) {
-        MediaWiktory::ApiParser::Module.new(
+        MediaWiktory::Generator::Module.new(
           name: 'mod',
           description: 'Descr of mod',
           params: [
-            MediaWiktory::ApiParser::Param.new(name: 'param1', type: 'string', description: 'Descr of param1.'),
-            MediaWiktory::ApiParser::Param.new(name: 'param2', type: 'enum', description: 'Descr of param2.', vals: %w[param1a param2a param3a])
+            MediaWiktory::Generator::Param.new(name: 'param1', type: 'string', description: 'Descr of param1.'),
+            MediaWiktory::Generator::Param.new(name: 'param2', type: 'enum', description: 'Descr of param2.', vals: %w[param1a param2a param3a])
           ]
         )
       }
-      before { expect(api).to receive(:modules).and_return('foo' => mod).twice }
+      before {
+        allow(api).to receive(:module).with('foo').and_return(mod)
+        param.api = api
+      }
 
       it { is_expected.to eq %Q{
         |  # Foobar.
         |  #
-        |  # Supported options and their settings:
-        |  #
-        |  #  * `:mod` (Descr of mod):
-        |  #    * param1 (String) Descr of param1.
-        |  #    * param2 (String) Descr of param2. One of "param1a", "param2a", "param3a".
-        |  #
-        |  # @param value [Symbol, Hash] Either symbol of selected option, or `{symbol: settings}` Hash.
+        |  # @param value [Symbol] Selecting an option includes tweaking methods from corresponding module:
+        |  #   * `:mod` - {Dummy::Mod} Descr of mod
         |  # @return [self]
         |  def test(value)
         |    merge(test: module_to_hash(value, [:mod]))
@@ -395,27 +392,25 @@ RSpec.describe MediaWiktory::ApiParser::Param do
       let(:type) { 'list' }
       let(:vals) { [{name: 'foo', module: 'foo'}] }
       let(:mod) {
-        MediaWiktory::ApiParser::Module.new(
+        MediaWiktory::Generator::Module.new(
           name: 'mod',
           description: 'Descr of mod',
           params: [
-            MediaWiktory::ApiParser::Param.new(name: 'param1', type: 'string', description: 'Descr of param1.'),
-            MediaWiktory::ApiParser::Param.new(name: 'param2', type: 'enum', description: 'Descr of param2.', vals: %w[param1a param2a param3a])
+            MediaWiktory::Generator::Param.new(name: 'param1', type: 'string', description: 'Descr of param1.'),
+            MediaWiktory::Generator::Param.new(name: 'param2', type: 'enum', description: 'Descr of param2.', vals: %w[param1a param2a param3a])
           ]
         )
       }
-      before { expect(api).to receive(:modules).and_return('foo' => mod).twice }
+      before {
+        allow(api).to receive(:module).with('foo').and_return(mod)
+        param.api = api
+      }
 
       it { is_expected.to eq %Q{
         |  # Foobar.
         |  #
-        |  # Supported options and their settings:
-        |  #
-        |  #  * `:mod` (Descr of mod):
-        |  #    * param1 (String) Descr of param1.
-        |  #    * param2 (String) Descr of param2. One of "param1a", "param2a", "param3a".
-        |  #
-        |  # @param values [Array<Symbol, Hash>] Any number of options (either symbol, or `{symbol: settings}` Hash).
+        |  # @param *values [Array<Symbol>] All selected options include tweaking methods from corresponding modules:
+        |  #   * `:mod` - {Dummy::Mod} Descr of mod
         |  # @return [self]
         |  def test(*values)
         |    merge(test: modules_to_hash(values, [:mod]))

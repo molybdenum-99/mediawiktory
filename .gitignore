@@ -3,3 +3,4 @@ vendor
 .bundle
 pkg
 Gemfile.lock
+.yardoc

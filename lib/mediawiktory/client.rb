@@ -1,5 +1,3 @@
-require_relative 'generated/actions_mixin'
-
 module MediaWiktory
   class Client
     # Default MediaWiktory User-Agent header.
@@ -17,7 +15,7 @@ module MediaWiktory
     end
 
     attr_reader :url
-    
+
     def initialize(url, **options)
       @url = Addressable::URI.parse(url)
       @faraday = Faraday.new(url) do |f|
@@ -35,8 +33,6 @@ module MediaWiktory
     def post(params)
       @faraday.post('', params).body
     end
-
-    include ActionsMixin
 
     private
 

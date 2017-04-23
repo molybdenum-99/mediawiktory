@@ -65,8 +65,8 @@ client = MediaWiktory::Client.new('https://en.wikipedia.org/w/api.php')
 
 response = client.
   query.
-  generator(categorymembers: {title: 'Category:Countries_in_South_America', limit: 30}).
-  prop(revisions: {prop: :content}).
+  generator(:categorymembers).title('Category:Countries_in_South_America').limit(30).
+  prop(:revisions).prop(:content).
   perform
 
 # MediaWiktory handles "next page fetching" for you, if you want
@@ -78,20 +78,6 @@ p response.pages.map(&:title)
 
 The same approach works for ANY `action` described in [docs](https://en.wikipedia.org/w/api.php),
 and all of its "modules" and "submodules".
-
-**NB**: its 0.0.1, ok? Domain is complex and is still investigated. For
-example, above statement definitely **wants** to look like
-
-```ruby
-response = client.
-  query.
-  generator(categorymembers: 'Category:Countries_in_South_America').
-  limit(30).
-  prop(revisions: :content).
-  perform
-```
-
-...but it should be done without flexibility loss.
 
 ## Authors
 

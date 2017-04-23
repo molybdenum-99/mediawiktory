@@ -17,7 +17,6 @@ module MediaWiktory
       FileUtils.mkdir_p path
       @api.render_to(File.join(path, 'api.rb'), namespace: namespace, version: MediaWiktory::VERSION)
       @api.actions.each do |a|
-        a.api = @api # FIXME: not the prettiest thing to do...
         a.render_to(File.join(path, "#{a.name}.rb"), namespace: namespace, version: MediaWiktory::VERSION)
       end
     end

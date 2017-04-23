@@ -91,7 +91,8 @@ module MediaWiktory
             'ruby_type' => ruby_type,
             'param_docs' => param_docs,
             'value_conv' => value_conv,
-            'modules' => modules&.map(&:to_h)
+            'modules' => modules&.map(&:to_h),
+            'param_def' => param_def
           )
       end
 
@@ -105,14 +106,18 @@ module MediaWiktory
           'Integer'
         when 'integer or max'
           'Integer, "max"'
-        when 'list'
+        when 'list', 'list of user names'
           'Array<String>'
         when 'list of integers'
           'Array<Integer>'
+        when 'list of timestamps'
+          'Array<Time>'
         when 'enum of modules'
-          'Symbol, Hash'
+          'Symbol'
         when 'list of modules'
-          'Array<Symbol, Hash>'
+          'Array<Symbol>'
+        when 'timestamp'
+          'Time'
         else
           fail ArgumentError, "Cannot render #{real_type} to Ruby still"
         end
@@ -123,9 +128,9 @@ module MediaWiktory
         when 'enum'
           " One of #{render_vals}."
         when 'enum of modules'
-          ' Either symbol of selected option, or `{symbol: settings}` Hash.'
+          ' Selecting an option includes tweaking methods from corresponding module:'
         when 'list of modules'
-          ' Any number of options (either symbol, or `{symbol: settings}` Hash).'
+          ' All selected options include tweaking methods from corresponding modules:'
         when 'list'
           return if !vals || vals.empty?
           " Allowed values: #{render_vals}."
@@ -143,16 +148,31 @@ module MediaWiktory
         end
       end
 
+      def param_def
+        case real_type
+        when 'boolean'
+          '' # just sets `true` if method was called
+        when /^list/
+          '*values'
+        else
+          'value'
+        end
+      end
+
       def value_conv
         case real_type
         when 'boolean'
           "'true'" # on false, merge(param: something) not rendered at all
         when 'list of modules'
           "modules_to_hash(values, #{modules.map { |m| m.name.to_sym } })"
+        when 'list of timestamps'
+          "values.map(&:iso8601).join('|')"
         when /^list/
           "values.join('|')"
         when 'enum of modules'
           "module_to_hash(value, #{modules.map { |m| m.name.to_sym } })"
+        when 'timestamp'
+          "value.iso8601"
         else
           'value.to_s'
         end
@@ -174,17 +194,19 @@ module MediaWiktory
       end
 
       def modules
-        @module ||= modules? ? vals.map { |v| api.modules[v.module] } : nil
+        @module ||= modules? ? vals.map { |v| api.module(v.module) } : nil
       end
 
-      def to_method(api)
-        # :facepalm:
-        Liquid::Template.file_system = Liquid::LocalFileSystem.new('lib/mediawiktory/api_parser/templates/')
-        Liquid::Template
-          .parse(File.read('lib/mediawiktory/api_parser/templates/param_method.rb.liquid'))
-          .render('param' => to_h(api))
-          .chomp # templates files in most editors add empty line to an ending
-      end
+      include Renderable
+
+      #def to_method(api)
+        ## :facepalm:
+        #Liquid::Template.file_system = Liquid::LocalFileSystem.new('lib/mediawiktory/api_parser/templates/')
+        #Liquid::Template
+          #.parse(File.read('lib/mediawiktory/api_parser/templates/param_method.rb.liquid'))
+          #.render('param' => to_h(api))
+          #.chomp # templates files in most editors add empty line to an ending
+      #end
     end
   end
 end

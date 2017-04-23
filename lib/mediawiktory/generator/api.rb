@@ -26,8 +26,16 @@ module MediaWiktory
       def initialize(**source)
         super(source.merge(
           main: source[:modules].detect { |m| m.type == :main },
-          actions: source[:modules].select { |m| m.type == :action }
+          actions: source[:modules].select(&:action?)
         ))
+        modules.each { |m| m.api = self }
+      end
+
+      def module(name)
+        candidates = modules.reject(&:action?).select { |m| m.name == name }
+        candidates.empty? and fail ArgumentError, "Module #{name} not found"
+        candidates.count == 1 or fail ArgumentError, "Module #{name} is ambigous"
+        candidates.first
       end
 
       include Renderable

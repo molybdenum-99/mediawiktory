@@ -1,7 +1,7 @@
   # {{ param.description }}
-{% if param.real_type contains 'of modules' %}{% include 'module_in_param_docs' %}{% endif %}  #
-  # @param {% if param.type contains 'list' %}values{% else %}value{% endif %} [{{ param.ruby_type }}]{{param.param_docs}}
-  # @return [self]
-  def {{ param.name }}({% if param.type contains 'list' %}*values{% else %}value{% endif %}{% if param.type == 'boolean' %} = true{% endif %})
-    merge({{ param.full_name }}: {{ param.value_conv }}){%if param.type == 'boolean' %} if value{% endif %}
+  #
+{% if param.param_def != empty %}  # @param {{ param.param_def }} [{{ param.ruby_type }}]{{param.param_docs}}{% if param.real_type contains 'of modules' %}{% include 'module_in_param_docs' %}{% else %}
+{% endif %}{% endif %}  # @return [self]
+  def {{ param.name }}({{ param.param_def }})
+    merge({{ param.full_name }}: {{ param.value_conv }})
   end
