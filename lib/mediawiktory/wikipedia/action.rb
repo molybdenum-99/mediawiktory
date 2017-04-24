@@ -29,7 +29,6 @@ module MediaWiktory::Wikipedia
            'Action is abstract, all actions should descend from GetAction or PostAction'
     end
 
-
     # The format of the output.
     #
     # @param value [Symbol] Selecting an option includes tweaking methods from corresponding module:

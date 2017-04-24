@@ -50,7 +50,7 @@ module MediaWiktory
       FileUtils.mkdir_p path
 
       BaseAction.new(@api).render_to(File.join(path, 'action.rb'), opts)
-      Client.new().render_to(File.join(path, 'client.rb'), opts)
+      Client.new.render_to(File.join(path, 'client.rb'), opts)
 
       @api.render_to(File.join(path, 'api.rb'), opts)
       @api.actions.each do |a|

@@ -71,7 +71,12 @@ module MediaWiktory
                /^(?:One of the following values||Values \(separate with \|.*?\)):\s*(.+)$/
               if el.search('a').count > 1
                 return el.search('a').reject { |a| a.text == 'alternative' }
-                         .map { |a| {name: a.text, module: a.attr('href').scan(/^.*[\#+](.+)$/).flatten.first} }
+                         .map { |a|
+                         {
+                           name: a.text,
+                           module: a.attr('href').scan(/^.*[\#+](.+)$/).flatten.first
+                         }
+                       }
               else
                 return Regexp.last_match(1).sub(/^Can be empty, or/, '').split(',')
                              .map { |s| s.gsub(/^[[:space:]]|[[:space:]]$/, '') }

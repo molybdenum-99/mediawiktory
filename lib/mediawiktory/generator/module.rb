@@ -41,7 +41,8 @@ module MediaWiktory
 
       def initialize(*)
         super
-        params.reject! { |p| p.name == 'action' } if main? # Should not be rendered as "available default params"
+        # 'action' should not be rendered as "available default params" for api initializer
+        params.reject! { |p| p.name == 'action' } if main?
       end
 
       def inspect
