@@ -18,7 +18,7 @@ module MediaWiktory::Wikipedia::Actions
   #
   # All action's parameters are documented as its public methods, see below.
   #
-  class Antispoof < MediaWiktory::GetAction
+  class Antispoof < MediaWiktory::Wikipedia::GetAction
 
     # The username to check against AntiSpoof.
     #

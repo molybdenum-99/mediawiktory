@@ -18,7 +18,7 @@ module MediaWiktory::Wikipedia::Actions
   #
   # All action's parameters are documented as its public methods, see below.
   #
-  class Unblock < MediaWiktory::GetAction
+  class Unblock < MediaWiktory::Wikipedia::GetAction
 
     # ID of the block to unblock (obtained through list=blocks). Cannot be used together with user or userid.
     #

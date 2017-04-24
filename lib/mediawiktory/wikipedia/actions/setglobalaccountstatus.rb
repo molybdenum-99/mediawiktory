@@ -18,7 +18,7 @@ module MediaWiktory::Wikipedia::Actions
   #
   # All action's parameters are documented as its public methods, see below.
   #
-  class Setglobalaccountstatus < MediaWiktory::GetAction
+  class Setglobalaccountstatus < MediaWiktory::Wikipedia::GetAction
 
     # User to change the status of.
     #

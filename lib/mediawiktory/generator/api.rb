@@ -52,7 +52,8 @@ module MediaWiktory
       def to_h
         super.merge(
           'friendly_date' => Time.now.strftime('%B %d, %Y'),
-          'actions' => actions.map(&:to_h)
+          'actions' => actions.map(&:to_h),
+          'main' => main.to_h
         )
       end
     end

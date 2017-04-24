@@ -18,7 +18,7 @@ module MediaWiktory::Wikipedia::Actions
   #
   # All action's parameters are documented as its public methods, see below.
   #
-  class Liststudents < MediaWiktory::GetAction
+  class Liststudents < MediaWiktory::Wikipedia::GetAction
 
     # IDs of the courses.
     #

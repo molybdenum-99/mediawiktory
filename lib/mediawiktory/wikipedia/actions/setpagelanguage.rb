@@ -18,7 +18,7 @@ module MediaWiktory::Wikipedia::Actions
   #
   # All action's parameters are documented as its public methods, see below.
   #
-  class Setpagelanguage < MediaWiktory::GetAction
+  class Setpagelanguage < MediaWiktory::Wikipedia::GetAction
 
     # Title of the page whose language you wish to change. Cannot be used together with pageid.
     #

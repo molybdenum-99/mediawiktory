@@ -6,4 +6,6 @@ module MediaWiktory
   # Most of the time .....
   module Wikipedia
   end
+
+  Dir[File.expand_path('../wikipedia/{,**/}*.rb', __FILE__)].each { |f| require f }
 end

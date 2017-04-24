@@ -18,7 +18,7 @@ module MediaWiktory::Wikipedia::Actions
   #
   # All action's parameters are documented as its public methods, see below.
   #
-  class Changeauthenticationdata < MediaWiktory::GetAction
+  class Changeauthenticationdata < MediaWiktory::Wikipedia::GetAction
 
     # Use this authentication request, by the id returned from action=query&meta=authmanagerinfo with amirequestsfor=change.
     #

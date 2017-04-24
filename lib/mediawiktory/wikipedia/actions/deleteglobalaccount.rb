@@ -18,7 +18,7 @@ module MediaWiktory::Wikipedia::Actions
   #
   # All action's parameters are documented as its public methods, see below.
   #
-  class Deleteglobalaccount < MediaWiktory::GetAction
+  class Deleteglobalaccount < MediaWiktory::Wikipedia::GetAction
 
     # User to delete.
     #

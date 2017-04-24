@@ -18,7 +18,7 @@ module MediaWiktory::Wikipedia::Actions
   #
   # All action's parameters are documented as its public methods, see below.
   #
-  class Move < MediaWiktory::GetAction
+  class Move < MediaWiktory::Wikipedia::GetAction
 
     # Title of the page to rename. Cannot be used together with fromid.
     #

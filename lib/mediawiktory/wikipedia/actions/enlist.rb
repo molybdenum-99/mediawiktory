@@ -18,7 +18,7 @@ module MediaWiktory::Wikipedia::Actions
   #
   # All action's parameters are documented as its public methods, see below.
   #
-  class Enlist < MediaWiktory::GetAction
+  class Enlist < MediaWiktory::Wikipedia::GetAction
 
     # Specifies what you want to do with the instructor or volunteer.
     #

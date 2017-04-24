@@ -18,7 +18,7 @@ module MediaWiktory::Wikipedia::Actions
   #
   # All action's parameters are documented as its public methods, see below.
   #
-  class Createaccount < MediaWiktory::GetAction
+  class Createaccount < MediaWiktory::Wikipedia::GetAction
 
     # Only use these authentication requests, by the id returned from action=query&meta=authmanagerinfo with amirequestsfor=create or from a previous response from this module.
     #

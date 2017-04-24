@@ -18,7 +18,7 @@ module MediaWiktory::Wikipedia::Actions
   #
   # All action's parameters are documented as its public methods, see below.
   #
-  class Centralnoticechoicedata < MediaWiktory::GetAction
+  class Centralnoticechoicedata < MediaWiktory::Wikipedia::GetAction
 
     # The project to get banner choice data for.
     #

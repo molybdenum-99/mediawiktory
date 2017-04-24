@@ -18,7 +18,7 @@ module MediaWiktory::Wikipedia::Actions
   #
   # All action's parameters are documented as its public methods, see below.
   #
-  class Rollback < MediaWiktory::GetAction
+  class Rollback < MediaWiktory::Wikipedia::GetAction
 
     # Title of the page to roll back. Cannot be used together with pageid.
     #

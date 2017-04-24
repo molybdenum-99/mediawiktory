@@ -18,7 +18,7 @@ module MediaWiktory::Wikipedia::Actions
   #
   # All action's parameters are documented as its public methods, see below.
   #
-  class Watch < MediaWiktory::GetAction
+  class Watch < MediaWiktory::Wikipedia::GetAction
 
     # The page to (un)watch. Use titles instead.
     #

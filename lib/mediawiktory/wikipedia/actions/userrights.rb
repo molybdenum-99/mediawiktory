@@ -18,7 +18,7 @@ module MediaWiktory::Wikipedia::Actions
   #
   # All action's parameters are documented as its public methods, see below.
   #
-  class Userrights < MediaWiktory::GetAction
+  class Userrights < MediaWiktory::Wikipedia::GetAction
 
     # User name.
     #
@@ -42,6 +42,14 @@ module MediaWiktory::Wikipedia::Actions
     # @return [self]
     def add(*values)
       merge(add: values.join('|'))
+    end
+
+    # Expiry timestamps. May be relative (e.g. 5 months or 2 weeks) or absolute (e.g. 2014-09-18T12:34:56Z). If only one timestamp is set, it will be used for all groups passed to the add parameter. Use infinite, indefinite, infinity, or never for a never-expiring user group.
+    #
+    # @param values [Array<String>]
+    # @return [self]
+    def expiry(*values)
+      merge(expiry: values.join('|'))
     end
 
     # Remove the user from these groups.

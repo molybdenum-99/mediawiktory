@@ -18,7 +18,7 @@ module MediaWiktory::Wikipedia::Actions
   #
   # All action's parameters are documented as its public methods, see below.
   #
-  class Titleblacklist < MediaWiktory::GetAction
+  class Titleblacklist < MediaWiktory::Wikipedia::GetAction
 
     # The string to validate against the blacklist.
     #

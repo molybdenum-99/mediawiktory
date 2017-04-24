@@ -1,11 +1,30 @@
 # frozen_string_literal: true
 
-# The base API class for [{{ object.site.name }}]({{ object.site.base }}).
-#
-# Generated from {{ object.source }} at {{ object.friendly_date }} by MediaWiktory {{ version }}.
-#
-# See {MediaWiktory::Api} base class docs for generic usage examples, and this class' methods
-# list and descriptions for MediaWiki features available for this particular API.
-#
-class {{ namespace }}::Api < MediaWiktory::Api
-{% for action in object.actions %}{% include 'action_method' %}{% endfor %}end
+require_relative './client'
+require_relative './action'
+
+module {{ namespace }}
+  # The base API class for [{{ object.site.name }}]({{ object.site.base }}).
+  #
+  # Generated from {{ object.source }} at {{ object.friendly_date }} by MediaWiktory {{ version }}.
+  #
+  # See {MediaWiktory::Api} base class docs for generic usage examples, and this class' methods
+  # list and descriptions for MediaWiki features available for this particular API.
+  #
+  class Api
+    attr_reader :client
+
+    # @param url [String] Source URL for this API, by default "{{ object.source }}".
+    #   Note that most of MediaWiki installations have source URL at `/w/api.php`, but some are
+    #   just `/api.php`, others use `/wiki/api.php` and so on.
+    #
+    # @param defaults [Hash] Default options for all API queries. Default param values also can be
+    #   set by subsequent {Action} methods, like `api.some_action.json(callback: 'mycallbackname')...`
+{% for param in object.main.params %}    # @option defaults [{{ param.ruby_type }}] {{ param.name }} {{ param.description }}{{param.param_docs}} See {{"{"}}Action#{{param.name}}}
+{% endfor %}    #
+    def initialize(url = '{{ object.source }}', **defaults)
+      @client = Client.new(url, **options)
+      @defaults = defaults
+    end
+{% for action in object.actions %}{% include 'action_method' %}{% endfor %}  end
+end

@@ -91,5 +91,12 @@ RSpec.describe MediaWiktory::Generator::Api do
           "  # vars, rcid or logid is required however only one may be used."
         )
     end
+
+    it 'creates initialize param docs' do
+      puts subject
+      is_expected
+        .to include('  # @option defaults [Integer] maxlag Maximum lag can be used when MediaWiki is installed on a database replicated cluster.')
+
+    end
   end
 end

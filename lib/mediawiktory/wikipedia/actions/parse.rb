@@ -18,7 +18,7 @@ module MediaWiktory::Wikipedia::Actions
   #
   # All action's parameters are documented as its public methods, see below.
   #
-  class Parse < MediaWiktory::GetAction
+  class Parse < MediaWiktory::Wikipedia::GetAction
 
     # Title of page the text belongs to. If omitted, contentmodel must be specified, and API will be used as the title.
     #

@@ -18,6 +18,6 @@ module {{ namespace }}::Actions
   #
   # All action's parameters are documented as its public methods, see below.
   #
-  class {{ object.class_name }} < MediaWiktory::GetAction
+  class {{ object.class_name }} < {{namespace}}::GetAction
 {% for param in object.params %}{% include 'param_method' %}{% endfor %}  end
 end

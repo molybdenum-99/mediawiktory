@@ -18,7 +18,7 @@ module MediaWiktory::Wikipedia::Actions
   #
   # All action's parameters are documented as its public methods, see below.
   #
-  class Globalblock < MediaWiktory::GetAction
+  class Globalblock < MediaWiktory::Wikipedia::GetAction
 
     # The target IP address.
     #

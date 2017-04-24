@@ -18,7 +18,7 @@ module MediaWiktory::Wikipedia::Actions
   #
   # All action's parameters are documented as its public methods, see below.
   #
-  class Mobileview < MediaWiktory::GetAction
+  class Mobileview < MediaWiktory::Wikipedia::GetAction
 
     # Title of page to process.
     #

@@ -18,7 +18,7 @@ module MediaWiktory::Wikipedia::Actions
   #
   # All action's parameters are documented as its public methods, see below.
   #
-  class Zeroconfig < MediaWiktory::GetAction
+  class Zeroconfig < MediaWiktory::Wikipedia::GetAction
 
     # What kind of Zero info is needed:
     #

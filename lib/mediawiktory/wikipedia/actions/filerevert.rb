@@ -18,7 +18,7 @@ module MediaWiktory::Wikipedia::Actions
   #
   # All action's parameters are documented as its public methods, see below.
   #
-  class Filerevert < MediaWiktory::GetAction
+  class Filerevert < MediaWiktory::Wikipedia::GetAction
 
     # Target filename, without the File: prefix.
     #

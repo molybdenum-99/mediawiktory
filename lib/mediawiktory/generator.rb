@@ -8,8 +8,38 @@ require 'fileutils'
 require 'pp'
 require 'mediawiktory/version'
 
+require_relative 'generator/renderable'
+
 module MediaWiktory
   class Generator
+    class BaseAction
+      def initialize(api)
+        @api = api
+      end
+
+      include Renderable
+
+      def main_template
+        'action.rb'
+      end
+
+      def to_h
+        {'main' => @api.main.to_h}
+      end
+    end
+
+    class Client
+      include Renderable
+
+      def main_template
+        'client.rb'
+      end
+
+      def to_h
+        {}
+      end
+    end
+
     def initialize(url)
       @api = Api.from_url(url)
     end
@@ -18,6 +48,10 @@ module MediaWiktory
       opts = {namespace: namespace, version: VERSION}
       FileUtils.rm_rf path
       FileUtils.mkdir_p path
+
+      BaseAction.new(@api).render_to(File.join(path, 'action.rb'), opts)
+      Client.new().render_to(File.join(path, 'client.rb'), opts)
+
       @api.render_to(File.join(path, 'api.rb'), opts)
       @api.actions.each do |a|
         a.render_to(File.join(path, "actions/#{a.name}.rb"), opts)
@@ -32,7 +66,6 @@ module MediaWiktory
   end
 end
 
-require_relative 'generator/renderable'
 require_relative 'generator/api'
 require_relative 'generator/param'
 require_relative 'generator/module'

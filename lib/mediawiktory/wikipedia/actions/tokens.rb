@@ -18,7 +18,7 @@ module MediaWiktory::Wikipedia::Actions
   #
   # All action's parameters are documented as its public methods, see below.
   #
-  class Tokens < MediaWiktory::GetAction
+  class Tokens < MediaWiktory::Wikipedia::GetAction
 
     # Types of token to request.
     #

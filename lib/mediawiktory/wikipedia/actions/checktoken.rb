@@ -18,7 +18,7 @@ module MediaWiktory::Wikipedia::Actions
   #
   # All action's parameters are documented as its public methods, see below.
   #
-  class Checktoken < MediaWiktory::GetAction
+  class Checktoken < MediaWiktory::Wikipedia::GetAction
 
     # Type of token being tested.
     #

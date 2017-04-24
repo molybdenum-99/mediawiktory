@@ -18,7 +18,7 @@ module MediaWiktory::Wikipedia::Actions
   #
   # All action's parameters are documented as its public methods, see below.
   #
-  class Removeauthenticationdata < MediaWiktory::GetAction
+  class Removeauthenticationdata < MediaWiktory::Wikipedia::GetAction
 
     # Use this authentication request, by the id returned from action=query&meta=authmanagerinfo with amirequestsfor=remove.
     #

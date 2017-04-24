@@ -18,7 +18,7 @@ module MediaWiktory::Wikipedia::Actions
   #
   # All action's parameters are documented as its public methods, see below.
   #
-  class Review < MediaWiktory::GetAction
+  class Review < MediaWiktory::Wikipedia::GetAction
 
     # The revision ID for which to set the flags.
     #

@@ -18,7 +18,7 @@ module MediaWiktory::Wikipedia::Actions
   #
   # All action's parameters are documented as its public methods, see below.
   #
-  class Setnotificationtimestamp < MediaWiktory::GetAction
+  class Setnotificationtimestamp < MediaWiktory::Wikipedia::GetAction
 
     # Work on all watched pages.
     #

@@ -18,7 +18,7 @@ module MediaWiktory::Wikipedia::Actions
   #
   # All action's parameters are documented as its public methods, see below.
   #
-  class Unlinkaccount < MediaWiktory::GetAction
+  class Unlinkaccount < MediaWiktory::Wikipedia::GetAction
 
     # Use this authentication request, by the id returned from action=query&meta=authmanagerinfo with amirequestsfor=unlink.
     #

@@ -18,7 +18,7 @@ module MediaWiktory::Wikipedia::Actions
   #
   # All action's parameters are documented as its public methods, see below.
   #
-  class SanitizeMapdata < MediaWiktory::GetAction
+  class SanitizeMapdata < MediaWiktory::Wikipedia::GetAction
 
     # Title of page on which this GeoJSON is supposed to be located. If no title is provided, a dummy one will be used.
     #

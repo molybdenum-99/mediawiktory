@@ -18,7 +18,7 @@ module MediaWiktory::Wikipedia::Actions
   #
   # All action's parameters are documented as its public methods, see below.
   #
-  class Import < MediaWiktory::GetAction
+  class Import < MediaWiktory::Wikipedia::GetAction
 
     # Log entry import summary.
     #

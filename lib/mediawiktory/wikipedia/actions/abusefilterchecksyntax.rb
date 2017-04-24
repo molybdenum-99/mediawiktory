@@ -18,7 +18,7 @@ module MediaWiktory::Wikipedia::Actions
   #
   # All action's parameters are documented as its public methods, see below.
   #
-  class Abusefilterchecksyntax < MediaWiktory::GetAction
+  class Abusefilterchecksyntax < MediaWiktory::Wikipedia::GetAction
 
     # The full filter text to check syntax on.
     #

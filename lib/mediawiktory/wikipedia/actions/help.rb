@@ -18,7 +18,7 @@ module MediaWiktory::Wikipedia::Actions
   #
   # All action's parameters are documented as its public methods, see below.
   #
-  class Help < MediaWiktory::GetAction
+  class Help < MediaWiktory::Wikipedia::GetAction
 
     # Modules to display help for (values of the action and format parameters, or main). Can specify submodules with a +.
     #

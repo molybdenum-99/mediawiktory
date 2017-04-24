@@ -18,7 +18,7 @@ module MediaWiktory::Wikipedia::Actions
   #
   # All action's parameters are documented as its public methods, see below.
   #
-  class Mergehistory < MediaWiktory::GetAction
+  class Mergehistory < MediaWiktory::Wikipedia::GetAction
 
     # Title of the page from which history will be merged. Cannot be used together with fromid.
     #

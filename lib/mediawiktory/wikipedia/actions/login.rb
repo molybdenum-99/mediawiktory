@@ -18,7 +18,7 @@ module MediaWiktory::Wikipedia::Actions
   #
   # All action's parameters are documented as its public methods, see below.
   #
-  class Login < MediaWiktory::GetAction
+  class Login < MediaWiktory::Wikipedia::GetAction
 
     # User name.
     #

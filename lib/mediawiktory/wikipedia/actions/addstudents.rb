@@ -18,7 +18,7 @@ module MediaWiktory::Wikipedia::Actions
   #
   # All action's parameters are documented as its public methods, see below.
   #
-  class Addstudents < MediaWiktory::GetAction
+  class Addstudents < MediaWiktory::Wikipedia::GetAction
 
     # The usernames of the students to add to the course.
     #

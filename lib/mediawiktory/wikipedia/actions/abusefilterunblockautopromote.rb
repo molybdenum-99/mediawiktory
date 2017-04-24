@@ -18,7 +18,7 @@ module MediaWiktory::Wikipedia::Actions
   #
   # All action's parameters are documented as its public methods, see below.
   #
-  class Abusefilterunblockautopromote < MediaWiktory::GetAction
+  class Abusefilterunblockautopromote < MediaWiktory::Wikipedia::GetAction
 
     # Username of the user you want to unblock.
     #

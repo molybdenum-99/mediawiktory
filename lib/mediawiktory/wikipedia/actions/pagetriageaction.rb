@@ -18,7 +18,7 @@ module MediaWiktory::Wikipedia::Actions
   #
   # All action's parameters are documented as its public methods, see below.
   #
-  class Pagetriageaction < MediaWiktory::GetAction
+  class Pagetriageaction < MediaWiktory::Wikipedia::GetAction
 
     # The article for which to be marked as reviewed or unreviewed.
     #

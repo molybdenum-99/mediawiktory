@@ -18,7 +18,7 @@ module MediaWiktory::Wikipedia::Actions
   #
   # All action's parameters are documented as its public methods, see below.
   #
-  class Languagesearch < MediaWiktory::GetAction
+  class Languagesearch < MediaWiktory::Wikipedia::GetAction
 
     # Search string.
     #

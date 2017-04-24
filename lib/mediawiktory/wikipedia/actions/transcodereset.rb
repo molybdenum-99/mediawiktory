@@ -18,7 +18,7 @@ module MediaWiktory::Wikipedia::Actions
   #
   # All action's parameters are documented as its public methods, see below.
   #
-  class Transcodereset < MediaWiktory::GetAction
+  class Transcodereset < MediaWiktory::Wikipedia::GetAction
 
     # The media file title.
     #

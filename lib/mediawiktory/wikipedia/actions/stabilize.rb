@@ -18,7 +18,7 @@ module MediaWiktory::Wikipedia::Actions
   #
   # All action's parameters are documented as its public methods, see below.
   #
-  class Stabilize < MediaWiktory::GetAction
+  class Stabilize < MediaWiktory::Wikipedia::GetAction
 
     # The review-protection level.
     #

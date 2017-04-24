@@ -18,7 +18,7 @@ module MediaWiktory::Wikipedia::Actions
   #
   # All action's parameters are documented as its public methods, see below.
   #
-  class Jsonconfig < MediaWiktory::GetAction
+  class Jsonconfig < MediaWiktory::Wikipedia::GetAction
 
     # Which sub-action to perform on JsonConfig:
     #

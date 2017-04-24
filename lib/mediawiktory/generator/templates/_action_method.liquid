@@ -1,25 +1,25 @@
 
-  # {{ action.description | replace: '#', '  #' }}
-  #
-  # This method creates an instance of {{"{"}}{{ namespace }}::Actions::{{ action.class_name }}} action.
-  #
-  # Action parameters could be passed to this method, like
-  #
-  # ```ruby
-  # api.{{ action.method_name }}(param: 'value')
-  # ```
-  # ...or by subsequent {{"{"}}{{ namespace }}::Actions::{{ action.class_name }}} method calls, like
-  #
-  # ```ruby
-  # api.{{ action.method_name }}.param('value')
-  # ```
-  #
-  # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
-  # {{"{"}}{{ namespace }}::Actions::{{ action.class_name }}} class for a list of parameters and usage.
-  #
-  # @param [Hash] options Action options
-  # @return [{{ namespace }}::Actions::{{ action.class_name }}]
-  #
-  def {{ action.method_name }}(**options)
-    Actions::{{ action.class_name }}.new(**options)
-  end
+    # {{ action.description | replace: '#', '  #' }}
+    #
+    # This method creates an instance of {{"{"}}{{ namespace }}::Actions::{{ action.class_name }}} action.
+    #
+    # Action parameters could be passed to this method, like
+    #
+    # ```ruby
+    # api.{{ action.method_name }}(param: 'value')
+    # ```
+    # ...or by subsequent {{"{"}}{{ namespace }}::Actions::{{ action.class_name }}} method calls, like
+    #
+    # ```ruby
+    # api.{{ action.method_name }}.param('value')
+    # ```
+    #
+    # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
+    # {{"{"}}{{ namespace }}::Actions::{{ action.class_name }}} class for a list of parameters and usage.
+    #
+    # @param [Hash] options Action options
+    # @return [{{ namespace }}::Actions::{{ action.class_name }}]
+    #
+    def {{ action.method_name }}(**options)
+      Actions::{{ action.class_name }}.new(client, @defaults.merge(**options))
+    end

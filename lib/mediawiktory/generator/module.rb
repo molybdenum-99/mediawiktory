@@ -9,7 +9,7 @@ module MediaWiktory
 
           new(
             type: type&.to_sym || :main,
-            name: name,
+            name: name || '',
             prefix: prefix,
             description: extract_description(nodes),
             flags: extract_flags(nodes),
@@ -38,6 +38,11 @@ module MediaWiktory
       end
 
       attr_reader :api
+
+      def initialize(*)
+        super
+        params.reject! { |p| p.name == 'action' } if main? # Should not be rendered as "available default params"
+      end
 
       def inspect
         "#<#{self.class.name} #{name}>"

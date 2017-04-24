@@ -18,7 +18,7 @@ module MediaWiktory::Wikipedia::Actions
   #
   # All action's parameters are documented as its public methods, see below.
   #
-  class Oathvalidate < MediaWiktory::GetAction
+  class Oathvalidate < MediaWiktory::Wikipedia::GetAction
 
     # User to validate token for. Defaults to the current user.
     #

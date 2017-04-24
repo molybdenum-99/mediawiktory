@@ -18,7 +18,7 @@ module MediaWiktory::Wikipedia::Actions
   #
   # All action's parameters are documented as its public methods, see below.
   #
-  class Protect < MediaWiktory::GetAction
+  class Protect < MediaWiktory::Wikipedia::GetAction
 
     # Title of the page to (un)protect. Cannot be used together with pageid.
     #

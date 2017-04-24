@@ -18,7 +18,7 @@ module MediaWiktory::Wikipedia::Actions
   #
   # All action's parameters are documented as its public methods, see below.
   #
-  class Echomarkread < MediaWiktory::GetAction
+  class Echomarkread < MediaWiktory::Wikipedia::GetAction
 
     # A list of notification IDs to mark as read.
     #
