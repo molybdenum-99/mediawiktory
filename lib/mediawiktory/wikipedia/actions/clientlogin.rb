@@ -1,24 +1,25 @@
 # frozen_string_literal: true
 
-module MediaWiktory::Wikipedia::Actions
-  # Log in to the wiki using the interactive flow. 
-  #
-  # Usage:
-  #
-  # ```ruby
-  # api.clientlogin(**options).perform # returns string with raw output
-  # # or
-  # api.clientlogin(**options).response # returns output parsed and wrapped into Mash-like object
-  #
-  # # or, with chainable interface:
-  # api.clientlogin.requests(value).perform
-  # ```
-  #
-  # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions.
-  #
-  # All action's parameters are documented as its public methods, see below.
-  #
-  class Clientlogin < MediaWiktory::Wikipedia::GetAction
+module MediaWiktory::Wikipedia
+  module Actions
+    # Log in to the wiki using the interactive flow. 
+    #
+    # Usage:
+    #
+    # ```ruby
+    # api.clientlogin(**options).perform # returns string with raw output
+    # # or
+    # api.clientlogin(**options).response # returns output parsed and wrapped into Mash-like object
+    #
+    # # or, with chainable interface:
+    # api.clientlogin.requests(value).perform
+    # ```
+    #
+    # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions.
+    #
+    # All action's parameters are documented as its public methods, see below.
+    #
+    class Clientlogin < MediaWiktory::Wikipedia::GetAction
 
     # Only use these authentication requests, by the id returned from action=query&meta=authmanagerinfo with amirequestsfor=login or from a previous response from this module.
     #
@@ -72,5 +73,6 @@ module MediaWiktory::Wikipedia::Actions
     def token(value)
       merge(logintoken: value.to_s)
     end
+  end
   end
 end

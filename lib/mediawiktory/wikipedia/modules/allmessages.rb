@@ -1,25 +1,26 @@
 # frozen_string_literal: true
 
-module MediaWiktory::Wikipedia::Modules
-  # Return messages from this site. 
-  #
-  # Usage:
-  #
-  # ```ruby
-  # api.some_action.allmessages(**options).perform # returns string with raw output
-  # # or
-  # api.some_action.allmessages(**options).response # returns output parsed and wrapped into Mash-like object
-  #
-  # # or, with chainable interface:
-  # api.some_action.allmessages.messages(value).perform
-  # ```
-  #
-  # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and their
-  # submodules.
-  #
-  # All submodule's parameters are documented as its public methods, see below.
-  #
-  module Allmessages
+module MediaWiktory::Wikipedia
+  module Modules
+    # Return messages from this site. 
+    #
+    # Usage:
+    #
+    # ```ruby
+    # api.some_action.allmessages(**options).perform # returns string with raw output
+    # # or
+    # api.some_action.allmessages(**options).response # returns output parsed and wrapped into Mash-like object
+    #
+    # # or, with chainable interface:
+    # api.some_action.allmessages.messages(value).perform
+    # ```
+    #
+    # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and their
+    # submodules.
+    #
+    # All submodule's parameters are documented as its public methods, see below.
+    #
+    module Allmessages
 
     # Which messages to output. * (default) means all messages.
     #
@@ -121,5 +122,6 @@ module MediaWiktory::Wikipedia::Modules
     def prefix(value)
       merge(amprefix: value.to_s)
     end
+  end
   end
 end

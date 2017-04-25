@@ -1,25 +1,26 @@
 # frozen_string_literal: true
 
-module MediaWiktory::Wikipedia::Modules
-  # Returns file information and upload history. 
-  #
-  # Usage:
-  #
-  # ```ruby
-  # api.some_action.imageinfo(**options).perform # returns string with raw output
-  # # or
-  # api.some_action.imageinfo(**options).response # returns output parsed and wrapped into Mash-like object
-  #
-  # # or, with chainable interface:
-  # api.some_action.imageinfo.prop(value).perform
-  # ```
-  #
-  # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and their
-  # submodules.
-  #
-  # All submodule's parameters are documented as its public methods, see below.
-  #
-  module Imageinfo
+module MediaWiktory::Wikipedia
+  module Modules
+    # Returns file information and upload history. 
+    #
+    # Usage:
+    #
+    # ```ruby
+    # api.some_action.imageinfo(**options).perform # returns string with raw output
+    # # or
+    # api.some_action.imageinfo(**options).response # returns output parsed and wrapped into Mash-like object
+    #
+    # # or, with chainable interface:
+    # api.some_action.imageinfo.prop(value).perform
+    # ```
+    #
+    # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and their
+    # submodules.
+    #
+    # All submodule's parameters are documented as its public methods, see below.
+    #
+    module Imageinfo
 
     # Which file information to get:
     #
@@ -130,5 +131,6 @@ module MediaWiktory::Wikipedia::Modules
     def localonly()
       merge(iilocalonly: 'true')
     end
+  end
   end
 end

@@ -1,24 +1,25 @@
 # frozen_string_literal: true
 
-module MediaWiktory::Wikipedia::Actions
-  # Patrol a page or revision. 
-  #
-  # Usage:
-  #
-  # ```ruby
-  # api.patrol(**options).perform # returns string with raw output
-  # # or
-  # api.patrol(**options).response # returns output parsed and wrapped into Mash-like object
-  #
-  # # or, with chainable interface:
-  # api.patrol.rcid(value).perform
-  # ```
-  #
-  # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions.
-  #
-  # All action's parameters are documented as its public methods, see below.
-  #
-  class Patrol < MediaWiktory::Wikipedia::GetAction
+module MediaWiktory::Wikipedia
+  module Actions
+    # Patrol a page or revision. 
+    #
+    # Usage:
+    #
+    # ```ruby
+    # api.patrol(**options).perform # returns string with raw output
+    # # or
+    # api.patrol(**options).response # returns output parsed and wrapped into Mash-like object
+    #
+    # # or, with chainable interface:
+    # api.patrol.rcid(value).perform
+    # ```
+    #
+    # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions.
+    #
+    # All action's parameters are documented as its public methods, see below.
+    #
+    class Patrol < MediaWiktory::Wikipedia::GetAction
 
     # Recentchanges ID to patrol.
     #
@@ -51,5 +52,6 @@ module MediaWiktory::Wikipedia::Actions
     def token(value)
       merge(token: value.to_s)
     end
+  end
   end
 end

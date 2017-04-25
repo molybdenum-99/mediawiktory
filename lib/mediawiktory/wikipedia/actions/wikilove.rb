@@ -1,24 +1,25 @@
 # frozen_string_literal: true
 
-module MediaWiktory::Wikipedia::Actions
-  # Give WikiLove to another user. 
-  #
-  # Usage:
-  #
-  # ```ruby
-  # api.wikilove(**options).perform # returns string with raw output
-  # # or
-  # api.wikilove(**options).response # returns output parsed and wrapped into Mash-like object
-  #
-  # # or, with chainable interface:
-  # api.wikilove.title(value).perform
-  # ```
-  #
-  # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions.
-  #
-  # All action's parameters are documented as its public methods, see below.
-  #
-  class Wikilove < MediaWiktory::Wikipedia::GetAction
+module MediaWiktory::Wikipedia
+  module Actions
+    # Give WikiLove to another user. 
+    #
+    # Usage:
+    #
+    # ```ruby
+    # api.wikilove(**options).perform # returns string with raw output
+    # # or
+    # api.wikilove(**options).response # returns output parsed and wrapped into Mash-like object
+    #
+    # # or, with chainable interface:
+    # api.wikilove.title(value).perform
+    # ```
+    #
+    # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions.
+    #
+    # All action's parameters are documented as its public methods, see below.
+    #
+    class Wikilove < MediaWiktory::Wikipedia::GetAction
 
     # Full pagename of the user page or user talk page of the user to send WikiLove to.
     #
@@ -75,5 +76,6 @@ module MediaWiktory::Wikipedia::Actions
     def email(value)
       merge(email: value.to_s)
     end
+  end
   end
 end

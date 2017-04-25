@@ -1,24 +1,25 @@
 # frozen_string_literal: true
 
-module MediaWiktory::Wikipedia::Actions
-  # Configure review-protection settings for a page. 
-  #
-  # Usage:
-  #
-  # ```ruby
-  # api.stabilize(**options).perform # returns string with raw output
-  # # or
-  # api.stabilize(**options).response # returns output parsed and wrapped into Mash-like object
-  #
-  # # or, with chainable interface:
-  # api.stabilize.protectlevel(value).perform
-  # ```
-  #
-  # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions.
-  #
-  # All action's parameters are documented as its public methods, see below.
-  #
-  class Stabilize < MediaWiktory::Wikipedia::GetAction
+module MediaWiktory::Wikipedia
+  module Actions
+    # Configure review-protection settings for a page. 
+    #
+    # Usage:
+    #
+    # ```ruby
+    # api.stabilize(**options).perform # returns string with raw output
+    # # or
+    # api.stabilize(**options).response # returns output parsed and wrapped into Mash-like object
+    #
+    # # or, with chainable interface:
+    # api.stabilize.protectlevel(value).perform
+    # ```
+    #
+    # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions.
+    #
+    # All action's parameters are documented as its public methods, see below.
+    #
+    class Stabilize < MediaWiktory::Wikipedia::GetAction
 
     # The review-protection level.
     #
@@ -67,5 +68,6 @@ module MediaWiktory::Wikipedia::Actions
     def title(value)
       merge(title: value.to_s)
     end
+  end
   end
 end

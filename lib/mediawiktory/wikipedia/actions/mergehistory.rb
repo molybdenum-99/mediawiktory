@@ -1,24 +1,25 @@
 # frozen_string_literal: true
 
-module MediaWiktory::Wikipedia::Actions
-  # Merge page histories. 
-  #
-  # Usage:
-  #
-  # ```ruby
-  # api.mergehistory(**options).perform # returns string with raw output
-  # # or
-  # api.mergehistory(**options).response # returns output parsed and wrapped into Mash-like object
-  #
-  # # or, with chainable interface:
-  # api.mergehistory.from(value).perform
-  # ```
-  #
-  # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions.
-  #
-  # All action's parameters are documented as its public methods, see below.
-  #
-  class Mergehistory < MediaWiktory::Wikipedia::GetAction
+module MediaWiktory::Wikipedia
+  module Actions
+    # Merge page histories. 
+    #
+    # Usage:
+    #
+    # ```ruby
+    # api.mergehistory(**options).perform # returns string with raw output
+    # # or
+    # api.mergehistory(**options).response # returns output parsed and wrapped into Mash-like object
+    #
+    # # or, with chainable interface:
+    # api.mergehistory.from(value).perform
+    # ```
+    #
+    # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions.
+    #
+    # All action's parameters are documented as its public methods, see below.
+    #
+    class Mergehistory < MediaWiktory::Wikipedia::GetAction
 
     # Title of the page from which history will be merged. Cannot be used together with fromid.
     #
@@ -75,5 +76,6 @@ module MediaWiktory::Wikipedia::Actions
     def token(value)
       merge(token: value.to_s)
     end
+  end
   end
 end

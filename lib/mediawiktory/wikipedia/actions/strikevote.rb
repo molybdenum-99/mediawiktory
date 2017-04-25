@@ -1,24 +1,25 @@
 # frozen_string_literal: true
 
-module MediaWiktory::Wikipedia::Actions
-  # Allows admins to strike or unstrike a vote. 
-  #
-  # Usage:
-  #
-  # ```ruby
-  # api.strikevote(**options).perform # returns string with raw output
-  # # or
-  # api.strikevote(**options).response # returns output parsed and wrapped into Mash-like object
-  #
-  # # or, with chainable interface:
-  # api.strikevote.option(value).perform
-  # ```
-  #
-  # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions.
-  #
-  # All action's parameters are documented as its public methods, see below.
-  #
-  class Strikevote < MediaWiktory::Wikipedia::GetAction
+module MediaWiktory::Wikipedia
+  module Actions
+    # Allows admins to strike or unstrike a vote. 
+    #
+    # Usage:
+    #
+    # ```ruby
+    # api.strikevote(**options).perform # returns string with raw output
+    # # or
+    # api.strikevote(**options).response # returns output parsed and wrapped into Mash-like object
+    #
+    # # or, with chainable interface:
+    # api.strikevote.option(value).perform
+    # ```
+    #
+    # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions.
+    #
+    # All action's parameters are documented as its public methods, see below.
+    #
+    class Strikevote < MediaWiktory::Wikipedia::GetAction
 
     # Which action to take: strike or unstrike a vote.
     #
@@ -51,5 +52,6 @@ module MediaWiktory::Wikipedia::Actions
     def token(value)
       merge(token: value.to_s)
     end
+  end
   end
 end

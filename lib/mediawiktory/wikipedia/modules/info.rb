@@ -1,25 +1,26 @@
 # frozen_string_literal: true
 
-module MediaWiktory::Wikipedia::Modules
-  # Get basic page information. 
-  #
-  # Usage:
-  #
-  # ```ruby
-  # api.some_action.info(**options).perform # returns string with raw output
-  # # or
-  # api.some_action.info(**options).response # returns output parsed and wrapped into Mash-like object
-  #
-  # # or, with chainable interface:
-  # api.some_action.info.prop(value).perform
-  # ```
-  #
-  # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and their
-  # submodules.
-  #
-  # All submodule's parameters are documented as its public methods, see below.
-  #
-  module Info
+module MediaWiktory::Wikipedia
+  module Modules
+    # Get basic page information. 
+    #
+    # Usage:
+    #
+    # ```ruby
+    # api.some_action.info(**options).perform # returns string with raw output
+    # # or
+    # api.some_action.info(**options).response # returns output parsed and wrapped into Mash-like object
+    #
+    # # or, with chainable interface:
+    # api.some_action.info.prop(value).perform
+    # ```
+    #
+    # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and their
+    # submodules.
+    #
+    # All submodule's parameters are documented as its public methods, see below.
+    #
+    module Info
 
     # Which additional properties to get:
     #
@@ -52,5 +53,6 @@ module MediaWiktory::Wikipedia::Modules
     def continue(value)
       merge(incontinue: value.to_s)
     end
+  end
   end
 end

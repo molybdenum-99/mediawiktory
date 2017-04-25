@@ -1,24 +1,25 @@
 # frozen_string_literal: true
 
-module MediaWiktory::Wikipedia::Actions
-  # Advertise or de-advertise yourself as reviewing an unreviewed page or unreviewed changes. 
-  #
-  # Usage:
-  #
-  # ```ruby
-  # api.reviewactivity(**options).perform # returns string with raw output
-  # # or
-  # api.reviewactivity(**options).response # returns output parsed and wrapped into Mash-like object
-  #
-  # # or, with chainable interface:
-  # api.reviewactivity.previd(value).perform
-  # ```
-  #
-  # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions.
-  #
-  # All action's parameters are documented as its public methods, see below.
-  #
-  class Reviewactivity < MediaWiktory::Wikipedia::GetAction
+module MediaWiktory::Wikipedia
+  module Actions
+    # Advertise or de-advertise yourself as reviewing an unreviewed page or unreviewed changes. 
+    #
+    # Usage:
+    #
+    # ```ruby
+    # api.reviewactivity(**options).perform # returns string with raw output
+    # # or
+    # api.reviewactivity(**options).response # returns output parsed and wrapped into Mash-like object
+    #
+    # # or, with chainable interface:
+    # api.reviewactivity.previd(value).perform
+    # ```
+    #
+    # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions.
+    #
+    # All action's parameters are documented as its public methods, see below.
+    #
+    class Reviewactivity < MediaWiktory::Wikipedia::GetAction
 
     # The prior revision ID (for reviewing changes only).
     #
@@ -51,5 +52,6 @@ module MediaWiktory::Wikipedia::Actions
     def token(value)
       merge(token: value.to_s)
     end
+  end
   end
 end

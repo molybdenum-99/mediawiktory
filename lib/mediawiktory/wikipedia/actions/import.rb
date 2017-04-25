@@ -1,24 +1,25 @@
 # frozen_string_literal: true
 
-module MediaWiktory::Wikipedia::Actions
-  # Import a page from another wiki, or from an XML file. 
-  #
-  # Usage:
-  #
-  # ```ruby
-  # api.import(**options).perform # returns string with raw output
-  # # or
-  # api.import(**options).response # returns output parsed and wrapped into Mash-like object
-  #
-  # # or, with chainable interface:
-  # api.import.summary(value).perform
-  # ```
-  #
-  # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions.
-  #
-  # All action's parameters are documented as its public methods, see below.
-  #
-  class Import < MediaWiktory::Wikipedia::GetAction
+module MediaWiktory::Wikipedia
+  module Actions
+    # Import a page from another wiki, or from an XML file. 
+    #
+    # Usage:
+    #
+    # ```ruby
+    # api.import(**options).perform # returns string with raw output
+    # # or
+    # api.import(**options).response # returns output parsed and wrapped into Mash-like object
+    #
+    # # or, with chainable interface:
+    # api.import.summary(value).perform
+    # ```
+    #
+    # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions.
+    #
+    # All action's parameters are documented as its public methods, see below.
+    #
+    class Import < MediaWiktory::Wikipedia::GetAction
 
     # Log entry import summary.
     #
@@ -97,5 +98,6 @@ module MediaWiktory::Wikipedia::Actions
     def token(value)
       merge(token: value.to_s)
     end
+  end
   end
 end

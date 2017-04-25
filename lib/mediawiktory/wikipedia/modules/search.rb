@@ -1,25 +1,26 @@
 # frozen_string_literal: true
 
-module MediaWiktory::Wikipedia::Modules
-  # Perform a full text search. 
-  #
-  # Usage:
-  #
-  # ```ruby
-  # api.some_action.search(**options).perform # returns string with raw output
-  # # or
-  # api.some_action.search(**options).response # returns output parsed and wrapped into Mash-like object
-  #
-  # # or, with chainable interface:
-  # api.some_action.search.search(value).perform
-  # ```
-  #
-  # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and their
-  # submodules.
-  #
-  # All submodule's parameters are documented as its public methods, see below.
-  #
-  module Search
+module MediaWiktory::Wikipedia
+  module Modules
+    # Perform a full text search. 
+    #
+    # Usage:
+    #
+    # ```ruby
+    # api.some_action.search(**options).perform # returns string with raw output
+    # # or
+    # api.some_action.search(**options).response # returns output parsed and wrapped into Mash-like object
+    #
+    # # or, with chainable interface:
+    # api.some_action.search.search(value).perform
+    # ```
+    #
+    # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and their
+    # submodules.
+    #
+    # All submodule's parameters are documented as its public methods, see below.
+    #
+    module Search
 
     # Search for page titles or content matching this value. You can use the search string to invoke special search features, depending on what the wiki's search backend implements.
     #
@@ -98,5 +99,6 @@ module MediaWiktory::Wikipedia::Modules
     def enablerewrites()
       merge(srenablerewrites: 'true')
     end
+  end
   end
 end

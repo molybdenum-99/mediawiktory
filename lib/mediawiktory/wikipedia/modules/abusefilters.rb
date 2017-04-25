@@ -1,25 +1,26 @@
 # frozen_string_literal: true
 
-module MediaWiktory::Wikipedia::Modules
-  # Show details of the abuse filters. 
-  #
-  # Usage:
-  #
-  # ```ruby
-  # api.some_action.abusefilters(**options).perform # returns string with raw output
-  # # or
-  # api.some_action.abusefilters(**options).response # returns output parsed and wrapped into Mash-like object
-  #
-  # # or, with chainable interface:
-  # api.some_action.abusefilters.startid(value).perform
-  # ```
-  #
-  # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and their
-  # submodules.
-  #
-  # All submodule's parameters are documented as its public methods, see below.
-  #
-  module Abusefilters
+module MediaWiktory::Wikipedia
+  module Modules
+    # Show details of the abuse filters. 
+    #
+    # Usage:
+    #
+    # ```ruby
+    # api.some_action.abusefilters(**options).perform # returns string with raw output
+    # # or
+    # api.some_action.abusefilters(**options).response # returns output parsed and wrapped into Mash-like object
+    #
+    # # or, with chainable interface:
+    # api.some_action.abusefilters.startid(value).perform
+    # ```
+    #
+    # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and their
+    # submodules.
+    #
+    # All submodule's parameters are documented as its public methods, see below.
+    #
+    module Abusefilters
 
     # The filter ID to start enumerating from.
     #
@@ -68,5 +69,6 @@ module MediaWiktory::Wikipedia::Modules
     def prop(*values)
       merge(abfprop: values.join('|'))
     end
+  end
   end
 end

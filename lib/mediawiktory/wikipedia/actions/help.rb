@@ -1,24 +1,25 @@
 # frozen_string_literal: true
 
-module MediaWiktory::Wikipedia::Actions
-  # Display help for the specified modules. 
-  #
-  # Usage:
-  #
-  # ```ruby
-  # api.help(**options).perform # returns string with raw output
-  # # or
-  # api.help(**options).response # returns output parsed and wrapped into Mash-like object
-  #
-  # # or, with chainable interface:
-  # api.help.modules(value).perform
-  # ```
-  #
-  # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions.
-  #
-  # All action's parameters are documented as its public methods, see below.
-  #
-  class Help < MediaWiktory::Wikipedia::GetAction
+module MediaWiktory::Wikipedia
+  module Actions
+    # Display help for the specified modules. 
+    #
+    # Usage:
+    #
+    # ```ruby
+    # api.help(**options).perform # returns string with raw output
+    # # or
+    # api.help(**options).response # returns output parsed and wrapped into Mash-like object
+    #
+    # # or, with chainable interface:
+    # api.help.modules(value).perform
+    # ```
+    #
+    # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions.
+    #
+    # All action's parameters are documented as its public methods, see below.
+    #
+    class Help < MediaWiktory::Wikipedia::GetAction
 
     # Modules to display help for (values of the action and format parameters, or main). Can specify submodules with a +.
     #
@@ -55,5 +56,6 @@ module MediaWiktory::Wikipedia::Actions
     def toc()
       merge(toc: 'true')
     end
+  end
   end
 end

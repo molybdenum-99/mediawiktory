@@ -6,7 +6,7 @@ require_relative './action'
 module MediaWiktory::Wikipedia
   # The base API class for [Wikipedia](https://en.wikipedia.org/wiki/Main_Page).
   #
-  # Generated from https://en.wikipedia.org/w/api.php at April 24, 2017 by MediaWiktory 0.1.0.
+  # Generated from https://en.wikipedia.org/w/api.php at April 25, 2017 by MediaWiktory 0.1.0.
   #
   # See {MediaWiktory::Api} base class docs for generic usage examples, and this class' methods
   # list and descriptions for MediaWiki features available for this particular API.
@@ -38,11 +38,11 @@ module MediaWiktory::Wikipedia
     # @option defaults [String] centralauthtoken When accessing the API using a cross-domain AJAX request (CORS), use this to authenticate as the current SUL user. Use action=centralauthtoken on this wiki to retrieve the token, before making the CORS request. Each token may only be used once, and expires after 10 seconds. This should be included in any pre-flight request, and therefore should be included in the request URI (not the POST body). See {Action#centralauthtoken}
     #
     def initialize(url = 'https://en.wikipedia.org/w/api.php', **defaults)
-      @client = Client.new(url)
+      @client = Client.new(url, **defaults)
       @defaults = defaults
     end
 
-    # Check to see if an AbuseFilter matches a set of variables, editor logged AbuseFilter event.
+    # Check to see if an AbuseFilter matches a set of variables, editor logged AbuseFilter event. 
     #
     # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Abusefiltercheckmatch} action.
     #
@@ -67,7 +67,7 @@ module MediaWiktory::Wikipedia
       Actions::Abusefiltercheckmatch.new(client, @defaults.merge(**options))
     end
 
-    # Check syntax of an AbuseFilter filter.
+    # Check syntax of an AbuseFilter filter. 
     #
     # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Abusefilterchecksyntax} action.
     #
@@ -92,7 +92,7 @@ module MediaWiktory::Wikipedia
       Actions::Abusefilterchecksyntax.new(client, @defaults.merge(**options))
     end
 
-    # Evaluates an AbuseFilter expression.
+    # Evaluates an AbuseFilter expression. 
     #
     # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Abusefilterevalexpression} action.
     #
@@ -117,7 +117,7 @@ module MediaWiktory::Wikipedia
       Actions::Abusefilterevalexpression.new(client, @defaults.merge(**options))
     end
 
-    # Unblocks a user from receiving autopromotions due to an abusefilter consequence.
+    # Unblocks a user from receiving autopromotions due to an abusefilter consequence. 
     #
     # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Abusefilterunblockautopromote} action.
     #
@@ -142,7 +142,7 @@ module MediaWiktory::Wikipedia
       Actions::Abusefilterunblockautopromote.new(client, @defaults.merge(**options))
     end
 
-    # Add multiple students to a course.
+    # Add multiple students to a course. 
     #
     # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Addstudents} action.
     #
@@ -167,7 +167,7 @@ module MediaWiktory::Wikipedia
       Actions::Addstudents.new(client, @defaults.merge(**options))
     end
 
-    # Check a username against AntiSpoof's normalisation checks.
+    # Check a username against AntiSpoof's normalisation checks. 
     #
     # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Antispoof} action.
     #
@@ -192,7 +192,7 @@ module MediaWiktory::Wikipedia
       Actions::Antispoof.new(client, @defaults.merge(**options))
     end
 
-    # Block a user.
+    # Block a user. 
     #
     # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Block} action.
     #
@@ -217,7 +217,7 @@ module MediaWiktory::Wikipedia
       Actions::Block.new(client, @defaults.merge(**options))
     end
 
-    # Receive a bounce email and process it to handle the failing recipient.
+    # Receive a bounce email and process it to handle the failing recipient. 
     #
     # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Bouncehandler} action.
     #
@@ -242,7 +242,7 @@ module MediaWiktory::Wikipedia
       Actions::Bouncehandler.new(client, @defaults.merge(**options))
     end
 
-    # Internal module for the CategoryTree extension.
+    # Internal module for the CategoryTree extension. 
     #
     # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Categorytree} action.
     #
@@ -267,7 +267,7 @@ module MediaWiktory::Wikipedia
       Actions::Categorytree.new(client, @defaults.merge(**options))
     end
 
-    # Fetch a centralauthtoken for making an authenticated request to an attached wiki.
+    # Fetch a centralauthtoken for making an authenticated request to an attached wiki. 
     #
     # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Centralauthtoken} action.
     #
@@ -292,7 +292,7 @@ module MediaWiktory::Wikipedia
       Actions::Centralauthtoken.new(client, @defaults.merge(**options))
     end
 
-    # Get data needed to choose a banner for a given project and language
+    # Get data needed to choose a banner for a given project and language 
     #
     # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Centralnoticechoicedata} action.
     #
@@ -317,7 +317,7 @@ module MediaWiktory::Wikipedia
       Actions::Centralnoticechoicedata.new(client, @defaults.merge(**options))
     end
 
-    # Get all configuration settings for a campaign.
+    # Get all configuration settings for a campaign. 
     #
     # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Centralnoticequerycampaign} action.
     #
@@ -342,7 +342,7 @@ module MediaWiktory::Wikipedia
       Actions::Centralnoticequerycampaign.new(client, @defaults.merge(**options))
     end
 
-    # Change authentication data for the current user.
+    # Change authentication data for the current user. 
     #
     # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Changeauthenticationdata} action.
     #
@@ -367,7 +367,7 @@ module MediaWiktory::Wikipedia
       Actions::Changeauthenticationdata.new(client, @defaults.merge(**options))
     end
 
-    # Check the validity of a token from action=query&meta=tokens.
+    # Check the validity of a token from action=query&meta=tokens. 
     #
     # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Checktoken} action.
     #
@@ -392,7 +392,7 @@ module MediaWiktory::Wikipedia
       Actions::Checktoken.new(client, @defaults.merge(**options))
     end
 
-    # Dump of CirrusSearch configuration.
+    # Dump of CirrusSearch configuration. 
     #
     # This method creates an instance of {MediaWiktory::Wikipedia::Actions::CirrusConfigDump} action.
     #
@@ -417,7 +417,7 @@ module MediaWiktory::Wikipedia
       Actions::CirrusConfigDump.new(client, @defaults.merge(**options))
     end
 
-    # Dump of CirrusSearch mapping for this wiki.
+    # Dump of CirrusSearch mapping for this wiki. 
     #
     # This method creates an instance of {MediaWiktory::Wikipedia::Actions::CirrusMappingDump} action.
     #
@@ -442,7 +442,7 @@ module MediaWiktory::Wikipedia
       Actions::CirrusMappingDump.new(client, @defaults.merge(**options))
     end
 
-    # Dump of CirrusSearch settings for this wiki.
+    # Dump of CirrusSearch settings for this wiki. 
     #
     # This method creates an instance of {MediaWiktory::Wikipedia::Actions::CirrusSettingsDump} action.
     #
@@ -467,7 +467,7 @@ module MediaWiktory::Wikipedia
       Actions::CirrusSettingsDump.new(client, @defaults.merge(**options))
     end
 
-    # Clears the hasmsg flag for the current user.
+    # Clears the hasmsg flag for the current user. 
     #
     # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Clearhasmsg} action.
     #
@@ -492,7 +492,7 @@ module MediaWiktory::Wikipedia
       Actions::Clearhasmsg.new(client, @defaults.merge(**options))
     end
 
-    # Log in to the wiki using the interactive flow.
+    # Log in to the wiki using the interactive flow. 
     #
     # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Clientlogin} action.
     #
@@ -517,7 +517,7 @@ module MediaWiktory::Wikipedia
       Actions::Clientlogin.new(client, @defaults.merge(**options))
     end
 
-    # Get the difference between 2 pages.
+    # Get the difference between 2 pages. 
     #
     # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Compare} action.
     #
@@ -542,7 +542,7 @@ module MediaWiktory::Wikipedia
       Actions::Compare.new(client, @defaults.merge(**options))
     end
 
-    # Create a new user account.
+    # Create a new user account. 
     #
     # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Createaccount} action.
     #
@@ -567,7 +567,7 @@ module MediaWiktory::Wikipedia
       Actions::Createaccount.new(client, @defaults.merge(**options))
     end
 
-    # Used by browsers to report violations of the Content Security Policy. This module should never be used, except when used automatically by a CSP compliant web browser.
+    # Used by browsers to report violations of the Content Security Policy. This module should never be used, except when used automatically by a CSP compliant web browser. 
     #
     # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Cspreport} action.
     #
@@ -592,7 +592,157 @@ module MediaWiktory::Wikipedia
       Actions::Cspreport.new(client, @defaults.merge(**options))
     end
 
-    # Delete a page.
+    # Fetch the Content Translation configuration json for the given language pair. 
+    #
+    # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Cxconfiguration} action.
+    #
+    # Action parameters could be passed to this method, like
+    #
+    # ```ruby
+    # api.cxconfiguration(param: 'value')
+    # ```
+    # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Cxconfiguration} method calls, like
+    #
+    # ```ruby
+    # api.cxconfiguration.param('value')
+    # ```
+    #
+    # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
+    # {MediaWiktory::Wikipedia::Actions::Cxconfiguration} class for a list of parameters and usage.
+    #
+    # @param [Hash] options Action options
+    # @return [MediaWiktory::Wikipedia::Actions::Cxconfiguration]
+    #
+    def cxconfiguration(**options)
+      Actions::Cxconfiguration.new(client, @defaults.merge(**options))
+    end
+
+    # Delete a draft translation created using the Content Translation extension. 
+    #
+    # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Cxdelete} action.
+    #
+    # Action parameters could be passed to this method, like
+    #
+    # ```ruby
+    # api.cxdelete(param: 'value')
+    # ```
+    # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Cxdelete} method calls, like
+    #
+    # ```ruby
+    # api.cxdelete.param('value')
+    # ```
+    #
+    # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
+    # {MediaWiktory::Wikipedia::Actions::Cxdelete} class for a list of parameters and usage.
+    #
+    # @param [Hash] options Action options
+    # @return [MediaWiktory::Wikipedia::Actions::Cxdelete]
+    #
+    def cxdelete(**options)
+      Actions::Cxdelete.new(client, @defaults.merge(**options))
+    end
+
+    # Save a page created using the Content Translation extension. 
+    #
+    # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Cxpublish} action.
+    #
+    # Action parameters could be passed to this method, like
+    #
+    # ```ruby
+    # api.cxpublish(param: 'value')
+    # ```
+    # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Cxpublish} method calls, like
+    #
+    # ```ruby
+    # api.cxpublish.param('value')
+    # ```
+    #
+    # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
+    # {MediaWiktory::Wikipedia::Actions::Cxpublish} class for a list of parameters and usage.
+    #
+    # @param [Hash] options Action options
+    # @return [MediaWiktory::Wikipedia::Actions::Cxpublish]
+    #
+    def cxpublish(**options)
+      Actions::Cxpublish.new(client, @defaults.merge(**options))
+    end
+
+    # This module allows to save draft translations by section to save bandwidth and to collect parallel corpora. 
+    #
+    # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Cxsave} action.
+    #
+    # Action parameters could be passed to this method, like
+    #
+    # ```ruby
+    # api.cxsave(param: 'value')
+    # ```
+    # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Cxsave} method calls, like
+    #
+    # ```ruby
+    # api.cxsave.param('value')
+    # ```
+    #
+    # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
+    # {MediaWiktory::Wikipedia::Actions::Cxsave} class for a list of parameters and usage.
+    #
+    # @param [Hash] options Action options
+    # @return [MediaWiktory::Wikipedia::Actions::Cxsave]
+    #
+    def cxsave(**options)
+      Actions::Cxsave.new(client, @defaults.merge(**options))
+    end
+
+    # Manage the suggestion lists. Add suggestions to lists and remove them. 
+    #
+    # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Cxsuggestionlist} action.
+    #
+    # Action parameters could be passed to this method, like
+    #
+    # ```ruby
+    # api.cxsuggestionlist(param: 'value')
+    # ```
+    # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Cxsuggestionlist} method calls, like
+    #
+    # ```ruby
+    # api.cxsuggestionlist.param('value')
+    # ```
+    #
+    # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
+    # {MediaWiktory::Wikipedia::Actions::Cxsuggestionlist} class for a list of parameters and usage.
+    #
+    # @param [Hash] options Action options
+    # @return [MediaWiktory::Wikipedia::Actions::Cxsuggestionlist]
+    #
+    def cxsuggestionlist(**options)
+      Actions::Cxsuggestionlist.new(client, @defaults.merge(**options))
+    end
+
+    # Get JWT tokens to authenticate with cxserver. 
+    #
+    # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Cxtoken} action.
+    #
+    # Action parameters could be passed to this method, like
+    #
+    # ```ruby
+    # api.cxtoken(param: 'value')
+    # ```
+    # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Cxtoken} method calls, like
+    #
+    # ```ruby
+    # api.cxtoken.param('value')
+    # ```
+    #
+    # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
+    # {MediaWiktory::Wikipedia::Actions::Cxtoken} class for a list of parameters and usage.
+    #
+    # @param [Hash] options Action options
+    # @return [MediaWiktory::Wikipedia::Actions::Cxtoken]
+    #
+    def cxtoken(**options)
+      Actions::Cxtoken.new(client, @defaults.merge(**options))
+    end
+
+    # Delete a page. 
     #
     # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Delete} action.
     #
@@ -617,7 +767,7 @@ module MediaWiktory::Wikipedia
       Actions::Delete.new(client, @defaults.merge(**options))
     end
 
-    # Delete Education Program objects.
+    # Delete Education Program objects. 
     #
     # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Deleteeducation} action.
     #
@@ -642,7 +792,7 @@ module MediaWiktory::Wikipedia
       Actions::Deleteeducation.new(client, @defaults.merge(**options))
     end
 
-    # Delete a global user.
+    # Delete a global user. 
     #
     # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Deleteglobalaccount} action.
     #
@@ -667,7 +817,7 @@ module MediaWiktory::Wikipedia
       Actions::Deleteglobalaccount.new(client, @defaults.merge(**options))
     end
 
-    # Mark notifications as read for the current user.
+    # Mark notifications as read for the current user. 
     #
     # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Echomarkread} action.
     #
@@ -692,7 +842,7 @@ module MediaWiktory::Wikipedia
       Actions::Echomarkread.new(client, @defaults.merge(**options))
     end
 
-    # Mark notifications as seen for the current user.
+    # Mark notifications as seen for the current user. 
     #
     # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Echomarkseen} action.
     #
@@ -717,7 +867,7 @@ module MediaWiktory::Wikipedia
       Actions::Echomarkseen.new(client, @defaults.merge(**options))
     end
 
-    # Create and edit pages.
+    # Create and edit pages. 
     #
     # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Edit} action.
     #
@@ -742,7 +892,7 @@ module MediaWiktory::Wikipedia
       Actions::Edit.new(client, @defaults.merge(**options))
     end
 
-    # Edit a mass message delivery list.
+    # Edit a mass message delivery list. 
     #
     # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Editmassmessagelist} action.
     #
@@ -767,7 +917,7 @@ module MediaWiktory::Wikipedia
       Actions::Editmassmessagelist.new(client, @defaults.merge(**options))
     end
 
-    # Email a user.
+    # Email a user. 
     #
     # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Emailuser} action.
     #
@@ -792,7 +942,7 @@ module MediaWiktory::Wikipedia
       Actions::Emailuser.new(client, @defaults.merge(**options))
     end
 
-    # Associate or disassociate a user as instructor or volunteer for a course.
+    # Associate or disassociate a user as instructor or volunteer for a course. 
     #
     # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Enlist} action.
     #
@@ -817,7 +967,7 @@ module MediaWiktory::Wikipedia
       Actions::Enlist.new(client, @defaults.merge(**options))
     end
 
-    # Expands all templates within wikitext.
+    # Expands all templates within wikitext. 
     #
     # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Expandtemplates} action.
     #
@@ -842,7 +992,7 @@ module MediaWiktory::Wikipedia
       Actions::Expandtemplates.new(client, @defaults.merge(**options))
     end
 
-    # Get a new FancyCaptcha.
+    # Get a new FancyCaptcha. 
     #
     # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Fancycaptchareload} action.
     #
@@ -867,7 +1017,7 @@ module MediaWiktory::Wikipedia
       Actions::Fancycaptchareload.new(client, @defaults.merge(**options))
     end
 
-    # Returns a featured content feed.
+    # Returns a featured content feed. 
     #
     # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Featuredfeed} action.
     #
@@ -892,7 +1042,7 @@ module MediaWiktory::Wikipedia
       Actions::Featuredfeed.new(client, @defaults.merge(**options))
     end
 
-    # Returns a user contributions feed.
+    # Returns a user contributions feed. 
     #
     # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Feedcontributions} action.
     #
@@ -917,7 +1067,7 @@ module MediaWiktory::Wikipedia
       Actions::Feedcontributions.new(client, @defaults.merge(**options))
     end
 
-    # Returns a recent changes feed.
+    # Returns a recent changes feed. 
     #
     # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Feedrecentchanges} action.
     #
@@ -942,7 +1092,7 @@ module MediaWiktory::Wikipedia
       Actions::Feedrecentchanges.new(client, @defaults.merge(**options))
     end
 
-    # Returns a watchlist feed.
+    # Returns a watchlist feed. 
     #
     # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Feedwatchlist} action.
     #
@@ -967,7 +1117,7 @@ module MediaWiktory::Wikipedia
       Actions::Feedwatchlist.new(client, @defaults.merge(**options))
     end
 
-    # Revert a file to an old version.
+    # Revert a file to an old version. 
     #
     # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Filerevert} action.
     #
@@ -992,7 +1142,7 @@ module MediaWiktory::Wikipedia
       Actions::Filerevert.new(client, @defaults.merge(**options))
     end
 
-    # Get basic information about review flag configuration for this site.
+    # Get basic information about review flag configuration for this site. 
     #
     # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Flagconfig} action.
     #
@@ -1017,7 +1167,7 @@ module MediaWiktory::Wikipedia
       Actions::Flagconfig.new(client, @defaults.merge(**options))
     end
 
-    # Globally block or unblock a user.
+    # Globally block or unblock a user. 
     #
     # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Globalblock} action.
     #
@@ -1042,7 +1192,7 @@ module MediaWiktory::Wikipedia
       Actions::Globalblock.new(client, @defaults.merge(**options))
     end
 
-    # Add/remove a user to/from global groups.
+    # Add/remove a user to/from global groups. 
     #
     # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Globaluserrights} action.
     #
@@ -1067,7 +1217,7 @@ module MediaWiktory::Wikipedia
       Actions::Globaluserrights.new(client, @defaults.merge(**options))
     end
 
-    # Access graph tag functionality.
+    # Access graph tag functionality. 
     #
     # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Graph} action.
     #
@@ -1092,7 +1242,7 @@ module MediaWiktory::Wikipedia
       Actions::Graph.new(client, @defaults.merge(**options))
     end
 
-    # Display help for the specified modules.
+    # Display help for the specified modules. 
     #
     # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Help} action.
     #
@@ -1117,7 +1267,7 @@ module MediaWiktory::Wikipedia
       Actions::Help.new(client, @defaults.merge(**options))
     end
 
-    # This module has been disabled.
+    # This module has been disabled. 
     #
     # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Imagerotate} action.
     #
@@ -1142,7 +1292,7 @@ module MediaWiktory::Wikipedia
       Actions::Imagerotate.new(client, @defaults.merge(**options))
     end
 
-    # Import a page from another wiki, or from an XML file.
+    # Import a page from another wiki, or from an XML file. 
     #
     # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Import} action.
     #
@@ -1167,7 +1317,7 @@ module MediaWiktory::Wikipedia
       Actions::Import.new(client, @defaults.merge(**options))
     end
 
-    # Allows direct access to JsonConfig subsystem.
+    # Allows direct access to JsonConfig subsystem. 
     #
     # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Jsonconfig} action.
     #
@@ -1192,7 +1342,7 @@ module MediaWiktory::Wikipedia
       Actions::Jsonconfig.new(client, @defaults.merge(**options))
     end
 
-    # Retrieve localized JSON data.
+    # Retrieve localized JSON data. 
     #
     # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Jsondata} action.
     #
@@ -1217,7 +1367,7 @@ module MediaWiktory::Wikipedia
       Actions::Jsondata.new(client, @defaults.merge(**options))
     end
 
-    # Search for language names in any script.
+    # Search for language names in any script. 
     #
     # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Languagesearch} action.
     #
@@ -1242,7 +1392,7 @@ module MediaWiktory::Wikipedia
       Actions::Languagesearch.new(client, @defaults.merge(**options))
     end
 
-    # Link an account from a third-party provider to the current user.
+    # Link an account from a third-party provider to the current user. 
     #
     # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Linkaccount} action.
     #
@@ -1267,7 +1417,7 @@ module MediaWiktory::Wikipedia
       Actions::Linkaccount.new(client, @defaults.merge(**options))
     end
 
-    # Get the usernames and other information for students enrolled in one or more courses.
+    # Get the usernames and other information for students enrolled in one or more courses. 
     #
     # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Liststudents} action.
     #
@@ -1292,7 +1442,7 @@ module MediaWiktory::Wikipedia
       Actions::Liststudents.new(client, @defaults.merge(**options))
     end
 
-    # Log in and get authentication cookies.
+    # Log in and get authentication cookies. 
     #
     # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Login} action.
     #
@@ -1317,7 +1467,7 @@ module MediaWiktory::Wikipedia
       Actions::Login.new(client, @defaults.merge(**options))
     end
 
-    # Log out and clear session data.
+    # Log out and clear session data. 
     #
     # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Logout} action.
     #
@@ -1342,7 +1492,7 @@ module MediaWiktory::Wikipedia
       Actions::Logout.new(client, @defaults.merge(**options))
     end
 
-    # Perform management tasks relating to change tags.
+    # Perform management tasks relating to change tags. 
     #
     # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Managetags} action.
     #
@@ -1367,7 +1517,7 @@ module MediaWiktory::Wikipedia
       Actions::Managetags.new(client, @defaults.merge(**options))
     end
 
-    # Send a message to a list of pages.
+    # Send a message to a list of pages. 
     #
     # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Massmessage} action.
     #
@@ -1392,7 +1542,7 @@ module MediaWiktory::Wikipedia
       Actions::Massmessage.new(client, @defaults.merge(**options))
     end
 
-    # Merge page histories.
+    # Merge page histories. 
     #
     # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Mergehistory} action.
     #
@@ -1417,7 +1567,7 @@ module MediaWiktory::Wikipedia
       Actions::Mergehistory.new(client, @defaults.merge(**options))
     end
 
-    # Returns data needed for mobile views.
+    # Returns data needed for mobile views. 
     #
     # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Mobileview} action.
     #
@@ -1442,7 +1592,7 @@ module MediaWiktory::Wikipedia
       Actions::Mobileview.new(client, @defaults.merge(**options))
     end
 
-    # Move a page.
+    # Move a page. 
     #
     # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Move} action.
     #
@@ -1467,7 +1617,7 @@ module MediaWiktory::Wikipedia
       Actions::Move.new(client, @defaults.merge(**options))
     end
 
-    # Validate a two-factor authentication (OATH) token.
+    # Validate a two-factor authentication (OATH) token. 
     #
     # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Oathvalidate} action.
     #
@@ -1492,7 +1642,7 @@ module MediaWiktory::Wikipedia
       Actions::Oathvalidate.new(client, @defaults.merge(**options))
     end
 
-    # Search the wiki using the OpenSearch protocol.
+    # Search the wiki using the OpenSearch protocol. 
     #
     # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Opensearch} action.
     #
@@ -1517,7 +1667,7 @@ module MediaWiktory::Wikipedia
       Actions::Opensearch.new(client, @defaults.merge(**options))
     end
 
-    # Change preferences of the current user.
+    # Change preferences of the current user. 
     #
     # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Options} action.
     #
@@ -1542,7 +1692,7 @@ module MediaWiktory::Wikipedia
       Actions::Options.new(client, @defaults.merge(**options))
     end
 
-    # Mark an article as reviewed or unreviewed.
+    # Mark an article as reviewed or unreviewed. 
     #
     # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Pagetriageaction} action.
     #
@@ -1567,7 +1717,7 @@ module MediaWiktory::Wikipedia
       Actions::Pagetriageaction.new(client, @defaults.merge(**options))
     end
 
-    # Get a list of page IDs for building a PageTriage queue.
+    # Get a list of page IDs for building a PageTriage queue. 
     #
     # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Pagetriagelist} action.
     #
@@ -1592,7 +1742,7 @@ module MediaWiktory::Wikipedia
       Actions::Pagetriagelist.new(client, @defaults.merge(**options))
     end
 
-    # Get the stats for page triage.
+    # Get the stats for page triage. 
     #
     # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Pagetriagestats} action.
     #
@@ -1617,7 +1767,7 @@ module MediaWiktory::Wikipedia
       Actions::Pagetriagestats.new(client, @defaults.merge(**options))
     end
 
-    # Add tags to an article.
+    # Add tags to an article. 
     #
     # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Pagetriagetagging} action.
     #
@@ -1642,7 +1792,7 @@ module MediaWiktory::Wikipedia
       Actions::Pagetriagetagging.new(client, @defaults.merge(**options))
     end
 
-    # Fetch templates that are used within the PageTriage application.
+    # Fetch templates that are used within the PageTriage application. 
     #
     # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Pagetriagetemplate} action.
     #
@@ -1667,7 +1817,7 @@ module MediaWiktory::Wikipedia
       Actions::Pagetriagetemplate.new(client, @defaults.merge(**options))
     end
 
-    # Obtain information about API modules.
+    # Obtain information about API modules. 
     #
     # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Paraminfo} action.
     #
@@ -1692,7 +1842,7 @@ module MediaWiktory::Wikipedia
       Actions::Paraminfo.new(client, @defaults.merge(**options))
     end
 
-    # Parses content and returns parser output.
+    # Parses content and returns parser output. 
     #
     # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Parse} action.
     #
@@ -1717,7 +1867,7 @@ module MediaWiktory::Wikipedia
       Actions::Parse.new(client, @defaults.merge(**options))
     end
 
-    #
+    # 
     #
     # This method creates an instance of {MediaWiktory::Wikipedia::Actions::ParsoidBatch} action.
     #
@@ -1742,7 +1892,7 @@ module MediaWiktory::Wikipedia
       Actions::ParsoidBatch.new(client, @defaults.merge(**options))
     end
 
-    # Patrol a page or revision.
+    # Patrol a page or revision. 
     #
     # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Patrol} action.
     #
@@ -1767,7 +1917,7 @@ module MediaWiktory::Wikipedia
       Actions::Patrol.new(client, @defaults.merge(**options))
     end
 
-    # Change the protection level of a page.
+    # Change the protection level of a page. 
     #
     # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Protect} action.
     #
@@ -1792,7 +1942,7 @@ module MediaWiktory::Wikipedia
       Actions::Protect.new(client, @defaults.merge(**options))
     end
 
-    # Purge the cache for the given titles.
+    # Purge the cache for the given titles. 
     #
     # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Purge} action.
     #
@@ -1817,7 +1967,7 @@ module MediaWiktory::Wikipedia
       Actions::Purge.new(client, @defaults.merge(**options))
     end
 
-    # Fetch data from and about MediaWiki.
+    # Fetch data from and about MediaWiki. 
     #
     # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Query} action.
     #
@@ -1842,7 +1992,7 @@ module MediaWiktory::Wikipedia
       Actions::Query.new(client, @defaults.merge(**options))
     end
 
-    # Rebuild summary data of Education Program objects.
+    # Rebuild summary data of Education Program objects. 
     #
     # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Refresheducation} action.
     #
@@ -1867,7 +2017,7 @@ module MediaWiktory::Wikipedia
       Actions::Refresheducation.new(client, @defaults.merge(**options))
     end
 
-    # Remove authentication data for the current user.
+    # Remove authentication data for the current user. 
     #
     # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Removeauthenticationdata} action.
     #
@@ -1892,7 +2042,7 @@ module MediaWiktory::Wikipedia
       Actions::Removeauthenticationdata.new(client, @defaults.merge(**options))
     end
 
-    # Send a password reset email to a user.
+    # Send a password reset email to a user. 
     #
     # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Resetpassword} action.
     #
@@ -1917,7 +2067,7 @@ module MediaWiktory::Wikipedia
       Actions::Resetpassword.new(client, @defaults.merge(**options))
     end
 
-    # Review a revision by approving or de-approving it.
+    # Review a revision by approving or de-approving it. 
     #
     # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Review} action.
     #
@@ -1942,7 +2092,7 @@ module MediaWiktory::Wikipedia
       Actions::Review.new(client, @defaults.merge(**options))
     end
 
-    # Advertise or de-advertise yourself as reviewing an unreviewed page or unreviewed changes.
+    # Advertise or de-advertise yourself as reviewing an unreviewed page or unreviewed changes. 
     #
     # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Reviewactivity} action.
     #
@@ -1967,7 +2117,7 @@ module MediaWiktory::Wikipedia
       Actions::Reviewactivity.new(client, @defaults.merge(**options))
     end
 
-    # Delete and undelete revisions.
+    # Delete and undelete revisions. 
     #
     # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Revisiondelete} action.
     #
@@ -1992,7 +2142,7 @@ module MediaWiktory::Wikipedia
       Actions::Revisiondelete.new(client, @defaults.merge(**options))
     end
 
-    # Undo the last edit to the page.
+    # Undo the last edit to the page. 
     #
     # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Rollback} action.
     #
@@ -2017,7 +2167,7 @@ module MediaWiktory::Wikipedia
       Actions::Rollback.new(client, @defaults.merge(**options))
     end
 
-    # Export an RSD (Really Simple Discovery) schema.
+    # Export an RSD (Really Simple Discovery) schema. 
     #
     # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Rsd} action.
     #
@@ -2042,7 +2192,7 @@ module MediaWiktory::Wikipedia
       Actions::Rsd.new(client, @defaults.merge(**options))
     end
 
-    # Performs data validation for Kartographer extension
+    # Performs data validation for Kartographer extension 
     #
     # This method creates an instance of {MediaWiktory::Wikipedia::Actions::SanitizeMapdata} action.
     #
@@ -2067,7 +2217,7 @@ module MediaWiktory::Wikipedia
       Actions::SanitizeMapdata.new(client, @defaults.merge(**options))
     end
 
-    # Internal module for servicing XHR requests from the Scribunto console.
+    # Internal module for servicing XHR requests from the Scribunto console. 
     #
     # This method creates an instance of {MediaWiktory::Wikipedia::Actions::ScribuntoConsole} action.
     #
@@ -2092,7 +2242,7 @@ module MediaWiktory::Wikipedia
       Actions::ScribuntoConsole.new(client, @defaults.merge(**options))
     end
 
-    # Set a global user's status.
+    # Set a global user's status. 
     #
     # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Setglobalaccountstatus} action.
     #
@@ -2117,7 +2267,7 @@ module MediaWiktory::Wikipedia
       Actions::Setglobalaccountstatus.new(client, @defaults.merge(**options))
     end
 
-    # Update the notification timestamp for watched pages.
+    # Update the notification timestamp for watched pages. 
     #
     # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Setnotificationtimestamp} action.
     #
@@ -2142,7 +2292,7 @@ module MediaWiktory::Wikipedia
       Actions::Setnotificationtimestamp.new(client, @defaults.merge(**options))
     end
 
-    # Changing the language of a page is not allowed on this wiki.
+    # Changing the language of a page is not allowed on this wiki. 
     #
     # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Setpagelanguage} action.
     #
@@ -2167,7 +2317,7 @@ module MediaWiktory::Wikipedia
       Actions::Setpagelanguage.new(client, @defaults.merge(**options))
     end
 
-    # Shorten a long URL into a shorter one.
+    # Shorten a long URL into a shorter one. 
     #
     # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Shortenurl} action.
     #
@@ -2192,7 +2342,7 @@ module MediaWiktory::Wikipedia
       Actions::Shortenurl.new(client, @defaults.merge(**options))
     end
 
-    # Get Wikimedia sites list.
+    # Get Wikimedia sites list. 
     #
     # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Sitematrix} action.
     #
@@ -2217,7 +2367,7 @@ module MediaWiktory::Wikipedia
       Actions::Sitematrix.new(client, @defaults.merge(**options))
     end
 
-    # Validate one or more URLs against the SpamBlacklist.
+    # Validate one or more URLs against the SpamBlacklist. 
     #
     # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Spamblacklist} action.
     #
@@ -2242,7 +2392,7 @@ module MediaWiktory::Wikipedia
       Actions::Spamblacklist.new(client, @defaults.merge(**options))
     end
 
-    # Configure review-protection settings for a page.
+    # Configure review-protection settings for a page. 
     #
     # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Stabilize} action.
     #
@@ -2267,7 +2417,7 @@ module MediaWiktory::Wikipedia
       Actions::Stabilize.new(client, @defaults.merge(**options))
     end
 
-    # Prepare an edit in shared cache.
+    # Prepare an edit in shared cache. 
     #
     # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Stashedit} action.
     #
@@ -2292,7 +2442,7 @@ module MediaWiktory::Wikipedia
       Actions::Stashedit.new(client, @defaults.merge(**options))
     end
 
-    # Allows admins to strike or unstrike a vote.
+    # Allows admins to strike or unstrike a vote. 
     #
     # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Strikevote} action.
     #
@@ -2317,7 +2467,7 @@ module MediaWiktory::Wikipedia
       Actions::Strikevote.new(client, @defaults.merge(**options))
     end
 
-    # Add or remove change tags from individual revisions or log entries.
+    # Add or remove change tags from individual revisions or log entries. 
     #
     # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Tag} action.
     #
@@ -2342,7 +2492,7 @@ module MediaWiktory::Wikipedia
       Actions::Tag.new(client, @defaults.merge(**options))
     end
 
-    # Fetch data stored by the TemplateData extension.
+    # Fetch data stored by the TemplateData extension. 
     #
     # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Templatedata} action.
     #
@@ -2367,7 +2517,7 @@ module MediaWiktory::Wikipedia
       Actions::Templatedata.new(client, @defaults.merge(**options))
     end
 
-    # Send a thank-you notification to an editor.
+    # Send a thank-you notification to an editor. 
     #
     # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Thank} action.
     #
@@ -2392,7 +2542,7 @@ module MediaWiktory::Wikipedia
       Actions::Thank.new(client, @defaults.merge(**options))
     end
 
-    # Validate an article title, filename, or username against the TitleBlacklist.
+    # Validate an article title, filename, or username against the TitleBlacklist. 
     #
     # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Titleblacklist} action.
     #
@@ -2417,7 +2567,7 @@ module MediaWiktory::Wikipedia
       Actions::Titleblacklist.new(client, @defaults.merge(**options))
     end
 
-    # Get tokens for data-modifying actions.
+    # Get tokens for data-modifying actions. 
     #
     # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Tokens} action.
     #
@@ -2442,7 +2592,7 @@ module MediaWiktory::Wikipedia
       Actions::Tokens.new(client, @defaults.merge(**options))
     end
 
-    # Users with the 'transcode-reset' right can reset and re-run a transcode job.
+    # Users with the 'transcode-reset' right can reset and re-run a transcode job. 
     #
     # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Transcodereset} action.
     #
@@ -2467,7 +2617,7 @@ module MediaWiktory::Wikipedia
       Actions::Transcodereset.new(client, @defaults.merge(**options))
     end
 
-    # Get the localization of ULS in the given language.
+    # Get the localization of ULS in the given language. 
     #
     # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Ulslocalization} action.
     #
@@ -2492,7 +2642,7 @@ module MediaWiktory::Wikipedia
       Actions::Ulslocalization.new(client, @defaults.merge(**options))
     end
 
-    # Unblock a user.
+    # Unblock a user. 
     #
     # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Unblock} action.
     #
@@ -2517,7 +2667,7 @@ module MediaWiktory::Wikipedia
       Actions::Unblock.new(client, @defaults.merge(**options))
     end
 
-    # Restore revisions of a deleted page.
+    # Restore revisions of a deleted page. 
     #
     # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Undelete} action.
     #
@@ -2542,7 +2692,7 @@ module MediaWiktory::Wikipedia
       Actions::Undelete.new(client, @defaults.merge(**options))
     end
 
-    # Remove a linked third-party account from the current user.
+    # Remove a linked third-party account from the current user. 
     #
     # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Unlinkaccount} action.
     #
@@ -2567,7 +2717,7 @@ module MediaWiktory::Wikipedia
       Actions::Unlinkaccount.new(client, @defaults.merge(**options))
     end
 
-    # Upload a file, or get the status of pending uploads.
+    # Upload a file, or get the status of pending uploads. 
     #
     # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Upload} action.
     #
@@ -2592,7 +2742,7 @@ module MediaWiktory::Wikipedia
       Actions::Upload.new(client, @defaults.merge(**options))
     end
 
-    # Change a user's group membership.
+    # Change a user's group membership. 
     #
     # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Userrights} action.
     #
@@ -2617,7 +2767,7 @@ module MediaWiktory::Wikipedia
       Actions::Userrights.new(client, @defaults.merge(**options))
     end
 
-    # Validate a password against the wiki's password policies.
+    # Validate a password against the wiki's password policies. 
     #
     # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Validatepassword} action.
     #
@@ -2642,7 +2792,7 @@ module MediaWiktory::Wikipedia
       Actions::Validatepassword.new(client, @defaults.merge(**options))
     end
 
-    # Returns HTML5 for a page from the Parsoid service.
+    # Returns HTML5 for a page from the Parsoid service. 
     #
     # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Visualeditor} action.
     #
@@ -2667,7 +2817,7 @@ module MediaWiktory::Wikipedia
       Actions::Visualeditor.new(client, @defaults.merge(**options))
     end
 
-    # Save an HTML5 page to MediaWiki (converted to wikitext via the Parsoid service).
+    # Save an HTML5 page to MediaWiki (converted to wikitext via the Parsoid service). 
     #
     # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Visualeditoredit} action.
     #
@@ -2692,7 +2842,7 @@ module MediaWiktory::Wikipedia
       Actions::Visualeditoredit.new(client, @defaults.merge(**options))
     end
 
-    # Add or remove pages from the current user's watchlist.
+    # Add or remove pages from the current user's watchlist. 
     #
     # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Watch} action.
     #
@@ -2717,7 +2867,7 @@ module MediaWiktory::Wikipedia
       Actions::Watch.new(client, @defaults.merge(**options))
     end
 
-    # Returns a webapp manifest.
+    # Returns a webapp manifest. 
     #
     # This method creates an instance of {MediaWiktory::Wikipedia::Actions::WebappManifest} action.
     #
@@ -2742,7 +2892,7 @@ module MediaWiktory::Wikipedia
       Actions::WebappManifest.new(client, @defaults.merge(**options))
     end
 
-    # Give WikiLove to another user.
+    # Give WikiLove to another user. 
     #
     # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Wikilove} action.
     #
@@ -2767,7 +2917,7 @@ module MediaWiktory::Wikipedia
       Actions::Wikilove.new(client, @defaults.merge(**options))
     end
 
-    # Get configuration of the Zero extension.
+    # Get configuration of the Zero extension. 
     #
     # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Zeroconfig} action.
     #

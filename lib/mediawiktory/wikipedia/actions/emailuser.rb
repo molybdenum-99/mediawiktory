@@ -1,24 +1,25 @@
 # frozen_string_literal: true
 
-module MediaWiktory::Wikipedia::Actions
-  # Email a user. 
-  #
-  # Usage:
-  #
-  # ```ruby
-  # api.emailuser(**options).perform # returns string with raw output
-  # # or
-  # api.emailuser(**options).response # returns output parsed and wrapped into Mash-like object
-  #
-  # # or, with chainable interface:
-  # api.emailuser.target(value).perform
-  # ```
-  #
-  # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions.
-  #
-  # All action's parameters are documented as its public methods, see below.
-  #
-  class Emailuser < MediaWiktory::Wikipedia::GetAction
+module MediaWiktory::Wikipedia
+  module Actions
+    # Email a user. 
+    #
+    # Usage:
+    #
+    # ```ruby
+    # api.emailuser(**options).perform # returns string with raw output
+    # # or
+    # api.emailuser(**options).response # returns output parsed and wrapped into Mash-like object
+    #
+    # # or, with chainable interface:
+    # api.emailuser.target(value).perform
+    # ```
+    #
+    # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions.
+    #
+    # All action's parameters are documented as its public methods, see below.
+    #
+    class Emailuser < MediaWiktory::Wikipedia::GetAction
 
     # User to send email to.
     #
@@ -58,5 +59,6 @@ module MediaWiktory::Wikipedia::Actions
     def token(value)
       merge(token: value.to_s)
     end
+  end
   end
 end

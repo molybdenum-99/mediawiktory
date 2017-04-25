@@ -1,24 +1,25 @@
 # frozen_string_literal: true
 
-module MediaWiktory::Wikipedia::Actions
-  # Internal module for servicing XHR requests from the Scribunto console. 
-  #
-  # Usage:
-  #
-  # ```ruby
-  # api.scribunto-console(**options).perform # returns string with raw output
-  # # or
-  # api.scribunto-console(**options).response # returns output parsed and wrapped into Mash-like object
-  #
-  # # or, with chainable interface:
-  # api.scribunto-console.title(value).perform
-  # ```
-  #
-  # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions.
-  #
-  # All action's parameters are documented as its public methods, see below.
-  #
-  class ScribuntoConsole < MediaWiktory::Wikipedia::GetAction
+module MediaWiktory::Wikipedia
+  module Actions
+    # Internal module for servicing XHR requests from the Scribunto console. 
+    #
+    # Usage:
+    #
+    # ```ruby
+    # api.scribunto-console(**options).perform # returns string with raw output
+    # # or
+    # api.scribunto-console(**options).response # returns output parsed and wrapped into Mash-like object
+    #
+    # # or, with chainable interface:
+    # api.scribunto-console.title(value).perform
+    # ```
+    #
+    # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions.
+    #
+    # All action's parameters are documented as its public methods, see below.
+    #
+    class ScribuntoConsole < MediaWiktory::Wikipedia::GetAction
 
     # The title of the module to test.
     #
@@ -58,5 +59,6 @@ module MediaWiktory::Wikipedia::Actions
     def clear()
       merge(clear: 'true')
     end
+  end
   end
 end

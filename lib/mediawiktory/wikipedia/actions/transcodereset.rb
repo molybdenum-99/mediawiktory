@@ -1,24 +1,25 @@
 # frozen_string_literal: true
 
-module MediaWiktory::Wikipedia::Actions
-  # Users with the 'transcode-reset' right can reset and re-run a transcode job. 
-  #
-  # Usage:
-  #
-  # ```ruby
-  # api.transcodereset(**options).perform # returns string with raw output
-  # # or
-  # api.transcodereset(**options).response # returns output parsed and wrapped into Mash-like object
-  #
-  # # or, with chainable interface:
-  # api.transcodereset.title(value).perform
-  # ```
-  #
-  # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions.
-  #
-  # All action's parameters are documented as its public methods, see below.
-  #
-  class Transcodereset < MediaWiktory::Wikipedia::GetAction
+module MediaWiktory::Wikipedia
+  module Actions
+    # Users with the 'transcode-reset' right can reset and re-run a transcode job. 
+    #
+    # Usage:
+    #
+    # ```ruby
+    # api.transcodereset(**options).perform # returns string with raw output
+    # # or
+    # api.transcodereset(**options).response # returns output parsed and wrapped into Mash-like object
+    #
+    # # or, with chainable interface:
+    # api.transcodereset.title(value).perform
+    # ```
+    #
+    # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions.
+    #
+    # All action's parameters are documented as its public methods, see below.
+    #
+    class Transcodereset < MediaWiktory::Wikipedia::GetAction
 
     # The media file title.
     #
@@ -43,5 +44,6 @@ module MediaWiktory::Wikipedia::Actions
     def token(value)
       merge(token: value.to_s)
     end
+  end
   end
 end

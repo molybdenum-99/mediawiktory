@@ -1,24 +1,25 @@
 # frozen_string_literal: true
 
-module MediaWiktory::Wikipedia::Actions
-  # Add/remove a user to/from global groups. 
-  #
-  # Usage:
-  #
-  # ```ruby
-  # api.globaluserrights(**options).perform # returns string with raw output
-  # # or
-  # api.globaluserrights(**options).response # returns output parsed and wrapped into Mash-like object
-  #
-  # # or, with chainable interface:
-  # api.globaluserrights.user(value).perform
-  # ```
-  #
-  # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions.
-  #
-  # All action's parameters are documented as its public methods, see below.
-  #
-  class Globaluserrights < MediaWiktory::Wikipedia::GetAction
+module MediaWiktory::Wikipedia
+  module Actions
+    # Add/remove a user to/from global groups. 
+    #
+    # Usage:
+    #
+    # ```ruby
+    # api.globaluserrights(**options).perform # returns string with raw output
+    # # or
+    # api.globaluserrights(**options).response # returns output parsed and wrapped into Mash-like object
+    #
+    # # or, with chainable interface:
+    # api.globaluserrights.user(value).perform
+    # ```
+    #
+    # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions.
+    #
+    # All action's parameters are documented as its public methods, see below.
+    #
+    class Globaluserrights < MediaWiktory::Wikipedia::GetAction
 
     # Global user name.
     #
@@ -75,5 +76,6 @@ module MediaWiktory::Wikipedia::Actions
     def tags(*values)
       merge(tags: values.join('|'))
     end
+  end
   end
 end

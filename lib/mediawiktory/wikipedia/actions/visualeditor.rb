@@ -1,24 +1,25 @@
 # frozen_string_literal: true
 
-module MediaWiktory::Wikipedia::Actions
-  # Returns HTML5 for a page from the Parsoid service. 
-  #
-  # Usage:
-  #
-  # ```ruby
-  # api.visualeditor(**options).perform # returns string with raw output
-  # # or
-  # api.visualeditor(**options).response # returns output parsed and wrapped into Mash-like object
-  #
-  # # or, with chainable interface:
-  # api.visualeditor.page(value).perform
-  # ```
-  #
-  # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions.
-  #
-  # All action's parameters are documented as its public methods, see below.
-  #
-  class Visualeditor < MediaWiktory::Wikipedia::GetAction
+module MediaWiktory::Wikipedia
+  module Actions
+    # Returns HTML5 for a page from the Parsoid service. 
+    #
+    # Usage:
+    #
+    # ```ruby
+    # api.visualeditor(**options).perform # returns string with raw output
+    # # or
+    # api.visualeditor(**options).response # returns output parsed and wrapped into Mash-like object
+    #
+    # # or, with chainable interface:
+    # api.visualeditor.page(value).perform
+    # ```
+    #
+    # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions.
+    #
+    # All action's parameters are documented as its public methods, see below.
+    #
+    class Visualeditor < MediaWiktory::Wikipedia::GetAction
 
     # The page to perform actions on.
     #
@@ -82,5 +83,6 @@ module MediaWiktory::Wikipedia::Actions
     def pst()
       merge(pst: 'true')
     end
+  end
   end
 end

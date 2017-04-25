@@ -1,25 +1,26 @@
 # frozen_string_literal: true
 
-module MediaWiktory::Wikipedia::Modules
-  # Returns coordinates of the given pages. 
-  #
-  # Usage:
-  #
-  # ```ruby
-  # api.some_action.coordinates(**options).perform # returns string with raw output
-  # # or
-  # api.some_action.coordinates(**options).response # returns output parsed and wrapped into Mash-like object
-  #
-  # # or, with chainable interface:
-  # api.some_action.coordinates.limit(value).perform
-  # ```
-  #
-  # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and their
-  # submodules.
-  #
-  # All submodule's parameters are documented as its public methods, see below.
-  #
-  module Coordinates
+module MediaWiktory::Wikipedia
+  module Modules
+    # Returns coordinates of the given pages. 
+    #
+    # Usage:
+    #
+    # ```ruby
+    # api.some_action.coordinates(**options).perform # returns string with raw output
+    # # or
+    # api.some_action.coordinates(**options).response # returns output parsed and wrapped into Mash-like object
+    #
+    # # or, with chainable interface:
+    # api.some_action.coordinates.limit(value).perform
+    # ```
+    #
+    # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and their
+    # submodules.
+    #
+    # All submodule's parameters are documented as its public methods, see below.
+    #
+    module Coordinates
 
     # How many coordinates to return.
     #
@@ -68,5 +69,6 @@ module MediaWiktory::Wikipedia::Modules
     def distancefrompage(value)
       merge(codistancefrompage: value.to_s)
     end
+  end
   end
 end

@@ -1,25 +1,26 @@
 # frozen_string_literal: true
 
-module MediaWiktory::Wikipedia::Modules
-  # Retrieve information about the current authentication status. 
-  #
-  # Usage:
-  #
-  # ```ruby
-  # api.some_action.authmanagerinfo(**options).perform # returns string with raw output
-  # # or
-  # api.some_action.authmanagerinfo(**options).response # returns output parsed and wrapped into Mash-like object
-  #
-  # # or, with chainable interface:
-  # api.some_action.authmanagerinfo.securitysensitiveoperation(value).perform
-  # ```
-  #
-  # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and their
-  # submodules.
-  #
-  # All submodule's parameters are documented as its public methods, see below.
-  #
-  module Authmanagerinfo
+module MediaWiktory::Wikipedia
+  module Modules
+    # Retrieve information about the current authentication status. 
+    #
+    # Usage:
+    #
+    # ```ruby
+    # api.some_action.authmanagerinfo(**options).perform # returns string with raw output
+    # # or
+    # api.some_action.authmanagerinfo(**options).response # returns output parsed and wrapped into Mash-like object
+    #
+    # # or, with chainable interface:
+    # api.some_action.authmanagerinfo.securitysensitiveoperation(value).perform
+    # ```
+    #
+    # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and their
+    # submodules.
+    #
+    # All submodule's parameters are documented as its public methods, see below.
+    #
+    module Authmanagerinfo
 
     # Test whether the user's current authentication status is sufficient for the specified security-sensitive operation.
     #
@@ -51,5 +52,6 @@ module MediaWiktory::Wikipedia::Modules
     def messageformat(value)
       merge(amimessageformat: value.to_s)
     end
+  end
   end
 end

@@ -1,25 +1,26 @@
 # frozen_string_literal: true
 
-module MediaWiktory::Wikipedia::Modules
-  # Find all pages that embed (transclude) the given title. 
-  #
-  # Usage:
-  #
-  # ```ruby
-  # api.some_action.embeddedin(**options).perform # returns string with raw output
-  # # or
-  # api.some_action.embeddedin(**options).response # returns output parsed and wrapped into Mash-like object
-  #
-  # # or, with chainable interface:
-  # api.some_action.embeddedin.title(value).perform
-  # ```
-  #
-  # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and their
-  # submodules.
-  #
-  # All submodule's parameters are documented as its public methods, see below.
-  #
-  module Embeddedin
+module MediaWiktory::Wikipedia
+  module Modules
+    # Find all pages that embed (transclude) the given title. 
+    #
+    # Usage:
+    #
+    # ```ruby
+    # api.some_action.embeddedin(**options).perform # returns string with raw output
+    # # or
+    # api.some_action.embeddedin(**options).response # returns output parsed and wrapped into Mash-like object
+    #
+    # # or, with chainable interface:
+    # api.some_action.embeddedin.title(value).perform
+    # ```
+    #
+    # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and their
+    # submodules.
+    #
+    # All submodule's parameters are documented as its public methods, see below.
+    #
+    module Embeddedin
 
     # Title to search. Cannot be used together with eipageid.
     #
@@ -76,5 +77,6 @@ module MediaWiktory::Wikipedia::Modules
     def limit(value)
       merge(eilimit: value.to_s)
     end
+  end
   end
 end

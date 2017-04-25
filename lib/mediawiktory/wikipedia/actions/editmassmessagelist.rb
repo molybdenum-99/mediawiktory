@@ -1,24 +1,25 @@
 # frozen_string_literal: true
 
-module MediaWiktory::Wikipedia::Actions
-  # Edit a mass message delivery list. 
-  #
-  # Usage:
-  #
-  # ```ruby
-  # api.editmassmessagelist(**options).perform # returns string with raw output
-  # # or
-  # api.editmassmessagelist(**options).response # returns output parsed and wrapped into Mash-like object
-  #
-  # # or, with chainable interface:
-  # api.editmassmessagelist.spamlist(value).perform
-  # ```
-  #
-  # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions.
-  #
-  # All action's parameters are documented as its public methods, see below.
-  #
-  class Editmassmessagelist < MediaWiktory::Wikipedia::GetAction
+module MediaWiktory::Wikipedia
+  module Actions
+    # Edit a mass message delivery list. 
+    #
+    # Usage:
+    #
+    # ```ruby
+    # api.editmassmessagelist(**options).perform # returns string with raw output
+    # # or
+    # api.editmassmessagelist(**options).response # returns output parsed and wrapped into Mash-like object
+    #
+    # # or, with chainable interface:
+    # api.editmassmessagelist.spamlist(value).perform
+    # ```
+    #
+    # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions.
+    #
+    # All action's parameters are documented as its public methods, see below.
+    #
+    class Editmassmessagelist < MediaWiktory::Wikipedia::GetAction
 
     # Title of the delivery list to update.
     #
@@ -51,5 +52,6 @@ module MediaWiktory::Wikipedia::Actions
     def token(value)
       merge(token: value.to_s)
     end
+  end
   end
 end

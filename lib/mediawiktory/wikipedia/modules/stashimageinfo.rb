@@ -1,25 +1,26 @@
 # frozen_string_literal: true
 
-module MediaWiktory::Wikipedia::Modules
-  # Returns file information for stashed files. 
-  #
-  # Usage:
-  #
-  # ```ruby
-  # api.some_action.stashimageinfo(**options).perform # returns string with raw output
-  # # or
-  # api.some_action.stashimageinfo(**options).response # returns output parsed and wrapped into Mash-like object
-  #
-  # # or, with chainable interface:
-  # api.some_action.stashimageinfo.filekey(value).perform
-  # ```
-  #
-  # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and their
-  # submodules.
-  #
-  # All submodule's parameters are documented as its public methods, see below.
-  #
-  module Stashimageinfo
+module MediaWiktory::Wikipedia
+  module Modules
+    # Returns file information for stashed files. 
+    #
+    # Usage:
+    #
+    # ```ruby
+    # api.some_action.stashimageinfo(**options).perform # returns string with raw output
+    # # or
+    # api.some_action.stashimageinfo(**options).response # returns output parsed and wrapped into Mash-like object
+    #
+    # # or, with chainable interface:
+    # api.some_action.stashimageinfo.filekey(value).perform
+    # ```
+    #
+    # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and their
+    # submodules.
+    #
+    # All submodule's parameters are documented as its public methods, see below.
+    #
+    module Stashimageinfo
 
     # Key that identifies a previous upload that was stashed temporarily.
     #
@@ -68,5 +69,6 @@ module MediaWiktory::Wikipedia::Modules
     def urlparam(value)
       merge(siiurlparam: value.to_s)
     end
+  end
   end
 end

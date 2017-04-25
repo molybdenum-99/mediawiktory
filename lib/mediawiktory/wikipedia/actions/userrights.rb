@@ -1,24 +1,25 @@
 # frozen_string_literal: true
 
-module MediaWiktory::Wikipedia::Actions
-  # Change a user's group membership. 
-  #
-  # Usage:
-  #
-  # ```ruby
-  # api.userrights(**options).perform # returns string with raw output
-  # # or
-  # api.userrights(**options).response # returns output parsed and wrapped into Mash-like object
-  #
-  # # or, with chainable interface:
-  # api.userrights.user(value).perform
-  # ```
-  #
-  # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions.
-  #
-  # All action's parameters are documented as its public methods, see below.
-  #
-  class Userrights < MediaWiktory::Wikipedia::GetAction
+module MediaWiktory::Wikipedia
+  module Actions
+    # Change a user's group membership. 
+    #
+    # Usage:
+    #
+    # ```ruby
+    # api.userrights(**options).perform # returns string with raw output
+    # # or
+    # api.userrights(**options).response # returns output parsed and wrapped into Mash-like object
+    #
+    # # or, with chainable interface:
+    # api.userrights.user(value).perform
+    # ```
+    #
+    # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions.
+    #
+    # All action's parameters are documented as its public methods, see below.
+    #
+    class Userrights < MediaWiktory::Wikipedia::GetAction
 
     # User name.
     #
@@ -83,5 +84,6 @@ module MediaWiktory::Wikipedia::Actions
     def tags(*values)
       merge(tags: values.join('|'))
     end
+  end
   end
 end

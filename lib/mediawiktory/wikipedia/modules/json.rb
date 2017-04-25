@@ -1,25 +1,26 @@
 # frozen_string_literal: true
 
-module MediaWiktory::Wikipedia::Modules
-  # Output data in JSON format. 
-  #
-  # Usage:
-  #
-  # ```ruby
-  # api.some_action.json(**options).perform # returns string with raw output
-  # # or
-  # api.some_action.json(**options).response # returns output parsed and wrapped into Mash-like object
-  #
-  # # or, with chainable interface:
-  # api.some_action.json.callback(value).perform
-  # ```
-  #
-  # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and their
-  # submodules.
-  #
-  # All submodule's parameters are documented as its public methods, see below.
-  #
-  module Json
+module MediaWiktory::Wikipedia
+  module Modules
+    # Output data in JSON format. 
+    #
+    # Usage:
+    #
+    # ```ruby
+    # api.some_action.json(**options).perform # returns string with raw output
+    # # or
+    # api.some_action.json(**options).response # returns output parsed and wrapped into Mash-like object
+    #
+    # # or, with chainable interface:
+    # api.some_action.json.callback(value).perform
+    # ```
+    #
+    # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and their
+    # submodules.
+    #
+    # All submodule's parameters are documented as its public methods, see below.
+    #
+    module Json
 
     # If specified, wraps the output into a given function call. For safety, all user-specific data will be restricted.
     #
@@ -50,5 +51,6 @@ module MediaWiktory::Wikipedia::Modules
     def formatversion(value)
       merge(formatversion: value.to_s)
     end
+  end
   end
 end

@@ -1,25 +1,26 @@
 # frozen_string_literal: true
 
-module MediaWiktory::Wikipedia::Modules
-  # Enumerate all links that point to a given namespace. 
-  #
-  # Usage:
-  #
-  # ```ruby
-  # api.some_action.alllinks(**options).perform # returns string with raw output
-  # # or
-  # api.some_action.alllinks(**options).response # returns output parsed and wrapped into Mash-like object
-  #
-  # # or, with chainable interface:
-  # api.some_action.alllinks.continue(value).perform
-  # ```
-  #
-  # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and their
-  # submodules.
-  #
-  # All submodule's parameters are documented as its public methods, see below.
-  #
-  module Alllinks
+module MediaWiktory::Wikipedia
+  module Modules
+    # Enumerate all links that point to a given namespace. 
+    #
+    # Usage:
+    #
+    # ```ruby
+    # api.some_action.alllinks(**options).perform # returns string with raw output
+    # # or
+    # api.some_action.alllinks(**options).response # returns output parsed and wrapped into Mash-like object
+    #
+    # # or, with chainable interface:
+    # api.some_action.alllinks.continue(value).perform
+    # ```
+    #
+    # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and their
+    # submodules.
+    #
+    # All submodule's parameters are documented as its public methods, see below.
+    #
+    module Alllinks
 
     # When more results are available, use this to continue.
     #
@@ -91,5 +92,6 @@ module MediaWiktory::Wikipedia::Modules
     def dir(value)
       merge(aldir: value.to_s)
     end
+  end
   end
 end

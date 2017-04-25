@@ -1,24 +1,25 @@
 # frozen_string_literal: true
 
-module MediaWiktory::Wikipedia::Actions
-  # Mark an article as reviewed or unreviewed. 
-  #
-  # Usage:
-  #
-  # ```ruby
-  # api.pagetriageaction(**options).perform # returns string with raw output
-  # # or
-  # api.pagetriageaction(**options).response # returns output parsed and wrapped into Mash-like object
-  #
-  # # or, with chainable interface:
-  # api.pagetriageaction.pageid(value).perform
-  # ```
-  #
-  # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions.
-  #
-  # All action's parameters are documented as its public methods, see below.
-  #
-  class Pagetriageaction < MediaWiktory::Wikipedia::GetAction
+module MediaWiktory::Wikipedia
+  module Actions
+    # Mark an article as reviewed or unreviewed. 
+    #
+    # Usage:
+    #
+    # ```ruby
+    # api.pagetriageaction(**options).perform # returns string with raw output
+    # # or
+    # api.pagetriageaction(**options).response # returns output parsed and wrapped into Mash-like object
+    #
+    # # or, with chainable interface:
+    # api.pagetriageaction.pageid(value).perform
+    # ```
+    #
+    # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions.
+    #
+    # All action's parameters are documented as its public methods, see below.
+    #
+    class Pagetriageaction < MediaWiktory::Wikipedia::GetAction
 
     # The article for which to be marked as reviewed or unreviewed.
     #
@@ -58,5 +59,6 @@ module MediaWiktory::Wikipedia::Actions
     def skipnotif()
       merge(skipnotif: 'true')
     end
+  end
   end
 end

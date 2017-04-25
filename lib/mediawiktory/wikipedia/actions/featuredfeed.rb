@@ -1,24 +1,25 @@
 # frozen_string_literal: true
 
-module MediaWiktory::Wikipedia::Actions
-  # Returns a featured content feed. 
-  #
-  # Usage:
-  #
-  # ```ruby
-  # api.featuredfeed(**options).perform # returns string with raw output
-  # # or
-  # api.featuredfeed(**options).response # returns output parsed and wrapped into Mash-like object
-  #
-  # # or, with chainable interface:
-  # api.featuredfeed.feedformat(value).perform
-  # ```
-  #
-  # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions.
-  #
-  # All action's parameters are documented as its public methods, see below.
-  #
-  class Featuredfeed < MediaWiktory::Wikipedia::GetAction
+module MediaWiktory::Wikipedia
+  module Actions
+    # Returns a featured content feed. 
+    #
+    # Usage:
+    #
+    # ```ruby
+    # api.featuredfeed(**options).perform # returns string with raw output
+    # # or
+    # api.featuredfeed(**options).response # returns output parsed and wrapped into Mash-like object
+    #
+    # # or, with chainable interface:
+    # api.featuredfeed.feedformat(value).perform
+    # ```
+    #
+    # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions.
+    #
+    # All action's parameters are documented as its public methods, see below.
+    #
+    class Featuredfeed < MediaWiktory::Wikipedia::GetAction
 
     # The format of the feed.
     #
@@ -43,5 +44,6 @@ module MediaWiktory::Wikipedia::Actions
     def language(value)
       merge(language: value.to_s)
     end
+  end
   end
 end

@@ -1,25 +1,26 @@
 # frozen_string_literal: true
 
-module MediaWiktory::Wikipedia::Modules
-  # List all categories the pages belong to. 
-  #
-  # Usage:
-  #
-  # ```ruby
-  # api.some_action.categories(**options).perform # returns string with raw output
-  # # or
-  # api.some_action.categories(**options).response # returns output parsed and wrapped into Mash-like object
-  #
-  # # or, with chainable interface:
-  # api.some_action.categories.prop(value).perform
-  # ```
-  #
-  # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and their
-  # submodules.
-  #
-  # All submodule's parameters are documented as its public methods, see below.
-  #
-  module Categories
+module MediaWiktory::Wikipedia
+  module Modules
+    # List all categories the pages belong to. 
+    #
+    # Usage:
+    #
+    # ```ruby
+    # api.some_action.categories(**options).perform # returns string with raw output
+    # # or
+    # api.some_action.categories(**options).response # returns output parsed and wrapped into Mash-like object
+    #
+    # # or, with chainable interface:
+    # api.some_action.categories.prop(value).perform
+    # ```
+    #
+    # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and their
+    # submodules.
+    #
+    # All submodule's parameters are documented as its public methods, see below.
+    #
+    module Categories
 
     # Which additional properties to get for each category:
     #
@@ -68,5 +69,6 @@ module MediaWiktory::Wikipedia::Modules
     def dir(value)
       merge(cldir: value.to_s)
     end
+  end
   end
 end

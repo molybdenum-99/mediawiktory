@@ -1,25 +1,26 @@
 # frozen_string_literal: true
 
-module MediaWiktory::Wikipedia::Modules
-  # Returns plain-text or limited HTML extracts of the given pages. 
-  #
-  # Usage:
-  #
-  # ```ruby
-  # api.some_action.extracts(**options).perform # returns string with raw output
-  # # or
-  # api.some_action.extracts(**options).response # returns output parsed and wrapped into Mash-like object
-  #
-  # # or, with chainable interface:
-  # api.some_action.extracts.chars(value).perform
-  # ```
-  #
-  # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and their
-  # submodules.
-  #
-  # All submodule's parameters are documented as its public methods, see below.
-  #
-  module Extracts
+module MediaWiktory::Wikipedia
+  module Modules
+    # Returns plain-text or limited HTML extracts of the given pages. 
+    #
+    # Usage:
+    #
+    # ```ruby
+    # api.some_action.extracts(**options).perform # returns string with raw output
+    # # or
+    # api.some_action.extracts(**options).response # returns output parsed and wrapped into Mash-like object
+    #
+    # # or, with chainable interface:
+    # api.some_action.extracts.chars(value).perform
+    # ```
+    #
+    # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and their
+    # submodules.
+    #
+    # All submodule's parameters are documented as its public methods, see below.
+    #
+    module Extracts
 
     # How many characters to return. Actual text returned might be slightly longer.
     #
@@ -74,5 +75,6 @@ module MediaWiktory::Wikipedia::Modules
     def continue(value)
       merge(excontinue: value.to_s)
     end
+  end
   end
 end

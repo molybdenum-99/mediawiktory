@@ -1,25 +1,26 @@
 # frozen_string_literal: true
 
-module MediaWiktory::Wikipedia::Modules
-  # Enumerate all categories. 
-  #
-  # Usage:
-  #
-  # ```ruby
-  # api.some_action.allcategories(**options).perform # returns string with raw output
-  # # or
-  # api.some_action.allcategories(**options).response # returns output parsed and wrapped into Mash-like object
-  #
-  # # or, with chainable interface:
-  # api.some_action.allcategories.from(value).perform
-  # ```
-  #
-  # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and their
-  # submodules.
-  #
-  # All submodule's parameters are documented as its public methods, see below.
-  #
-  module Allcategories
+module MediaWiktory::Wikipedia
+  module Modules
+    # Enumerate all categories. 
+    #
+    # Usage:
+    #
+    # ```ruby
+    # api.some_action.allcategories(**options).perform # returns string with raw output
+    # # or
+    # api.some_action.allcategories(**options).response # returns output parsed and wrapped into Mash-like object
+    #
+    # # or, with chainable interface:
+    # api.some_action.allcategories.from(value).perform
+    # ```
+    #
+    # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and their
+    # submodules.
+    #
+    # All submodule's parameters are documented as its public methods, see below.
+    #
+    module Allcategories
 
     # The category to start enumerating from.
     #
@@ -92,5 +93,6 @@ module MediaWiktory::Wikipedia::Modules
     def prop(*values)
       merge(acprop: values.join('|'))
     end
+  end
   end
 end

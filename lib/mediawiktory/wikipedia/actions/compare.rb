@@ -1,24 +1,25 @@
 # frozen_string_literal: true
 
-module MediaWiktory::Wikipedia::Actions
-  # Get the difference between 2 pages. 
-  #
-  # Usage:
-  #
-  # ```ruby
-  # api.compare(**options).perform # returns string with raw output
-  # # or
-  # api.compare(**options).response # returns output parsed and wrapped into Mash-like object
-  #
-  # # or, with chainable interface:
-  # api.compare.fromtitle(value).perform
-  # ```
-  #
-  # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions.
-  #
-  # All action's parameters are documented as its public methods, see below.
-  #
-  class Compare < MediaWiktory::Wikipedia::GetAction
+module MediaWiktory::Wikipedia
+  module Actions
+    # Get the difference between 2 pages. 
+    #
+    # Usage:
+    #
+    # ```ruby
+    # api.compare(**options).perform # returns string with raw output
+    # # or
+    # api.compare(**options).response # returns output parsed and wrapped into Mash-like object
+    #
+    # # or, with chainable interface:
+    # api.compare.fromtitle(value).perform
+    # ```
+    #
+    # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions.
+    #
+    # All action's parameters are documented as its public methods, see below.
+    #
+    class Compare < MediaWiktory::Wikipedia::GetAction
 
     # First title to compare.
     #
@@ -67,5 +68,6 @@ module MediaWiktory::Wikipedia::Actions
     def torev(value)
       merge(torev: value.to_s)
     end
+  end
   end
 end

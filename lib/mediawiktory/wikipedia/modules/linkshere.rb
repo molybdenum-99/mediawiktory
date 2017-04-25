@@ -1,25 +1,26 @@
 # frozen_string_literal: true
 
-module MediaWiktory::Wikipedia::Modules
-  # Find all pages that link to the given pages. 
-  #
-  # Usage:
-  #
-  # ```ruby
-  # api.some_action.linkshere(**options).perform # returns string with raw output
-  # # or
-  # api.some_action.linkshere(**options).response # returns output parsed and wrapped into Mash-like object
-  #
-  # # or, with chainable interface:
-  # api.some_action.linkshere.prop(value).perform
-  # ```
-  #
-  # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and their
-  # submodules.
-  #
-  # All submodule's parameters are documented as its public methods, see below.
-  #
-  module Linkshere
+module MediaWiktory::Wikipedia
+  module Modules
+    # Find all pages that link to the given pages. 
+    #
+    # Usage:
+    #
+    # ```ruby
+    # api.some_action.linkshere(**options).perform # returns string with raw output
+    # # or
+    # api.some_action.linkshere(**options).response # returns output parsed and wrapped into Mash-like object
+    #
+    # # or, with chainable interface:
+    # api.some_action.linkshere.prop(value).perform
+    # ```
+    #
+    # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and their
+    # submodules.
+    #
+    # All submodule's parameters are documented as its public methods, see below.
+    #
+    module Linkshere
 
     # Which properties to get:
     #
@@ -60,5 +61,6 @@ module MediaWiktory::Wikipedia::Modules
     def continue(value)
       merge(lhcontinue: value.to_s)
     end
+  end
   end
 end

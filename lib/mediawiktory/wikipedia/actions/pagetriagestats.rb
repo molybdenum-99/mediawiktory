@@ -1,24 +1,25 @@
 # frozen_string_literal: true
 
-module MediaWiktory::Wikipedia::Actions
-  # Get the stats for page triage. 
-  #
-  # Usage:
-  #
-  # ```ruby
-  # api.pagetriagestats(**options).perform # returns string with raw output
-  # # or
-  # api.pagetriagestats(**options).response # returns output parsed and wrapped into Mash-like object
-  #
-  # # or, with chainable interface:
-  # api.pagetriagestats.namespace(value).perform
-  # ```
-  #
-  # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions.
-  #
-  # All action's parameters are documented as its public methods, see below.
-  #
-  class Pagetriagestats < MediaWiktory::Wikipedia::GetAction
+module MediaWiktory::Wikipedia
+  module Actions
+    # Get the stats for page triage. 
+    #
+    # Usage:
+    #
+    # ```ruby
+    # api.pagetriagestats(**options).perform # returns string with raw output
+    # # or
+    # api.pagetriagestats(**options).response # returns output parsed and wrapped into Mash-like object
+    #
+    # # or, with chainable interface:
+    # api.pagetriagestats.namespace(value).perform
+    # ```
+    #
+    # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions.
+    #
+    # All action's parameters are documented as its public methods, see below.
+    #
+    class Pagetriagestats < MediaWiktory::Wikipedia::GetAction
 
     # What namespace to pull stats from.
     #
@@ -55,5 +56,6 @@ module MediaWiktory::Wikipedia::Actions
     def showdeleted()
       merge(showdeleted: 'true')
     end
+  end
   end
 end

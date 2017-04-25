@@ -1,24 +1,25 @@
 # frozen_string_literal: true
 
-module MediaWiktory::Wikipedia::Actions
-  # Returns a recent changes feed. 
-  #
-  # Usage:
-  #
-  # ```ruby
-  # api.feedrecentchanges(**options).perform # returns string with raw output
-  # # or
-  # api.feedrecentchanges(**options).response # returns output parsed and wrapped into Mash-like object
-  #
-  # # or, with chainable interface:
-  # api.feedrecentchanges.feedformat(value).perform
-  # ```
-  #
-  # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions.
-  #
-  # All action's parameters are documented as its public methods, see below.
-  #
-  class Feedrecentchanges < MediaWiktory::Wikipedia::GetAction
+module MediaWiktory::Wikipedia
+  module Actions
+    # Returns a recent changes feed. 
+    #
+    # Usage:
+    #
+    # ```ruby
+    # api.feedrecentchanges(**options).perform # returns string with raw output
+    # # or
+    # api.feedrecentchanges(**options).response # returns output parsed and wrapped into Mash-like object
+    #
+    # # or, with chainable interface:
+    # api.feedrecentchanges.feedformat(value).perform
+    # ```
+    #
+    # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions.
+    #
+    # All action's parameters are documented as its public methods, see below.
+    #
+    class Feedrecentchanges < MediaWiktory::Wikipedia::GetAction
 
     # The format of the feed.
     #
@@ -145,5 +146,6 @@ module MediaWiktory::Wikipedia::Actions
     def showlinkedto()
       merge(showlinkedto: 'true')
     end
+  end
   end
 end

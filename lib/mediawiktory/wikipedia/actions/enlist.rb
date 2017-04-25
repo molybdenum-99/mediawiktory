@@ -1,24 +1,25 @@
 # frozen_string_literal: true
 
-module MediaWiktory::Wikipedia::Actions
-  # Associate or disassociate a user as instructor or volunteer for a course. 
-  #
-  # Usage:
-  #
-  # ```ruby
-  # api.enlist(**options).perform # returns string with raw output
-  # # or
-  # api.enlist(**options).response # returns output parsed and wrapped into Mash-like object
-  #
-  # # or, with chainable interface:
-  # api.enlist.subaction(value).perform
-  # ```
-  #
-  # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions.
-  #
-  # All action's parameters are documented as its public methods, see below.
-  #
-  class Enlist < MediaWiktory::Wikipedia::GetAction
+module MediaWiktory::Wikipedia
+  module Actions
+    # Associate or disassociate a user as instructor or volunteer for a course. 
+    #
+    # Usage:
+    #
+    # ```ruby
+    # api.enlist(**options).perform # returns string with raw output
+    # # or
+    # api.enlist(**options).response # returns output parsed and wrapped into Mash-like object
+    #
+    # # or, with chainable interface:
+    # api.enlist.subaction(value).perform
+    # ```
+    #
+    # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions.
+    #
+    # All action's parameters are documented as its public methods, see below.
+    #
+    class Enlist < MediaWiktory::Wikipedia::GetAction
 
     # Specifies what you want to do with the instructor or volunteer.
     #
@@ -75,5 +76,6 @@ module MediaWiktory::Wikipedia::Actions
     def token(value)
       merge(token: value.to_s)
     end
+  end
   end
 end

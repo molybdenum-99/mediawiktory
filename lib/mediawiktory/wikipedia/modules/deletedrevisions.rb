@@ -1,25 +1,26 @@
 # frozen_string_literal: true
 
-module MediaWiktory::Wikipedia::Modules
-  # Get deleted revision information. 
-  #
-  # Usage:
-  #
-  # ```ruby
-  # api.some_action.deletedrevisions(**options).perform # returns string with raw output
-  # # or
-  # api.some_action.deletedrevisions(**options).response # returns output parsed and wrapped into Mash-like object
-  #
-  # # or, with chainable interface:
-  # api.some_action.deletedrevisions.prop(value).perform
-  # ```
-  #
-  # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and their
-  # submodules.
-  #
-  # All submodule's parameters are documented as its public methods, see below.
-  #
-  module Deletedrevisions
+module MediaWiktory::Wikipedia
+  module Modules
+    # Get deleted revision information. 
+    #
+    # Usage:
+    #
+    # ```ruby
+    # api.some_action.deletedrevisions(**options).perform # returns string with raw output
+    # # or
+    # api.some_action.deletedrevisions(**options).response # returns output parsed and wrapped into Mash-like object
+    #
+    # # or, with chainable interface:
+    # api.some_action.deletedrevisions.prop(value).perform
+    # ```
+    #
+    # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and their
+    # submodules.
+    #
+    # All submodule's parameters are documented as its public methods, see below.
+    #
+    module Deletedrevisions
 
     # Which properties to get for each revision:
     #
@@ -152,5 +153,6 @@ module MediaWiktory::Wikipedia::Modules
     def continue(value)
       merge(drvcontinue: value.to_s)
     end
+  end
   end
 end

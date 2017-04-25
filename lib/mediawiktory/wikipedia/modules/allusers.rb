@@ -1,25 +1,26 @@
 # frozen_string_literal: true
 
-module MediaWiktory::Wikipedia::Modules
-  # Enumerate all registered users. 
-  #
-  # Usage:
-  #
-  # ```ruby
-  # api.some_action.allusers(**options).perform # returns string with raw output
-  # # or
-  # api.some_action.allusers(**options).response # returns output parsed and wrapped into Mash-like object
-  #
-  # # or, with chainable interface:
-  # api.some_action.allusers.from(value).perform
-  # ```
-  #
-  # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and their
-  # submodules.
-  #
-  # All submodule's parameters are documented as its public methods, see below.
-  #
-  module Allusers
+module MediaWiktory::Wikipedia
+  module Modules
+    # Enumerate all registered users. 
+    #
+    # Usage:
+    #
+    # ```ruby
+    # api.some_action.allusers(**options).perform # returns string with raw output
+    # # or
+    # api.some_action.allusers(**options).response # returns output parsed and wrapped into Mash-like object
+    #
+    # # or, with chainable interface:
+    # api.some_action.allusers.from(value).perform
+    # ```
+    #
+    # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and their
+    # submodules.
+    #
+    # All submodule's parameters are documented as its public methods, see below.
+    #
+    module Allusers
 
     # The user name to start enumerating from.
     #
@@ -114,5 +115,6 @@ module MediaWiktory::Wikipedia::Modules
     def attachedwiki(value)
       merge(auattachedwiki: value.to_s)
     end
+  end
   end
 end

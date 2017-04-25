@@ -1,25 +1,26 @@
 # frozen_string_literal: true
 
-module MediaWiktory::Wikipedia::Modules
-  # List all deleted revisions by a user or in a namespace. 
-  #
-  # Usage:
-  #
-  # ```ruby
-  # api.some_action.alldeletedrevisions(**options).perform # returns string with raw output
-  # # or
-  # api.some_action.alldeletedrevisions(**options).response # returns output parsed and wrapped into Mash-like object
-  #
-  # # or, with chainable interface:
-  # api.some_action.alldeletedrevisions.prop(value).perform
-  # ```
-  #
-  # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and their
-  # submodules.
-  #
-  # All submodule's parameters are documented as its public methods, see below.
-  #
-  module Alldeletedrevisions
+module MediaWiktory::Wikipedia
+  module Modules
+    # List all deleted revisions by a user or in a namespace. 
+    #
+    # Usage:
+    #
+    # ```ruby
+    # api.some_action.alldeletedrevisions(**options).perform # returns string with raw output
+    # # or
+    # api.some_action.alldeletedrevisions(**options).response # returns output parsed and wrapped into Mash-like object
+    #
+    # # or, with chainable interface:
+    # api.some_action.alldeletedrevisions.prop(value).perform
+    # ```
+    #
+    # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and their
+    # submodules.
+    #
+    # All submodule's parameters are documented as its public methods, see below.
+    #
+    module Alldeletedrevisions
 
     # Which properties to get for each revision:
     #
@@ -191,5 +192,6 @@ module MediaWiktory::Wikipedia::Modules
     def generatetitles()
       merge(adrgeneratetitles: 'true')
     end
+  end
   end
 end

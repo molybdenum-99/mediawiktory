@@ -1,24 +1,25 @@
 # frozen_string_literal: true
 
-module MediaWiktory::Wikipedia::Actions
-  # Get configuration of the Zero extension. 
-  #
-  # Usage:
-  #
-  # ```ruby
-  # api.zeroconfig(**options).perform # returns string with raw output
-  # # or
-  # api.zeroconfig(**options).response # returns output parsed and wrapped into Mash-like object
-  #
-  # # or, with chainable interface:
-  # api.zeroconfig.type(value).perform
-  # ```
-  #
-  # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions.
-  #
-  # All action's parameters are documented as its public methods, see below.
-  #
-  class Zeroconfig < MediaWiktory::Wikipedia::GetAction
+module MediaWiktory::Wikipedia
+  module Actions
+    # Get configuration of the Zero extension. 
+    #
+    # Usage:
+    #
+    # ```ruby
+    # api.zeroconfig(**options).perform # returns string with raw output
+    # # or
+    # api.zeroconfig(**options).response # returns output parsed and wrapped into Mash-like object
+    #
+    # # or, with chainable interface:
+    # api.zeroconfig.type(value).perform
+    # ```
+    #
+    # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions.
+    #
+    # All action's parameters are documented as its public methods, see below.
+    #
+    class Zeroconfig < MediaWiktory::Wikipedia::GetAction
 
     # What kind of Zero info is needed:
     #
@@ -35,5 +36,6 @@ module MediaWiktory::Wikipedia::Actions
     def agent(value)
       merge(agent: value.to_s)
     end
+  end
   end
 end

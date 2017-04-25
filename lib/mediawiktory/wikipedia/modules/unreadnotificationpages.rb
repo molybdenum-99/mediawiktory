@@ -1,25 +1,26 @@
 # frozen_string_literal: true
 
-module MediaWiktory::Wikipedia::Modules
-  # Get pages for which there are unread notifications for the current user. 
-  #
-  # Usage:
-  #
-  # ```ruby
-  # api.some_action.unreadnotificationpages(**options).perform # returns string with raw output
-  # # or
-  # api.some_action.unreadnotificationpages(**options).response # returns output parsed and wrapped into Mash-like object
-  #
-  # # or, with chainable interface:
-  # api.some_action.unreadnotificationpages.wikis(value).perform
-  # ```
-  #
-  # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and their
-  # submodules.
-  #
-  # All submodule's parameters are documented as its public methods, see below.
-  #
-  module Unreadnotificationpages
+module MediaWiktory::Wikipedia
+  module Modules
+    # Get pages for which there are unread notifications for the current user. 
+    #
+    # Usage:
+    #
+    # ```ruby
+    # api.some_action.unreadnotificationpages(**options).perform # returns string with raw output
+    # # or
+    # api.some_action.unreadnotificationpages(**options).response # returns output parsed and wrapped into Mash-like object
+    #
+    # # or, with chainable interface:
+    # api.some_action.unreadnotificationpages.wikis(value).perform
+    # ```
+    #
+    # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and their
+    # submodules.
+    #
+    # All submodule's parameters are documented as its public methods, see below.
+    #
+    module Unreadnotificationpages
 
     # List of wikis to fetch pages with unread notifications from (defaults to only current wiki).
     #
@@ -43,5 +44,6 @@ module MediaWiktory::Wikipedia::Modules
     def limit(value)
       merge(unplimit: value.to_s)
     end
+  end
   end
 end

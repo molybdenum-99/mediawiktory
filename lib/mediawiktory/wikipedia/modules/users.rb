@@ -1,25 +1,26 @@
 # frozen_string_literal: true
 
-module MediaWiktory::Wikipedia::Modules
-  # Get information about a list of users. 
-  #
-  # Usage:
-  #
-  # ```ruby
-  # api.some_action.users(**options).perform # returns string with raw output
-  # # or
-  # api.some_action.users(**options).response # returns output parsed and wrapped into Mash-like object
-  #
-  # # or, with chainable interface:
-  # api.some_action.users.prop(value).perform
-  # ```
-  #
-  # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and their
-  # submodules.
-  #
-  # All submodule's parameters are documented as its public methods, see below.
-  #
-  module Users
+module MediaWiktory::Wikipedia
+  module Modules
+    # Get information about a list of users. 
+    #
+    # Usage:
+    #
+    # ```ruby
+    # api.some_action.users(**options).perform # returns string with raw output
+    # # or
+    # api.some_action.users(**options).response # returns output parsed and wrapped into Mash-like object
+    #
+    # # or, with chainable interface:
+    # api.some_action.users.prop(value).perform
+    # ```
+    #
+    # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and their
+    # submodules.
+    #
+    # All submodule's parameters are documented as its public methods, see below.
+    #
+    module Users
 
     # Which pieces of information to include:
     #
@@ -60,5 +61,6 @@ module MediaWiktory::Wikipedia::Modules
     def token(*values)
       merge(ustoken: values.join('|'))
     end
+  end
   end
 end

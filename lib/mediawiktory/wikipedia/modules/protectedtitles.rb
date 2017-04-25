@@ -1,25 +1,26 @@
 # frozen_string_literal: true
 
-module MediaWiktory::Wikipedia::Modules
-  # List all titles protected from creation. 
-  #
-  # Usage:
-  #
-  # ```ruby
-  # api.some_action.protectedtitles(**options).perform # returns string with raw output
-  # # or
-  # api.some_action.protectedtitles(**options).response # returns output parsed and wrapped into Mash-like object
-  #
-  # # or, with chainable interface:
-  # api.some_action.protectedtitles.namespace(value).perform
-  # ```
-  #
-  # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and their
-  # submodules.
-  #
-  # All submodule's parameters are documented as its public methods, see below.
-  #
-  module Protectedtitles
+module MediaWiktory::Wikipedia
+  module Modules
+    # List all titles protected from creation. 
+    #
+    # Usage:
+    #
+    # ```ruby
+    # api.some_action.protectedtitles(**options).perform # returns string with raw output
+    # # or
+    # api.some_action.protectedtitles(**options).response # returns output parsed and wrapped into Mash-like object
+    #
+    # # or, with chainable interface:
+    # api.some_action.protectedtitles.namespace(value).perform
+    # ```
+    #
+    # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and their
+    # submodules.
+    #
+    # All submodule's parameters are documented as its public methods, see below.
+    #
+    module Protectedtitles
 
     # Only list titles in these namespaces.
     #
@@ -84,5 +85,6 @@ module MediaWiktory::Wikipedia::Modules
     def continue(value)
       merge(ptcontinue: value.to_s)
     end
+  end
   end
 end

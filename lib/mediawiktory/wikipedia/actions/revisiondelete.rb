@@ -1,24 +1,25 @@
 # frozen_string_literal: true
 
-module MediaWiktory::Wikipedia::Actions
-  # Delete and undelete revisions. 
-  #
-  # Usage:
-  #
-  # ```ruby
-  # api.revisiondelete(**options).perform # returns string with raw output
-  # # or
-  # api.revisiondelete(**options).response # returns output parsed and wrapped into Mash-like object
-  #
-  # # or, with chainable interface:
-  # api.revisiondelete.type(value).perform
-  # ```
-  #
-  # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions.
-  #
-  # All action's parameters are documented as its public methods, see below.
-  #
-  class Revisiondelete < MediaWiktory::Wikipedia::GetAction
+module MediaWiktory::Wikipedia
+  module Actions
+    # Delete and undelete revisions. 
+    #
+    # Usage:
+    #
+    # ```ruby
+    # api.revisiondelete(**options).perform # returns string with raw output
+    # # or
+    # api.revisiondelete(**options).response # returns output parsed and wrapped into Mash-like object
+    #
+    # # or, with chainable interface:
+    # api.revisiondelete.type(value).perform
+    # ```
+    #
+    # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions.
+    #
+    # All action's parameters are documented as its public methods, see below.
+    #
+    class Revisiondelete < MediaWiktory::Wikipedia::GetAction
 
     # Type of revision deletion being performed.
     #
@@ -91,5 +92,6 @@ module MediaWiktory::Wikipedia::Actions
     def token(value)
       merge(token: value.to_s)
     end
+  end
   end
 end

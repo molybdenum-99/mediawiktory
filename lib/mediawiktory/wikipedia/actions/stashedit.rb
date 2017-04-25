@@ -1,24 +1,25 @@
 # frozen_string_literal: true
 
-module MediaWiktory::Wikipedia::Actions
-  # Prepare an edit in shared cache. 
-  #
-  # Usage:
-  #
-  # ```ruby
-  # api.stashedit(**options).perform # returns string with raw output
-  # # or
-  # api.stashedit(**options).response # returns output parsed and wrapped into Mash-like object
-  #
-  # # or, with chainable interface:
-  # api.stashedit.title(value).perform
-  # ```
-  #
-  # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions.
-  #
-  # All action's parameters are documented as its public methods, see below.
-  #
-  class Stashedit < MediaWiktory::Wikipedia::GetAction
+module MediaWiktory::Wikipedia
+  module Actions
+    # Prepare an edit in shared cache. 
+    #
+    # Usage:
+    #
+    # ```ruby
+    # api.stashedit(**options).perform # returns string with raw output
+    # # or
+    # api.stashedit(**options).response # returns output parsed and wrapped into Mash-like object
+    #
+    # # or, with chainable interface:
+    # api.stashedit.title(value).perform
+    # ```
+    #
+    # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions.
+    #
+    # All action's parameters are documented as its public methods, see below.
+    #
+    class Stashedit < MediaWiktory::Wikipedia::GetAction
 
     # Title of the page being edited.
     #
@@ -99,5 +100,6 @@ module MediaWiktory::Wikipedia::Actions
     def token(value)
       merge(token: value.to_s)
     end
+  end
   end
 end

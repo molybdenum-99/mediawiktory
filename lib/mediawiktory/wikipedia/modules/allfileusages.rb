@@ -1,25 +1,26 @@
 # frozen_string_literal: true
 
-module MediaWiktory::Wikipedia::Modules
-  # List all file usages, including non-existing. 
-  #
-  # Usage:
-  #
-  # ```ruby
-  # api.some_action.allfileusages(**options).perform # returns string with raw output
-  # # or
-  # api.some_action.allfileusages(**options).response # returns output parsed and wrapped into Mash-like object
-  #
-  # # or, with chainable interface:
-  # api.some_action.allfileusages.continue(value).perform
-  # ```
-  #
-  # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and their
-  # submodules.
-  #
-  # All submodule's parameters are documented as its public methods, see below.
-  #
-  module Allfileusages
+module MediaWiktory::Wikipedia
+  module Modules
+    # List all file usages, including non-existing. 
+    #
+    # Usage:
+    #
+    # ```ruby
+    # api.some_action.allfileusages(**options).perform # returns string with raw output
+    # # or
+    # api.some_action.allfileusages(**options).response # returns output parsed and wrapped into Mash-like object
+    #
+    # # or, with chainable interface:
+    # api.some_action.allfileusages.continue(value).perform
+    # ```
+    #
+    # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and their
+    # submodules.
+    #
+    # All submodule's parameters are documented as its public methods, see below.
+    #
+    module Allfileusages
 
     # When more results are available, use this to continue.
     #
@@ -83,5 +84,6 @@ module MediaWiktory::Wikipedia::Modules
     def dir(value)
       merge(afdir: value.to_s)
     end
+  end
   end
 end

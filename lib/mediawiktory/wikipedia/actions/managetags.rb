@@ -1,24 +1,25 @@
 # frozen_string_literal: true
 
-module MediaWiktory::Wikipedia::Actions
-  # Perform management tasks relating to change tags. 
-  #
-  # Usage:
-  #
-  # ```ruby
-  # api.managetags(**options).perform # returns string with raw output
-  # # or
-  # api.managetags(**options).response # returns output parsed and wrapped into Mash-like object
-  #
-  # # or, with chainable interface:
-  # api.managetags.operation(value).perform
-  # ```
-  #
-  # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions.
-  #
-  # All action's parameters are documented as its public methods, see below.
-  #
-  class Managetags < MediaWiktory::Wikipedia::GetAction
+module MediaWiktory::Wikipedia
+  module Actions
+    # Perform management tasks relating to change tags. 
+    #
+    # Usage:
+    #
+    # ```ruby
+    # api.managetags(**options).perform # returns string with raw output
+    # # or
+    # api.managetags(**options).response # returns output parsed and wrapped into Mash-like object
+    #
+    # # or, with chainable interface:
+    # api.managetags.operation(value).perform
+    # ```
+    #
+    # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions.
+    #
+    # All action's parameters are documented as its public methods, see below.
+    #
+    class Managetags < MediaWiktory::Wikipedia::GetAction
 
     # Which operation to perform:
     #
@@ -66,5 +67,6 @@ module MediaWiktory::Wikipedia::Actions
     def token(value)
       merge(token: value.to_s)
     end
+  end
   end
 end

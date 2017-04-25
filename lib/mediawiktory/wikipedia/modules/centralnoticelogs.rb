@@ -1,25 +1,26 @@
 # frozen_string_literal: true
 
-module MediaWiktory::Wikipedia::Modules
-  # Get a log of campaign configuration changes. 
-  #
-  # Usage:
-  #
-  # ```ruby
-  # api.some_action.centralnoticelogs(**options).perform # returns string with raw output
-  # # or
-  # api.some_action.centralnoticelogs(**options).response # returns output parsed and wrapped into Mash-like object
-  #
-  # # or, with chainable interface:
-  # api.some_action.centralnoticelogs.campaign(value).perform
-  # ```
-  #
-  # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and their
-  # submodules.
-  #
-  # All submodule's parameters are documented as its public methods, see below.
-  #
-  module Centralnoticelogs
+module MediaWiktory::Wikipedia
+  module Modules
+    # Get a log of campaign configuration changes. 
+    #
+    # Usage:
+    #
+    # ```ruby
+    # api.some_action.centralnoticelogs(**options).perform # returns string with raw output
+    # # or
+    # api.some_action.centralnoticelogs(**options).response # returns output parsed and wrapped into Mash-like object
+    #
+    # # or, with chainable interface:
+    # api.some_action.centralnoticelogs.campaign(value).perform
+    # ```
+    #
+    # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and their
+    # submodules.
+    #
+    # All submodule's parameters are documented as its public methods, see below.
+    #
+    module Centralnoticelogs
 
     # Campaign name (optional). Separate multiple values with a "|" (vertical bar).
     #
@@ -68,5 +69,6 @@ module MediaWiktory::Wikipedia::Modules
     def end(value)
       merge(end: value.iso8601)
     end
+  end
   end
 end

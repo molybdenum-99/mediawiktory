@@ -1,24 +1,25 @@
 # frozen_string_literal: true
 
-module MediaWiktory::Wikipedia::Actions
-  # Review a revision by approving or de-approving it. 
-  #
-  # Usage:
-  #
-  # ```ruby
-  # api.review(**options).perform # returns string with raw output
-  # # or
-  # api.review(**options).response # returns output parsed and wrapped into Mash-like object
-  #
-  # # or, with chainable interface:
-  # api.review.revid(value).perform
-  # ```
-  #
-  # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions.
-  #
-  # All action's parameters are documented as its public methods, see below.
-  #
-  class Review < MediaWiktory::Wikipedia::GetAction
+module MediaWiktory::Wikipedia
+  module Actions
+    # Review a revision by approving or de-approving it. 
+    #
+    # Usage:
+    #
+    # ```ruby
+    # api.review(**options).perform # returns string with raw output
+    # # or
+    # api.review(**options).response # returns output parsed and wrapped into Mash-like object
+    #
+    # # or, with chainable interface:
+    # api.review.revid(value).perform
+    # ```
+    #
+    # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions.
+    #
+    # All action's parameters are documented as its public methods, see below.
+    #
+    class Review < MediaWiktory::Wikipedia::GetAction
 
     # The revision ID for which to set the flags.
     #
@@ -50,5 +51,6 @@ module MediaWiktory::Wikipedia::Actions
     def unapprove()
       merge(unapprove: 'true')
     end
+  end
   end
 end

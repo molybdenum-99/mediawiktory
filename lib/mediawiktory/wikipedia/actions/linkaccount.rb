@@ -1,24 +1,25 @@
 # frozen_string_literal: true
 
-module MediaWiktory::Wikipedia::Actions
-  # Link an account from a third-party provider to the current user. 
-  #
-  # Usage:
-  #
-  # ```ruby
-  # api.linkaccount(**options).perform # returns string with raw output
-  # # or
-  # api.linkaccount(**options).response # returns output parsed and wrapped into Mash-like object
-  #
-  # # or, with chainable interface:
-  # api.linkaccount.requests(value).perform
-  # ```
-  #
-  # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions.
-  #
-  # All action's parameters are documented as its public methods, see below.
-  #
-  class Linkaccount < MediaWiktory::Wikipedia::GetAction
+module MediaWiktory::Wikipedia
+  module Actions
+    # Link an account from a third-party provider to the current user. 
+    #
+    # Usage:
+    #
+    # ```ruby
+    # api.linkaccount(**options).perform # returns string with raw output
+    # # or
+    # api.linkaccount(**options).response # returns output parsed and wrapped into Mash-like object
+    #
+    # # or, with chainable interface:
+    # api.linkaccount.requests(value).perform
+    # ```
+    #
+    # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions.
+    #
+    # All action's parameters are documented as its public methods, see below.
+    #
+    class Linkaccount < MediaWiktory::Wikipedia::GetAction
 
     # Only use these authentication requests, by the id returned from action=query&meta=authmanagerinfo with amirequestsfor=link or from a previous response from this module.
     #
@@ -65,5 +66,6 @@ module MediaWiktory::Wikipedia::Actions
     def token(value)
       merge(linktoken: value.to_s)
     end
+  end
   end
 end

@@ -1,25 +1,26 @@
 # frozen_string_literal: true
 
-module MediaWiktory::Wikipedia::Modules
-  # Get the list of logged-in contributors and the count of anonymous contributors to a page. 
-  #
-  # Usage:
-  #
-  # ```ruby
-  # api.some_action.contributors(**options).perform # returns string with raw output
-  # # or
-  # api.some_action.contributors(**options).response # returns output parsed and wrapped into Mash-like object
-  #
-  # # or, with chainable interface:
-  # api.some_action.contributors.group(value).perform
-  # ```
-  #
-  # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and their
-  # submodules.
-  #
-  # All submodule's parameters are documented as its public methods, see below.
-  #
-  module Contributors
+module MediaWiktory::Wikipedia
+  module Modules
+    # Get the list of logged-in contributors and the count of anonymous contributors to a page. 
+    #
+    # Usage:
+    #
+    # ```ruby
+    # api.some_action.contributors(**options).perform # returns string with raw output
+    # # or
+    # api.some_action.contributors(**options).response # returns output parsed and wrapped into Mash-like object
+    #
+    # # or, with chainable interface:
+    # api.some_action.contributors.group(value).perform
+    # ```
+    #
+    # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and their
+    # submodules.
+    #
+    # All submodule's parameters are documented as its public methods, see below.
+    #
+    module Contributors
 
     # Only include users in the given groups. Does not include implicit or auto-promoted groups like *, user, or autoconfirmed.
     #
@@ -68,5 +69,6 @@ module MediaWiktory::Wikipedia::Modules
     def continue(value)
       merge(pccontinue: value.to_s)
     end
+  end
   end
 end

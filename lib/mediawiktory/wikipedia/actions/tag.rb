@@ -1,24 +1,25 @@
 # frozen_string_literal: true
 
-module MediaWiktory::Wikipedia::Actions
-  # Add or remove change tags from individual revisions or log entries. 
-  #
-  # Usage:
-  #
-  # ```ruby
-  # api.tag(**options).perform # returns string with raw output
-  # # or
-  # api.tag(**options).response # returns output parsed and wrapped into Mash-like object
-  #
-  # # or, with chainable interface:
-  # api.tag.rcid(value).perform
-  # ```
-  #
-  # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions.
-  #
-  # All action's parameters are documented as its public methods, see below.
-  #
-  class Tag < MediaWiktory::Wikipedia::GetAction
+module MediaWiktory::Wikipedia
+  module Actions
+    # Add or remove change tags from individual revisions or log entries. 
+    #
+    # Usage:
+    #
+    # ```ruby
+    # api.tag(**options).perform # returns string with raw output
+    # # or
+    # api.tag(**options).response # returns output parsed and wrapped into Mash-like object
+    #
+    # # or, with chainable interface:
+    # api.tag.rcid(value).perform
+    # ```
+    #
+    # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions.
+    #
+    # All action's parameters are documented as its public methods, see below.
+    #
+    class Tag < MediaWiktory::Wikipedia::GetAction
 
     # One or more recent changes IDs from which to add or remove the tag.
     #
@@ -83,5 +84,6 @@ module MediaWiktory::Wikipedia::Actions
     def token(value)
       merge(token: value.to_s)
     end
+  end
   end
 end

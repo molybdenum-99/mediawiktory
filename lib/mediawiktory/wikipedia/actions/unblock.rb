@@ -1,24 +1,25 @@
 # frozen_string_literal: true
 
-module MediaWiktory::Wikipedia::Actions
-  # Unblock a user. 
-  #
-  # Usage:
-  #
-  # ```ruby
-  # api.unblock(**options).perform # returns string with raw output
-  # # or
-  # api.unblock(**options).response # returns output parsed and wrapped into Mash-like object
-  #
-  # # or, with chainable interface:
-  # api.unblock.id(value).perform
-  # ```
-  #
-  # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions.
-  #
-  # All action's parameters are documented as its public methods, see below.
-  #
-  class Unblock < MediaWiktory::Wikipedia::GetAction
+module MediaWiktory::Wikipedia
+  module Actions
+    # Unblock a user. 
+    #
+    # Usage:
+    #
+    # ```ruby
+    # api.unblock(**options).perform # returns string with raw output
+    # # or
+    # api.unblock(**options).response # returns output parsed and wrapped into Mash-like object
+    #
+    # # or, with chainable interface:
+    # api.unblock.id(value).perform
+    # ```
+    #
+    # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions.
+    #
+    # All action's parameters are documented as its public methods, see below.
+    #
+    class Unblock < MediaWiktory::Wikipedia::GetAction
 
     # ID of the block to unblock (obtained through list=blocks). Cannot be used together with user or userid.
     #
@@ -67,5 +68,6 @@ module MediaWiktory::Wikipedia::Actions
     def token(value)
       merge(token: value.to_s)
     end
+  end
   end
 end

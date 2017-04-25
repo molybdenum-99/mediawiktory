@@ -1,25 +1,26 @@
 # frozen_string_literal: true
 
-module MediaWiktory::Wikipedia::Modules
-  # Extends imageinfo to include video source (derivatives) information 
-  #
-  # Usage:
-  #
-  # ```ruby
-  # api.some_action.videoinfo(**options).perform # returns string with raw output
-  # # or
-  # api.some_action.videoinfo(**options).response # returns output parsed and wrapped into Mash-like object
-  #
-  # # or, with chainable interface:
-  # api.some_action.videoinfo.prop(value).perform
-  # ```
-  #
-  # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and their
-  # submodules.
-  #
-  # All submodule's parameters are documented as its public methods, see below.
-  #
-  module Videoinfo
+module MediaWiktory::Wikipedia
+  module Modules
+    # Extends imageinfo to include video source (derivatives) information 
+    #
+    # Usage:
+    #
+    # ```ruby
+    # api.some_action.videoinfo(**options).perform # returns string with raw output
+    # # or
+    # api.some_action.videoinfo(**options).response # returns output parsed and wrapped into Mash-like object
+    #
+    # # or, with chainable interface:
+    # api.some_action.videoinfo.prop(value).perform
+    # ```
+    #
+    # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and their
+    # submodules.
+    #
+    # All submodule's parameters are documented as its public methods, see below.
+    #
+    module Videoinfo
 
     # Which file information to get:
     #
@@ -131,5 +132,6 @@ module MediaWiktory::Wikipedia::Modules
     def localonly(value)
       merge(vilocalonly: value.to_s)
     end
+  end
   end
 end

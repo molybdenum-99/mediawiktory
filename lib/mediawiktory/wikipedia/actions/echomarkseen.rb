@@ -1,24 +1,25 @@
 # frozen_string_literal: true
 
-module MediaWiktory::Wikipedia::Actions
-  # Mark notifications as seen for the current user. 
-  #
-  # Usage:
-  #
-  # ```ruby
-  # api.echomarkseen(**options).perform # returns string with raw output
-  # # or
-  # api.echomarkseen(**options).response # returns output parsed and wrapped into Mash-like object
-  #
-  # # or, with chainable interface:
-  # api.echomarkseen.token(value).perform
-  # ```
-  #
-  # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions.
-  #
-  # All action's parameters are documented as its public methods, see below.
-  #
-  class Echomarkseen < MediaWiktory::Wikipedia::GetAction
+module MediaWiktory::Wikipedia
+  module Actions
+    # Mark notifications as seen for the current user. 
+    #
+    # Usage:
+    #
+    # ```ruby
+    # api.echomarkseen(**options).perform # returns string with raw output
+    # # or
+    # api.echomarkseen(**options).response # returns output parsed and wrapped into Mash-like object
+    #
+    # # or, with chainable interface:
+    # api.echomarkseen.token(value).perform
+    # ```
+    #
+    # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions.
+    #
+    # All action's parameters are documented as its public methods, see below.
+    #
+    class Echomarkseen < MediaWiktory::Wikipedia::GetAction
 
     # A "csrf" token retrieved from action=query&meta=tokens
     #
@@ -43,5 +44,6 @@ module MediaWiktory::Wikipedia::Actions
     def timestampFormat(value)
       merge(timestampFormat: value.to_s)
     end
+  end
   end
 end

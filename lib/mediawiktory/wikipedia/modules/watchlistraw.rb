@@ -1,25 +1,26 @@
 # frozen_string_literal: true
 
-module MediaWiktory::Wikipedia::Modules
-  # Get all pages on the current user's watchlist. 
-  #
-  # Usage:
-  #
-  # ```ruby
-  # api.some_action.watchlistraw(**options).perform # returns string with raw output
-  # # or
-  # api.some_action.watchlistraw(**options).response # returns output parsed and wrapped into Mash-like object
-  #
-  # # or, with chainable interface:
-  # api.some_action.watchlistraw.continue(value).perform
-  # ```
-  #
-  # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and their
-  # submodules.
-  #
-  # All submodule's parameters are documented as its public methods, see below.
-  #
-  module Watchlistraw
+module MediaWiktory::Wikipedia
+  module Modules
+    # Get all pages on the current user's watchlist. 
+    #
+    # Usage:
+    #
+    # ```ruby
+    # api.some_action.watchlistraw(**options).perform # returns string with raw output
+    # # or
+    # api.some_action.watchlistraw(**options).response # returns output parsed and wrapped into Mash-like object
+    #
+    # # or, with chainable interface:
+    # api.some_action.watchlistraw.continue(value).perform
+    # ```
+    #
+    # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and their
+    # submodules.
+    #
+    # All submodule's parameters are documented as its public methods, see below.
+    #
+    module Watchlistraw
 
     # When more results are available, use this to continue.
     #
@@ -100,5 +101,6 @@ module MediaWiktory::Wikipedia::Modules
     def totitle(value)
       merge(wrtotitle: value.to_s)
     end
+  end
   end
 end

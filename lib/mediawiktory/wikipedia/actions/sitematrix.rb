@@ -1,24 +1,25 @@
 # frozen_string_literal: true
 
-module MediaWiktory::Wikipedia::Actions
-  # Get Wikimedia sites list. 
-  #
-  # Usage:
-  #
-  # ```ruby
-  # api.sitematrix(**options).perform # returns string with raw output
-  # # or
-  # api.sitematrix(**options).response # returns output parsed and wrapped into Mash-like object
-  #
-  # # or, with chainable interface:
-  # api.sitematrix.type(value).perform
-  # ```
-  #
-  # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions.
-  #
-  # All action's parameters are documented as its public methods, see below.
-  #
-  class Sitematrix < MediaWiktory::Wikipedia::GetAction
+module MediaWiktory::Wikipedia
+  module Actions
+    # Get Wikimedia sites list. 
+    #
+    # Usage:
+    #
+    # ```ruby
+    # api.sitematrix(**options).perform # returns string with raw output
+    # # or
+    # api.sitematrix(**options).response # returns output parsed and wrapped into Mash-like object
+    #
+    # # or, with chainable interface:
+    # api.sitematrix.type(value).perform
+    # ```
+    #
+    # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions.
+    #
+    # All action's parameters are documented as its public methods, see below.
+    #
+    class Sitematrix < MediaWiktory::Wikipedia::GetAction
 
     # Filter the Site Matrix by type:
     #
@@ -67,5 +68,6 @@ module MediaWiktory::Wikipedia::Actions
     def continue(value)
       merge(smcontinue: value.to_s)
     end
+  end
   end
 end

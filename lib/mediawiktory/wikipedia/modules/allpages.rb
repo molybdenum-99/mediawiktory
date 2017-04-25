@@ -1,25 +1,26 @@
 # frozen_string_literal: true
 
-module MediaWiktory::Wikipedia::Modules
-  # Enumerate all pages sequentially in a given namespace. 
-  #
-  # Usage:
-  #
-  # ```ruby
-  # api.some_action.allpages(**options).perform # returns string with raw output
-  # # or
-  # api.some_action.allpages(**options).response # returns output parsed and wrapped into Mash-like object
-  #
-  # # or, with chainable interface:
-  # api.some_action.allpages.from(value).perform
-  # ```
-  #
-  # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and their
-  # submodules.
-  #
-  # All submodule's parameters are documented as its public methods, see below.
-  #
-  module Allpages
+module MediaWiktory::Wikipedia
+  module Modules
+    # Enumerate all pages sequentially in a given namespace. 
+    #
+    # Usage:
+    #
+    # ```ruby
+    # api.some_action.allpages(**options).perform # returns string with raw output
+    # # or
+    # api.some_action.allpages(**options).response # returns output parsed and wrapped into Mash-like object
+    #
+    # # or, with chainable interface:
+    # api.some_action.allpages.from(value).perform
+    # ```
+    #
+    # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and their
+    # submodules.
+    #
+    # All submodule's parameters are documented as its public methods, see below.
+    #
+    module Allpages
 
     # The page title to start enumerating from.
     #
@@ -140,5 +141,6 @@ module MediaWiktory::Wikipedia::Modules
     def prexpiry(value)
       merge(apprexpiry: value.to_s)
     end
+  end
   end
 end

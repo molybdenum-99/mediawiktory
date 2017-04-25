@@ -1,25 +1,26 @@
 # frozen_string_literal: true
 
-module MediaWiktory::Wikipedia::Modules
-  # Find all pages that use the given image title. 
-  #
-  # Usage:
-  #
-  # ```ruby
-  # api.some_action.imageusage(**options).perform # returns string with raw output
-  # # or
-  # api.some_action.imageusage(**options).response # returns output parsed and wrapped into Mash-like object
-  #
-  # # or, with chainable interface:
-  # api.some_action.imageusage.title(value).perform
-  # ```
-  #
-  # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and their
-  # submodules.
-  #
-  # All submodule's parameters are documented as its public methods, see below.
-  #
-  module Imageusage
+module MediaWiktory::Wikipedia
+  module Modules
+    # Find all pages that use the given image title. 
+    #
+    # Usage:
+    #
+    # ```ruby
+    # api.some_action.imageusage(**options).perform # returns string with raw output
+    # # or
+    # api.some_action.imageusage(**options).response # returns output parsed and wrapped into Mash-like object
+    #
+    # # or, with chainable interface:
+    # api.some_action.imageusage.title(value).perform
+    # ```
+    #
+    # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and their
+    # submodules.
+    #
+    # All submodule's parameters are documented as its public methods, see below.
+    #
+    module Imageusage
 
     # Title to search. Cannot be used together with iupageid.
     #
@@ -83,5 +84,6 @@ module MediaWiktory::Wikipedia::Modules
     def redirect()
       merge(iuredirect: 'true')
     end
+  end
   end
 end

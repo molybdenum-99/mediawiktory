@@ -1,24 +1,25 @@
 # frozen_string_literal: true
 
-module MediaWiktory::Wikipedia::Actions
-  # Returns data needed for mobile views. 
-  #
-  # Usage:
-  #
-  # ```ruby
-  # api.mobileview(**options).perform # returns string with raw output
-  # # or
-  # api.mobileview(**options).response # returns output parsed and wrapped into Mash-like object
-  #
-  # # or, with chainable interface:
-  # api.mobileview.page(value).perform
-  # ```
-  #
-  # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions.
-  #
-  # All action's parameters are documented as its public methods, see below.
-  #
-  class Mobileview < MediaWiktory::Wikipedia::GetAction
+module MediaWiktory::Wikipedia
+  module Actions
+    # Returns data needed for mobile views. 
+    #
+    # Usage:
+    #
+    # ```ruby
+    # api.mobileview(**options).perform # returns string with raw output
+    # # or
+    # api.mobileview(**options).response # returns output parsed and wrapped into Mash-like object
+    #
+    # # or, with chainable interface:
+    # api.mobileview.page(value).perform
+    # ```
+    #
+    # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions.
+    #
+    # All action's parameters are documented as its public methods, see below.
+    #
+    class Mobileview < MediaWiktory::Wikipedia::GetAction
 
     # Title of page to process.
     #
@@ -151,5 +152,6 @@ module MediaWiktory::Wikipedia::Actions
     def thumbsize(value)
       merge(thumbsize: value.to_s)
     end
+  end
   end
 end

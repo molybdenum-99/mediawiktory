@@ -1,25 +1,26 @@
 # frozen_string_literal: true
 
-module MediaWiktory::Wikipedia::Modules
-  # Get notifications waiting for the current user. 
-  #
-  # Usage:
-  #
-  # ```ruby
-  # api.some_action.notifications(**options).perform # returns string with raw output
-  # # or
-  # api.some_action.notifications(**options).response # returns output parsed and wrapped into Mash-like object
-  #
-  # # or, with chainable interface:
-  # api.some_action.notifications.wikis(value).perform
-  # ```
-  #
-  # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and their
-  # submodules.
-  #
-  # All submodule's parameters are documented as its public methods, see below.
-  #
-  module Notifications
+module MediaWiktory::Wikipedia
+  module Modules
+    # Get notifications waiting for the current user. 
+    #
+    # Usage:
+    #
+    # ```ruby
+    # api.some_action.notifications(**options).perform # returns string with raw output
+    # # or
+    # api.some_action.notifications(**options).response # returns output parsed and wrapped into Mash-like object
+    #
+    # # or, with chainable interface:
+    # api.some_action.notifications.wikis(value).perform
+    # ```
+    #
+    # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and their
+    # submodules.
+    #
+    # All submodule's parameters are documented as its public methods, see below.
+    #
+    module Notifications
 
     # List of wikis to fetch notifications from (defaults to only current wiki).
     #
@@ -142,5 +143,6 @@ module MediaWiktory::Wikipedia::Modules
     def crosswikisummary()
       merge(notcrosswikisummary: 'true')
     end
+  end
   end
 end

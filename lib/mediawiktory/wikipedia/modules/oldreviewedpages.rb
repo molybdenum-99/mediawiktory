@@ -1,25 +1,26 @@
 # frozen_string_literal: true
 
-module MediaWiktory::Wikipedia::Modules
-  # Enumerates pages that have changes pending review. 
-  #
-  # Usage:
-  #
-  # ```ruby
-  # api.some_action.oldreviewedpages(**options).perform # returns string with raw output
-  # # or
-  # api.some_action.oldreviewedpages(**options).response # returns output parsed and wrapped into Mash-like object
-  #
-  # # or, with chainable interface:
-  # api.some_action.oldreviewedpages.start(value).perform
-  # ```
-  #
-  # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and their
-  # submodules.
-  #
-  # All submodule's parameters are documented as its public methods, see below.
-  #
-  module Oldreviewedpages
+module MediaWiktory::Wikipedia
+  module Modules
+    # Enumerates pages that have changes pending review. 
+    #
+    # Usage:
+    #
+    # ```ruby
+    # api.some_action.oldreviewedpages(**options).perform # returns string with raw output
+    # # or
+    # api.some_action.oldreviewedpages(**options).response # returns output parsed and wrapped into Mash-like object
+    #
+    # # or, with chainable interface:
+    # api.some_action.oldreviewedpages.start(value).perform
+    # ```
+    #
+    # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and their
+    # submodules.
+    #
+    # All submodule's parameters are documented as its public methods, see below.
+    #
+    module Oldreviewedpages
 
     # Start listing at this timestamp.
     #
@@ -92,5 +93,6 @@ module MediaWiktory::Wikipedia::Modules
     def limit(value)
       merge(orlimit: value.to_s)
     end
+  end
   end
 end

@@ -1,25 +1,26 @@
 # frozen_string_literal: true
 
-module MediaWiktory::Wikipedia::Modules
-  # Find all pages that link to the given interwiki link. 
-  #
-  # Usage:
-  #
-  # ```ruby
-  # api.some_action.iwbacklinks(**options).perform # returns string with raw output
-  # # or
-  # api.some_action.iwbacklinks(**options).response # returns output parsed and wrapped into Mash-like object
-  #
-  # # or, with chainable interface:
-  # api.some_action.iwbacklinks.prefix(value).perform
-  # ```
-  #
-  # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and their
-  # submodules.
-  #
-  # All submodule's parameters are documented as its public methods, see below.
-  #
-  module Iwbacklinks
+module MediaWiktory::Wikipedia
+  module Modules
+    # Find all pages that link to the given interwiki link. 
+    #
+    # Usage:
+    #
+    # ```ruby
+    # api.some_action.iwbacklinks(**options).perform # returns string with raw output
+    # # or
+    # api.some_action.iwbacklinks(**options).response # returns output parsed and wrapped into Mash-like object
+    #
+    # # or, with chainable interface:
+    # api.some_action.iwbacklinks.prefix(value).perform
+    # ```
+    #
+    # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and their
+    # submodules.
+    #
+    # All submodule's parameters are documented as its public methods, see below.
+    #
+    module Iwbacklinks
 
     # Prefix for the interwiki.
     #
@@ -68,5 +69,6 @@ module MediaWiktory::Wikipedia::Modules
     def dir(value)
       merge(iwbldir: value.to_s)
     end
+  end
   end
 end

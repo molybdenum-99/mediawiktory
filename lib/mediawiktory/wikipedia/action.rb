@@ -9,13 +9,13 @@ module MediaWiktory::Wikipedia
 
     def initialize(client, options = {})
       @client = client
-      @params = MediaWiktory::Util.stringify_hash(options)
+      @params = stringify_hash(options)
       @submodules = []
     end
 
     def merge(hash)
       self.class
-          .new(@client, @params.merge(MediaWiktory::Util.stringify_hash(hash)))
+          .new(@client, @params.merge(stringify_hash(hash)))
           .tap { |action| @submodules.each { |sm| action.submodule(sm) } }
     end
 
@@ -27,10 +27,17 @@ module MediaWiktory::Wikipedia
       to_h.merge('action' => action_name)
     end
 
+    def to_url
+      url = @client.url
+      url.query_values = to_param
+      url.to_s
+    end
+
     def perform
       fail NotImplementedError,
            'Action is abstract, all actions should descend from GetAction or PostAction'
     end
+
 
     # The format of the output.
     #
@@ -191,6 +198,13 @@ module MediaWiktory::Wikipedia
         vals
         .map { |val| modules.fetch(val) { fail ArgumentError, "Module #{val} is not defined" } }
       merge(name => vals.join('|')).tap { |res| mods.each { |mod| res.submodule(mod) } }
+    end
+
+    # Not in indepented module to decrease generated files/modules list
+    def stringify_hash(hash, recursive: false)
+      hash.map { |k, v|
+        [k.to_s, v.is_a?(Hash) && recursive ? stringify_hash(v, recursive: true) : v.to_s]
+      }.to_h
     end
 
     protected

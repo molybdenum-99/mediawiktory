@@ -1,24 +1,25 @@
 # frozen_string_literal: true
 
-module MediaWiktory::Wikipedia::Actions
-  # Save an HTML5 page to MediaWiki (converted to wikitext via the Parsoid service). 
-  #
-  # Usage:
-  #
-  # ```ruby
-  # api.visualeditoredit(**options).perform # returns string with raw output
-  # # or
-  # api.visualeditoredit(**options).response # returns output parsed and wrapped into Mash-like object
-  #
-  # # or, with chainable interface:
-  # api.visualeditoredit.paction(value).perform
-  # ```
-  #
-  # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions.
-  #
-  # All action's parameters are documented as its public methods, see below.
-  #
-  class Visualeditoredit < MediaWiktory::Wikipedia::GetAction
+module MediaWiktory::Wikipedia
+  module Actions
+    # Save an HTML5 page to MediaWiki (converted to wikitext via the Parsoid service). 
+    #
+    # Usage:
+    #
+    # ```ruby
+    # api.visualeditoredit(**options).perform # returns string with raw output
+    # # or
+    # api.visualeditoredit(**options).response # returns output parsed and wrapped into Mash-like object
+    #
+    # # or, with chainable interface:
+    # api.visualeditoredit.paction(value).perform
+    # ```
+    #
+    # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions.
+    #
+    # All action's parameters are documented as its public methods, see below.
+    #
+    class Visualeditoredit < MediaWiktory::Wikipedia::GetAction
 
     # Action to perform.
     #
@@ -155,5 +156,6 @@ module MediaWiktory::Wikipedia::Actions
     def cachekey(value)
       merge(cachekey: value.to_s)
     end
+  end
   end
 end

@@ -1,24 +1,25 @@
 # frozen_string_literal: true
 
-module MediaWiktory::Wikipedia::Actions
-  # Get a list of page IDs for building a PageTriage queue. 
-  #
-  # Usage:
-  #
-  # ```ruby
-  # api.pagetriagelist(**options).perform # returns string with raw output
-  # # or
-  # api.pagetriagelist(**options).response # returns output parsed and wrapped into Mash-like object
-  #
-  # # or, with chainable interface:
-  # api.pagetriagelist.page_id(value).perform
-  # ```
-  #
-  # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions.
-  #
-  # All action's parameters are documented as its public methods, see below.
-  #
-  class Pagetriagelist < MediaWiktory::Wikipedia::GetAction
+module MediaWiktory::Wikipedia
+  module Actions
+    # Get a list of page IDs for building a PageTriage queue. 
+    #
+    # Usage:
+    #
+    # ```ruby
+    # api.pagetriagelist(**options).perform # returns string with raw output
+    # # or
+    # api.pagetriagelist(**options).response # returns output parsed and wrapped into Mash-like object
+    #
+    # # or, with chainable interface:
+    # api.pagetriagelist.page_id(value).perform
+    # ```
+    #
+    # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions.
+    #
+    # All action's parameters are documented as its public methods, see below.
+    #
+    class Pagetriagelist < MediaWiktory::Wikipedia::GetAction
 
     # Return data for the specified page IDs, ignoring other parameters.
     #
@@ -138,5 +139,6 @@ module MediaWiktory::Wikipedia::Actions
     def username(value)
       merge(username: value.to_s)
     end
+  end
   end
 end

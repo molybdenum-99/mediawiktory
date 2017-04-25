@@ -1,24 +1,25 @@
 # frozen_string_literal: true
 
-module MediaWiktory::Wikipedia::Actions
-  # Search the wiki using the OpenSearch protocol. 
-  #
-  # Usage:
-  #
-  # ```ruby
-  # api.opensearch(**options).perform # returns string with raw output
-  # # or
-  # api.opensearch(**options).response # returns output parsed and wrapped into Mash-like object
-  #
-  # # or, with chainable interface:
-  # api.opensearch.search(value).perform
-  # ```
-  #
-  # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions.
-  #
-  # All action's parameters are documented as its public methods, see below.
-  #
-  class Opensearch < MediaWiktory::Wikipedia::GetAction
+module MediaWiktory::Wikipedia
+  module Actions
+    # Search the wiki using the OpenSearch protocol. 
+    #
+    # Usage:
+    #
+    # ```ruby
+    # api.opensearch(**options).perform # returns string with raw output
+    # # or
+    # api.opensearch(**options).response # returns output parsed and wrapped into Mash-like object
+    #
+    # # or, with chainable interface:
+    # api.opensearch.search(value).perform
+    # ```
+    #
+    # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions.
+    #
+    # All action's parameters are documented as its public methods, see below.
+    #
+    class Opensearch < MediaWiktory::Wikipedia::GetAction
 
     # Search string.
     #
@@ -81,5 +82,6 @@ module MediaWiktory::Wikipedia::Actions
     def warningsaserror()
       merge(warningsaserror: 'true')
     end
+  end
   end
 end

@@ -1,25 +1,26 @@
 # frozen_string_literal: true
 
-module MediaWiktory::Wikipedia::Modules
-  # Returns a list of gadgets used on this wiki. 
-  #
-  # Usage:
-  #
-  # ```ruby
-  # api.some_action.gadgets(**options).perform # returns string with raw output
-  # # or
-  # api.some_action.gadgets(**options).response # returns output parsed and wrapped into Mash-like object
-  #
-  # # or, with chainable interface:
-  # api.some_action.gadgets.prop(value).perform
-  # ```
-  #
-  # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and their
-  # submodules.
-  #
-  # All submodule's parameters are documented as its public methods, see below.
-  #
-  module Gadgets
+module MediaWiktory::Wikipedia
+  module Modules
+    # Returns a list of gadgets used on this wiki. 
+    #
+    # Usage:
+    #
+    # ```ruby
+    # api.some_action.gadgets(**options).perform # returns string with raw output
+    # # or
+    # api.some_action.gadgets(**options).response # returns output parsed and wrapped into Mash-like object
+    #
+    # # or, with chainable interface:
+    # api.some_action.gadgets.prop(value).perform
+    # ```
+    #
+    # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and their
+    # submodules.
+    #
+    # All submodule's parameters are documented as its public methods, see below.
+    #
+    module Gadgets
 
     # What gadget information to get:
     #
@@ -58,5 +59,6 @@ module MediaWiktory::Wikipedia::Modules
     def enabledonly()
       merge(gaenabledonly: 'true')
     end
+  end
   end
 end

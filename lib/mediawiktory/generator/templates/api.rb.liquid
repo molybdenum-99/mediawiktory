@@ -23,7 +23,7 @@ module {{ namespace }}
 {% for param in object.main.params %}    # @option defaults [{{ param.ruby_type }}] {{ param.name }} {{ param.description }}{{param.param_docs}} See {{"{"}}Action#{{param.name}}}
 {% endfor %}    #
     def initialize(url = '{{ object.source }}', **defaults)
-      @client = Client.new(url, **options)
+      @client = Client.new(url, **defaults)
       @defaults = defaults
     end
 {% for action in object.actions %}{% include 'action_method' %}{% endfor %}  end

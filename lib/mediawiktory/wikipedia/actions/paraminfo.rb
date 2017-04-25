@@ -1,24 +1,25 @@
 # frozen_string_literal: true
 
-module MediaWiktory::Wikipedia::Actions
-  # Obtain information about API modules. 
-  #
-  # Usage:
-  #
-  # ```ruby
-  # api.paraminfo(**options).perform # returns string with raw output
-  # # or
-  # api.paraminfo(**options).response # returns output parsed and wrapped into Mash-like object
-  #
-  # # or, with chainable interface:
-  # api.paraminfo.modules(value).perform
-  # ```
-  #
-  # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions.
-  #
-  # All action's parameters are documented as its public methods, see below.
-  #
-  class Paraminfo < MediaWiktory::Wikipedia::GetAction
+module MediaWiktory::Wikipedia
+  module Actions
+    # Obtain information about API modules. 
+    #
+    # Usage:
+    #
+    # ```ruby
+    # api.paraminfo(**options).perform # returns string with raw output
+    # # or
+    # api.paraminfo(**options).response # returns output parsed and wrapped into Mash-like object
+    #
+    # # or, with chainable interface:
+    # api.paraminfo.modules(value).perform
+    # ```
+    #
+    # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions.
+    #
+    # All action's parameters are documented as its public methods, see below.
+    #
+    class Paraminfo < MediaWiktory::Wikipedia::GetAction
 
     # List of module names (values of the action and format parameters, or main). Can specify submodules with a +, or all submodules with +*, or all submodules recursively with +**.
     #
@@ -38,7 +39,7 @@ module MediaWiktory::Wikipedia::Actions
 
     # List of query module names (value of prop, meta or list parameter). Use modules=query+foo instead of querymodules=foo.
     #
-    # @param values [Array<String>] Allowed values: "abusefilters", "abuselog", "allcategories", "alldeletedrevisions", "allfileusages", "allimages", "alllinks", "allmessages", "allpages", "allredirects", "allrevisions", "alltransclusions", "allusers", "authmanagerinfo", "babel", "backlinks", "betafeatures", "blocks", "categories", "categoryinfo", "categorymembers", "centralnoticelogs", "checkuser", "checkuserlog", "contributors", "coordinates", "deletedrevisions", "deletedrevs", "duplicatefiles", "embeddedin", "extlinks", "extracts", "exturlusage", "featureusage", "filearchive", "filerepoinfo", "fileusage", "flagged", "gadgetcategories", "gadgets", "geosearch", "gettingstartedgetpages", "globalallusers", "globalblocks", "globalgroups", "globalusage", "globaluserinfo", "imageinfo", "images", "imageusage", "info", "iwbacklinks", "iwlinks", "langbacklinks", "langlinks", "links", "linkshere", "logevents", "mapdata", "mmsites", "mostviewed", "mystashedfiles", "notifications", "oath", "oldreviewedpages", "ores", "pageassessments", "pageimages", "pagepropnames", "pageprops", "pageswithprop", "pageterms", "pageviews", "prefixsearch", "projectpages", "projects", "protectedtitles", "querypage", "random", "recentchanges", "redirects", "references", "revisions", "search", "siteinfo", "siteviews", "stashimageinfo", "tags", "templates", "tokens", "transcludedin", "transcodestatus", "unreadnotificationpages", "usercontribs", "userinfo", "users", "videoinfo", "watchlist", "watchlistraw", "wbentityusage", "wblistentityusage", "wikibase", "wikisets".
+    # @param values [Array<String>] Allowed values: "abusefilters", "abuselog", "allcategories", "alldeletedrevisions", "allfileusages", "allimages", "alllinks", "allmessages", "allpages", "allredirects", "allrevisions", "alltransclusions", "allusers", "authmanagerinfo", "babel", "backlinks", "betafeatures", "blocks", "categories", "categoryinfo", "categorymembers", "centralnoticelogs", "checkuser", "checkuserlog", "contenttranslation", "contenttranslationcorpora", "contenttranslationlangtrend", "contenttranslationstats", "contenttranslationsuggestions", "contributors", "coordinates", "cxpublishedtranslations", "cxtranslatorstats", "deletedrevisions", "deletedrevs", "duplicatefiles", "embeddedin", "extlinks", "extracts", "exturlusage", "featureusage", "filearchive", "filerepoinfo", "fileusage", "flagged", "gadgetcategories", "gadgets", "geosearch", "gettingstartedgetpages", "globalallusers", "globalblocks", "globalgroups", "globalusage", "globaluserinfo", "imageinfo", "images", "imageusage", "info", "iwbacklinks", "iwlinks", "langbacklinks", "langlinks", "links", "linkshere", "logevents", "mapdata", "mmsites", "mostviewed", "mystashedfiles", "notifications", "oath", "oldreviewedpages", "ores", "pageassessments", "pageimages", "pagepropnames", "pageprops", "pageswithprop", "pageterms", "pageviews", "prefixsearch", "projectpages", "projects", "protectedtitles", "querypage", "random", "recentchanges", "redirects", "references", "revisions", "search", "siteinfo", "siteviews", "stashimageinfo", "tags", "templates", "tokens", "transcludedin", "transcodestatus", "unreadnotificationpages", "usercontribs", "userinfo", "users", "videoinfo", "watchlist", "watchlistraw", "wbentityusage", "wblistentityusage", "wikibase", "wikisets".
     # @return [self]
     def querymodules(*values)
       merge(querymodules: values.join('|'))
@@ -67,5 +68,6 @@ module MediaWiktory::Wikipedia::Actions
     def formatmodules(*values)
       merge(formatmodules: values.join('|'))
     end
+  end
   end
 end

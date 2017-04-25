@@ -1,25 +1,26 @@
 # frozen_string_literal: true
 
-module MediaWiktory::Wikipedia::Modules
-  # Show information about a global user. 
-  #
-  # Usage:
-  #
-  # ```ruby
-  # api.some_action.globaluserinfo(**options).perform # returns string with raw output
-  # # or
-  # api.some_action.globaluserinfo(**options).response # returns output parsed and wrapped into Mash-like object
-  #
-  # # or, with chainable interface:
-  # api.some_action.globaluserinfo.user(value).perform
-  # ```
-  #
-  # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and their
-  # submodules.
-  #
-  # All submodule's parameters are documented as its public methods, see below.
-  #
-  module Globaluserinfo
+module MediaWiktory::Wikipedia
+  module Modules
+    # Show information about a global user. 
+    #
+    # Usage:
+    #
+    # ```ruby
+    # api.some_action.globaluserinfo(**options).perform # returns string with raw output
+    # # or
+    # api.some_action.globaluserinfo(**options).response # returns output parsed and wrapped into Mash-like object
+    #
+    # # or, with chainable interface:
+    # api.some_action.globaluserinfo.user(value).perform
+    # ```
+    #
+    # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and their
+    # submodules.
+    #
+    # All submodule's parameters are documented as its public methods, see below.
+    #
+    module Globaluserinfo
 
     # User to get information about. Defaults to the current user.
     #
@@ -36,5 +37,6 @@ module MediaWiktory::Wikipedia::Modules
     def prop(*values)
       merge(guiprop: values.join('|'))
     end
+  end
   end
 end

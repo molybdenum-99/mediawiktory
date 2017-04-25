@@ -1,24 +1,25 @@
 # frozen_string_literal: true
 
-module MediaWiktory::Wikipedia::Actions
-  # Mark notifications as read for the current user. 
-  #
-  # Usage:
-  #
-  # ```ruby
-  # api.echomarkread(**options).perform # returns string with raw output
-  # # or
-  # api.echomarkread(**options).response # returns output parsed and wrapped into Mash-like object
-  #
-  # # or, with chainable interface:
-  # api.echomarkread.list(value).perform
-  # ```
-  #
-  # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions.
-  #
-  # All action's parameters are documented as its public methods, see below.
-  #
-  class Echomarkread < MediaWiktory::Wikipedia::GetAction
+module MediaWiktory::Wikipedia
+  module Actions
+    # Mark notifications as read for the current user. 
+    #
+    # Usage:
+    #
+    # ```ruby
+    # api.echomarkread(**options).perform # returns string with raw output
+    # # or
+    # api.echomarkread(**options).response # returns output parsed and wrapped into Mash-like object
+    #
+    # # or, with chainable interface:
+    # api.echomarkread.list(value).perform
+    # ```
+    #
+    # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions.
+    #
+    # All action's parameters are documented as its public methods, see below.
+    #
+    class Echomarkread < MediaWiktory::Wikipedia::GetAction
 
     # A list of notification IDs to mark as read.
     #
@@ -58,5 +59,6 @@ module MediaWiktory::Wikipedia::Actions
     def token(value)
       merge(token: value.to_s)
     end
+  end
   end
 end

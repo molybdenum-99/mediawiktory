@@ -1,25 +1,26 @@
 # frozen_string_literal: true
 
-module MediaWiktory::Wikipedia::Modules
-  # Returns information about images on the page, such as thumbnail and presence of photos. 
-  #
-  # Usage:
-  #
-  # ```ruby
-  # api.some_action.pageimages(**options).perform # returns string with raw output
-  # # or
-  # api.some_action.pageimages(**options).response # returns output parsed and wrapped into Mash-like object
-  #
-  # # or, with chainable interface:
-  # api.some_action.pageimages.prop(value).perform
-  # ```
-  #
-  # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and their
-  # submodules.
-  #
-  # All submodule's parameters are documented as its public methods, see below.
-  #
-  module Pageimages
+module MediaWiktory::Wikipedia
+  module Modules
+    # Returns information about images on the page, such as thumbnail and presence of photos. 
+    #
+    # Usage:
+    #
+    # ```ruby
+    # api.some_action.pageimages(**options).perform # returns string with raw output
+    # # or
+    # api.some_action.pageimages(**options).response # returns output parsed and wrapped into Mash-like object
+    #
+    # # or, with chainable interface:
+    # api.some_action.pageimages.prop(value).perform
+    # ```
+    #
+    # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and their
+    # submodules.
+    #
+    # All submodule's parameters are documented as its public methods, see below.
+    #
+    module Pageimages
 
     # Which information to return:
     #
@@ -60,5 +61,6 @@ module MediaWiktory::Wikipedia::Modules
     def continue(value)
       merge(picontinue: value.to_s)
     end
+  end
   end
 end

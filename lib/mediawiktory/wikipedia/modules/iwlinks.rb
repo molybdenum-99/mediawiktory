@@ -1,25 +1,26 @@
 # frozen_string_literal: true
 
-module MediaWiktory::Wikipedia::Modules
-  # Returns all interwiki links from the given pages. 
-  #
-  # Usage:
-  #
-  # ```ruby
-  # api.some_action.iwlinks(**options).perform # returns string with raw output
-  # # or
-  # api.some_action.iwlinks(**options).response # returns output parsed and wrapped into Mash-like object
-  #
-  # # or, with chainable interface:
-  # api.some_action.iwlinks.prop(value).perform
-  # ```
-  #
-  # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and their
-  # submodules.
-  #
-  # All submodule's parameters are documented as its public methods, see below.
-  #
-  module Iwlinks
+module MediaWiktory::Wikipedia
+  module Modules
+    # Returns all interwiki links from the given pages. 
+    #
+    # Usage:
+    #
+    # ```ruby
+    # api.some_action.iwlinks(**options).perform # returns string with raw output
+    # # or
+    # api.some_action.iwlinks(**options).response # returns output parsed and wrapped into Mash-like object
+    #
+    # # or, with chainable interface:
+    # api.some_action.iwlinks.prop(value).perform
+    # ```
+    #
+    # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and their
+    # submodules.
+    #
+    # All submodule's parameters are documented as its public methods, see below.
+    #
+    module Iwlinks
 
     # Which additional properties to get for each interlanguage link:
     #
@@ -75,5 +76,6 @@ module MediaWiktory::Wikipedia::Modules
     def url()
       merge(iwurl: 'true')
     end
+  end
   end
 end

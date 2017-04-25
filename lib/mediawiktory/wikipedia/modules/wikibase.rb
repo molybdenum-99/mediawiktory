@@ -1,25 +1,26 @@
 # frozen_string_literal: true
 
-module MediaWiktory::Wikipedia::Modules
-  # Get information about the Wikibase client and the associated Wikibase repository. 
-  #
-  # Usage:
-  #
-  # ```ruby
-  # api.some_action.wikibase(**options).perform # returns string with raw output
-  # # or
-  # api.some_action.wikibase(**options).response # returns output parsed and wrapped into Mash-like object
-  #
-  # # or, with chainable interface:
-  # api.some_action.wikibase.prop(value).perform
-  # ```
-  #
-  # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and their
-  # submodules.
-  #
-  # All submodule's parameters are documented as its public methods, see below.
-  #
-  module Wikibase
+module MediaWiktory::Wikipedia
+  module Modules
+    # Get information about the Wikibase client and the associated Wikibase repository. 
+    #
+    # Usage:
+    #
+    # ```ruby
+    # api.some_action.wikibase(**options).perform # returns string with raw output
+    # # or
+    # api.some_action.wikibase(**options).response # returns output parsed and wrapped into Mash-like object
+    #
+    # # or, with chainable interface:
+    # api.some_action.wikibase.prop(value).perform
+    # ```
+    #
+    # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and their
+    # submodules.
+    #
+    # All submodule's parameters are documented as its public methods, see below.
+    #
+    module Wikibase
 
     # Which properties to get:
     #
@@ -28,5 +29,6 @@ module MediaWiktory::Wikipedia::Modules
     def prop(*values)
       merge(wbprop: values.join('|'))
     end
+  end
   end
 end

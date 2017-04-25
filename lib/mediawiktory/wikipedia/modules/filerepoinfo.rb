@@ -1,25 +1,26 @@
 # frozen_string_literal: true
 
-module MediaWiktory::Wikipedia::Modules
-  # Return meta information about image repositories configured on the wiki. 
-  #
-  # Usage:
-  #
-  # ```ruby
-  # api.some_action.filerepoinfo(**options).perform # returns string with raw output
-  # # or
-  # api.some_action.filerepoinfo(**options).response # returns output parsed and wrapped into Mash-like object
-  #
-  # # or, with chainable interface:
-  # api.some_action.filerepoinfo.prop(value).perform
-  # ```
-  #
-  # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and their
-  # submodules.
-  #
-  # All submodule's parameters are documented as its public methods, see below.
-  #
-  module Filerepoinfo
+module MediaWiktory::Wikipedia
+  module Modules
+    # Return meta information about image repositories configured on the wiki. 
+    #
+    # Usage:
+    #
+    # ```ruby
+    # api.some_action.filerepoinfo(**options).perform # returns string with raw output
+    # # or
+    # api.some_action.filerepoinfo(**options).response # returns output parsed and wrapped into Mash-like object
+    #
+    # # or, with chainable interface:
+    # api.some_action.filerepoinfo.prop(value).perform
+    # ```
+    #
+    # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and their
+    # submodules.
+    #
+    # All submodule's parameters are documented as its public methods, see below.
+    #
+    module Filerepoinfo
 
     # Which repository properties to get (there may be more available on some wikis):
     #
@@ -28,5 +29,6 @@ module MediaWiktory::Wikipedia::Modules
     def prop(*values)
       merge(friprop: values.join('|'))
     end
+  end
   end
 end

@@ -1,25 +1,26 @@
 # frozen_string_literal: true
 
-module MediaWiktory::Wikipedia::Modules
-  # List change tags. 
-  #
-  # Usage:
-  #
-  # ```ruby
-  # api.some_action.tags(**options).perform # returns string with raw output
-  # # or
-  # api.some_action.tags(**options).response # returns output parsed and wrapped into Mash-like object
-  #
-  # # or, with chainable interface:
-  # api.some_action.tags.continue(value).perform
-  # ```
-  #
-  # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and their
-  # submodules.
-  #
-  # All submodule's parameters are documented as its public methods, see below.
-  #
-  module Tags
+module MediaWiktory::Wikipedia
+  module Modules
+    # List change tags. 
+    #
+    # Usage:
+    #
+    # ```ruby
+    # api.some_action.tags(**options).perform # returns string with raw output
+    # # or
+    # api.some_action.tags(**options).response # returns output parsed and wrapped into Mash-like object
+    #
+    # # or, with chainable interface:
+    # api.some_action.tags.continue(value).perform
+    # ```
+    #
+    # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and their
+    # submodules.
+    #
+    # All submodule's parameters are documented as its public methods, see below.
+    #
+    module Tags
 
     # When more results are available, use this to continue.
     #
@@ -44,5 +45,6 @@ module MediaWiktory::Wikipedia::Modules
     def prop(*values)
       merge(tgprop: values.join('|'))
     end
+  end
   end
 end

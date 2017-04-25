@@ -1,24 +1,25 @@
 # frozen_string_literal: true
 
-module MediaWiktory::Wikipedia::Actions
-  # Add multiple students to a course. 
-  #
-  # Usage:
-  #
-  # ```ruby
-  # api.addstudents(**options).perform # returns string with raw output
-  # # or
-  # api.addstudents(**options).response # returns output parsed and wrapped into Mash-like object
-  #
-  # # or, with chainable interface:
-  # api.addstudents.studentusernames(value).perform
-  # ```
-  #
-  # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions.
-  #
-  # All action's parameters are documented as its public methods, see below.
-  #
-  class Addstudents < MediaWiktory::Wikipedia::GetAction
+module MediaWiktory::Wikipedia
+  module Actions
+    # Add multiple students to a course. 
+    #
+    # Usage:
+    #
+    # ```ruby
+    # api.addstudents(**options).perform # returns string with raw output
+    # # or
+    # api.addstudents(**options).response # returns output parsed and wrapped into Mash-like object
+    #
+    # # or, with chainable interface:
+    # api.addstudents.studentusernames(value).perform
+    # ```
+    #
+    # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions.
+    #
+    # All action's parameters are documented as its public methods, see below.
+    #
+    class Addstudents < MediaWiktory::Wikipedia::GetAction
 
     # The usernames of the students to add to the course.
     #
@@ -43,5 +44,6 @@ module MediaWiktory::Wikipedia::Actions
     def token(value)
       merge(token: value.to_s)
     end
+  end
   end
 end

@@ -1,24 +1,25 @@
 # frozen_string_literal: true
 
-module MediaWiktory::Wikipedia::Actions
-  # Create and edit pages. 
-  #
-  # Usage:
-  #
-  # ```ruby
-  # api.edit(**options).perform # returns string with raw output
-  # # or
-  # api.edit(**options).response # returns output parsed and wrapped into Mash-like object
-  #
-  # # or, with chainable interface:
-  # api.edit.title(value).perform
-  # ```
-  #
-  # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions.
-  #
-  # All action's parameters are documented as its public methods, see below.
-  #
-  class Edit < MediaWiktory::Wikipedia::GetAction
+module MediaWiktory::Wikipedia
+  module Actions
+    # Create and edit pages. 
+    #
+    # Usage:
+    #
+    # ```ruby
+    # api.edit(**options).perform # returns string with raw output
+    # # or
+    # api.edit(**options).response # returns output parsed and wrapped into Mash-like object
+    #
+    # # or, with chainable interface:
+    # api.edit.title(value).perform
+    # ```
+    #
+    # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions.
+    #
+    # All action's parameters are documented as its public methods, see below.
+    #
+    class Edit < MediaWiktory::Wikipedia::GetAction
 
     # Title of the page to edit. Cannot be used together with pageid.
     #
@@ -242,5 +243,6 @@ module MediaWiktory::Wikipedia::Actions
     def captchaid(value)
       merge(captchaid: value.to_s)
     end
+  end
   end
 end
