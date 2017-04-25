@@ -1,5 +1,5 @@
 module MediaWiktory
-  describe Action do
+  describe Wikipedia::Action do
     subject(:action) { described_class.new(client) }
 
     let(:client) { double }
@@ -75,61 +75,22 @@ module MediaWiktory
       end
     end
 
-    describe '#module_to_hash' do
-      subject { action.send(:module_to_hash, :format, *args) }
-
-      context 'just symbol passed' do
-        let(:args) { [:json] }
-
-        it { is_expected.to eq('format' => 'json') }
-      end
-
-      context 'with params' do
-        let(:args) { [json: {callback: 'wikiresponse'}] }
-
-        it { is_expected.to eq('format' => 'json', 'callback' => 'wikiresponse') }
-      end
-
-      context 'with prefix' do
-        let(:args) { [{json: {callback: 'wikiresponse'}}, prefix: 'j'] }
-
-        it { is_expected.to eq('format' => 'json', 'jcallback' => 'wikiresponse') }
-      end
-
-      context 'with boolean param' do
-        let(:args) { [{json: {callback: 'wikiresponse', ascii: val}}, prefix: 'j'] }
-
-        context 'true' do
-          let(:val) { true }
-          it { is_expected.to eq('format' => 'json', 'jcallback' => 'wikiresponse', 'jascii' => 'true') }
-        end
-
-        context 'false' do
-          let(:val) { false }
-          it { is_expected.to eq('format' => 'json', 'jcallback' => 'wikiresponse') }
-        end
-      end
-    end
-
-    describe '#modules_to_hash' do
-    end
-
     describe '#to_param' do
       let(:action) { described_class.new(client, 'format' => 'json') }
       subject { action.to_param }
-      before { allow(described_class).to receive(:name).and_return('QueryAction') }
+      before { allow(described_class).to receive(:name).and_return('Query') }
 
       it { is_expected.to eq('action' => 'query', 'format' => 'json') }
 
       context 'multiword class' do
-        before { allow(described_class).to receive(:name).and_return('ParsoidBatchAction') }
+        before { allow(described_class).to receive(:name).and_return('ParsoidBatch') }
 
         it { is_expected.to eq('action' => 'parsoid-batch', 'format' => 'json') }
       end
     end
 
     describe '#perform' do
-      before { allow(action_class).to receive(:name).and_return('QueryAction') }
+      before { allow(action_class).to receive(:name).and_return('Query') }
       let(:action) { action_class.new(client, 'format' => 'json') }
 
       subject { action.perform }
