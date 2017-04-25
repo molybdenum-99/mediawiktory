@@ -10,10 +10,13 @@ module MediaWiktory::Wikipedia
     def initialize(client, options = {})
       @client = client
       @params = MediaWiktory::Util.stringify_hash(options)
+      @submodules = []
     end
 
     def merge(hash)
-      self.class.new(@client, @params.merge(MediaWiktory::Util.stringify_hash(hash)))
+      self.class
+          .new(@client, @params.merge(MediaWiktory::Util.stringify_hash(hash)))
+          .tap { |action| @submodules.each { |sm| action.submodule(sm) } }
     end
 
     def to_h
@@ -180,14 +183,22 @@ module MediaWiktory::Wikipedia
     # for further tweaking.
     def merge_module(name, val, modules)
       mod = modules.fetch(val) { fail ArgumentError, "Module #{val} is not defined" }
-      merge(name => val).extend(mod)
+      merge(name => val).submodule(mod)
     end
 
     def merge_modules(name, vals, modules)
       mods =
         vals
         .map { |val| modules.fetch(val) { fail ArgumentError, "Module #{val} is not defined" } }
-      merge(name => vals.join('|')).tap { |res| mods.each { |mod| res.extend(mod) } }
+      merge(name => vals.join('|')).tap { |res| mods.each { |mod| res.submodule(mod) } }
+    end
+
+    protected
+
+    def submodule(mod)
+      extend(mod)
+      @submodules << mod
+      self
     end
   end
 
