@@ -21,29 +21,29 @@ module MediaWiktory::Wikipedia
     #
     class Checktoken < MediaWiktory::Wikipedia::GetAction
 
-    # Type of token being tested.
-    #
-    # @param value [String] One of "createaccount", "csrf", "deleteglobalaccount", "login", "patrol", "rollback", "setglobalaccountstatus", "userrights", "watch".
-    # @return [self]
-    def type(value)
-      merge(type: value.to_s)
-    end
+      # Type of token being tested.
+      #
+      # @param value [String] One of "createaccount", "csrf", "deleteglobalaccount", "login", "patrol", "rollback", "setglobalaccountstatus", "userrights", "watch".
+      # @return [self]
+      def type(value)
+        merge(type: value.to_s)
+      end
 
-    # Token to test.
-    #
-    # @param value [String]
-    # @return [self]
-    def token(value)
-      merge(token: value.to_s)
-    end
+      # Token to test.
+      #
+      # @param value [String]
+      # @return [self]
+      def token(value)
+        merge(token: value.to_s)
+      end
 
-    # Maximum allowed age of the token, in seconds.
-    #
-    # @param value [Integer]
-    # @return [self]
-    def maxtokenage(value)
-      merge(maxtokenage: value.to_s)
-    end
+      # Maximum allowed age of the token, in seconds.
+      #
+      # @param value [Integer]
+      # @return [self]
+      def maxtokenage(value)
+        merge(maxtokenage: value.to_s)
+      end
   end
   end
 end

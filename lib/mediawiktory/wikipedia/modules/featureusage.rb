@@ -22,37 +22,37 @@ module MediaWiktory::Wikipedia
     #
     module Featureusage
 
-    # Start of date range to query.
-    #
-    # @param value [Time]
-    # @return [self]
-    def start(value)
-      merge(afustart: value.iso8601)
-    end
+      # Start of date range to query.
+      #
+      # @param value [Time]
+      # @return [self]
+      def start(value)
+        merge(afustart: value.iso8601)
+      end
 
-    # End of date range to query.
-    #
-    # @param value [Time]
-    # @return [self]
-    def end(value)
-      merge(afuend: value.iso8601)
-    end
+      # End of date range to query.
+      #
+      # @param value [Time]
+      # @return [self]
+      def end(value)
+        merge(afuend: value.iso8601)
+      end
 
-    # User agent to query. If not specified, the agent in the request will be queried.
-    #
-    # @param value [String]
-    # @return [self]
-    def agent(value)
-      merge(afuagent: value.to_s)
-    end
+      # User agent to query. If not specified, the agent in the request will be queried.
+      #
+      # @param value [String]
+      # @return [self]
+      def agent(value)
+        merge(afuagent: value.to_s)
+      end
 
-    # If specified, return details on only these features.
-    #
-    # @param values [Array<String>]
-    # @return [self]
-    def features(*values)
-      merge(afufeatures: values.join('|'))
-    end
+      # If specified, return details on only these features.
+      #
+      # @param values [Array<String>]
+      # @return [self]
+      def features(*values)
+        merge(afufeatures: values.join('|'))
+      end
   end
   end
 end

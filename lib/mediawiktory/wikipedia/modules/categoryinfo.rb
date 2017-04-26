@@ -22,13 +22,13 @@ module MediaWiktory::Wikipedia
     #
     module Categoryinfo
 
-    # When more results are available, use this to continue.
-    #
-    # @param value [String]
-    # @return [self]
-    def continue(value)
-      merge(cicontinue: value.to_s)
-    end
+      # When more results are available, use this to continue.
+      #
+      # @param value [String]
+      # @return [self]
+      def continue(value)
+        merge(cicontinue: value.to_s)
+      end
   end
   end
 end

@@ -21,13 +21,13 @@ module MediaWiktory::Wikipedia
     #
     class Abusefilterchecksyntax < MediaWiktory::Wikipedia::GetAction
 
-    # The full filter text to check syntax on.
-    #
-    # @param value [String]
-    # @return [self]
-    def filter(value)
-      merge(filter: value.to_s)
-    end
+      # The full filter text to check syntax on.
+      #
+      # @param value [String]
+      # @return [self]
+      def filter(value)
+        merge(filter: value.to_s)
+      end
   end
   end
 end

@@ -22,36 +22,36 @@ module MediaWiktory::Wikipedia
     #
     module Wikisets
 
-    # The name of the wiki set to start from.
-    #
-    # @param value [String]
-    # @return [self]
-    def from(value)
-      merge(wsfrom: value.to_s)
-    end
+      # The name of the wiki set to start from.
+      #
+      # @param value [String]
+      # @return [self]
+      def from(value)
+        merge(wsfrom: value.to_s)
+      end
 
-    # What pieces of information to include.
-    #
-    # @param values [Array<String>] Allowed values: "type" (Opt-in based (includes only specified wikis) or opt-out based (includes all wikis except specified)), "wikisincluded" (The wikis that are included in this wiki set), "wikisnotincluded" (The wikis that are not included in this wiki set).
-    # @return [self]
-    def prop(*values)
-      merge(wsprop: values.join('|'))
-    end
+      # What pieces of information to include.
+      #
+      # @param values [Array<String>] Allowed values: "type" (Opt-in based (includes only specified wikis) or opt-out based (includes all wikis except specified)), "wikisincluded" (The wikis that are included in this wiki set), "wikisnotincluded" (The wikis that are not included in this wiki set).
+      # @return [self]
+      def prop(*values)
+        merge(wsprop: values.join('|'))
+      end
 
-    # How many wiki sets to return.
-    #
-    # @param value [Integer, "max"]
-    # @return [self]
-    def limit(value)
-      merge(wslimit: value.to_s)
-    end
+      # How many wiki sets to return.
+      #
+      # @param value [Integer, "max"]
+      # @return [self]
+      def limit(value)
+        merge(wslimit: value.to_s)
+      end
 
-    # Order results by name.
-    #
-    # @return [self]
-    def orderbyname()
-      merge(wsorderbyname: 'true')
-    end
+      # Order results by name.
+      #
+      # @return [self]
+      def orderbyname()
+        merge(wsorderbyname: 'true')
+      end
   end
   end
 end

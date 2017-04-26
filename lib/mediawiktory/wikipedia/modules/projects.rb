@@ -22,12 +22,12 @@ module MediaWiktory::Wikipedia
     #
     module Projects
 
-    # Also include subprojects.
-    #
-    # @return [self]
-    def subprojects()
-      merge(pjsubprojects: 'true')
-    end
+      # Also include subprojects.
+      #
+      # @return [self]
+      def subprojects()
+        merge(pjsubprojects: 'true')
+      end
   end
   end
 end

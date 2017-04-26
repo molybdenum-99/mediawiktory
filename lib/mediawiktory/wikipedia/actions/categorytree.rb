@@ -21,21 +21,21 @@ module MediaWiktory::Wikipedia
     #
     class Categorytree < MediaWiktory::Wikipedia::GetAction
 
-    # Title in the category namespace, prefix will be ignored if given.
-    #
-    # @param value [String]
-    # @return [self]
-    def category(value)
-      merge(category: value.to_s)
-    end
+      # Title in the category namespace, prefix will be ignored if given.
+      #
+      # @param value [String]
+      # @return [self]
+      def category(value)
+        merge(category: value.to_s)
+      end
 
-    # Options for the CategoryTree constructor as a JSON object. The depth option defaults to 1.
-    #
-    # @param value [String]
-    # @return [self]
-    def options(value)
-      merge(options: value.to_s)
-    end
+      # Options for the CategoryTree constructor as a JSON object. The depth option defaults to 1.
+      #
+      # @param value [String]
+      # @return [self]
+      def options(value)
+        merge(options: value.to_s)
+      end
   end
   end
 end

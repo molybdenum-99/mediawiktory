@@ -34,6 +34,20 @@ module MediaWiktory
           non_actions: source[:modules].reject { |m| m.main? || m.action? }
         ))
         modules.each { |m| m.api = self }
+
+        query_generator = actions.detect { |a| a.name == 'query' }.params.detect { |p| p.name == 'generator' }
+        self.generators = query_generator
+          .modules.map { |m| m.merge(
+            name: "g-#{m.name}",
+            description: "Generator module.\n\n#{description}",
+            params: m.params.reject{|p| p.name == 'prop'}.map(&:dup)
+          ).tap { |m| m.prefix = "g#{m.prefix}" } }
+
+        p generators.map(&:prefix)
+
+        modules.concat(generators)
+        non_actions.concat(generators)
+        query_generator.vals = query_generator.vals.map { |v| {name: v.name, module: "g-#{v.module}"}}
       end
 
       def module(name)

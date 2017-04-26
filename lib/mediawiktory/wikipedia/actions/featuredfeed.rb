@@ -21,29 +21,29 @@ module MediaWiktory::Wikipedia
     #
     class Featuredfeed < MediaWiktory::Wikipedia::GetAction
 
-    # The format of the feed.
-    #
-    # @param value [String] One of "rss", "atom".
-    # @return [self]
-    def feedformat(value)
-      merge(feedformat: value.to_s)
-    end
+      # The format of the feed.
+      #
+      # @param value [String] One of "rss", "atom".
+      # @return [self]
+      def feedformat(value)
+        merge(feedformat: value.to_s)
+      end
 
-    # Feed name.
-    #
-    # @param value [String] One of "potd", "featured", "onthisday".
-    # @return [self]
-    def feed(value)
-      merge(feed: value.to_s)
-    end
+      # Feed name.
+      #
+      # @param value [String] One of "potd", "featured", "onthisday".
+      # @return [self]
+      def feed(value)
+        merge(feed: value.to_s)
+      end
 
-    # Feed language code. Ignored by some feeds.
-    #
-    # @param value [String]
-    # @return [self]
-    def language(value)
-      merge(language: value.to_s)
-    end
+      # Feed language code. Ignored by some feeds.
+      #
+      # @param value [String]
+      # @return [self]
+      def language(value)
+        merge(language: value.to_s)
+      end
   end
   end
 end

@@ -22,13 +22,13 @@ module MediaWiktory::Wikipedia
     #
     module Oath
 
-    # User to get information about. Defaults to the current user.
-    #
-    # @param value [String]
-    # @return [self]
-    def user(value)
-      merge(oathuser: value.to_s)
-    end
+      # User to get information about. Defaults to the current user.
+      #
+      # @param value [String]
+      # @return [self]
+      def user(value)
+        merge(oathuser: value.to_s)
+      end
   end
   end
 end

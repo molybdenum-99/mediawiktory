@@ -90,6 +90,11 @@ module MediaWiktory
 
       attr_accessor :api
 
+      def prefix=(pre)
+        super
+        self.full_name = "#{prefix}#{name}"
+      end
+
       def to_h
         super
           .merge(
@@ -99,7 +104,7 @@ module MediaWiktory
             'value_conv' => value_conv,
             'modules' => modules&.map(&:to_h),
             'param_def' => param_def,
-            'modules_hash' => modules&.map { |m| "#{m.name}: Modules::#{m.class_name}" }&.join(', ')
+            'modules_hash' => modules&.map { |m| "#{m.method_name}: Modules::#{m.class_name}" }&.join(', ')
           )
       end
 
@@ -201,7 +206,7 @@ module MediaWiktory
       end
 
       def modules
-        @module ||= modules? ? vals.map { |v| api.module(v.module) } : nil
+        modules? ? vals.map { |v| api.module(v.module) } : nil
       end
 
       include Renderable

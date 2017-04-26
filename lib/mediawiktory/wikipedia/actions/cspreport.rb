@@ -21,20 +21,20 @@ module MediaWiktory::Wikipedia
     #
     class Cspreport < MediaWiktory::Wikipedia::GetAction
 
-    # Mark as being a report from a monitoring policy, not an enforced policy
-    #
-    # @return [self]
-    def reportonly()
-      merge(reportonly: 'true')
-    end
+      # Mark as being a report from a monitoring policy, not an enforced policy
+      #
+      # @return [self]
+      def reportonly()
+        merge(reportonly: 'true')
+      end
 
-    # What generated the CSP header that triggered this report
-    #
-    # @param value [String]
-    # @return [self]
-    def source(value)
-      merge(source: value.to_s)
-    end
+      # What generated the CSP header that triggered this report
+      #
+      # @param value [String]
+      # @return [self]
+      def source(value)
+        merge(source: value.to_s)
+      end
   end
   end
 end

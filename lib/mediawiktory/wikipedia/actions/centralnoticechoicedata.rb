@@ -21,21 +21,21 @@ module MediaWiktory::Wikipedia
     #
     class Centralnoticechoicedata < MediaWiktory::Wikipedia::GetAction
 
-    # The project to get banner choice data for.
-    #
-    # @param value [String]
-    # @return [self]
-    def project(value)
-      merge(project: value.to_s)
-    end
+      # The project to get banner choice data for.
+      #
+      # @param value [String]
+      # @return [self]
+      def project(value)
+        merge(project: value.to_s)
+      end
 
-    # The language to get banner choice data for.
-    #
-    # @param value [String]
-    # @return [self]
-    def language(value)
-      merge(language: value.to_s)
-    end
+      # The language to get banner choice data for.
+      #
+      # @param value [String]
+      # @return [self]
+      def language(value)
+        merge(language: value.to_s)
+      end
   end
   end
 end

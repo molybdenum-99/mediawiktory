@@ -21,53 +21,53 @@ module MediaWiktory::Wikipedia
     #
     class Stabilize < MediaWiktory::Wikipedia::GetAction
 
-    # The review-protection level.
-    #
-    # @param value [String] One of "autoconfirmed", "none".
-    # @return [self]
-    def protectlevel(value)
-      merge(protectlevel: value.to_s)
-    end
+      # The review-protection level.
+      #
+      # @param value [String] One of "autoconfirmed", "none".
+      # @return [self]
+      def protectlevel(value)
+        merge(protectlevel: value.to_s)
+      end
 
-    # Review-protection expiry.
-    #
-    # @param value [String]
-    # @return [self]
-    def expiry(value)
-      merge(expiry: value.to_s)
-    end
+      # Review-protection expiry.
+      #
+      # @param value [String]
+      # @return [self]
+      def expiry(value)
+        merge(expiry: value.to_s)
+      end
 
-    # Reason.
-    #
-    # @param value [String]
-    # @return [self]
-    def reason(value)
-      merge(reason: value.to_s)
-    end
+      # Reason.
+      #
+      # @param value [String]
+      # @return [self]
+      def reason(value)
+        merge(reason: value.to_s)
+      end
 
-    # Watch this page.
-    #
-    # @param value [String]
-    # @return [self]
-    def watch(value)
-      merge(watch: value.to_s)
-    end
+      # Watch this page.
+      #
+      # @param value [String]
+      # @return [self]
+      def watch(value)
+        merge(watch: value.to_s)
+      end
 
-    # A "csrf" token retrieved from action=query&meta=tokens
-    #
-    # @param value [String]
-    # @return [self]
-    def token(value)
-      merge(token: value.to_s)
-    end
+      # A "csrf" token retrieved from action=query&meta=tokens
+      #
+      # @param value [String]
+      # @return [self]
+      def token(value)
+        merge(token: value.to_s)
+      end
 
-    # Title of the page to be review-protected.
-    #
-    # @param value [String]
-    # @return [self]
-    def title(value)
-      merge(title: value.to_s)
-    end
+      # Title of the page to be review-protected.
+      #
+      # @param value [String]
+      # @return [self]
+      def title(value)
+        merge(title: value.to_s)
+      end
   end
   end
 end

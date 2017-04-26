@@ -1,0 +1,150 @@
+# frozen_string_literal: true
+
+module MediaWiktory::Wikipedia
+  module Modules
+    # Generator module.
+    #
+    # Usage:
+    #
+    # ```ruby
+    # api.some_action.deletedrevisions(**options).perform # returns string with raw output
+    # # or
+    # api.some_action.deletedrevisions(**options).response # returns output parsed and wrapped into Mash-like object
+    #
+    # # or, with chainable interface:
+    # api.some_action.deletedrevisions.limit(value).perform
+    # ```
+    #
+    # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and their
+    # submodules.
+    #
+    # All submodule's parameters are documented as its public methods, see below.
+    #
+    module GDeletedrevisions
+
+      # Limit how many revisions will be returned.
+      #
+      # @param value [Integer, "max"]
+      # @return [self]
+      def limit(value)
+        merge(gdrvlimit: value.to_s)
+      end
+
+      # Expand templates in revision content (requires drvprop=content).
+      #
+      # @return [self]
+      def expandtemplates()
+        merge(gdrvexpandtemplates: 'true')
+      end
+
+      # Generate XML parse tree for revision content (requires drvprop=content; replaced by drvprop=parsetree).
+      #
+      # @return [self]
+      def generatexml()
+        merge(gdrvgeneratexml: 'true')
+      end
+
+      # Parse revision content (requires drvprop=content). For performance reasons, if this option is used, drvlimit is enforced to 1.
+      #
+      # @return [self]
+      def parse()
+        merge(gdrvparse: 'true')
+      end
+
+      # Only retrieve the content of this section number.
+      #
+      # @param value [String]
+      # @return [self]
+      def section(value)
+        merge(gdrvsection: value.to_s)
+      end
+
+      # Revision ID to diff each revision to. Use prev, next and cur for the previous, next and current revision respectively.
+      #
+      # @param value [String]
+      # @return [self]
+      def diffto(value)
+        merge(gdrvdiffto: value.to_s)
+      end
+
+      # Text to diff each revision to. Only diffs a limited number of revisions. Overrides drvdiffto. If drvsection is set, only that section will be diffed against this text.
+      #
+      # @param value [String]
+      # @return [self]
+      def difftotext(value)
+        merge(gdrvdifftotext: value.to_s)
+      end
+
+      # Perform a pre-save transform on the text before diffing it. Only valid when used with drvdifftotext.
+      #
+      # @return [self]
+      def difftotextpst()
+        merge(gdrvdifftotextpst: 'true')
+      end
+
+      # Serialization format used for drvdifftotext and expected for output of content.
+      #
+      # @param value [String] One of "application/json", "text/x-wiki", "text/javascript", "text/css", "text/plain".
+      # @return [self]
+      def contentformat(value)
+        merge(gdrvcontentformat: value.to_s)
+      end
+
+      # The timestamp to start enumerating from. Ignored when processing a list of revision IDs.
+      #
+      # @param value [Time]
+      # @return [self]
+      def start(value)
+        merge(gdrvstart: value.iso8601)
+      end
+
+      # The timestamp to stop enumerating at. Ignored when processing a list of revision IDs.
+      #
+      # @param value [Time]
+      # @return [self]
+      def end(value)
+        merge(gdrvend: value.iso8601)
+      end
+
+      # In which direction to enumerate:
+      #
+      # @param value [String] One of "newer" (List oldest first. Note: drvstart has to be before drvend), "older" (List newest first (default). Note: drvstart has to be later than drvend).
+      # @return [self]
+      def dir(value)
+        merge(gdrvdir: value.to_s)
+      end
+
+      # Only list revisions tagged with this tag.
+      #
+      # @param value [String]
+      # @return [self]
+      def tag(value)
+        merge(gdrvtag: value.to_s)
+      end
+
+      # Only list revisions by this user.
+      #
+      # @param value [String]
+      # @return [self]
+      def user(value)
+        merge(gdrvuser: value.to_s)
+      end
+
+      # Don't list revisions by this user.
+      #
+      # @param value [String]
+      # @return [self]
+      def excludeuser(value)
+        merge(gdrvexcludeuser: value.to_s)
+      end
+
+      # When more results are available, use this to continue.
+      #
+      # @param value [String]
+      # @return [self]
+      def continue(value)
+        merge(gdrvcontinue: value.to_s)
+      end
+  end
+  end
+end

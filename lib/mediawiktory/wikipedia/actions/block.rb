@@ -21,109 +21,109 @@ module MediaWiktory::Wikipedia
     #
     class Block < MediaWiktory::Wikipedia::GetAction
 
-    # Username, IP address, or IP address range to block. Cannot be used together with userid
-    #
-    # @param value [String]
-    # @return [self]
-    def user(value)
-      merge(user: value.to_s)
-    end
+      # Username, IP address, or IP address range to block. Cannot be used together with userid
+      #
+      # @param value [String]
+      # @return [self]
+      def user(value)
+        merge(user: value.to_s)
+      end
 
-    # User ID to block. Cannot be used together with user.
-    #
-    # @param value [Integer]
-    # @return [self]
-    def userid(value)
-      merge(userid: value.to_s)
-    end
+      # User ID to block. Cannot be used together with user.
+      #
+      # @param value [Integer]
+      # @return [self]
+      def userid(value)
+        merge(userid: value.to_s)
+      end
 
-    # Expiry time. May be relative (e.g. 5 months or 2 weeks) or absolute (e.g. 2014-09-18T12:34:56Z). If set to infinite, indefinite, or never, the block will never expire.
-    #
-    # @param value [String]
-    # @return [self]
-    def expiry(value)
-      merge(expiry: value.to_s)
-    end
+      # Expiry time. May be relative (e.g. 5 months or 2 weeks) or absolute (e.g. 2014-09-18T12:34:56Z). If set to infinite, indefinite, or never, the block will never expire.
+      #
+      # @param value [String]
+      # @return [self]
+      def expiry(value)
+        merge(expiry: value.to_s)
+      end
 
-    # Reason for block.
-    #
-    # @param value [String]
-    # @return [self]
-    def reason(value)
-      merge(reason: value.to_s)
-    end
+      # Reason for block.
+      #
+      # @param value [String]
+      # @return [self]
+      def reason(value)
+        merge(reason: value.to_s)
+      end
 
-    # Block anonymous users only (i.e. disable anonymous edits for this IP address).
-    #
-    # @return [self]
-    def anononly()
-      merge(anononly: 'true')
-    end
+      # Block anonymous users only (i.e. disable anonymous edits for this IP address).
+      #
+      # @return [self]
+      def anononly()
+        merge(anononly: 'true')
+      end
 
-    # Prevent account creation.
-    #
-    # @return [self]
-    def nocreate()
-      merge(nocreate: 'true')
-    end
+      # Prevent account creation.
+      #
+      # @return [self]
+      def nocreate()
+        merge(nocreate: 'true')
+      end
 
-    # Automatically block the last used IP address, and any subsequent IP addresses they try to login from.
-    #
-    # @return [self]
-    def autoblock()
-      merge(autoblock: 'true')
-    end
+      # Automatically block the last used IP address, and any subsequent IP addresses they try to login from.
+      #
+      # @return [self]
+      def autoblock()
+        merge(autoblock: 'true')
+      end
 
-    # Prevent user from sending email through the wiki. (Requires the blockemail right).
-    #
-    # @return [self]
-    def noemail()
-      merge(noemail: 'true')
-    end
+      # Prevent user from sending email through the wiki. (Requires the blockemail right).
+      #
+      # @return [self]
+      def noemail()
+        merge(noemail: 'true')
+      end
 
-    # Hide the username from the block log. (Requires the hideuser right).
-    #
-    # @return [self]
-    def hidename()
-      merge(hidename: 'true')
-    end
+      # Hide the username from the block log. (Requires the hideuser right).
+      #
+      # @return [self]
+      def hidename()
+        merge(hidename: 'true')
+      end
 
-    # Allow the user to edit their own talk page (depends on $wgBlockAllowsUTEdit).
-    #
-    # @return [self]
-    def allowusertalk()
-      merge(allowusertalk: 'true')
-    end
+      # Allow the user to edit their own talk page (depends on $wgBlockAllowsUTEdit).
+      #
+      # @return [self]
+      def allowusertalk()
+        merge(allowusertalk: 'true')
+      end
 
-    # If the user is already blocked, overwrite the existing block.
-    #
-    # @return [self]
-    def reblock()
-      merge(reblock: 'true')
-    end
+      # If the user is already blocked, overwrite the existing block.
+      #
+      # @return [self]
+      def reblock()
+        merge(reblock: 'true')
+      end
 
-    # Watch the user's or IP address's user and talk pages.
-    #
-    # @return [self]
-    def watchuser()
-      merge(watchuser: 'true')
-    end
+      # Watch the user's or IP address's user and talk pages.
+      #
+      # @return [self]
+      def watchuser()
+        merge(watchuser: 'true')
+      end
 
-    # Change tags to apply to the entry in the block log.
-    #
-    # @param values [Array<String>] Allowed values: "ProveIt edit", "WPCleaner", "huggle", "large plot addition".
-    # @return [self]
-    def tags(*values)
-      merge(tags: values.join('|'))
-    end
+      # Change tags to apply to the entry in the block log.
+      #
+      # @param values [Array<String>] Allowed values: "ProveIt edit", "WPCleaner", "huggle", "large plot addition".
+      # @return [self]
+      def tags(*values)
+        merge(tags: values.join('|'))
+      end
 
-    # A "csrf" token retrieved from action=query&meta=tokens
-    #
-    # @param value [String]
-    # @return [self]
-    def token(value)
-      merge(token: value.to_s)
-    end
+      # A "csrf" token retrieved from action=query&meta=tokens
+      #
+      # @param value [String]
+      # @return [self]
+      def token(value)
+        merge(token: value.to_s)
+      end
   end
   end
 end

@@ -21,36 +21,36 @@ module MediaWiktory::Wikipedia
     #
     class Review < MediaWiktory::Wikipedia::GetAction
 
-    # The revision ID for which to set the flags.
-    #
-    # @param value [String]
-    # @return [self]
-    def revid(value)
-      merge(revid: value.to_s)
-    end
+      # The revision ID for which to set the flags.
+      #
+      # @param value [String]
+      # @return [self]
+      def revid(value)
+        merge(revid: value.to_s)
+      end
 
-    # A "csrf" token retrieved from action=query&meta=tokens
-    #
-    # @param value [String]
-    # @return [self]
-    def token(value)
-      merge(token: value.to_s)
-    end
+      # A "csrf" token retrieved from action=query&meta=tokens
+      #
+      # @param value [String]
+      # @return [self]
+      def token(value)
+        merge(token: value.to_s)
+      end
 
-    # Comment for the review.
-    #
-    # @param value [String]
-    # @return [self]
-    def comment(value)
-      merge(comment: value.to_s)
-    end
+      # Comment for the review.
+      #
+      # @param value [String]
+      # @return [self]
+      def comment(value)
+        merge(comment: value.to_s)
+      end
 
-    # If set, revision will be unapproved rather than approved.
-    #
-    # @return [self]
-    def unapprove()
-      merge(unapprove: 'true')
-    end
+      # If set, revision will be unapproved rather than approved.
+      #
+      # @return [self]
+      def unapprove()
+        merge(unapprove: 'true')
+      end
   end
   end
 end

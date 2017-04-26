@@ -22,13 +22,13 @@ module MediaWiktory::Wikipedia
     #
     module Globalgroups
 
-    # What pieces of information to include.
-    #
-    # @param values [Array<String>] Allowed values: "rights".
-    # @return [self]
-    def prop(*values)
-      merge(ggpprop: values.join('|'))
-    end
+      # What pieces of information to include.
+      #
+      # @param values [Array<String>] Allowed values: "rights".
+      # @return [self]
+      def prop(*values)
+        merge(ggpprop: values.join('|'))
+      end
   end
   end
 end

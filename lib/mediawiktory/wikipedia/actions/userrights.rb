@@ -21,69 +21,69 @@ module MediaWiktory::Wikipedia
     #
     class Userrights < MediaWiktory::Wikipedia::GetAction
 
-    # User name.
-    #
-    # @param value [String]
-    # @return [self]
-    def user(value)
-      merge(user: value.to_s)
-    end
+      # User name.
+      #
+      # @param value [String]
+      # @return [self]
+      def user(value)
+        merge(user: value.to_s)
+      end
 
-    # User ID.
-    #
-    # @param value [Integer]
-    # @return [self]
-    def userid(value)
-      merge(userid: value.to_s)
-    end
+      # User ID.
+      #
+      # @param value [Integer]
+      # @return [self]
+      def userid(value)
+        merge(userid: value.to_s)
+      end
 
-    # Add the user to these groups, or if they are already a member, update the expiry of their membership in that group.
-    #
-    # @param values [Array<String>] Allowed values: "bot", "sysop", "bureaucrat", "reviewer", "steward", "accountcreator", "import", "transwiki", "ipblock-exempt", "oversight", "founder", "rollbacker", "autoreviewer", "researcher", "filemover", "checkuser", "templateeditor", "massmessage-sender", "extendedconfirmed", "extendedmover", "patroller", "abusefilter", "confirmed", "epcoordinator", "eponline", "epcampus", "epinstructor".
-    # @return [self]
-    def add(*values)
-      merge(add: values.join('|'))
-    end
+      # Add the user to these groups, or if they are already a member, update the expiry of their membership in that group.
+      #
+      # @param values [Array<String>] Allowed values: "bot", "sysop", "bureaucrat", "reviewer", "steward", "accountcreator", "import", "transwiki", "ipblock-exempt", "oversight", "founder", "rollbacker", "autoreviewer", "researcher", "filemover", "checkuser", "templateeditor", "massmessage-sender", "extendedconfirmed", "extendedmover", "patroller", "abusefilter", "confirmed", "epcoordinator", "eponline", "epcampus", "epinstructor".
+      # @return [self]
+      def add(*values)
+        merge(add: values.join('|'))
+      end
 
-    # Expiry timestamps. May be relative (e.g. 5 months or 2 weeks) or absolute (e.g. 2014-09-18T12:34:56Z). If only one timestamp is set, it will be used for all groups passed to the add parameter. Use infinite, indefinite, infinity, or never for a never-expiring user group.
-    #
-    # @param values [Array<String>]
-    # @return [self]
-    def expiry(*values)
-      merge(expiry: values.join('|'))
-    end
+      # Expiry timestamps. May be relative (e.g. 5 months or 2 weeks) or absolute (e.g. 2014-09-18T12:34:56Z). If only one timestamp is set, it will be used for all groups passed to the add parameter. Use infinite, indefinite, infinity, or never for a never-expiring user group.
+      #
+      # @param values [Array<String>]
+      # @return [self]
+      def expiry(*values)
+        merge(expiry: values.join('|'))
+      end
 
-    # Remove the user from these groups.
-    #
-    # @param values [Array<String>] Allowed values: "bot", "sysop", "bureaucrat", "reviewer", "steward", "accountcreator", "import", "transwiki", "ipblock-exempt", "oversight", "founder", "rollbacker", "autoreviewer", "researcher", "filemover", "checkuser", "templateeditor", "massmessage-sender", "extendedconfirmed", "extendedmover", "patroller", "abusefilter", "confirmed", "epcoordinator", "eponline", "epcampus", "epinstructor".
-    # @return [self]
-    def remove(*values)
-      merge(remove: values.join('|'))
-    end
+      # Remove the user from these groups.
+      #
+      # @param values [Array<String>] Allowed values: "bot", "sysop", "bureaucrat", "reviewer", "steward", "accountcreator", "import", "transwiki", "ipblock-exempt", "oversight", "founder", "rollbacker", "autoreviewer", "researcher", "filemover", "checkuser", "templateeditor", "massmessage-sender", "extendedconfirmed", "extendedmover", "patroller", "abusefilter", "confirmed", "epcoordinator", "eponline", "epcampus", "epinstructor".
+      # @return [self]
+      def remove(*values)
+        merge(remove: values.join('|'))
+      end
 
-    # Reason for the change.
-    #
-    # @param value [String]
-    # @return [self]
-    def reason(value)
-      merge(reason: value.to_s)
-    end
+      # Reason for the change.
+      #
+      # @param value [String]
+      # @return [self]
+      def reason(value)
+        merge(reason: value.to_s)
+      end
 
-    # A "userrights" token retrieved from action=query&meta=tokens
-    #
-    # @param value [String]
-    # @return [self]
-    def token(value)
-      merge(token: value.to_s)
-    end
+      # A "userrights" token retrieved from action=query&meta=tokens
+      #
+      # @param value [String]
+      # @return [self]
+      def token(value)
+        merge(token: value.to_s)
+      end
 
-    # Change tags to apply to the entry in the user rights log.
-    #
-    # @param values [Array<String>] Allowed values: "ProveIt edit", "WPCleaner", "huggle", "large plot addition".
-    # @return [self]
-    def tags(*values)
-      merge(tags: values.join('|'))
-    end
+      # Change tags to apply to the entry in the user rights log.
+      #
+      # @param values [Array<String>] Allowed values: "ProveIt edit", "WPCleaner", "huggle", "large plot addition".
+      # @return [self]
+      def tags(*values)
+        merge(tags: values.join('|'))
+      end
   end
   end
 end

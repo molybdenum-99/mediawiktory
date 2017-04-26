@@ -21,28 +21,28 @@ module MediaWiktory::Wikipedia
     #
     class Titleblacklist < MediaWiktory::Wikipedia::GetAction
 
-    # The string to validate against the blacklist.
-    #
-    # @param value [String]
-    # @return [self]
-    def title(value)
-      merge(tbtitle: value.to_s)
-    end
+      # The string to validate against the blacklist.
+      #
+      # @param value [String]
+      # @return [self]
+      def title(value)
+        merge(tbtitle: value.to_s)
+      end
 
-    # The action to be checked.
-    #
-    # @param value [String] One of "create", "edit", "upload", "createtalk", "createpage", "move", "new-account".
-    # @return [self]
-    def action(value)
-      merge(tbaction: value.to_s)
-    end
+      # The action to be checked.
+      #
+      # @param value [String] One of "create", "edit", "upload", "createtalk", "createpage", "move", "new-account".
+      # @return [self]
+      def action(value)
+        merge(tbaction: value.to_s)
+      end
 
-    # Don't try to override the titleblacklist.
-    #
-    # @return [self]
-    def nooverride()
-      merge(tbnooverride: 'true')
-    end
+      # Don't try to override the titleblacklist.
+      #
+      # @return [self]
+      def nooverride()
+        merge(tbnooverride: 'true')
+      end
   end
   end
 end

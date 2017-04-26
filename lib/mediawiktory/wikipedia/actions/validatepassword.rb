@@ -21,37 +21,37 @@ module MediaWiktory::Wikipedia
     #
     class Validatepassword < MediaWiktory::Wikipedia::GetAction
 
-    # Password to validate.
-    #
-    # @param value [String]
-    # @return [self]
-    def password(value)
-      merge(password: value.to_s)
-    end
+      # Password to validate.
+      #
+      # @param value [String]
+      # @return [self]
+      def password(value)
+        merge(password: value.to_s)
+      end
 
-    # User name, for use when testing account creation. The named user must not exist.
-    #
-    # @param value [String]
-    # @return [self]
-    def user(value)
-      merge(user: value.to_s)
-    end
+      # User name, for use when testing account creation. The named user must not exist.
+      #
+      # @param value [String]
+      # @return [self]
+      def user(value)
+        merge(user: value.to_s)
+      end
 
-    # Email address, for use when testing account creation.
-    #
-    # @param value [String]
-    # @return [self]
-    def email(value)
-      merge(email: value.to_s)
-    end
+      # Email address, for use when testing account creation.
+      #
+      # @param value [String]
+      # @return [self]
+      def email(value)
+        merge(email: value.to_s)
+      end
 
-    # Real name, for use when testing account creation.
-    #
-    # @param value [String]
-    # @return [self]
-    def realname(value)
-      merge(realname: value.to_s)
-    end
+      # Real name, for use when testing account creation.
+      #
+      # @param value [String]
+      # @return [self]
+      def realname(value)
+        merge(realname: value.to_s)
+      end
   end
   end
 end

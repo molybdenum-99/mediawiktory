@@ -21,33 +21,33 @@ module MediaWiktory::Wikipedia
     #
     class Templatedata < MediaWiktory::Wikipedia::GetAction
 
-    # A list of titles to work on.
-    #
-    # @param values [Array<String>]
-    # @return [self]
-    def titles(*values)
-      merge(titles: values.join('|'))
-    end
+      # A list of titles to work on.
+      #
+      # @param values [Array<String>]
+      # @return [self]
+      def titles(*values)
+        merge(titles: values.join('|'))
+      end
 
-    # A list of page IDs to work on.
-    #
-    # @param values [Array<Integer>]
-    # @return [self]
-    def pageids(*values)
-      merge(pageids: values.join('|'))
-    end
+      # A list of page IDs to work on.
+      #
+      # @param values [Array<Integer>]
+      # @return [self]
+      def pageids(*values)
+        merge(pageids: values.join('|'))
+      end
 
-    # A list of revision IDs to work on.
-    #
-    # @param values [Array<Integer>]
-    # @return [self]
-    def revids(*values)
-      merge(revids: values.join('|'))
-    end
+      # A list of revision IDs to work on.
+      #
+      # @param values [Array<Integer>]
+      # @return [self]
+      def revids(*values)
+        merge(revids: values.join('|'))
+      end
 
-    # Get the list of pages to work on by executing the specified query module.
-    #
-    # @param value [Symbol] Selecting an option includes tweaking methods from corresponding module:
+      # Get the list of pages to work on by executing the specified query module.
+      #
+      # @param value [Symbol] Selecting an option includes tweaking methods from corresponding module:
     #   * `:allcategories` - {MediaWiktory::Wikipedia::Modules::Allcategories} Enumerate all categories. 
     #   * `:alldeletedrevisions` - {MediaWiktory::Wikipedia::Modules::Alldeletedrevisions} List all deleted revisions by a user or in a namespace. 
     #   * `:allfileusages` - {MediaWiktory::Wikipedia::Modules::Allfileusages} List all file usages, including non-existing. 
@@ -92,32 +92,32 @@ module MediaWiktory::Wikipedia
     #   * `:watchlist` - {MediaWiktory::Wikipedia::Modules::Watchlist} Get recent changes to pages in the current user's watchlist. 
     #   * `:watchlistraw` - {MediaWiktory::Wikipedia::Modules::Watchlistraw} Get all pages on the current user's watchlist. 
     #   * `:wblistentityusage` - {MediaWiktory::Wikipedia::Modules::Wblistentityusage} Returns all pages that use the given entity IDs. 
-    # @return [self]
-    def generator(value)
-      merge_module(:generator, value, allcategories: Modules::Allcategories, alldeletedrevisions: Modules::Alldeletedrevisions, allfileusages: Modules::Allfileusages, allimages: Modules::Allimages, alllinks: Modules::Alllinks, allpages: Modules::Allpages, allredirects: Modules::Allredirects, allrevisions: Modules::Allrevisions, alltransclusions: Modules::Alltransclusions, backlinks: Modules::Backlinks, categories: Modules::Categories, categorymembers: Modules::Categorymembers, contenttranslation: Modules::Contenttranslation, contenttranslationsuggestions: Modules::Contenttranslationsuggestions, deletedrevisions: Modules::Deletedrevisions, duplicatefiles: Modules::Duplicatefiles, embeddedin: Modules::Embeddedin, exturlusage: Modules::Exturlusage, fileusage: Modules::Fileusage, geosearch: Modules::Geosearch, gettingstartedgetpages: Modules::Gettingstartedgetpages, images: Modules::Images, imageusage: Modules::Imageusage, iwbacklinks: Modules::Iwbacklinks, langbacklinks: Modules::Langbacklinks, links: Modules::Links, linkshere: Modules::Linkshere, mostviewed: Modules::Mostviewed, oldreviewedpages: Modules::Oldreviewedpages, pageswithprop: Modules::Pageswithprop, prefixsearch: Modules::Prefixsearch, projectpages: Modules::Projectpages, protectedtitles: Modules::Protectedtitles, querypage: Modules::Querypage, random: Modules::Random, recentchanges: Modules::Recentchanges, redirects: Modules::Redirects, revisions: Modules::Revisions, search: Modules::Search, templates: Modules::Templates, transcludedin: Modules::Transcludedin, watchlist: Modules::Watchlist, watchlistraw: Modules::Watchlistraw, wblistentityusage: Modules::Wblistentityusage)
-    end
+      # @return [self]
+      def generator(value)
+        merge_module(:generator, value, allcategories: Modules::Allcategories, alldeletedrevisions: Modules::Alldeletedrevisions, allfileusages: Modules::Allfileusages, allimages: Modules::Allimages, alllinks: Modules::Alllinks, allpages: Modules::Allpages, allredirects: Modules::Allredirects, allrevisions: Modules::Allrevisions, alltransclusions: Modules::Alltransclusions, backlinks: Modules::Backlinks, categories: Modules::Categories, categorymembers: Modules::Categorymembers, contenttranslation: Modules::Contenttranslation, contenttranslationsuggestions: Modules::Contenttranslationsuggestions, deletedrevisions: Modules::Deletedrevisions, duplicatefiles: Modules::Duplicatefiles, embeddedin: Modules::Embeddedin, exturlusage: Modules::Exturlusage, fileusage: Modules::Fileusage, geosearch: Modules::Geosearch, gettingstartedgetpages: Modules::Gettingstartedgetpages, images: Modules::Images, imageusage: Modules::Imageusage, iwbacklinks: Modules::Iwbacklinks, langbacklinks: Modules::Langbacklinks, links: Modules::Links, linkshere: Modules::Linkshere, mostviewed: Modules::Mostviewed, oldreviewedpages: Modules::Oldreviewedpages, pageswithprop: Modules::Pageswithprop, prefixsearch: Modules::Prefixsearch, projectpages: Modules::Projectpages, protectedtitles: Modules::Protectedtitles, querypage: Modules::Querypage, random: Modules::Random, recentchanges: Modules::Recentchanges, redirects: Modules::Redirects, revisions: Modules::Revisions, search: Modules::Search, templates: Modules::Templates, transcludedin: Modules::Transcludedin, watchlist: Modules::Watchlist, watchlistraw: Modules::Watchlistraw, wblistentityusage: Modules::Wblistentityusage)
+      end
 
-    # Automatically resolve redirects in titles, pageids, and revids, and in pages returned by generator.
-    #
-    # @return [self]
-    def redirects()
-      merge(redirects: 'true')
-    end
+      # Automatically resolve redirects in titles, pageids, and revids, and in pages returned by generator.
+      #
+      # @return [self]
+      def redirects()
+        merge(redirects: 'true')
+      end
 
-    # Convert titles to other variants if necessary. Only works if the wiki's content language supports variant conversion. Languages that support variant conversion include gan, iu, kk, ku, shi, sr, tg, uz and zh.
-    #
-    # @return [self]
-    def converttitles()
-      merge(converttitles: 'true')
-    end
+      # Convert titles to other variants if necessary. Only works if the wiki's content language supports variant conversion. Languages that support variant conversion include gan, iu, kk, ku, shi, sr, tg, uz and zh.
+      #
+      # @return [self]
+      def converttitles()
+        merge(converttitles: 'true')
+      end
 
-    # Return localized values in this language. By default all available translations are returned.
-    #
-    # @param value [String]
-    # @return [self]
-    def lang(value)
-      merge(lang: value.to_s)
-    end
+      # Return localized values in this language. By default all available translations are returned.
+      #
+      # @param value [String]
+      # @return [self]
+      def lang(value)
+        merge(lang: value.to_s)
+      end
   end
   end
 end

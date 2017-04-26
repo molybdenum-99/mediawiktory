@@ -45,6 +45,11 @@ module MediaWiktory
         params.reject! { |p| p.name == 'action' } if main?
       end
 
+      def prefix=(pre)
+        super
+        params.each { |p| p.prefix = pre }
+      end
+
       def inspect
         "#<#{self.class.name} #{name}>"
       end
@@ -71,12 +76,16 @@ module MediaWiktory
       def to_h
         super.merge(
           'class_name' => class_name,
-          'method_name' => name.split('-').join('_'),
+          'method_name' => method_name,
           'description' => description.split("\n").join("\n#\n# "),
           'params' => params
             .reject { |p| p.name == '*' } # TODO: some actions have "rest of parameters, see there".
             .map(&:to_h)                  # Currently, we ignore it
         )
+      end
+
+      def method_name
+        name.sub(/^g-/, '').split('-').join('_')
       end
 
       def class_name

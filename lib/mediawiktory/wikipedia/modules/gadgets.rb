@@ -22,43 +22,43 @@ module MediaWiktory::Wikipedia
     #
     module Gadgets
 
-    # What gadget information to get:
-    #
-    # @param values [Array<String>] Allowed values: "id" (Internal gadget ID), "metadata" (The gadget metadata), "desc" (Gadget description transformed into HTML (can be slow, use only if really needed)).
-    # @return [self]
-    def prop(*values)
-      merge(gaprop: values.join('|'))
-    end
+      # What gadget information to get:
+      #
+      # @param values [Array<String>] Allowed values: "id" (Internal gadget ID), "metadata" (The gadget metadata), "desc" (Gadget description transformed into HTML (can be slow, use only if really needed)).
+      # @return [self]
+      def prop(*values)
+        merge(gaprop: values.join('|'))
+      end
 
-    # Gadgets from what categories to retrieve.
-    #
-    # @param values [Array<String>]
-    # @return [self]
-    def categories(*values)
-      merge(gacategories: values.join('|'))
-    end
+      # Gadgets from what categories to retrieve.
+      #
+      # @param values [Array<String>]
+      # @return [self]
+      def categories(*values)
+        merge(gacategories: values.join('|'))
+      end
 
-    # IDs of gadgets to retrieve.
-    #
-    # @param values [Array<String>]
-    # @return [self]
-    def ids(*values)
-      merge(gaids: values.join('|'))
-    end
+      # IDs of gadgets to retrieve.
+      #
+      # @param values [Array<String>]
+      # @return [self]
+      def ids(*values)
+        merge(gaids: values.join('|'))
+      end
 
-    # List only gadgets allowed to current user.
-    #
-    # @return [self]
-    def allowedonly()
-      merge(gaallowedonly: 'true')
-    end
+      # List only gadgets allowed to current user.
+      #
+      # @return [self]
+      def allowedonly()
+        merge(gaallowedonly: 'true')
+      end
 
-    # List only gadgets enabled by current user.
-    #
-    # @return [self]
-    def enabledonly()
-      merge(gaenabledonly: 'true')
-    end
+      # List only gadgets enabled by current user.
+      #
+      # @return [self]
+      def enabledonly()
+        merge(gaenabledonly: 'true')
+      end
   end
   end
 end

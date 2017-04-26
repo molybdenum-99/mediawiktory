@@ -21,21 +21,21 @@ module MediaWiktory::Wikipedia
     #
     class SanitizeMapdata < MediaWiktory::Wikipedia::GetAction
 
-    # Title of page on which this GeoJSON is supposed to be located. If no title is provided, a dummy one will be used.
-    #
-    # @param value [String]
-    # @return [self]
-    def title(value)
-      merge(title: value.to_s)
-    end
+      # Title of page on which this GeoJSON is supposed to be located. If no title is provided, a dummy one will be used.
+      #
+      # @param value [String]
+      # @return [self]
+      def title(value)
+        merge(title: value.to_s)
+      end
 
-    # GeoJSON to sanitize
-    #
-    # @param value [String]
-    # @return [self]
-    def text(value)
-      merge(text: value.to_s)
-    end
+      # GeoJSON to sanitize
+      #
+      # @param value [String]
+      # @return [self]
+      def text(value)
+        merge(text: value.to_s)
+      end
   end
   end
 end

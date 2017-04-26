@@ -21,29 +21,29 @@ module MediaWiktory::Wikipedia
     #
     class Addstudents < MediaWiktory::Wikipedia::GetAction
 
-    # The usernames of the students to add to the course.
-    #
-    # @param values [Array<String>]
-    # @return [self]
-    def studentusernames(*values)
-      merge(studentusernames: values.join('|'))
-    end
+      # The usernames of the students to add to the course.
+      #
+      # @param values [Array<String>]
+      # @return [self]
+      def studentusernames(*values)
+        merge(studentusernames: values.join('|'))
+      end
 
-    # The ID of the course to which the students should be added/removed.
-    #
-    # @param value [Integer]
-    # @return [self]
-    def courseid(value)
-      merge(courseid: value.to_s)
-    end
+      # The ID of the course to which the students should be added/removed.
+      #
+      # @param value [Integer]
+      # @return [self]
+      def courseid(value)
+        merge(courseid: value.to_s)
+      end
 
-    # A "csrf" token retrieved from action=query&meta=tokens
-    #
-    # @param value [String]
-    # @return [self]
-    def token(value)
-      merge(token: value.to_s)
-    end
+      # A "csrf" token retrieved from action=query&meta=tokens
+      #
+      # @param value [String]
+      # @return [self]
+      def token(value)
+        merge(token: value.to_s)
+      end
   end
   end
 end

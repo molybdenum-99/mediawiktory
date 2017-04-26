@@ -22,36 +22,36 @@ module MediaWiktory::Wikipedia
     #
     module Duplicatefiles
 
-    # How many duplicate files to return.
-    #
-    # @param value [Integer, "max"]
-    # @return [self]
-    def limit(value)
-      merge(dflimit: value.to_s)
-    end
+      # How many duplicate files to return.
+      #
+      # @param value [Integer, "max"]
+      # @return [self]
+      def limit(value)
+        merge(dflimit: value.to_s)
+      end
 
-    # When more results are available, use this to continue.
-    #
-    # @param value [String]
-    # @return [self]
-    def continue(value)
-      merge(dfcontinue: value.to_s)
-    end
+      # When more results are available, use this to continue.
+      #
+      # @param value [String]
+      # @return [self]
+      def continue(value)
+        merge(dfcontinue: value.to_s)
+      end
 
-    # The direction in which to list.
-    #
-    # @param value [String] One of "ascending", "descending".
-    # @return [self]
-    def dir(value)
-      merge(dfdir: value.to_s)
-    end
+      # The direction in which to list.
+      #
+      # @param value [String] One of "ascending", "descending".
+      # @return [self]
+      def dir(value)
+        merge(dfdir: value.to_s)
+      end
 
-    # Look only for files in the local repository.
-    #
-    # @return [self]
-    def localonly()
-      merge(dflocalonly: 'true')
-    end
+      # Look only for files in the local repository.
+      #
+      # @return [self]
+      def localonly()
+        merge(dflocalonly: 'true')
+      end
   end
   end
 end

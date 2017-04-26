@@ -7,12 +7,12 @@ module {{ namespace }}
     # Usage:
     #
     # ```ruby
-    # api.some_action.{{ object.name }}(**options).perform # returns string with raw output
+    # api.some_action.{{ object.method_name }}(**options).perform # returns string with raw output
     # # or
-    # api.some_action.{{ object.name }}(**options).response # returns output parsed and wrapped into Mash-like object
+    # api.some_action.{{ object.method_name }}(**options).response # returns output parsed and wrapped into Mash-like object
     #
     # # or, with chainable interface:
-    # api.some_action.{{ object.name }}.{{ object.params.first.name }}(value).perform
+    # api.some_action.{{ object.method_name }}.{{ object.params.first.name }}(value).perform
     # ```
     #
     # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and their

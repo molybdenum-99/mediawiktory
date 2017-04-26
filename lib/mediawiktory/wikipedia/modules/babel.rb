@@ -22,13 +22,13 @@ module MediaWiktory::Wikipedia
     #
     module Babel
 
-    # User to get information about
-    #
-    # @param value [String]
-    # @return [self]
-    def user(value)
-      merge(babuser: value.to_s)
-    end
+      # User to get information about
+      #
+      # @param value [String]
+      # @return [self]
+      def user(value)
+        merge(babuser: value.to_s)
+      end
   end
   end
 end

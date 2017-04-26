@@ -22,13 +22,13 @@ module MediaWiktory::Wikipedia
     #
     module Cxtranslatorstats
 
-    # The translator's user name. This parameter is optional. If not passed, the currently logged-in user will be used.
-    #
-    # @param value [String]
-    # @return [self]
-    def translator(value)
-      merge(translator: value.to_s)
-    end
+      # The translator's user name. This parameter is optional. If not passed, the currently logged-in user will be used.
+      #
+      # @param value [String]
+      # @return [self]
+      def translator(value)
+        merge(translator: value.to_s)
+      end
   end
   end
 end

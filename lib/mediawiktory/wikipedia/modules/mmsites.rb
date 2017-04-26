@@ -22,13 +22,13 @@ module MediaWiktory::Wikipedia
     #
     module Mmsites
 
-    # The prefix to search for.
-    #
-    # @param value [String]
-    # @return [self]
-    def term(value)
-      merge(term: value.to_s)
-    end
+      # The prefix to search for.
+      #
+      # @param value [String]
+      # @return [self]
+      def term(value)
+        merge(term: value.to_s)
+      end
   end
   end
 end

@@ -21,21 +21,21 @@ module MediaWiktory::Wikipedia
     #
     class Cxconfiguration < MediaWiktory::Wikipedia::GetAction
 
-    # The source language code.
-    #
-    # @param value [String]
-    # @return [self]
-    def from(value)
-      merge(from: value.to_s)
-    end
+      # The source language code.
+      #
+      # @param value [String]
+      # @return [self]
+      def from(value)
+        merge(from: value.to_s)
+      end
 
-    # The target language code.
-    #
-    # @param value [String]
-    # @return [self]
-    def to(value)
-      merge(to: value.to_s)
-    end
+      # The target language code.
+      #
+      # @param value [String]
+      # @return [self]
+      def to(value)
+        merge(to: value.to_s)
+      end
   end
   end
 end

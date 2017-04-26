@@ -22,28 +22,28 @@ module MediaWiktory::Wikipedia
     #
     module Contenttranslationcorpora
 
-    # ID of the translation.
-    #
-    # @param value [Integer]
-    # @return [self]
-    def translationid(value)
-      merge(translationid: value.to_s)
-    end
+      # ID of the translation.
+      #
+      # @param value [Integer]
+      # @return [self]
+      def translationid(value)
+        merge(translationid: value.to_s)
+      end
 
-    # Whether to strip all HTML tags to return plaintext.
-    #
-    # @return [self]
-    def striphtml()
-      merge(striphtml: 'true')
-    end
+      # Whether to strip all HTML tags to return plaintext.
+      #
+      # @return [self]
+      def striphtml()
+        merge(striphtml: 'true')
+      end
 
-    # By default you will get all three of following if available: source text, machine translation and the postedited translation by the user. This parameter allows you not return some of these types.
-    #
-    # @param values [Array<String>] Allowed values: "source", "mt", "user".
-    # @return [self]
-    def types(*values)
-      merge(types: values.join('|'))
-    end
+      # By default you will get all three of following if available: source text, machine translation and the postedited translation by the user. This parameter allows you not return some of these types.
+      #
+      # @param values [Array<String>] Allowed values: "source", "mt", "user".
+      # @return [self]
+      def types(*values)
+        merge(types: values.join('|'))
+      end
   end
   end
 end

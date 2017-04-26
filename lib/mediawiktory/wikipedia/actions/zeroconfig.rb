@@ -21,21 +21,21 @@ module MediaWiktory::Wikipedia
     #
     class Zeroconfig < MediaWiktory::Wikipedia::GetAction
 
-    # What kind of Zero info is needed:
-    #
-    # @param value [String] One of "config" (Get a trimmed-down carrier configuration based on the X-CS header), "message" (Get language-appropriate verbiage based on X-CS header; requires agent param).
-    # @return [self]
-    def type(value)
-      merge(type: value.to_s)
-    end
+      # What kind of Zero info is needed:
+      #
+      # @param value [String] One of "config" (Get a trimmed-down carrier configuration based on the X-CS header), "message" (Get language-appropriate verbiage based on X-CS header; requires agent param).
+      # @return [self]
+      def type(value)
+        merge(type: value.to_s)
+      end
 
-    # When setting type to message, include a source agent value as well.
-    #
-    # @param value [String]
-    # @return [self]
-    def agent(value)
-      merge(agent: value.to_s)
-    end
+      # When setting type to message, include a source agent value as well.
+      #
+      # @param value [String]
+      # @return [self]
+      def agent(value)
+        merge(agent: value.to_s)
+      end
   end
   end
 end

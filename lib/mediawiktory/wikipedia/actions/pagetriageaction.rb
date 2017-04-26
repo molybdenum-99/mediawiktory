@@ -21,44 +21,44 @@ module MediaWiktory::Wikipedia
     #
     class Pagetriageaction < MediaWiktory::Wikipedia::GetAction
 
-    # The article for which to be marked as reviewed or unreviewed.
-    #
-    # @param value [Integer]
-    # @return [self]
-    def pageid(value)
-      merge(pageid: value.to_s)
-    end
+      # The article for which to be marked as reviewed or unreviewed.
+      #
+      # @param value [Integer]
+      # @return [self]
+      def pageid(value)
+        merge(pageid: value.to_s)
+      end
 
-    # Whether the article is reviewed.
-    #
-    # @param value [String] One of "1", "0".
-    # @return [self]
-    def reviewed(value)
-      merge(reviewed: value.to_s)
-    end
+      # Whether the article is reviewed.
+      #
+      # @param value [String] One of "1", "0".
+      # @return [self]
+      def reviewed(value)
+        merge(reviewed: value.to_s)
+      end
 
-    # A "csrf" token retrieved from action=query&meta=tokens
-    #
-    # @param value [String]
-    # @return [self]
-    def token(value)
-      merge(token: value.to_s)
-    end
+      # A "csrf" token retrieved from action=query&meta=tokens
+      #
+      # @param value [String]
+      # @return [self]
+      def token(value)
+        merge(token: value.to_s)
+      end
 
-    # Personal note to page creators from reviewers.
-    #
-    # @param value [String]
-    # @return [self]
-    def note(value)
-      merge(note: value.to_s)
-    end
+      # Personal note to page creators from reviewers.
+      #
+      # @param value [String]
+      # @return [self]
+      def note(value)
+        merge(note: value.to_s)
+      end
 
-    # Whether to skip notification.
-    #
-    # @return [self]
-    def skipnotif()
-      merge(skipnotif: 'true')
-    end
+      # Whether to skip notification.
+      #
+      # @return [self]
+      def skipnotif()
+        merge(skipnotif: 'true')
+      end
   end
   end
 end

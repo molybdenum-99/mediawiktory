@@ -21,61 +21,61 @@ module MediaWiktory::Wikipedia
     #
     class Enlist < MediaWiktory::Wikipedia::GetAction
 
-    # Specifies what you want to do with the instructor or volunteer.
-    #
-    # @param value [String] One of "add", "remove".
-    # @return [self]
-    def subaction(value)
-      merge(subaction: value.to_s)
-    end
+      # Specifies what you want to do with the instructor or volunteer.
+      #
+      # @param value [String] One of "add", "remove".
+      # @return [self]
+      def subaction(value)
+        merge(subaction: value.to_s)
+      end
 
-    # The role to affect. "instructor" for instructor, "online" for online volunteer and "campus" for campus volunteer.
-    #
-    # @param value [String] One of "instructor", "online", "campus", "student".
-    # @return [self]
-    def role(value)
-      merge(role: value.to_s)
-    end
+      # The role to affect. "instructor" for instructor, "online" for online volunteer and "campus" for campus volunteer.
+      #
+      # @param value [String] One of "instructor", "online", "campus", "student".
+      # @return [self]
+      def role(value)
+        merge(role: value.to_s)
+      end
 
-    # Name of the user to associate or disassociate.
-    #
-    # @param value [String]
-    # @return [self]
-    def username(value)
-      merge(username: value.to_s)
-    end
+      # Name of the user to associate or disassociate.
+      #
+      # @param value [String]
+      # @return [self]
+      def username(value)
+        merge(username: value.to_s)
+      end
 
-    # ID of the user to associate or disassociate.
-    #
-    # @param value [Integer]
-    # @return [self]
-    def userid(value)
-      merge(userid: value.to_s)
-    end
+      # ID of the user to associate or disassociate.
+      #
+      # @param value [Integer]
+      # @return [self]
+      def userid(value)
+        merge(userid: value.to_s)
+      end
 
-    # The ID of the course.
-    #
-    # @param value [Integer]
-    # @return [self]
-    def courseid(value)
-      merge(courseid: value.to_s)
-    end
+      # The ID of the course.
+      #
+      # @param value [Integer]
+      # @return [self]
+      def courseid(value)
+        merge(courseid: value.to_s)
+      end
 
-    # Reason for this deletion, for the log.
-    #
-    # @param value [String]
-    # @return [self]
-    def reason(value)
-      merge(reason: value.to_s)
-    end
+      # Reason for this deletion, for the log.
+      #
+      # @param value [String]
+      # @return [self]
+      def reason(value)
+        merge(reason: value.to_s)
+      end
 
-    # A "csrf" token retrieved from action=query&meta=tokens
-    #
-    # @param value [String]
-    # @return [self]
-    def token(value)
-      merge(token: value.to_s)
-    end
+      # A "csrf" token retrieved from action=query&meta=tokens
+      #
+      # @param value [String]
+      # @return [self]
+      def token(value)
+        merge(token: value.to_s)
+      end
   end
   end
 end

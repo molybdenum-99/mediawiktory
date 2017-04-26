@@ -21,13 +21,13 @@ module MediaWiktory::Wikipedia
     #
     class Abusefilterevalexpression < MediaWiktory::Wikipedia::GetAction
 
-    # The expression to evaluate.
-    #
-    # @param value [String]
-    # @return [self]
-    def expression(value)
-      merge(expression: value.to_s)
-    end
+      # The expression to evaluate.
+      #
+      # @param value [String]
+      # @return [self]
+      def expression(value)
+        merge(expression: value.to_s)
+      end
   end
   end
 end

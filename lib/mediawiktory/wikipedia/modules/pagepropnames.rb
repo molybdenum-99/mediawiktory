@@ -22,21 +22,21 @@ module MediaWiktory::Wikipedia
     #
     module Pagepropnames
 
-    # When more results are available, use this to continue.
-    #
-    # @param value [String]
-    # @return [self]
-    def continue(value)
-      merge(ppncontinue: value.to_s)
-    end
+      # When more results are available, use this to continue.
+      #
+      # @param value [String]
+      # @return [self]
+      def continue(value)
+        merge(ppncontinue: value.to_s)
+      end
 
-    # The maximum number of names to return.
-    #
-    # @param value [Integer, "max"]
-    # @return [self]
-    def limit(value)
-      merge(ppnlimit: value.to_s)
-    end
+      # The maximum number of names to return.
+      #
+      # @param value [Integer, "max"]
+      # @return [self]
+      def limit(value)
+        merge(ppnlimit: value.to_s)
+      end
   end
   end
 end

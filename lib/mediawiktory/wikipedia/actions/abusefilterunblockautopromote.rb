@@ -21,21 +21,21 @@ module MediaWiktory::Wikipedia
     #
     class Abusefilterunblockautopromote < MediaWiktory::Wikipedia::GetAction
 
-    # Username of the user you want to unblock.
-    #
-    # @param value [String]
-    # @return [self]
-    def user(value)
-      merge(user: value.to_s)
-    end
+      # Username of the user you want to unblock.
+      #
+      # @param value [String]
+      # @return [self]
+      def user(value)
+        merge(user: value.to_s)
+      end
 
-    # A "csrf" token retrieved from action=query&meta=tokens
-    #
-    # @param value [String]
-    # @return [self]
-    def token(value)
-      merge(token: value.to_s)
-    end
+      # A "csrf" token retrieved from action=query&meta=tokens
+      #
+      # @param value [String]
+      # @return [self]
+      def token(value)
+        merge(token: value.to_s)
+      end
   end
   end
 end

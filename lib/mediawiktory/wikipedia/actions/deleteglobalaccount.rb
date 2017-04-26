@@ -21,29 +21,29 @@ module MediaWiktory::Wikipedia
     #
     class Deleteglobalaccount < MediaWiktory::Wikipedia::GetAction
 
-    # User to delete.
-    #
-    # @param value [String]
-    # @return [self]
-    def user(value)
-      merge(user: value.to_s)
-    end
+      # User to delete.
+      #
+      # @param value [String]
+      # @return [self]
+      def user(value)
+        merge(user: value.to_s)
+      end
 
-    # Reason for deleting the user.
-    #
-    # @param value [String]
-    # @return [self]
-    def reason(value)
-      merge(reason: value.to_s)
-    end
+      # Reason for deleting the user.
+      #
+      # @param value [String]
+      # @return [self]
+      def reason(value)
+        merge(reason: value.to_s)
+      end
 
-    # A "deleteglobalaccount" token retrieved from action=query&meta=tokens
-    #
-    # @param value [String]
-    # @return [self]
-    def token(value)
-      merge(token: value.to_s)
-    end
+      # A "deleteglobalaccount" token retrieved from action=query&meta=tokens
+      #
+      # @param value [String]
+      # @return [self]
+      def token(value)
+        merge(token: value.to_s)
+      end
   end
   end
 end

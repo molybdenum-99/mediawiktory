@@ -21,37 +21,37 @@ module MediaWiktory::Wikipedia
     #
     class Abusefiltercheckmatch < MediaWiktory::Wikipedia::GetAction
 
-    # The full filter text to check for a match.
-    #
-    # @param value [String]
-    # @return [self]
-    def filter(value)
-      merge(filter: value.to_s)
-    end
+      # The full filter text to check for a match.
+      #
+      # @param value [String]
+      # @return [self]
+      def filter(value)
+        merge(filter: value.to_s)
+      end
 
-    # JSON encoded array of variables to test against.
-    #
-    # @param value [String]
-    # @return [self]
-    def vars(value)
-      merge(vars: value.to_s)
-    end
+      # JSON encoded array of variables to test against.
+      #
+      # @param value [String]
+      # @return [self]
+      def vars(value)
+        merge(vars: value.to_s)
+      end
 
-    # Recent change ID to check against.
-    #
-    # @param value [Integer]
-    # @return [self]
-    def rcid(value)
-      merge(rcid: value.to_s)
-    end
+      # Recent change ID to check against.
+      #
+      # @param value [Integer]
+      # @return [self]
+      def rcid(value)
+        merge(rcid: value.to_s)
+      end
 
-    # Abuse filter log ID to check against.
-    #
-    # @param value [Integer]
-    # @return [self]
-    def logid(value)
-      merge(logid: value.to_s)
-    end
+      # Abuse filter log ID to check against.
+      #
+      # @param value [Integer]
+      # @return [self]
+      def logid(value)
+        merge(logid: value.to_s)
+      end
   end
   end
 end

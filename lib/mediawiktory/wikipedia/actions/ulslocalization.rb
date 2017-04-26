@@ -21,13 +21,13 @@ module MediaWiktory::Wikipedia
     #
     class Ulslocalization < MediaWiktory::Wikipedia::GetAction
 
-    # Language code.
-    #
-    # @param value [String]
-    # @return [self]
-    def language(value)
-      merge(language: value.to_s)
-    end
+      # Language code.
+      #
+      # @param value [String]
+      # @return [self]
+      def language(value)
+        merge(language: value.to_s)
+      end
   end
   end
 end

@@ -22,13 +22,13 @@ module MediaWiktory::Wikipedia
     #
     module Wikibase
 
-    # Which properties to get:
-    #
-    # @param values [Array<String>] Allowed values: "url" ( Base URL, script path and article path of the Wikibase repository), "siteid" ( The siteid of this site).
-    # @return [self]
-    def prop(*values)
-      merge(wbprop: values.join('|'))
-    end
+      # Which properties to get:
+      #
+      # @param values [Array<String>] Allowed values: "url" ( Base URL, script path and article path of the Wikibase repository), "siteid" ( The siteid of this site).
+      # @return [self]
+      def prop(*values)
+        merge(wbprop: values.join('|'))
+      end
   end
   end
 end

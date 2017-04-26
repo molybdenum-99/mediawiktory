@@ -22,36 +22,36 @@ module MediaWiktory::Wikipedia
     #
     module Authmanagerinfo
 
-    # Test whether the user's current authentication status is sufficient for the specified security-sensitive operation.
-    #
-    # @param value [String]
-    # @return [self]
-    def securitysensitiveoperation(value)
-      merge(amisecuritysensitiveoperation: value.to_s)
-    end
+      # Test whether the user's current authentication status is sufficient for the specified security-sensitive operation.
+      #
+      # @param value [String]
+      # @return [self]
+      def securitysensitiveoperation(value)
+        merge(amisecuritysensitiveoperation: value.to_s)
+      end
 
-    # Fetch information about the authentication requests needed for the specified authentication action.
-    #
-    # @param value [String] One of "login", "login-continue", "create", "create-continue", "link", "link-continue", "change", "remove", "unlink".
-    # @return [self]
-    def requestsfor(value)
-      merge(amirequestsfor: value.to_s)
-    end
+      # Fetch information about the authentication requests needed for the specified authentication action.
+      #
+      # @param value [String] One of "login", "login-continue", "create", "create-continue", "link", "link-continue", "change", "remove", "unlink".
+      # @return [self]
+      def requestsfor(value)
+        merge(amirequestsfor: value.to_s)
+      end
 
-    # Merge field information for all authentication requests into one array.
-    #
-    # @return [self]
-    def mergerequestfields()
-      merge(amimergerequestfields: 'true')
-    end
+      # Merge field information for all authentication requests into one array.
+      #
+      # @return [self]
+      def mergerequestfields()
+        merge(amimergerequestfields: 'true')
+      end
 
-    # Format to use for returning messages.
-    #
-    # @param value [String] One of "html", "wikitext", "raw", "none".
-    # @return [self]
-    def messageformat(value)
-      merge(amimessageformat: value.to_s)
-    end
+      # Format to use for returning messages.
+      #
+      # @param value [String] One of "html", "wikitext", "raw", "none".
+      # @return [self]
+      def messageformat(value)
+        merge(amimessageformat: value.to_s)
+      end
   end
   end
 end

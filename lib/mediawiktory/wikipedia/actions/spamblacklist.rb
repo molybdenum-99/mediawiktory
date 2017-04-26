@@ -21,13 +21,13 @@ module MediaWiktory::Wikipedia
     #
     class Spamblacklist < MediaWiktory::Wikipedia::GetAction
 
-    # URLs to validate against the blacklist.
-    #
-    # @param values [Array<String>]
-    # @return [self]
-    def url(*values)
-      merge(url: values.join('|'))
-    end
+      # URLs to validate against the blacklist.
+      #
+      # @param values [Array<String>]
+      # @return [self]
+      def url(*values)
+        merge(url: values.join('|'))
+      end
   end
   end
 end

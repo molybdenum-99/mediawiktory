@@ -21,29 +21,29 @@ module MediaWiktory::Wikipedia
     #
     class Refresheducation < MediaWiktory::Wikipedia::GetAction
 
-    # The IDs of the objects to refresh.
-    #
-    # @param values [Array<Integer>]
-    # @return [self]
-    def ids(*values)
-      merge(ids: values.join('|'))
-    end
+      # The IDs of the objects to refresh.
+      #
+      # @param values [Array<Integer>]
+      # @return [self]
+      def ids(*values)
+        merge(ids: values.join('|'))
+      end
 
-    # Type of object to refresh.
-    #
-    # @param value [String] One of "org", "course", "student".
-    # @return [self]
-    def type(value)
-      merge(type: value.to_s)
-    end
+      # Type of object to refresh.
+      #
+      # @param value [String] One of "org", "course", "student".
+      # @return [self]
+      def type(value)
+        merge(type: value.to_s)
+      end
 
-    # A "csrf" token retrieved from action=query&meta=tokens
-    #
-    # @param value [String]
-    # @return [self]
-    def token(value)
-      merge(token: value.to_s)
-    end
+      # A "csrf" token retrieved from action=query&meta=tokens
+      #
+      # @param value [String]
+      # @return [self]
+      def token(value)
+        merge(token: value.to_s)
+      end
   end
   end
 end

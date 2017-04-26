@@ -21,37 +21,37 @@ module MediaWiktory::Wikipedia
     #
     class Strikevote < MediaWiktory::Wikipedia::GetAction
 
-    # Which action to take: strike or unstrike a vote.
-    #
-    # @param value [String] One of "strike" (Strike a vote (remove it from the count)), "unstrike" (Unstrike a vote (restore it to the count)).
-    # @return [self]
-    def option(value)
-      merge(option: value.to_s)
-    end
+      # Which action to take: strike or unstrike a vote.
+      #
+      # @param value [String] One of "strike" (Strike a vote (remove it from the count)), "unstrike" (Unstrike a vote (restore it to the count)).
+      # @return [self]
+      def option(value)
+        merge(option: value.to_s)
+      end
 
-    # The reason for striking or unstriking the vote.
-    #
-    # @param value [String]
-    # @return [self]
-    def reason(value)
-      merge(reason: value.to_s)
-    end
+      # The reason for striking or unstriking the vote.
+      #
+      # @param value [String]
+      # @return [self]
+      def reason(value)
+        merge(reason: value.to_s)
+      end
 
-    # The ID of the vote to be struck or unstruck.
-    #
-    # @param value [Integer]
-    # @return [self]
-    def voteid(value)
-      merge(voteid: value.to_s)
-    end
+      # The ID of the vote to be struck or unstruck.
+      #
+      # @param value [Integer]
+      # @return [self]
+      def voteid(value)
+        merge(voteid: value.to_s)
+      end
 
-    # A "csrf" token retrieved from action=query&meta=tokens
-    #
-    # @param value [String]
-    # @return [self]
-    def token(value)
-      merge(token: value.to_s)
-    end
+      # A "csrf" token retrieved from action=query&meta=tokens
+      #
+      # @param value [String]
+      # @return [self]
+      def token(value)
+        merge(token: value.to_s)
+      end
   end
   end
 end

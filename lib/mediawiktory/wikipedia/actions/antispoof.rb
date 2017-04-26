@@ -21,13 +21,13 @@ module MediaWiktory::Wikipedia
     #
     class Antispoof < MediaWiktory::Wikipedia::GetAction
 
-    # The username to check against AntiSpoof.
-    #
-    # @param value [String]
-    # @return [self]
-    def username(value)
-      merge(username: value.to_s)
-    end
+      # The username to check against AntiSpoof.
+      #
+      # @param value [String]
+      # @return [self]
+      def username(value)
+        merge(username: value.to_s)
+      end
   end
   end
 end

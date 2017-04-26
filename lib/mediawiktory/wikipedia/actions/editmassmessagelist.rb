@@ -21,37 +21,37 @@ module MediaWiktory::Wikipedia
     #
     class Editmassmessagelist < MediaWiktory::Wikipedia::GetAction
 
-    # Title of the delivery list to update.
-    #
-    # @param value [String]
-    # @return [self]
-    def spamlist(value)
-      merge(spamlist: value.to_s)
-    end
+      # Title of the delivery list to update.
+      #
+      # @param value [String]
+      # @return [self]
+      def spamlist(value)
+        merge(spamlist: value.to_s)
+      end
 
-    # Titles to add to the list.
-    #
-    # @param values [Array<String>]
-    # @return [self]
-    def add(*values)
-      merge(add: values.join('|'))
-    end
+      # Titles to add to the list.
+      #
+      # @param values [Array<String>]
+      # @return [self]
+      def add(*values)
+        merge(add: values.join('|'))
+      end
 
-    # Titles to remove from the list.
-    #
-    # @param values [Array<String>]
-    # @return [self]
-    def remove(*values)
-      merge(remove: values.join('|'))
-    end
+      # Titles to remove from the list.
+      #
+      # @param values [Array<String>]
+      # @return [self]
+      def remove(*values)
+        merge(remove: values.join('|'))
+      end
 
-    # A "csrf" token retrieved from action=query&meta=tokens
-    #
-    # @param value [String]
-    # @return [self]
-    def token(value)
-      merge(token: value.to_s)
-    end
+      # A "csrf" token retrieved from action=query&meta=tokens
+      #
+      # @param value [String]
+      # @return [self]
+      def token(value)
+        merge(token: value.to_s)
+      end
   end
   end
 end

@@ -22,45 +22,45 @@ module MediaWiktory::Wikipedia
     #
     module Wblistentityusage
 
-    # Properties to add to the result.
-    #
-    # @param values [Array<String>] Allowed values: "url" (If enabled the url of the entity will be added to the result).
-    # @return [self]
-    def prop(*values)
-      merge(wbeuprop: values.join('|'))
-    end
+      # Properties to add to the result.
+      #
+      # @param values [Array<String>] Allowed values: "url" (If enabled the url of the entity will be added to the result).
+      # @return [self]
+      def prop(*values)
+        merge(wbeuprop: values.join('|'))
+      end
 
-    # Only return entity IDs that used this aspect.
-    #
-    # @param values [Array<String>] Allowed values: "S", "L", "T", "X", "O".
-    # @return [self]
-    def aspect(*values)
-      merge(wbeuaspect: values.join('|'))
-    end
+      # Only return entity IDs that used this aspect.
+      #
+      # @param values [Array<String>] Allowed values: "S", "L", "T", "X", "O".
+      # @return [self]
+      def aspect(*values)
+        merge(wbeuaspect: values.join('|'))
+      end
 
-    # Entities that have been used.
-    #
-    # @param values [Array<String>]
-    # @return [self]
-    def entities(*values)
-      merge(wbeuentities: values.join('|'))
-    end
+      # Entities that have been used.
+      #
+      # @param values [Array<String>]
+      # @return [self]
+      def entities(*values)
+        merge(wbeuentities: values.join('|'))
+      end
 
-    # How many entity usages to return.
-    #
-    # @param value [Integer, "max"]
-    # @return [self]
-    def limit(value)
-      merge(wbeulimit: value.to_s)
-    end
+      # How many entity usages to return.
+      #
+      # @param value [Integer, "max"]
+      # @return [self]
+      def limit(value)
+        merge(wbeulimit: value.to_s)
+      end
 
-    # When more results are available, use this to continue.
-    #
-    # @param value [String]
-    # @return [self]
-    def continue(value)
-      merge(wbeucontinue: value.to_s)
-    end
+      # When more results are available, use this to continue.
+      #
+      # @param value [String]
+      # @return [self]
+      def continue(value)
+        merge(wbeucontinue: value.to_s)
+      end
   end
   end
 end

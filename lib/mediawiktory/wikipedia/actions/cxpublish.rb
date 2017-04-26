@@ -21,77 +21,77 @@ module MediaWiktory::Wikipedia
     #
     class Cxpublish < MediaWiktory::Wikipedia::GetAction
 
-    # The title of the page to perform actions on.
-    #
-    # @param value [String]
-    # @return [self]
-    def title(value)
-      merge(title: value.to_s)
-    end
+      # The title of the page to perform actions on.
+      #
+      # @param value [String]
+      # @return [self]
+      def title(value)
+        merge(title: value.to_s)
+      end
 
-    # The content to save.
-    #
-    # @param value [String]
-    # @return [self]
-    def html(value)
-      merge(html: value.to_s)
-    end
+      # The content to save.
+      #
+      # @param value [String]
+      # @return [self]
+      def html(value)
+        merge(html: value.to_s)
+      end
 
-    # The source language code.
-    #
-    # @param value [String]
-    # @return [self]
-    def from(value)
-      merge(from: value.to_s)
-    end
+      # The source language code.
+      #
+      # @param value [String]
+      # @return [self]
+      def from(value)
+        merge(from: value.to_s)
+      end
 
-    # The target language code.
-    #
-    # @param value [String]
-    # @return [self]
-    def to(value)
-      merge(to: value.to_s)
-    end
+      # The target language code.
+      #
+      # @param value [String]
+      # @return [self]
+      def to(value)
+        merge(to: value.to_s)
+      end
 
-    # The title of the source page.
-    #
-    # @param value [String]
-    # @return [self]
-    def sourcetitle(value)
-      merge(sourcetitle: value.to_s)
-    end
+      # The title of the source page.
+      #
+      # @param value [String]
+      # @return [self]
+      def sourcetitle(value)
+        merge(sourcetitle: value.to_s)
+      end
 
-    # The categories to put the published page in.
-    #
-    # @param value [String]
-    # @return [self]
-    def categories(value)
-      merge(categories: value.to_s)
-    end
+      # The categories to put the published page in.
+      #
+      # @param value [String]
+      # @return [self]
+      def categories(value)
+        merge(categories: value.to_s)
+      end
 
-    # Captcha ID (when saving with a captcha response).
-    #
-    # @param value [String]
-    # @return [self]
-    def wpCaptchaId(value)
-      merge(wpCaptchaId: value.to_s)
-    end
+      # Captcha ID (when saving with a captcha response).
+      #
+      # @param value [String]
+      # @return [self]
+      def wpCaptchaId(value)
+        merge(wpCaptchaId: value.to_s)
+      end
 
-    # Answer to the captcha (when saving with a captcha response).
-    #
-    # @param value [String]
-    # @return [self]
-    def wpCaptchaWord(value)
-      merge(wpCaptchaWord: value.to_s)
-    end
+      # Answer to the captcha (when saving with a captcha response).
+      #
+      # @param value [String]
+      # @return [self]
+      def wpCaptchaWord(value)
+        merge(wpCaptchaWord: value.to_s)
+      end
 
-    # A "csrf" token retrieved from action=query&meta=tokens
-    #
-    # @param value [String]
-    # @return [self]
-    def token(value)
-      merge(token: value.to_s)
-    end
+      # A "csrf" token retrieved from action=query&meta=tokens
+      #
+      # @param value [String]
+      # @return [self]
+      def token(value)
+        merge(token: value.to_s)
+      end
   end
   end
 end

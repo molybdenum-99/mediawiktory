@@ -22,29 +22,29 @@ module MediaWiktory::Wikipedia
     #
     module Mystashedfiles
 
-    # Which properties to fetch for the files.
-    #
-    # @param values [Array<String>] Allowed values: "size" (Fetch the file size and image dimensions), "type" (Fetch the file's MIME type and media type).
-    # @return [self]
-    def prop(*values)
-      merge(msfprop: values.join('|'))
-    end
+      # Which properties to fetch for the files.
+      #
+      # @param values [Array<String>] Allowed values: "size" (Fetch the file size and image dimensions), "type" (Fetch the file's MIME type and media type).
+      # @return [self]
+      def prop(*values)
+        merge(msfprop: values.join('|'))
+      end
 
-    # How many files to get.
-    #
-    # @param value [Integer, "max"]
-    # @return [self]
-    def limit(value)
-      merge(msflimit: value.to_s)
-    end
+      # How many files to get.
+      #
+      # @param value [Integer, "max"]
+      # @return [self]
+      def limit(value)
+        merge(msflimit: value.to_s)
+      end
 
-    # When more results are available, use this to continue.
-    #
-    # @param value [String]
-    # @return [self]
-    def continue(value)
-      merge(msfcontinue: value.to_s)
-    end
+      # When more results are available, use this to continue.
+      #
+      # @param value [String]
+      # @return [self]
+      def continue(value)
+        merge(msfcontinue: value.to_s)
+      end
   end
   end
 end

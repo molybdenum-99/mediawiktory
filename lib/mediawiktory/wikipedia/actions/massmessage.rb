@@ -21,37 +21,37 @@ module MediaWiktory::Wikipedia
     #
     class Massmessage < MediaWiktory::Wikipedia::GetAction
 
-    # Page containing list of pages to leave a message on.
-    #
-    # @param value [String]
-    # @return [self]
-    def spamlist(value)
-      merge(spamlist: value.to_s)
-    end
+      # Page containing list of pages to leave a message on.
+      #
+      # @param value [String]
+      # @return [self]
+      def spamlist(value)
+        merge(spamlist: value.to_s)
+      end
 
-    # Subject line of the message.
-    #
-    # @param value [String]
-    # @return [self]
-    def subject(value)
-      merge(subject: value.to_s)
-    end
+      # Subject line of the message.
+      #
+      # @param value [String]
+      # @return [self]
+      def subject(value)
+        merge(subject: value.to_s)
+      end
 
-    # Message body text.
-    #
-    # @param value [String]
-    # @return [self]
-    def message(value)
-      merge(message: value.to_s)
-    end
+      # Message body text.
+      #
+      # @param value [String]
+      # @return [self]
+      def message(value)
+        merge(message: value.to_s)
+      end
 
-    # A "csrf" token retrieved from action=query&meta=tokens
-    #
-    # @param value [String]
-    # @return [self]
-    def token(value)
-      merge(token: value.to_s)
-    end
+      # A "csrf" token retrieved from action=query&meta=tokens
+      #
+      # @param value [String]
+      # @return [self]
+      def token(value)
+        merge(token: value.to_s)
+      end
   end
   end
 end

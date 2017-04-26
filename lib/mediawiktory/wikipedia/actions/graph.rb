@@ -21,29 +21,29 @@ module MediaWiktory::Wikipedia
     #
     class Graph < MediaWiktory::Wikipedia::GetAction
 
-    # Hash value of the graph
-    #
-    # @param value [String]
-    # @return [self]
-    def hash(value)
-      merge(hash: value.to_s)
-    end
+      # Hash value of the graph
+      #
+      # @param value [String]
+      # @return [self]
+      def hash(value)
+        merge(hash: value.to_s)
+      end
 
-    # Title of the article with the graph
-    #
-    # @param value [String]
-    # @return [self]
-    def title(value)
-      merge(title: value.to_s)
-    end
+      # Title of the article with the graph
+      #
+      # @param value [String]
+      # @return [self]
+      def title(value)
+        merge(title: value.to_s)
+      end
 
-    # Text of the graph to be converted to JSON. Must be posted and used without title and hash parameters
-    #
-    # @param value [String]
-    # @return [self]
-    def text(value)
-      merge(text: value.to_s)
-    end
+      # Text of the graph to be converted to JSON. Must be posted and used without title and hash parameters
+      #
+      # @param value [String]
+      # @return [self]
+      def text(value)
+        merge(text: value.to_s)
+      end
   end
   end
 end

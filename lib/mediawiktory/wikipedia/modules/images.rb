@@ -22,37 +22,37 @@ module MediaWiktory::Wikipedia
     #
     module Images
 
-    # How many files to return.
-    #
-    # @param value [Integer, "max"]
-    # @return [self]
-    def limit(value)
-      merge(imlimit: value.to_s)
-    end
+      # How many files to return.
+      #
+      # @param value [Integer, "max"]
+      # @return [self]
+      def limit(value)
+        merge(imlimit: value.to_s)
+      end
 
-    # When more results are available, use this to continue.
-    #
-    # @param value [String]
-    # @return [self]
-    def continue(value)
-      merge(imcontinue: value.to_s)
-    end
+      # When more results are available, use this to continue.
+      #
+      # @param value [String]
+      # @return [self]
+      def continue(value)
+        merge(imcontinue: value.to_s)
+      end
 
-    # Only list these files. Useful for checking whether a certain page has a certain file.
-    #
-    # @param values [Array<String>]
-    # @return [self]
-    def images(*values)
-      merge(imimages: values.join('|'))
-    end
+      # Only list these files. Useful for checking whether a certain page has a certain file.
+      #
+      # @param values [Array<String>]
+      # @return [self]
+      def images(*values)
+        merge(imimages: values.join('|'))
+      end
 
-    # The direction in which to list.
-    #
-    # @param value [String] One of "ascending", "descending".
-    # @return [self]
-    def dir(value)
-      merge(imdir: value.to_s)
-    end
+      # The direction in which to list.
+      #
+      # @param value [String] One of "ascending", "descending".
+      # @return [self]
+      def dir(value)
+        merge(imdir: value.to_s)
+      end
   end
   end
 end

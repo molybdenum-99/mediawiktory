@@ -22,13 +22,13 @@ module MediaWiktory::Wikipedia
     #
     module Tokens
 
-    # Types of token to request.
-    #
-    # @param values [Array<String>] Allowed values: "createaccount", "csrf", "deleteglobalaccount", "login", "patrol", "rollback", "setglobalaccountstatus", "userrights", "watch".
-    # @return [self]
-    def type(*values)
-      merge(type: values.join('|'))
-    end
+      # Types of token to request.
+      #
+      # @param values [Array<String>] Allowed values: "createaccount", "csrf", "deleteglobalaccount", "login", "patrol", "rollback", "setglobalaccountstatus", "userrights", "watch".
+      # @return [self]
+      def type(*values)
+        merge(type: values.join('|'))
+      end
   end
   end
 end

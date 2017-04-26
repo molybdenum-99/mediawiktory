@@ -21,13 +21,13 @@ module MediaWiktory::Wikipedia
     #
     class ParsoidBatch < MediaWiktory::Wikipedia::GetAction
 
-    # 
-    #
-    # @param value [String]
-    # @return [self]
-    def batch(value)
-      merge(batch: value.to_s)
-    end
+      # 
+      #
+      # @param value [String]
+      # @return [self]
+      def batch(value)
+        merge(batch: value.to_s)
+      end
   end
   end
 end

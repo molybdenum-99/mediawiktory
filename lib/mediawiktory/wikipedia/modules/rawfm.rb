@@ -22,12 +22,12 @@ module MediaWiktory::Wikipedia
     #
     module Rawfm
 
-    # Return the pretty-printed HTML and associated ResourceLoader modules as a JSON object.
-    #
-    # @return [self]
-    def wrappedhtml()
-      merge(wrappedhtml: 'true')
-    end
+      # Return the pretty-printed HTML and associated ResourceLoader modules as a JSON object.
+      #
+      # @return [self]
+      def wrappedhtml()
+        merge(wrappedhtml: 'true')
+      end
   end
   end
 end

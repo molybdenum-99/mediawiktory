@@ -22,36 +22,36 @@ module MediaWiktory::Wikipedia
     #
     module Globalusage
 
-    # Which properties to return:
-    #
-    # @param values [Array<String>] Allowed values: "url" (Adds url), "pageid" (Adds page ID), "namespace" (Adds namespace ID).
-    # @return [self]
-    def prop(*values)
-      merge(guprop: values.join('|'))
-    end
+      # Which properties to return:
+      #
+      # @param values [Array<String>] Allowed values: "url" (Adds url), "pageid" (Adds page ID), "namespace" (Adds namespace ID).
+      # @return [self]
+      def prop(*values)
+        merge(guprop: values.join('|'))
+      end
 
-    # How many links to return.
-    #
-    # @param value [Integer, "max"]
-    # @return [self]
-    def limit(value)
-      merge(gulimit: value.to_s)
-    end
+      # How many links to return.
+      #
+      # @param value [Integer, "max"]
+      # @return [self]
+      def limit(value)
+        merge(gulimit: value.to_s)
+      end
 
-    # When more results are available, use this to continue.
-    #
-    # @param value [String]
-    # @return [self]
-    def continue(value)
-      merge(gucontinue: value.to_s)
-    end
+      # When more results are available, use this to continue.
+      #
+      # @param value [String]
+      # @return [self]
+      def continue(value)
+        merge(gucontinue: value.to_s)
+      end
 
-    # Filter local usage of the file.
-    #
-    # @return [self]
-    def filterlocal()
-      merge(gufilterlocal: 'true')
-    end
+      # Filter local usage of the file.
+      #
+      # @return [self]
+      def filterlocal()
+        merge(gufilterlocal: 'true')
+      end
   end
   end
 end

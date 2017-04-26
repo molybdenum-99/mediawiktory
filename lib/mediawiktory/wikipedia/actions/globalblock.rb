@@ -21,58 +21,58 @@ module MediaWiktory::Wikipedia
     #
     class Globalblock < MediaWiktory::Wikipedia::GetAction
 
-    # The target IP address.
-    #
-    # @param value [String]
-    # @return [self]
-    def target(value)
-      merge(target: value.to_s)
-    end
+      # The target IP address.
+      #
+      # @param value [String]
+      # @return [self]
+      def target(value)
+        merge(target: value.to_s)
+      end
 
-    # If specified, will block or reblock the user. Determines how long the block will last for, e.g. "5 months" or "2 weeks". If set to "infinite" or "indefinite" the block will never expire.
-    #
-    # @param value [String]
-    # @return [self]
-    def expiry(value)
-      merge(expiry: value.to_s)
-    end
+      # If specified, will block or reblock the user. Determines how long the block will last for, e.g. "5 months" or "2 weeks". If set to "infinite" or "indefinite" the block will never expire.
+      #
+      # @param value [String]
+      # @return [self]
+      def expiry(value)
+        merge(expiry: value.to_s)
+      end
 
-    # If specified, will unblock the user.
-    #
-    # @return [self]
-    def unblock()
-      merge(unblock: 'true')
-    end
+      # If specified, will unblock the user.
+      #
+      # @return [self]
+      def unblock()
+        merge(unblock: 'true')
+      end
 
-    # The reason for blocking/unblocking.
-    #
-    # @param value [String]
-    # @return [self]
-    def reason(value)
-      merge(reason: value.to_s)
-    end
+      # The reason for blocking/unblocking.
+      #
+      # @param value [String]
+      # @return [self]
+      def reason(value)
+        merge(reason: value.to_s)
+      end
 
-    # Specify this if the block should only affect logged-out users.
-    #
-    # @return [self]
-    def anononly()
-      merge(anononly: 'true')
-    end
+      # Specify this if the block should only affect logged-out users.
+      #
+      # @return [self]
+      def anononly()
+        merge(anononly: 'true')
+      end
 
-    # Specify this if the existing block on the target should be modified
-    #
-    # @return [self]
-    def modify()
-      merge(modify: 'true')
-    end
+      # Specify this if the existing block on the target should be modified
+      #
+      # @return [self]
+      def modify()
+        merge(modify: 'true')
+      end
 
-    # A "csrf" token retrieved from action=query&meta=tokens
-    #
-    # @param value [String]
-    # @return [self]
-    def token(value)
-      merge(token: value.to_s)
-    end
+      # A "csrf" token retrieved from action=query&meta=tokens
+      #
+      # @param value [String]
+      # @return [self]
+      def token(value)
+        merge(token: value.to_s)
+      end
   end
   end
 end

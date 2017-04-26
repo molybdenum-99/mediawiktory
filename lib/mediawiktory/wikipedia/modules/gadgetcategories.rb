@@ -22,21 +22,21 @@ module MediaWiktory::Wikipedia
     #
     module Gadgetcategories
 
-    # What gadget category information to get:
-    #
-    # @param values [Array<String>] Allowed values: "name" (Internal category name), "title" (Category title), "members" (Number of gadgets in category).
-    # @return [self]
-    def prop(*values)
-      merge(gcprop: values.join('|'))
-    end
+      # What gadget category information to get:
+      #
+      # @param values [Array<String>] Allowed values: "name" (Internal category name), "title" (Category title), "members" (Number of gadgets in category).
+      # @return [self]
+      def prop(*values)
+        merge(gcprop: values.join('|'))
+      end
 
-    # Names of categories to retrieve.
-    #
-    # @param values [Array<String>]
-    # @return [self]
-    def names(*values)
-      merge(gcnames: values.join('|'))
-    end
+      # Names of categories to retrieve.
+      #
+      # @param values [Array<String>]
+      # @return [self]
+      def names(*values)
+        merge(gcnames: values.join('|'))
+      end
   end
   end
 end

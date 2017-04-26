@@ -22,20 +22,20 @@ module MediaWiktory::Wikipedia
     #
     module Phpfm
 
-    # Return the pretty-printed HTML and associated ResourceLoader modules as a JSON object.
-    #
-    # @return [self]
-    def wrappedhtml()
-      merge(wrappedhtml: 'true')
-    end
+      # Return the pretty-printed HTML and associated ResourceLoader modules as a JSON object.
+      #
+      # @return [self]
+      def wrappedhtml()
+        merge(wrappedhtml: 'true')
+      end
 
-    # Output formatting:
-    #
-    # @param value [String] One of "1" (Backwards-compatible format (XML-style booleans, * keys for content nodes, etc.)), "2" (Experimental modern format. Details may change!), "latest" (Use the latest format (currently 2), may change without warning).
-    # @return [self]
-    def formatversion(value)
-      merge(formatversion: value.to_s)
-    end
+      # Output formatting:
+      #
+      # @param value [String] One of "1" (Backwards-compatible format (XML-style booleans, * keys for content nodes, etc.)), "2" (Experimental modern format. Details may change!), "latest" (Use the latest format (currently 2), may change without warning).
+      # @return [self]
+      def formatversion(value)
+        merge(formatversion: value.to_s)
+      end
   end
   end
 end

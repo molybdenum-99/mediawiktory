@@ -21,29 +21,29 @@ module MediaWiktory::Wikipedia
     #
     class Oathvalidate < MediaWiktory::Wikipedia::GetAction
 
-    # User to validate token for. Defaults to the current user.
-    #
-    # @param value [String]
-    # @return [self]
-    def user(value)
-      merge(user: value.to_s)
-    end
+      # User to validate token for. Defaults to the current user.
+      #
+      # @param value [String]
+      # @return [self]
+      def user(value)
+        merge(user: value.to_s)
+      end
 
-    # Two-factor authentication (OATH) token.
-    #
-    # @param value [String]
-    # @return [self]
-    def totp(value)
-      merge(totp: value.to_s)
-    end
+      # Two-factor authentication (OATH) token.
+      #
+      # @param value [String]
+      # @return [self]
+      def totp(value)
+        merge(totp: value.to_s)
+      end
 
-    # A "csrf" token retrieved from action=query&meta=tokens
-    #
-    # @param value [String]
-    # @return [self]
-    def token(value)
-      merge(token: value.to_s)
-    end
+      # A "csrf" token retrieved from action=query&meta=tokens
+      #
+      # @param value [String]
+      # @return [self]
+      def token(value)
+        merge(token: value.to_s)
+      end
   end
   end
 end

@@ -21,21 +21,21 @@ module MediaWiktory::Wikipedia
     #
     class Languagesearch < MediaWiktory::Wikipedia::GetAction
 
-    # Search string.
-    #
-    # @param value [String]
-    # @return [self]
-    def search(value)
-      merge(search: value.to_s)
-    end
+      # Search string.
+      #
+      # @param value [String]
+      # @return [self]
+      def search(value)
+        merge(search: value.to_s)
+      end
 
-    # Number of spelling mistakes allowed in the search string.
-    #
-    # @param value [Integer]
-    # @return [self]
-    def typos(value)
-      merge(typos: value.to_s)
-    end
+      # Number of spelling mistakes allowed in the search string.
+      #
+      # @param value [Integer]
+      # @return [self]
+      def typos(value)
+        merge(typos: value.to_s)
+      end
   end
   end
 end

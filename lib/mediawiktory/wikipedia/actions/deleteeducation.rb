@@ -21,37 +21,37 @@ module MediaWiktory::Wikipedia
     #
     class Deleteeducation < MediaWiktory::Wikipedia::GetAction
 
-    # The IDs of the objects to delete.
-    #
-    # @param values [Array<Integer>]
-    # @return [self]
-    def ids(*values)
-      merge(ids: values.join('|'))
-    end
+      # The IDs of the objects to delete.
+      #
+      # @param values [Array<Integer>]
+      # @return [self]
+      def ids(*values)
+        merge(ids: values.join('|'))
+      end
 
-    # Type of object to delete.
-    #
-    # @param value [String] One of "org", "course".
-    # @return [self]
-    def type(value)
-      merge(type: value.to_s)
-    end
+      # Type of object to delete.
+      #
+      # @param value [String] One of "org", "course".
+      # @return [self]
+      def type(value)
+        merge(type: value.to_s)
+      end
 
-    # Reason for this deletion, for the log.
-    #
-    # @param value [String]
-    # @return [self]
-    def comment(value)
-      merge(comment: value.to_s)
-    end
+      # Reason for this deletion, for the log.
+      #
+      # @param value [String]
+      # @return [self]
+      def comment(value)
+        merge(comment: value.to_s)
+      end
 
-    # A "csrf" token retrieved from action=query&meta=tokens
-    #
-    # @param value [String]
-    # @return [self]
-    def token(value)
-      merge(token: value.to_s)
-    end
+      # A "csrf" token retrieved from action=query&meta=tokens
+      #
+      # @param value [String]
+      # @return [self]
+      def token(value)
+        merge(token: value.to_s)
+      end
   end
   end
 end

@@ -21,13 +21,13 @@ module MediaWiktory::Wikipedia
     #
     class Bouncehandler < MediaWiktory::Wikipedia::GetAction
 
-    # The bounced email.
-    #
-    # @param value [String]
-    # @return [self]
-    def email(value)
-      merge(email: value.to_s)
-    end
+      # The bounced email.
+      #
+      # @param value [String]
+      # @return [self]
+      def email(value)
+        merge(email: value.to_s)
+      end
   end
   end
 end

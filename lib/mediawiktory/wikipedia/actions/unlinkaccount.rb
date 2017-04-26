@@ -21,21 +21,21 @@ module MediaWiktory::Wikipedia
     #
     class Unlinkaccount < MediaWiktory::Wikipedia::GetAction
 
-    # Use this authentication request, by the id returned from action=query&meta=authmanagerinfo with amirequestsfor=unlink.
-    #
-    # @param value [String]
-    # @return [self]
-    def request(value)
-      merge(request: value.to_s)
-    end
+      # Use this authentication request, by the id returned from action=query&meta=authmanagerinfo with amirequestsfor=unlink.
+      #
+      # @param value [String]
+      # @return [self]
+      def request(value)
+        merge(request: value.to_s)
+      end
 
-    # A "csrf" token retrieved from action=query&meta=tokens
-    #
-    # @param value [String]
-    # @return [self]
-    def token(value)
-      merge(token: value.to_s)
-    end
+      # A "csrf" token retrieved from action=query&meta=tokens
+      #
+      # @param value [String]
+      # @return [self]
+      def token(value)
+        merge(token: value.to_s)
+      end
   end
   end
 end

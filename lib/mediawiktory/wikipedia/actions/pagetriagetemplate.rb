@@ -21,21 +21,21 @@ module MediaWiktory::Wikipedia
     #
     class Pagetriagetemplate < MediaWiktory::Wikipedia::GetAction
 
-    # The PageTriage view for which you need the templates.
-    #
-    # @param value [String]
-    # @return [self]
-    def view(value)
-      merge(view: value.to_s)
-    end
+      # The PageTriage view for which you need the templates.
+      #
+      # @param value [String]
+      # @return [self]
+      def view(value)
+        merge(view: value.to_s)
+      end
 
-    # The template to fetch. Separate multiple with the | character.
-    #
-    # @param value [String]
-    # @return [self]
-    def template(value)
-      merge(template: value.to_s)
-    end
+      # The template to fetch. Separate multiple with the | character.
+      #
+      # @param value [String]
+      # @return [self]
+      def template(value)
+        merge(template: value.to_s)
+      end
   end
   end
 end

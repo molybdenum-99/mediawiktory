@@ -22,29 +22,29 @@ module MediaWiktory::Wikipedia
     #
     module Contenttranslationlangtrend
 
-    # The source language code.
-    #
-    # @param value [String]
-    # @return [self]
-    def source(value)
-      merge(source: value.to_s)
-    end
+      # The source language code.
+      #
+      # @param value [String]
+      # @return [self]
+      def source(value)
+        merge(source: value.to_s)
+      end
 
-    # The target language code.
-    #
-    # @param value [String]
-    # @return [self]
-    def target(value)
-      merge(target: value.to_s)
-    end
+      # The target language code.
+      #
+      # @param value [String]
+      # @return [self]
+      def target(value)
+        merge(target: value.to_s)
+      end
 
-    # The interval for calculating the trend. Can be week or month.
-    #
-    # @param value [String] One of "week", "month".
-    # @return [self]
-    def interval(value)
-      merge(interval: value.to_s)
-    end
+      # The interval for calculating the trend. Can be week or month.
+      #
+      # @param value [String] One of "week", "month".
+      # @return [self]
+      def interval(value)
+        merge(interval: value.to_s)
+      end
   end
   end
 end

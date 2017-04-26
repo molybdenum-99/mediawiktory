@@ -21,13 +21,13 @@ module MediaWiktory::Wikipedia
     #
     class Jsondata < MediaWiktory::Wikipedia::GetAction
 
-    # Title to get. By default assumes namespace to be "Data:"
-    #
-    # @param value [String]
-    # @return [self]
-    def title(value)
-      merge(title: value.to_s)
-    end
+      # Title to get. By default assumes namespace to be "Data:"
+      #
+      # @param value [String]
+      # @return [self]
+      def title(value)
+        merge(title: value.to_s)
+      end
   end
   end
 end

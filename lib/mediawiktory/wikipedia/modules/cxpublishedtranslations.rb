@@ -22,37 +22,37 @@ module MediaWiktory::Wikipedia
     #
     module Cxpublishedtranslations
 
-    # The source language code.
-    #
-    # @param value [String]
-    # @return [self]
-    def from(value)
-      merge(from: value.to_s)
-    end
+      # The source language code.
+      #
+      # @param value [String]
+      # @return [self]
+      def from(value)
+        merge(from: value.to_s)
+      end
 
-    # The target language code.
-    #
-    # @param value [String]
-    # @return [self]
-    def to(value)
-      merge(to: value.to_s)
-    end
+      # The target language code.
+      #
+      # @param value [String]
+      # @return [self]
+      def to(value)
+        merge(to: value.to_s)
+      end
 
-    # The maximum number of translations to fetch.
-    #
-    # @param value [Integer, "max"]
-    # @return [self]
-    def limit(value)
-      merge(limit: value.to_s)
-    end
+      # The maximum number of translations to fetch.
+      #
+      # @param value [Integer, "max"]
+      # @return [self]
+      def limit(value)
+        merge(limit: value.to_s)
+      end
 
-    # When more results are available, use this to continue.
-    #
-    # @param value [String]
-    # @return [self]
-    def offset(value)
-      merge(offset: value.to_s)
-    end
+      # When more results are available, use this to continue.
+      #
+      # @param value [String]
+      # @return [self]
+      def offset(value)
+        merge(offset: value.to_s)
+      end
   end
   end
 end

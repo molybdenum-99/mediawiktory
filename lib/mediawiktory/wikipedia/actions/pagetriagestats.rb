@@ -21,41 +21,41 @@ module MediaWiktory::Wikipedia
     #
     class Pagetriagestats < MediaWiktory::Wikipedia::GetAction
 
-    # What namespace to pull stats from.
-    #
-    # @param value [Integer]
-    # @return [self]
-    def namespace(value)
-      merge(namespace: value.to_s)
-    end
+      # What namespace to pull stats from.
+      #
+      # @param value [Integer]
+      # @return [self]
+      def namespace(value)
+        merge(namespace: value.to_s)
+      end
 
-    # Whether to include redirects.
-    #
-    # @return [self]
-    def showredirs()
-      merge(showredirs: 'true')
-    end
+      # Whether to include redirects.
+      #
+      # @return [self]
+      def showredirs()
+        merge(showredirs: 'true')
+      end
 
-    # Whether to include reviewed.
-    #
-    # @return [self]
-    def showreviewed()
-      merge(showreviewed: 'true')
-    end
+      # Whether to include reviewed.
+      #
+      # @return [self]
+      def showreviewed()
+        merge(showreviewed: 'true')
+      end
 
-    # Whether to include unreviewed.
-    #
-    # @return [self]
-    def showunreviewed()
-      merge(showunreviewed: 'true')
-    end
+      # Whether to include unreviewed.
+      #
+      # @return [self]
+      def showunreviewed()
+        merge(showunreviewed: 'true')
+      end
 
-    # Whether to include "proposed for deleted".
-    #
-    # @return [self]
-    def showdeleted()
-      merge(showdeleted: 'true')
-    end
+      # Whether to include "proposed for deleted".
+      #
+      # @return [self]
+      def showdeleted()
+        merge(showdeleted: 'true')
+      end
   end
   end
 end

@@ -21,37 +21,37 @@ module MediaWiktory::Wikipedia
     #
     class Login < MediaWiktory::Wikipedia::GetAction
 
-    # User name.
-    #
-    # @param value [String]
-    # @return [self]
-    def name(value)
-      merge(lgname: value.to_s)
-    end
+      # User name.
+      #
+      # @param value [String]
+      # @return [self]
+      def name(value)
+        merge(lgname: value.to_s)
+      end
 
-    # Password.
-    #
-    # @param value [String]
-    # @return [self]
-    def password(value)
-      merge(lgpassword: value.to_s)
-    end
+      # Password.
+      #
+      # @param value [String]
+      # @return [self]
+      def password(value)
+        merge(lgpassword: value.to_s)
+      end
 
-    # Domain (optional).
-    #
-    # @param value [String]
-    # @return [self]
-    def domain(value)
-      merge(lgdomain: value.to_s)
-    end
+      # Domain (optional).
+      #
+      # @param value [String]
+      # @return [self]
+      def domain(value)
+        merge(lgdomain: value.to_s)
+      end
 
-    # A "login" token retrieved from action=query&meta=tokens
-    #
-    # @param value [String]
-    # @return [self]
-    def token(value)
-      merge(lgtoken: value.to_s)
-    end
+      # A "login" token retrieved from action=query&meta=tokens
+      #
+      # @param value [String]
+      # @return [self]
+      def token(value)
+        merge(lgtoken: value.to_s)
+      end
   end
   end
 end

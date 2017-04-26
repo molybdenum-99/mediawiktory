@@ -22,53 +22,53 @@ module MediaWiktory::Wikipedia
     #
     module Categories
 
-    # Which additional properties to get for each category:
-    #
-    # @param values [Array<String>] Allowed values: "sortkey" (Adds the sortkey (hexadecimal string) and sortkey prefix (human-readable part) for the category), "timestamp" (Adds timestamp of when the category was added), "hidden" (Tags categories that are hidden with __HIDDENCAT__).
-    # @return [self]
-    def prop(*values)
-      merge(clprop: values.join('|'))
-    end
+      # Which additional properties to get for each category:
+      #
+      # @param values [Array<String>] Allowed values: "sortkey" (Adds the sortkey (hexadecimal string) and sortkey prefix (human-readable part) for the category), "timestamp" (Adds timestamp of when the category was added), "hidden" (Tags categories that are hidden with __HIDDENCAT__).
+      # @return [self]
+      def prop(*values)
+        merge(clprop: values.join('|'))
+      end
 
-    # Which kind of categories to show.
-    #
-    # @param values [Array<String>] Allowed values: "hidden", "!hidden".
-    # @return [self]
-    def show(*values)
-      merge(clshow: values.join('|'))
-    end
+      # Which kind of categories to show.
+      #
+      # @param values [Array<String>] Allowed values: "hidden", "!hidden".
+      # @return [self]
+      def show(*values)
+        merge(clshow: values.join('|'))
+      end
 
-    # How many categories to return.
-    #
-    # @param value [Integer, "max"]
-    # @return [self]
-    def limit(value)
-      merge(cllimit: value.to_s)
-    end
+      # How many categories to return.
+      #
+      # @param value [Integer, "max"]
+      # @return [self]
+      def limit(value)
+        merge(cllimit: value.to_s)
+      end
 
-    # When more results are available, use this to continue.
-    #
-    # @param value [String]
-    # @return [self]
-    def continue(value)
-      merge(clcontinue: value.to_s)
-    end
+      # When more results are available, use this to continue.
+      #
+      # @param value [String]
+      # @return [self]
+      def continue(value)
+        merge(clcontinue: value.to_s)
+      end
 
-    # Only list these categories. Useful for checking whether a certain page is in a certain category.
-    #
-    # @param values [Array<String>]
-    # @return [self]
-    def categories(*values)
-      merge(clcategories: values.join('|'))
-    end
+      # Only list these categories. Useful for checking whether a certain page is in a certain category.
+      #
+      # @param values [Array<String>]
+      # @return [self]
+      def categories(*values)
+        merge(clcategories: values.join('|'))
+      end
 
-    # The direction in which to list.
-    #
-    # @param value [String] One of "ascending", "descending".
-    # @return [self]
-    def dir(value)
-      merge(cldir: value.to_s)
-    end
+      # The direction in which to list.
+      #
+      # @param value [String] One of "ascending", "descending".
+      # @return [self]
+      def dir(value)
+        merge(cldir: value.to_s)
+      end
   end
   end
 end

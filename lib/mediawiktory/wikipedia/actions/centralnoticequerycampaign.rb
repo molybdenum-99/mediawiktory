@@ -21,13 +21,13 @@ module MediaWiktory::Wikipedia
     #
     class Centralnoticequerycampaign < MediaWiktory::Wikipedia::GetAction
 
-    # Campaign name. Separate multiple values with a "|" (vertical bar).
-    #
-    # @param value [String]
-    # @return [self]
-    def campaign(value)
-      merge(campaign: value.to_s)
-    end
+      # Campaign name. Separate multiple values with a "|" (vertical bar).
+      #
+      # @param value [String]
+      # @return [self]
+      def campaign(value)
+        merge(campaign: value.to_s)
+      end
   end
   end
 end

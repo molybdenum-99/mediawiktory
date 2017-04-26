@@ -22,36 +22,36 @@ module MediaWiktory::Wikipedia
     #
     module Projectpages
 
-    # Also return assessments for the pages returned.
-    #
-    # @return [self]
-    def assessments()
-      merge(wppassessments: 'true')
-    end
+      # Also return assessments for the pages returned.
+      #
+      # @return [self]
+      def assessments()
+        merge(wppassessments: 'true')
+      end
 
-    # The projects to list pages for. If this parameter is omitted, all projects will be included.
-    #
-    # @param values [Array<String>]
-    # @return [self]
-    def projects(*values)
-      merge(wppprojects: values.join('|'))
-    end
+      # The projects to list pages for. If this parameter is omitted, all projects will be included.
+      #
+      # @param values [Array<String>]
+      # @return [self]
+      def projects(*values)
+        merge(wppprojects: values.join('|'))
+      end
 
-    # The maximum number of pages to return.
-    #
-    # @param value [Integer, "max"]
-    # @return [self]
-    def limit(value)
-      merge(wpplimit: value.to_s)
-    end
+      # The maximum number of pages to return.
+      #
+      # @param value [Integer, "max"]
+      # @return [self]
+      def limit(value)
+        merge(wpplimit: value.to_s)
+      end
 
-    # When more results are available, use this to continue.
-    #
-    # @param value [String]
-    # @return [self]
-    def continue(value)
-      merge(wppcontinue: value.to_s)
-    end
+      # When more results are available, use this to continue.
+      #
+      # @param value [String]
+      # @return [self]
+      def continue(value)
+        merge(wppcontinue: value.to_s)
+      end
   end
   end
 end

@@ -21,35 +21,35 @@ module MediaWiktory::Wikipedia
     #
     class Liststudents < MediaWiktory::Wikipedia::GetAction
 
-    # IDs of the courses.
-    #
-    # @param values [Array<Integer>]
-    # @return [self]
-    def courseids(*values)
-      merge(courseids: values.join('|'))
-    end
+      # IDs of the courses.
+      #
+      # @param values [Array<Integer>]
+      # @return [self]
+      def courseids(*values)
+        merge(courseids: values.join('|'))
+      end
 
-    # Which property to get for each student:
-    #
-    # @param value [String] One of "username" (The username of the student), "id" (The user ID of the student).
-    # @return [self]
-    def prop(value)
-      merge(prop: value.to_s)
-    end
+      # Which property to get for each student:
+      #
+      # @param value [String] One of "username" (The username of the student), "id" (The user ID of the student).
+      # @return [self]
+      def prop(value)
+        merge(prop: value.to_s)
+      end
 
-    # If given, the query will group students by course.
-    #
-    # @return [self]
-    def group()
-      merge(group: 'true')
-    end
+      # If given, the query will group students by course.
+      #
+      # @return [self]
+      def group()
+        merge(group: 'true')
+      end
 
-    # If given, the query will return usernames in CSV format, and it will return the articles assigned to those students.
-    #
-    # @return [self]
-    def csv()
-      merge(csv: 'true')
-    end
+      # If given, the query will return usernames in CSV format, and it will return the articles assigned to those students.
+      #
+      # @return [self]
+      def csv()
+        merge(csv: 'true')
+      end
   end
   end
 end

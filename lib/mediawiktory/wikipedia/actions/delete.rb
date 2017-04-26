@@ -21,75 +21,75 @@ module MediaWiktory::Wikipedia
     #
     class Delete < MediaWiktory::Wikipedia::GetAction
 
-    # Title of the page to delete. Cannot be used together with pageid.
-    #
-    # @param value [String]
-    # @return [self]
-    def title(value)
-      merge(title: value.to_s)
-    end
+      # Title of the page to delete. Cannot be used together with pageid.
+      #
+      # @param value [String]
+      # @return [self]
+      def title(value)
+        merge(title: value.to_s)
+      end
 
-    # Page ID of the page to delete. Cannot be used together with title.
-    #
-    # @param value [Integer]
-    # @return [self]
-    def pageid(value)
-      merge(pageid: value.to_s)
-    end
+      # Page ID of the page to delete. Cannot be used together with title.
+      #
+      # @param value [Integer]
+      # @return [self]
+      def pageid(value)
+        merge(pageid: value.to_s)
+      end
 
-    # Reason for the deletion. If not set, an automatically generated reason will be used.
-    #
-    # @param value [String]
-    # @return [self]
-    def reason(value)
-      merge(reason: value.to_s)
-    end
+      # Reason for the deletion. If not set, an automatically generated reason will be used.
+      #
+      # @param value [String]
+      # @return [self]
+      def reason(value)
+        merge(reason: value.to_s)
+      end
 
-    # Change tags to apply to the entry in the deletion log.
-    #
-    # @param values [Array<String>] Allowed values: "ProveIt edit", "WPCleaner", "huggle", "large plot addition".
-    # @return [self]
-    def tags(*values)
-      merge(tags: values.join('|'))
-    end
+      # Change tags to apply to the entry in the deletion log.
+      #
+      # @param values [Array<String>] Allowed values: "ProveIt edit", "WPCleaner", "huggle", "large plot addition".
+      # @return [self]
+      def tags(*values)
+        merge(tags: values.join('|'))
+      end
 
-    # Add the page to the current user's watchlist.
-    #
-    # @return [self]
-    def watch()
-      merge(watch: 'true')
-    end
+      # Add the page to the current user's watchlist.
+      #
+      # @return [self]
+      def watch()
+        merge(watch: 'true')
+      end
 
-    # Unconditionally add or remove the page from the current user's watchlist, use preferences or do not change watch.
-    #
-    # @param value [String] One of "watch", "unwatch", "preferences", "nochange".
-    # @return [self]
-    def watchlist(value)
-      merge(watchlist: value.to_s)
-    end
+      # Unconditionally add or remove the page from the current user's watchlist, use preferences or do not change watch.
+      #
+      # @param value [String] One of "watch", "unwatch", "preferences", "nochange".
+      # @return [self]
+      def watchlist(value)
+        merge(watchlist: value.to_s)
+      end
 
-    # Remove the page from the current user's watchlist.
-    #
-    # @return [self]
-    def unwatch()
-      merge(unwatch: 'true')
-    end
+      # Remove the page from the current user's watchlist.
+      #
+      # @return [self]
+      def unwatch()
+        merge(unwatch: 'true')
+      end
 
-    # The name of the old image to delete as provided by action=query&prop=imageinfo&iiprop=archivename.
-    #
-    # @param value [String]
-    # @return [self]
-    def oldimage(value)
-      merge(oldimage: value.to_s)
-    end
+      # The name of the old image to delete as provided by action=query&prop=imageinfo&iiprop=archivename.
+      #
+      # @param value [String]
+      # @return [self]
+      def oldimage(value)
+        merge(oldimage: value.to_s)
+      end
 
-    # A "csrf" token retrieved from action=query&meta=tokens
-    #
-    # @param value [String]
-    # @return [self]
-    def token(value)
-      merge(token: value.to_s)
-    end
+      # A "csrf" token retrieved from action=query&meta=tokens
+      #
+      # @param value [String]
+      # @return [self]
+      def token(value)
+        merge(token: value.to_s)
+      end
   end
   end
 end

@@ -22,13 +22,13 @@ module MediaWiktory::Wikipedia
     #
     module Betafeatures
 
-    # Whether to fetch how many users have enabled a certain preference.
-    #
-    # @param value [String]
-    # @return [self]
-    def counts(value)
-      merge(bfcounts: value.to_s)
-    end
+      # Whether to fetch how many users have enabled a certain preference.
+      #
+      # @param value [String]
+      # @return [self]
+      def counts(value)
+        merge(bfcounts: value.to_s)
+      end
   end
   end
 end

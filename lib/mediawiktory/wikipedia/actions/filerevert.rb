@@ -21,37 +21,37 @@ module MediaWiktory::Wikipedia
     #
     class Filerevert < MediaWiktory::Wikipedia::GetAction
 
-    # Target filename, without the File: prefix.
-    #
-    # @param value [String]
-    # @return [self]
-    def filename(value)
-      merge(filename: value.to_s)
-    end
+      # Target filename, without the File: prefix.
+      #
+      # @param value [String]
+      # @return [self]
+      def filename(value)
+        merge(filename: value.to_s)
+      end
 
-    # Upload comment.
-    #
-    # @param value [String]
-    # @return [self]
-    def comment(value)
-      merge(comment: value.to_s)
-    end
+      # Upload comment.
+      #
+      # @param value [String]
+      # @return [self]
+      def comment(value)
+        merge(comment: value.to_s)
+      end
 
-    # Archive name of the revision to revert to.
-    #
-    # @param value [String]
-    # @return [self]
-    def archivename(value)
-      merge(archivename: value.to_s)
-    end
+      # Archive name of the revision to revert to.
+      #
+      # @param value [String]
+      # @return [self]
+      def archivename(value)
+        merge(archivename: value.to_s)
+      end
 
-    # A "csrf" token retrieved from action=query&meta=tokens
-    #
-    # @param value [String]
-    # @return [self]
-    def token(value)
-      merge(token: value.to_s)
-    end
+      # A "csrf" token retrieved from action=query&meta=tokens
+      #
+      # @param value [String]
+      # @return [self]
+      def token(value)
+        merge(token: value.to_s)
+      end
   end
   end
 end

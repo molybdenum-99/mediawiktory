@@ -21,44 +21,44 @@ module MediaWiktory::Wikipedia
     #
     class ScribuntoConsole < MediaWiktory::Wikipedia::GetAction
 
-    # The title of the module to test.
-    #
-    # @param value [String]
-    # @return [self]
-    def title(value)
-      merge(title: value.to_s)
-    end
+      # The title of the module to test.
+      #
+      # @param value [String]
+      # @return [self]
+      def title(value)
+        merge(title: value.to_s)
+      end
 
-    # The new content of the module.
-    #
-    # @param value [String]
-    # @return [self]
-    def content(value)
-      merge(content: value.to_s)
-    end
+      # The new content of the module.
+      #
+      # @param value [String]
+      # @return [self]
+      def content(value)
+        merge(content: value.to_s)
+      end
 
-    # Session token.
-    #
-    # @param value [Integer]
-    # @return [self]
-    def session(value)
-      merge(session: value.to_s)
-    end
+      # Session token.
+      #
+      # @param value [Integer]
+      # @return [self]
+      def session(value)
+        merge(session: value.to_s)
+      end
 
-    # The next line to evaluate as a script.
-    #
-    # @param value [String]
-    # @return [self]
-    def question(value)
-      merge(question: value.to_s)
-    end
+      # The next line to evaluate as a script.
+      #
+      # @param value [String]
+      # @return [self]
+      def question(value)
+        merge(question: value.to_s)
+      end
 
-    # Set to clear the current session state.
-    #
-    # @return [self]
-    def clear()
-      merge(clear: 'true')
-    end
+      # Set to clear the current session state.
+      #
+      # @return [self]
+      def clear()
+        merge(clear: 'true')
+      end
   end
   end
 end

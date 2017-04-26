@@ -22,21 +22,21 @@ module MediaWiktory::Wikipedia
     #
     module Pageterms
 
-    # When more results are available, use this to continue.
-    #
-    # @param value [Integer]
-    # @return [self]
-    def continue(value)
-      merge(wbptcontinue: value.to_s)
-    end
+      # When more results are available, use this to continue.
+      #
+      # @param value [Integer]
+      # @return [self]
+      def continue(value)
+        merge(wbptcontinue: value.to_s)
+      end
 
-    # The types of terms to get, e.g. 'description'. If not specified, all types are returned.
-    #
-    # @param values [Array<String>] Allowed values: "alias", "description", "label".
-    # @return [self]
-    def terms(*values)
-      merge(wbptterms: values.join('|'))
-    end
+      # The types of terms to get, e.g. 'description'. If not specified, all types are returned.
+      #
+      # @param values [Array<String>] Allowed values: "alias", "description", "label".
+      # @return [self]
+      def terms(*values)
+        merge(wbptterms: values.join('|'))
+      end
   end
   end
 end

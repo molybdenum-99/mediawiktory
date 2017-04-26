@@ -22,60 +22,60 @@ module MediaWiktory::Wikipedia
     #
     module Exturlusage
 
-    # Which pieces of information to include:
-    #
-    # @param values [Array<String>] Allowed values: "ids" (Adds the ID of page), "title" (Adds the title and namespace ID of the page), "url" (Adds the URL used in the page).
-    # @return [self]
-    def prop(*values)
-      merge(euprop: values.join('|'))
-    end
+      # Which pieces of information to include:
+      #
+      # @param values [Array<String>] Allowed values: "ids" (Adds the ID of page), "title" (Adds the title and namespace ID of the page), "url" (Adds the URL used in the page).
+      # @return [self]
+      def prop(*values)
+        merge(euprop: values.join('|'))
+      end
 
-    # When more results are available, use this to continue.
-    #
-    # @param value [Integer]
-    # @return [self]
-    def offset(value)
-      merge(euoffset: value.to_s)
-    end
+      # When more results are available, use this to continue.
+      #
+      # @param value [Integer]
+      # @return [self]
+      def offset(value)
+        merge(euoffset: value.to_s)
+      end
 
-    # Protocol of the URL. If empty and euquery is set, the protocol is http. Leave both this and euquery empty to list all external links.
-    #
-    # @param value [String] One of "bitcoin", "ftp", "ftps", "geo", "git", "gopher", "http", "https", "irc", "ircs", "magnet", "mailto", "mms", "news", "nntp", "redis", "sftp", "sip", "sips", "sms", "ssh", "svn", "tel", "telnet", "urn", "worldwind", "xmpp".
-    # @return [self]
-    def protocol(value)
-      merge(euprotocol: value.to_s)
-    end
+      # Protocol of the URL. If empty and euquery is set, the protocol is http. Leave both this and euquery empty to list all external links.
+      #
+      # @param value [String] One of "bitcoin", "ftp", "ftps", "geo", "git", "gopher", "http", "https", "irc", "ircs", "magnet", "mailto", "mms", "news", "nntp", "redis", "sftp", "sip", "sips", "sms", "ssh", "svn", "tel", "telnet", "urn", "worldwind", "xmpp".
+      # @return [self]
+      def protocol(value)
+        merge(euprotocol: value.to_s)
+      end
 
-    # Search string without protocol. See Special:LinkSearch. Leave empty to list all external links.
-    #
-    # @param value [String]
-    # @return [self]
-    def query(value)
-      merge(euquery: value.to_s)
-    end
+      # Search string without protocol. See Special:LinkSearch. Leave empty to list all external links.
+      #
+      # @param value [String]
+      # @return [self]
+      def query(value)
+        merge(euquery: value.to_s)
+      end
 
-    # The page namespaces to enumerate.
-    #
-    # @param values [Array<String>] Allowed values: "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "100", "101", "108", "109", "118", "119", "446", "447", "710", "711", "828", "829", "2300", "2301", "2302", "2303".
-    # @return [self]
-    def namespace(*values)
-      merge(eunamespace: values.join('|'))
-    end
+      # The page namespaces to enumerate.
+      #
+      # @param values [Array<String>] Allowed values: "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "100", "101", "108", "109", "118", "119", "446", "447", "710", "711", "828", "829", "2300", "2301", "2302", "2303".
+      # @return [self]
+      def namespace(*values)
+        merge(eunamespace: values.join('|'))
+      end
 
-    # How many pages to return.
-    #
-    # @param value [Integer, "max"]
-    # @return [self]
-    def limit(value)
-      merge(eulimit: value.to_s)
-    end
+      # How many pages to return.
+      #
+      # @param value [Integer, "max"]
+      # @return [self]
+      def limit(value)
+        merge(eulimit: value.to_s)
+      end
 
-    # Expand protocol-relative URLs with the canonical protocol.
-    #
-    # @return [self]
-    def expandurl()
-      merge(euexpandurl: 'true')
-    end
+      # Expand protocol-relative URLs with the canonical protocol.
+      #
+      # @return [self]
+      def expandurl()
+        merge(euexpandurl: 'true')
+      end
   end
   end
 end

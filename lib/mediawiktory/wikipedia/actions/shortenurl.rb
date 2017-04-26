@@ -21,13 +21,13 @@ module MediaWiktory::Wikipedia
     #
     class Shortenurl < MediaWiktory::Wikipedia::GetAction
 
-    # URL to be shortened.
-    #
-    # @param value [String]
-    # @return [self]
-    def url(value)
-      merge(url: value.to_s)
-    end
+      # URL to be shortened.
+      #
+      # @param value [String]
+      # @return [self]
+      def url(value)
+        merge(url: value.to_s)
+      end
   end
   end
 end
