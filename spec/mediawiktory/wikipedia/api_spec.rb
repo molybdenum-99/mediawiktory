@@ -30,6 +30,20 @@ module MediaWiktory
 
         its(:to_param) { is_expected.to eq('action' => 'query', 'format' => 'json', 'callback' => 'mycallback') }
       end
+
+      context 'generators' do
+        let(:action) { api.query.generator(:categorymembers).title('Category:Countries_in_South_America').limit(30).prop(:revisions).prop(:content).limit('max') }
+        its(:to_param) { is_expected.to eq(
+          'action' => 'query',
+          'generator' => 'categorymembers',
+          'gcmtitle' => 'Category:Countries_in_South_America',
+          'gcmlimit' => '30',
+          'prop' => 'revisions',
+          'rvprop' => 'content',
+          'rvlimit' => 'max'
+        ) }
+
+      end
     end
   end
 end
