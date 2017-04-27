@@ -38,6 +38,9 @@ module {{ namespace }}
            'Action is abstract, all actions should descend from GetAction or PostAction'
     end
 
+    def response
+      JSON.parse(format(:json).perform)
+    end
 {% for param in object.main.params %}{% include 'param_method' %}{% endfor %}
     private
 

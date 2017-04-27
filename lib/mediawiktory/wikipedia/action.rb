@@ -23,8 +23,15 @@ module MediaWiktory::Wikipedia
       @params.dup
     end
 
+    def name
+      self.class.name.scan(/(\w+)$/).flatten.first
+        &.gsub(/([a-z])([A-Z])/, '\1-\2') # ParsoidBatch # => parsoid-batch
+        &.downcase or
+        fail ArgumentError, "Can't guess action name from #{self.class.name}"
+    end
+
     def to_param
-      to_h.merge('action' => action_name)
+      to_h.merge('action' => name)
     end
 
     def to_url
@@ -176,13 +183,6 @@ module MediaWiktory::Wikipedia
       end
 
     private
-
-    def action_name
-      self.class.name.scan(/(\w+)$/).flatten.first
-        &.gsub(/([a-z])([A-Z])/, '\1-\2') # ParsoidBatch # => parsoid-batch
-        &.downcase or
-        fail ArgumentError, "Can't guess action name from #{self.class.name}"
-    end
 
     # Used by generated code in methods like
     #
