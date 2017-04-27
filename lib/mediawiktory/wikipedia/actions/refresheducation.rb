@@ -19,7 +19,7 @@ module MediaWiktory::Wikipedia
     #
     # All action's parameters are documented as its public methods, see below.
     #
-    class Refresheducation < MediaWiktory::Wikipedia::GetAction
+    class Refresheducation < MediaWiktory::Wikipedia::PostAction
 
       # The IDs of the objects to refresh.
       #

@@ -19,7 +19,7 @@ module MediaWiktory::Wikipedia
     #
     # All action's parameters are documented as its public methods, see below.
     #
-    class Linkaccount < MediaWiktory::Wikipedia::GetAction
+    class Linkaccount < MediaWiktory::Wikipedia::PostAction
 
       # Only use these authentication requests, by the id returned from action=query&meta=authmanagerinfo with amirequestsfor=link or from a previous response from this module.
       #

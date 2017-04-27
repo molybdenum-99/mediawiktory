@@ -78,10 +78,19 @@ module MediaWiktory
           'class_name' => class_name,
           'method_name' => method_name,
           'description' => description.split("\n").join("\n#\n# "),
+          'http_method' => http_method,
           'params' => params
             .reject { |p| p.name == '*' } # TODO: some actions have "rest of parameters, see there".
             .map(&:to_h)                  # Currently, we ignore it
         )
+      end
+
+      def http_method
+        post? ? 'Post' : 'Get'
+      end
+
+      def post?
+        flags.any? { |f| f.id == 'apihelp-flag-mustbeposted' }
       end
 
       def method_name

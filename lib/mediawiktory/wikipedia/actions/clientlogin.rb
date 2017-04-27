@@ -19,7 +19,7 @@ module MediaWiktory::Wikipedia
     #
     # All action's parameters are documented as its public methods, see below.
     #
-    class Clientlogin < MediaWiktory::Wikipedia::GetAction
+    class Clientlogin < MediaWiktory::Wikipedia::PostAction
 
       # Only use these authentication requests, by the id returned from action=query&meta=authmanagerinfo with amirequestsfor=login or from a previous response from this module.
       #

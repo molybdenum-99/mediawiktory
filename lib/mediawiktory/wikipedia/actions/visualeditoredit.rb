@@ -19,7 +19,7 @@ module MediaWiktory::Wikipedia
     #
     # All action's parameters are documented as its public methods, see below.
     #
-    class Visualeditoredit < MediaWiktory::Wikipedia::GetAction
+    class Visualeditoredit < MediaWiktory::Wikipedia::PostAction
 
       # Action to perform.
       #

@@ -19,7 +19,7 @@ module MediaWiktory::Wikipedia
     #
     # All action's parameters are documented as its public methods, see below.
     #
-    class Pagetriagetagging < MediaWiktory::Wikipedia::GetAction
+    class Pagetriagetagging < MediaWiktory::Wikipedia::PostAction
 
       # The article for which to be tagged.
       #

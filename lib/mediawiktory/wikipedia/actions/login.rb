@@ -19,7 +19,7 @@ module MediaWiktory::Wikipedia
     #
     # All action's parameters are documented as its public methods, see below.
     #
-    class Login < MediaWiktory::Wikipedia::GetAction
+    class Login < MediaWiktory::Wikipedia::PostAction
 
       # User name.
       #

@@ -19,7 +19,7 @@ module MediaWiktory::Wikipedia
     #
     # All action's parameters are documented as its public methods, see below.
     #
-    class Managetags < MediaWiktory::Wikipedia::GetAction
+    class Managetags < MediaWiktory::Wikipedia::PostAction
 
       # Which operation to perform:
       #

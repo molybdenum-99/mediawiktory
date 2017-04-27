@@ -19,7 +19,7 @@ module MediaWiktory::Wikipedia
     #
     # All action's parameters are documented as its public methods, see below.
     #
-    class Globalblock < MediaWiktory::Wikipedia::GetAction
+    class Globalblock < MediaWiktory::Wikipedia::PostAction
 
       # The target IP address.
       #

@@ -19,7 +19,7 @@ module MediaWiktory::Wikipedia
     #
     # All action's parameters are documented as its public methods, see below.
     #
-    class Echomarkseen < MediaWiktory::Wikipedia::GetAction
+    class Echomarkseen < MediaWiktory::Wikipedia::PostAction
 
       # A "csrf" token retrieved from action=query&meta=tokens
       #

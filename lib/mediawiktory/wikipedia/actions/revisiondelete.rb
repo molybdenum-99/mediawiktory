@@ -19,7 +19,7 @@ module MediaWiktory::Wikipedia
     #
     # All action's parameters are documented as its public methods, see below.
     #
-    class Revisiondelete < MediaWiktory::Wikipedia::GetAction
+    class Revisiondelete < MediaWiktory::Wikipedia::PostAction
 
       # Type of revision deletion being performed.
       #

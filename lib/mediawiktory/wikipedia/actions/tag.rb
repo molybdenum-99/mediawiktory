@@ -19,7 +19,7 @@ module MediaWiktory::Wikipedia
     #
     # All action's parameters are documented as its public methods, see below.
     #
-    class Tag < MediaWiktory::Wikipedia::GetAction
+    class Tag < MediaWiktory::Wikipedia::PostAction
 
       # One or more recent changes IDs from which to add or remove the tag.
       #

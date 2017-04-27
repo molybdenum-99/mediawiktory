@@ -19,7 +19,7 @@ module MediaWiktory::Wikipedia
     #
     # All action's parameters are documented as its public methods, see below.
     #
-    class Bouncehandler < MediaWiktory::Wikipedia::GetAction
+    class Bouncehandler < MediaWiktory::Wikipedia::PostAction
 
       # The bounced email.
       #

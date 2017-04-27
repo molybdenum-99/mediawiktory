@@ -19,7 +19,7 @@ module MediaWiktory::Wikipedia
     #
     # All action's parameters are documented as its public methods, see below.
     #
-    class Cxpublish < MediaWiktory::Wikipedia::GetAction
+    class Cxpublish < MediaWiktory::Wikipedia::PostAction
 
       # The title of the page to perform actions on.
       #

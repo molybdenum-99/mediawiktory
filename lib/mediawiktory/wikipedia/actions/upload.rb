@@ -19,7 +19,7 @@ module MediaWiktory::Wikipedia
     #
     # All action's parameters are documented as its public methods, see below.
     #
-    class Upload < MediaWiktory::Wikipedia::GetAction
+    class Upload < MediaWiktory::Wikipedia::PostAction
 
       # Target filename.
       #

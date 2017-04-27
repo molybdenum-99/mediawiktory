@@ -19,7 +19,7 @@ module MediaWiktory::Wikipedia
     #
     # All action's parameters are documented as its public methods, see below.
     #
-    class Editmassmessagelist < MediaWiktory::Wikipedia::GetAction
+    class Editmassmessagelist < MediaWiktory::Wikipedia::PostAction
 
       # Title of the delivery list to update.
       #

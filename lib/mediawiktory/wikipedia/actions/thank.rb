@@ -19,7 +19,7 @@ module MediaWiktory::Wikipedia
     #
     # All action's parameters are documented as its public methods, see below.
     #
-    class Thank < MediaWiktory::Wikipedia::GetAction
+    class Thank < MediaWiktory::Wikipedia::PostAction
 
       # Revision ID to thank someone for.
       #

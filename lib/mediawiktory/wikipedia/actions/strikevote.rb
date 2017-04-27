@@ -19,7 +19,7 @@ module MediaWiktory::Wikipedia
     #
     # All action's parameters are documented as its public methods, see below.
     #
-    class Strikevote < MediaWiktory::Wikipedia::GetAction
+    class Strikevote < MediaWiktory::Wikipedia::PostAction
 
       # Which action to take: strike or unstrike a vote.
       #

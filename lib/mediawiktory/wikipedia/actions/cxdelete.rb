@@ -19,7 +19,7 @@ module MediaWiktory::Wikipedia
     #
     # All action's parameters are documented as its public methods, see below.
     #
-    class Cxdelete < MediaWiktory::Wikipedia::GetAction
+    class Cxdelete < MediaWiktory::Wikipedia::PostAction
 
       # The source language code.
       #

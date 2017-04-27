@@ -19,7 +19,7 @@ module MediaWiktory::Wikipedia
     #
     # All action's parameters are documented as its public methods, see below.
     #
-    class Purge < MediaWiktory::Wikipedia::GetAction
+    class Purge < MediaWiktory::Wikipedia::PostAction
 
       # Update the links tables.
       #

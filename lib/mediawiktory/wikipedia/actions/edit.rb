@@ -19,7 +19,7 @@ module MediaWiktory::Wikipedia
     #
     # All action's parameters are documented as its public methods, see below.
     #
-    class Edit < MediaWiktory::Wikipedia::GetAction
+    class Edit < MediaWiktory::Wikipedia::PostAction
 
       # Title of the page to edit. Cannot be used together with pageid.
       #

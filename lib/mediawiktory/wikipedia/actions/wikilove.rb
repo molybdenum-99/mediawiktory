@@ -19,7 +19,7 @@ module MediaWiktory::Wikipedia
     #
     # All action's parameters are documented as its public methods, see below.
     #
-    class Wikilove < MediaWiktory::Wikipedia::GetAction
+    class Wikilove < MediaWiktory::Wikipedia::PostAction
 
       # Full pagename of the user page or user talk page of the user to send WikiLove to.
       #

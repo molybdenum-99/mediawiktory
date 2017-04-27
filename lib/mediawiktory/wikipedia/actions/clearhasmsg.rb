@@ -19,7 +19,7 @@ module MediaWiktory::Wikipedia
     #
     # All action's parameters are documented as its public methods, see below.
     #
-    class Clearhasmsg < MediaWiktory::Wikipedia::GetAction
+    class Clearhasmsg < MediaWiktory::Wikipedia::PostAction
   end
   end
 end

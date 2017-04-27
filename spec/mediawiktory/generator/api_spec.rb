@@ -9,12 +9,15 @@ RSpec.describe MediaWiktory::Generator::Api do
     describe '#actions' do
       subject { api.actions }
 
-      it { is_expected.to be_an(Array).and have_attributes(size: 116).and all be_a(MediaWiktory::ApiParser::Module) }
+      it { is_expected.to be_an(Array).and have_attributes(size: 116).and all be_a(MediaWiktory::Generator::Module) }
       its_map(:name) { is_expected.to include('edit', 'query', 'delete') }
     end
 
     describe '#modules' do
-      it { is_expected.to be_a(Hash).and include('query', 'categories', 'categorymembers', 'json') }
+      subject { api.modules }
+
+      it { is_expected.to be_an(Array) }
+      its_map(:name) { are_expected.to include('query', 'categories', 'categorymembers', 'json') }
     end
   end
 
@@ -73,11 +76,11 @@ RSpec.describe MediaWiktory::Generator::Api do
     it 'creates action methods' do
       is_expected
         .to include(%Q{
-          |  # @return [Dummy::Actions::Abusefiltercheckmatch]
-          |  #
-          |  def abusefiltercheckmatch(**options)
-          |    Actions::Abusefiltercheckmatch.new(**options)
-          |  end
+          |    # @return [Dummy::Actions::Abusefiltercheckmatch]
+          |    #
+          |    def abusefiltercheckmatch(**options)
+          |      Actions::Abusefiltercheckmatch.new(client, @defaults.merge(**options))
+          |    end
         }.unindent)
     end
 
@@ -86,14 +89,11 @@ RSpec.describe MediaWiktory::Generator::Api do
         .to include('This method creates an instance of {Dummy::Actions::Abusefiltercheckmatch} action.')
         .and include("api.abusefiltercheckmatch(param: 'value')")
         .and include(
-          "  # Check to see if an AbuseFilter matches a set of variables, editor logged AbuseFilter event.\n"\
-          "  #\n"\
-          "  # vars, rcid or logid is required however only one may be used."
+          "  # Check to see if an AbuseFilter matches a set of variables, editor logged AbuseFilter event."
         )
     end
 
     it 'creates initialize param docs' do
-      puts subject
       is_expected
         .to include('  # @option defaults [Integer] maxlag Maximum lag can be used when MediaWiki is installed on a database replicated cluster.')
 
