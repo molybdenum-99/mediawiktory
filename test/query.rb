@@ -20,4 +20,10 @@ api = MediaWiktory::Wikipedia::Api
 
 #pp api.new.query.generator(:categorymembers).title('Category:DOS_games').limit('max').response
 
-puts api.new.query.generator(:categorymembers).title('Categor:Argentina').limit('max').format(:json).perform
+#puts api.new.query.generator(:categorymembers).title('Categor:Argentina').limit('max').format(:json).perform
+
+r1 = api.new.query.generator(:categorymembers).title('Category:DOS_games').response
+pp r1, r1.to_h
+r2 = r1.continue
+pp r2, r2.to_h
+

@@ -46,7 +46,8 @@ module MediaWiktory::Wikipedia
     end
 
     def response
-      JSON.parse(format(:json).perform)
+      jsonable = format(:json)
+      Response.parse(jsonable, jsonable.perform)
     end
 
 

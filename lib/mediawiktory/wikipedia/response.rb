@@ -30,6 +30,10 @@ module MediaWiktory::Wikipedia
       self.class.new(action, deep_merge(@data, JSON.parse(action.perform)))
     end
 
+    def inspect
+      "#<#{self.class.name}(#{@action.name}): #{to_h.keys.join(', ')}#{' (can continue)' if continue?}>"
+    end
+
     private
 
     def deep_merge(hash1, hash2)
