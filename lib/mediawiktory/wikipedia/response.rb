@@ -40,7 +40,7 @@ module MediaWiktory::Wikipedia
       merger = ->(k, v1, v2) { v1.is_a?(Hash) && v2.is_a?(Hash) ? v1.merge(v2, &merger) : v2 }
       hash1.merge(hash2, &merger)
         .tap { |res| res['continue'] = hash2['continue'] } # more new page is responsible for continuation
-        .reject { |_, v| !v }
+        .select(&:last)
     end
 
     def raise_errors!
