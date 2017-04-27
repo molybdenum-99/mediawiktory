@@ -48,25 +48,31 @@ module MediaWiktory
     end
 
     describe '#continue' do
-      let(:hash) { {query: {foo: 'bar'}, continue: {gcmcontinue: 'something'}} }
-      before {
-        expect(action).to receive(:merge).with('gcmcontinue' => 'something').and_return(action)
-        expect(action).to receive(:perform).and_return(next_page.to_json)
-      }
-      let(:next_page) { {query: {bar: 'baz'}} }
-      subject! { response.continue }
+      subject { response.continue }
 
-      its(:to_h) { is_expected.to eq('foo' => 'bar', 'bar' => 'baz') }
-      its(:raw) { is_expected.to eq('query' => {'foo' => 'bar', 'bar' => 'baz'}) }
-      its(:continue?) { is_expected.to be false }
+      context 'when there is next page' do
+        let(:hash) { {query: {foo: 'bar'}, continue: {gcmcontinue: 'something'}} }
+        before {
+          expect(action).to receive(:merge).with('gcmcontinue' => 'something').and_return(action)
+          expect(action).to receive(:perform).and_return(next_page.to_json)
+        }
+        let(:next_page) { {query: {bar: 'baz'}} }
 
-      context 'original response' do
-        before { response.continue }
-        subject { response }
-        its(:to_h) { is_expected.to eq('foo' => 'bar') }
+        its(:to_h) { is_expected.to eq('foo' => 'bar', 'bar' => 'baz') }
+        its(:raw) { is_expected.to eq('query' => {'foo' => 'bar', 'bar' => 'baz'}) }
+        its(:continue?) { is_expected.to be false }
+
+        context 'original response' do
+          before { response.continue }
+          subject { response }
+          its(:to_h) { is_expected.to eq('foo' => 'bar') }
+        end
       end
 
       context 'when there are nothing to continue' do
+        let(:hash) { {query: {foo: 'bar'}} }
+
+        its_call { is_expected.to raise_error }
       end
     end
 
