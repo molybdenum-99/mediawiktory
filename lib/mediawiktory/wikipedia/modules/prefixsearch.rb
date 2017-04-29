@@ -56,7 +56,7 @@ module MediaWiktory::Wikipedia
 
       # Search profile to use.
       #
-      # @param value [String] One of "strict" (Strict profile with few punctuation characters removed but diacritics and stress marks are kept), "normal" (Few punctuation characters, some diacritics and stopwords removed), "fuzzy" (Similar to normal with typo correction (two typos supported)), "fast-fuzzy" ((no description)), "classic" (Classic prefix, few punctuation characters and some diacritics removed).
+      # @param value [String] One of "strict" (Strict profile with few punctuation characters removed but diacritics and stress marks are kept), "normal" (Few punctuation characters, some diacritics and stopwords removed), "fuzzy" (Similar to normal with typo correction (two typos supported)), "fast-fuzzy" (Experimental fuzzy profile (may be removed at any time)), "classic" (Classic prefix, few punctuation characters and some diacritics removed).
       # @return [self]
       def profile(value)
         merge(psprofile: value.to_s)

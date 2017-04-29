@@ -111,6 +111,13 @@ module MediaWiktory::Wikipedia
         merge(converttitles: 'true')
       end
 
+      # Return data about titles even if they are missing or lack TemplateData. By default (for backwards compatibility) titles are only returned if they exist and have TemplateData.
+      #
+      # @return [self]
+      def doNotIgnoreMissingTitles()
+        merge(doNotIgnoreMissingTitles: 'true')
+      end
+
       # Return localized values in this language. By default all available translations are returned.
       #
       # @param value [String]

@@ -56,7 +56,7 @@ module MediaWiktory::Wikipedia
 
       # Query independent profile to use (affects ranking algorithm).
       #
-      # @param value [String] One of "classic" (Ranking based on the number of incoming links, some templates, article language and recency (templates/language/recency may not be activated on this wiki)), "classic_noboostlinks" (Ranking based on some templates, article language and recency when activated on this wiki), "empty" (Ranking based solely on query dependent features (for debug only)), "wsum_inclinks" ((no description)), "wsum_inclinks_pv" ((no description)), "popular_inclinks_pv" (Ranking based primarily on page views), "popular_inclinks" (Ranking based primarily on incoming link counts).
+      # @param value [String] One of "classic" (Ranking based on the number of incoming links, some templates, article language and recency (templates/language/recency may not be activated on this wiki)), "classic_noboostlinks" (Ranking based on some templates, article language and recency when activated on this wiki), "empty" (Ranking based solely on query dependent features (for debug only)), "wsum_inclinks" (Weighted sum based on incoming links), "wsum_inclinks_pv" (Weighted sum based on incoming links and weekly pageviews), "popular_inclinks_pv" (Ranking based primarily on page views), "popular_inclinks" (Ranking based primarily on incoming link counts).
       # @return [self]
       def qiprofile(value)
         merge(gsrqiprofile: value.to_s)

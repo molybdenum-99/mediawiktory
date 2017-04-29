@@ -40,6 +40,18 @@ module MediaWiktory
       end
     end
 
+    class Response
+      include Renderable
+
+      def main_template
+        'response.rb'
+      end
+
+      def to_h
+        {}
+      end
+    end
+
     def initialize(url)
       @api = Api.from_url(url)
       @url = url
@@ -52,6 +64,7 @@ module MediaWiktory
 
       BaseAction.new(@api).render_to(File.join(path, 'action.rb'), opts)
       Client.new.render_to(File.join(path, 'client.rb'), opts)
+      Response.new.render_to(File.join(path, 'response.rb'), opts)
 
       @api.render_to(File.join(path, 'api.rb'), opts)
       @api.actions.each do |a|

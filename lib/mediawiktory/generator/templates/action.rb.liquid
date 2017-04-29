@@ -51,13 +51,6 @@ module {{ namespace }}
 {% for param in object.main.params %}{% include 'param_method' %}{% endfor %}
     private
 
-    def action_name
-      self.class.name.scan(/(\w+)$/).flatten.first
-        &.gsub(/([a-z])([A-Z])/, '\1-\2') # ParsoidBatch # => parsoid-batch
-        &.downcase or
-        fail ArgumentError, "Can't guess action name from #{self.class.name}"
-    end
-
     # Used by generated code in methods like
     #
     # ```ruby

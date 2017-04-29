@@ -14,7 +14,7 @@ module {{ namespace }}
   class Api
     attr_reader :client
 
-    # @param url [String] Source URL for this API, by default "{{ object.source }}".
+    # @param url [String] Source URL for this API, by default "{{ source }}".
     #   Note that most of MediaWiki installations have source URL at `/w/api.php`, but some are
     #   just `/api.php`, others use `/wiki/api.php` and so on.
     #
@@ -22,7 +22,7 @@ module {{ namespace }}
     #   set by subsequent {Action} methods, like `api.some_action.json(callback: 'mycallbackname')...`
 {% for param in object.main.params %}    # @option defaults [{{ param.ruby_type }}] {{ param.name }} {{ param.description }}{{param.param_docs}} See {{"{"}}Action#{{param.name}}}
 {% endfor %}    #
-    def initialize(url = '{{ object.source }}', **defaults)
+    def initialize(url = '{{ source }}', **defaults)
       @client = Client.new(url, **defaults)
       @defaults = defaults
     end
