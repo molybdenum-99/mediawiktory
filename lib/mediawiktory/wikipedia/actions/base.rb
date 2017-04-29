@@ -151,7 +151,7 @@ module MediaWiktory::Wikipedia
     # * Create it with `api.action_name`
     # * Set action params with subsequent `paramname(paramvalue)` calls;
     # * Perform action with {#perform} (returns row MediaWiki response as a string) or {#response}
-    #   (returns ::Response} class with parsed data and helper methods).
+    #   (returns {MediaWiktory::Wikipedia::Response} class with parsed data and helper methods).
     #
     # Note that some of `paramname(value)` calls include new {Modules} into action, which provides
     # new params & methods. For example:
@@ -203,9 +203,14 @@ module MediaWiktory::Wikipedia
         @submodules = []
       end
 
+      # @return [String]
+      def inspect
+        "#<#{self.class.name} {to_h}>"
+      end
+
       # Make new action, with additional params passed as `hash`. No params validations are made.
       #
-      # @param [Hash] Params to merge. All keys and values would be stringified.
+      # @param hash [Hash] Params to merge. All keys and values would be stringified.
       # @return [Action] Produced action of the same type as current action was, with all passed
       #   params applied.
       def merge(hash)

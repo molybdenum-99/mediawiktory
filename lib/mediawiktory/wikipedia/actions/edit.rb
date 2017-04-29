@@ -15,7 +15,7 @@ module MediaWiktory::Wikipedia
     # api.edit.title(value).perform
     # ```
     #
-    # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions.
+    # See {Base} for generic explanation of working with MediaWiki actions.
     #
     # All action's parameters are documented as its public methods, see below.
     #

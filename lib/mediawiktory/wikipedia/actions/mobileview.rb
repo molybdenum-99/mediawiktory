@@ -15,7 +15,7 @@ module MediaWiktory::Wikipedia
     # api.mobileview.page(value).perform
     # ```
     #
-    # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions.
+    # See {Base} for generic explanation of working with MediaWiki actions.
     #
     # All action's parameters are documented as its public methods, see below.
     #

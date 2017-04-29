@@ -5,6 +5,12 @@ require 'faraday'
 require 'faraday_middleware'
 
 module MediaWiktory::Wikipedia
+  # Internal low-level client class, used by {Api}.
+  #
+  # Uses [Faraday](https://github.com/lostisland/faraday) library inside (and will expose it's settings
+  # in future).
+  #
+  # You should not use it directly, all you need is in {Api}.
   class Client
     # Default MediaWiktory User-Agent header.
     #
