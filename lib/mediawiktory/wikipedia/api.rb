@@ -6,10 +6,30 @@ require_relative './actions/base'
 module MediaWiktory::Wikipedia
   # The base API class for [Wikipedia](https://en.wikipedia.org/wiki/Main_Page).
   #
-  # Generated from https://en.wikipedia.org/w/api.php at April 29, 2017 by MediaWiktory 0.1.0.
+  # _Generated from https://en.wikipedia.org/w/api.php at April 29, 2017 by MediaWiktory 0.1.0._
   #
-  # See {MediaWiktory::Api} base class docs for generic usage examples, and this class' methods
-  # list and descriptions for MediaWiki features available for this particular API.
+  # It also can be used for access to any other MediaWiki site, but some of actions could be
+  # non-existent/outdated.
+  #
+  # Example of usage:
+  #
+  # ```ruby
+  # # For Wikipedia
+  # api = MediaWiktory::Wikipedia::Api.new
+  # api.some_action.some_param(value).other_param(*more_values).perform
+  # # => returns raw response of MediaWiki API
+  # api.some_action.some_param(value).other_param(*more_values).response
+  # # => returns an instance of Response, parsed from JSON
+  #
+  # # For any other site:
+  # api = MediaWiktory::Wikipedia::Api.new('https://some.site/w/api.php')
+  # # ...the same as above
+  # ```
+  #
+  # This class method's list all available actions and refers to corresponding classes and their
+  # options.
+  #
+  # See also {Response} for working with return values.
   #
   class Api
     attr_reader :client
@@ -20,22 +40,22 @@ module MediaWiktory::Wikipedia
     #
     # @param defaults [Hash] Default options for all API queries. Default param values also can be
     #   set by subsequent {Action} methods, like `api.some_action.json(callback: 'mycallbackname')...`
-    # @option defaults [Symbol] format The format of the output. Selecting an option includes tweaking methods from corresponding module: See {Action#format}
-    # @option defaults [Integer] maxlag Maximum lag can be used when MediaWiki is installed on a database replicated cluster. To save actions causing any more site replication lag, this parameter can make the client wait until the replication lag is less than the specified value. In case of excessive lag, error code maxlag is returned with a message like Waiting for $host: $lag seconds lagged.See Manual: Maxlag parameter for more information. See {Action#maxlag}
-    # @option defaults [Integer] smaxage Set the s-maxage HTTP cache control header to this many seconds. Errors are never cached. See {Action#smaxage}
-    # @option defaults [Integer] maxage Set the max-age HTTP cache control header to this many seconds. Errors are never cached. See {Action#maxage}
-    # @option defaults [String] assert Verify the user is logged in if set to user, or has the bot user right if bot. One of "user", "bot". See {Action#assert}
-    # @option defaults [String] assertuser Verify the current user is the named user. See {Action#assertuser}
-    # @option defaults [String] requestid Any value given here will be included in the response. May be used to distinguish requests. See {Action#requestid}
-    # @option defaults [true, false] servedby Include the hostname that served the request in the results. See {Action#servedby}
-    # @option defaults [true, false] curtimestamp Include the current timestamp in the result. See {Action#curtimestamp}
-    # @option defaults [true, false] responselanginfo Include the languages used for uselang and errorlang in the result. See {Action#responselanginfo}
-    # @option defaults [String] origin When accessing the API using a cross-domain AJAX request (CORS), set this to the originating domain. This must be included in any pre-flight request, and therefore must be part of the request URI (not the POST body). See {Action#origin}
-    # @option defaults [String] uselang Language to use for message translations. action=query&meta=siteinfo with siprop=languages returns a list of language codes, or specify user to use the current user's language preference, or specify content to use this wiki's content language. See {Action#uselang}
-    # @option defaults [String] errorformat Format to use for warning and error text output. One of " plaintext" ( Wikitext with HTML tags removed and entities replaced), " wikitext" ( Unparsed wikitext), " html" ( HTML), " raw" ( Message key and parameters), " none" ( No text output, only the error codes), " bc" ( Format used prior to MediaWiki 1.29. errorlang and errorsuselocal are ignored). See {Action#errorformat}
-    # @option defaults [String] errorlang Language to use for warnings and errors. action=query&meta=siteinfo with siprop=languages returns a list of language codes, or specify content to use this wiki's content language, or specify uselang to use the same value as the uselang parameter. See {Action#errorlang}
-    # @option defaults [true, false] errorsuselocal If given, error texts will use locally-customized messages from the MediaWiki namespace. See {Action#errorsuselocal}
-    # @option defaults [String] centralauthtoken When accessing the API using a cross-domain AJAX request (CORS), use this to authenticate as the current SUL user. Use action=centralauthtoken on this wiki to retrieve the token, before making the CORS request. Each token may only be used once, and expires after 10 seconds. This should be included in any pre-flight request, and therefore should be included in the request URI (not the POST body). See {Action#centralauthtoken}
+    # @option defaults [Symbol] format The format of the output. Selecting an option includes tweaking methods from corresponding module: See {Actions::Base#format}
+    # @option defaults [Integer] maxlag Maximum lag can be used when MediaWiki is installed on a database replicated cluster. To save actions causing any more site replication lag, this parameter can make the client wait until the replication lag is less than the specified value. In case of excessive lag, error code maxlag is returned with a message like Waiting for $host: $lag seconds lagged.See Manual: Maxlag parameter for more information. See {Actions::Base#maxlag}
+    # @option defaults [Integer] smaxage Set the s-maxage HTTP cache control header to this many seconds. Errors are never cached. See {Actions::Base#smaxage}
+    # @option defaults [Integer] maxage Set the max-age HTTP cache control header to this many seconds. Errors are never cached. See {Actions::Base#maxage}
+    # @option defaults [String] assert Verify the user is logged in if set to user, or has the bot user right if bot. One of "user", "bot". See {Actions::Base#assert}
+    # @option defaults [String] assertuser Verify the current user is the named user. See {Actions::Base#assertuser}
+    # @option defaults [String] requestid Any value given here will be included in the response. May be used to distinguish requests. See {Actions::Base#requestid}
+    # @option defaults [true, false] servedby Include the hostname that served the request in the results. See {Actions::Base#servedby}
+    # @option defaults [true, false] curtimestamp Include the current timestamp in the result. See {Actions::Base#curtimestamp}
+    # @option defaults [true, false] responselanginfo Include the languages used for uselang and errorlang in the result. See {Actions::Base#responselanginfo}
+    # @option defaults [String] origin When accessing the API using a cross-domain AJAX request (CORS), set this to the originating domain. This must be included in any pre-flight request, and therefore must be part of the request URI (not the POST body). See {Actions::Base#origin}
+    # @option defaults [String] uselang Language to use for message translations. action=query&meta=siteinfo with siprop=languages returns a list of language codes, or specify user to use the current user's language preference, or specify content to use this wiki's content language. See {Actions::Base#uselang}
+    # @option defaults [String] errorformat Format to use for warning and error text output. One of " plaintext" ( Wikitext with HTML tags removed and entities replaced), " wikitext" ( Unparsed wikitext), " html" ( HTML), " raw" ( Message key and parameters), " none" ( No text output, only the error codes), " bc" ( Format used prior to MediaWiki 1.29. errorlang and errorsuselocal are ignored). See {Actions::Base#errorformat}
+    # @option defaults [String] errorlang Language to use for warnings and errors. action=query&meta=siteinfo with siprop=languages returns a list of language codes, or specify content to use this wiki's content language, or specify uselang to use the same value as the uselang parameter. See {Actions::Base#errorlang}
+    # @option defaults [true, false] errorsuselocal If given, error texts will use locally-customized messages from the MediaWiki namespace. See {Actions::Base#errorsuselocal}
+    # @option defaults [String] centralauthtoken When accessing the API using a cross-domain AJAX request (CORS), use this to authenticate as the current SUL user. Use action=centralauthtoken on this wiki to retrieve the token, before making the CORS request. Each token may only be used once, and expires after 10 seconds. This should be included in any pre-flight request, and therefore should be included in the request URI (not the POST body). See {Actions::Base#centralauthtoken}
     #
     def initialize(url = 'https://en.wikipedia.org/w/api.php', **defaults)
       @client = Client.new(url, **defaults)
@@ -49,12 +69,12 @@ module MediaWiktory::Wikipedia
     # Action parameters could be passed to this method, like
     #
     # ```ruby
-    # api.abusefiltercheckmatch(param: 'value')
+    # api.abusefiltercheckmatch(filter: 'value')
     # ```
     # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Abusefiltercheckmatch} method calls, like
     #
     # ```ruby
-    # api.abusefiltercheckmatch.param('value')
+    # api.abusefiltercheckmatch.filter('value')
     # ```
     #
     # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
@@ -74,12 +94,12 @@ module MediaWiktory::Wikipedia
     # Action parameters could be passed to this method, like
     #
     # ```ruby
-    # api.abusefilterchecksyntax(param: 'value')
+    # api.abusefilterchecksyntax(filter: 'value')
     # ```
     # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Abusefilterchecksyntax} method calls, like
     #
     # ```ruby
-    # api.abusefilterchecksyntax.param('value')
+    # api.abusefilterchecksyntax.filter('value')
     # ```
     #
     # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
@@ -99,12 +119,12 @@ module MediaWiktory::Wikipedia
     # Action parameters could be passed to this method, like
     #
     # ```ruby
-    # api.abusefilterevalexpression(param: 'value')
+    # api.abusefilterevalexpression(expression: 'value')
     # ```
     # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Abusefilterevalexpression} method calls, like
     #
     # ```ruby
-    # api.abusefilterevalexpression.param('value')
+    # api.abusefilterevalexpression.expression('value')
     # ```
     #
     # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
@@ -124,12 +144,12 @@ module MediaWiktory::Wikipedia
     # Action parameters could be passed to this method, like
     #
     # ```ruby
-    # api.abusefilterunblockautopromote(param: 'value')
+    # api.abusefilterunblockautopromote(user: 'value')
     # ```
     # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Abusefilterunblockautopromote} method calls, like
     #
     # ```ruby
-    # api.abusefilterunblockautopromote.param('value')
+    # api.abusefilterunblockautopromote.user('value')
     # ```
     #
     # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
@@ -149,12 +169,12 @@ module MediaWiktory::Wikipedia
     # Action parameters could be passed to this method, like
     #
     # ```ruby
-    # api.addstudents(param: 'value')
+    # api.addstudents(studentusernames: 'value')
     # ```
     # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Addstudents} method calls, like
     #
     # ```ruby
-    # api.addstudents.param('value')
+    # api.addstudents.studentusernames('value')
     # ```
     #
     # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
@@ -174,12 +194,12 @@ module MediaWiktory::Wikipedia
     # Action parameters could be passed to this method, like
     #
     # ```ruby
-    # api.antispoof(param: 'value')
+    # api.antispoof(username: 'value')
     # ```
     # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Antispoof} method calls, like
     #
     # ```ruby
-    # api.antispoof.param('value')
+    # api.antispoof.username('value')
     # ```
     #
     # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
@@ -199,12 +219,12 @@ module MediaWiktory::Wikipedia
     # Action parameters could be passed to this method, like
     #
     # ```ruby
-    # api.block(param: 'value')
+    # api.block(user: 'value')
     # ```
     # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Block} method calls, like
     #
     # ```ruby
-    # api.block.param('value')
+    # api.block.user('value')
     # ```
     #
     # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
@@ -224,12 +244,12 @@ module MediaWiktory::Wikipedia
     # Action parameters could be passed to this method, like
     #
     # ```ruby
-    # api.bouncehandler(param: 'value')
+    # api.bouncehandler(email: 'value')
     # ```
     # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Bouncehandler} method calls, like
     #
     # ```ruby
-    # api.bouncehandler.param('value')
+    # api.bouncehandler.email('value')
     # ```
     #
     # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
@@ -249,12 +269,12 @@ module MediaWiktory::Wikipedia
     # Action parameters could be passed to this method, like
     #
     # ```ruby
-    # api.categorytree(param: 'value')
+    # api.categorytree(category: 'value')
     # ```
     # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Categorytree} method calls, like
     #
     # ```ruby
-    # api.categorytree.param('value')
+    # api.categorytree.category('value')
     # ```
     #
     # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
@@ -274,12 +294,12 @@ module MediaWiktory::Wikipedia
     # Action parameters could be passed to this method, like
     #
     # ```ruby
-    # api.centralauthtoken(param: 'value')
+    # api.centralauthtoken(: 'value')
     # ```
     # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Centralauthtoken} method calls, like
     #
     # ```ruby
-    # api.centralauthtoken.param('value')
+    # api.centralauthtoken.('value')
     # ```
     #
     # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
@@ -299,12 +319,12 @@ module MediaWiktory::Wikipedia
     # Action parameters could be passed to this method, like
     #
     # ```ruby
-    # api.centralnoticechoicedata(param: 'value')
+    # api.centralnoticechoicedata(project: 'value')
     # ```
     # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Centralnoticechoicedata} method calls, like
     #
     # ```ruby
-    # api.centralnoticechoicedata.param('value')
+    # api.centralnoticechoicedata.project('value')
     # ```
     #
     # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
@@ -324,12 +344,12 @@ module MediaWiktory::Wikipedia
     # Action parameters could be passed to this method, like
     #
     # ```ruby
-    # api.centralnoticequerycampaign(param: 'value')
+    # api.centralnoticequerycampaign(campaign: 'value')
     # ```
     # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Centralnoticequerycampaign} method calls, like
     #
     # ```ruby
-    # api.centralnoticequerycampaign.param('value')
+    # api.centralnoticequerycampaign.campaign('value')
     # ```
     #
     # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
@@ -349,12 +369,12 @@ module MediaWiktory::Wikipedia
     # Action parameters could be passed to this method, like
     #
     # ```ruby
-    # api.changeauthenticationdata(param: 'value')
+    # api.changeauthenticationdata(request: 'value')
     # ```
     # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Changeauthenticationdata} method calls, like
     #
     # ```ruby
-    # api.changeauthenticationdata.param('value')
+    # api.changeauthenticationdata.request('value')
     # ```
     #
     # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
@@ -374,12 +394,12 @@ module MediaWiktory::Wikipedia
     # Action parameters could be passed to this method, like
     #
     # ```ruby
-    # api.checktoken(param: 'value')
+    # api.checktoken(type: 'value')
     # ```
     # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Checktoken} method calls, like
     #
     # ```ruby
-    # api.checktoken.param('value')
+    # api.checktoken.type('value')
     # ```
     #
     # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
@@ -399,12 +419,12 @@ module MediaWiktory::Wikipedia
     # Action parameters could be passed to this method, like
     #
     # ```ruby
-    # api.cirrus_config_dump(param: 'value')
+    # api.cirrus_config_dump(: 'value')
     # ```
     # ...or by subsequent {MediaWiktory::Wikipedia::Actions::CirrusConfigDump} method calls, like
     #
     # ```ruby
-    # api.cirrus_config_dump.param('value')
+    # api.cirrus_config_dump.('value')
     # ```
     #
     # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
@@ -424,12 +444,12 @@ module MediaWiktory::Wikipedia
     # Action parameters could be passed to this method, like
     #
     # ```ruby
-    # api.cirrus_mapping_dump(param: 'value')
+    # api.cirrus_mapping_dump(: 'value')
     # ```
     # ...or by subsequent {MediaWiktory::Wikipedia::Actions::CirrusMappingDump} method calls, like
     #
     # ```ruby
-    # api.cirrus_mapping_dump.param('value')
+    # api.cirrus_mapping_dump.('value')
     # ```
     #
     # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
@@ -449,12 +469,12 @@ module MediaWiktory::Wikipedia
     # Action parameters could be passed to this method, like
     #
     # ```ruby
-    # api.cirrus_settings_dump(param: 'value')
+    # api.cirrus_settings_dump(: 'value')
     # ```
     # ...or by subsequent {MediaWiktory::Wikipedia::Actions::CirrusSettingsDump} method calls, like
     #
     # ```ruby
-    # api.cirrus_settings_dump.param('value')
+    # api.cirrus_settings_dump.('value')
     # ```
     #
     # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
@@ -474,12 +494,12 @@ module MediaWiktory::Wikipedia
     # Action parameters could be passed to this method, like
     #
     # ```ruby
-    # api.clearhasmsg(param: 'value')
+    # api.clearhasmsg(: 'value')
     # ```
     # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Clearhasmsg} method calls, like
     #
     # ```ruby
-    # api.clearhasmsg.param('value')
+    # api.clearhasmsg.('value')
     # ```
     #
     # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
@@ -499,12 +519,12 @@ module MediaWiktory::Wikipedia
     # Action parameters could be passed to this method, like
     #
     # ```ruby
-    # api.clientlogin(param: 'value')
+    # api.clientlogin(requests: 'value')
     # ```
     # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Clientlogin} method calls, like
     #
     # ```ruby
-    # api.clientlogin.param('value')
+    # api.clientlogin.requests('value')
     # ```
     #
     # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
@@ -524,12 +544,12 @@ module MediaWiktory::Wikipedia
     # Action parameters could be passed to this method, like
     #
     # ```ruby
-    # api.compare(param: 'value')
+    # api.compare(fromtitle: 'value')
     # ```
     # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Compare} method calls, like
     #
     # ```ruby
-    # api.compare.param('value')
+    # api.compare.fromtitle('value')
     # ```
     #
     # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
@@ -549,12 +569,12 @@ module MediaWiktory::Wikipedia
     # Action parameters could be passed to this method, like
     #
     # ```ruby
-    # api.createaccount(param: 'value')
+    # api.createaccount(requests: 'value')
     # ```
     # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Createaccount} method calls, like
     #
     # ```ruby
-    # api.createaccount.param('value')
+    # api.createaccount.requests('value')
     # ```
     #
     # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
@@ -574,12 +594,12 @@ module MediaWiktory::Wikipedia
     # Action parameters could be passed to this method, like
     #
     # ```ruby
-    # api.cspreport(param: 'value')
+    # api.cspreport(reportonly: 'value')
     # ```
     # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Cspreport} method calls, like
     #
     # ```ruby
-    # api.cspreport.param('value')
+    # api.cspreport.reportonly('value')
     # ```
     #
     # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
@@ -599,12 +619,12 @@ module MediaWiktory::Wikipedia
     # Action parameters could be passed to this method, like
     #
     # ```ruby
-    # api.cxconfiguration(param: 'value')
+    # api.cxconfiguration(from: 'value')
     # ```
     # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Cxconfiguration} method calls, like
     #
     # ```ruby
-    # api.cxconfiguration.param('value')
+    # api.cxconfiguration.from('value')
     # ```
     #
     # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
@@ -624,12 +644,12 @@ module MediaWiktory::Wikipedia
     # Action parameters could be passed to this method, like
     #
     # ```ruby
-    # api.cxdelete(param: 'value')
+    # api.cxdelete(from: 'value')
     # ```
     # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Cxdelete} method calls, like
     #
     # ```ruby
-    # api.cxdelete.param('value')
+    # api.cxdelete.from('value')
     # ```
     #
     # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
@@ -649,12 +669,12 @@ module MediaWiktory::Wikipedia
     # Action parameters could be passed to this method, like
     #
     # ```ruby
-    # api.cxpublish(param: 'value')
+    # api.cxpublish(title: 'value')
     # ```
     # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Cxpublish} method calls, like
     #
     # ```ruby
-    # api.cxpublish.param('value')
+    # api.cxpublish.title('value')
     # ```
     #
     # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
@@ -674,12 +694,12 @@ module MediaWiktory::Wikipedia
     # Action parameters could be passed to this method, like
     #
     # ```ruby
-    # api.cxsave(param: 'value')
+    # api.cxsave(from: 'value')
     # ```
     # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Cxsave} method calls, like
     #
     # ```ruby
-    # api.cxsave.param('value')
+    # api.cxsave.from('value')
     # ```
     #
     # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
@@ -699,12 +719,12 @@ module MediaWiktory::Wikipedia
     # Action parameters could be passed to this method, like
     #
     # ```ruby
-    # api.cxsuggestionlist(param: 'value')
+    # api.cxsuggestionlist(listname: 'value')
     # ```
     # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Cxsuggestionlist} method calls, like
     #
     # ```ruby
-    # api.cxsuggestionlist.param('value')
+    # api.cxsuggestionlist.listname('value')
     # ```
     #
     # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
@@ -724,12 +744,12 @@ module MediaWiktory::Wikipedia
     # Action parameters could be passed to this method, like
     #
     # ```ruby
-    # api.cxtoken(param: 'value')
+    # api.cxtoken(token: 'value')
     # ```
     # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Cxtoken} method calls, like
     #
     # ```ruby
-    # api.cxtoken.param('value')
+    # api.cxtoken.token('value')
     # ```
     #
     # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
@@ -749,12 +769,12 @@ module MediaWiktory::Wikipedia
     # Action parameters could be passed to this method, like
     #
     # ```ruby
-    # api.delete(param: 'value')
+    # api.delete(title: 'value')
     # ```
     # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Delete} method calls, like
     #
     # ```ruby
-    # api.delete.param('value')
+    # api.delete.title('value')
     # ```
     #
     # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
@@ -774,12 +794,12 @@ module MediaWiktory::Wikipedia
     # Action parameters could be passed to this method, like
     #
     # ```ruby
-    # api.deleteeducation(param: 'value')
+    # api.deleteeducation(ids: 'value')
     # ```
     # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Deleteeducation} method calls, like
     #
     # ```ruby
-    # api.deleteeducation.param('value')
+    # api.deleteeducation.ids('value')
     # ```
     #
     # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
@@ -799,12 +819,12 @@ module MediaWiktory::Wikipedia
     # Action parameters could be passed to this method, like
     #
     # ```ruby
-    # api.deleteglobalaccount(param: 'value')
+    # api.deleteglobalaccount(user: 'value')
     # ```
     # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Deleteglobalaccount} method calls, like
     #
     # ```ruby
-    # api.deleteglobalaccount.param('value')
+    # api.deleteglobalaccount.user('value')
     # ```
     #
     # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
@@ -824,12 +844,12 @@ module MediaWiktory::Wikipedia
     # Action parameters could be passed to this method, like
     #
     # ```ruby
-    # api.echomarkread(param: 'value')
+    # api.echomarkread(list: 'value')
     # ```
     # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Echomarkread} method calls, like
     #
     # ```ruby
-    # api.echomarkread.param('value')
+    # api.echomarkread.list('value')
     # ```
     #
     # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
@@ -849,12 +869,12 @@ module MediaWiktory::Wikipedia
     # Action parameters could be passed to this method, like
     #
     # ```ruby
-    # api.echomarkseen(param: 'value')
+    # api.echomarkseen(token: 'value')
     # ```
     # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Echomarkseen} method calls, like
     #
     # ```ruby
-    # api.echomarkseen.param('value')
+    # api.echomarkseen.token('value')
     # ```
     #
     # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
@@ -874,12 +894,12 @@ module MediaWiktory::Wikipedia
     # Action parameters could be passed to this method, like
     #
     # ```ruby
-    # api.edit(param: 'value')
+    # api.edit(title: 'value')
     # ```
     # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Edit} method calls, like
     #
     # ```ruby
-    # api.edit.param('value')
+    # api.edit.title('value')
     # ```
     #
     # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
@@ -899,12 +919,12 @@ module MediaWiktory::Wikipedia
     # Action parameters could be passed to this method, like
     #
     # ```ruby
-    # api.editmassmessagelist(param: 'value')
+    # api.editmassmessagelist(spamlist: 'value')
     # ```
     # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Editmassmessagelist} method calls, like
     #
     # ```ruby
-    # api.editmassmessagelist.param('value')
+    # api.editmassmessagelist.spamlist('value')
     # ```
     #
     # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
@@ -924,12 +944,12 @@ module MediaWiktory::Wikipedia
     # Action parameters could be passed to this method, like
     #
     # ```ruby
-    # api.emailuser(param: 'value')
+    # api.emailuser(target: 'value')
     # ```
     # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Emailuser} method calls, like
     #
     # ```ruby
-    # api.emailuser.param('value')
+    # api.emailuser.target('value')
     # ```
     #
     # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
@@ -949,12 +969,12 @@ module MediaWiktory::Wikipedia
     # Action parameters could be passed to this method, like
     #
     # ```ruby
-    # api.enlist(param: 'value')
+    # api.enlist(subaction: 'value')
     # ```
     # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Enlist} method calls, like
     #
     # ```ruby
-    # api.enlist.param('value')
+    # api.enlist.subaction('value')
     # ```
     #
     # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
@@ -974,12 +994,12 @@ module MediaWiktory::Wikipedia
     # Action parameters could be passed to this method, like
     #
     # ```ruby
-    # api.expandtemplates(param: 'value')
+    # api.expandtemplates(title: 'value')
     # ```
     # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Expandtemplates} method calls, like
     #
     # ```ruby
-    # api.expandtemplates.param('value')
+    # api.expandtemplates.title('value')
     # ```
     #
     # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
@@ -999,12 +1019,12 @@ module MediaWiktory::Wikipedia
     # Action parameters could be passed to this method, like
     #
     # ```ruby
-    # api.fancycaptchareload(param: 'value')
+    # api.fancycaptchareload(: 'value')
     # ```
     # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Fancycaptchareload} method calls, like
     #
     # ```ruby
-    # api.fancycaptchareload.param('value')
+    # api.fancycaptchareload.('value')
     # ```
     #
     # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
@@ -1024,12 +1044,12 @@ module MediaWiktory::Wikipedia
     # Action parameters could be passed to this method, like
     #
     # ```ruby
-    # api.featuredfeed(param: 'value')
+    # api.featuredfeed(feedformat: 'value')
     # ```
     # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Featuredfeed} method calls, like
     #
     # ```ruby
-    # api.featuredfeed.param('value')
+    # api.featuredfeed.feedformat('value')
     # ```
     #
     # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
@@ -1049,12 +1069,12 @@ module MediaWiktory::Wikipedia
     # Action parameters could be passed to this method, like
     #
     # ```ruby
-    # api.feedcontributions(param: 'value')
+    # api.feedcontributions(feedformat: 'value')
     # ```
     # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Feedcontributions} method calls, like
     #
     # ```ruby
-    # api.feedcontributions.param('value')
+    # api.feedcontributions.feedformat('value')
     # ```
     #
     # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
@@ -1074,12 +1094,12 @@ module MediaWiktory::Wikipedia
     # Action parameters could be passed to this method, like
     #
     # ```ruby
-    # api.feedrecentchanges(param: 'value')
+    # api.feedrecentchanges(feedformat: 'value')
     # ```
     # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Feedrecentchanges} method calls, like
     #
     # ```ruby
-    # api.feedrecentchanges.param('value')
+    # api.feedrecentchanges.feedformat('value')
     # ```
     #
     # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
@@ -1099,12 +1119,12 @@ module MediaWiktory::Wikipedia
     # Action parameters could be passed to this method, like
     #
     # ```ruby
-    # api.feedwatchlist(param: 'value')
+    # api.feedwatchlist(feedformat: 'value')
     # ```
     # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Feedwatchlist} method calls, like
     #
     # ```ruby
-    # api.feedwatchlist.param('value')
+    # api.feedwatchlist.feedformat('value')
     # ```
     #
     # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
@@ -1124,12 +1144,12 @@ module MediaWiktory::Wikipedia
     # Action parameters could be passed to this method, like
     #
     # ```ruby
-    # api.filerevert(param: 'value')
+    # api.filerevert(filename: 'value')
     # ```
     # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Filerevert} method calls, like
     #
     # ```ruby
-    # api.filerevert.param('value')
+    # api.filerevert.filename('value')
     # ```
     #
     # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
@@ -1149,12 +1169,12 @@ module MediaWiktory::Wikipedia
     # Action parameters could be passed to this method, like
     #
     # ```ruby
-    # api.flagconfig(param: 'value')
+    # api.flagconfig(: 'value')
     # ```
     # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Flagconfig} method calls, like
     #
     # ```ruby
-    # api.flagconfig.param('value')
+    # api.flagconfig.('value')
     # ```
     #
     # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
@@ -1174,12 +1194,12 @@ module MediaWiktory::Wikipedia
     # Action parameters could be passed to this method, like
     #
     # ```ruby
-    # api.globalblock(param: 'value')
+    # api.globalblock(target: 'value')
     # ```
     # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Globalblock} method calls, like
     #
     # ```ruby
-    # api.globalblock.param('value')
+    # api.globalblock.target('value')
     # ```
     #
     # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
@@ -1199,12 +1219,12 @@ module MediaWiktory::Wikipedia
     # Action parameters could be passed to this method, like
     #
     # ```ruby
-    # api.globaluserrights(param: 'value')
+    # api.globaluserrights(user: 'value')
     # ```
     # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Globaluserrights} method calls, like
     #
     # ```ruby
-    # api.globaluserrights.param('value')
+    # api.globaluserrights.user('value')
     # ```
     #
     # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
@@ -1224,12 +1244,12 @@ module MediaWiktory::Wikipedia
     # Action parameters could be passed to this method, like
     #
     # ```ruby
-    # api.graph(param: 'value')
+    # api.graph(hash: 'value')
     # ```
     # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Graph} method calls, like
     #
     # ```ruby
-    # api.graph.param('value')
+    # api.graph.hash('value')
     # ```
     #
     # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
@@ -1249,12 +1269,12 @@ module MediaWiktory::Wikipedia
     # Action parameters could be passed to this method, like
     #
     # ```ruby
-    # api.help(param: 'value')
+    # api.help(modules: 'value')
     # ```
     # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Help} method calls, like
     #
     # ```ruby
-    # api.help.param('value')
+    # api.help.modules('value')
     # ```
     #
     # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
@@ -1274,12 +1294,12 @@ module MediaWiktory::Wikipedia
     # Action parameters could be passed to this method, like
     #
     # ```ruby
-    # api.imagerotate(param: 'value')
+    # api.imagerotate(: 'value')
     # ```
     # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Imagerotate} method calls, like
     #
     # ```ruby
-    # api.imagerotate.param('value')
+    # api.imagerotate.('value')
     # ```
     #
     # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
@@ -1299,12 +1319,12 @@ module MediaWiktory::Wikipedia
     # Action parameters could be passed to this method, like
     #
     # ```ruby
-    # api.import(param: 'value')
+    # api.import(summary: 'value')
     # ```
     # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Import} method calls, like
     #
     # ```ruby
-    # api.import.param('value')
+    # api.import.summary('value')
     # ```
     #
     # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
@@ -1324,12 +1344,12 @@ module MediaWiktory::Wikipedia
     # Action parameters could be passed to this method, like
     #
     # ```ruby
-    # api.jsonconfig(param: 'value')
+    # api.jsonconfig(command: 'value')
     # ```
     # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Jsonconfig} method calls, like
     #
     # ```ruby
-    # api.jsonconfig.param('value')
+    # api.jsonconfig.command('value')
     # ```
     #
     # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
@@ -1349,12 +1369,12 @@ module MediaWiktory::Wikipedia
     # Action parameters could be passed to this method, like
     #
     # ```ruby
-    # api.jsondata(param: 'value')
+    # api.jsondata(title: 'value')
     # ```
     # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Jsondata} method calls, like
     #
     # ```ruby
-    # api.jsondata.param('value')
+    # api.jsondata.title('value')
     # ```
     #
     # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
@@ -1374,12 +1394,12 @@ module MediaWiktory::Wikipedia
     # Action parameters could be passed to this method, like
     #
     # ```ruby
-    # api.languagesearch(param: 'value')
+    # api.languagesearch(search: 'value')
     # ```
     # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Languagesearch} method calls, like
     #
     # ```ruby
-    # api.languagesearch.param('value')
+    # api.languagesearch.search('value')
     # ```
     #
     # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
@@ -1399,12 +1419,12 @@ module MediaWiktory::Wikipedia
     # Action parameters could be passed to this method, like
     #
     # ```ruby
-    # api.linkaccount(param: 'value')
+    # api.linkaccount(requests: 'value')
     # ```
     # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Linkaccount} method calls, like
     #
     # ```ruby
-    # api.linkaccount.param('value')
+    # api.linkaccount.requests('value')
     # ```
     #
     # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
@@ -1424,12 +1444,12 @@ module MediaWiktory::Wikipedia
     # Action parameters could be passed to this method, like
     #
     # ```ruby
-    # api.liststudents(param: 'value')
+    # api.liststudents(courseids: 'value')
     # ```
     # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Liststudents} method calls, like
     #
     # ```ruby
-    # api.liststudents.param('value')
+    # api.liststudents.courseids('value')
     # ```
     #
     # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
@@ -1449,12 +1469,12 @@ module MediaWiktory::Wikipedia
     # Action parameters could be passed to this method, like
     #
     # ```ruby
-    # api.login(param: 'value')
+    # api.login(name: 'value')
     # ```
     # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Login} method calls, like
     #
     # ```ruby
-    # api.login.param('value')
+    # api.login.name('value')
     # ```
     #
     # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
@@ -1474,12 +1494,12 @@ module MediaWiktory::Wikipedia
     # Action parameters could be passed to this method, like
     #
     # ```ruby
-    # api.logout(param: 'value')
+    # api.logout(: 'value')
     # ```
     # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Logout} method calls, like
     #
     # ```ruby
-    # api.logout.param('value')
+    # api.logout.('value')
     # ```
     #
     # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
@@ -1499,12 +1519,12 @@ module MediaWiktory::Wikipedia
     # Action parameters could be passed to this method, like
     #
     # ```ruby
-    # api.managetags(param: 'value')
+    # api.managetags(operation: 'value')
     # ```
     # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Managetags} method calls, like
     #
     # ```ruby
-    # api.managetags.param('value')
+    # api.managetags.operation('value')
     # ```
     #
     # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
@@ -1524,12 +1544,12 @@ module MediaWiktory::Wikipedia
     # Action parameters could be passed to this method, like
     #
     # ```ruby
-    # api.massmessage(param: 'value')
+    # api.massmessage(spamlist: 'value')
     # ```
     # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Massmessage} method calls, like
     #
     # ```ruby
-    # api.massmessage.param('value')
+    # api.massmessage.spamlist('value')
     # ```
     #
     # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
@@ -1549,12 +1569,12 @@ module MediaWiktory::Wikipedia
     # Action parameters could be passed to this method, like
     #
     # ```ruby
-    # api.mergehistory(param: 'value')
+    # api.mergehistory(from: 'value')
     # ```
     # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Mergehistory} method calls, like
     #
     # ```ruby
-    # api.mergehistory.param('value')
+    # api.mergehistory.from('value')
     # ```
     #
     # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
@@ -1574,12 +1594,12 @@ module MediaWiktory::Wikipedia
     # Action parameters could be passed to this method, like
     #
     # ```ruby
-    # api.mobileview(param: 'value')
+    # api.mobileview(page: 'value')
     # ```
     # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Mobileview} method calls, like
     #
     # ```ruby
-    # api.mobileview.param('value')
+    # api.mobileview.page('value')
     # ```
     #
     # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
@@ -1599,12 +1619,12 @@ module MediaWiktory::Wikipedia
     # Action parameters could be passed to this method, like
     #
     # ```ruby
-    # api.move(param: 'value')
+    # api.move(from: 'value')
     # ```
     # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Move} method calls, like
     #
     # ```ruby
-    # api.move.param('value')
+    # api.move.from('value')
     # ```
     #
     # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
@@ -1624,12 +1644,12 @@ module MediaWiktory::Wikipedia
     # Action parameters could be passed to this method, like
     #
     # ```ruby
-    # api.oathvalidate(param: 'value')
+    # api.oathvalidate(user: 'value')
     # ```
     # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Oathvalidate} method calls, like
     #
     # ```ruby
-    # api.oathvalidate.param('value')
+    # api.oathvalidate.user('value')
     # ```
     #
     # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
@@ -1649,12 +1669,12 @@ module MediaWiktory::Wikipedia
     # Action parameters could be passed to this method, like
     #
     # ```ruby
-    # api.opensearch(param: 'value')
+    # api.opensearch(search: 'value')
     # ```
     # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Opensearch} method calls, like
     #
     # ```ruby
-    # api.opensearch.param('value')
+    # api.opensearch.search('value')
     # ```
     #
     # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
@@ -1674,12 +1694,12 @@ module MediaWiktory::Wikipedia
     # Action parameters could be passed to this method, like
     #
     # ```ruby
-    # api.options(param: 'value')
+    # api.options(reset: 'value')
     # ```
     # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Options} method calls, like
     #
     # ```ruby
-    # api.options.param('value')
+    # api.options.reset('value')
     # ```
     #
     # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
@@ -1699,12 +1719,12 @@ module MediaWiktory::Wikipedia
     # Action parameters could be passed to this method, like
     #
     # ```ruby
-    # api.pagetriageaction(param: 'value')
+    # api.pagetriageaction(pageid: 'value')
     # ```
     # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Pagetriageaction} method calls, like
     #
     # ```ruby
-    # api.pagetriageaction.param('value')
+    # api.pagetriageaction.pageid('value')
     # ```
     #
     # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
@@ -1724,12 +1744,12 @@ module MediaWiktory::Wikipedia
     # Action parameters could be passed to this method, like
     #
     # ```ruby
-    # api.pagetriagelist(param: 'value')
+    # api.pagetriagelist(page_id: 'value')
     # ```
     # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Pagetriagelist} method calls, like
     #
     # ```ruby
-    # api.pagetriagelist.param('value')
+    # api.pagetriagelist.page_id('value')
     # ```
     #
     # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
@@ -1749,12 +1769,12 @@ module MediaWiktory::Wikipedia
     # Action parameters could be passed to this method, like
     #
     # ```ruby
-    # api.pagetriagestats(param: 'value')
+    # api.pagetriagestats(namespace: 'value')
     # ```
     # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Pagetriagestats} method calls, like
     #
     # ```ruby
-    # api.pagetriagestats.param('value')
+    # api.pagetriagestats.namespace('value')
     # ```
     #
     # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
@@ -1774,12 +1794,12 @@ module MediaWiktory::Wikipedia
     # Action parameters could be passed to this method, like
     #
     # ```ruby
-    # api.pagetriagetagging(param: 'value')
+    # api.pagetriagetagging(pageid: 'value')
     # ```
     # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Pagetriagetagging} method calls, like
     #
     # ```ruby
-    # api.pagetriagetagging.param('value')
+    # api.pagetriagetagging.pageid('value')
     # ```
     #
     # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
@@ -1799,12 +1819,12 @@ module MediaWiktory::Wikipedia
     # Action parameters could be passed to this method, like
     #
     # ```ruby
-    # api.pagetriagetemplate(param: 'value')
+    # api.pagetriagetemplate(view: 'value')
     # ```
     # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Pagetriagetemplate} method calls, like
     #
     # ```ruby
-    # api.pagetriagetemplate.param('value')
+    # api.pagetriagetemplate.view('value')
     # ```
     #
     # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
@@ -1824,12 +1844,12 @@ module MediaWiktory::Wikipedia
     # Action parameters could be passed to this method, like
     #
     # ```ruby
-    # api.paraminfo(param: 'value')
+    # api.paraminfo(modules: 'value')
     # ```
     # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Paraminfo} method calls, like
     #
     # ```ruby
-    # api.paraminfo.param('value')
+    # api.paraminfo.modules('value')
     # ```
     #
     # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
@@ -1849,12 +1869,12 @@ module MediaWiktory::Wikipedia
     # Action parameters could be passed to this method, like
     #
     # ```ruby
-    # api.parse(param: 'value')
+    # api.parse(title: 'value')
     # ```
     # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Parse} method calls, like
     #
     # ```ruby
-    # api.parse.param('value')
+    # api.parse.title('value')
     # ```
     #
     # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
@@ -1874,12 +1894,12 @@ module MediaWiktory::Wikipedia
     # Action parameters could be passed to this method, like
     #
     # ```ruby
-    # api.parsoid_batch(param: 'value')
+    # api.parsoid_batch(batch: 'value')
     # ```
     # ...or by subsequent {MediaWiktory::Wikipedia::Actions::ParsoidBatch} method calls, like
     #
     # ```ruby
-    # api.parsoid_batch.param('value')
+    # api.parsoid_batch.batch('value')
     # ```
     #
     # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
@@ -1899,12 +1919,12 @@ module MediaWiktory::Wikipedia
     # Action parameters could be passed to this method, like
     #
     # ```ruby
-    # api.patrol(param: 'value')
+    # api.patrol(rcid: 'value')
     # ```
     # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Patrol} method calls, like
     #
     # ```ruby
-    # api.patrol.param('value')
+    # api.patrol.rcid('value')
     # ```
     #
     # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
@@ -1924,12 +1944,12 @@ module MediaWiktory::Wikipedia
     # Action parameters could be passed to this method, like
     #
     # ```ruby
-    # api.protect(param: 'value')
+    # api.protect(title: 'value')
     # ```
     # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Protect} method calls, like
     #
     # ```ruby
-    # api.protect.param('value')
+    # api.protect.title('value')
     # ```
     #
     # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
@@ -1949,12 +1969,12 @@ module MediaWiktory::Wikipedia
     # Action parameters could be passed to this method, like
     #
     # ```ruby
-    # api.purge(param: 'value')
+    # api.purge(forcelinkupdate: 'value')
     # ```
     # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Purge} method calls, like
     #
     # ```ruby
-    # api.purge.param('value')
+    # api.purge.forcelinkupdate('value')
     # ```
     #
     # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
@@ -1974,12 +1994,12 @@ module MediaWiktory::Wikipedia
     # Action parameters could be passed to this method, like
     #
     # ```ruby
-    # api.query(param: 'value')
+    # api.query(prop: 'value')
     # ```
     # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Query} method calls, like
     #
     # ```ruby
-    # api.query.param('value')
+    # api.query.prop('value')
     # ```
     #
     # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
@@ -1999,12 +2019,12 @@ module MediaWiktory::Wikipedia
     # Action parameters could be passed to this method, like
     #
     # ```ruby
-    # api.refresheducation(param: 'value')
+    # api.refresheducation(ids: 'value')
     # ```
     # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Refresheducation} method calls, like
     #
     # ```ruby
-    # api.refresheducation.param('value')
+    # api.refresheducation.ids('value')
     # ```
     #
     # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
@@ -2024,12 +2044,12 @@ module MediaWiktory::Wikipedia
     # Action parameters could be passed to this method, like
     #
     # ```ruby
-    # api.removeauthenticationdata(param: 'value')
+    # api.removeauthenticationdata(request: 'value')
     # ```
     # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Removeauthenticationdata} method calls, like
     #
     # ```ruby
-    # api.removeauthenticationdata.param('value')
+    # api.removeauthenticationdata.request('value')
     # ```
     #
     # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
@@ -2049,12 +2069,12 @@ module MediaWiktory::Wikipedia
     # Action parameters could be passed to this method, like
     #
     # ```ruby
-    # api.resetpassword(param: 'value')
+    # api.resetpassword(user: 'value')
     # ```
     # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Resetpassword} method calls, like
     #
     # ```ruby
-    # api.resetpassword.param('value')
+    # api.resetpassword.user('value')
     # ```
     #
     # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
@@ -2074,12 +2094,12 @@ module MediaWiktory::Wikipedia
     # Action parameters could be passed to this method, like
     #
     # ```ruby
-    # api.review(param: 'value')
+    # api.review(revid: 'value')
     # ```
     # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Review} method calls, like
     #
     # ```ruby
-    # api.review.param('value')
+    # api.review.revid('value')
     # ```
     #
     # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
@@ -2099,12 +2119,12 @@ module MediaWiktory::Wikipedia
     # Action parameters could be passed to this method, like
     #
     # ```ruby
-    # api.reviewactivity(param: 'value')
+    # api.reviewactivity(previd: 'value')
     # ```
     # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Reviewactivity} method calls, like
     #
     # ```ruby
-    # api.reviewactivity.param('value')
+    # api.reviewactivity.previd('value')
     # ```
     #
     # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
@@ -2124,12 +2144,12 @@ module MediaWiktory::Wikipedia
     # Action parameters could be passed to this method, like
     #
     # ```ruby
-    # api.revisiondelete(param: 'value')
+    # api.revisiondelete(type: 'value')
     # ```
     # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Revisiondelete} method calls, like
     #
     # ```ruby
-    # api.revisiondelete.param('value')
+    # api.revisiondelete.type('value')
     # ```
     #
     # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
@@ -2149,12 +2169,12 @@ module MediaWiktory::Wikipedia
     # Action parameters could be passed to this method, like
     #
     # ```ruby
-    # api.rollback(param: 'value')
+    # api.rollback(title: 'value')
     # ```
     # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Rollback} method calls, like
     #
     # ```ruby
-    # api.rollback.param('value')
+    # api.rollback.title('value')
     # ```
     #
     # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
@@ -2174,12 +2194,12 @@ module MediaWiktory::Wikipedia
     # Action parameters could be passed to this method, like
     #
     # ```ruby
-    # api.rsd(param: 'value')
+    # api.rsd(: 'value')
     # ```
     # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Rsd} method calls, like
     #
     # ```ruby
-    # api.rsd.param('value')
+    # api.rsd.('value')
     # ```
     #
     # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
@@ -2199,12 +2219,12 @@ module MediaWiktory::Wikipedia
     # Action parameters could be passed to this method, like
     #
     # ```ruby
-    # api.sanitize_mapdata(param: 'value')
+    # api.sanitize_mapdata(title: 'value')
     # ```
     # ...or by subsequent {MediaWiktory::Wikipedia::Actions::SanitizeMapdata} method calls, like
     #
     # ```ruby
-    # api.sanitize_mapdata.param('value')
+    # api.sanitize_mapdata.title('value')
     # ```
     #
     # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
@@ -2224,12 +2244,12 @@ module MediaWiktory::Wikipedia
     # Action parameters could be passed to this method, like
     #
     # ```ruby
-    # api.scribunto_console(param: 'value')
+    # api.scribunto_console(title: 'value')
     # ```
     # ...or by subsequent {MediaWiktory::Wikipedia::Actions::ScribuntoConsole} method calls, like
     #
     # ```ruby
-    # api.scribunto_console.param('value')
+    # api.scribunto_console.title('value')
     # ```
     #
     # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
@@ -2249,12 +2269,12 @@ module MediaWiktory::Wikipedia
     # Action parameters could be passed to this method, like
     #
     # ```ruby
-    # api.setglobalaccountstatus(param: 'value')
+    # api.setglobalaccountstatus(user: 'value')
     # ```
     # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Setglobalaccountstatus} method calls, like
     #
     # ```ruby
-    # api.setglobalaccountstatus.param('value')
+    # api.setglobalaccountstatus.user('value')
     # ```
     #
     # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
@@ -2274,12 +2294,12 @@ module MediaWiktory::Wikipedia
     # Action parameters could be passed to this method, like
     #
     # ```ruby
-    # api.setnotificationtimestamp(param: 'value')
+    # api.setnotificationtimestamp(entirewatchlist: 'value')
     # ```
     # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Setnotificationtimestamp} method calls, like
     #
     # ```ruby
-    # api.setnotificationtimestamp.param('value')
+    # api.setnotificationtimestamp.entirewatchlist('value')
     # ```
     #
     # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
@@ -2299,12 +2319,12 @@ module MediaWiktory::Wikipedia
     # Action parameters could be passed to this method, like
     #
     # ```ruby
-    # api.setpagelanguage(param: 'value')
+    # api.setpagelanguage(title: 'value')
     # ```
     # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Setpagelanguage} method calls, like
     #
     # ```ruby
-    # api.setpagelanguage.param('value')
+    # api.setpagelanguage.title('value')
     # ```
     #
     # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
@@ -2324,12 +2344,12 @@ module MediaWiktory::Wikipedia
     # Action parameters could be passed to this method, like
     #
     # ```ruby
-    # api.shortenurl(param: 'value')
+    # api.shortenurl(url: 'value')
     # ```
     # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Shortenurl} method calls, like
     #
     # ```ruby
-    # api.shortenurl.param('value')
+    # api.shortenurl.url('value')
     # ```
     #
     # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
@@ -2349,12 +2369,12 @@ module MediaWiktory::Wikipedia
     # Action parameters could be passed to this method, like
     #
     # ```ruby
-    # api.sitematrix(param: 'value')
+    # api.sitematrix(type: 'value')
     # ```
     # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Sitematrix} method calls, like
     #
     # ```ruby
-    # api.sitematrix.param('value')
+    # api.sitematrix.type('value')
     # ```
     #
     # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
@@ -2374,12 +2394,12 @@ module MediaWiktory::Wikipedia
     # Action parameters could be passed to this method, like
     #
     # ```ruby
-    # api.spamblacklist(param: 'value')
+    # api.spamblacklist(url: 'value')
     # ```
     # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Spamblacklist} method calls, like
     #
     # ```ruby
-    # api.spamblacklist.param('value')
+    # api.spamblacklist.url('value')
     # ```
     #
     # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
@@ -2399,12 +2419,12 @@ module MediaWiktory::Wikipedia
     # Action parameters could be passed to this method, like
     #
     # ```ruby
-    # api.stabilize(param: 'value')
+    # api.stabilize(protectlevel: 'value')
     # ```
     # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Stabilize} method calls, like
     #
     # ```ruby
-    # api.stabilize.param('value')
+    # api.stabilize.protectlevel('value')
     # ```
     #
     # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
@@ -2424,12 +2444,12 @@ module MediaWiktory::Wikipedia
     # Action parameters could be passed to this method, like
     #
     # ```ruby
-    # api.stashedit(param: 'value')
+    # api.stashedit(title: 'value')
     # ```
     # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Stashedit} method calls, like
     #
     # ```ruby
-    # api.stashedit.param('value')
+    # api.stashedit.title('value')
     # ```
     #
     # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
@@ -2449,12 +2469,12 @@ module MediaWiktory::Wikipedia
     # Action parameters could be passed to this method, like
     #
     # ```ruby
-    # api.strikevote(param: 'value')
+    # api.strikevote(option: 'value')
     # ```
     # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Strikevote} method calls, like
     #
     # ```ruby
-    # api.strikevote.param('value')
+    # api.strikevote.option('value')
     # ```
     #
     # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
@@ -2474,12 +2494,12 @@ module MediaWiktory::Wikipedia
     # Action parameters could be passed to this method, like
     #
     # ```ruby
-    # api.tag(param: 'value')
+    # api.tag(rcid: 'value')
     # ```
     # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Tag} method calls, like
     #
     # ```ruby
-    # api.tag.param('value')
+    # api.tag.rcid('value')
     # ```
     #
     # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
@@ -2499,12 +2519,12 @@ module MediaWiktory::Wikipedia
     # Action parameters could be passed to this method, like
     #
     # ```ruby
-    # api.templatedata(param: 'value')
+    # api.templatedata(titles: 'value')
     # ```
     # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Templatedata} method calls, like
     #
     # ```ruby
-    # api.templatedata.param('value')
+    # api.templatedata.titles('value')
     # ```
     #
     # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
@@ -2524,12 +2544,12 @@ module MediaWiktory::Wikipedia
     # Action parameters could be passed to this method, like
     #
     # ```ruby
-    # api.thank(param: 'value')
+    # api.thank(rev: 'value')
     # ```
     # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Thank} method calls, like
     #
     # ```ruby
-    # api.thank.param('value')
+    # api.thank.rev('value')
     # ```
     #
     # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
@@ -2549,12 +2569,12 @@ module MediaWiktory::Wikipedia
     # Action parameters could be passed to this method, like
     #
     # ```ruby
-    # api.titleblacklist(param: 'value')
+    # api.titleblacklist(title: 'value')
     # ```
     # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Titleblacklist} method calls, like
     #
     # ```ruby
-    # api.titleblacklist.param('value')
+    # api.titleblacklist.title('value')
     # ```
     #
     # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
@@ -2574,12 +2594,12 @@ module MediaWiktory::Wikipedia
     # Action parameters could be passed to this method, like
     #
     # ```ruby
-    # api.tokens(param: 'value')
+    # api.tokens(type: 'value')
     # ```
     # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Tokens} method calls, like
     #
     # ```ruby
-    # api.tokens.param('value')
+    # api.tokens.type('value')
     # ```
     #
     # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
@@ -2599,12 +2619,12 @@ module MediaWiktory::Wikipedia
     # Action parameters could be passed to this method, like
     #
     # ```ruby
-    # api.transcodereset(param: 'value')
+    # api.transcodereset(title: 'value')
     # ```
     # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Transcodereset} method calls, like
     #
     # ```ruby
-    # api.transcodereset.param('value')
+    # api.transcodereset.title('value')
     # ```
     #
     # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
@@ -2624,12 +2644,12 @@ module MediaWiktory::Wikipedia
     # Action parameters could be passed to this method, like
     #
     # ```ruby
-    # api.ulslocalization(param: 'value')
+    # api.ulslocalization(language: 'value')
     # ```
     # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Ulslocalization} method calls, like
     #
     # ```ruby
-    # api.ulslocalization.param('value')
+    # api.ulslocalization.language('value')
     # ```
     #
     # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
@@ -2649,12 +2669,12 @@ module MediaWiktory::Wikipedia
     # Action parameters could be passed to this method, like
     #
     # ```ruby
-    # api.unblock(param: 'value')
+    # api.unblock(id: 'value')
     # ```
     # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Unblock} method calls, like
     #
     # ```ruby
-    # api.unblock.param('value')
+    # api.unblock.id('value')
     # ```
     #
     # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
@@ -2674,12 +2694,12 @@ module MediaWiktory::Wikipedia
     # Action parameters could be passed to this method, like
     #
     # ```ruby
-    # api.undelete(param: 'value')
+    # api.undelete(title: 'value')
     # ```
     # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Undelete} method calls, like
     #
     # ```ruby
-    # api.undelete.param('value')
+    # api.undelete.title('value')
     # ```
     #
     # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
@@ -2699,12 +2719,12 @@ module MediaWiktory::Wikipedia
     # Action parameters could be passed to this method, like
     #
     # ```ruby
-    # api.unlinkaccount(param: 'value')
+    # api.unlinkaccount(request: 'value')
     # ```
     # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Unlinkaccount} method calls, like
     #
     # ```ruby
-    # api.unlinkaccount.param('value')
+    # api.unlinkaccount.request('value')
     # ```
     #
     # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
@@ -2724,12 +2744,12 @@ module MediaWiktory::Wikipedia
     # Action parameters could be passed to this method, like
     #
     # ```ruby
-    # api.upload(param: 'value')
+    # api.upload(filename: 'value')
     # ```
     # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Upload} method calls, like
     #
     # ```ruby
-    # api.upload.param('value')
+    # api.upload.filename('value')
     # ```
     #
     # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
@@ -2749,12 +2769,12 @@ module MediaWiktory::Wikipedia
     # Action parameters could be passed to this method, like
     #
     # ```ruby
-    # api.userrights(param: 'value')
+    # api.userrights(user: 'value')
     # ```
     # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Userrights} method calls, like
     #
     # ```ruby
-    # api.userrights.param('value')
+    # api.userrights.user('value')
     # ```
     #
     # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
@@ -2774,12 +2794,12 @@ module MediaWiktory::Wikipedia
     # Action parameters could be passed to this method, like
     #
     # ```ruby
-    # api.validatepassword(param: 'value')
+    # api.validatepassword(password: 'value')
     # ```
     # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Validatepassword} method calls, like
     #
     # ```ruby
-    # api.validatepassword.param('value')
+    # api.validatepassword.password('value')
     # ```
     #
     # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
@@ -2799,12 +2819,12 @@ module MediaWiktory::Wikipedia
     # Action parameters could be passed to this method, like
     #
     # ```ruby
-    # api.visualeditor(param: 'value')
+    # api.visualeditor(page: 'value')
     # ```
     # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Visualeditor} method calls, like
     #
     # ```ruby
-    # api.visualeditor.param('value')
+    # api.visualeditor.page('value')
     # ```
     #
     # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
@@ -2824,12 +2844,12 @@ module MediaWiktory::Wikipedia
     # Action parameters could be passed to this method, like
     #
     # ```ruby
-    # api.visualeditoredit(param: 'value')
+    # api.visualeditoredit(paction: 'value')
     # ```
     # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Visualeditoredit} method calls, like
     #
     # ```ruby
-    # api.visualeditoredit.param('value')
+    # api.visualeditoredit.paction('value')
     # ```
     #
     # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
@@ -2849,12 +2869,12 @@ module MediaWiktory::Wikipedia
     # Action parameters could be passed to this method, like
     #
     # ```ruby
-    # api.watch(param: 'value')
+    # api.watch(title: 'value')
     # ```
     # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Watch} method calls, like
     #
     # ```ruby
-    # api.watch.param('value')
+    # api.watch.title('value')
     # ```
     #
     # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
@@ -2874,12 +2894,12 @@ module MediaWiktory::Wikipedia
     # Action parameters could be passed to this method, like
     #
     # ```ruby
-    # api.webapp_manifest(param: 'value')
+    # api.webapp_manifest(: 'value')
     # ```
     # ...or by subsequent {MediaWiktory::Wikipedia::Actions::WebappManifest} method calls, like
     #
     # ```ruby
-    # api.webapp_manifest.param('value')
+    # api.webapp_manifest.('value')
     # ```
     #
     # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
@@ -2899,12 +2919,12 @@ module MediaWiktory::Wikipedia
     # Action parameters could be passed to this method, like
     #
     # ```ruby
-    # api.wikilove(param: 'value')
+    # api.wikilove(title: 'value')
     # ```
     # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Wikilove} method calls, like
     #
     # ```ruby
-    # api.wikilove.param('value')
+    # api.wikilove.title('value')
     # ```
     #
     # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
@@ -2924,12 +2944,12 @@ module MediaWiktory::Wikipedia
     # Action parameters could be passed to this method, like
     #
     # ```ruby
-    # api.zeroconfig(param: 'value')
+    # api.zeroconfig(type: 'value')
     # ```
     # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Zeroconfig} method calls, like
     #
     # ```ruby
-    # api.zeroconfig.param('value')
+    # api.zeroconfig.type('value')
     # ```
     #
     # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and

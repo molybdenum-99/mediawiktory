@@ -6,12 +6,12 @@
     # Action parameters could be passed to this method, like
     #
     # ```ruby
-    # api.{{ action.method_name }}(param: 'value')
+    # api.{{ action.method_name }}({{ action.params.first.name }}: 'value')
     # ```
     # ...or by subsequent {{"{"}}{{ namespace }}::Actions::{{ action.class_name }}} method calls, like
     #
     # ```ruby
-    # api.{{ action.method_name }}.param('value')
+    # api.{{ action.method_name }}.{{ action.params.first.name }}('value')
     # ```
     #
     # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and

@@ -6,10 +6,30 @@ require_relative './actions/base'
 module {{ namespace }}
   # The base API class for [{{ object.site.name }}]({{ object.site.base }}).
   #
-  # Generated from {{ source }} at {{ friendly_date }} by MediaWiktory {{ version }}.
+  # _Generated from {{ source }} at {{ friendly_date }} by MediaWiktory {{ version }}._
   #
-  # See {MediaWiktory::Api} base class docs for generic usage examples, and this class' methods
-  # list and descriptions for MediaWiki features available for this particular API.
+  # It also can be used for access to any other MediaWiki site, but some of actions could be
+  # non-existent/outdated.
+  #
+  # Example of usage:
+  #
+  # ```ruby
+  # # For Wikipedia
+  # api = {{ namespace }}::Api.new
+  # api.some_action.some_param(value).other_param(*more_values).perform
+  # # => returns raw response of MediaWiki API
+  # api.some_action.some_param(value).other_param(*more_values).response
+  # # => returns an instance of Response, parsed from JSON
+  #
+  # # For any other site:
+  # api = {{ namespace }}::Api.new('https://some.site/w/api.php')
+  # # ...the same as above
+  # ```
+  #
+  # This class method's list all available actions and refers to corresponding classes and their
+  # options.
+  #
+  # See also {Response} for working with return values.
   #
   class Api
     attr_reader :client
@@ -20,7 +40,7 @@ module {{ namespace }}
     #
     # @param defaults [Hash] Default options for all API queries. Default param values also can be
     #   set by subsequent {Action} methods, like `api.some_action.json(callback: 'mycallbackname')...`
-{% for param in object.main.params %}    # @option defaults [{{ param.ruby_type }}] {{ param.name }} {{ param.description }}{{param.param_docs}} See {{"{"}}Action#{{param.name}}}
+{% for param in object.main.params %}    # @option defaults [{{ param.ruby_type }}] {{ param.name }} {{ param.description }}{{param.param_docs}} See {Actions::Base#{{param.name}}}
 {% endfor %}    #
     def initialize(url = '{{ source }}', **defaults)
       @client = Client.new(url, **defaults)

@@ -1,12 +1,10 @@
 # frozen_string_literal: true
 
-require 'mediawiktory/util'
-
 module MediaWiktory
   class Generator
     module Renderable
       def to_h
-        Util.stringify_hash(super, recursive: true)
+        stringify_hash(super, recursive: true)
       end
 
       def render_to(path, **vars)
@@ -27,8 +25,17 @@ module MediaWiktory
           .new(File.expand_path('../templates/', __FILE__))
         Liquid::Template
           .parse(File.read(File.expand_path("../templates/#{template}.liquid", __FILE__)))
-          .render({name => to_h}.merge(Util.stringify_hash(vars, recursive: true)))
+          .render({name => to_h}.merge(stringify_hash(vars, recursive: true)))
       end
+
+      private
+
+      def stringify_hash(hash, recursive: false)
+        hash.map { |k, v|
+          [k.to_s, v.is_a?(Hash) && recursive ? stringify_hash(v, recursive: true) : v.to_s]
+        }.to_h
+      end
+
     end
   end
 end

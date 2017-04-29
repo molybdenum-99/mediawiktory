@@ -2,25 +2,67 @@
 
 module MediaWiktory::Wikipedia
   module Actions
+    # Base class for all {MediaWiktory::Wikipedia::Api} actions.
+    #
+    # Typically, you should never instantiate this class or its descendants directly, but rather by
+    # {Api MediaWiktory::Wikipedia::Api} methods.
+    #
+    # The usual workflow with actions is:
+    #
+    # * Create it with `api.action_name`
+    # * Set action params with subsequent `paramname(paramvalue)` calls;
+    # * Perform action with {#perform} (returns row MediaWiki response as a string) or {#response}
+    #   (returns ::Response} class with parsed data and helper methods).
+    #
+    # Note that some of `paramname(value)` calls include new {Modules} into action, which provides
+    # new params & methods. For example:
+    #
+    # ```ruby
+    # api.query.generator(:categorymembers) # includes new methods of GCategorymembers module
+    #    .title('Category:DOS_games')       # one of GCategorymembers methods, adds gcmtitle=Category:DOS_games to URL
+    #    .limit(20)
+    # ```
+    #
+    # Sometimes new modules inclusion can change a sense of already existing methods:
+    #
+    # ```ruby
+    # api.query.titles('Argentina')
+    #   .prop(:revisions)           # .prop method from Query action, adds prop=revisions to URL and includes Revisions module
+    #   .prop(:content)             # .prop method from Revisions module, adds rvprop=content to URL
+    # ```
+    #
+    # Despite of how questionable this practice looks, it provides the most obvious method chains even
+    # for most complicated cases.
+    #
     class Base
+      # @private
       attr_reader :client
 
+      # @private
       def initialize(client, options = {})
         @client = client
         @params = stringify_hash(options)
         @submodules = []
       end
 
+      # @private
       def merge(hash)
         self.class
             .new(@client, @params.merge(stringify_hash(hash)))
             .tap { |action| @submodules.each { |sm| action.submodule(sm) } }
       end
 
+      # All action's params in a ready to passing to URL form (string keys & string values).
+      #
+      # @return [Hash{String => String}]
       def to_h
         @params.dup
       end
 
+      # Action's name on MediaWiki API (e.g. "query" for `Query` action, "parsoid-batch" for
+      # `ParsoidBatch` action and so on).
+      #
+      # @return [String]
       def name
         # Query # => query
         # ParsoidBatch # => parsoid-batch
@@ -30,21 +72,40 @@ module MediaWiktory::Wikipedia
           fail ArgumentError, "Can't guess action name from #{self.class.name}"
       end
 
+      # All action's params in a ready to passing to URL form (string keys & string values). Unlike
+      # {#to_h}, includes also action name.
+      #
+      # @return [Hash{String => String}]
       def to_param
         to_h.merge('action' => name)
       end
 
+      # Full URL for this action invocation.
+      #
+      # @return [String]
       def to_url
         url = @client.url
         url.query_values = to_param
         url.to_s
       end
 
+      # Performs action (through `GET` or `POST request, depending on action's type) and returns
+      # raw body of response.
+      #
+      # @return [String]
       def perform
         fail NotImplementedError,
-             'Action is abstract, all actions should descend from GetAction or PostAction'
+             'Action is abstract, all actions should descend from Actions::Get or Actions::Post'
       end
 
+      # Performs action (as in {#perform}) and returns parsed JSON response body.
+      #
+      # Note, that not all actions return a JSON suitable for parsing into {Response}. For example,
+      # Wikipedia's [opensearch](https://en.wikipedia.org/w/api.php?action=help&modules=opensearch)
+      # action returns absolutely different JSON structure, corresponding to global
+      # [OpenSearch](https://en.wikipedia.org/wiki/OpenSearch) standard.
+      #
+      # @return [Response]
       def response
         jsonable = format(:json)
         Response.parse(jsonable, jsonable.perform)
@@ -53,14 +114,14 @@ module MediaWiktory::Wikipedia
       # The format of the output.
       #
       # @param value [Symbol] Selecting an option includes tweaking methods from corresponding module:
-      #   * `:json` - {MediaWiktory::Wikipedia::Modules::Json} Output data in JSON format. 
-      #   * `:jsonfm` - {MediaWiktory::Wikipedia::Modules::Jsonfm} Output data in JSON format (pretty-print in HTML). 
-      #   * `:none` - {MediaWiktory::Wikipedia::Modules::None} Output nothing. 
-      #   * `:php` - {MediaWiktory::Wikipedia::Modules::Php} Output data in serialized PHP format. 
-      #   * `:phpfm` - {MediaWiktory::Wikipedia::Modules::Phpfm} Output data in serialized PHP format (pretty-print in HTML). 
-      #   * `:rawfm` - {MediaWiktory::Wikipedia::Modules::Rawfm} Output data, including debugging elements, in JSON format (pretty-print in HTML). 
-      #   * `:xml` - {MediaWiktory::Wikipedia::Modules::Xml} Output data in XML format. 
-      #   * `:xmlfm` - {MediaWiktory::Wikipedia::Modules::Xmlfm} Output data in XML format (pretty-print in HTML). 
+      #   * `:json` - {MediaWiktory::Wikipedia::Modules::Json} Output data in JSON format.
+      #   * `:jsonfm` - {MediaWiktory::Wikipedia::Modules::Jsonfm} Output data in JSON format (pretty-print in HTML).
+      #   * `:none` - {MediaWiktory::Wikipedia::Modules::None} Output nothing.
+      #   * `:php` - {MediaWiktory::Wikipedia::Modules::Php} Output data in serialized PHP format.
+      #   * `:phpfm` - {MediaWiktory::Wikipedia::Modules::Phpfm} Output data in serialized PHP format (pretty-print in HTML).
+      #   * `:rawfm` - {MediaWiktory::Wikipedia::Modules::Rawfm} Output data, including debugging elements, in JSON format (pretty-print in HTML).
+      #   * `:xml` - {MediaWiktory::Wikipedia::Modules::Xml} Output data in XML format.
+      #   * `:xmlfm` - {MediaWiktory::Wikipedia::Modules::Xmlfm} Output data in XML format (pretty-print in HTML).
       # @return [self]
       def format(value)
         merge_module(:format, value, json: Modules::Json, jsonfm: Modules::Jsonfm, none: Modules::None, php: Modules::Php, phpfm: Modules::Phpfm, rawfm: Modules::Rawfm, xml: Modules::Xml, xmlfm: Modules::Xmlfm)
