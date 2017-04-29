@@ -1,4 +1,6 @@
-module MediaWiktory::Wikipedia
+require 'json'
+
+module {{ namespace }}
   class Response
     Error = Class.new(RuntimeError)
 
@@ -50,7 +52,6 @@ module MediaWiktory::Wikipedia
     end
 
     def error!
-      # TODO: proper class
       raise Error, @data.dig('error', 'info')
     end
   end

@@ -23,7 +23,7 @@ module MediaWiktory
           meta = JSON.parse(open(uri).read).dig('query', 'general')
           uri.query_values = {action: :help, recursivesubmodules: true}
           html = open(uri).read
-          from_html(html, source: url, site: {name: meta['sitename'], base: meta['base']})
+          from_html(html, site: {name: meta['sitename'], base: meta['base']})
         end
       end
 
@@ -66,7 +66,6 @@ module MediaWiktory
 
       def to_h
         super.merge(
-          'friendly_date' => Time.now.strftime('%B %d, %Y'),
           'actions' => actions.map(&:to_h),
           'main' => main.to_h
         )

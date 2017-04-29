@@ -42,10 +42,11 @@ module MediaWiktory
 
     def initialize(url)
       @api = Api.from_url(url)
+      @url = url
     end
 
     def generate(path:, namespace:)
-      opts = {namespace: namespace, version: VERSION}
+      opts = {namespace: namespace, version: VERSION, source: @url, friendly_date: Time.now.strftime('%B %d, %Y')}
       FileUtils.rm_rf path
       FileUtils.mkdir_p path
 

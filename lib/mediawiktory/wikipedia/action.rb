@@ -24,8 +24,10 @@ module MediaWiktory::Wikipedia
     end
 
     def name
+      # Query # => query
+      # ParsoidBatch # => parsoid-batch
       self.class.name.scan(/(\w+)$/).flatten.first
-        &.gsub(/([a-z])([A-Z])/, '\1-\2') # ParsoidBatch # => parsoid-batch
+        &.gsub(/([a-z])([A-Z])/, '\1-\2')
         &.downcase or
         fail ArgumentError, "Can't guess action name from #{self.class.name}"
     end

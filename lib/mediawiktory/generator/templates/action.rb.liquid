@@ -1,8 +1,5 @@
 # frozen_string_literal: true
 
-require 'json'
-require 'hashie'
-
 module {{ namespace }}
   class Action
     attr_reader :client
@@ -23,8 +20,17 @@ module {{ namespace }}
       @params.dup
     end
 
+    def name
+      # Query # => query
+      # ParsoidBatch # => parsoid-batch
+      self.class.name.scan(/(\w+)$/).flatten.first
+        &.gsub(/([a-z])([A-Z])/, '\1-\2')
+        &.downcase or
+        fail ArgumentError, "Can't guess action name from #{self.class.name}"
+    end
+
     def to_param
-      to_h.merge('action' => action_name)
+      to_h.merge('action' => name)
     end
 
     def to_url
@@ -39,7 +45,8 @@ module {{ namespace }}
     end
 
     def response
-      JSON.parse(format(:json).perform)
+      jsonable = format(:json)
+      Response.parse(jsonable, jsonable.perform)
     end
 {% for param in object.main.params %}{% include 'param_method' %}{% endfor %}
     private
