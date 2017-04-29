@@ -22,8 +22,21 @@ api = MediaWiktory::Wikipedia::Api
 
 #puts api.new.query.generator(:categorymembers).title('Categor:Argentina').limit('max').format(:json).perform
 
-r1 = api.new.query.generator(:categorymembers).title('Category:DOS_games').response
-pp r1, r1.to_h
-r2 = r1.continue
-pp r2, r2.to_h
+#r1 = api.new.query.generator(:categorymembers).title('Category:DOS_games').response
+#pp r1, r1.to_h
+#r2 = r1.continue
+#pp r2, r2.to_h
 
+
+action = api.new.query.titles('Argentina').prop(:revisions).prop(:content).meta(:siteinfo)
+p action
+
+p action.to_url
+
+
+response = action.response
+p response
+
+puts response['pages'].values.first['revisions'].first['*'].split("\n").first(3)
+p response.dig('general', 'sitename')
+# => "Wikipedia"

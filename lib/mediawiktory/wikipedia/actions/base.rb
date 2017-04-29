@@ -2,126 +2,20 @@
 
 module MediaWiktory::Wikipedia
   module Actions
-    # Base class for all {MediaWiktory::Wikipedia::Api} actions.
-    #
-    # Typically, you should never instantiate this class or its descendants directly, but rather by
-    # {Api MediaWiktory::Wikipedia::Api} methods.
-    #
-    # The usual workflow with actions is:
-    #
-    # * Create it with `api.action_name`
-    # * Set action params with subsequent `paramname(paramvalue)` calls;
-    # * Perform action with {#perform} (returns row MediaWiki response as a string) or {#response}
-    #   (returns ::Response} class with parsed data and helper methods).
-    #
-    # Note that some of `paramname(value)` calls include new {Modules} into action, which provides
-    # new params & methods. For example:
-    #
-    # ```ruby
-    # api.query.generator(:categorymembers) # includes new methods of GCategorymembers module
-    #    .title('Category:DOS_games')       # one of GCategorymembers methods, adds gcmtitle=Category:DOS_games to URL
-    #    .limit(20)
-    # ```
-    #
-    # Sometimes new modules inclusion can change a sense of already existing methods:
-    #
-    # ```ruby
-    # api.query.titles('Argentina')
-    #   .prop(:revisions)           # .prop method from Query action, adds prop=revisions to URL and includes Revisions module
-    #   .prop(:content)             # .prop method from Revisions module, adds rvprop=content to URL
-    # ```
-    #
-    # Despite of how questionable this practice looks, it provides the most obvious method chains even
-    # for most complicated cases.
-    #
-    class Base
-      # @private
-      attr_reader :client
-
-      # @private
-      def initialize(client, options = {})
-        @client = client
-        @params = stringify_hash(options)
-        @submodules = []
-      end
-
-      # @private
-      def merge(hash)
-        self.class
-            .new(@client, @params.merge(stringify_hash(hash)))
-            .tap { |action| @submodules.each { |sm| action.submodule(sm) } }
-      end
-
-      # All action's params in a ready to passing to URL form (string keys & string values).
-      #
-      # @return [Hash{String => String}]
-      def to_h
-        @params.dup
-      end
-
-      # Action's name on MediaWiki API (e.g. "query" for `Query` action, "parsoid-batch" for
-      # `ParsoidBatch` action and so on).
-      #
-      # @return [String]
-      def name
-        # Query # => query
-        # ParsoidBatch # => parsoid-batch
-        self.class.name.scan(/(\w+)$/).flatten.first
-          &.gsub(/([a-z])([A-Z])/, '\1-\2')
-          &.downcase or
-          fail ArgumentError, "Can't guess action name from #{self.class.name}"
-      end
-
-      # All action's params in a ready to passing to URL form (string keys & string values). Unlike
-      # {#to_h}, includes also action name.
-      #
-      # @return [Hash{String => String}]
-      def to_param
-        to_h.merge('action' => name)
-      end
-
-      # Full URL for this action invocation.
-      #
-      # @return [String]
-      def to_url
-        url = @client.url
-        url.query_values = to_param
-        url.to_s
-      end
-
-      # Performs action (through `GET` or `POST request, depending on action's type) and returns
-      # raw body of response.
-      #
-      # @return [String]
-      def perform
-        fail NotImplementedError,
-             'Action is abstract, all actions should descend from Actions::Get or Actions::Post'
-      end
-
-      # Performs action (as in {#perform}) and returns parsed JSON response body.
-      #
-      # Note, that not all actions return a JSON suitable for parsing into {Response}. For example,
-      # Wikipedia's [opensearch](https://en.wikipedia.org/w/api.php?action=help&modules=opensearch)
-      # action returns absolutely different JSON structure, corresponding to global
-      # [OpenSearch](https://en.wikipedia.org/wiki/OpenSearch) standard.
-      #
-      # @return [Response]
-      def response
-        jsonable = format(:json)
-        Response.parse(jsonable, jsonable.perform)
-      end
+    # Global setup methods included into every action through {Base}.
+    module GlobalParams
 
       # The format of the output.
       #
       # @param value [Symbol] Selecting an option includes tweaking methods from corresponding module:
-      #   * `:json` - {MediaWiktory::Wikipedia::Modules::Json} Output data in JSON format.
-      #   * `:jsonfm` - {MediaWiktory::Wikipedia::Modules::Jsonfm} Output data in JSON format (pretty-print in HTML).
-      #   * `:none` - {MediaWiktory::Wikipedia::Modules::None} Output nothing.
-      #   * `:php` - {MediaWiktory::Wikipedia::Modules::Php} Output data in serialized PHP format.
-      #   * `:phpfm` - {MediaWiktory::Wikipedia::Modules::Phpfm} Output data in serialized PHP format (pretty-print in HTML).
-      #   * `:rawfm` - {MediaWiktory::Wikipedia::Modules::Rawfm} Output data, including debugging elements, in JSON format (pretty-print in HTML).
-      #   * `:xml` - {MediaWiktory::Wikipedia::Modules::Xml} Output data in XML format.
-      #   * `:xmlfm` - {MediaWiktory::Wikipedia::Modules::Xmlfm} Output data in XML format (pretty-print in HTML).
+      #   * `:json` - {MediaWiktory::Wikipedia::Modules::Json} Output data in JSON format. 
+      #   * `:jsonfm` - {MediaWiktory::Wikipedia::Modules::Jsonfm} Output data in JSON format (pretty-print in HTML). 
+      #   * `:none` - {MediaWiktory::Wikipedia::Modules::None} Output nothing. 
+      #   * `:php` - {MediaWiktory::Wikipedia::Modules::Php} Output data in serialized PHP format. 
+      #   * `:phpfm` - {MediaWiktory::Wikipedia::Modules::Phpfm} Output data in serialized PHP format (pretty-print in HTML). 
+      #   * `:rawfm` - {MediaWiktory::Wikipedia::Modules::Rawfm} Output data, including debugging elements, in JSON format (pretty-print in HTML). 
+      #   * `:xml` - {MediaWiktory::Wikipedia::Modules::Xml} Output data in XML format. 
+      #   * `:xmlfm` - {MediaWiktory::Wikipedia::Modules::Xmlfm} Output data in XML format (pretty-print in HTML). 
       # @return [self]
       def format(value)
         merge_module(:format, value, json: Modules::Json, jsonfm: Modules::Jsonfm, none: Modules::None, php: Modules::Php, phpfm: Modules::Phpfm, rawfm: Modules::Rawfm, xml: Modules::Xml, xmlfm: Modules::Xmlfm)
@@ -242,6 +136,144 @@ module MediaWiktory::Wikipedia
       def centralauthtoken(value)
         merge(centralauthtoken: value.to_s)
       end
+
+    end
+
+    # Base class for all {MediaWiktory::Wikipedia::Api} actions. "Actions" is MediaWiki's term for
+    # different request types. Everything you are doing with your target MediaWiki installation, you
+    # are doing by _performing actions_.
+    #
+    # Typically, you should never instantiate this class or its descendants directly, but rather by
+    # {Api MediaWiktory::Wikipedia::Api} methods.
+    #
+    # The usual workflow with actions is:
+    #
+    # * Create it with `api.action_name`
+    # * Set action params with subsequent `paramname(paramvalue)` calls;
+    # * Perform action with {#perform} (returns row MediaWiki response as a string) or {#response}
+    #   (returns ::Response} class with parsed data and helper methods).
+    #
+    # Note that some of `paramname(value)` calls include new {Modules} into action, which provides
+    # new params & methods. For example:
+    #
+    # ```ruby
+    # api.query.generator(:categorymembers) # includes new methods of GCategorymembers module
+    #    .title('Category:DOS_games')       # one of GCategorymembers methods, adds gcmtitle=Category:DOS_games to URL
+    #    .limit(20)
+    # ```
+    #
+    # Sometimes new modules inclusion can change a sense of already existing methods:
+    #
+    # ```ruby
+    # api.query.titles('Argentina')
+    #   .prop(:revisions)           # .prop method from Query action, adds prop=revisions to URL and includes Revisions module
+    #   .prop(:content)             # .prop method from Revisions module, adds rvprop=content to URL
+    # ```
+    #
+    # Despite of how questionable this practice looks, it provides the most obvious method chains even
+    # for most complicated cases.
+    #
+    # Some setup methods shared between all the actions (like output format and TTL settings of
+    # response) are defined in {GlobalParams}.
+    #
+    # Full action usage example:
+    #
+    # ```ruby
+    # api = MediaWiktory::Wikipedia::Api.new
+    # action = api.new.query.titles('Argentina').prop(:revisions).prop(:content).meta(:siteinfo)
+    # # => #<MediaWiktory::Wikipedia::Actions::Query {"titles"=>"Argentina", "prop"=>"revisions", "rvprop"=>"content", "meta"=>"siteinfo"}>
+    # response = action.response
+    # # => #<MediaWiktory::Wikipedia::Response(query): pages, general>
+    # puts response['pages'].values.first['revisions'].first['*'].split("\n").first(3) # first page, first revision, content, 3 paragraphs
+    # # {{other uses}}
+    # # {{pp-semi|small=yes}}
+    # # {{Use dmy dates|date=March 2017}}
+    # response.dig('general', 'sitename')
+    # # => "Wikipedia"
+    # ```
+    #
+    class Base
+      # @private
+      attr_reader :client
+
+      # @private
+      def initialize(client, options = {})
+        @client = client
+        @params = stringify_hash(options)
+        @submodules = []
+      end
+
+      # Make new action, with additional params passed as `hash`. No params validations are made.
+      #
+      # @param [Hash] Params to merge. All keys and values would be stringified.
+      # @return [Action] Produced action of the same type as current action was, with all passed
+      #   params applied.
+      def merge(hash)
+        self.class
+            .new(@client, @params.merge(stringify_hash(hash)))
+            .tap { |action| @submodules.each { |sm| action.submodule(sm) } }
+      end
+
+      # All action's params in a ready to passing to URL form (string keys & string values).
+      #
+      # @return [Hash{String => String}]
+      def to_h
+        @params.dup
+      end
+
+      # Action's name on MediaWiki API (e.g. "query" for `Query` action, "parsoid-batch" for
+      # `ParsoidBatch` action and so on).
+      #
+      # @return [String]
+      def name
+        # Query # => query
+        # ParsoidBatch # => parsoid-batch
+        self.class.name.scan(/(\w+)$/).flatten.first
+          &.gsub(/([a-z])([A-Z])/, '\1-\2')
+          &.downcase or
+          fail ArgumentError, "Can't guess action name from #{self.class.name}"
+      end
+
+      # All action's params in a ready to passing to URL form (string keys & string values). Unlike
+      # {#to_h}, includes also action name.
+      #
+      # @return [Hash{String => String}]
+      def to_param
+        to_h.merge('action' => name)
+      end
+
+      # Full URL for this action invocation.
+      #
+      # @return [String]
+      def to_url
+        url = @client.url
+        url.query_values = to_param
+        url.to_s
+      end
+
+      # Performs action (through `GET` or `POST request, depending on action's type) and returns
+      # raw body of response.
+      #
+      # @return [String]
+      def perform
+        fail NotImplementedError,
+             'Action is abstract, all actions should descend from Actions::Get or Actions::Post'
+      end
+
+      # Performs action (as in {#perform}) and returns parsed JSON response body.
+      #
+      # Note, that not all actions return a JSON suitable for parsing into {Response}. For example,
+      # Wikipedia's [opensearch](https://en.wikipedia.org/w/api.php?action=help&modules=opensearch)
+      # action returns absolutely different JSON structure, corresponding to global
+      # [OpenSearch](https://en.wikipedia.org/wiki/OpenSearch) standard.
+      #
+      # @return [Response]
+      def response
+        jsonable = format(:json)
+        Response.parse(jsonable, jsonable.perform)
+      end
+
+      include GlobalParams
 
       private
 

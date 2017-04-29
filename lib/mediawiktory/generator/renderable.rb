@@ -35,7 +35,6 @@ module MediaWiktory
           [k.to_s, v.is_a?(Hash) && recursive ? stringify_hash(v, recursive: true) : v.to_s]
         }.to_h
       end
-
     end
   end
 end

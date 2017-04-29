@@ -20,6 +20,10 @@ module MediaWiktory::Wikipedia
       @data.fetch(@action.name)
     end
 
+    def [](key)
+      to_h[key]
+    end
+
     def dig(*keys)
       to_h.dig(*keys)
     end
