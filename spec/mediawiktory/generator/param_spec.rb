@@ -200,7 +200,7 @@ RSpec.describe MediaWiktory::Generator::Param do
     end
   end
 
-  describe '#to_method' do
+  describe 'render method' do
     subject { param.liquid('_param_method', namespace: 'Dummy', name: 'param') }
 
     let(:api) { instance_double('MediaWiktory::ApiParser::Api') }
@@ -214,13 +214,14 @@ RSpec.describe MediaWiktory::Generator::Param do
 
     context 'simple' do
       it { is_expected.to eq %Q{
-        |    # Foobar.
-        |    #
-        |    # @param value [String]
-        |    # @return [self]
-        |    def test(value)
-        |      merge(test: value.to_s)
-        |    end
+        |
+        |      # Foobar.
+        |      #
+        |      # @param value [String]
+        |      # @return [self]
+        |      def test(value)
+        |        merge(test: value.to_s)
+        |      end
         |
       }.unindent }
     end
@@ -229,13 +230,14 @@ RSpec.describe MediaWiktory::Generator::Param do
       let(:prefix) { 'foo' }
 
       it { is_expected.to eq %Q{
-        |    # Foobar.
-        |    #
-        |    # @param value [String]
-        |    # @return [self]
-        |    def test(value)
-        |      merge(footest: value.to_s)
-        |    end
+        |
+        |      # Foobar.
+        |      #
+        |      # @param value [String]
+        |      # @return [self]
+        |      def test(value)
+        |        merge(footest: value.to_s)
+        |      end
         |
       }.unindent }
     end
@@ -244,12 +246,13 @@ RSpec.describe MediaWiktory::Generator::Param do
       let(:type) { 'boolean' }
 
       it { is_expected.to eq %Q{
-        |    # Foobar.
-        |    #
-        |    # @return [self]
-        |    def test()
-        |      merge(test: 'true')
-        |    end
+        |
+        |      # Foobar.
+        |      #
+        |      # @return [self]
+        |      def test()
+        |        merge(test: 'true')
+        |      end
         |
       }.unindent }
     end
@@ -258,13 +261,14 @@ RSpec.describe MediaWiktory::Generator::Param do
       let(:type) { 'integer' }
 
       it { is_expected.to eq %Q{
-        |    # Foobar.
-        |    #
-        |    # @param value [Integer]
-        |    # @return [self]
-        |    def test(value)
-        |      merge(test: value.to_s)
-        |    end
+        |
+        |      # Foobar.
+        |      #
+        |      # @param value [Integer]
+        |      # @return [self]
+        |      def test(value)
+        |        merge(test: value.to_s)
+        |      end
         |
       }.unindent }
     end
@@ -273,13 +277,14 @@ RSpec.describe MediaWiktory::Generator::Param do
       let(:type) { 'integer or max' }
 
       it { is_expected.to eq %Q{
-        |    # Foobar.
-        |    #
-        |    # @param value [Integer, "max"]
-        |    # @return [self]
-        |    def test(value)
-        |      merge(test: value.to_s)
-        |    end
+        |
+        |      # Foobar.
+        |      #
+        |      # @param value [Integer, "max"]
+        |      # @return [self]
+        |      def test(value)
+        |        merge(test: value.to_s)
+        |      end
         |
       }.unindent }
     end
@@ -289,13 +294,14 @@ RSpec.describe MediaWiktory::Generator::Param do
       let(:vals) { %w[foo bar baz] }
 
       it { is_expected.to eq %Q{
-        |    # Foobar.
-        |    #
-        |    # @param value [String] One of "foo", "bar", "baz".
-        |    # @return [self]
-        |    def test(value)
-        |      merge(test: value.to_s)
-        |    end
+        |
+        |      # Foobar.
+        |      #
+        |      # @param value [String] One of "foo", "bar", "baz".
+        |      # @return [self]
+        |      def test(value)
+        |        merge(test: value.to_s)
+        |      end
         |
       }.unindent }
     end
@@ -304,13 +310,14 @@ RSpec.describe MediaWiktory::Generator::Param do
       let(:type) { 'list' }
 
       it { is_expected.to eq %Q{
-        |    # Foobar.
-        |    #
-        |    # @param values [Array<String>]
-        |    # @return [self]
-        |    def test(*values)
-        |      merge(test: values.join('|'))
-        |    end
+        |
+        |      # Foobar.
+        |      #
+        |      # @param values [Array<String>]
+        |      # @return [self]
+        |      def test(*values)
+        |        merge(test: values.join('|'))
+        |      end
         |
       }.unindent }
     end
@@ -319,13 +326,14 @@ RSpec.describe MediaWiktory::Generator::Param do
       let(:type) { 'list of integers' }
 
       it { is_expected.to eq %Q{
-        |    # Foobar.
-        |    #
-        |    # @param values [Array<Integer>]
-        |    # @return [self]
-        |    def test(*values)
-        |      merge(test: values.join('|'))
-        |    end
+        |
+        |      # Foobar.
+        |      #
+        |      # @param values [Array<Integer>]
+        |      # @return [self]
+        |      def test(*values)
+        |        merge(test: values.join('|'))
+        |      end
         |
       }.unindent }
     end
@@ -335,13 +343,14 @@ RSpec.describe MediaWiktory::Generator::Param do
       let(:vals) { %w[foo bar baz] }
 
       it { is_expected.to eq %Q{
-        |    # Foobar.
-        |    #
-        |    # @param values [Array<String>] Allowed values: "foo", "bar", "baz".
-        |    # @return [self]
-        |    def test(*values)
-        |      merge(test: values.join('|'))
-        |    end
+        |
+        |      # Foobar.
+        |      #
+        |      # @param values [Array<String>] Allowed values: "foo", "bar", "baz".
+        |      # @return [self]
+        |      def test(*values)
+        |        merge(test: values.join('|'))
+        |      end
         |
       }.unindent }
     end
@@ -355,44 +364,48 @@ RSpec.describe MediaWiktory::Generator::Param do
       ] }
 
       it { is_expected.to eq %Q{
-        |    # Foobar.
-        |    #
-        |    # @param values [Array<String>] Allowed values: "foo" (Foo), "bar" (The Bar), "baz" (Pretty baz).
-        |    # @return [self]
-        |    def test(*values)
-        |      merge(test: values.join('|'))
-        |    end
+        |
+        |      # Foobar.
+        |      #
+        |      # @param values [Array<String>] Allowed values: "foo" (Foo), "bar" (The Bar), "baz" (Pretty baz).
+        |      # @return [self]
+        |      def test(*values)
+        |        merge(test: values.join('|'))
+        |      end
         |
       }.unindent }
     end
 
+    let(:mod) {
+      MediaWiktory::Generator::Module.new(
+        name: 'mod',
+        description: 'Descr of mod',
+        flags: [],
+        params: [
+          MediaWiktory::Generator::Param.new(name: 'param1', type: 'string', description: 'Descr of param1.'),
+          MediaWiktory::Generator::Param.new(name: 'param2', type: 'enum', description: 'Descr of param2.', vals: %w[param1a param2a param3a])
+        ]
+      )
+    }
+
     context 'enum - other modules' do
       let(:type) { 'enum' }
       let(:vals) { [{name: 'mod', module: 'foo'}] }
-      let(:mod) {
-        MediaWiktory::Generator::Module.new(
-          name: 'mod',
-          description: 'Descr of mod',
-          params: [
-            MediaWiktory::Generator::Param.new(name: 'param1', type: 'string', description: 'Descr of param1.'),
-            MediaWiktory::Generator::Param.new(name: 'param2', type: 'enum', description: 'Descr of param2.', vals: %w[param1a param2a param3a])
-          ]
-        )
-      }
       before {
         allow(api).to receive(:module).with('foo').and_return(mod)
         param.api = api
       }
 
       it { is_expected.to eq %Q{
-        |    # Foobar.
-        |    #
-        |    # @param value [Symbol] Selecting an option includes tweaking methods from corresponding module:
-        |    #   * `:mod` - {Dummy::Modules::Mod} Descr of mod
-        |    # @return [self]
-        |    def test(value)
-        |      merge_module(:test, value, mod: Modules::Mod)
-        |    end
+        |
+        |      # Foobar.
+        |      #
+        |      # @param value [Symbol] Selecting an option includes tweaking methods from corresponding module:
+        |      #   * `:mod` - {Dummy::Modules::Mod} Descr of mod
+        |      # @return [self]
+        |      def test(value)
+        |        merge_module(:test, value, mod: Modules::Mod)
+        |      end
         |
       }.unindent }
     end
@@ -400,30 +413,21 @@ RSpec.describe MediaWiktory::Generator::Param do
     context 'list - other modules' do
       let(:type) { 'list' }
       let(:vals) { [{name: 'foo', module: 'foo'}] }
-      let(:mod) {
-        MediaWiktory::Generator::Module.new(
-          name: 'mod',
-          description: 'Descr of mod',
-          params: [
-            MediaWiktory::Generator::Param.new(name: 'param1', type: 'string', description: 'Descr of param1.'),
-            MediaWiktory::Generator::Param.new(name: 'param2', type: 'enum', description: 'Descr of param2.', vals: %w[param1a param2a param3a])
-          ]
-        )
-      }
       before {
         allow(api).to receive(:module).with('foo').and_return(mod)
         param.api = api
       }
 
       it { is_expected.to eq %Q{
-        |    # Foobar.
-        |    #
-        |    # @param values [Array<Symbol>] All selected options include tweaking methods from corresponding modules:
-        |    #   * `:mod` - {Dummy::Modules::Mod} Descr of mod
-        |    # @return [self]
-        |    def test(*values)
-        |      merge_modules(:test, values, mod: Modules::Mod)
-        |    end
+        |
+        |      # Foobar.
+        |      #
+        |      # @param values [Array<Symbol>] All selected options include tweaking methods from corresponding modules:
+        |      #   * `:mod` - {Dummy::Modules::Mod} Descr of mod
+        |      # @return [self]
+        |      def test(*values)
+        |        merge_modules(:test, values, mod: Modules::Mod)
+        |      end
         |
       }.unindent }
     end
