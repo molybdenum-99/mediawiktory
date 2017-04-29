@@ -7,11 +7,15 @@ module MediaWiktory::Wikipedia
     def initialize(action, response_hash)
       @action = action
       @data = response_hash
-      raise_errors!
+      error! if @data['error']
     end
 
     def to_h
       @data.fetch(@action.name)
+    end
+
+    def dig(*keys)
+      to_h.dig(*keys)
     end
 
     def raw
@@ -43,8 +47,7 @@ module MediaWiktory::Wikipedia
         .select(&:last)
     end
 
-    def raise_errors!
-      return unless @data['error']
+    def error!
       # TODO: proper class
       raise RuntimeError, @data.dig('error', 'info')
     end

@@ -2,13 +2,14 @@
 
 require 'addressable'
 require 'faraday'
+require 'faraday_middleware'
 
 module MediaWiktory::Wikipedia
   class Client
     # Default MediaWiktory User-Agent header.
     #
     # You can set yours as an option to {#initialize}
-    UA = "MediaWiktory/#{MediaWiktory::VERSION} "\
+    UA = "MediaWiktory/0.0.4 "\
          '(https://github.com/molybdenum-99/mediawiktory; zverok.offline@gmail.com)'
 
     class << self
