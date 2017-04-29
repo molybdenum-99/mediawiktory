@@ -19,7 +19,7 @@ module MediaWiktory::Wikipedia
     #
     # All action's parameters are documented as its public methods, see below.
     #
-    class Compare < MediaWiktory::Wikipedia::GetAction
+    class Compare < MediaWiktory::Wikipedia::Actions::Get
 
       # First title to compare.
       #

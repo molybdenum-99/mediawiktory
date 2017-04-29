@@ -19,7 +19,7 @@ module MediaWiktory::Wikipedia
     #
     # All action's parameters are documented as its public methods, see below.
     #
-    class Graph < MediaWiktory::Wikipedia::GetAction
+    class Graph < MediaWiktory::Wikipedia::Actions::Get
 
       # Hash value of the graph
       #

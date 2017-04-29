@@ -19,7 +19,7 @@ module MediaWiktory::Wikipedia
     #
     # All action's parameters are documented as its public methods, see below.
     #
-    class Ulslocalization < MediaWiktory::Wikipedia::GetAction
+    class Ulslocalization < MediaWiktory::Wikipedia::Actions::Get
 
       # Language code.
       #

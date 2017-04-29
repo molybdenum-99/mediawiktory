@@ -19,7 +19,7 @@ module {{ namespace }}
     #
     # All action's parameters are documented as its public methods, see below.
     #
-    class {{ object.class_name }} < {{namespace}}::{{ object.http_method }}Action
-{% for param in object.params %}{% include 'param_method' %}{% endfor %}  end
+    class {{ object.class_name }} < {{namespace}}::Actions::{{ object.http_method }}
+{% for param in object.params %}{% include 'param_method' %}{% endfor %}    end
   end
 end

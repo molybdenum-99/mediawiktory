@@ -19,7 +19,7 @@ module MediaWiktory::Wikipedia
     #
     # All action's parameters are documented as its public methods, see below.
     #
-    class Centralauthtoken < MediaWiktory::Wikipedia::GetAction
+    class Centralauthtoken < MediaWiktory::Wikipedia::Actions::Get
   end
   end
 end

@@ -19,7 +19,7 @@ module MediaWiktory::Wikipedia
     #
     # All action's parameters are documented as its public methods, see below.
     #
-    class Cxsuggestionlist < MediaWiktory::Wikipedia::PostAction
+    class Cxsuggestionlist < MediaWiktory::Wikipedia::Actions::Post
 
       # Suggestion list name.
       #

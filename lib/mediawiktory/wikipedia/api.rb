@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require_relative './client'
-require_relative './action'
+require_relative './actions/base'
 
 module MediaWiktory::Wikipedia
   # The base API class for [Wikipedia](https://en.wikipedia.org/wiki/Main_Page).

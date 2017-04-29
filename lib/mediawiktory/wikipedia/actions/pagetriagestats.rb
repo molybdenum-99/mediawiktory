@@ -19,7 +19,7 @@ module MediaWiktory::Wikipedia
     #
     # All action's parameters are documented as its public methods, see below.
     #
-    class Pagetriagestats < MediaWiktory::Wikipedia::GetAction
+    class Pagetriagestats < MediaWiktory::Wikipedia::Actions::Get
 
       # What namespace to pull stats from.
       #

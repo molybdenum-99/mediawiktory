@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'json'
 
 module MediaWiktory::Wikipedia
@@ -31,7 +33,7 @@ module MediaWiktory::Wikipedia
     end
 
     def continue
-      raise unless continue?
+      fail 'This is the last page' unless continue?
 
       action = @action.merge(@data.fetch('continue'))
 
@@ -45,14 +47,16 @@ module MediaWiktory::Wikipedia
     private
 
     def deep_merge(hash1, hash2)
-      merger = ->(k, v1, v2) { v1.is_a?(Hash) && v2.is_a?(Hash) ? v1.merge(v2, &merger) : v2 }
+      merger = ->(_k, v1, v2) { v1.is_a?(Hash) && v2.is_a?(Hash) ? v1.merge(v2, &merger) : v2 }
+
+      # Newest page is responsible for continuation
       hash1.merge(hash2, &merger)
-        .tap { |res| res['continue'] = hash2['continue'] } # more new page is responsible for continuation
-        .select(&:last)
+           .tap { |res| res['continue'] = hash2['continue'] }
+           .reject { |_, val| val.nil? }
     end
 
     def error!
-      raise Error, @data.dig('error', 'info')
+      fail Error, @data.dig('error', 'info')
     end
   end
 end

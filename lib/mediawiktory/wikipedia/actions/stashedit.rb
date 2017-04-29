@@ -19,7 +19,7 @@ module MediaWiktory::Wikipedia
     #
     # All action's parameters are documented as its public methods, see below.
     #
-    class Stashedit < MediaWiktory::Wikipedia::PostAction
+    class Stashedit < MediaWiktory::Wikipedia::Actions::Post
 
       # Title of the page being edited.
       #

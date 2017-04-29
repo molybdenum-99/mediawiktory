@@ -19,7 +19,7 @@ module MediaWiktory::Wikipedia
     #
     # All action's parameters are documented as its public methods, see below.
     #
-    class Pagetriagelist < MediaWiktory::Wikipedia::GetAction
+    class Pagetriagelist < MediaWiktory::Wikipedia::Actions::Get
 
       # Return data for the specified page IDs, ignoring other parameters.
       #

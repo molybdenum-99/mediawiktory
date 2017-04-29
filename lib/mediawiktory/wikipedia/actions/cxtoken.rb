@@ -19,7 +19,7 @@ module MediaWiktory::Wikipedia
     #
     # All action's parameters are documented as its public methods, see below.
     #
-    class Cxtoken < MediaWiktory::Wikipedia::PostAction
+    class Cxtoken < MediaWiktory::Wikipedia::Actions::Post
 
       # A "csrf" token retrieved from action=query&meta=tokens
       #

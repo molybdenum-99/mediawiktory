@@ -19,7 +19,7 @@ module MediaWiktory::Wikipedia
     #
     # All action's parameters are documented as its public methods, see below.
     #
-    class Options < MediaWiktory::Wikipedia::PostAction
+    class Options < MediaWiktory::Wikipedia::Actions::Post
 
       # Resets preferences to the site defaults.
       #

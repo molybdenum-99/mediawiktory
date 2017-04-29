@@ -19,7 +19,7 @@ module MediaWiktory::Wikipedia
     #
     # All action's parameters are documented as its public methods, see below.
     #
-    class Pagetriagetemplate < MediaWiktory::Wikipedia::GetAction
+    class Pagetriagetemplate < MediaWiktory::Wikipedia::Actions::Get
 
       # The PageTriage view for which you need the templates.
       #

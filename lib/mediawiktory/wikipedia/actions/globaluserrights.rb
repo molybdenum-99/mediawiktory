@@ -19,7 +19,7 @@ module MediaWiktory::Wikipedia
     #
     # All action's parameters are documented as its public methods, see below.
     #
-    class Globaluserrights < MediaWiktory::Wikipedia::PostAction
+    class Globaluserrights < MediaWiktory::Wikipedia::Actions::Post
 
       # Global user name.
       #

@@ -19,7 +19,7 @@ module MediaWiktory::Wikipedia
     #
     # All action's parameters are documented as its public methods, see below.
     #
-    class Query < MediaWiktory::Wikipedia::GetAction
+    class Query < MediaWiktory::Wikipedia::Actions::Get
 
       # Which properties to get for the queried pages.
       #

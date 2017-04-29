@@ -19,7 +19,7 @@ module MediaWiktory::Wikipedia
     #
     # All action's parameters are documented as its public methods, see below.
     #
-    class CirrusMappingDump < MediaWiktory::Wikipedia::GetAction
+    class CirrusMappingDump < MediaWiktory::Wikipedia::Actions::Get
   end
   end
 end

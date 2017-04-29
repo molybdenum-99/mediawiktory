@@ -19,7 +19,7 @@ module MediaWiktory::Wikipedia
     #
     # All action's parameters are documented as its public methods, see below.
     #
-    class Expandtemplates < MediaWiktory::Wikipedia::GetAction
+    class Expandtemplates < MediaWiktory::Wikipedia::Actions::Get
 
       # Title of page.
       #

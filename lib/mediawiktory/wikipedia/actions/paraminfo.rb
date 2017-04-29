@@ -19,7 +19,7 @@ module MediaWiktory::Wikipedia
     #
     # All action's parameters are documented as its public methods, see below.
     #
-    class Paraminfo < MediaWiktory::Wikipedia::GetAction
+    class Paraminfo < MediaWiktory::Wikipedia::Actions::Get
 
       # List of module names (values of the action and format parameters, or main). Can specify submodules with a +, or all submodules with +*, or all submodules recursively with +**.
       #

@@ -19,7 +19,7 @@ module MediaWiktory::Wikipedia
     #
     # All action's parameters are documented as its public methods, see below.
     #
-    class Import < MediaWiktory::Wikipedia::PostAction
+    class Import < MediaWiktory::Wikipedia::Actions::Post
 
       # Log entry import summary.
       #

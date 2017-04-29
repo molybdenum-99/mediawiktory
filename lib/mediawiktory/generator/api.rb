@@ -35,19 +35,25 @@ module MediaWiktory
         ))
         modules.each { |m| m.api = self }
 
+        # "generators" parameter for action=query are special. They are not defined by modules, but
+        # by "You can use this or that module, just add 'g' to it".
         actions.detect { |a| a.name == 'query' }
           &.params&.detect { |p| p.name == 'generator' }
           &.tap do |query_generator|
-          self.generators = query_generator
-            .modules.map { |m| m.merge(
-              name: "g-#{m.name}",
-              description: "Generator module.\n\n#{description}",
-              params: m.params.reject{|p| p.name == 'prop'}.map(&:dup)
-            ).tap { |m| m.prefix = "g#{m.prefix}" } }
+          self.generators =
+            query_generator
+            .modules.map { |mod|
+              mod.merge(
+                name: "g-#{mod.name}",
+                description: "Generator module.\n\n#{description}",
+                params: mod.params.reject { |p| p.name == 'prop' }.map(&:dup)
+              ).tap { |m| m.prefix = "g#{m.prefix}" }
+            }
 
           modules.concat(generators)
           non_actions.concat(generators)
-          query_generator.vals = query_generator.vals.map { |v| {name: v.name, module: "g-#{v.module}"}}
+          query_generator.vals =
+            query_generator.vals.map { |v| {name: v.name, module: "g-#{v.module}"} }
         end
       end
 

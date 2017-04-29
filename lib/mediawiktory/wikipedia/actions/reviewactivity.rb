@@ -19,7 +19,7 @@ module MediaWiktory::Wikipedia
     #
     # All action's parameters are documented as its public methods, see below.
     #
-    class Reviewactivity < MediaWiktory::Wikipedia::PostAction
+    class Reviewactivity < MediaWiktory::Wikipedia::Actions::Post
 
       # The prior revision ID (for reviewing changes only).
       #

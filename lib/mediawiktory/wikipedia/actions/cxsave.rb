@@ -19,7 +19,7 @@ module MediaWiktory::Wikipedia
     #
     # All action's parameters are documented as its public methods, see below.
     #
-    class Cxsave < MediaWiktory::Wikipedia::PostAction
+    class Cxsave < MediaWiktory::Wikipedia::Actions::Post
 
       # The source language code.
       #

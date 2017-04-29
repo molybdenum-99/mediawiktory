@@ -19,7 +19,7 @@ module MediaWiktory::Wikipedia
     #
     # All action's parameters are documented as its public methods, see below.
     #
-    class ScribuntoConsole < MediaWiktory::Wikipedia::GetAction
+    class ScribuntoConsole < MediaWiktory::Wikipedia::Actions::Get
 
       # The title of the module to test.
       #

@@ -19,7 +19,7 @@ module MediaWiktory::Wikipedia
     #
     # All action's parameters are documented as its public methods, see below.
     #
-    class WebappManifest < MediaWiktory::Wikipedia::GetAction
+    class WebappManifest < MediaWiktory::Wikipedia::Actions::Get
   end
   end
 end

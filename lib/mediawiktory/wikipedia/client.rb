@@ -9,7 +9,7 @@ module MediaWiktory::Wikipedia
     # Default MediaWiktory User-Agent header.
     #
     # You can set yours as an option to {#initialize}
-    UA = "MediaWiktory/0.1.0 "\
+    UA = 'MediaWiktory/0.1.0 '\
          '(https://github.com/molybdenum-99/mediawiktory; zverok.offline@gmail.com)'
 
     class << self

@@ -19,7 +19,7 @@ module MediaWiktory::Wikipedia
     #
     # All action's parameters are documented as its public methods, see below.
     #
-    class Imagerotate < MediaWiktory::Wikipedia::GetAction
+    class Imagerotate < MediaWiktory::Wikipedia::Actions::Get
   end
   end
 end

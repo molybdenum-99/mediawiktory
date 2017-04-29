@@ -19,7 +19,7 @@ module MediaWiktory::Wikipedia
     #
     # All action's parameters are documented as its public methods, see below.
     #
-    class Deleteeducation < MediaWiktory::Wikipedia::PostAction
+    class Deleteeducation < MediaWiktory::Wikipedia::Actions::Post
 
       # The IDs of the objects to delete.
       #

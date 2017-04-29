@@ -19,7 +19,7 @@ module MediaWiktory::Wikipedia
     #
     # All action's parameters are documented as its public methods, see below.
     #
-    class Opensearch < MediaWiktory::Wikipedia::GetAction
+    class Opensearch < MediaWiktory::Wikipedia::Actions::Get
 
       # Search string.
       #

@@ -58,11 +58,16 @@ module MediaWiktory
     end
 
     def generate(path:, namespace:)
-      opts = {namespace: namespace, version: VERSION, source: @url, friendly_date: Time.now.strftime('%B %d, %Y')}
+      opts = {
+        namespace: namespace,
+        version: VERSION,
+        source: @url,
+        friendly_date: Time.now.strftime('%B %d, %Y')
+      }
       FileUtils.rm_rf path
       FileUtils.mkdir_p path
 
-      BaseAction.new(@api).render_to(File.join(path, 'action.rb'), opts)
+      BaseAction.new(@api).render_to(File.join(path, 'actions/base.rb'), opts)
       Client.new.render_to(File.join(path, 'client.rb'), opts)
       Response.new.render_to(File.join(path, 'response.rb'), opts)
 

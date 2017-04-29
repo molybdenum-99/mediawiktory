@@ -19,7 +19,7 @@ module MediaWiktory::Wikipedia
     #
     # All action's parameters are documented as its public methods, see below.
     #
-    class Validatepassword < MediaWiktory::Wikipedia::PostAction
+    class Validatepassword < MediaWiktory::Wikipedia::Actions::Post
 
       # Password to validate.
       #

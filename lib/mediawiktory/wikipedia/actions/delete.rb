@@ -19,7 +19,7 @@ module MediaWiktory::Wikipedia
     #
     # All action's parameters are documented as its public methods, see below.
     #
-    class Delete < MediaWiktory::Wikipedia::PostAction
+    class Delete < MediaWiktory::Wikipedia::Actions::Post
 
       # Title of the page to delete. Cannot be used together with pageid.
       #

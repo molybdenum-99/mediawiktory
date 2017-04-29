@@ -19,7 +19,7 @@ module MediaWiktory::Wikipedia
     #
     # All action's parameters are documented as its public methods, see below.
     #
-    class Feedcontributions < MediaWiktory::Wikipedia::GetAction
+    class Feedcontributions < MediaWiktory::Wikipedia::Actions::Get
 
       # The format of the feed.
       #

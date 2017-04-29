@@ -19,7 +19,7 @@ module MediaWiktory::Wikipedia
     #
     # All action's parameters are documented as its public methods, see below.
     #
-    class Cxconfiguration < MediaWiktory::Wikipedia::GetAction
+    class Cxconfiguration < MediaWiktory::Wikipedia::Actions::Get
 
       # The source language code.
       #

@@ -19,7 +19,7 @@ module MediaWiktory::Wikipedia
     #
     # All action's parameters are documented as its public methods, see below.
     #
-    class Watch < MediaWiktory::Wikipedia::PostAction
+    class Watch < MediaWiktory::Wikipedia::Actions::Post
 
       # The page to (un)watch. Use titles instead.
       #

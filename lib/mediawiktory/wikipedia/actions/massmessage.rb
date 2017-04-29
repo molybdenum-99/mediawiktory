@@ -19,7 +19,7 @@ module MediaWiktory::Wikipedia
     #
     # All action's parameters are documented as its public methods, see below.
     #
-    class Massmessage < MediaWiktory::Wikipedia::PostAction
+    class Massmessage < MediaWiktory::Wikipedia::Actions::Post
 
       # Page containing list of pages to leave a message on.
       #

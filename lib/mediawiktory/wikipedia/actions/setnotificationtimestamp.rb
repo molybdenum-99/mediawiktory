@@ -19,7 +19,7 @@ module MediaWiktory::Wikipedia
     #
     # All action's parameters are documented as its public methods, see below.
     #
-    class Setnotificationtimestamp < MediaWiktory::Wikipedia::PostAction
+    class Setnotificationtimestamp < MediaWiktory::Wikipedia::Actions::Post
 
       # Work on all watched pages.
       #

@@ -19,7 +19,7 @@ module MediaWiktory::Wikipedia
     #
     # All action's parameters are documented as its public methods, see below.
     #
-    class Emailuser < MediaWiktory::Wikipedia::PostAction
+    class Emailuser < MediaWiktory::Wikipedia::Actions::Post
 
       # User to send email to.
       #

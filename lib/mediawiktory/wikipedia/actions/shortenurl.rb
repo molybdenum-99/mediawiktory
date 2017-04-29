@@ -19,7 +19,7 @@ module MediaWiktory::Wikipedia
     #
     # All action's parameters are documented as its public methods, see below.
     #
-    class Shortenurl < MediaWiktory::Wikipedia::PostAction
+    class Shortenurl < MediaWiktory::Wikipedia::Actions::Post
 
       # URL to be shortened.
       #

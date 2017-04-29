@@ -1,101 +1,103 @@
 # frozen_string_literal: true
 
 module {{ namespace }}
-  class Action
-    attr_reader :client
+  module Actions
+    class Base
+      attr_reader :client
 
-    def initialize(client, options = {})
-      @client = client
-      @params = stringify_hash(options)
-      @submodules = []
-    end
+      def initialize(client, options = {})
+        @client = client
+        @params = stringify_hash(options)
+        @submodules = []
+      end
 
-    def merge(hash)
-      self.class
-          .new(@client, @params.merge(stringify_hash(hash)))
-          .tap { |action| @submodules.each { |sm| action.submodule(sm) } }
-    end
+      def merge(hash)
+        self.class
+            .new(@client, @params.merge(stringify_hash(hash)))
+            .tap { |action| @submodules.each { |sm| action.submodule(sm) } }
+      end
 
-    def to_h
-      @params.dup
-    end
+      def to_h
+        @params.dup
+      end
 
-    def name
-      # Query # => query
-      # ParsoidBatch # => parsoid-batch
-      self.class.name.scan(/(\w+)$/).flatten.first
-        &.gsub(/([a-z])([A-Z])/, '\1-\2')
-        &.downcase or
-        fail ArgumentError, "Can't guess action name from #{self.class.name}"
-    end
+      def name
+        # Query # => query
+        # ParsoidBatch # => parsoid-batch
+        self.class.name.scan(/(\w+)$/).flatten.first
+          &.gsub(/([a-z])([A-Z])/, '\1-\2')
+          &.downcase or
+          fail ArgumentError, "Can't guess action name from #{self.class.name}"
+      end
 
-    def to_param
-      to_h.merge('action' => name)
-    end
+      def to_param
+        to_h.merge('action' => name)
+      end
 
-    def to_url
-      url = @client.url
-      url.query_values = to_param
-      url.to_s
-    end
+      def to_url
+        url = @client.url
+        url.query_values = to_param
+        url.to_s
+      end
 
-    def perform
-      fail NotImplementedError,
-           'Action is abstract, all actions should descend from GetAction or PostAction'
-    end
+      def perform
+        fail NotImplementedError,
+             'Action is abstract, all actions should descend from GetAction or PostAction'
+      end
 
-    def response
-      jsonable = format(:json)
-      Response.parse(jsonable, jsonable.perform)
-    end
+      def response
+        jsonable = format(:json)
+        Response.parse(jsonable, jsonable.perform)
+      end
 {% for param in object.main.params %}{% include 'param_method' %}{% endfor %}
-    private
+      private
 
-    # Used by generated code in methods like
-    #
-    # ```ruby
-    # action.format(:json)
-    # ```
-    #
-    # It merges used module name into action params and includes submodule's methods into action
-    # for further tweaking.
-    def merge_module(name, val, modules)
-      mod = modules.fetch(val) { fail ArgumentError, "Module #{val} is not defined" }
-      merge(name => val).submodule(mod)
+      # Used by generated code in methods like
+      #
+      # ```ruby
+      # action.format(:json)
+      # ```
+      #
+      # It merges used module name into action params and includes submodule's methods into action
+      # for further tweaking.
+      def merge_module(name, val, modules)
+        mod = modules.fetch(val) { fail ArgumentError, "Module #{val} is not defined" }
+        merge(name => val).submodule(mod)
+      end
+
+      def merge_modules(name, vals, modules)
+        mods =
+          vals
+          .map { |val| modules.fetch(val) { fail ArgumentError, "Module #{val} is not defined" } }
+        merge(name => vals.join('|')).tap { |res| mods.each { |mod| res.submodule(mod) } }
+      end
+
+      # Not in indepented module to decrease generated files/modules list
+      def stringify_hash(hash, recursive: false)
+        hash.map { |k, v|
+          [k.to_s, v.is_a?(Hash) && recursive ? stringify_hash(v, recursive: true) : v.to_s]
+        }.to_h
+      end
+
+      protected
+
+      def submodule(mod)
+        extend(mod)
+        @submodules << mod
+        self
+      end
     end
 
-    def merge_modules(name, vals, modules)
-      mods =
-        vals
-        .map { |val| modules.fetch(val) { fail ArgumentError, "Module #{val} is not defined" } }
-      merge(name => vals.join('|')).tap { |res| mods.each { |mod| res.submodule(mod) } }
+    class Get < Base
+      def perform
+        client.get(to_param)
+      end
     end
 
-    # Not in indepented module to decrease generated files/modules list
-    def stringify_hash(hash, recursive: false)
-      hash.map { |k, v|
-        [k.to_s, v.is_a?(Hash) && recursive ? stringify_hash(v, recursive: true) : v.to_s]
-      }.to_h
-    end
-
-    protected
-
-    def submodule(mod)
-      extend(mod)
-      @submodules << mod
-      self
-    end
-  end
-
-  class GetAction < Action
-    def perform
-      client.get(to_param)
-    end
-  end
-
-  class PostAction < Action
-    def perform
-      client.post(to_param)
+    class Post < Base
+      def perform
+        client.post(to_param)
+      end
     end
   end
 end

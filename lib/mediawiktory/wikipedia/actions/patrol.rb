@@ -19,7 +19,7 @@ module MediaWiktory::Wikipedia
     #
     # All action's parameters are documented as its public methods, see below.
     #
-    class Patrol < MediaWiktory::Wikipedia::PostAction
+    class Patrol < MediaWiktory::Wikipedia::Actions::Post
 
       # Recentchanges ID to patrol.
       #

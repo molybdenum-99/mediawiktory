@@ -21,6 +21,6 @@ module {{ namespace }}
     # All submodule's parameters are documented as its public methods, see below.
     #
     module {{ object.class_name }}
-{% for param in object.params %}{% include 'param_method' %}{% endfor %}  end
+{% for param in object.params %}{% include 'param_method' %}{% endfor %}    end
   end
 end

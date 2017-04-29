@@ -19,7 +19,7 @@ module MediaWiktory::Wikipedia
     #
     # All action's parameters are documented as its public methods, see below.
     #
-    class Jsondata < MediaWiktory::Wikipedia::GetAction
+    class Jsondata < MediaWiktory::Wikipedia::Actions::Get
 
       # Title to get. By default assumes namespace to be "Data:"
       #

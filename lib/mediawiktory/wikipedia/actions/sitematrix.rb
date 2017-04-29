@@ -19,7 +19,7 @@ module MediaWiktory::Wikipedia
     #
     # All action's parameters are documented as its public methods, see below.
     #
-    class Sitematrix < MediaWiktory::Wikipedia::GetAction
+    class Sitematrix < MediaWiktory::Wikipedia::Actions::Get
 
       # Filter the Site Matrix by type:
       #

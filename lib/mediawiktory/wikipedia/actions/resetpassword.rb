@@ -19,7 +19,7 @@ module MediaWiktory::Wikipedia
     #
     # All action's parameters are documented as its public methods, see below.
     #
-    class Resetpassword < MediaWiktory::Wikipedia::PostAction
+    class Resetpassword < MediaWiktory::Wikipedia::Actions::Post
 
       # User being reset.
       #

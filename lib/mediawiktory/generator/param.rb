@@ -104,7 +104,7 @@ module MediaWiktory
             'value_conv' => value_conv,
             'modules' => modules&.map(&:to_h),
             'param_def' => param_def,
-            'modules_hash' => modules&.map { |m| "#{m.method_name}: Modules::#{m.class_name}" }&.join(', ')
+            'modules_hash' => modules&.map { |m| module_in_hash(m) }&.join(', ')
           )
       end
 
@@ -133,6 +133,10 @@ module MediaWiktory
         else
           fail ArgumentError, "Cannot render #{real_type} to Ruby still"
         end
+      end
+
+      def module_in_hash(m)
+        "#{m.method_name}: Modules::#{m.class_name}"
       end
 
       def param_docs

@@ -19,7 +19,7 @@ module MediaWiktory::Wikipedia
     #
     # All action's parameters are documented as its public methods, see below.
     #
-    class Templatedata < MediaWiktory::Wikipedia::GetAction
+    class Templatedata < MediaWiktory::Wikipedia::Actions::Get
 
       # A list of titles to work on.
       #

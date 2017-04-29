@@ -19,7 +19,7 @@ module MediaWiktory::Wikipedia
     #
     # All action's parameters are documented as its public methods, see below.
     #
-    class Categorytree < MediaWiktory::Wikipedia::GetAction
+    class Categorytree < MediaWiktory::Wikipedia::Actions::Get
 
       # Title in the category namespace, prefix will be ignored if given.
       #

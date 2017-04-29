@@ -19,7 +19,7 @@ module MediaWiktory::Wikipedia
     #
     # All action's parameters are documented as its public methods, see below.
     #
-    class Cspreport < MediaWiktory::Wikipedia::PostAction
+    class Cspreport < MediaWiktory::Wikipedia::Actions::Post
 
       # Mark as being a report from a monitoring policy, not an enforced policy
       #

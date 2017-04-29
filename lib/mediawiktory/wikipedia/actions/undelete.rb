@@ -19,7 +19,7 @@ module MediaWiktory::Wikipedia
     #
     # All action's parameters are documented as its public methods, see below.
     #
-    class Undelete < MediaWiktory::Wikipedia::PostAction
+    class Undelete < MediaWiktory::Wikipedia::Actions::Post
 
       # Title of the page to restore.
       #

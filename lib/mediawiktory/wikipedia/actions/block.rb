@@ -19,7 +19,7 @@ module MediaWiktory::Wikipedia
     #
     # All action's parameters are documented as its public methods, see below.
     #
-    class Block < MediaWiktory::Wikipedia::PostAction
+    class Block < MediaWiktory::Wikipedia::Actions::Post
 
       # Username, IP address, or IP address range to block. Cannot be used together with userid
       #

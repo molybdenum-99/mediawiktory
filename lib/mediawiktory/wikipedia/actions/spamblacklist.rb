@@ -19,7 +19,7 @@ module MediaWiktory::Wikipedia
     #
     # All action's parameters are documented as its public methods, see below.
     #
-    class Spamblacklist < MediaWiktory::Wikipedia::GetAction
+    class Spamblacklist < MediaWiktory::Wikipedia::Actions::Get
 
       # URLs to validate against the blacklist.
       #

@@ -19,7 +19,7 @@ module MediaWiktory::Wikipedia
     #
     # All action's parameters are documented as its public methods, see below.
     #
-    class Abusefilterevalexpression < MediaWiktory::Wikipedia::GetAction
+    class Abusefilterevalexpression < MediaWiktory::Wikipedia::Actions::Get
 
       # The expression to evaluate.
       #

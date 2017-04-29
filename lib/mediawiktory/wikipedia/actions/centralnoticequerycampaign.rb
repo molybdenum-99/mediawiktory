@@ -19,7 +19,7 @@ module MediaWiktory::Wikipedia
     #
     # All action's parameters are documented as its public methods, see below.
     #
-    class Centralnoticequerycampaign < MediaWiktory::Wikipedia::GetAction
+    class Centralnoticequerycampaign < MediaWiktory::Wikipedia::Actions::Get
 
       # Campaign name. Separate multiple values with a "|" (vertical bar).
       #
