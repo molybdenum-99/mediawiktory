@@ -149,6 +149,6 @@ module MediaWiktory::Wikipedia
       def endsortkey(value)
         merge(gcmendsortkey: value.to_s)
       end
-  end
+    end
   end
 end

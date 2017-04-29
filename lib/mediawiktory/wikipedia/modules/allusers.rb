@@ -115,6 +115,6 @@ module MediaWiktory::Wikipedia
       def attachedwiki(value)
         merge(auattachedwiki: value.to_s)
       end
-  end
+    end
   end
 end

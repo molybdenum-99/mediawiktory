@@ -52,6 +52,6 @@ module MediaWiktory::Wikipedia
       def localonly()
         merge(gdflocalonly: 'true')
       end
-  end
+    end
   end
 end

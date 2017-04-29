@@ -84,6 +84,6 @@ module MediaWiktory::Wikipedia
       def dir(value)
         merge(galdir: value.to_s)
       end
-  end
+    end
   end
 end

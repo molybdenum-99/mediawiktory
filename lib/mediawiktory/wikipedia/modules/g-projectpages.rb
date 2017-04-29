@@ -52,6 +52,6 @@ module MediaWiktory::Wikipedia
       def continue(value)
         merge(gwppcontinue: value.to_s)
       end
-  end
+    end
   end
 end

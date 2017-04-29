@@ -143,6 +143,6 @@ module MediaWiktory::Wikipedia
       def crosswikisummary()
         merge(notcrosswikisummary: 'true')
       end
-  end
+    end
   end
 end

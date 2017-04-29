@@ -108,6 +108,6 @@ module MediaWiktory::Wikipedia
       def debug()
         merge(gsdebug: 'true')
       end
-  end
+    end
   end
 end

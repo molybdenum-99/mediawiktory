@@ -56,6 +56,6 @@ module MediaWiktory::Wikipedia
       def showdeleted()
         merge(showdeleted: 'true')
       end
-  end
+    end
   end
 end

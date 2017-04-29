@@ -124,6 +124,6 @@ module MediaWiktory::Wikipedia
       def toponly()
         merge(uctoponly: 'true')
       end
-  end
+    end
   end
 end

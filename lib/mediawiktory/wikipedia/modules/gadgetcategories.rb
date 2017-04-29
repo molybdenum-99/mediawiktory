@@ -37,6 +37,6 @@ module MediaWiktory::Wikipedia
       def names(*values)
         merge(gcnames: values.join('|'))
       end
-  end
+    end
   end
 end

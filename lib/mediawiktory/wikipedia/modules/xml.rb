@@ -36,6 +36,6 @@ module MediaWiktory::Wikipedia
       def includexmlnamespace()
         merge(includexmlnamespace: 'true')
       end
-  end
+    end
   end
 end

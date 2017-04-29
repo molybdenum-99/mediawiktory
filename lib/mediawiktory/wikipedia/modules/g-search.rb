@@ -91,6 +91,6 @@ module MediaWiktory::Wikipedia
       def enablerewrites()
         merge(gsrenablerewrites: 'true')
       end
-  end
+    end
   end
 end

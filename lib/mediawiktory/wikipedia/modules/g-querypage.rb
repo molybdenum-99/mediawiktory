@@ -45,6 +45,6 @@ module MediaWiktory::Wikipedia
       def limit(value)
         merge(gqplimit: value.to_s)
       end
-  end
+    end
   end
 end

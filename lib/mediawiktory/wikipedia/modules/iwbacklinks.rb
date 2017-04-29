@@ -69,6 +69,6 @@ module MediaWiktory::Wikipedia
       def dir(value)
         merge(iwbldir: value.to_s)
       end
-  end
+    end
   end
 end

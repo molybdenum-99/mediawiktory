@@ -92,6 +92,6 @@ module MediaWiktory::Wikipedia
       def token(value)
         merge(token: value.to_s)
       end
-  end
+    end
   end
 end

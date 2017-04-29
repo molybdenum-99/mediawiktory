@@ -28,6 +28,6 @@ module MediaWiktory::Wikipedia
       def type(*values)
         merge(type: values.join('|'))
       end
-  end
+    end
   end
 end

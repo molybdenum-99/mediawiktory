@@ -53,6 +53,6 @@ module MediaWiktory::Wikipedia
       def features(*values)
         merge(afufeatures: values.join('|'))
       end
-  end
+    end
   end
 end

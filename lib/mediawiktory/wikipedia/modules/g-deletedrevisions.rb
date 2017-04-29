@@ -145,6 +145,6 @@ module MediaWiktory::Wikipedia
       def continue(value)
         merge(gdrvcontinue: value.to_s)
       end
-  end
+    end
   end
 end

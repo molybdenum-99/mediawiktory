@@ -37,6 +37,6 @@ module MediaWiktory::Wikipedia
       def attachedwiki(value)
         merge(uiattachedwiki: value.to_s)
       end
-  end
+    end
   end
 end

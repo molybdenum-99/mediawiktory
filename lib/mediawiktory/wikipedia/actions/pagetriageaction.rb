@@ -59,6 +59,6 @@ module MediaWiktory::Wikipedia
       def skipnotif()
         merge(skipnotif: 'true')
       end
-  end
+    end
   end
 end

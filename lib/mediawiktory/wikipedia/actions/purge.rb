@@ -132,6 +132,6 @@ module MediaWiktory::Wikipedia
       def converttitles()
         merge(converttitles: 'true')
       end
-  end
+    end
   end
 end

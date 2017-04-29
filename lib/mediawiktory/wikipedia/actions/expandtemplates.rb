@@ -106,6 +106,6 @@ module MediaWiktory::Wikipedia
       def templatesandboxcontentformat(value)
         merge(templatesandboxcontentformat: value.to_s)
       end
-  end
+    end
   end
 end

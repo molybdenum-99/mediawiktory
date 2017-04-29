@@ -125,6 +125,6 @@ module MediaWiktory::Wikipedia
       def lang(value)
         merge(lang: value.to_s)
       end
-  end
+    end
   end
 end

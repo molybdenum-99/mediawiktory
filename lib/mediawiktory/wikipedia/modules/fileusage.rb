@@ -61,6 +61,6 @@ module MediaWiktory::Wikipedia
       def continue(value)
         merge(fucontinue: value.to_s)
       end
-  end
+    end
   end
 end

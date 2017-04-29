@@ -90,6 +90,6 @@ module MediaWiktory::Wikipedia
       def wlexcludeuser(value)
         merge(wlexcludeuser: value.to_s)
       end
-  end
+    end
   end
 end

@@ -59,6 +59,6 @@ module MediaWiktory::Wikipedia
       def enabledonly()
         merge(gaenabledonly: 'true')
       end
-  end
+    end
   end
 end

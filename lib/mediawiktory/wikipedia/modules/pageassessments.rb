@@ -44,6 +44,6 @@ module MediaWiktory::Wikipedia
       def subprojects()
         merge(pasubprojects: 'true')
       end
-  end
+    end
   end
 end

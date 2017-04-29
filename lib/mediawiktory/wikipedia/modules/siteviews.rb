@@ -37,6 +37,6 @@ module MediaWiktory::Wikipedia
       def days(value)
         merge(pvisdays: value.to_s)
       end
-  end
+    end
   end
 end

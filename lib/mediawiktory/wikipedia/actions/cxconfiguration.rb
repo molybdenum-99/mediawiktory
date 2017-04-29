@@ -36,6 +36,6 @@ module MediaWiktory::Wikipedia
       def to(value)
         merge(to: value.to_s)
       end
-  end
+    end
   end
 end

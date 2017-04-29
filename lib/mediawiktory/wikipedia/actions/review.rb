@@ -51,6 +51,6 @@ module MediaWiktory::Wikipedia
       def unapprove()
         merge(unapprove: 'true')
       end
-  end
+    end
   end
 end

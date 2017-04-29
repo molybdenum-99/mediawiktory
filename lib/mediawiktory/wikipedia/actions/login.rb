@@ -52,6 +52,6 @@ module MediaWiktory::Wikipedia
       def token(value)
         merge(lgtoken: value.to_s)
       end
-  end
+    end
   end
 end

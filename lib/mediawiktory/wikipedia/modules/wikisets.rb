@@ -52,6 +52,6 @@ module MediaWiktory::Wikipedia
       def orderbyname()
         merge(wsorderbyname: 'true')
       end
-  end
+    end
   end
 end

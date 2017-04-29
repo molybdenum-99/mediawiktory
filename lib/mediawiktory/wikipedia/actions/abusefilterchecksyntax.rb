@@ -28,6 +28,6 @@ module MediaWiktory::Wikipedia
       def filter(value)
         merge(filter: value.to_s)
       end
-  end
+    end
   end
 end

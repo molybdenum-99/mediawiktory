@@ -28,6 +28,6 @@ module MediaWiktory::Wikipedia
       def wrappedhtml()
         merge(wrappedhtml: 'true')
       end
-  end
+    end
   end
 end

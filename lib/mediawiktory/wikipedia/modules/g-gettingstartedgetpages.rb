@@ -45,6 +45,6 @@ module MediaWiktory::Wikipedia
       def count(value)
         merge(ggsgpcount: value.to_s)
       end
-  end
+    end
   end
 end

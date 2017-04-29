@@ -52,6 +52,6 @@ module MediaWiktory::Wikipedia
       def messageformat(value)
         merge(amimessageformat: value.to_s)
       end
-  end
+    end
   end
 end

@@ -60,6 +60,6 @@ module MediaWiktory::Wikipedia
       def expandurl()
         merge(elexpandurl: 'true')
       end
-  end
+    end
   end
 end

@@ -93,6 +93,6 @@ module MediaWiktory::Wikipedia
       def totitle(value)
         merge(gwrtotitle: value.to_s)
       end
-  end
+    end
   end
 end

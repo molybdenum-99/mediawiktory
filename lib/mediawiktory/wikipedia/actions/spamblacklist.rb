@@ -28,6 +28,6 @@ module MediaWiktory::Wikipedia
       def url(*values)
         merge(url: values.join('|'))
       end
-  end
+    end
   end
 end

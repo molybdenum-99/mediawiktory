@@ -29,6 +29,6 @@ module MediaWiktory::Wikipedia
       def counts(value)
         merge(bfcounts: value.to_s)
       end
-  end
+    end
   end
 end

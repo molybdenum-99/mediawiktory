@@ -192,6 +192,6 @@ module MediaWiktory::Wikipedia
       def generatetitles()
         merge(adrgeneratetitles: 'true')
       end
-  end
+    end
   end
 end

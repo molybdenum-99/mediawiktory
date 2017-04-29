@@ -131,6 +131,6 @@ module MediaWiktory::Wikipedia
       def localonly()
         merge(iilocalonly: 'true')
       end
-  end
+    end
   end
 end

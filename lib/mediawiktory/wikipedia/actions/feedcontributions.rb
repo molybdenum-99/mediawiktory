@@ -103,6 +103,6 @@ module MediaWiktory::Wikipedia
       def showsizediff()
         merge(showsizediff: 'true')
       end
-  end
+    end
   end
 end

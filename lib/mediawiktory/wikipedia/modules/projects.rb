@@ -28,6 +28,6 @@ module MediaWiktory::Wikipedia
       def subprojects()
         merge(pjsubprojects: 'true')
       end
-  end
+    end
   end
 end

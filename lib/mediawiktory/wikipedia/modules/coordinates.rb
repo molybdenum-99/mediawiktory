@@ -69,6 +69,6 @@ module MediaWiktory::Wikipedia
       def distancefrompage(value)
         merge(codistancefrompage: value.to_s)
       end
-  end
+    end
   end
 end

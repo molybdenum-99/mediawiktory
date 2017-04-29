@@ -139,6 +139,6 @@ module MediaWiktory::Wikipedia
       def username(value)
         merge(username: value.to_s)
       end
-  end
+    end
   end
 end

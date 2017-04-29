@@ -44,6 +44,6 @@ module MediaWiktory::Wikipedia
       def limit(value)
         merge(unplimit: value.to_s)
       end
-  end
+    end
   end
 end

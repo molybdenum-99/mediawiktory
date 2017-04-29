@@ -37,6 +37,6 @@ module MediaWiktory::Wikipedia
       def terms(*values)
         merge(wbptterms: values.join('|'))
       end
-  end
+    end
   end
 end

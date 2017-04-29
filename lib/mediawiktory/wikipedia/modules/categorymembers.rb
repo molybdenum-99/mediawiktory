@@ -157,6 +157,6 @@ module MediaWiktory::Wikipedia
       def endsortkey(value)
         merge(cmendsortkey: value.to_s)
       end
-  end
+    end
   end
 end

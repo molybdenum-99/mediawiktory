@@ -73,6 +73,6 @@ module MediaWiktory::Wikipedia
       def token(value)
         merge(logintoken: value.to_s)
       end
-  end
+    end
   end
 end

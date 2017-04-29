@@ -160,6 +160,6 @@ module MediaWiktory::Wikipedia
       def generatetitles()
         merge(arvgeneratetitles: 'true')
       end
-  end
+    end
   end
 end

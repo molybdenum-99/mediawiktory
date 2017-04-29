@@ -75,6 +75,6 @@ module MediaWiktory::Wikipedia
       def taglist(*values)
         merge(taglist: values.join('|'))
       end
-  end
+    end
   end
 end

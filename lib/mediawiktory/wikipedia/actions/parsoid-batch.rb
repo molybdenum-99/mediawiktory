@@ -28,6 +28,6 @@ module MediaWiktory::Wikipedia
       def batch(value)
         merge(batch: value.to_s)
       end
-  end
+    end
   end
 end

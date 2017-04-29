@@ -146,6 +146,6 @@ module MediaWiktory::Wikipedia
       def showlinkedto()
         merge(showlinkedto: 'true')
       end
-  end
+    end
   end
 end

@@ -53,6 +53,6 @@ module MediaWiktory::Wikipedia
       def dir(value)
         merge(imdir: value.to_s)
       end
-  end
+    end
   end
 end

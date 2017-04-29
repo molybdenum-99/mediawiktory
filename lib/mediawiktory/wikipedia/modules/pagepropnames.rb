@@ -37,6 +37,6 @@ module MediaWiktory::Wikipedia
       def limit(value)
         merge(ppnlimit: value.to_s)
       end
-  end
+    end
   end
 end

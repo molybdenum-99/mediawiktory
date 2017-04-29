@@ -157,6 +157,6 @@ module MediaWiktory::Wikipedia
       def limit(value)
         merge(ailimit: value.to_s)
       end
-  end
+    end
   end
 end

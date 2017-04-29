@@ -45,6 +45,6 @@ module MediaWiktory::Wikipedia
       def prop(*values)
         merge(tgprop: values.join('|'))
       end
-  end
+    end
   end
 end

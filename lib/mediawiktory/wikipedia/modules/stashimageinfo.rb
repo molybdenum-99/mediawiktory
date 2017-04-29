@@ -69,6 +69,6 @@ module MediaWiktory::Wikipedia
       def urlparam(value)
         merge(siiurlparam: value.to_s)
       end
-  end
+    end
   end
 end

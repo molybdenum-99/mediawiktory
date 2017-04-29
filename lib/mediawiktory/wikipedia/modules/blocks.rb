@@ -101,6 +101,6 @@ module MediaWiktory::Wikipedia
       def continue(value)
         merge(bkcontinue: value.to_s)
       end
-  end
+    end
   end
 end

@@ -141,6 +141,6 @@ module MediaWiktory::Wikipedia
       def prexpiry(value)
         merge(gapprexpiry: value.to_s)
       end
-  end
+    end
   end
 end

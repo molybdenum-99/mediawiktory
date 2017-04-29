@@ -243,6 +243,6 @@ module MediaWiktory::Wikipedia
       def captchaid(value)
         merge(captchaid: value.to_s)
       end
-  end
+    end
   end
 end

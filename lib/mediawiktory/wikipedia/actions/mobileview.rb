@@ -152,6 +152,6 @@ module MediaWiktory::Wikipedia
       def thumbsize(value)
         merge(thumbsize: value.to_s)
       end
-  end
+    end
   end
 end

@@ -152,6 +152,6 @@ module MediaWiktory::Wikipedia
       def generatetitles()
         merge(garvgeneratetitles: 'true')
       end
-  end
+    end
   end
 end

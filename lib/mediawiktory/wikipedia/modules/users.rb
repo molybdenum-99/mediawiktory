@@ -61,6 +61,6 @@ module MediaWiktory::Wikipedia
       def token(*values)
         merge(ustoken: values.join('|'))
       end
-  end
+    end
   end
 end

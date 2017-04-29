@@ -36,6 +36,6 @@ module MediaWiktory::Wikipedia
       def typos(value)
         merge(typos: value.to_s)
       end
-  end
+    end
   end
 end

@@ -100,6 +100,6 @@ module MediaWiktory::Wikipedia
       def debug()
         merge(ggsdebug: 'true')
       end
-  end
+    end
   end
 end

@@ -69,6 +69,6 @@ module MediaWiktory::Wikipedia
       def end(value)
         merge(end: value.iso8601)
       end
-  end
+    end
   end
 end

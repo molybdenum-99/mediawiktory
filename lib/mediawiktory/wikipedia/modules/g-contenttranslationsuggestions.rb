@@ -69,6 +69,6 @@ module MediaWiktory::Wikipedia
       def seed(value)
         merge(gseed: value.to_s)
       end
-  end
+    end
   end
 end

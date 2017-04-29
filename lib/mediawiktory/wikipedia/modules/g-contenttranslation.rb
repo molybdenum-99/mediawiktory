@@ -77,6 +77,6 @@ module MediaWiktory::Wikipedia
       def type(value)
         merge(gtype: value.to_s)
       end
-  end
+    end
   end
 end

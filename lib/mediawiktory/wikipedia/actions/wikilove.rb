@@ -76,6 +76,6 @@ module MediaWiktory::Wikipedia
       def email(value)
         merge(email: value.to_s)
       end
-  end
+    end
   end
 end

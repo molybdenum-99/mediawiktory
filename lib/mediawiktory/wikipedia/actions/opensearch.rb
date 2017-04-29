@@ -82,6 +82,6 @@ module MediaWiktory::Wikipedia
       def warningsaserror()
         merge(warningsaserror: 'true')
       end
-  end
+    end
   end
 end

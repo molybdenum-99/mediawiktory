@@ -139,6 +139,6 @@ module MediaWiktory::Wikipedia
       def generaterevisions()
         merge(rcgeneraterevisions: 'true')
       end
-  end
+    end
   end
 end

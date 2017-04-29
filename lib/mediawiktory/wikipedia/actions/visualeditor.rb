@@ -83,6 +83,6 @@ module MediaWiktory::Wikipedia
       def pst()
         merge(pst: 'true')
       end
-  end
+    end
   end
 end

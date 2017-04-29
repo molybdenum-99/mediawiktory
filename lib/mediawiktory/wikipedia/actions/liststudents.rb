@@ -50,6 +50,6 @@ module MediaWiktory::Wikipedia
       def csv()
         merge(csv: 'true')
       end
-  end
+    end
   end
 end

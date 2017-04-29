@@ -93,6 +93,6 @@ module MediaWiktory::Wikipedia
       def limit(value)
         merge(orlimit: value.to_s)
       end
-  end
+    end
   end
 end

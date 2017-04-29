@@ -85,6 +85,6 @@ module MediaWiktory::Wikipedia
       def prop(*values)
         merge(aflprop: values.join('|'))
       end
-  end
+    end
   end
 end

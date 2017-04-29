@@ -21,6 +21,6 @@ module MediaWiktory::Wikipedia
     # All submodule's parameters are documented as its public methods, see below.
     #
     module Flagged
-  end
+    end
   end
 end

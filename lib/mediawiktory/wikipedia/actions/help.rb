@@ -56,6 +56,6 @@ module MediaWiktory::Wikipedia
       def toc()
         merge(toc: 'true')
       end
-  end
+    end
   end
 end

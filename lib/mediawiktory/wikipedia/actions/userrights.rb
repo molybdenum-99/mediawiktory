@@ -84,6 +84,6 @@ module MediaWiktory::Wikipedia
       def tags(*values)
         merge(tags: values.join('|'))
       end
-  end
+    end
   end
 end

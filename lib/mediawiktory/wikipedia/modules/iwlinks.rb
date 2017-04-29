@@ -76,6 +76,6 @@ module MediaWiktory::Wikipedia
       def url()
         merge(iwurl: 'true')
       end
-  end
+    end
   end
 end

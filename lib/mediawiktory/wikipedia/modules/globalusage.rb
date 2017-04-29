@@ -52,6 +52,6 @@ module MediaWiktory::Wikipedia
       def filterlocal()
         merge(gufilterlocal: 'true')
       end
-  end
+    end
   end
 end

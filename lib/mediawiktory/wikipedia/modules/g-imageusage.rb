@@ -84,6 +84,6 @@ module MediaWiktory::Wikipedia
       def redirect()
         merge(giuredirect: 'true')
       end
-  end
+    end
   end
 end

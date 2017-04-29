@@ -93,6 +93,6 @@ module MediaWiktory::Wikipedia
       def prop(*values)
         merge(acprop: values.join('|'))
       end
-  end
+    end
   end
 end

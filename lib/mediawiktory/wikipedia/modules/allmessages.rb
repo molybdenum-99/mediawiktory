@@ -122,6 +122,6 @@ module MediaWiktory::Wikipedia
       def prefix(value)
         merge(amprefix: value.to_s)
       end
-  end
+    end
   end
 end

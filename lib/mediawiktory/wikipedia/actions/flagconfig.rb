@@ -20,6 +20,6 @@ module MediaWiktory::Wikipedia
     # All action's parameters are documented as its public methods, see below.
     #
     class Flagconfig < MediaWiktory::Wikipedia::Actions::Get
-  end
+    end
   end
 end

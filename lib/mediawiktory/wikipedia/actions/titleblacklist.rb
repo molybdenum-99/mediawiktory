@@ -43,6 +43,6 @@ module MediaWiktory::Wikipedia
       def nooverride()
         merge(tbnooverride: 'true')
       end
-  end
+    end
   end
 end

@@ -68,6 +68,6 @@ module MediaWiktory::Wikipedia
       def formatmodules(*values)
         merge(formatmodules: values.join('|'))
       end
-  end
+    end
   end
 end

@@ -37,6 +37,6 @@ module MediaWiktory::Wikipedia
       def prop(*values)
         merge(ppprop: values.join('|'))
       end
-  end
+    end
   end
 end

@@ -61,6 +61,6 @@ module MediaWiktory::Wikipedia
       def profile(value)
         merge(gpsprofile: value.to_s)
       end
-  end
+    end
   end
 end

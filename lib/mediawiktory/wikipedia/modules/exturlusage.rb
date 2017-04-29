@@ -76,6 +76,6 @@ module MediaWiktory::Wikipedia
       def expandurl()
         merge(euexpandurl: 'true')
       end
-  end
+    end
   end
 end

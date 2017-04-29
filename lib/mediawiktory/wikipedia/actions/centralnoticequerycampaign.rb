@@ -28,6 +28,6 @@ module MediaWiktory::Wikipedia
       def campaign(value)
         merge(campaign: value.to_s)
       end
-  end
+    end
   end
 end

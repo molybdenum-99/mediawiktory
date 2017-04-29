@@ -53,6 +53,6 @@ module MediaWiktory::Wikipedia
       def continue(value)
         merge(grdcontinue: value.to_s)
       end
-  end
+    end
   end
 end

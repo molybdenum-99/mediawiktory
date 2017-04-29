@@ -45,6 +45,6 @@ module MediaWiktory::Wikipedia
       def offset(value)
         merge(gpvimoffset: value.to_s)
       end
-  end
+    end
   end
 end

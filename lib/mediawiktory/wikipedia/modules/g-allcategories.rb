@@ -85,6 +85,6 @@ module MediaWiktory::Wikipedia
       def limit(value)
         merge(gaclimit: value.to_s)
       end
-  end
+    end
   end
 end

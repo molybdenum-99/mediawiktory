@@ -75,6 +75,6 @@ module MediaWiktory::Wikipedia
       def continue(value)
         merge(excontinue: value.to_s)
       end
-  end
+    end
   end
 end

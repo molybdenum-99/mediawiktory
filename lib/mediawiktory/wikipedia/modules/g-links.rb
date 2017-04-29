@@ -61,6 +61,6 @@ module MediaWiktory::Wikipedia
       def dir(value)
         merge(gpldir: value.to_s)
       end
-  end
+    end
   end
 end

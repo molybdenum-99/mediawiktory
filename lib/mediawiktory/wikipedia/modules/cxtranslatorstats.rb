@@ -29,6 +29,6 @@ module MediaWiktory::Wikipedia
       def translator(value)
         merge(translator: value.to_s)
       end
-  end
+    end
   end
 end

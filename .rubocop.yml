@@ -16,8 +16,6 @@ AllCops:
     - 'lib/**/*.liquid'
     - 'deprecated/**/*'
     - '*'
-    - 'lib/mediawiktory/page.rb'
-    - 'lib/mediawiktory/query.rb'
   DisplayCopNames: true
   TargetRubyVersion: '2.3'
 
@@ -34,6 +32,7 @@ Style/AndOr:
 Style/SpaceInsideHashLiteralBraces:
   EnforcedStyle: no_space
 
+# I prefer {} for all one-line blocks AND all functional blocks, which Rubocop can't.
 Style/BlockDelimiters:
   Enabled: false
 
@@ -63,23 +62,25 @@ Metrics/AbcSize:
     - 'lib/nokogiri/more.rb'
 
 
-# Generated code: hard to support some conventions:
-# -------------------------------------------------
+# Generated code: hard to support some conventions
+# ------------------------------------------------
 
 Style/DefWithParentheses:
   Exclude:
     - 'lib/mediawiktory/wikipedia/**/*'
 
+# Methods in generated code are reflecting MediaWiki option names, which could be inSadCamelCase
 Style/MethodName:
   Exclude:
     - 'lib/mediawiktory/wikipedia/**/*'
 
+# WTF, rubocop???
 Style/ClassAndModuleChildren:
   Exclude:
     - 'lib/mediawiktory/wikipedia/**/*'
 
 Metrics/ClassLength:
-  Max: 200
+  Max: 180
   Exclude:
     - 'lib/mediawiktory/wikipedia/**/*'
 

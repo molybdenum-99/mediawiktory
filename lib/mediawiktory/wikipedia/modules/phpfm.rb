@@ -36,6 +36,6 @@ module MediaWiktory::Wikipedia
       def formatversion(value)
         merge(formatversion: value.to_s)
       end
-  end
+    end
   end
 end
