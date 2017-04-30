@@ -72,7 +72,7 @@ module MediaWiktory
       context 'when there are nothing to continue' do
         let(:hash) { {query: {foo: 'bar'}} }
 
-        its_call { is_expected.to raise_error }
+        its_call { is_expected.to raise_error /last page/ }
       end
     end
 

@@ -1,5 +1,5 @@
 module MediaWiktory
-  describe Wikipedia::Action do
+  describe Wikipedia::Actions::Base do
     subject(:action) { described_class.new(client) }
 
     let(:client) { double }
@@ -101,12 +101,12 @@ module MediaWiktory
       end
 
       context 'get' do
-        let(:action_class) { GetAction }
+        let(:action_class) { Wikipedia::Actions::Get }
         its_call { is_expected.to send_message(client, :get).with('action' => 'query', 'format' => 'json') }
       end
 
       context 'post' do
-        let(:action_class) { PostAction }
+        let(:action_class) { Wikipedia::Actions::Post }
         its_call { is_expected.to send_message(client, :post).with('action' => 'query', 'format' => 'json') }
       end
     end
