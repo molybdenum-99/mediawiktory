@@ -1,0 +1,32 @@
+#!/usr/bin/env ruby
+
+require 'optparse'
+
+options = {}
+OptionParser.new do |opts|
+  opts.banner = "Usage: example.rb [options]"
+
+  opts.on("-uURL", "--url=URL", "Source URL for option parsing. Typically it is http://some.domain/w/api.php.") do |u|
+    options[:url] = u
+  end
+
+  opts.on("-nNAMESPACE", "--name=NAMESPACE", "Namespace which should include all the newly-generated classes and modules.") do |n|
+    options[:namespace] = n
+  end
+
+  opts.on("-pPATH", "--path=PATH", "Path wher to store new modules and classes. Note that there would be dozens of them.") do |p|
+    options[:path] = p
+  end
+
+  opts.on("-h", "--help", "Prints this help") do
+    puts opts
+    exit
+  end
+end.parse!
+
+$:.unshift File.join(File.dirname(__FILE__), '..', 'lib')
+require_relative '../lib/mediawiktory/generator'
+
+MediaWiktory::Generator
+  .new(options[:url])
+  .generate(path: options[:path], namespace: options[:namespace])

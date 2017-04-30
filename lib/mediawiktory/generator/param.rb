@@ -98,6 +98,8 @@ module MediaWiktory
       def to_h
         super
           .merge(
+            'method_name' => name.gsub('-', '_'),
+            'full_name' => self['full_name'].include?('-') ? "'#{self['full_name']}'" : self['full_name'],
             'real_type' => real_type,
             'ruby_type' => ruby_type,
             'param_docs' => param_docs,

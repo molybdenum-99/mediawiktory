@@ -6,3 +6,4 @@ Gemfile.lock
 .yardoc
 deprecated
 doc
+test
