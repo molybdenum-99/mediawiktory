@@ -11,6 +11,8 @@ require 'mediawiktory/version'
 require_relative 'generator/renderable'
 
 module MediaWiktory
+  # @private
+  # Used only by mediawiktory-gen, should not be necessary to read :)
   class Generator
     class BaseAction
       def initialize(api)

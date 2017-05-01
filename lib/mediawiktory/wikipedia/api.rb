@@ -6,7 +6,7 @@ require_relative './actions/base'
 module MediaWiktory::Wikipedia
   # The base API class for [Wikipedia](https://en.wikipedia.org/wiki/Main_Page).
   #
-  # _Generated from https://en.wikipedia.org/w/api.php at April 29, 2017 by MediaWiktory 0.1.0._
+  # _Generated from https://en.wikipedia.org/w/api.php at May 01, 2017 by MediaWiktory 0.1.0._
   #
   # It also can be used for access to any other MediaWiki site, but some of actions could be
   # non-existent/outdated.
@@ -39,7 +39,7 @@ module MediaWiktory::Wikipedia
     #   just `/api.php`, others use `/wiki/api.php` and so on.
     #
     # @param defaults [Hash] Default options for all API queries. Default param values also can be
-    #   set by subsequent {Action} methods, like `api.some_action.json(callback: 'mycallbackname')...`
+    #   set by subsequent {Actions::Base} methods, like `api.some_action.json(callback: 'mycallbackname')...`
     # @option defaults [Symbol] format The format of the output. Selecting an option includes tweaking methods from corresponding module: See {Actions::Base#format}
     # @option defaults [Integer] maxlag Maximum lag can be used when MediaWiki is installed on a database replicated cluster. To save actions causing any more site replication lag, this parameter can make the client wait until the replication lag is less than the specified value. In case of excessive lag, error code maxlag is returned with a message like Waiting for $host: $lag seconds lagged.See Manual: Maxlag parameter for more information. See {Actions::Base#maxlag}
     # @option defaults [Integer] smaxage Set the s-maxage HTTP cache control header to this many seconds. Errors are never cached. See {Actions::Base#smaxage}
