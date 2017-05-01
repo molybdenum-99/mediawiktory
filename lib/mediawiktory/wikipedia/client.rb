@@ -29,14 +29,19 @@ module MediaWiktory::Wikipedia
 
     attr_reader :url
 
+    def user_agent
+      @options[:user_agent] || @options[:ua] || self.class.user_agent || UA
+    end
+
     def initialize(url, **options)
       @url = Addressable::URI.parse(url)
+      @options = options
       @faraday = Faraday.new(url) do |f|
         f.request :url_encoded
         f.use FaradayMiddleware::FollowRedirects, limit: 5
         f.adapter Faraday.default_adapter
       end
-      @faraday.headers.merge!(headers(options))
+      @faraday.headers.merge!(headers)
     end
 
     def get(params)
@@ -49,8 +54,8 @@ module MediaWiktory::Wikipedia
 
     private
 
-    def headers(options)
-      {'User-Agent' => options[:user_agent] || options[:ua] || self.class.user_agent || UA}
+    def headers
+      {'User-Agent' => user_agent}
     end
   end
 end

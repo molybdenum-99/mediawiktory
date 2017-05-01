@@ -45,5 +45,13 @@ module MediaWiktory
 
       end
     end
+
+    describe 'client' do
+      context 'when user agent passed' do
+        subject { described_class.new(user_agent: 'FooBar') }
+        its(:'client.user_agent') { is_expected.to eq 'FooBar' }
+        its(:defaults) { are_expected.to be_empty }
+      end
+    end
   end
 end

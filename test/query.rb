@@ -41,4 +41,5 @@ api = MediaWiktory::Wikipedia::Api
 #p response.dig('general', 'sitename')
 # => "Wikipedia"
 
-pp api.new.query.generator(:categorymembers).title('Category:It is not a category').limit('max').response.raw
+#pp api.new.query.generator(:categorymembers).title('Category:It is not a category').limit('max').response.raw
+pp api.new.query.generator(:prefixsearch).search('Ukrainian hr').limit('max').to_url
