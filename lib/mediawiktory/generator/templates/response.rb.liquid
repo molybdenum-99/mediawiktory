@@ -14,7 +14,7 @@ module {{ namespace }}
     Error = Class.new(RuntimeError)
 
     # @private
-    METADATA_KEYS = %w[error warnings batchcomplete continue success]
+    METADATA_KEYS = %w[error warnings batchcomplete continue success limits]
 
     # @private
     def self.parse(action, response_body)

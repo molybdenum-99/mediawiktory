@@ -28,15 +28,17 @@ api = MediaWiktory::Wikipedia::Api
 #pp r2, r2.to_h
 
 
-action = api.new.query.titles('Argentina').prop(:revisions).prop(:content).meta(:siteinfo)
-p action
+#action = api.new.query.titles('Argentina').prop(:revisions).prop(:content).meta(:siteinfo)
+#p action
 
-p action.to_url
+#p action.to_url
 
 
-response = action.response
-p response
+#response = action.response
+#p response
 
-puts response['pages'].values.first['revisions'].first['*'].split("\n").first(3)
-p response.dig('general', 'sitename')
+#puts response['pages'].values.first['revisions'].first['*'].split("\n").first(3)
+#p response.dig('general', 'sitename')
 # => "Wikipedia"
+
+pp api.new.query.generator(:categorymembers).title('Category:It is not a category').limit('max').response.raw
