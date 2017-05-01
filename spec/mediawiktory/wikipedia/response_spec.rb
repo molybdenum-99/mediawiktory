@@ -6,8 +6,9 @@ module MediaWiktory
     let(:action) { instance_double('MediaWiktory::Wikipedia::Action', name: 'query') }
 
     describe '.parse' do
-      let(:hash) { {query: {}} }
+      let(:hash) { {query: {foo: 'bar'}} }
       subject(:response) { described_class.parse(action, hash.to_json) }
+      its(:to_h) { is_expected.to eq('foo' => 'bar') }
     end
 
     describe '#initialize' do
@@ -27,6 +28,12 @@ module MediaWiktory
       let(:hash) { {query: {foo: 'bar'}, dummy: {bar: 'baz'}, continue: {gcmcontinue: 'something'}} }
 
       its(:to_h) { is_expected.to eq('foo' => 'bar') }
+
+      context 'with keys not corresponding to action name' do
+      let(:hash) { {dummy: {bar: 'baz'}, continue: {gcmcontinue: 'something'}} }
+
+      its(:to_h) { is_expected.to eq('dummy' => {'bar' => 'baz'}) }
+      end
     end
 
     describe '#raw' do

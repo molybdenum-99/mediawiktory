@@ -14,22 +14,42 @@ module {{ namespace }}
     Error = Class.new(RuntimeError)
 
     # @private
+    METADATA_KEYS = %w[error warnings batchcomplete continue success]
+
+    # @private
     def self.parse(action, response_body)
       new(action, JSON.parse(response_body))
     end
 
+    # Entire response "as is", including contents and metadata parts.
+    #
+    # See {#to_h} for content part of the response and {#metadata} for metadata part.
+    #
+    # @return [Hash]
+    attr_reader :raw
+
+    # Metadata part of the response, keys like "error", "warnings", "continue".
+    #
+    # See {#to_h} for content part of the response and {#raw} for entire response.
+    #
+    # @return [Hash]
+    attr_reader :metadata
+
     # @private
     def initialize(action, response_hash)
       @action = action
-      @data = response_hash
-      error! if @data['error']
+      @raw = response_hash.freeze
+      @metadata, @data  = response_hash.partition { |key, _| METADATA_KEYS.include?(key) }.map(&:to_h).map(&:freeze)
+      error! if @metadata['error']
     end
 
     # "Content" part of the response as a plain Ruby Hash.
     #
     # @return [Hash]
     def to_h
-      @data.fetch(@action.name)
+      # For most of actions, like query, all response is inside additional "query" key,
+      # ...but not for all.
+      @data.key?(@action.name) ? @data.fetch(@action.name) : @data
     end
 
     # Fetches a key from response content.
@@ -46,28 +66,21 @@ module {{ namespace }}
       to_h.dig(*keys)
     end
 
-    # Entire response "as is", including contents and metadata parts.
-    #
-    # @return [Hash]
-    def raw
-      @data.dup
-    end
-
     # Returns `true` if there is next pages of response. See also {#continue}
     def continue?
-      @data.key?('continue')
+      @metadata.key?('continue')
     end
 
     # Continues current request and returns current & next page. (It is necessary because MediaWiki
-    # tends to return the same page's data continued on the next request page.)
+    # tends to return the same object's data continued on the next request page.)
     #
     # @return [Response]
     def continue
       fail 'This is the last page' unless continue?
 
-      action = @action.merge(@data.fetch('continue'))
+      action = @action.merge(@metadata.fetch('continue'))
 
-      self.class.new(action, deep_merge(@data, JSON.parse(action.perform)))
+      self.class.new(action, merge_responses(JSON.parse(action.perform)))
     end
 
     # @return [String]
@@ -77,17 +90,20 @@ module {{ namespace }}
 
     private
 
-    def deep_merge(hash1, hash2)
+    def merge_responses(new_response)
       merger = ->(_k, v1, v2) { v1.is_a?(Hash) && v2.is_a?(Hash) ? v1.merge(v2, &merger) : v2 }
 
-      # Newest page is responsible for continuation
-      hash1.merge(hash2, &merger)
-           .tap { |res| res['continue'] = hash2['continue'] }
-           .reject { |_, val| val.nil? }
+      # Newest page is responsible for all metadata, so we take entire new response and only data
+      # part of old one.
+      #
+      # Deep recursive merge is necessary because MediaWiki could split response in parts unpredicatably
+      # (like ['query']['pages'][some_page_id] can be present on several pages, providing different
+      # parts of a page).
+      @data.merge(new_response, &merger)
     end
 
     def error!
-      fail Error, @data.dig('error', 'info')
+      fail Error, @metadata.dig('error', 'info')
     end
   end
 end

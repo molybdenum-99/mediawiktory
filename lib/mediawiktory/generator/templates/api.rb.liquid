@@ -39,7 +39,7 @@ module {{ namespace }}
     #   just `/api.php`, others use `/wiki/api.php` and so on.
     #
     # @param defaults [Hash] Default options for all API queries. Default param values also can be
-    #   set by subsequent {Action} methods, like `api.some_action.json(callback: 'mycallbackname')...`
+    #   set by subsequent {Actions::Base} methods, like `api.some_action.json(callback: 'mycallbackname')...`
 {% for param in object.main.params %}    # @option defaults [{{ param.ruby_type }}] {{ param.name }} {{ param.description }}{{param.param_docs}} See {Actions::Base#{{param.name}}}
 {% endfor %}    #
     def initialize(url = '{{ source }}', **defaults)
