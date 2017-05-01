@@ -32,7 +32,11 @@ module {{ namespace }}
   # See also {Response} for working with return values and {Actions::Base} for working with actions.
   #
   class Api
-    attr_reader :client
+    # @private
+    attr_reader :client, :defaults
+
+    # @private
+    CLIENT_OPTIONS = %i[user_agent ua]
 
     # @param url [String] Source URL for this API, by default "{{ source }}".
     #   Note that most of MediaWiki installations have source URL at `/w/api.php`, but some are

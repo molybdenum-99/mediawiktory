@@ -29,10 +29,6 @@ module MediaWiktory::Wikipedia
 
     attr_reader :url
 
-    def user_agent
-      @options[:user_agent] || @options[:ua] || self.class.user_agent || UA
-    end
-
     def initialize(url, **options)
       @url = Addressable::URI.parse(url)
       @options = options
@@ -42,6 +38,10 @@ module MediaWiktory::Wikipedia
         f.adapter Faraday.default_adapter
       end
       @faraday.headers.merge!(headers)
+    end
+
+    def user_agent
+      @options[:user_agent] || @options[:ua] || self.class.user_agent || UA
     end
 
     def get(params)

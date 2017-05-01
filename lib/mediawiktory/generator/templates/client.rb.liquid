@@ -15,7 +15,7 @@ module {{ namespace }}
     # Default MediaWiktory User-Agent header.
     #
     # You can set yours as an option to {#initialize}
-    UA = 'MediaWiktory/{{ version }} '\
+    UA = 'MediaWiktory/0.1.0 '\
          '(https://github.com/molybdenum-99/mediawiktory; zverok.offline@gmail.com)'
 
     class << self
@@ -31,12 +31,17 @@ module {{ namespace }}
 
     def initialize(url, **options)
       @url = Addressable::URI.parse(url)
+      @options = options
       @faraday = Faraday.new(url) do |f|
         f.request :url_encoded
         f.use FaradayMiddleware::FollowRedirects, limit: 5
         f.adapter Faraday.default_adapter
       end
-      @faraday.headers.merge!(headers(options))
+      @faraday.headers.merge!(headers)
+    end
+
+    def user_agent
+      @options[:user_agent] || @options[:ua] || self.class.user_agent || UA
     end
 
     def get(params)
@@ -49,8 +54,8 @@ module {{ namespace }}
 
     private
 
-    def headers(options)
-      {'User-Agent' => options[:user_agent] || options[:ua] || self.class.user_agent || UA}
+    def headers
+      {'User-Agent' => user_agent}
     end
   end
 end

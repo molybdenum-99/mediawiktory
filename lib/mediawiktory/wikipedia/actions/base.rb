@@ -291,7 +291,7 @@ module MediaWiktory::Wikipedia
       # It merges used module name into action params and includes submodule's methods into action
       # for further tweaking.
       def merge_module(name, val, modules)
-        mod = modules.fetch(val) { fail ArgumentError, "Module #{val} is not defined" }
+        mod = modules.fetch(val) or return nil
         merge(name => val).submodule(mod)
       end
 
