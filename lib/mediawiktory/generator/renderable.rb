@@ -16,16 +16,15 @@ module MediaWiktory
         liquid(vars.fetch(:template, main_template), **vars)
       end
 
-      def liquid(template, **vars)
-        name = vars.fetch(:name, 'object') # for tests only
+      def render(template, **vars)
+        vars.each { |name, val| instance_variable_set("@#{name}", val) }
+        ERB.new(File.read(File.expand_path("../templates/#{template}.erb", __FILE__)))
+          .result(binding)
+      end
 
-        # :facepalm:
-        Liquid::Template.file_system =
-          Liquid::LocalFileSystem
-          .new(File.expand_path('../templates/', __FILE__))
-        Liquid::Template
-          .parse(File.read(File.expand_path("../templates/#{template}.liquid", __FILE__)))
-          .render({name => to_h}.merge(stringify_hash(vars, recursive: true)))
+      def partial(template)
+        ERB.new(File.read(File.expand_path("../templates/#{template}.erb", __FILE__)))
+          .result(binding)
       end
 
       private

@@ -1,1 +1,1 @@
-merge_modules(:{{ param.name }}, values, {{ param.modules_hash }})
+values.inject(self) { |action, val| action.{{param.method_name}}_single(:{{ param.name }}, val, {{ param.modules_hash }}) }

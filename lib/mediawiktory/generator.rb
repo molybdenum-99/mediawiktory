@@ -10,6 +10,28 @@ require 'mediawiktory/version'
 
 require_relative 'generator/renderable'
 
+# @private
+class Object
+  # Just a loosy implementation of Ruby 2.3's `&.` operator
+  # It is used only in generator and will not pollute your scopes.
+  def _n
+    self
+  end
+end
+
+# @private
+class NilClass
+  class BlackHole
+    def method_missing(meth, *)
+      nil
+    end
+  end
+
+  def _n
+    BlackHole.new
+  end
+end
+
 module MediaWiktory
   # @private
   # Used only by mediawiktory-gen, should not be necessary to read :)

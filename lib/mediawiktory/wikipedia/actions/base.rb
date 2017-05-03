@@ -8,17 +8,17 @@ module MediaWiktory::Wikipedia
       # The format of the output.
       #
       # @param value [Symbol] Selecting an option includes tweaking methods from corresponding module:
-      #   * `:json` - {MediaWiktory::Wikipedia::Modules::Json} Output data in JSON format. 
-      #   * `:jsonfm` - {MediaWiktory::Wikipedia::Modules::Jsonfm} Output data in JSON format (pretty-print in HTML). 
-      #   * `:none` - {MediaWiktory::Wikipedia::Modules::None} Output nothing. 
-      #   * `:php` - {MediaWiktory::Wikipedia::Modules::Php} Output data in serialized PHP format. 
-      #   * `:phpfm` - {MediaWiktory::Wikipedia::Modules::Phpfm} Output data in serialized PHP format (pretty-print in HTML). 
-      #   * `:rawfm` - {MediaWiktory::Wikipedia::Modules::Rawfm} Output data, including debugging elements, in JSON format (pretty-print in HTML). 
-      #   * `:xml` - {MediaWiktory::Wikipedia::Modules::Xml} Output data in XML format. 
-      #   * `:xmlfm` - {MediaWiktory::Wikipedia::Modules::Xmlfm} Output data in XML format (pretty-print in HTML). 
+      #   * `:json` - {MediaWiktory::Wikipedia::Modules::Json} Output data in JSON format.
+      #   * `:jsonfm` - {MediaWiktory::Wikipedia::Modules::Jsonfm} Output data in JSON format (pretty-print in HTML).
+      #   * `:none` - {MediaWiktory::Wikipedia::Modules::None} Output nothing.
+      #   * `:php` - {MediaWiktory::Wikipedia::Modules::Php} Output data in serialized PHP format.
+      #   * `:phpfm` - {MediaWiktory::Wikipedia::Modules::Phpfm} Output data in serialized PHP format (pretty-print in HTML).
+      #   * `:rawfm` - {MediaWiktory::Wikipedia::Modules::Rawfm} Output data, including debugging elements, in JSON format (pretty-print in HTML).
+      #   * `:xml` - {MediaWiktory::Wikipedia::Modules::Xml} Output data in XML format.
+      #   * `:xmlfm` - {MediaWiktory::Wikipedia::Modules::Xmlfm} Output data in XML format (pretty-print in HTML).
       # @return [self]
       def format(value)
-        merge_module(:format, value, json: Modules::Json, jsonfm: Modules::Jsonfm, none: Modules::None, php: Modules::Php, phpfm: Modules::Phpfm, rawfm: Modules::Rawfm, xml: Modules::Xml, xmlfm: Modules::Xmlfm)
+        defined?(super) && super || merge_module(:format, value, json: Modules::Json, jsonfm: Modules::Jsonfm, none: Modules::None, php: Modules::Php, phpfm: Modules::Phpfm, rawfm: Modules::Rawfm, xml: Modules::Xml, xmlfm: Modules::Xmlfm)
       end
 
       # Maximum lag can be used when MediaWiki is installed on a database replicated cluster. To save actions causing any more site replication lag, this parameter can make the client wait until the replication lag is less than the specified value. In case of excessive lag, error code maxlag is returned with a message like Waiting for $host: $lag seconds lagged.See Manual: Maxlag parameter for more information.
@@ -233,9 +233,7 @@ module MediaWiktory::Wikipedia
       def name
         # Query # => query
         # ParsoidBatch # => parsoid-batch
-        self.class.name.scan(/(\w+)$/).flatten.first
-          &.gsub(/([a-z])([A-Z])/, '\1-\2')
-          &.downcase or
+        self.class.name.split('::').last.gsub(/([a-z])([A-Z])/, '\1-\2').downcase or
           fail ArgumentError, "Can't guess action name from #{self.class.name}"
       end
 

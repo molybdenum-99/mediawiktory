@@ -8,7 +8,7 @@ module MediaWiktory
           type, name, prefix = title.scan(/^([a-z]+)=([^(]+)(?:\s+\((.+)\))?$/).flatten
 
           new(
-            type: type&.to_sym || :main,
+            type: type._n.to_sym || :main,
             name: name || '',
             prefix: prefix,
             description: extract_description(nodes),
@@ -20,18 +20,18 @@ module MediaWiktory
         private
 
         def extract_description(nodes)
-          nodes.detect { |n| n.name == 'p' }&.text.to_s.tr("\n", ' ')
+          nodes.detect { |n| n.name == 'p' }.to_s.tr("\n", ' ')
         end
 
         def extract_flags(nodes)
-          flags = nodes.detect { |n| n['class']&.include?('apihelp-flags') } or return []
+          flags = nodes.detect { |n| n['class']._n.include?('apihelp-flags') } or return []
           flags.search('ul li > span').to_a
                .map { |el| {id: el.attr('class'), text: el.text} }
                .map { |h| h.merge(role: h[:id].sub(/^apihelp-(flag-)?/, '')) }
         end
 
         def extract_params(nodes, prefix)
-          params = nodes.detect { |n| n['class']&.include?('apihelp-parameters') } or return []
+          params = nodes.detect { |n| n['class']._n.include?('apihelp-parameters') } or return []
           params.at('dl').each_term.to_a
                 .map { |dts, dds| Param.from_html_nodes(dts.first.text, dds, prefix: prefix) }
         end

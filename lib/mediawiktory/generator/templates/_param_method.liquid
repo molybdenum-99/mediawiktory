@@ -5,4 +5,4 @@
 {% endif %}{% endif %}      # @return [self]
       def {{ param.method_name }}({{ param.param_def }})
         {% if param.real_type == 'enum of modules' %}{% include 'merge_module' %}{%elsif param.real_type == 'list of modules' %}{% include 'merge_modules' %}{% else %}merge({{ param.full_name }}: {{ param.value_conv }})
-{% endif %}      end
+{% endif %}      end{% if param.real_type == 'list of modules' %}{% include 'param_method_single' %}{% endif %}

@@ -63,7 +63,7 @@ module {{ namespace }}
     #
     # @param keys [Array<String>] Key names.
     def dig(*keys)
-      to_h.dig(*keys)
+      hash_dig(to_h, *keys)
     end
 
     # Returns `true` if there is next pages of response. See also {#continue}
@@ -103,7 +103,12 @@ module {{ namespace }}
     end
 
     def error!
-      fail Error, @metadata.dig('error', 'info')
+      fail Error, hash_dig(@metadata, 'error', 'info')
+    end
+
+    # TODO: replace with Hash#dig when minimal Ruby version would be 2.3
+    def hash_dig(hash, *keys)
+      keys.inject(hash) { |res, key| res[key] or return nil }
     end
   end
 end

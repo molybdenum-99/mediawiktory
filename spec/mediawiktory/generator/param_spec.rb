@@ -201,7 +201,7 @@ RSpec.describe MediaWiktory::Generator::Param do
   end
 
   describe 'render method' do
-    subject { param.liquid('_param_method', namespace: 'Dummy', name: 'param') }
+    subject { param.render('_param_method', namespace: 'Dummy', name: 'param') }
 
     let(:api) { instance_double('MediaWiktory::ApiParser::Api') }
     let(:full_name) { prefix + name  }
@@ -211,170 +211,6 @@ RSpec.describe MediaWiktory::Generator::Param do
     let(:type) { 'string' }
     let(:vals) { nil }
     let(:param) { described_class.new(full_name: full_name, name: name, prefix: prefix, description: description, type: type, vals: vals) }
-
-    context 'simple' do
-      it { is_expected.to eq %Q{
-        |
-        |      # Foobar.
-        |      #
-        |      # @param value [String]
-        |      # @return [self]
-        |      def test(value)
-        |        merge(test: value.to_s)
-        |      end
-        |
-      }.unindent }
-    end
-
-    context 'simple prefixed' do
-      let(:prefix) { 'foo' }
-
-      it { is_expected.to eq %Q{
-        |
-        |      # Foobar.
-        |      #
-        |      # @param value [String]
-        |      # @return [self]
-        |      def test(value)
-        |        merge(footest: value.to_s)
-        |      end
-        |
-      }.unindent }
-    end
-
-    context 'boolean' do
-      let(:type) { 'boolean' }
-
-      it { is_expected.to eq %Q{
-        |
-        |      # Foobar.
-        |      #
-        |      # @return [self]
-        |      def test()
-        |        merge(test: 'true')
-        |      end
-        |
-      }.unindent }
-    end
-
-    context 'integer' do
-      let(:type) { 'integer' }
-
-      it { is_expected.to eq %Q{
-        |
-        |      # Foobar.
-        |      #
-        |      # @param value [Integer]
-        |      # @return [self]
-        |      def test(value)
-        |        merge(test: value.to_s)
-        |      end
-        |
-      }.unindent }
-    end
-
-    context 'integer or max' do
-      let(:type) { 'integer or max' }
-
-      it { is_expected.to eq %Q{
-        |
-        |      # Foobar.
-        |      #
-        |      # @param value [Integer, "max"]
-        |      # @return [self]
-        |      def test(value)
-        |        merge(test: value.to_s)
-        |      end
-        |
-      }.unindent }
-    end
-
-    context 'enum' do
-      let(:type) { 'enum' }
-      let(:vals) { %w[foo bar baz] }
-
-      it { is_expected.to eq %Q{
-        |
-        |      # Foobar.
-        |      #
-        |      # @param value [String] One of "foo", "bar", "baz".
-        |      # @return [self]
-        |      def test(value)
-        |        merge(test: value.to_s)
-        |      end
-        |
-      }.unindent }
-    end
-
-    context 'list' do
-      let(:type) { 'list' }
-
-      it { is_expected.to eq %Q{
-        |
-        |      # Foobar.
-        |      #
-        |      # @param values [Array<String>]
-        |      # @return [self]
-        |      def test(*values)
-        |        merge(test: values.join('|'))
-        |      end
-        |
-      }.unindent }
-    end
-
-    context 'list of integers' do
-      let(:type) { 'list of integers' }
-
-      it { is_expected.to eq %Q{
-        |
-        |      # Foobar.
-        |      #
-        |      # @param values [Array<Integer>]
-        |      # @return [self]
-        |      def test(*values)
-        |        merge(test: values.join('|'))
-        |      end
-        |
-      }.unindent }
-    end
-
-    context 'list of predefined values' do
-      let(:type) { 'list' }
-      let(:vals) { %w[foo bar baz] }
-
-      it { is_expected.to eq %Q{
-        |
-        |      # Foobar.
-        |      #
-        |      # @param values [Array<String>] Allowed values: "foo", "bar", "baz".
-        |      # @return [self]
-        |      def test(*values)
-        |        merge(test: values.join('|'))
-        |      end
-        |
-      }.unindent }
-    end
-
-    context 'list of predefined values - with docs' do
-      let(:type) { 'list' }
-      let(:vals) { [
-        {name: 'foo', description: 'Foo'},
-        {name: 'bar', description: 'The Bar.'},
-        {name: 'baz', description: 'Pretty baz.'}
-      ] }
-
-      it { is_expected.to eq %Q{
-        |
-        |      # Foobar.
-        |      #
-        |      # @param values [Array<String>] Allowed values: "foo" (Foo), "bar" (The Bar), "baz" (Pretty baz).
-        |      # @return [self]
-        |      def test(*values)
-        |        merge(test: values.join('|'))
-        |      end
-        |
-      }.unindent }
-    end
 
     let(:mod) {
       MediaWiktory::Generator::Module.new(
@@ -388,48 +224,268 @@ RSpec.describe MediaWiktory::Generator::Param do
       )
     }
 
-    context 'enum - other modules' do
-      let(:type) { 'enum' }
-      let(:vals) { [{name: 'mod', module: 'foo'}] }
-      before {
-        allow(api).to receive(:module).with('foo').and_return(mod)
-        param.api = api
-      }
+    context 'single values' do
+      context 'simple' do
+        it { is_expected.to eq %Q{
+          |
+          |      # Foobar.
+          |      #
+          |      # @param value [String]
+          |      # @return [self]
+          |      def test(value)
+          |        merge(test: value.to_s)
+          |      end
+          |
+        }.unindent }
+      end
 
-      it { is_expected.to eq %Q{
-        |
-        |      # Foobar.
-        |      #
-        |      # @param value [Symbol] Selecting an option includes tweaking methods from corresponding module:
-        |      #   * `:mod` - {Dummy::Modules::Mod} Descr of mod
-        |      # @return [self]
-        |      def test(value)
-        |        merge_module(:test, value, mod: Modules::Mod)
-        |      end
-        |
-      }.unindent }
+      context 'param with hyphens' do
+        let(:name) { 'test-me' }
+        it { is_expected.to eq %Q{
+          |
+          |      # Foobar.
+          |      #
+          |      # @param value [String]
+          |      # @return [self]
+          |      def test_me(value)
+          |        merge('test-me': value.to_s)
+          |      end
+          |
+        }.unindent }
+      end
+
+      context 'simple prefixed' do
+        let(:prefix) { 'foo' }
+
+        it { is_expected.to eq %Q{
+          |
+          |      # Foobar.
+          |      #
+          |      # @param value [String]
+          |      # @return [self]
+          |      def test(value)
+          |        merge(footest: value.to_s)
+          |      end
+          |
+        }.unindent }
+      end
+
+      context 'boolean' do
+        let(:type) { 'boolean' }
+
+        it { is_expected.to eq %Q{
+          |
+          |      # Foobar.
+          |      #
+          |      # @return [self]
+          |      def test()
+          |        merge(test: 'true')
+          |      end
+          |
+        }.unindent }
+      end
+
+      context 'integer' do
+        let(:type) { 'integer' }
+
+        it { is_expected.to eq %Q{
+          |
+          |      # Foobar.
+          |      #
+          |      # @param value [Integer]
+          |      # @return [self]
+          |      def test(value)
+          |        merge(test: value.to_s)
+          |      end
+          |
+        }.unindent }
+      end
+
+      context 'integer or max' do
+        let(:type) { 'integer or max' }
+
+        it { is_expected.to eq %Q{
+          |
+          |      # Foobar.
+          |      #
+          |      # @param value [Integer, "max"]
+          |      # @return [self]
+          |      def test(value)
+          |        merge(test: value.to_s)
+          |      end
+          |
+        }.unindent }
+      end
+
+      context 'timestamp' do
+        let(:type) { 'timestamp' }
+
+        it { is_expected.to eq %Q{
+          |
+          |      # Foobar.
+          |      #
+          |      # @param value [Time]
+          |      # @return [self]
+          |      def test(value)
+          |        merge(test: value.iso8601)
+          |      end
+          |
+        }.unindent }
+      end
+
+      context 'enum' do
+        let(:type) { 'enum' }
+        let(:vals) { %w[foo bar baz] }
+
+        it { is_expected.to eq %Q{
+          |
+          |      # Foobar.
+          |      #
+          |      # @param value [String] One of "foo", "bar", "baz".
+          |      # @return [self]
+          |      def test(value)
+          |        defined?(super) && super || ["foo", "bar", "baz"].include?(value) && merge(test: value)
+          |      end
+          |
+        }.unindent }
+      end
+
+      context 'enum - other modules' do
+        let(:type) { 'enum' }
+        let(:vals) { [{name: 'mod', module: 'foo'}] }
+        before {
+          allow(api).to receive(:module).with('foo').and_return(mod)
+          param.api = api
+        }
+
+        it { is_expected.to eq %Q{
+          |
+          |      # Foobar.
+          |      #
+          |      # @param value [Symbol] Selecting an option includes tweaking methods from corresponding module:
+          |      #   * `:mod` - {Dummy::Modules::Mod} Descr of mod
+          |      # @return [self]
+          |      def test(value)
+          |        defined?(super) && super || [:mod].include?(value) && merge(test: value.to_s).submodule({mod: Modules::Mod}[value])
+          |      end
+          |
+        }.unindent }
+      end
+
     end
 
-    context 'list - other modules' do
-      let(:type) { 'list' }
-      let(:vals) { [{name: 'foo', module: 'foo'}] }
-      before {
-        allow(api).to receive(:module).with('foo').and_return(mod)
-        param.api = api
-      }
+    context 'list values' do
+      context 'list' do
+        let(:type) { 'list' }
 
-      it { is_expected.to eq %Q{
-        |
-        |      # Foobar.
-        |      #
-        |      # @param values [Array<Symbol>] All selected options include tweaking methods from corresponding modules:
-        |      #   * `:mod` - {Dummy::Modules::Mod} Descr of mod
-        |      # @return [self]
-        |      def test(*values)
-        |        merge_modules(:test, values, mod: Modules::Mod)
-        |      end
-        |
-      }.unindent }
+        it { is_expected.to eq %Q{
+          |
+          |      # Foobar.
+          |      #
+          |      # @param values [Array<String>]
+          |      # @return [self]
+          |      def test(*values)
+          |        values.inject(self) { |res, val| res.test_single(val) }
+          |      end
+          |
+          |      private def test_single(value)
+          |        merge(test: value.to_s)
+          |      end
+          |
+        }.unindent }
+      end
+
+      context 'list of integers' do
+        let(:type) { 'list of integers' }
+
+        it { is_expected.to eq %Q{
+          |
+          |      # Foobar.
+          |      #
+          |      # @param values [Array<Integer>]
+          |      # @return [self]
+          |      def test(*values)
+          |        values.inject(self) { |res, val| res.test_single(val) }
+          |      end
+          |
+          |      private def test_single(value)
+          |        merge(test: value.to_s)
+          |      end
+          |
+        }.unindent }
+      end
+
+      context 'list of predefined values' do
+        let(:type) { 'list' }
+        let(:vals) { %w[foo bar baz] }
+
+        it { is_expected.to eq %Q{
+          |
+          |      # Foobar.
+          |      #
+          |      # @param values [Array<String>] Allowed values: "foo", "bar", "baz".
+          |      # @return [self]
+          |      def test(*values)
+          |        values.inject(self) { |res, val| res.test_single(val) }
+          |      end
+          |
+          |      private def test_single(value)
+          |        defined?(super) && super || ["foo", "bar", "baz"].include?(value) && merge(test: value)
+          |      end
+          |
+        }.unindent }
+      end
+
+      context 'list of predefined values - with docs' do
+        let(:type) { 'list' }
+        let(:vals) { [
+          {name: 'foo', description: 'Foo'},
+          {name: 'bar', description: 'The Bar.'},
+          {name: 'baz', description: 'Pretty baz.'}
+        ] }
+
+        it { is_expected.to eq %Q{
+          |
+          |      # Foobar.
+          |      #
+          |      # @param values [Array<String>] Allowed values: "foo" (Foo), "bar" (The Bar), "baz" (Pretty baz).
+          |      # @return [self]
+          |      def test(*values)
+          |        values.inject(self) { |res, val| res.test_single(val) }
+          |      end
+          |
+          |      private def test_single(value)
+          |        defined?(super) && super || ["foo", "bar", "baz"].include?(value) && merge(test: value)
+          |      end
+          |
+        }.unindent }
+      end
+
+      context 'list - other modules' do
+        let(:type) { 'list' }
+        let(:vals) { [{name: 'mod', module: 'mod'}] }
+        before {
+          allow(api).to receive(:module).with('mod').and_return(mod)
+          param.api = api
+        }
+
+        it { is_expected.to eq %Q{
+          |
+          |      # Foobar.
+          |      #
+          |      # @param values [Array<Symbol>] All selected options include tweaking methods from corresponding modules:
+          |      #   * `:mod` - {Dummy::Modules::Mod} Descr of mod
+          |      # @return [self]
+          |      def test(*values)
+          |        values.inject(self) { |res, val| res.test_single(val) }
+          |      end
+          |
+          |      private def test_single(value)
+          |        defined?(super) && super || [:mod].include?(value) && merge(test: value.to_s).submodule({mod: Modules::Mod}[value])
+          |      end
+          |
+        }.unindent }
+      end
     end
   end
 end

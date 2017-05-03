@@ -5,6 +5,8 @@ require 'liquid'
 module MediaWiktory
   class Generator
     class Param < Hashie::Mash
+      disable_warnings
+
       class << self
         def from_html_nodes(name, dds, prefix: nil)
           new(
@@ -29,7 +31,7 @@ module MediaWiktory
         end
 
         def extract_description(els)
-          els.detect { |e| e.attr('class') == 'description' }.at('p')&.text.to_s.strip.tr("\n", ' ')
+          els.detect { |e| e.attr('class') == 'description' }.at('p')._n.text.to_s.strip.tr("\n", ' ')
         end
 
         def extract_type(els)
@@ -95,19 +97,54 @@ module MediaWiktory
         self.full_name = "#{prefix}#{name}"
       end
 
-      def to_h
-        super
-          .merge(
-            'method_name' => name.gsub('-', '_'),
-            'full_name' => self['full_name'].include?('-') ? "'#{self['full_name']}'" : self['full_name'],
-            'real_type' => real_type,
-            'ruby_type' => ruby_type,
-            'param_docs' => param_docs,
-            'value_conv' => value_conv,
-            'modules' => modules&.map(&:to_h),
-            'param_def' => param_def,
-            'modules_hash' => modules&.map { |m| module_in_hash(m) }&.join(', ')
-          )
+      def full_name
+        self['full_name']._n.include?('-') ? "'#{self['full_name']}'" : self['full_name']
+      end
+
+      def method_name
+        name.gsub('-', '_')
+      end
+
+      def modules_hash
+        modules.map { |m| module_in_hash(m) }.join(', ')
+      end
+
+      def enum_values
+        return [] unless vals
+
+        if vals.all? { |v| v.is_a?(String) }
+          vals.map(&:inspect).join(', ')
+        elsif vals.all? { |v| v.is_a?(Hash) && v.key?(:description) }
+          vals.map { |v| v[:name].inspect }.join(', ')
+        elsif modules?
+          vals.map { |v| v[:name].to_sym.inspect }.join(', ')
+        else
+          fail ArgumentError, "Unrenderable values: #{vals}"
+        end
+      end
+
+      def list?
+        type.start_with?('list')
+      end
+
+      def impl_type
+        type = real_type.sub(/^list of (.+)s$/, '\1')
+        type = 'string' if type == 'list'
+        type = 'enum of modules' if type == 'module'
+        case type
+        when 'string', 'user name', 'integer', 'integer or max'
+          'string'
+        when 'boolean'
+          'boolean'
+        when 'timestamp'
+          'timestamp'
+        when 'enum'
+          'enum'
+        when 'enum of modules'
+          'enum_of_modules'
+        else
+          fail ArgumentError, "Cannot render #{real_type} to Ruby still"
+        end
       end
 
       def ruby_type
@@ -120,7 +157,7 @@ module MediaWiktory
           'Integer'
         when 'integer or max'
           'Integer, "max"'
-        when 'list', 'list of user names'
+        when 'list', 'list of user names', 'list of enums'
           'Array<String>'
         when 'list of integers'
           'Array<Integer>'
@@ -149,8 +186,8 @@ module MediaWiktory
           ' Selecting an option includes tweaking methods from corresponding module:'
         when 'list of modules'
           ' All selected options include tweaking methods from corresponding modules:'
-        when 'list'
-          return if !vals || vals.empty?
+        when 'list of enums'
+          #return if !vals || vals.empty?
           " Allowed values: #{render_vals}."
         end
       end
@@ -201,18 +238,24 @@ module MediaWiktory
         when 'enum'
           modules? ? 'enum of modules' : 'enum'
         when 'list'
-          modules? ? 'list of modules' : 'list'
+          if modules?
+            'list of modules'
+          elsif vals
+            'list of enums'
+          else
+            'list'
+          end
         else
           type
         end
       end
 
       def modules?
-        vals&.all? { |v| v.is_a?(Hash) && v.key?(:module) }
+        vals._n.all? { |v| v.is_a?(Hash) && v.key?(:module) }
       end
 
       def modules
-        modules? ? vals.map { |v| api.module(v.module) } : nil
+        modules? ? vals.map { |v| api.module(v.module) } : []
       end
 
       include Renderable

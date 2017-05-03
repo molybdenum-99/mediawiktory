@@ -12,7 +12,7 @@ module MediaWiktory
           modules =
             doc
             .at('#mw-content-text').children_groups('h3,h4', 'div,p')
-            .map { |title, components| Module.from_html_nodes(title.first&.text.to_s, components) }
+            .map { |title, components| Module.from_html_nodes(title.first._n.text.to_s, components) }
 
           new(**metadata.merge(modules: modules))
         end
@@ -37,9 +37,10 @@ module MediaWiktory
 
         # "generators" parameter for action=query are special. They are not defined by modules, but
         # by "You can use this or that module, just add 'g' to it".
-        actions.detect { |a| a.name == 'query' }
-          &.params&.detect { |p| p.name == 'generator' }
-          &.tap do |query_generator|
+        query = actions.detect { |a| a.name == 'query' } or return
+        query.params.detect { |p| p.name == 'generator' }
+          .tap do |query_generator|
+
           self.generators =
             query_generator
             .modules.map { |mod|

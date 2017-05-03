@@ -1,0 +1,11 @@
+
+      # <%= description %>
+      #
+<% unless param_def.empty? %>      # @param <%= param_def.sub('*', '') %> [<%= ruby_type %>]<%= param_docs %><% if real_type.include?('of modules') %><%= partial '_module_in_param_docs' %><% else %>
+<% end %><% end %>      # @return [self]
+      def <%= method_name %>(<%= param_def %>)
+        <% if list? %>values.inject(self) { |res, val| res.<%= method_name %>_single(val) }
+      end
+
+      private def <%= method_name %>_single(value)
+        <%= partial("_param_impl_#{impl_type}") %>      end<% else %><%= partial("_param_impl_#{impl_type}") %>      end<% end %>
