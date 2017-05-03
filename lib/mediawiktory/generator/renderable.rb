@@ -13,7 +13,7 @@ module MediaWiktory
       end
 
       def to_html(**vars)
-        liquid(vars.fetch(:template, main_template), **vars)
+        render(vars.fetch(:template, main_template), **vars)
       end
 
       def render(template, **vars)
@@ -22,9 +22,17 @@ module MediaWiktory
           .result(binding)
       end
 
-      def partial(template)
+      def partial(template, context = nil)
+        # Never repeat this at home, dear children.
+        if context
+          instance_variables.each { |var| context.instance_variable_set(var, instance_variable_get(var)) }
+        end
         ERB.new(File.read(File.expand_path("../templates/#{template}.erb", __FILE__)))
-          .result(binding)
+          .result(context ? context.get_binding : binding)
+      end
+
+      def get_binding
+        binding
       end
 
       private

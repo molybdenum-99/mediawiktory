@@ -23,7 +23,7 @@ module MediaWiktory
           meta = JSON.parse(open(uri).read).dig('query', 'general')
           uri.query_values = {action: :help, recursivesubmodules: true}
           html = open(uri).read
-          from_html(html, site: {name: meta['sitename'], base: meta['base']})
+          from_html(html, site: OpenStruct.new(name: meta['sitename'], base: meta['base']))
         end
       end
 

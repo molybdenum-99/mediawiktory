@@ -9,7 +9,7 @@ RSpec.describe MediaWiktory::Generator::Module do
     def nodes_of(title)
       Nokogiri::HTML(File.read('spec/fixtures/api.php.html'))
         .at('#mw-content-text').children_groups('h3,h4', 'div,p')
-        .select { |t, components| t.first&.text.to_s.start_with?('action=') }
+        .select { |t, components| t.first._n.text.to_s.start_with?('action=') }
         .detect { |t, components| t.first.text.include?(title) }.last
     end
 
@@ -54,7 +54,7 @@ RSpec.describe MediaWiktory::Generator::Module do
 
     it 'renders class' do
       is_expected.to include("module Dummy\n  module Actions")
-        .and include("\n    class Abusefiltercheckmatch < Dummy::GetAction")
+        .and include("\n    class Abusefiltercheckmatch < Dummy::Actions::Get")
     end
 
     it 'renders generic docs' do
@@ -93,7 +93,7 @@ RSpec.describe MediaWiktory::Generator::Module do
 
       it 'renders class' do
         is_expected.to include("module Dummy\n  module Actions")
-          .and include("\n    class Abusefiltercheckmatch < Dummy::PostAction")
+          .and include("\n    class Abusefiltercheckmatch < Dummy::Actions::Post")
       end
     end
   end

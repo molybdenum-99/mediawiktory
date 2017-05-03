@@ -1,0 +1,25 @@
+
+    # <%= description.gsub('#', '  #') %>
+    #
+    # This method creates an instance of {<%= @namespace %>::Actions::<%= class_name %>} action.
+    #
+    # Action parameters could be passed to this method, like
+    #
+    # ```ruby
+    # api.<%= method_name %>(<%= params.first.name %>: 'value')
+    # ```
+    # ...or by subsequent {<%= @namespace %>::Actions::<%= class_name %>} method calls, like
+    #
+    # ```ruby
+    # api.<%= method_name %>.<%= params.first.name %>('value')
+    # ```
+    #
+    # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
+    # {<%= @namespace %>::Actions::<%= class_name %>} class for a list of parameters and usage.
+    #
+    # @param [Hash] options Action options
+    # @return [<%= @namespace %>::Actions::<%= class_name %>]
+    #
+    def <%= method_name %>(**options)
+      Actions::<%= class_name %>.new(client, @defaults.merge(**options))
+    end

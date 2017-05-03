@@ -61,11 +61,10 @@ RSpec.describe MediaWiktory::Generator::Api do
     let(:api) {
       described_class.from_html(
         source,
-        source: 'https://en.wikipedia.org/w/api.php',
-        site: {name: 'Wikipedia', base: 'https://en.wikipedia.org/wiki/Main_Page'}
+        site: OpenStruct.new(name: 'Wikipedia', base: 'https://en.wikipedia.org/wiki/Main_Page')
       )
     }
-    subject { api.to_html(namespace: 'Dummy') }
+    subject { api.to_html(namespace: 'Dummy', source: 'https://en.wikipedia.org/w/api.php') }
 
     it 'creates base docs' do
       is_expected
@@ -87,7 +86,7 @@ RSpec.describe MediaWiktory::Generator::Api do
     it 'creates action docs' do
       is_expected
         .to include('This method creates an instance of {Dummy::Actions::Abusefiltercheckmatch} action.')
-        .and include("api.abusefiltercheckmatch(param: 'value')")
+        .and include("api.abusefiltercheckmatch(filter: 'value')")
         .and include(
           "  # Check to see if an AbuseFilter matches a set of variables, editor logged AbuseFilter event."
         )
