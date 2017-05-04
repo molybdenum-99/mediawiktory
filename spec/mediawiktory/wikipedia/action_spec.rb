@@ -18,60 +18,27 @@ module MediaWiktory
       it 'does not change source' do
         expect(action.to_h).to be_empty
       end
-    end
 
-    describe '#merge_module' do
-      let(:json) { Module.new }
-      let(:jsonfm) { Module.new }
-      before {
-        stub_const('Json', json)
-        stub_const('Jsonfm', jsonfm)
-      }
-      let(:modules) { {json: Json, jsonfm: Jsonfm} }
+      context 'chain of merges' do
+        subject { action.merge(title: 'Argentina').merge(title: 'Bolivia') }
 
-      context 'simple merge' do
-        subject { action.send(:merge_module, :format, :json, modules) }
-        its(:to_h) { is_expected.to eq('format' => 'json') }
-        it { is_expected.to be_a json }
-      end
-
-      context 'module not found' do
-        subject { action.send(:merge_module, :format, :jsonrb, modules) }
-        its_call { is_expected.to raise_error(ArgumentError) }
-      end
-
-      context 'with prefix' do
+        it { is_expected.to be_a described_class }
+        its(:client) { is_expected.to be client }
+        its(:to_h) { is_expected.to eq('title' => 'Argentina|Bolivia') }
       end
     end
 
-    describe '#merge_modules' do
+    describe '#submodule' do
       let(:json) { Module.new }
-      let(:jsonfm) { Module.new }
-      before {
-        stub_const('Json', json)
-        stub_const('Jsonfm', jsonfm)
-      }
-      let(:modules) { {json: Json, jsonfm: Jsonfm} }
 
       context 'simple merge' do
-        subject { action.send(:merge_modules, :format, [:json], modules) }
-        its(:to_h) { is_expected.to eq('format' => 'json') }
+        subject { action.send(:submodule, json) }
         it { is_expected.to be_a json }
       end
 
-      context 'several modules' do
-        subject { action.send(:merge_modules, :format, [:json, :jsonfm], modules) }
-        its(:to_h) { is_expected.to eq('format' => 'json|jsonfm') }
+      context 'after merging' do
+        subject { action.send(:submodule, json).merge(foo: 'bar') }
         it { is_expected.to be_a json }
-        it { is_expected.to be_a jsonfm }
-      end
-
-      context 'module not found' do
-        subject { action.send(:merge_module, :format, [:jsonrb], modules) }
-        its_call { is_expected.to raise_error(ArgumentError) }
-      end
-
-      context 'with prefix' do
       end
     end
 

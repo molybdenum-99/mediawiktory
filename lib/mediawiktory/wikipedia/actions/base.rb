@@ -215,7 +215,7 @@ module MediaWiktory::Wikipedia
       #   params applied.
       def merge(hash)
         self.class
-            .new(@client, @params.merge(stringify_hash(hash)))
+            .new(@client, @params.merge(stringify_hash(hash)) { |k, o, n| [o, n].compact.join('|') })
             .tap { |action| @submodules.each { |sm| action.submodule(sm) } }
       end
 
