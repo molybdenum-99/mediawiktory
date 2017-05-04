@@ -6,7 +6,6 @@ module MediaWiktory::Wikipedia
     #
     # Usage:
     #
-
     # ```ruby
     # api.jsonconfig(**options).perform # returns string with raw output
     # # or

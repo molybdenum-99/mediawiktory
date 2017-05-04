@@ -6,7 +6,6 @@ module MediaWiktory::Wikipedia
     #
     # Usage:
     #
-
     # ```ruby
     # api.unlinkaccount(**options).perform # returns string with raw output
     # # or

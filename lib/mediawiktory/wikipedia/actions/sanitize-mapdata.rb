@@ -6,7 +6,6 @@ module MediaWiktory::Wikipedia
     #
     # Usage:
     #
-
     # ```ruby
     # api.sanitize-mapdata(**options).perform # returns string with raw output
     # # or

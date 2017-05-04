@@ -6,7 +6,6 @@ module MediaWiktory::Wikipedia
     #
     # Usage:
     #
-
     # ```ruby
     # api.expandtemplates(**options).perform # returns string with raw output
     # # or

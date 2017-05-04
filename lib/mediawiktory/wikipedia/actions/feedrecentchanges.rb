@@ -6,7 +6,6 @@ module MediaWiktory::Wikipedia
     #
     # Usage:
     #
-
     # ```ruby
     # api.feedrecentchanges(**options).perform # returns string with raw output
     # # or
