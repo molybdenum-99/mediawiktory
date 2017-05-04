@@ -6,6 +6,7 @@ module MediaWiktory::Wikipedia
     #
     # Usage:
     #
+
     # ```ruby
     # api.echomarkseen(**options).perform # returns string with raw output
     # # or
@@ -34,7 +35,7 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "alert", "message", "all".
       # @return [self]
       def type(value)
-        merge(type: value.to_s)
+        defined?(super) && super || ["alert", "message", "all"].include?(value.to_s) && merge(type: value.to_s)
       end
 
       # Timestamp format to use for output, 'ISO_8601' or 'MW'.  'MW' is deprecated here, so all clients should switch to 'ISO_8601'.  This parameter will be removed, and 'ISO_8601' will become the only output format.
@@ -42,7 +43,7 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "ISO_8601", "MW".
       # @return [self]
       def timestampFormat(value)
-        merge(timestampFormat: value.to_s)
+        defined?(super) && super || ["ISO_8601", "MW"].include?(value.to_s) && merge(timestampFormat: value.to_s)
       end
     end
   end

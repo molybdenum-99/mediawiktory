@@ -6,6 +6,7 @@ module MediaWiktory::Wikipedia
     #
     # Usage:
     #
+
     # ```ruby
     # api.liststudents(**options).perform # returns string with raw output
     # # or
@@ -26,7 +27,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<Integer>]
       # @return [self]
       def courseids(*values)
-        merge(courseids: values.join('|'))
+        values.inject(self) { |res, val| res.courseids_single(val) }
+      end
+
+      protected def courseids_single(value)
+        merge(courseids: value.to_s)
       end
 
       # Which property to get for each student:
@@ -34,7 +39,7 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "username" (The username of the student), "id" (The user ID of the student).
       # @return [self]
       def prop(value)
-        merge(prop: value.to_s)
+        defined?(super) && super || ["username", "id"].include?(value.to_s) && merge(prop: value.to_s)
       end
 
       # If given, the query will group students by course.

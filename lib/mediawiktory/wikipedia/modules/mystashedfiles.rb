@@ -4,20 +4,6 @@ module MediaWiktory::Wikipedia
   module Modules
     # Get a list of files in the current user's upload stash. 
     #
-    # Usage:
-    #
-    # ```ruby
-    # api.some_action.mystashedfiles(**options).perform # returns string with raw output
-    # # or
-    # api.some_action.mystashedfiles(**options).response # returns output parsed and wrapped into Mash-like object
-    #
-    # # or, with chainable interface:
-    # api.some_action.mystashedfiles.prop(value).perform
-    # ```
-    #
-    # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and their
-    # submodules.
-    #
     # All submodule's parameters are documented as its public methods, see below.
     #
     module Mystashedfiles
@@ -27,7 +13,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>] Allowed values: "size" (Fetch the file size and image dimensions), "type" (Fetch the file's MIME type and media type).
       # @return [self]
       def prop(*values)
-        merge(msfprop: values.join('|'))
+        values.inject(self) { |res, val| res.prop_single(val) }
+      end
+
+      protected def prop_single(value)
+        defined?(super) && super || ["size", "type"].include?(value.to_s) && merge(msfprop: value.to_s)
       end
 
       # How many files to get.

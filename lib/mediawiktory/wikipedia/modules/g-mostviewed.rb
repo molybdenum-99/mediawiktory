@@ -4,20 +4,6 @@ module MediaWiktory::Wikipedia
   module Modules
     # Generator module.
     #
-    # Usage:
-    #
-    # ```ruby
-    # api.some_action.mostviewed(**options).perform # returns string with raw output
-    # # or
-    # api.some_action.mostviewed(**options).response # returns output parsed and wrapped into Mash-like object
-    #
-    # # or, with chainable interface:
-    # api.some_action.mostviewed.metric(value).perform
-    # ```
-    #
-    # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and their
-    # submodules.
-    #
     # All submodule's parameters are documented as its public methods, see below.
     #
     module GMostviewed
@@ -27,7 +13,7 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "pageviews" (Plain pageviews).
       # @return [self]
       def metric(value)
-        merge(gpvimmetric: value.to_s)
+        defined?(super) && super || ["pageviews"].include?(value.to_s) && merge(gpvimmetric: value.to_s)
       end
 
       # The number of pages to return.

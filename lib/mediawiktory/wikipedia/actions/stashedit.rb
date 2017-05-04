@@ -6,6 +6,7 @@ module MediaWiktory::Wikipedia
     #
     # Usage:
     #
+
     # ```ruby
     # api.stashedit(**options).perform # returns string with raw output
     # # or
@@ -74,7 +75,7 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "GadgetDefinition", "SecurePoll", "MassMessageListContent", "JsonSchema", "wikitext", "javascript", "json", "css", "text", "Scribunto".
       # @return [self]
       def contentmodel(value)
-        merge(contentmodel: value.to_s)
+        defined?(super) && super || ["GadgetDefinition", "SecurePoll", "MassMessageListContent", "JsonSchema", "wikitext", "javascript", "json", "css", "text", "Scribunto"].include?(value.to_s) && merge(contentmodel: value.to_s)
       end
 
       # Content serialization format used for the input text.
@@ -82,7 +83,7 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "application/json", "text/x-wiki", "text/javascript", "text/css", "text/plain".
       # @return [self]
       def contentformat(value)
-        merge(contentformat: value.to_s)
+        defined?(super) && super || ["application/json", "text/x-wiki", "text/javascript", "text/css", "text/plain"].include?(value.to_s) && merge(contentformat: value.to_s)
       end
 
       # Revision ID of the base revision.

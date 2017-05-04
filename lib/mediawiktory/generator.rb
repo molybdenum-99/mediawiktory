@@ -47,8 +47,8 @@ module MediaWiktory
         'action.rb'
       end
 
-      def to_h
-        {'main' => @api.main.to_h}
+      def main
+        @api.main
       end
     end
 
@@ -58,10 +58,6 @@ module MediaWiktory
       def main_template
         'client.rb'
       end
-
-      def to_h
-        {}
-      end
     end
 
     class Response
@@ -69,10 +65,6 @@ module MediaWiktory
 
       def main_template
         'response.rb'
-      end
-
-      def to_h
-        {}
       end
     end
 

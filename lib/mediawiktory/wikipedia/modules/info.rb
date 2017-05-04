@@ -4,20 +4,6 @@ module MediaWiktory::Wikipedia
   module Modules
     # Get basic page information. 
     #
-    # Usage:
-    #
-    # ```ruby
-    # api.some_action.info(**options).perform # returns string with raw output
-    # # or
-    # api.some_action.info(**options).response # returns output parsed and wrapped into Mash-like object
-    #
-    # # or, with chainable interface:
-    # api.some_action.info.prop(value).perform
-    # ```
-    #
-    # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and their
-    # submodules.
-    #
     # All submodule's parameters are documented as its public methods, see below.
     #
     module Info
@@ -27,7 +13,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>] Allowed values: "protection" (List the protection level of each page), "talkid" (The page ID of the talk page for each non-talk page), "watched" (List the watched status of each page), "watchers" (The number of watchers, if allowed), "visitingwatchers" (The number of watchers of each page who have visited recent edits to that page, if allowed), "notificationtimestamp" (The watchlist notification timestamp of each page), "subjectid" (The page ID of the parent page for each talk page), "url" (Gives a full URL, an edit URL, and the canonical URL for each page), "readable" (Whether the user can read this page), "preload" (Gives the text returned by EditFormPreloadText), "displaytitle" (Gives the manner in which the page title is actually displayed).
       # @return [self]
       def prop(*values)
-        merge(inprop: values.join('|'))
+        values.inject(self) { |res, val| res.prop_single(val) }
+      end
+
+      protected def prop_single(value)
+        defined?(super) && super || ["protection", "talkid", "watched", "watchers", "visitingwatchers", "notificationtimestamp", "subjectid", "url", "readable", "preload", "displaytitle"].include?(value.to_s) && merge(inprop: value.to_s)
       end
 
       # Test whether the current user can perform certain actions on the page.
@@ -35,7 +25,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>]
       # @return [self]
       def testactions(*values)
-        merge(intestactions: values.join('|'))
+        values.inject(self) { |res, val| res.testactions_single(val) }
+      end
+
+      protected def testactions_single(value)
+        merge(intestactions: value.to_s)
       end
 
       # Use action=query&meta=tokens instead.
@@ -43,7 +37,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>] Allowed values: "edit", "delete", "protect", "move", "block", "unblock", "email", "import", "watch".
       # @return [self]
       def token(*values)
-        merge(intoken: values.join('|'))
+        values.inject(self) { |res, val| res.token_single(val) }
+      end
+
+      protected def token_single(value)
+        defined?(super) && super || ["edit", "delete", "protect", "move", "block", "unblock", "email", "import", "watch"].include?(value.to_s) && merge(intoken: value.to_s)
       end
 
       # When more results are available, use this to continue.

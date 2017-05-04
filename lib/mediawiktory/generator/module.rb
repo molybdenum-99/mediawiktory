@@ -3,6 +3,8 @@
 module MediaWiktory
   class Generator
     class Module < Hashie::Mash
+      disable_warnings
+
       class << self
         def from_html_nodes(title, nodes)
           type, name, prefix = title.scan(/^([a-z]+)=([^(]+)(?:\s+\((.+)\))?$/).flatten
@@ -73,16 +75,14 @@ module MediaWiktory
         params.each { |p| p.api = api }
       end
 
-      def to_h
-        super.merge(
-          'class_name' => class_name,
-          'method_name' => method_name,
-          'description' => description.split("\n").join("\n#\n# "),
-          'http_method' => http_method,
-          'params' => params
-            .reject { |p| p.name == '*' } # TODO: some actions have "rest of parameters, see there".
-            .map(&:to_h)                  # Currently, we ignore it
-        )
+      def description
+        super.split("\n").join("\n#\n# ")
+      end
+
+      def params
+        # TODO: some actions have "rest of parameters, see there".
+        # Currently, we ignore it
+        (super || []).reject { |p| p.name == '*' }
       end
 
       def http_method

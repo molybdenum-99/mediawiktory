@@ -4,20 +4,6 @@ module MediaWiktory::Wikipedia
   module Modules
     # Retrieve information about the current authentication status. 
     #
-    # Usage:
-    #
-    # ```ruby
-    # api.some_action.authmanagerinfo(**options).perform # returns string with raw output
-    # # or
-    # api.some_action.authmanagerinfo(**options).response # returns output parsed and wrapped into Mash-like object
-    #
-    # # or, with chainable interface:
-    # api.some_action.authmanagerinfo.securitysensitiveoperation(value).perform
-    # ```
-    #
-    # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and their
-    # submodules.
-    #
     # All submodule's parameters are documented as its public methods, see below.
     #
     module Authmanagerinfo
@@ -35,7 +21,7 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "login", "login-continue", "create", "create-continue", "link", "link-continue", "change", "remove", "unlink".
       # @return [self]
       def requestsfor(value)
-        merge(amirequestsfor: value.to_s)
+        defined?(super) && super || ["login", "login-continue", "create", "create-continue", "link", "link-continue", "change", "remove", "unlink"].include?(value.to_s) && merge(amirequestsfor: value.to_s)
       end
 
       # Merge field information for all authentication requests into one array.
@@ -50,7 +36,7 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "html", "wikitext", "raw", "none".
       # @return [self]
       def messageformat(value)
-        merge(amimessageformat: value.to_s)
+        defined?(super) && super || ["html", "wikitext", "raw", "none"].include?(value.to_s) && merge(amimessageformat: value.to_s)
       end
     end
   end

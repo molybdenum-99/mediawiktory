@@ -4,20 +4,6 @@ module MediaWiktory::Wikipedia
   module Modules
     # Return messages from this site. 
     #
-    # Usage:
-    #
-    # ```ruby
-    # api.some_action.allmessages(**options).perform # returns string with raw output
-    # # or
-    # api.some_action.allmessages(**options).response # returns output parsed and wrapped into Mash-like object
-    #
-    # # or, with chainable interface:
-    # api.some_action.allmessages.messages(value).perform
-    # ```
-    #
-    # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and their
-    # submodules.
-    #
     # All submodule's parameters are documented as its public methods, see below.
     #
     module Allmessages
@@ -27,7 +13,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>]
       # @return [self]
       def messages(*values)
-        merge(ammessages: values.join('|'))
+        values.inject(self) { |res, val| res.messages_single(val) }
+      end
+
+      protected def messages_single(value)
+        merge(ammessages: value.to_s)
       end
 
       # Which properties to get.
@@ -35,7 +25,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>] Allowed values: "default".
       # @return [self]
       def prop(*values)
-        merge(amprop: values.join('|'))
+        values.inject(self) { |res, val| res.prop_single(val) }
+      end
+
+      protected def prop_single(value)
+        defined?(super) && super || ["default"].include?(value.to_s) && merge(amprop: value.to_s)
       end
 
       # Set to enable parser, will preprocess the wikitext of message (substitute magic words, handle templates, etc.).
@@ -64,7 +58,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>]
       # @return [self]
       def args(*values)
-        merge(amargs: values.join('|'))
+        values.inject(self) { |res, val| res.args_single(val) }
+      end
+
+      protected def args_single(value)
+        merge(amargs: value.to_s)
       end
 
       # Return only messages with names that contain this string.
@@ -80,7 +78,7 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "all", "modified", "unmodified".
       # @return [self]
       def customised(value)
-        merge(amcustomised: value.to_s)
+        defined?(super) && super || ["all", "modified", "unmodified"].include?(value.to_s) && merge(amcustomised: value.to_s)
       end
 
       # Return messages in this language.

@@ -6,6 +6,7 @@ module MediaWiktory::Wikipedia
     #
     # Usage:
     #
+
     # ```ruby
     # api.jsonconfig(**options).perform # returns string with raw output
     # # or
@@ -26,7 +27,7 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "status" (Shows JsonConfig configuration), "reset" (Clears configurations from cache. Requires title parameter and jsonconfig-reset right), "reload" (Reloads and caches configurations from config store. Requires title parameter and jsonconfig-reset right).
       # @return [self]
       def command(value)
-        merge(command: value.to_s)
+        defined?(super) && super || ["status", "reset", "reload"].include?(value.to_s) && merge(command: value.to_s)
       end
 
       # Namespace number of the title to process.

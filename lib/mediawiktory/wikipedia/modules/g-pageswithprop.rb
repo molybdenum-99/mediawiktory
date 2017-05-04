@@ -4,20 +4,6 @@ module MediaWiktory::Wikipedia
   module Modules
     # Generator module.
     #
-    # Usage:
-    #
-    # ```ruby
-    # api.some_action.pageswithprop(**options).perform # returns string with raw output
-    # # or
-    # api.some_action.pageswithprop(**options).response # returns output parsed and wrapped into Mash-like object
-    #
-    # # or, with chainable interface:
-    # api.some_action.pageswithprop.propname(value).perform
-    # ```
-    #
-    # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and their
-    # submodules.
-    #
     # All submodule's parameters are documented as its public methods, see below.
     #
     module GPageswithprop
@@ -51,7 +37,7 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "ascending", "descending".
       # @return [self]
       def dir(value)
-        merge(gpwpdir: value.to_s)
+        defined?(super) && super || ["ascending", "descending"].include?(value.to_s) && merge(gpwpdir: value.to_s)
       end
     end
   end

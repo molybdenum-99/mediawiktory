@@ -4,20 +4,6 @@ module MediaWiktory::Wikipedia
   module Modules
     # Generator module.
     #
-    # Usage:
-    #
-    # ```ruby
-    # api.some_action.search(**options).perform # returns string with raw output
-    # # or
-    # api.some_action.search(**options).response # returns output parsed and wrapped into Mash-like object
-    #
-    # # or, with chainable interface:
-    # api.some_action.search.search(value).perform
-    # ```
-    #
-    # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and their
-    # submodules.
-    #
     # All submodule's parameters are documented as its public methods, see below.
     #
     module GSearch
@@ -35,7 +21,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>] Allowed values: "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "100", "101", "108", "109", "118", "119", "446", "447", "710", "711", "828", "829", "2300", "2301", "2302", "2303".
       # @return [self]
       def namespace(*values)
-        merge(gsrnamespace: values.join('|'))
+        values.inject(self) { |res, val| res.namespace_single(val) }
+      end
+
+      protected def namespace_single(value)
+        defined?(super) && super || ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "100", "101", "108", "109", "118", "119", "446", "447", "710", "711", "828", "829", "2300", "2301", "2302", "2303"].include?(value.to_s) && merge(gsrnamespace: value.to_s)
       end
 
       # How many total pages to return.
@@ -59,7 +49,7 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "classic" (Ranking based on the number of incoming links, some templates, article language and recency (templates/language/recency may not be activated on this wiki)), "classic_noboostlinks" (Ranking based on some templates, article language and recency when activated on this wiki), "empty" (Ranking based solely on query dependent features (for debug only)), "wsum_inclinks" (Weighted sum based on incoming links), "wsum_inclinks_pv" (Weighted sum based on incoming links and weekly pageviews), "popular_inclinks_pv" (Ranking based primarily on page views), "popular_inclinks" (Ranking based primarily on incoming link counts).
       # @return [self]
       def qiprofile(value)
-        merge(gsrqiprofile: value.to_s)
+        defined?(super) && super || ["classic", "classic_noboostlinks", "empty", "wsum_inclinks", "wsum_inclinks_pv", "popular_inclinks_pv", "popular_inclinks"].include?(value.to_s) && merge(gsrqiprofile: value.to_s)
       end
 
       # Which type of search to perform.
@@ -67,7 +57,7 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "title", "text", "nearmatch".
       # @return [self]
       def what(value)
-        merge(gsrwhat: value.to_s)
+        defined?(super) && super || ["title", "text", "nearmatch"].include?(value.to_s) && merge(gsrwhat: value.to_s)
       end
 
       # Which metadata to return.
@@ -75,7 +65,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>] Allowed values: "totalhits", "suggestion", "rewrittenquery".
       # @return [self]
       def info(*values)
-        merge(gsrinfo: values.join('|'))
+        values.inject(self) { |res, val| res.info_single(val) }
+      end
+
+      protected def info_single(value)
+        defined?(super) && super || ["totalhits", "suggestion", "rewrittenquery"].include?(value.to_s) && merge(gsrinfo: value.to_s)
       end
 
       # Include interwiki results in the search, if available.

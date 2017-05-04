@@ -6,6 +6,7 @@ module MediaWiktory::Wikipedia
     #
     # Usage:
     #
+
     # ```ruby
     # api.userrights(**options).perform # returns string with raw output
     # # or
@@ -42,7 +43,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>] Allowed values: "bot", "sysop", "bureaucrat", "reviewer", "steward", "accountcreator", "import", "transwiki", "ipblock-exempt", "oversight", "founder", "rollbacker", "autoreviewer", "researcher", "filemover", "checkuser", "templateeditor", "massmessage-sender", "extendedconfirmed", "extendedmover", "patroller", "abusefilter", "confirmed", "epcoordinator", "eponline", "epcampus", "epinstructor".
       # @return [self]
       def add(*values)
-        merge(add: values.join('|'))
+        values.inject(self) { |res, val| res.add_single(val) }
+      end
+
+      protected def add_single(value)
+        defined?(super) && super || ["bot", "sysop", "bureaucrat", "reviewer", "steward", "accountcreator", "import", "transwiki", "ipblock-exempt", "oversight", "founder", "rollbacker", "autoreviewer", "researcher", "filemover", "checkuser", "templateeditor", "massmessage-sender", "extendedconfirmed", "extendedmover", "patroller", "abusefilter", "confirmed", "epcoordinator", "eponline", "epcampus", "epinstructor"].include?(value.to_s) && merge(add: value.to_s)
       end
 
       # Expiry timestamps. May be relative (e.g. 5 months or 2 weeks) or absolute (e.g. 2014-09-18T12:34:56Z). If only one timestamp is set, it will be used for all groups passed to the add parameter. Use infinite, indefinite, infinity, or never for a never-expiring user group.
@@ -50,7 +55,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>]
       # @return [self]
       def expiry(*values)
-        merge(expiry: values.join('|'))
+        values.inject(self) { |res, val| res.expiry_single(val) }
+      end
+
+      protected def expiry_single(value)
+        merge(expiry: value.to_s)
       end
 
       # Remove the user from these groups.
@@ -58,7 +67,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>] Allowed values: "bot", "sysop", "bureaucrat", "reviewer", "steward", "accountcreator", "import", "transwiki", "ipblock-exempt", "oversight", "founder", "rollbacker", "autoreviewer", "researcher", "filemover", "checkuser", "templateeditor", "massmessage-sender", "extendedconfirmed", "extendedmover", "patroller", "abusefilter", "confirmed", "epcoordinator", "eponline", "epcampus", "epinstructor".
       # @return [self]
       def remove(*values)
-        merge(remove: values.join('|'))
+        values.inject(self) { |res, val| res.remove_single(val) }
+      end
+
+      protected def remove_single(value)
+        defined?(super) && super || ["bot", "sysop", "bureaucrat", "reviewer", "steward", "accountcreator", "import", "transwiki", "ipblock-exempt", "oversight", "founder", "rollbacker", "autoreviewer", "researcher", "filemover", "checkuser", "templateeditor", "massmessage-sender", "extendedconfirmed", "extendedmover", "patroller", "abusefilter", "confirmed", "epcoordinator", "eponline", "epcampus", "epinstructor"].include?(value.to_s) && merge(remove: value.to_s)
       end
 
       # Reason for the change.
@@ -82,7 +95,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>] Allowed values: "ProveIt edit", "WPCleaner", "huggle", "large plot addition".
       # @return [self]
       def tags(*values)
-        merge(tags: values.join('|'))
+        values.inject(self) { |res, val| res.tags_single(val) }
+      end
+
+      protected def tags_single(value)
+        defined?(super) && super || ["ProveIt edit", "WPCleaner", "huggle", "large plot addition"].include?(value.to_s) && merge(tags: value.to_s)
       end
     end
   end

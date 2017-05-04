@@ -6,6 +6,7 @@ module MediaWiktory::Wikipedia
     #
     # Usage:
     #
+
     # ```ruby
     # api.feedrecentchanges(**options).perform # returns string with raw output
     # # or
@@ -26,7 +27,7 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "rss", "atom".
       # @return [self]
       def feedformat(value)
-        merge(feedformat: value.to_s)
+        defined?(super) && super || ["rss", "atom"].include?(value.to_s) && merge(feedformat: value.to_s)
       end
 
       # Namespace to limit the results to.
@@ -34,7 +35,7 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "100", "101", "108", "109", "118", "119", "446", "447", "710", "711", "828", "829", "2300", "2301", "2302", "2303".
       # @return [self]
       def namespace(value)
-        merge(namespace: value.to_s)
+        defined?(super) && super || ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "100", "101", "108", "109", "118", "119", "446", "447", "710", "711", "828", "829", "2300", "2301", "2302", "2303"].include?(value.to_s) && merge(namespace: value.to_s)
       end
 
       # All namespaces but the selected one.

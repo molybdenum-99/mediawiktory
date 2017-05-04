@@ -6,6 +6,7 @@ module MediaWiktory::Wikipedia
     #
     # Usage:
     #
+
     # ```ruby
     # api.cxsuggestionlist(**options).perform # returns string with raw output
     # # or
@@ -34,7 +35,7 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "add", "remove".
       # @return [self]
       def listaction(value)
-        merge(listaction: value.to_s)
+        defined?(super) && super || ["add", "remove"].include?(value.to_s) && merge(listaction: value.to_s)
       end
 
       # Page titles.
@@ -42,7 +43,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>]
       # @return [self]
       def titles(*values)
-        merge(titles: values.join('|'))
+        values.inject(self) { |res, val| res.titles_single(val) }
+      end
+
+      protected def titles_single(value)
+        merge(titles: value.to_s)
       end
 
       # The source language code.

@@ -4,20 +4,6 @@ module MediaWiktory::Wikipedia
   module Modules
     # Returns coordinates of the given pages. 
     #
-    # Usage:
-    #
-    # ```ruby
-    # api.some_action.coordinates(**options).perform # returns string with raw output
-    # # or
-    # api.some_action.coordinates(**options).response # returns output parsed and wrapped into Mash-like object
-    #
-    # # or, with chainable interface:
-    # api.some_action.coordinates.limit(value).perform
-    # ```
-    #
-    # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and their
-    # submodules.
-    #
     # All submodule's parameters are documented as its public methods, see below.
     #
     module Coordinates
@@ -43,7 +29,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>] Allowed values: "type", "name", "dim", "country", "region", "globe".
       # @return [self]
       def prop(*values)
-        merge(coprop: values.join('|'))
+        values.inject(self) { |res, val| res.prop_single(val) }
+      end
+
+      protected def prop_single(value)
+        defined?(super) && super || ["type", "name", "dim", "country", "region", "globe"].include?(value.to_s) && merge(coprop: value.to_s)
       end
 
       # Whether to return only primary coordinates ("primary"), secondary ("secondary") or both ("all").
@@ -51,7 +41,7 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "primary", "secondary", "all".
       # @return [self]
       def primary(value)
-        merge(coprimary: value.to_s)
+        defined?(super) && super || ["primary", "secondary", "all"].include?(value.to_s) && merge(coprimary: value.to_s)
       end
 
       # Return distance in meters from the geographical coordinates of every valid result from the given coordinates.

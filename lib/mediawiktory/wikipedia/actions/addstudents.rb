@@ -6,6 +6,7 @@ module MediaWiktory::Wikipedia
     #
     # Usage:
     #
+
     # ```ruby
     # api.addstudents(**options).perform # returns string with raw output
     # # or
@@ -26,7 +27,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>]
       # @return [self]
       def studentusernames(*values)
-        merge(studentusernames: values.join('|'))
+        values.inject(self) { |res, val| res.studentusernames_single(val) }
+      end
+
+      protected def studentusernames_single(value)
+        merge(studentusernames: value.to_s)
       end
 
       # The ID of the course to which the students should be added/removed.

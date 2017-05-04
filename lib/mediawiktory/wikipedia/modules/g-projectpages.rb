@@ -4,20 +4,6 @@ module MediaWiktory::Wikipedia
   module Modules
     # Generator module.
     #
-    # Usage:
-    #
-    # ```ruby
-    # api.some_action.projectpages(**options).perform # returns string with raw output
-    # # or
-    # api.some_action.projectpages(**options).response # returns output parsed and wrapped into Mash-like object
-    #
-    # # or, with chainable interface:
-    # api.some_action.projectpages.assessments(value).perform
-    # ```
-    #
-    # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and their
-    # submodules.
-    #
     # All submodule's parameters are documented as its public methods, see below.
     #
     module GProjectpages
@@ -34,7 +20,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>]
       # @return [self]
       def projects(*values)
-        merge(gwppprojects: values.join('|'))
+        values.inject(self) { |res, val| res.projects_single(val) }
+      end
+
+      protected def projects_single(value)
+        merge(gwppprojects: value.to_s)
       end
 
       # The maximum number of pages to return.

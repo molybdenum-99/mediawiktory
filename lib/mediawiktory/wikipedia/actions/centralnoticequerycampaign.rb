@@ -6,6 +6,7 @@ module MediaWiktory::Wikipedia
     #
     # Usage:
     #
+
     # ```ruby
     # api.centralnoticequerycampaign(**options).perform # returns string with raw output
     # # or

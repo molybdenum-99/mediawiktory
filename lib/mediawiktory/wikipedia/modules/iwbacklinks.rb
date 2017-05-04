@@ -4,20 +4,6 @@ module MediaWiktory::Wikipedia
   module Modules
     # Find all pages that link to the given interwiki link. 
     #
-    # Usage:
-    #
-    # ```ruby
-    # api.some_action.iwbacklinks(**options).perform # returns string with raw output
-    # # or
-    # api.some_action.iwbacklinks(**options).response # returns output parsed and wrapped into Mash-like object
-    #
-    # # or, with chainable interface:
-    # api.some_action.iwbacklinks.prefix(value).perform
-    # ```
-    #
-    # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and their
-    # submodules.
-    #
     # All submodule's parameters are documented as its public methods, see below.
     #
     module Iwbacklinks
@@ -59,7 +45,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>] Allowed values: "iwprefix" (Adds the prefix of the interwiki), "iwtitle" (Adds the title of the interwiki).
       # @return [self]
       def prop(*values)
-        merge(iwblprop: values.join('|'))
+        values.inject(self) { |res, val| res.prop_single(val) }
+      end
+
+      protected def prop_single(value)
+        defined?(super) && super || ["iwprefix", "iwtitle"].include?(value.to_s) && merge(iwblprop: value.to_s)
       end
 
       # The direction in which to list.
@@ -67,7 +57,7 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "ascending", "descending".
       # @return [self]
       def dir(value)
-        merge(iwbldir: value.to_s)
+        defined?(super) && super || ["ascending", "descending"].include?(value.to_s) && merge(iwbldir: value.to_s)
       end
     end
   end

@@ -6,6 +6,7 @@ module MediaWiktory::Wikipedia
     #
     # Usage:
     #
+
     # ```ruby
     # api.featuredfeed(**options).perform # returns string with raw output
     # # or
@@ -26,7 +27,7 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "rss", "atom".
       # @return [self]
       def feedformat(value)
-        merge(feedformat: value.to_s)
+        defined?(super) && super || ["rss", "atom"].include?(value.to_s) && merge(feedformat: value.to_s)
       end
 
       # Feed name.
@@ -34,7 +35,7 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "potd", "featured", "onthisday".
       # @return [self]
       def feed(value)
-        merge(feed: value.to_s)
+        defined?(super) && super || ["potd", "featured", "onthisday"].include?(value.to_s) && merge(feed: value.to_s)
       end
 
       # Feed language code. Ignored by some feeds.

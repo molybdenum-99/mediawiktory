@@ -6,6 +6,7 @@ module MediaWiktory::Wikipedia
     #
     # Usage:
     #
+
     # ```ruby
     # api.spamblacklist(**options).perform # returns string with raw output
     # # or
@@ -26,7 +27,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>]
       # @return [self]
       def url(*values)
-        merge(url: values.join('|'))
+        values.inject(self) { |res, val| res.url_single(val) }
+      end
+
+      protected def url_single(value)
+        merge(url: value.to_s)
       end
     end
   end

@@ -6,6 +6,7 @@ module MediaWiktory::Wikipedia
     #
     # Usage:
     #
+
     # ```ruby
     # api.options(**options).perform # returns string with raw output
     # # or
@@ -33,7 +34,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>] Allowed values: "registered", "registered-multiselect", "registered-checkmatrix", "userjs", "special", "unused", "all".
       # @return [self]
       def resetkinds(*values)
-        merge(resetkinds: values.join('|'))
+        values.inject(self) { |res, val| res.resetkinds_single(val) }
+      end
+
+      protected def resetkinds_single(value)
+        defined?(super) && super || ["registered", "registered-multiselect", "registered-checkmatrix", "userjs", "special", "unused", "all"].include?(value.to_s) && merge(resetkinds: value.to_s)
       end
 
       # List of changes, formatted name=value (e.g. skin=vector). If no value is given (not even an equals sign), e.g., optionname|otheroption|..., the option will be reset to its default value. If any value passed contains the pipe character (|), use the alternative multiple-value separator for correct operation.
@@ -41,7 +46,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>]
       # @return [self]
       def change(*values)
-        merge(change: values.join('|'))
+        values.inject(self) { |res, val| res.change_single(val) }
+      end
+
+      protected def change_single(value)
+        merge(change: value.to_s)
       end
 
       # The name of the option that should be set to the value given by optionvalue.

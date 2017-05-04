@@ -6,6 +6,7 @@ module MediaWiktory::Wikipedia
     #
     # Usage:
     #
+
     # ```ruby
     # api.paraminfo(**options).perform # returns string with raw output
     # # or
@@ -26,7 +27,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>]
       # @return [self]
       def modules(*values)
-        merge(modules: values.join('|'))
+        values.inject(self) { |res, val| res.modules_single(val) }
+      end
+
+      protected def modules_single(value)
+        merge(modules: value.to_s)
       end
 
       # Format of help strings.
@@ -34,7 +39,7 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "html", "wikitext", "raw", "none".
       # @return [self]
       def helpformat(value)
-        merge(helpformat: value.to_s)
+        defined?(super) && super || ["html", "wikitext", "raw", "none"].include?(value.to_s) && merge(helpformat: value.to_s)
       end
 
       # List of query module names (value of prop, meta or list parameter). Use modules=query+foo instead of querymodules=foo.
@@ -42,7 +47,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>] Allowed values: "abusefilters", "abuselog", "allcategories", "alldeletedrevisions", "allfileusages", "allimages", "alllinks", "allmessages", "allpages", "allredirects", "allrevisions", "alltransclusions", "allusers", "authmanagerinfo", "babel", "backlinks", "betafeatures", "blocks", "categories", "categoryinfo", "categorymembers", "centralnoticelogs", "checkuser", "checkuserlog", "contenttranslation", "contenttranslationcorpora", "contenttranslationlangtrend", "contenttranslationstats", "contenttranslationsuggestions", "contributors", "coordinates", "cxpublishedtranslations", "cxtranslatorstats", "deletedrevisions", "deletedrevs", "duplicatefiles", "embeddedin", "extlinks", "extracts", "exturlusage", "featureusage", "filearchive", "filerepoinfo", "fileusage", "flagged", "gadgetcategories", "gadgets", "geosearch", "gettingstartedgetpages", "globalallusers", "globalblocks", "globalgroups", "globalusage", "globaluserinfo", "imageinfo", "images", "imageusage", "info", "iwbacklinks", "iwlinks", "langbacklinks", "langlinks", "links", "linkshere", "logevents", "mapdata", "mmsites", "mostviewed", "mystashedfiles", "notifications", "oath", "oldreviewedpages", "ores", "pageassessments", "pageimages", "pagepropnames", "pageprops", "pageswithprop", "pageterms", "pageviews", "prefixsearch", "projectpages", "projects", "protectedtitles", "querypage", "random", "recentchanges", "redirects", "references", "revisions", "search", "siteinfo", "siteviews", "stashimageinfo", "tags", "templates", "tokens", "transcludedin", "transcodestatus", "unreadnotificationpages", "usercontribs", "userinfo", "users", "videoinfo", "watchlist", "watchlistraw", "wbentityusage", "wblistentityusage", "wikibase", "wikisets".
       # @return [self]
       def querymodules(*values)
-        merge(querymodules: values.join('|'))
+        values.inject(self) { |res, val| res.querymodules_single(val) }
+      end
+
+      protected def querymodules_single(value)
+        defined?(super) && super || ["abusefilters", "abuselog", "allcategories", "alldeletedrevisions", "allfileusages", "allimages", "alllinks", "allmessages", "allpages", "allredirects", "allrevisions", "alltransclusions", "allusers", "authmanagerinfo", "babel", "backlinks", "betafeatures", "blocks", "categories", "categoryinfo", "categorymembers", "centralnoticelogs", "checkuser", "checkuserlog", "contenttranslation", "contenttranslationcorpora", "contenttranslationlangtrend", "contenttranslationstats", "contenttranslationsuggestions", "contributors", "coordinates", "cxpublishedtranslations", "cxtranslatorstats", "deletedrevisions", "deletedrevs", "duplicatefiles", "embeddedin", "extlinks", "extracts", "exturlusage", "featureusage", "filearchive", "filerepoinfo", "fileusage", "flagged", "gadgetcategories", "gadgets", "geosearch", "gettingstartedgetpages", "globalallusers", "globalblocks", "globalgroups", "globalusage", "globaluserinfo", "imageinfo", "images", "imageusage", "info", "iwbacklinks", "iwlinks", "langbacklinks", "langlinks", "links", "linkshere", "logevents", "mapdata", "mmsites", "mostviewed", "mystashedfiles", "notifications", "oath", "oldreviewedpages", "ores", "pageassessments", "pageimages", "pagepropnames", "pageprops", "pageswithprop", "pageterms", "pageviews", "prefixsearch", "projectpages", "projects", "protectedtitles", "querypage", "random", "recentchanges", "redirects", "references", "revisions", "search", "siteinfo", "siteviews", "stashimageinfo", "tags", "templates", "tokens", "transcludedin", "transcodestatus", "unreadnotificationpages", "usercontribs", "userinfo", "users", "videoinfo", "watchlist", "watchlistraw", "wbentityusage", "wblistentityusage", "wikibase", "wikisets"].include?(value.to_s) && merge(querymodules: value.to_s)
       end
 
       # Get information about the main (top-level) module as well. Use modules=main instead.
@@ -66,7 +75,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>] Allowed values: "json", "jsonfm", "none", "php", "phpfm", "rawfm", "xml", "xmlfm".
       # @return [self]
       def formatmodules(*values)
-        merge(formatmodules: values.join('|'))
+        values.inject(self) { |res, val| res.formatmodules_single(val) }
+      end
+
+      protected def formatmodules_single(value)
+        defined?(super) && super || ["json", "jsonfm", "none", "php", "phpfm", "rawfm", "xml", "xmlfm"].include?(value.to_s) && merge(formatmodules: value.to_s)
       end
     end
   end

@@ -4,20 +4,6 @@ module MediaWiktory::Wikipedia
   module Modules
     # List deleted revisions. 
     #
-    # Usage:
-    #
-    # ```ruby
-    # api.some_action.deletedrevs(**options).perform # returns string with raw output
-    # # or
-    # api.some_action.deletedrevs(**options).response # returns output parsed and wrapped into Mash-like object
-    #
-    # # or, with chainable interface:
-    # api.some_action.deletedrevs.start(value).perform
-    # ```
-    #
-    # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and their
-    # submodules.
-    #
     # All submodule's parameters are documented as its public methods, see below.
     #
     module Deletedrevs
@@ -43,7 +29,7 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "newer" (List oldest first. Note: drstart has to be before drend), "older" (List newest first (default). Note: drstart has to be later than drend).
       # @return [self]
       def dir(value)
-        merge(drdir: value.to_s)
+        defined?(super) && super || ["newer", "older"].include?(value.to_s) && merge(drdir: value.to_s)
       end
 
       # Start listing at this title.
@@ -82,7 +68,7 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "100", "101", "108", "109", "118", "119", "446", "447", "710", "711", "828", "829", "2300", "2301", "2302", "2303".
       # @return [self]
       def namespace(value)
-        merge(drnamespace: value.to_s)
+        defined?(super) && super || ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "100", "101", "108", "109", "118", "119", "446", "447", "710", "711", "828", "829", "2300", "2301", "2302", "2303"].include?(value.to_s) && merge(drnamespace: value.to_s)
       end
 
       # Only list revisions tagged with this tag.
@@ -114,7 +100,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>] Allowed values: "revid" (Adds the revision ID of the deleted revision), "parentid" (Adds the revision ID of the previous revision to the page), "user" (Adds the user who made the revision), "userid" (Adds the ID of the user who made the revision), "comment" (Adds the comment of the revision), "parsedcomment" (Adds the parsed comment of the revision), "minor" (Tags if the revision is minor), "len" (Adds the length (bytes) of the revision), "sha1" (Adds the SHA-1 (base 16) of the revision), "content" (Adds the content of the revision), "token" (Deprecated. Gives the edit token), "tags" (Tags for the revision).
       # @return [self]
       def prop(*values)
-        merge(drprop: values.join('|'))
+        values.inject(self) { |res, val| res.prop_single(val) }
+      end
+
+      protected def prop_single(value)
+        defined?(super) && super || ["revid", "parentid", "user", "userid", "comment", "parsedcomment", "minor", "len", "sha1", "content", "token", "tags"].include?(value.to_s) && merge(drprop: value.to_s)
       end
 
       # The maximum amount of revisions to list.

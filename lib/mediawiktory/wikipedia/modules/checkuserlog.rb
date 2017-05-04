@@ -4,20 +4,6 @@ module MediaWiktory::Wikipedia
   module Modules
     # Get entries from the CheckUser log. 
     #
-    # Usage:
-    #
-    # ```ruby
-    # api.some_action.checkuserlog(**options).perform # returns string with raw output
-    # # or
-    # api.some_action.checkuserlog(**options).response # returns output parsed and wrapped into Mash-like object
-    #
-    # # or, with chainable interface:
-    # api.some_action.checkuserlog.user(value).perform
-    # ```
-    #
-    # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and their
-    # submodules.
-    #
     # All submodule's parameters are documented as its public methods, see below.
     #
     module Checkuserlog
@@ -51,7 +37,7 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "newer" (List oldest first. Note: culstart has to be before culend), "older" (List newest first (default). Note: culstart has to be later than culend).
       # @return [self]
       def dir(value)
-        merge(culdir: value.to_s)
+        defined?(super) && super || ["newer", "older"].include?(value.to_s) && merge(culdir: value.to_s)
       end
 
       # The timestamp to start enumerating from.

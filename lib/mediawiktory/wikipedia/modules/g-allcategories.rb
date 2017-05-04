@@ -4,20 +4,6 @@ module MediaWiktory::Wikipedia
   module Modules
     # Generator module.
     #
-    # Usage:
-    #
-    # ```ruby
-    # api.some_action.allcategories(**options).perform # returns string with raw output
-    # # or
-    # api.some_action.allcategories(**options).response # returns output parsed and wrapped into Mash-like object
-    #
-    # # or, with chainable interface:
-    # api.some_action.allcategories.from(value).perform
-    # ```
-    #
-    # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and their
-    # submodules.
-    #
     # All submodule's parameters are documented as its public methods, see below.
     #
     module GAllcategories
@@ -59,7 +45,7 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "ascending", "descending".
       # @return [self]
       def dir(value)
-        merge(gacdir: value.to_s)
+        defined?(super) && super || ["ascending", "descending"].include?(value.to_s) && merge(gacdir: value.to_s)
       end
 
       # Only return categories with at least this many members.

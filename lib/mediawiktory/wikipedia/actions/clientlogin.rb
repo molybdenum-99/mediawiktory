@@ -6,6 +6,7 @@ module MediaWiktory::Wikipedia
     #
     # Usage:
     #
+
     # ```ruby
     # api.clientlogin(**options).perform # returns string with raw output
     # # or
@@ -26,7 +27,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>]
       # @return [self]
       def requests(*values)
-        merge(loginrequests: values.join('|'))
+        values.inject(self) { |res, val| res.requests_single(val) }
+      end
+
+      protected def requests_single(value)
+        merge(loginrequests: value.to_s)
       end
 
       # Format to use for returning messages.
@@ -34,7 +39,7 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "html", "wikitext", "raw", "none".
       # @return [self]
       def messageformat(value)
-        merge(loginmessageformat: value.to_s)
+        defined?(super) && super || ["html", "wikitext", "raw", "none"].include?(value.to_s) && merge(loginmessageformat: value.to_s)
       end
 
       # Merge field information for all authentication requests into one array.

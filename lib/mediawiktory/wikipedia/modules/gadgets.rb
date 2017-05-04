@@ -4,20 +4,6 @@ module MediaWiktory::Wikipedia
   module Modules
     # Returns a list of gadgets used on this wiki. 
     #
-    # Usage:
-    #
-    # ```ruby
-    # api.some_action.gadgets(**options).perform # returns string with raw output
-    # # or
-    # api.some_action.gadgets(**options).response # returns output parsed and wrapped into Mash-like object
-    #
-    # # or, with chainable interface:
-    # api.some_action.gadgets.prop(value).perform
-    # ```
-    #
-    # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and their
-    # submodules.
-    #
     # All submodule's parameters are documented as its public methods, see below.
     #
     module Gadgets
@@ -27,7 +13,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>] Allowed values: "id" (Internal gadget ID), "metadata" (The gadget metadata), "desc" (Gadget description transformed into HTML (can be slow, use only if really needed)).
       # @return [self]
       def prop(*values)
-        merge(gaprop: values.join('|'))
+        values.inject(self) { |res, val| res.prop_single(val) }
+      end
+
+      protected def prop_single(value)
+        defined?(super) && super || ["id", "metadata", "desc"].include?(value.to_s) && merge(gaprop: value.to_s)
       end
 
       # Gadgets from what categories to retrieve.
@@ -35,7 +25,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>]
       # @return [self]
       def categories(*values)
-        merge(gacategories: values.join('|'))
+        values.inject(self) { |res, val| res.categories_single(val) }
+      end
+
+      protected def categories_single(value)
+        merge(gacategories: value.to_s)
       end
 
       # IDs of gadgets to retrieve.
@@ -43,7 +37,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>]
       # @return [self]
       def ids(*values)
-        merge(gaids: values.join('|'))
+        values.inject(self) { |res, val| res.ids_single(val) }
+      end
+
+      protected def ids_single(value)
+        merge(gaids: value.to_s)
       end
 
       # List only gadgets allowed to current user.

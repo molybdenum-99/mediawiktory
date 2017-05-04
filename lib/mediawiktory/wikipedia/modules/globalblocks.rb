@@ -4,20 +4,6 @@ module MediaWiktory::Wikipedia
   module Modules
     # List all globally blocked IP addresses. 
     #
-    # Usage:
-    #
-    # ```ruby
-    # api.some_action.globalblocks(**options).perform # returns string with raw output
-    # # or
-    # api.some_action.globalblocks(**options).response # returns output parsed and wrapped into Mash-like object
-    #
-    # # or, with chainable interface:
-    # api.some_action.globalblocks.start(value).perform
-    # ```
-    #
-    # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and their
-    # submodules.
-    #
     # All submodule's parameters are documented as its public methods, see below.
     #
     module Globalblocks
@@ -43,7 +29,7 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "newer" (List oldest first. Note: bgstart has to be before bgend), "older" (List newest first (default). Note: bgstart has to be later than bgend).
       # @return [self]
       def dir(value)
-        merge(bgdir: value.to_s)
+        defined?(super) && super || ["newer", "older"].include?(value.to_s) && merge(bgdir: value.to_s)
       end
 
       # Pipe-separated list of block IDs to list.
@@ -51,7 +37,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<Integer>]
       # @return [self]
       def ids(*values)
-        merge(bgids: values.join('|'))
+        values.inject(self) { |res, val| res.ids_single(val) }
+      end
+
+      protected def ids_single(value)
+        merge(bgids: value.to_s)
       end
 
       # Pipe-separated list of IP addresses to search for.
@@ -59,7 +49,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>]
       # @return [self]
       def addresses(*values)
-        merge(bgaddresses: values.join('|'))
+        values.inject(self) { |res, val| res.addresses_single(val) }
+      end
+
+      protected def addresses_single(value)
+        merge(bgaddresses: value.to_s)
       end
 
       # Get all blocks applying to this IP address or CIDR range, including range blocks. Cannot be used together with bgaddresses. CIDR ranges broader than /16 are not accepted.
@@ -83,7 +77,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>] Allowed values: "id", "address", "by", "timestamp", "expiry", "reason", "range".
       # @return [self]
       def prop(*values)
-        merge(bgprop: values.join('|'))
+        values.inject(self) { |res, val| res.prop_single(val) }
+      end
+
+      protected def prop_single(value)
+        defined?(super) && super || ["id", "address", "by", "timestamp", "expiry", "reason", "range"].include?(value.to_s) && merge(bgprop: value.to_s)
       end
     end
   end

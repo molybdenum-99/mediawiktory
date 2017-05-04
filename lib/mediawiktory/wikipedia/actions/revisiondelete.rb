@@ -6,6 +6,7 @@ module MediaWiktory::Wikipedia
     #
     # Usage:
     #
+
     # ```ruby
     # api.revisiondelete(**options).perform # returns string with raw output
     # # or
@@ -26,7 +27,7 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "revision", "archive", "oldimage", "filearchive", "logging".
       # @return [self]
       def type(value)
-        merge(type: value.to_s)
+        defined?(super) && super || ["revision", "archive", "oldimage", "filearchive", "logging"].include?(value.to_s) && merge(type: value.to_s)
       end
 
       # Page title for the revision deletion, if required for the type.
@@ -42,7 +43,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>]
       # @return [self]
       def ids(*values)
-        merge(ids: values.join('|'))
+        values.inject(self) { |res, val| res.ids_single(val) }
+      end
+
+      protected def ids_single(value)
+        merge(ids: value.to_s)
       end
 
       # What to hide for each revision.
@@ -50,7 +55,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>] Allowed values: "content", "comment", "user".
       # @return [self]
       def hide(*values)
-        merge(hide: values.join('|'))
+        values.inject(self) { |res, val| res.hide_single(val) }
+      end
+
+      protected def hide_single(value)
+        defined?(super) && super || ["content", "comment", "user"].include?(value.to_s) && merge(hide: value.to_s)
       end
 
       # What to unhide for each revision.
@@ -58,7 +67,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>] Allowed values: "content", "comment", "user".
       # @return [self]
       def show(*values)
-        merge(show: values.join('|'))
+        values.inject(self) { |res, val| res.show_single(val) }
+      end
+
+      protected def show_single(value)
+        defined?(super) && super || ["content", "comment", "user"].include?(value.to_s) && merge(show: value.to_s)
       end
 
       # Whether to suppress data from administrators as well as others.
@@ -66,7 +79,7 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "yes", "no", "nochange".
       # @return [self]
       def suppress(value)
-        merge(suppress: value.to_s)
+        defined?(super) && super || ["yes", "no", "nochange"].include?(value.to_s) && merge(suppress: value.to_s)
       end
 
       # Reason for the deletion or undeletion.
@@ -82,7 +95,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>] Allowed values: "ProveIt edit", "WPCleaner", "huggle", "large plot addition".
       # @return [self]
       def tags(*values)
-        merge(tags: values.join('|'))
+        values.inject(self) { |res, val| res.tags_single(val) }
+      end
+
+      protected def tags_single(value)
+        defined?(super) && super || ["ProveIt edit", "WPCleaner", "huggle", "large plot addition"].include?(value.to_s) && merge(tags: value.to_s)
       end
 
       # A "csrf" token retrieved from action=query&meta=tokens

@@ -6,6 +6,7 @@ module MediaWiktory::Wikipedia
     #
     # Usage:
     #
+
     # ```ruby
     # api.refresheducation(**options).perform # returns string with raw output
     # # or
@@ -26,7 +27,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<Integer>]
       # @return [self]
       def ids(*values)
-        merge(ids: values.join('|'))
+        values.inject(self) { |res, val| res.ids_single(val) }
+      end
+
+      protected def ids_single(value)
+        merge(ids: value.to_s)
       end
 
       # Type of object to refresh.
@@ -34,7 +39,7 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "org", "course", "student".
       # @return [self]
       def type(value)
-        merge(type: value.to_s)
+        defined?(super) && super || ["org", "course", "student"].include?(value.to_s) && merge(type: value.to_s)
       end
 
       # A "csrf" token retrieved from action=query&meta=tokens

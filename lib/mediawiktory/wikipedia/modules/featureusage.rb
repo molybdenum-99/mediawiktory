@@ -4,20 +4,6 @@ module MediaWiktory::Wikipedia
   module Modules
     # Get a summary of logged API feature usages for a user agent. 
     #
-    # Usage:
-    #
-    # ```ruby
-    # api.some_action.featureusage(**options).perform # returns string with raw output
-    # # or
-    # api.some_action.featureusage(**options).response # returns output parsed and wrapped into Mash-like object
-    #
-    # # or, with chainable interface:
-    # api.some_action.featureusage.start(value).perform
-    # ```
-    #
-    # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and their
-    # submodules.
-    #
     # All submodule's parameters are documented as its public methods, see below.
     #
     module Featureusage
@@ -51,7 +37,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>]
       # @return [self]
       def features(*values)
-        merge(afufeatures: values.join('|'))
+        values.inject(self) { |res, val| res.features_single(val) }
+      end
+
+      protected def features_single(value)
+        merge(afufeatures: value.to_s)
       end
     end
   end

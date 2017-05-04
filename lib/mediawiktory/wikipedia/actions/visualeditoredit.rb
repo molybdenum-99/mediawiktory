@@ -6,6 +6,7 @@ module MediaWiktory::Wikipedia
     #
     # Usage:
     #
+
     # ```ruby
     # api.visualeditoredit(**options).perform # returns string with raw output
     # # or
@@ -26,7 +27,7 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "serialize", "serializeforcache", "diff", "save".
       # @return [self]
       def paction(value)
-        merge(paction: value.to_s)
+        defined?(super) && super || ["serialize", "serializeforcache", "diff", "save"].include?(value.to_s) && merge(paction: value.to_s)
       end
 
       # The page to perform actions on.

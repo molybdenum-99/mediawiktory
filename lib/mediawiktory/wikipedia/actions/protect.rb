@@ -6,6 +6,7 @@ module MediaWiktory::Wikipedia
     #
     # Usage:
     #
+
     # ```ruby
     # api.protect(**options).perform # returns string with raw output
     # # or
@@ -42,7 +43,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>]
       # @return [self]
       def protections(*values)
-        merge(protections: values.join('|'))
+        values.inject(self) { |res, val| res.protections_single(val) }
+      end
+
+      protected def protections_single(value)
+        merge(protections: value.to_s)
       end
 
       # Expiry timestamps. If only one timestamp is set, it'll be used for all protections. Use infinite, indefinite, infinity, or never, for a never-expiring protection.
@@ -50,7 +55,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>]
       # @return [self]
       def expiry(*values)
-        merge(expiry: values.join('|'))
+        values.inject(self) { |res, val| res.expiry_single(val) }
+      end
+
+      protected def expiry_single(value)
+        merge(expiry: value.to_s)
       end
 
       # Reason for (un)protecting.
@@ -66,7 +75,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>] Allowed values: "ProveIt edit", "WPCleaner", "huggle", "large plot addition".
       # @return [self]
       def tags(*values)
-        merge(tags: values.join('|'))
+        values.inject(self) { |res, val| res.tags_single(val) }
+      end
+
+      protected def tags_single(value)
+        defined?(super) && super || ["ProveIt edit", "WPCleaner", "huggle", "large plot addition"].include?(value.to_s) && merge(tags: value.to_s)
       end
 
       # Enable cascading protection (i.e. protect transcluded templates and images used in this page). Ignored if none of the given protection levels support cascading.
@@ -88,7 +101,7 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "watch", "unwatch", "preferences", "nochange".
       # @return [self]
       def watchlist(value)
-        merge(watchlist: value.to_s)
+        defined?(super) && super || ["watch", "unwatch", "preferences", "nochange"].include?(value.to_s) && merge(watchlist: value.to_s)
       end
 
       # A "csrf" token retrieved from action=query&meta=tokens

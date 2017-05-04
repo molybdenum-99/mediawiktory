@@ -4,20 +4,6 @@ module MediaWiktory::Wikipedia
   module Modules
     # Generator module.
     #
-    # Usage:
-    #
-    # ```ruby
-    # api.some_action.watchlist(**options).perform # returns string with raw output
-    # # or
-    # api.some_action.watchlist(**options).response # returns output parsed and wrapped into Mash-like object
-    #
-    # # or, with chainable interface:
-    # api.some_action.watchlist.allrev(value).perform
-    # ```
-    #
-    # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and their
-    # submodules.
-    #
     # All submodule's parameters are documented as its public methods, see below.
     #
     module GWatchlist
@@ -50,7 +36,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>] Allowed values: "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "100", "101", "108", "109", "118", "119", "446", "447", "710", "711", "828", "829", "2300", "2301", "2302", "2303".
       # @return [self]
       def namespace(*values)
-        merge(gwlnamespace: values.join('|'))
+        values.inject(self) { |res, val| res.namespace_single(val) }
+      end
+
+      protected def namespace_single(value)
+        defined?(super) && super || ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "100", "101", "108", "109", "118", "119", "446", "447", "710", "711", "828", "829", "2300", "2301", "2302", "2303"].include?(value.to_s) && merge(gwlnamespace: value.to_s)
       end
 
       # Only list changes by this user.
@@ -74,7 +64,7 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "newer" (List oldest first. Note: wlstart has to be before wlend), "older" (List newest first (default). Note: wlstart has to be later than wlend).
       # @return [self]
       def dir(value)
-        merge(gwldir: value.to_s)
+        defined?(super) && super || ["newer", "older"].include?(value.to_s) && merge(gwldir: value.to_s)
       end
 
       # How many total results to return per request.
@@ -90,7 +80,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>] Allowed values: "minor", "!minor", "bot", "!bot", "anon", "!anon", "patrolled", "!patrolled", "unread", "!unread".
       # @return [self]
       def show(*values)
-        merge(gwlshow: values.join('|'))
+        values.inject(self) { |res, val| res.show_single(val) }
+      end
+
+      protected def show_single(value)
+        defined?(super) && super || ["minor", "!minor", "bot", "!bot", "anon", "!anon", "patrolled", "!patrolled", "unread", "!unread"].include?(value.to_s) && merge(gwlshow: value.to_s)
       end
 
       # Which types of changes to show:
@@ -98,7 +92,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>] Allowed values: "edit" (Regular page edits), "new" (Page creations), "log" (Log entries), "external" (External changes), "categorize" (Category membership changes).
       # @return [self]
       def type(*values)
-        merge(gwltype: values.join('|'))
+        values.inject(self) { |res, val| res.type_single(val) }
+      end
+
+      protected def type_single(value)
+        defined?(super) && super || ["edit", "new", "log", "external", "categorize"].include?(value.to_s) && merge(gwltype: value.to_s)
       end
 
       # Used along with wltoken to access a different user's watchlist.

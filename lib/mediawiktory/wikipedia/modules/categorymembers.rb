@@ -4,20 +4,6 @@ module MediaWiktory::Wikipedia
   module Modules
     # List all pages in a given category. 
     #
-    # Usage:
-    #
-    # ```ruby
-    # api.some_action.categorymembers(**options).perform # returns string with raw output
-    # # or
-    # api.some_action.categorymembers(**options).response # returns output parsed and wrapped into Mash-like object
-    #
-    # # or, with chainable interface:
-    # api.some_action.categorymembers.title(value).perform
-    # ```
-    #
-    # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and their
-    # submodules.
-    #
     # All submodule's parameters are documented as its public methods, see below.
     #
     module Categorymembers
@@ -43,7 +29,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>] Allowed values: "ids" (Adds the page ID), "title" (Adds the title and namespace ID of the page), "sortkey" (Adds the sortkey used for sorting in the category (hexadecimal string)), "sortkeyprefix" (Adds the sortkey prefix used for sorting in the category (human-readable part of the sortkey)), "type" (Adds the type that the page has been categorised as (page, subcat or file)), "timestamp" (Adds the timestamp of when the page was included).
       # @return [self]
       def prop(*values)
-        merge(cmprop: values.join('|'))
+        values.inject(self) { |res, val| res.prop_single(val) }
+      end
+
+      protected def prop_single(value)
+        defined?(super) && super || ["ids", "title", "sortkey", "sortkeyprefix", "type", "timestamp"].include?(value.to_s) && merge(cmprop: value.to_s)
       end
 
       # Only include pages in these namespaces. Note that cmtype=subcat or cmtype=file may be used instead of cmnamespace=14 or 6.
@@ -51,7 +41,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>] Allowed values: "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "100", "101", "108", "109", "118", "119", "446", "447", "710", "711", "828", "829", "2300", "2301", "2302", "2303".
       # @return [self]
       def namespace(*values)
-        merge(cmnamespace: values.join('|'))
+        values.inject(self) { |res, val| res.namespace_single(val) }
+      end
+
+      protected def namespace_single(value)
+        defined?(super) && super || ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "100", "101", "108", "109", "118", "119", "446", "447", "710", "711", "828", "829", "2300", "2301", "2302", "2303"].include?(value.to_s) && merge(cmnamespace: value.to_s)
       end
 
       # Which type of category members to include. Ignored when cmsort=timestamp is set.
@@ -59,7 +53,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>] Allowed values: "page", "subcat", "file".
       # @return [self]
       def type(*values)
-        merge(cmtype: values.join('|'))
+        values.inject(self) { |res, val| res.type_single(val) }
+      end
+
+      protected def type_single(value)
+        defined?(super) && super || ["page", "subcat", "file"].include?(value.to_s) && merge(cmtype: value.to_s)
       end
 
       # When more results are available, use this to continue.
@@ -83,7 +81,7 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "sortkey", "timestamp".
       # @return [self]
       def sort(value)
-        merge(cmsort: value.to_s)
+        defined?(super) && super || ["sortkey", "timestamp"].include?(value.to_s) && merge(cmsort: value.to_s)
       end
 
       # In which direction to sort.
@@ -91,7 +89,7 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "asc", "desc", "ascending", "descending", "newer", "older".
       # @return [self]
       def dir(value)
-        merge(cmdir: value.to_s)
+        defined?(super) && super || ["asc", "desc", "ascending", "descending", "newer", "older"].include?(value.to_s) && merge(cmdir: value.to_s)
       end
 
       # Timestamp to start listing from. Can only be used with cmsort=timestamp.

@@ -6,6 +6,7 @@ module MediaWiktory::Wikipedia
     #
     # Usage:
     #
+
     # ```ruby
     # api.import(**options).perform # returns string with raw output
     # # or
@@ -42,7 +43,7 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "meta", "nost", "de", "es", "fr", "it", "pl", "outreachwiki", "test2wiki".
       # @return [self]
       def interwikisource(value)
-        merge(interwikisource: value.to_s)
+        defined?(super) && super || ["meta", "nost", "de", "es", "fr", "it", "pl", "outreachwiki", "test2wiki"].include?(value.to_s) && merge(interwikisource: value.to_s)
       end
 
       # For interwiki imports: page to import.
@@ -72,7 +73,7 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "100", "101", "108", "109", "118", "119", "446", "447", "710", "711", "828", "829", "2300", "2301", "2302", "2303".
       # @return [self]
       def namespace(value)
-        merge(namespace: value.to_s)
+        defined?(super) && super || ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "100", "101", "108", "109", "118", "119", "446", "447", "710", "711", "828", "829", "2300", "2301", "2302", "2303"].include?(value.to_s) && merge(namespace: value.to_s)
       end
 
       # Import as subpage of this page. Cannot be used together with namespace.
@@ -88,7 +89,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>] Allowed values: "ProveIt edit", "WPCleaner", "huggle", "large plot addition".
       # @return [self]
       def tags(*values)
-        merge(tags: values.join('|'))
+        values.inject(self) { |res, val| res.tags_single(val) }
+      end
+
+      protected def tags_single(value)
+        defined?(super) && super || ["ProveIt edit", "WPCleaner", "huggle", "large plot addition"].include?(value.to_s) && merge(tags: value.to_s)
       end
 
       # A "csrf" token retrieved from action=query&meta=tokens

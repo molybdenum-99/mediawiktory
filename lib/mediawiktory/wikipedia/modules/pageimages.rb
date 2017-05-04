@@ -4,20 +4,6 @@ module MediaWiktory::Wikipedia
   module Modules
     # Returns information about images on the page, such as thumbnail and presence of photos. 
     #
-    # Usage:
-    #
-    # ```ruby
-    # api.some_action.pageimages(**options).perform # returns string with raw output
-    # # or
-    # api.some_action.pageimages(**options).response # returns output parsed and wrapped into Mash-like object
-    #
-    # # or, with chainable interface:
-    # api.some_action.pageimages.prop(value).perform
-    # ```
-    #
-    # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and their
-    # submodules.
-    #
     # All submodule's parameters are documented as its public methods, see below.
     #
     module Pageimages
@@ -27,7 +13,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>] Allowed values: "thumbnail" (URL and dimensions of thumbnail image associated with page, if any), "original" (URL and original dimensions of image associated with page, if any), "name" (Image title).
       # @return [self]
       def prop(*values)
-        merge(piprop: values.join('|'))
+        values.inject(self) { |res, val| res.prop_single(val) }
+      end
+
+      protected def prop_single(value)
+        defined?(super) && super || ["thumbnail", "original", "name"].include?(value.to_s) && merge(piprop: value.to_s)
       end
 
       # Maximum thumbnail dimension.
@@ -51,7 +41,7 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "free", "any".
       # @return [self]
       def license(value)
-        merge(pilicense: value.to_s)
+        defined?(super) && super || ["free", "any"].include?(value.to_s) && merge(pilicense: value.to_s)
       end
 
       # When more results are available, use this to continue.

@@ -1,25 +1,25 @@
 # frozen_string_literal: true
 
-module {{ namespace }}
+module <%= @namespace %>
   module Actions
     # Global setup methods included into every action through {Base}.
     module GlobalParams
-{% for param in object.main.params %}{% include 'param_method' %}{% endfor %}
+<% main.params.reject { |p| p.name == 'action' }.each { |param| %><%= partial '_param_method', param %><% } %>
     end
 
-    # Base class for all {{"{"}}{{ namespace }}::Api} actions. "Actions" is MediaWiki's term for
+    # Base class for all {<%= @namespace %>::Api} actions. "Actions" is MediaWiki's term for
     # different request types. Everything you are doing with your target MediaWiki installation, you
     # are doing by _performing actions_.
     #
     # Typically, you should never instantiate this class or its descendants directly, but rather by
-    # {Api {{ namespace }}::Api} methods.
+    # {Api <%= @namespace %>::Api} methods.
     #
     # The usual workflow with actions is:
     #
     # * Create it with `api.action_name`
     # * Set action params with subsequent `paramname(paramvalue)` calls;
     # * Perform action with {#perform} (returns row MediaWiki response as a string) or {#response}
-    #   (returns {{"{"}}{{ namespace }}::Response} class with parsed data and helper methods).
+    #   (returns {<%= @namespace %>::Response} class with parsed data and helper methods).
     #
     # Note that some of `paramname(value)` calls include new {Modules} into action, which provides
     # new params & methods. For example:
@@ -53,9 +53,9 @@ module {{ namespace }}
     # response = action.response
     # # => #<MediaWiktory::Wikipedia::Response(query): pages, general>
     # puts response['pages'].values.first['revisions'].first['*'].split("\n").first(3) # first page, first revision, content, 3 paragraphs
-    # # {{"{"}}{other uses}}
-    # # {{"{"}}{pp-semi|small=yes}}
-    # # {{"{"}}{Use dmy dates|date=March 2017}}
+    # # {{other uses}}
+    # # {{pp-semi|small=yes}}
+    # # {{Use dmy dates|date=March 2017}}
     # response.dig('general', 'sitename')
     # # => "Wikipedia"
     # ```

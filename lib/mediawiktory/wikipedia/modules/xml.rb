@@ -4,20 +4,6 @@ module MediaWiktory::Wikipedia
   module Modules
     # Output data in XML format. 
     #
-    # Usage:
-    #
-    # ```ruby
-    # api.some_action.xml(**options).perform # returns string with raw output
-    # # or
-    # api.some_action.xml(**options).response # returns output parsed and wrapped into Mash-like object
-    #
-    # # or, with chainable interface:
-    # api.some_action.xml.xslt(value).perform
-    # ```
-    #
-    # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and their
-    # submodules.
-    #
     # All submodule's parameters are documented as its public methods, see below.
     #
     module Xml

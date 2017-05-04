@@ -6,6 +6,7 @@ module MediaWiktory::Wikipedia
     #
     # Usage:
     #
+
     # ```ruby
     # api.parse(**options).perform # returns string with raw output
     # # or
@@ -81,7 +82,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>] Allowed values: "text" (Gives the parsed text of the wikitext), "langlinks" (Gives the language links in the parsed wikitext), "categories" (Gives the categories in the parsed wikitext), "categorieshtml" (Gives the HTML version of the categories), "links" (Gives the internal links in the parsed wikitext), "templates" (Gives the templates in the parsed wikitext), "images" (Gives the images in the parsed wikitext), "externallinks" (Gives the external links in the parsed wikitext), "sections" (Gives the sections in the parsed wikitext), "revid" (Adds the revision ID of the parsed page), "displaytitle" (Adds the title of the parsed wikitext), "headitems" (Deprecated. Gives items to put in the <head> of the page), "headhtml" (Gives parsed <head> of the page), "modules" (Gives the ResourceLoader modules used on the page. To load, use mw.loader.using(). Either jsconfigvars or encodedjsconfigvars must be requested jointly with modules), "jsconfigvars" (Gives the JavaScript configuration variables specific to the page. To apply, use mw.config.set()), "encodedjsconfigvars" (Gives the JavaScript configuration variables specific to the page as a JSON string), "indicators" (Gives the HTML of page status indicators used on the page), "iwlinks" (Gives interwiki links in the parsed wikitext), "wikitext" (Gives the original wikitext that was parsed), "properties" (Gives various properties defined in the parsed wikitext), "limitreportdata" (Gives the limit report in a structured way. Gives no data, when disablelimitreport is set), "limitreporthtml" (Gives the HTML version of the limit report. Gives no data, when disablelimitreport is set), "parsetree" (The XML parse tree of revision content (requires content model wikitext)), "parsewarnings" (Gives the warnings that occurred while parsing content).
       # @return [self]
       def prop(*values)
-        merge(prop: values.join('|'))
+        values.inject(self) { |res, val| res.prop_single(val) }
+      end
+
+      protected def prop_single(value)
+        defined?(super) && super || ["text", "langlinks", "categories", "categorieshtml", "links", "templates", "images", "externallinks", "sections", "revid", "displaytitle", "headitems", "headhtml", "modules", "jsconfigvars", "encodedjsconfigvars", "indicators", "iwlinks", "wikitext", "properties", "limitreportdata", "limitreporthtml", "parsetree", "parsewarnings"].include?(value.to_s) && merge(prop: value.to_s)
       end
 
       # Do a pre-save transform on the input before parsing it. Only valid when used with text.
@@ -182,7 +187,7 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "application/json", "text/x-wiki", "text/javascript", "text/css", "text/plain".
       # @return [self]
       def contentformat(value)
-        merge(contentformat: value.to_s)
+        defined?(super) && super || ["application/json", "text/x-wiki", "text/javascript", "text/css", "text/plain"].include?(value.to_s) && merge(contentformat: value.to_s)
       end
 
       # Content model of the input text. If omitted, title must be specified, and default will be the model of the specified title. Only valid when used with text.
@@ -190,7 +195,7 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "GadgetDefinition", "SecurePoll", "MassMessageListContent", "JsonSchema", "wikitext", "javascript", "json", "css", "text", "Scribunto".
       # @return [self]
       def contentmodel(value)
-        merge(contentmodel: value.to_s)
+        defined?(super) && super || ["GadgetDefinition", "SecurePoll", "MassMessageListContent", "JsonSchema", "wikitext", "javascript", "json", "css", "text", "Scribunto"].include?(value.to_s) && merge(contentmodel: value.to_s)
       end
 
       # Return parse output in a format suitable for mobile devices.
@@ -219,7 +224,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>]
       # @return [self]
       def templatesandboxprefix(*values)
-        merge(templatesandboxprefix: values.join('|'))
+        values.inject(self) { |res, val| res.templatesandboxprefix_single(val) }
+      end
+
+      protected def templatesandboxprefix_single(value)
+        merge(templatesandboxprefix: value.to_s)
       end
 
       # Parse the page using templatesandboxtext in place of the contents of the page named here.
@@ -243,7 +252,7 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "GadgetDefinition", "SecurePoll", "MassMessageListContent", "JsonSchema", "wikitext", "javascript", "json", "css", "text", "Scribunto".
       # @return [self]
       def templatesandboxcontentmodel(value)
-        merge(templatesandboxcontentmodel: value.to_s)
+        defined?(super) && super || ["GadgetDefinition", "SecurePoll", "MassMessageListContent", "JsonSchema", "wikitext", "javascript", "json", "css", "text", "Scribunto"].include?(value.to_s) && merge(templatesandboxcontentmodel: value.to_s)
       end
 
       # Content format of templatesandboxtext.
@@ -251,7 +260,7 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "application/json", "text/x-wiki", "text/javascript", "text/css", "text/plain".
       # @return [self]
       def templatesandboxcontentformat(value)
-        merge(templatesandboxcontentformat: value.to_s)
+        defined?(super) && super || ["application/json", "text/x-wiki", "text/javascript", "text/css", "text/plain"].include?(value.to_s) && merge(templatesandboxcontentformat: value.to_s)
       end
     end
   end

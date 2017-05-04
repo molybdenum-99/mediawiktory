@@ -7,13 +7,12 @@ module MediaWiktory::Wikipedia
     # Usage:
     #
     # ```ruby
-    # api.logout(**options).perform # returns string with raw output
+    # api.logout.perform # returns string with raw output
     # # or
-    # api.logout(**options).response # returns output parsed and wrapped into Mash-like object
-    #
-    # # or, with chainable interface:
-    # api.logout.(value).perform
+    # api.logout.response # returns output parsed and wrapped into Mash-like object
     # ```
+    #
+    # This action has no parameters.
     #
     # See {Base} for generic explanation of working with MediaWiki actions.
     #

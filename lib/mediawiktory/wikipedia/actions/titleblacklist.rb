@@ -6,6 +6,7 @@ module MediaWiktory::Wikipedia
     #
     # Usage:
     #
+
     # ```ruby
     # api.titleblacklist(**options).perform # returns string with raw output
     # # or
@@ -34,7 +35,7 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "create", "edit", "upload", "createtalk", "createpage", "move", "new-account".
       # @return [self]
       def action(value)
-        merge(tbaction: value.to_s)
+        defined?(super) && super || ["create", "edit", "upload", "createtalk", "createpage", "move", "new-account"].include?(value.to_s) && merge(tbaction: value.to_s)
       end
 
       # Don't try to override the titleblacklist.

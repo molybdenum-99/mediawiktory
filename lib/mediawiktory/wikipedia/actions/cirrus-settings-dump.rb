@@ -7,13 +7,12 @@ module MediaWiktory::Wikipedia
     # Usage:
     #
     # ```ruby
-    # api.cirrus-settings-dump(**options).perform # returns string with raw output
+    # api.cirrus-settings-dump.perform # returns string with raw output
     # # or
-    # api.cirrus-settings-dump(**options).response # returns output parsed and wrapped into Mash-like object
-    #
-    # # or, with chainable interface:
-    # api.cirrus-settings-dump.(value).perform
+    # api.cirrus-settings-dump.response # returns output parsed and wrapped into Mash-like object
     # ```
+    #
+    # This action has no parameters.
     #
     # See {Base} for generic explanation of working with MediaWiki actions.
     #

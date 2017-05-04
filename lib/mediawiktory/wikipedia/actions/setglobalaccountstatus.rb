@@ -6,6 +6,7 @@ module MediaWiktory::Wikipedia
     #
     # Usage:
     #
+
     # ```ruby
     # api.setglobalaccountstatus(**options).perform # returns string with raw output
     # # or
@@ -34,7 +35,7 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "lock", "unlock".
       # @return [self]
       def locked(value)
-        merge(locked: value.to_s)
+        defined?(super) && super || ["lock", "unlock"].include?(value.to_s) && merge(locked: value.to_s)
       end
 
       # Change whether this user is not hidden, hidden from lists, or suppressed.
@@ -42,7 +43,7 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "lists", "suppressed".
       # @return [self]
       def hidden(value)
-        merge(hidden: value.to_s)
+        defined?(super) && super || ["lists", "suppressed"].include?(value.to_s) && merge(hidden: value.to_s)
       end
 
       # Reason for changing the user's status.

@@ -6,6 +6,7 @@ module MediaWiktory::Wikipedia
     #
     # Usage:
     #
+
     # ```ruby
     # api.tag(**options).perform # returns string with raw output
     # # or
@@ -26,7 +27,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<Integer>]
       # @return [self]
       def rcid(*values)
-        merge(rcid: values.join('|'))
+        values.inject(self) { |res, val| res.rcid_single(val) }
+      end
+
+      protected def rcid_single(value)
+        merge(rcid: value.to_s)
       end
 
       # One or more revision IDs from which to add or remove the tag.
@@ -34,7 +39,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<Integer>]
       # @return [self]
       def revid(*values)
-        merge(revid: values.join('|'))
+        values.inject(self) { |res, val| res.revid_single(val) }
+      end
+
+      protected def revid_single(value)
+        merge(revid: value.to_s)
       end
 
       # One or more log entry IDs from which to add or remove the tag.
@@ -42,7 +51,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<Integer>]
       # @return [self]
       def logid(*values)
-        merge(logid: values.join('|'))
+        values.inject(self) { |res, val| res.logid_single(val) }
+      end
+
+      protected def logid_single(value)
+        merge(logid: value.to_s)
       end
 
       # Tags to add. Only manually defined tags can be added.
@@ -50,7 +63,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>] Allowed values: "ProveIt edit", "WPCleaner", "huggle", "large plot addition".
       # @return [self]
       def add(*values)
-        merge(add: values.join('|'))
+        values.inject(self) { |res, val| res.add_single(val) }
+      end
+
+      protected def add_single(value)
+        defined?(super) && super || ["ProveIt edit", "WPCleaner", "huggle", "large plot addition"].include?(value.to_s) && merge(add: value.to_s)
       end
 
       # Tags to remove. Only tags that are either manually defined or completely undefined can be removed.
@@ -58,7 +75,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>]
       # @return [self]
       def remove(*values)
-        merge(remove: values.join('|'))
+        values.inject(self) { |res, val| res.remove_single(val) }
+      end
+
+      protected def remove_single(value)
+        merge(remove: value.to_s)
       end
 
       # Reason for the change.
@@ -74,7 +95,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>] Allowed values: "ProveIt edit", "WPCleaner", "huggle", "large plot addition".
       # @return [self]
       def tags(*values)
-        merge(tags: values.join('|'))
+        values.inject(self) { |res, val| res.tags_single(val) }
+      end
+
+      protected def tags_single(value)
+        defined?(super) && super || ["ProveIt edit", "WPCleaner", "huggle", "large plot addition"].include?(value.to_s) && merge(tags: value.to_s)
       end
 
       # A "csrf" token retrieved from action=query&meta=tokens

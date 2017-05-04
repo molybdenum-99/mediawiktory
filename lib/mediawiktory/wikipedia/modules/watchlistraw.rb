@@ -4,20 +4,6 @@ module MediaWiktory::Wikipedia
   module Modules
     # Get all pages on the current user's watchlist. 
     #
-    # Usage:
-    #
-    # ```ruby
-    # api.some_action.watchlistraw(**options).perform # returns string with raw output
-    # # or
-    # api.some_action.watchlistraw(**options).response # returns output parsed and wrapped into Mash-like object
-    #
-    # # or, with chainable interface:
-    # api.some_action.watchlistraw.continue(value).perform
-    # ```
-    #
-    # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and their
-    # submodules.
-    #
     # All submodule's parameters are documented as its public methods, see below.
     #
     module Watchlistraw
@@ -35,7 +21,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>] Allowed values: "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "100", "101", "108", "109", "118", "119", "446", "447", "710", "711", "828", "829", "2300", "2301", "2302", "2303".
       # @return [self]
       def namespace(*values)
-        merge(wrnamespace: values.join('|'))
+        values.inject(self) { |res, val| res.namespace_single(val) }
+      end
+
+      protected def namespace_single(value)
+        defined?(super) && super || ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "100", "101", "108", "109", "118", "119", "446", "447", "710", "711", "828", "829", "2300", "2301", "2302", "2303"].include?(value.to_s) && merge(wrnamespace: value.to_s)
       end
 
       # How many total results to return per request.
@@ -51,7 +41,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>] Allowed values: "changed" (Adds timestamp of when the user was last notified about the edit).
       # @return [self]
       def prop(*values)
-        merge(wrprop: values.join('|'))
+        values.inject(self) { |res, val| res.prop_single(val) }
+      end
+
+      protected def prop_single(value)
+        defined?(super) && super || ["changed"].include?(value.to_s) && merge(wrprop: value.to_s)
       end
 
       # Only list items that meet these criteria.
@@ -59,7 +53,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>] Allowed values: "changed", "!changed".
       # @return [self]
       def show(*values)
-        merge(wrshow: values.join('|'))
+        values.inject(self) { |res, val| res.show_single(val) }
+      end
+
+      protected def show_single(value)
+        defined?(super) && super || ["changed", "!changed"].include?(value.to_s) && merge(wrshow: value.to_s)
       end
 
       # Used along with wrtoken to access a different user's watchlist.
@@ -83,7 +81,7 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "ascending", "descending".
       # @return [self]
       def dir(value)
-        merge(wrdir: value.to_s)
+        defined?(super) && super || ["ascending", "descending"].include?(value.to_s) && merge(wrdir: value.to_s)
       end
 
       # Title (with namespace prefix) to begin enumerating from.

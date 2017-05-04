@@ -4,20 +4,6 @@ module MediaWiktory::Wikipedia
   module Modules
     # Generator module.
     #
-    # Usage:
-    #
-    # ```ruby
-    # api.some_action.allimages(**options).perform # returns string with raw output
-    # # or
-    # api.some_action.allimages(**options).response # returns output parsed and wrapped into Mash-like object
-    #
-    # # or, with chainable interface:
-    # api.some_action.allimages.sort(value).perform
-    # ```
-    #
-    # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and their
-    # submodules.
-    #
     # All submodule's parameters are documented as its public methods, see below.
     #
     module GAllimages
@@ -27,7 +13,7 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "name", "timestamp".
       # @return [self]
       def sort(value)
-        merge(gaisort: value.to_s)
+        defined?(super) && super || ["name", "timestamp"].include?(value.to_s) && merge(gaisort: value.to_s)
       end
 
       # The direction in which to list.
@@ -35,7 +21,7 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "ascending", "descending", "newer", "older".
       # @return [self]
       def dir(value)
-        merge(gaidir: value.to_s)
+        defined?(super) && super || ["ascending", "descending", "newer", "older"].include?(value.to_s) && merge(gaidir: value.to_s)
       end
 
       # The image title to start enumerating from. Can only be used with aisort=name.
@@ -131,7 +117,7 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "all", "bots", "nobots".
       # @return [self]
       def filterbots(value)
-        merge(gaifilterbots: value.to_s)
+        defined?(super) && super || ["all", "bots", "nobots"].include?(value.to_s) && merge(gaifilterbots: value.to_s)
       end
 
       # Disabled due to miser mode.
@@ -139,7 +125,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>]
       # @return [self]
       def mime(*values)
-        merge(gaimime: values.join('|'))
+        values.inject(self) { |res, val| res.mime_single(val) }
+      end
+
+      protected def mime_single(value)
+        merge(gaimime: value.to_s)
       end
 
       # How many images in total to return.

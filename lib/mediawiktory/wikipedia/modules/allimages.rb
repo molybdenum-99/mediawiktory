@@ -4,20 +4,6 @@ module MediaWiktory::Wikipedia
   module Modules
     # Enumerate all images sequentially. 
     #
-    # Usage:
-    #
-    # ```ruby
-    # api.some_action.allimages(**options).perform # returns string with raw output
-    # # or
-    # api.some_action.allimages(**options).response # returns output parsed and wrapped into Mash-like object
-    #
-    # # or, with chainable interface:
-    # api.some_action.allimages.sort(value).perform
-    # ```
-    #
-    # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and their
-    # submodules.
-    #
     # All submodule's parameters are documented as its public methods, see below.
     #
     module Allimages
@@ -27,7 +13,7 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "name", "timestamp".
       # @return [self]
       def sort(value)
-        merge(aisort: value.to_s)
+        defined?(super) && super || ["name", "timestamp"].include?(value.to_s) && merge(aisort: value.to_s)
       end
 
       # The direction in which to list.
@@ -35,7 +21,7 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "ascending", "descending", "newer", "older".
       # @return [self]
       def dir(value)
-        merge(aidir: value.to_s)
+        defined?(super) && super || ["ascending", "descending", "newer", "older"].include?(value.to_s) && merge(aidir: value.to_s)
       end
 
       # The image title to start enumerating from. Can only be used with aisort=name.
@@ -83,7 +69,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>] Allowed values: "timestamp" (Adds timestamp for the uploaded version), "user" (Adds the user who uploaded each file version), "userid" (Add the ID of the user that uploaded each file version), "comment" (Comment on the version), "parsedcomment" (Parse the comment on the version), "canonicaltitle" (Adds the canonical title of the file), "url" (Gives URL to the file and the description page), "size" (Adds the size of the file in bytes and the height, width and page count (if applicable)), "dimensions" (Alias for size), "sha1" (Adds SHA-1 hash for the file), "mime" (Adds MIME type of the file), "mediatype" (Adds the media type of the file), "metadata" (Lists Exif metadata for the version of the file), "commonmetadata" (Lists file format generic metadata for the version of the file), "extmetadata" (Lists formatted metadata combined from multiple sources. Results are HTML formatted), "bitdepth" (Adds the bit depth of the version), "badfile" (Adds whether the file is on the MediaWiki:Bad image list).
       # @return [self]
       def prop(*values)
-        merge(aiprop: values.join('|'))
+        values.inject(self) { |res, val| res.prop_single(val) }
+      end
+
+      protected def prop_single(value)
+        defined?(super) && super || ["timestamp", "user", "userid", "comment", "parsedcomment", "canonicaltitle", "url", "size", "dimensions", "sha1", "mime", "mediatype", "metadata", "commonmetadata", "extmetadata", "bitdepth", "badfile"].include?(value.to_s) && merge(aiprop: value.to_s)
       end
 
       # Search for all image titles that begin with this value. Can only be used with aisort=name.
@@ -139,7 +129,7 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "all", "bots", "nobots".
       # @return [self]
       def filterbots(value)
-        merge(aifilterbots: value.to_s)
+        defined?(super) && super || ["all", "bots", "nobots"].include?(value.to_s) && merge(aifilterbots: value.to_s)
       end
 
       # Disabled due to miser mode.
@@ -147,7 +137,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>]
       # @return [self]
       def mime(*values)
-        merge(aimime: values.join('|'))
+        values.inject(self) { |res, val| res.mime_single(val) }
+      end
+
+      protected def mime_single(value)
+        merge(aimime: value.to_s)
       end
 
       # How many images in total to return.

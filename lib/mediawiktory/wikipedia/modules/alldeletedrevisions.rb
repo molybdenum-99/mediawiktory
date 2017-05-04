@@ -4,20 +4,6 @@ module MediaWiktory::Wikipedia
   module Modules
     # List all deleted revisions by a user or in a namespace. 
     #
-    # Usage:
-    #
-    # ```ruby
-    # api.some_action.alldeletedrevisions(**options).perform # returns string with raw output
-    # # or
-    # api.some_action.alldeletedrevisions(**options).response # returns output parsed and wrapped into Mash-like object
-    #
-    # # or, with chainable interface:
-    # api.some_action.alldeletedrevisions.prop(value).perform
-    # ```
-    #
-    # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and their
-    # submodules.
-    #
     # All submodule's parameters are documented as its public methods, see below.
     #
     module Alldeletedrevisions
@@ -27,7 +13,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>] Allowed values: "ids" (The ID of the revision), "flags" (Revision flags (minor)), "timestamp" (The timestamp of the revision), "user" (User that made the revision), "userid" (User ID of the revision creator), "size" (Length (bytes) of the revision), "sha1" (SHA-1 (base 16) of the revision), "contentmodel" (Content model ID of the revision), "comment" (Comment by the user for the revision), "parsedcomment" (Parsed comment by the user for the revision), "content" (Text of the revision), "tags" (Tags for the revision), "parsetree" (The XML parse tree of revision content (requires content model wikitext)).
       # @return [self]
       def prop(*values)
-        merge(adrprop: values.join('|'))
+        values.inject(self) { |res, val| res.prop_single(val) }
+      end
+
+      protected def prop_single(value)
+        defined?(super) && super || ["ids", "flags", "timestamp", "user", "userid", "size", "sha1", "contentmodel", "comment", "parsedcomment", "content", "tags", "parsetree"].include?(value.to_s) && merge(adrprop: value.to_s)
       end
 
       # Limit how many revisions will be returned.
@@ -95,7 +85,7 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "application/json", "text/x-wiki", "text/javascript", "text/css", "text/plain".
       # @return [self]
       def contentformat(value)
-        merge(adrcontentformat: value.to_s)
+        defined?(super) && super || ["application/json", "text/x-wiki", "text/javascript", "text/css", "text/plain"].include?(value.to_s) && merge(adrcontentformat: value.to_s)
       end
 
       # Only list revisions by this user.
@@ -111,7 +101,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>] Allowed values: "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "100", "101", "108", "109", "118", "119", "446", "447", "710", "711", "828", "829", "2300", "2301", "2302", "2303".
       # @return [self]
       def namespace(*values)
-        merge(adrnamespace: values.join('|'))
+        values.inject(self) { |res, val| res.namespace_single(val) }
+      end
+
+      protected def namespace_single(value)
+        defined?(super) && super || ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "100", "101", "108", "109", "118", "119", "446", "447", "710", "711", "828", "829", "2300", "2301", "2302", "2303"].include?(value.to_s) && merge(adrnamespace: value.to_s)
       end
 
       # The timestamp to start enumerating from.
@@ -135,7 +129,7 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "newer" (List oldest first. Note: adrstart has to be before adrend), "older" (List newest first (default). Note: adrstart has to be later than adrend).
       # @return [self]
       def dir(value)
-        merge(adrdir: value.to_s)
+        defined?(super) && super || ["newer", "older"].include?(value.to_s) && merge(adrdir: value.to_s)
       end
 
       # Start listing at this title.

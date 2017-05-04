@@ -4,20 +4,6 @@ module MediaWiktory::Wikipedia
   module Modules
     # Get all edits by a user. 
     #
-    # Usage:
-    #
-    # ```ruby
-    # api.some_action.usercontribs(**options).perform # returns string with raw output
-    # # or
-    # api.some_action.usercontribs(**options).response # returns output parsed and wrapped into Mash-like object
-    #
-    # # or, with chainable interface:
-    # api.some_action.usercontribs.limit(value).perform
-    # ```
-    #
-    # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and their
-    # submodules.
-    #
     # All submodule's parameters are documented as its public methods, see below.
     #
     module Usercontribs
@@ -59,7 +45,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>]
       # @return [self]
       def user(*values)
-        merge(ucuser: values.join('|'))
+        values.inject(self) { |res, val| res.user_single(val) }
+      end
+
+      protected def user_single(value)
+        merge(ucuser: value.to_s)
       end
 
       # The user IDs to retrieve contributions for. Cannot be used with ucuser or ucuserprefix.
@@ -67,7 +57,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<Integer>]
       # @return [self]
       def userids(*values)
-        merge(ucuserids: values.join('|'))
+        values.inject(self) { |res, val| res.userids_single(val) }
+      end
+
+      protected def userids_single(value)
+        merge(ucuserids: value.to_s)
       end
 
       # Retrieve contributions for all users whose names begin with this value. Cannot be used with ucuser or ucuserids.
@@ -83,7 +77,7 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "newer" (List oldest first. Note: ucstart has to be before ucend), "older" (List newest first (default). Note: ucstart has to be later than ucend).
       # @return [self]
       def dir(value)
-        merge(ucdir: value.to_s)
+        defined?(super) && super || ["newer", "older"].include?(value.to_s) && merge(ucdir: value.to_s)
       end
 
       # Only list contributions in these namespaces.
@@ -91,7 +85,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>] Allowed values: "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "100", "101", "108", "109", "118", "119", "446", "447", "710", "711", "828", "829", "2300", "2301", "2302", "2303".
       # @return [self]
       def namespace(*values)
-        merge(ucnamespace: values.join('|'))
+        values.inject(self) { |res, val| res.namespace_single(val) }
+      end
+
+      protected def namespace_single(value)
+        defined?(super) && super || ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "100", "101", "108", "109", "118", "119", "446", "447", "710", "711", "828", "829", "2300", "2301", "2302", "2303"].include?(value.to_s) && merge(ucnamespace: value.to_s)
       end
 
       # Include additional pieces of information:
@@ -99,7 +97,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>] Allowed values: "ids" (Adds the page ID and revision ID), "title" (Adds the title and namespace ID of the page), "timestamp" (Adds the timestamp of the edit), "comment" (Adds the comment of the edit), "parsedcomment" (Adds the parsed comment of the edit), "size" (Adds the new size of the edit), "sizediff" (Adds the size delta of the edit against its parent), "flags" (Adds flags of the edit), "patrolled" (Tags patrolled edits), "tags" (Lists tags for the edit).
       # @return [self]
       def prop(*values)
-        merge(ucprop: values.join('|'))
+        values.inject(self) { |res, val| res.prop_single(val) }
+      end
+
+      protected def prop_single(value)
+        defined?(super) && super || ["ids", "title", "timestamp", "comment", "parsedcomment", "size", "sizediff", "flags", "patrolled", "tags"].include?(value.to_s) && merge(ucprop: value.to_s)
       end
 
       # Show only items that meet these criteria, e.g. non minor edits only: ucshow=!minor.
@@ -107,7 +109,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>] Allowed values: "minor", "!minor", "patrolled", "!patrolled", "top", "!top", "new", "!new".
       # @return [self]
       def show(*values)
-        merge(ucshow: values.join('|'))
+        values.inject(self) { |res, val| res.show_single(val) }
+      end
+
+      protected def show_single(value)
+        defined?(super) && super || ["minor", "!minor", "patrolled", "!patrolled", "top", "!top", "new", "!new"].include?(value.to_s) && merge(ucshow: value.to_s)
       end
 
       # Only list revisions tagged with this tag.

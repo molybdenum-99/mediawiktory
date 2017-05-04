@@ -4,20 +4,6 @@ module MediaWiktory::Wikipedia
   module Modules
     # Query Content Translation database for translations. 
     #
-    # Usage:
-    #
-    # ```ruby
-    # api.some_action.contenttranslation(**options).perform # returns string with raw output
-    # # or
-    # api.some_action.contenttranslation(**options).response # returns output parsed and wrapped into Mash-like object
-    #
-    # # or, with chainable interface:
-    # api.some_action.contenttranslation.translationid(value).perform
-    # ```
-    #
-    # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and their
-    # submodules.
-    #
     # All submodule's parameters are documented as its public methods, see below.
     #
     module Contenttranslation
@@ -75,7 +61,7 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "draft", "published".
       # @return [self]
       def type(value)
-        merge(type: value.to_s)
+        defined?(super) && super || ["draft", "published"].include?(value.to_s) && merge(type: value.to_s)
       end
     end
   end

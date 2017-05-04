@@ -4,20 +4,6 @@ module MediaWiktory::Wikipedia
   module Modules
     # Find all pages that link to the given language link. 
     #
-    # Usage:
-    #
-    # ```ruby
-    # api.some_action.langbacklinks(**options).perform # returns string with raw output
-    # # or
-    # api.some_action.langbacklinks(**options).response # returns output parsed and wrapped into Mash-like object
-    #
-    # # or, with chainable interface:
-    # api.some_action.langbacklinks.lang(value).perform
-    # ```
-    #
-    # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and their
-    # submodules.
-    #
     # All submodule's parameters are documented as its public methods, see below.
     #
     module Langbacklinks
@@ -59,7 +45,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>] Allowed values: "lllang" (Adds the language code of the language link), "lltitle" (Adds the title of the language link).
       # @return [self]
       def prop(*values)
-        merge(lblprop: values.join('|'))
+        values.inject(self) { |res, val| res.prop_single(val) }
+      end
+
+      protected def prop_single(value)
+        defined?(super) && super || ["lllang", "lltitle"].include?(value.to_s) && merge(lblprop: value.to_s)
       end
 
       # The direction in which to list.
@@ -67,7 +57,7 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "ascending", "descending".
       # @return [self]
       def dir(value)
-        merge(lbldir: value.to_s)
+        defined?(super) && super || ["ascending", "descending"].include?(value.to_s) && merge(lbldir: value.to_s)
       end
     end
   end

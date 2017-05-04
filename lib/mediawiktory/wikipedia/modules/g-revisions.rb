@@ -4,20 +4,6 @@ module MediaWiktory::Wikipedia
   module Modules
     # Generator module.
     #
-    # Usage:
-    #
-    # ```ruby
-    # api.some_action.revisions(**options).perform # returns string with raw output
-    # # or
-    # api.some_action.revisions(**options).response # returns output parsed and wrapped into Mash-like object
-    #
-    # # or, with chainable interface:
-    # api.some_action.revisions.limit(value).perform
-    # ```
-    #
-    # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and their
-    # submodules.
-    #
     # All submodule's parameters are documented as its public methods, see below.
     #
     module GRevisions
@@ -87,7 +73,7 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "application/json", "text/x-wiki", "text/javascript", "text/css", "text/plain".
       # @return [self]
       def contentformat(value)
-        merge(grvcontentformat: value.to_s)
+        defined?(super) && super || ["application/json", "text/x-wiki", "text/javascript", "text/css", "text/plain"].include?(value.to_s) && merge(grvcontentformat: value.to_s)
       end
 
       # From which revision ID to start enumeration.
@@ -127,7 +113,7 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "newer" (List oldest first. Note: rvstart has to be before rvend), "older" (List newest first (default). Note: rvstart has to be later than rvend).
       # @return [self]
       def dir(value)
-        merge(grvdir: value.to_s)
+        defined?(super) && super || ["newer", "older"].include?(value.to_s) && merge(grvdir: value.to_s)
       end
 
       # Only include revisions made by user.
@@ -159,7 +145,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>] Allowed values: "rollback".
       # @return [self]
       def token(*values)
-        merge(grvtoken: values.join('|'))
+        values.inject(self) { |res, val| res.token_single(val) }
+      end
+
+      protected def token_single(value)
+        defined?(super) && super || ["rollback"].include?(value.to_s) && merge(grvtoken: value.to_s)
       end
 
       # When more results are available, use this to continue.

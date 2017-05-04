@@ -4,20 +4,6 @@ module MediaWiktory::Wikipedia
   module Modules
     # Generator module.
     #
-    # Usage:
-    #
-    # ```ruby
-    # api.some_action.categories(**options).perform # returns string with raw output
-    # # or
-    # api.some_action.categories(**options).response # returns output parsed and wrapped into Mash-like object
-    #
-    # # or, with chainable interface:
-    # api.some_action.categories.show(value).perform
-    # ```
-    #
-    # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and their
-    # submodules.
-    #
     # All submodule's parameters are documented as its public methods, see below.
     #
     module GCategories
@@ -27,7 +13,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>] Allowed values: "hidden", "!hidden".
       # @return [self]
       def show(*values)
-        merge(gclshow: values.join('|'))
+        values.inject(self) { |res, val| res.show_single(val) }
+      end
+
+      protected def show_single(value)
+        defined?(super) && super || ["hidden", "!hidden"].include?(value.to_s) && merge(gclshow: value.to_s)
       end
 
       # How many categories to return.
@@ -51,7 +41,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>]
       # @return [self]
       def categories(*values)
-        merge(gclcategories: values.join('|'))
+        values.inject(self) { |res, val| res.categories_single(val) }
+      end
+
+      protected def categories_single(value)
+        merge(gclcategories: value.to_s)
       end
 
       # The direction in which to list.
@@ -59,7 +53,7 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "ascending", "descending".
       # @return [self]
       def dir(value)
-        merge(gcldir: value.to_s)
+        defined?(super) && super || ["ascending", "descending"].include?(value.to_s) && merge(gcldir: value.to_s)
       end
     end
   end

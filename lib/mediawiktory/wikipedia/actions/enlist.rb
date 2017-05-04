@@ -6,6 +6,7 @@ module MediaWiktory::Wikipedia
     #
     # Usage:
     #
+
     # ```ruby
     # api.enlist(**options).perform # returns string with raw output
     # # or
@@ -26,7 +27,7 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "add", "remove".
       # @return [self]
       def subaction(value)
-        merge(subaction: value.to_s)
+        defined?(super) && super || ["add", "remove"].include?(value.to_s) && merge(subaction: value.to_s)
       end
 
       # The role to affect. "instructor" for instructor, "online" for online volunteer and "campus" for campus volunteer.
@@ -34,7 +35,7 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "instructor", "online", "campus", "student".
       # @return [self]
       def role(value)
-        merge(role: value.to_s)
+        defined?(super) && super || ["instructor", "online", "campus", "student"].include?(value.to_s) && merge(role: value.to_s)
       end
 
       # Name of the user to associate or disassociate.

@@ -6,6 +6,7 @@ module MediaWiktory::Wikipedia
     #
     # Usage:
     #
+
     # ```ruby
     # api.stabilize(**options).perform # returns string with raw output
     # # or
@@ -26,7 +27,7 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "autoconfirmed", "none".
       # @return [self]
       def protectlevel(value)
-        merge(protectlevel: value.to_s)
+        defined?(super) && super || ["autoconfirmed", "none"].include?(value.to_s) && merge(protectlevel: value.to_s)
       end
 
       # Review-protection expiry.

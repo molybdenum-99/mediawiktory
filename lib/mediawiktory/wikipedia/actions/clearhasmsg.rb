@@ -7,13 +7,12 @@ module MediaWiktory::Wikipedia
     # Usage:
     #
     # ```ruby
-    # api.clearhasmsg(**options).perform # returns string with raw output
+    # api.clearhasmsg.perform # returns string with raw output
     # # or
-    # api.clearhasmsg(**options).response # returns output parsed and wrapped into Mash-like object
-    #
-    # # or, with chainable interface:
-    # api.clearhasmsg.(value).perform
+    # api.clearhasmsg.response # returns output parsed and wrapped into Mash-like object
     # ```
+    #
+    # This action has no parameters.
     #
     # See {Base} for generic explanation of working with MediaWiki actions.
     #

@@ -4,20 +4,6 @@ module MediaWiktory::Wikipedia
   module Modules
     # Show events that were caught by one of the abuse filters. 
     #
-    # Usage:
-    #
-    # ```ruby
-    # api.some_action.abuselog(**options).perform # returns string with raw output
-    # # or
-    # api.some_action.abuselog(**options).response # returns output parsed and wrapped into Mash-like object
-    #
-    # # or, with chainable interface:
-    # api.some_action.abuselog.start(value).perform
-    # ```
-    #
-    # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and their
-    # submodules.
-    #
     # All submodule's parameters are documented as its public methods, see below.
     #
     module Abuselog
@@ -43,7 +29,7 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "newer" (List oldest first. Note: aflstart has to be before aflend), "older" (List newest first (default). Note: aflstart has to be later than aflend).
       # @return [self]
       def dir(value)
-        merge(afldir: value.to_s)
+        defined?(super) && super || ["newer", "older"].include?(value.to_s) && merge(afldir: value.to_s)
       end
 
       # Show only entries done by a given user or IP address.
@@ -67,7 +53,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>]
       # @return [self]
       def filter(*values)
-        merge(aflfilter: values.join('|'))
+        values.inject(self) { |res, val| res.filter_single(val) }
+      end
+
+      protected def filter_single(value)
+        merge(aflfilter: value.to_s)
       end
 
       # The maximum amount of entries to list.
@@ -83,7 +73,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>] Allowed values: "ids", "filter", "user", "ip", "title", "action", "details", "result", "timestamp", "hidden", "revid".
       # @return [self]
       def prop(*values)
-        merge(aflprop: values.join('|'))
+        values.inject(self) { |res, val| res.prop_single(val) }
+      end
+
+      protected def prop_single(value)
+        defined?(super) && super || ["ids", "filter", "user", "ip", "title", "action", "details", "result", "timestamp", "hidden", "revid"].include?(value.to_s) && merge(aflprop: value.to_s)
       end
     end
   end

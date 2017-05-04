@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+require 'erb'
 
 module MediaWiktory
   class Generator
@@ -17,18 +18,27 @@ module MediaWiktory
       end
 
       def render(template, **vars)
+        puts "Rendering #{template} with #{self}#{vars}"
         vars.each { |name, val| instance_variable_set("@#{name}", val) }
-        ERB.new(File.read(File.expand_path("../templates/#{template}.erb", __FILE__)))
+        path = File.expand_path("../templates/#{template}.erb", __FILE__)
+        ERB.new(File.read(path))
+          .tap { |tpl| tpl.filename = path }
           .result(binding)
       end
 
       def partial(template, context = nil)
+        puts "Rendering #{template} with #{context || self}"
         # Never repeat this at home, dear children.
         if context
           instance_variables.each { |var| context.instance_variable_set(var, instance_variable_get(var)) }
         end
-        ERB.new(File.read(File.expand_path("../templates/#{template}.erb", __FILE__)))
+        path = File.expand_path("../templates/#{template}.erb", __FILE__)
+        ERB.new(File.read(path))
+          .tap { |tpl| tpl.filename = path }
           .result(context ? context.get_binding : binding)
+      rescue => e
+        puts "#{e} while #{template} with #{context || self}"
+        raise
       end
 
       def get_binding

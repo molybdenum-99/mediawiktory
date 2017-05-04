@@ -1,0 +1,12 @@
+# frozen_string_literal: true
+
+module <%= @namespace %>
+  module Modules
+    # <%= description %>
+    #
+    # All submodule's parameters are documented as its public methods, see below.
+    #
+    module <%= class_name %>
+<% params.each { |param| %><%= partial '_param_method', param %><% } %>    end
+  end
+end

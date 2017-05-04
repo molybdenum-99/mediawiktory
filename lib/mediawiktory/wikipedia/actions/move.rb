@@ -6,6 +6,7 @@ module MediaWiktory::Wikipedia
     #
     # Usage:
     #
+
     # ```ruby
     # api.move(**options).perform # returns string with raw output
     # # or
@@ -93,7 +94,7 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "watch", "unwatch", "preferences", "nochange".
       # @return [self]
       def watchlist(value)
-        merge(watchlist: value.to_s)
+        defined?(super) && super || ["watch", "unwatch", "preferences", "nochange"].include?(value.to_s) && merge(watchlist: value.to_s)
       end
 
       # Ignore any warnings.
@@ -108,7 +109,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>] Allowed values: "ProveIt edit", "WPCleaner", "huggle", "large plot addition".
       # @return [self]
       def tags(*values)
-        merge(tags: values.join('|'))
+        values.inject(self) { |res, val| res.tags_single(val) }
+      end
+
+      protected def tags_single(value)
+        defined?(super) && super || ["ProveIt edit", "WPCleaner", "huggle", "large plot addition"].include?(value.to_s) && merge(tags: value.to_s)
       end
 
       # A "csrf" token retrieved from action=query&meta=tokens

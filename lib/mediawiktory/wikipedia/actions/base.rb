@@ -18,7 +18,7 @@ module MediaWiktory::Wikipedia
       #   * `:xmlfm` - {MediaWiktory::Wikipedia::Modules::Xmlfm} Output data in XML format (pretty-print in HTML).
       # @return [self]
       def format(value)
-        defined?(super) && super || merge_module(:format, value, json: Modules::Json, jsonfm: Modules::Jsonfm, none: Modules::None, php: Modules::Php, phpfm: Modules::Phpfm, rawfm: Modules::Rawfm, xml: Modules::Xml, xmlfm: Modules::Xmlfm)
+        [:json, :jsonfm, :none, :php, :phpfm, :rawfm, :xml, :xmlfm].include?(value.to_sym) && merge(format: value.to_s).submodule({json: Modules::Json, jsonfm: Modules::Jsonfm, none: Modules::None, php: Modules::Php, phpfm: Modules::Phpfm, rawfm: Modules::Rawfm, xml: Modules::Xml, xmlfm: Modules::Xmlfm}[value.to_sym])
       end
 
       # Maximum lag can be used when MediaWiki is installed on a database replicated cluster. To save actions causing any more site replication lag, this parameter can make the client wait until the replication lag is less than the specified value. In case of excessive lag, error code maxlag is returned with a message like Waiting for $host: $lag seconds lagged.See Manual: Maxlag parameter for more information.
@@ -50,7 +50,7 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "user", "bot".
       # @return [self]
       def assert(value)
-        merge(assert: value.to_s)
+        defined?(super) && super || ["user", "bot"].include?(value.to_s) && merge(assert: value.to_s)
       end
 
       # Verify the current user is the named user.
@@ -111,7 +111,7 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of " plaintext" ( Wikitext with HTML tags removed and entities replaced), " wikitext" ( Unparsed wikitext), " html" ( HTML), " raw" ( Message key and parameters), " none" ( No text output, only the error codes), " bc" ( Format used prior to MediaWiki 1.29. errorlang and errorsuselocal are ignored).
       # @return [self]
       def errorformat(value)
-        merge(errorformat: value.to_s)
+        defined?(super) && super || [" plaintext", " wikitext", " html", " raw", " none", " bc"].include?(value.to_s) && merge(errorformat: value.to_s)
       end
 
       # Language to use for warnings and errors. action=query&meta=siteinfo with siprop=languages returns a list of language codes, or specify content to use this wiki's content language, or specify uselang to use the same value as the uselang parameter.

@@ -4,20 +4,6 @@ module MediaWiktory::Wikipedia
   module Modules
     # List all pages using a given page property. 
     #
-    # Usage:
-    #
-    # ```ruby
-    # api.some_action.pageswithprop(**options).perform # returns string with raw output
-    # # or
-    # api.some_action.pageswithprop(**options).response # returns output parsed and wrapped into Mash-like object
-    #
-    # # or, with chainable interface:
-    # api.some_action.pageswithprop.propname(value).perform
-    # ```
-    #
-    # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and their
-    # submodules.
-    #
     # All submodule's parameters are documented as its public methods, see below.
     #
     module Pageswithprop
@@ -35,7 +21,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>] Allowed values: "ids" (Adds the page ID), "title" (Adds the title and namespace ID of the page), "value" (Adds the value of the page property).
       # @return [self]
       def prop(*values)
-        merge(pwpprop: values.join('|'))
+        values.inject(self) { |res, val| res.prop_single(val) }
+      end
+
+      protected def prop_single(value)
+        defined?(super) && super || ["ids", "title", "value"].include?(value.to_s) && merge(pwpprop: value.to_s)
       end
 
       # When more results are available, use this to continue.
@@ -59,7 +49,7 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "ascending", "descending".
       # @return [self]
       def dir(value)
-        merge(pwpdir: value.to_s)
+        defined?(super) && super || ["ascending", "descending"].include?(value.to_s) && merge(pwpdir: value.to_s)
       end
     end
   end

@@ -47,7 +47,7 @@ module <%= @namespace %>
     # @option defaults [Symbol] user_agent User-Agent header for underlying client.
 <% main.params.each do |param| %>    # @option defaults [<%= param.ruby_type %>] <%= param.name %> <%= param.description %><%=param.param_docs%> See {Actions::Base#<%=param.name%>}
 <% end %>    #
-    def initialize(url = '<%= source %>', **defaults)
+    def initialize(url = '<%= @source %>', **defaults)
       client_options, @defaults = defaults.partition { |k, _| CLIENT_OPTIONS.include?(k) }.map(&:to_h)
       @client = Client.new(url, **defaults)
     end

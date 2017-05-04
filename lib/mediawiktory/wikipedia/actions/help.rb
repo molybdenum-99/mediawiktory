@@ -6,6 +6,7 @@ module MediaWiktory::Wikipedia
     #
     # Usage:
     #
+
     # ```ruby
     # api.help(**options).perform # returns string with raw output
     # # or
@@ -26,7 +27,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>]
       # @return [self]
       def modules(*values)
-        merge(modules: values.join('|'))
+        values.inject(self) { |res, val| res.modules_single(val) }
+      end
+
+      protected def modules_single(value)
+        merge(modules: value.to_s)
       end
 
       # Include help for submodules of the named module.

@@ -4,20 +4,6 @@ module MediaWiktory::Wikipedia
   module Modules
     # Shows per-page pageview data (the number of daily pageviews for each of the last pvipdays days). The result format is page title (with underscores) => date (Ymd) => count. 
     #
-    # Usage:
-    #
-    # ```ruby
-    # api.some_action.pageviews(**options).perform # returns string with raw output
-    # # or
-    # api.some_action.pageviews(**options).response # returns output parsed and wrapped into Mash-like object
-    #
-    # # or, with chainable interface:
-    # api.some_action.pageviews.metric(value).perform
-    # ```
-    #
-    # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and their
-    # submodules.
-    #
     # All submodule's parameters are documented as its public methods, see below.
     #
     module Pageviews
@@ -27,7 +13,7 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "pageviews" (Plain pageviews).
       # @return [self]
       def metric(value)
-        merge(pvipmetric: value.to_s)
+        defined?(super) && super || ["pageviews"].include?(value.to_s) && merge(pvipmetric: value.to_s)
       end
 
       # The number of days to show.

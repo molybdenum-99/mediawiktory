@@ -6,6 +6,7 @@ module MediaWiktory::Wikipedia
     #
     # Usage:
     #
+
     # ```ruby
     # api.parsoid-batch(**options).perform # returns string with raw output
     # # or

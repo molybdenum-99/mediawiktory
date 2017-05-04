@@ -6,6 +6,7 @@ module MediaWiktory::Wikipedia
     #
     # Usage:
     #
+
     # ```ruby
     # api.zeroconfig(**options).perform # returns string with raw output
     # # or
@@ -26,7 +27,7 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "config" (Get a trimmed-down carrier configuration based on the X-CS header), "message" (Get language-appropriate verbiage based on X-CS header; requires agent param).
       # @return [self]
       def type(value)
-        merge(type: value.to_s)
+        defined?(super) && super || ["config", "message"].include?(value.to_s) && merge(type: value.to_s)
       end
 
       # When setting type to message, include a source agent value as well.

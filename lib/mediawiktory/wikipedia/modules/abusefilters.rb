@@ -4,20 +4,6 @@ module MediaWiktory::Wikipedia
   module Modules
     # Show details of the abuse filters. 
     #
-    # Usage:
-    #
-    # ```ruby
-    # api.some_action.abusefilters(**options).perform # returns string with raw output
-    # # or
-    # api.some_action.abusefilters(**options).response # returns output parsed and wrapped into Mash-like object
-    #
-    # # or, with chainable interface:
-    # api.some_action.abusefilters.startid(value).perform
-    # ```
-    #
-    # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and their
-    # submodules.
-    #
     # All submodule's parameters are documented as its public methods, see below.
     #
     module Abusefilters
@@ -43,7 +29,7 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "newer" (List oldest first. Note: abfstart has to be before abfend), "older" (List newest first (default). Note: abfstart has to be later than abfend).
       # @return [self]
       def dir(value)
-        merge(abfdir: value.to_s)
+        defined?(super) && super || ["newer", "older"].include?(value.to_s) && merge(abfdir: value.to_s)
       end
 
       # Show only filters which meet these criteria.
@@ -51,7 +37,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>] Allowed values: "enabled", "!enabled", "deleted", "!deleted", "private", "!private".
       # @return [self]
       def show(*values)
-        merge(abfshow: values.join('|'))
+        values.inject(self) { |res, val| res.show_single(val) }
+      end
+
+      protected def show_single(value)
+        defined?(super) && super || ["enabled", "!enabled", "deleted", "!deleted", "private", "!private"].include?(value.to_s) && merge(abfshow: value.to_s)
       end
 
       # The maximum number of filters to list.
@@ -67,7 +57,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>] Allowed values: "id", "description", "pattern", "actions", "hits", "comments", "lasteditor", "lastedittime", "status", "private".
       # @return [self]
       def prop(*values)
-        merge(abfprop: values.join('|'))
+        values.inject(self) { |res, val| res.prop_single(val) }
+      end
+
+      protected def prop_single(value)
+        defined?(super) && super || ["id", "description", "pattern", "actions", "hits", "comments", "lasteditor", "lastedittime", "status", "private"].include?(value.to_s) && merge(abfprop: value.to_s)
       end
     end
   end

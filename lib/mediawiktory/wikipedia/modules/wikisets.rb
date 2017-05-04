@@ -4,20 +4,6 @@ module MediaWiktory::Wikipedia
   module Modules
     # Enumerate all wiki sets. 
     #
-    # Usage:
-    #
-    # ```ruby
-    # api.some_action.wikisets(**options).perform # returns string with raw output
-    # # or
-    # api.some_action.wikisets(**options).response # returns output parsed and wrapped into Mash-like object
-    #
-    # # or, with chainable interface:
-    # api.some_action.wikisets.from(value).perform
-    # ```
-    #
-    # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and their
-    # submodules.
-    #
     # All submodule's parameters are documented as its public methods, see below.
     #
     module Wikisets
@@ -35,7 +21,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>] Allowed values: "type" (Opt-in based (includes only specified wikis) or opt-out based (includes all wikis except specified)), "wikisincluded" (The wikis that are included in this wiki set), "wikisnotincluded" (The wikis that are not included in this wiki set).
       # @return [self]
       def prop(*values)
-        merge(wsprop: values.join('|'))
+        values.inject(self) { |res, val| res.prop_single(val) }
+      end
+
+      protected def prop_single(value)
+        defined?(super) && super || ["type", "wikisincluded", "wikisnotincluded"].include?(value.to_s) && merge(wsprop: value.to_s)
       end
 
       # How many wiki sets to return.

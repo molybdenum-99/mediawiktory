@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'liquid'
-
 module MediaWiktory
   class Generator
     class Param < Hashie::Mash
@@ -91,6 +89,12 @@ module MediaWiktory
       end
 
       attr_accessor :api
+
+      def inspect
+        "#<#{self.class} #{name} (#{type})>"
+      end
+
+      alias_method :to_s, :inspect
 
       def prefix=(pre)
         super

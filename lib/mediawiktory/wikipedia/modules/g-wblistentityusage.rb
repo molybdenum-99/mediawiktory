@@ -4,20 +4,6 @@ module MediaWiktory::Wikipedia
   module Modules
     # Generator module.
     #
-    # Usage:
-    #
-    # ```ruby
-    # api.some_action.wblistentityusage(**options).perform # returns string with raw output
-    # # or
-    # api.some_action.wblistentityusage(**options).response # returns output parsed and wrapped into Mash-like object
-    #
-    # # or, with chainable interface:
-    # api.some_action.wblistentityusage.aspect(value).perform
-    # ```
-    #
-    # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and their
-    # submodules.
-    #
     # All submodule's parameters are documented as its public methods, see below.
     #
     module GWblistentityusage
@@ -27,7 +13,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>] Allowed values: "S", "L", "T", "X", "O".
       # @return [self]
       def aspect(*values)
-        merge(gwbeuaspect: values.join('|'))
+        values.inject(self) { |res, val| res.aspect_single(val) }
+      end
+
+      protected def aspect_single(value)
+        defined?(super) && super || ["S", "L", "T", "X", "O"].include?(value.to_s) && merge(gwbeuaspect: value.to_s)
       end
 
       # Entities that have been used.
@@ -35,7 +25,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>]
       # @return [self]
       def entities(*values)
-        merge(gwbeuentities: values.join('|'))
+        values.inject(self) { |res, val| res.entities_single(val) }
+      end
+
+      protected def entities_single(value)
+        merge(gwbeuentities: value.to_s)
       end
 
       # How many entity usages to return.

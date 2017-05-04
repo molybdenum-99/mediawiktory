@@ -4,20 +4,6 @@ module MediaWiktory::Wikipedia
   module Modules
     # Returns all interwiki links from the given pages. 
     #
-    # Usage:
-    #
-    # ```ruby
-    # api.some_action.iwlinks(**options).perform # returns string with raw output
-    # # or
-    # api.some_action.iwlinks(**options).response # returns output parsed and wrapped into Mash-like object
-    #
-    # # or, with chainable interface:
-    # api.some_action.iwlinks.prop(value).perform
-    # ```
-    #
-    # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and their
-    # submodules.
-    #
     # All submodule's parameters are documented as its public methods, see below.
     #
     module Iwlinks
@@ -27,7 +13,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>] Allowed values: "url" (Adds the full URL).
       # @return [self]
       def prop(*values)
-        merge(iwprop: values.join('|'))
+        values.inject(self) { |res, val| res.prop_single(val) }
+      end
+
+      protected def prop_single(value)
+        defined?(super) && super || ["url"].include?(value.to_s) && merge(iwprop: value.to_s)
       end
 
       # Only return interwiki links with this prefix.
@@ -51,7 +41,7 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "ascending", "descending".
       # @return [self]
       def dir(value)
-        merge(iwdir: value.to_s)
+        defined?(super) && super || ["ascending", "descending"].include?(value.to_s) && merge(iwdir: value.to_s)
       end
 
       # How many interwiki links to return.

@@ -7,13 +7,12 @@ module MediaWiktory::Wikipedia
     # Usage:
     #
     # ```ruby
-    # api.webapp-manifest(**options).perform # returns string with raw output
+    # api.webapp-manifest.perform # returns string with raw output
     # # or
-    # api.webapp-manifest(**options).response # returns output parsed and wrapped into Mash-like object
-    #
-    # # or, with chainable interface:
-    # api.webapp-manifest.(value).perform
+    # api.webapp-manifest.response # returns output parsed and wrapped into Mash-like object
     # ```
+    #
+    # This action has no parameters.
     #
     # See {Base} for generic explanation of working with MediaWiki actions.
     #

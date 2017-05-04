@@ -6,6 +6,7 @@ module MediaWiktory::Wikipedia
     #
     # Usage:
     #
+
     # ```ruby
     # api.editmassmessagelist(**options).perform # returns string with raw output
     # # or
@@ -34,7 +35,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>]
       # @return [self]
       def add(*values)
-        merge(add: values.join('|'))
+        values.inject(self) { |res, val| res.add_single(val) }
+      end
+
+      protected def add_single(value)
+        merge(add: value.to_s)
       end
 
       # Titles to remove from the list.
@@ -42,7 +47,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>]
       # @return [self]
       def remove(*values)
-        merge(remove: values.join('|'))
+        values.inject(self) { |res, val| res.remove_single(val) }
+      end
+
+      protected def remove_single(value)
+        merge(remove: value.to_s)
       end
 
       # A "csrf" token retrieved from action=query&meta=tokens

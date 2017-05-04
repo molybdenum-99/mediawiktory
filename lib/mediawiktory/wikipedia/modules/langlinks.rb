@@ -4,20 +4,6 @@ module MediaWiktory::Wikipedia
   module Modules
     # Returns all interlanguage links from the given pages. 
     #
-    # Usage:
-    #
-    # ```ruby
-    # api.some_action.langlinks(**options).perform # returns string with raw output
-    # # or
-    # api.some_action.langlinks(**options).response # returns output parsed and wrapped into Mash-like object
-    #
-    # # or, with chainable interface:
-    # api.some_action.langlinks.prop(value).perform
-    # ```
-    #
-    # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and their
-    # submodules.
-    #
     # All submodule's parameters are documented as its public methods, see below.
     #
     module Langlinks
@@ -27,7 +13,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>] Allowed values: "url" (Adds the full URL), "langname" (Adds the localised language name (best effort). Use llinlanguagecode to control the language), "autonym" (Adds the native language name).
       # @return [self]
       def prop(*values)
-        merge(llprop: values.join('|'))
+        values.inject(self) { |res, val| res.prop_single(val) }
+      end
+
+      protected def prop_single(value)
+        defined?(super) && super || ["url", "langname", "autonym"].include?(value.to_s) && merge(llprop: value.to_s)
       end
 
       # Only return language links with this language code.
@@ -51,7 +41,7 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "ascending", "descending".
       # @return [self]
       def dir(value)
-        merge(lldir: value.to_s)
+        defined?(super) && super || ["ascending", "descending"].include?(value.to_s) && merge(lldir: value.to_s)
       end
 
       # Language code for localised language names.

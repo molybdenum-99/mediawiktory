@@ -6,7 +6,7 @@ require_relative './actions/base'
 module MediaWiktory::Wikipedia
   # The base API class for [Wikipedia](https://en.wikipedia.org/wiki/Main_Page).
   #
-  # _Generated from https://en.wikipedia.org/w/api.php at May 01, 2017 by MediaWiktory 0.1.0._
+  # _Generated from https://en.wikipedia.org/w/api.php at May 04, 2017 by MediaWiktory 0.1.0._
   #
   # It also can be used for access to any other MediaWiki site, but some of actions could be
   # non-existent/outdated.
@@ -38,13 +38,14 @@ module MediaWiktory::Wikipedia
     # @private
     CLIENT_OPTIONS = %i[user_agent ua]
 
-    # @param url [String] Source URL for this API, by default "https://en.wikipedia.org/w/api.php".
+    # @param url [String] Source URL for this API, by default "".
     #   Note that most of MediaWiki installations have source URL at `/w/api.php`, but some are
     #   just `/api.php`, others use `/wiki/api.php` and so on.
     #
     # @param defaults [Hash] Default options for all API queries. Default param values also can be
     #   set by subsequent {Actions::Base} methods, like `api.some_action.json(callback: 'mycallbackname')...`
     # @option defaults [Symbol] user_agent User-Agent header for underlying client.
+    # @option defaults [Symbol] action Which action to perform. Selecting an option includes tweaking methods from corresponding module: See {Actions::Base#action}
     # @option defaults [Symbol] format The format of the output. Selecting an option includes tweaking methods from corresponding module: See {Actions::Base#format}
     # @option defaults [Integer] maxlag Maximum lag can be used when MediaWiki is installed on a database replicated cluster. To save actions causing any more site replication lag, this parameter can make the client wait until the replication lag is less than the specified value. In case of excessive lag, error code maxlag is returned with a message like Waiting for $host: $lag seconds lagged.See Manual: Maxlag parameter for more information. See {Actions::Base#maxlag}
     # @option defaults [Integer] smaxage Set the s-maxage HTTP cache control header to this many seconds. Errors are never cached. See {Actions::Base#smaxage}
@@ -296,16 +297,7 @@ module MediaWiktory::Wikipedia
     #
     # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Centralauthtoken} action.
     #
-    # Action parameters could be passed to this method, like
-    #
-    # ```ruby
-    # api.centralauthtoken(: 'value')
-    # ```
-    # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Centralauthtoken} method calls, like
-    #
-    # ```ruby
-    # api.centralauthtoken.('value')
-    # ```
+
     #
     # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
     # {MediaWiktory::Wikipedia::Actions::Centralauthtoken} class for a list of parameters and usage.
@@ -421,16 +413,7 @@ module MediaWiktory::Wikipedia
     #
     # This method creates an instance of {MediaWiktory::Wikipedia::Actions::CirrusConfigDump} action.
     #
-    # Action parameters could be passed to this method, like
-    #
-    # ```ruby
-    # api.cirrus_config_dump(: 'value')
-    # ```
-    # ...or by subsequent {MediaWiktory::Wikipedia::Actions::CirrusConfigDump} method calls, like
-    #
-    # ```ruby
-    # api.cirrus_config_dump.('value')
-    # ```
+
     #
     # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
     # {MediaWiktory::Wikipedia::Actions::CirrusConfigDump} class for a list of parameters and usage.
@@ -446,16 +429,7 @@ module MediaWiktory::Wikipedia
     #
     # This method creates an instance of {MediaWiktory::Wikipedia::Actions::CirrusMappingDump} action.
     #
-    # Action parameters could be passed to this method, like
-    #
-    # ```ruby
-    # api.cirrus_mapping_dump(: 'value')
-    # ```
-    # ...or by subsequent {MediaWiktory::Wikipedia::Actions::CirrusMappingDump} method calls, like
-    #
-    # ```ruby
-    # api.cirrus_mapping_dump.('value')
-    # ```
+
     #
     # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
     # {MediaWiktory::Wikipedia::Actions::CirrusMappingDump} class for a list of parameters and usage.
@@ -471,16 +445,7 @@ module MediaWiktory::Wikipedia
     #
     # This method creates an instance of {MediaWiktory::Wikipedia::Actions::CirrusSettingsDump} action.
     #
-    # Action parameters could be passed to this method, like
-    #
-    # ```ruby
-    # api.cirrus_settings_dump(: 'value')
-    # ```
-    # ...or by subsequent {MediaWiktory::Wikipedia::Actions::CirrusSettingsDump} method calls, like
-    #
-    # ```ruby
-    # api.cirrus_settings_dump.('value')
-    # ```
+
     #
     # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
     # {MediaWiktory::Wikipedia::Actions::CirrusSettingsDump} class for a list of parameters and usage.
@@ -496,16 +461,7 @@ module MediaWiktory::Wikipedia
     #
     # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Clearhasmsg} action.
     #
-    # Action parameters could be passed to this method, like
-    #
-    # ```ruby
-    # api.clearhasmsg(: 'value')
-    # ```
-    # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Clearhasmsg} method calls, like
-    #
-    # ```ruby
-    # api.clearhasmsg.('value')
-    # ```
+
     #
     # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
     # {MediaWiktory::Wikipedia::Actions::Clearhasmsg} class for a list of parameters and usage.
@@ -1021,16 +977,7 @@ module MediaWiktory::Wikipedia
     #
     # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Fancycaptchareload} action.
     #
-    # Action parameters could be passed to this method, like
-    #
-    # ```ruby
-    # api.fancycaptchareload(: 'value')
-    # ```
-    # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Fancycaptchareload} method calls, like
-    #
-    # ```ruby
-    # api.fancycaptchareload.('value')
-    # ```
+
     #
     # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
     # {MediaWiktory::Wikipedia::Actions::Fancycaptchareload} class for a list of parameters and usage.
@@ -1171,16 +1118,7 @@ module MediaWiktory::Wikipedia
     #
     # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Flagconfig} action.
     #
-    # Action parameters could be passed to this method, like
-    #
-    # ```ruby
-    # api.flagconfig(: 'value')
-    # ```
-    # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Flagconfig} method calls, like
-    #
-    # ```ruby
-    # api.flagconfig.('value')
-    # ```
+
     #
     # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
     # {MediaWiktory::Wikipedia::Actions::Flagconfig} class for a list of parameters and usage.
@@ -1296,16 +1234,7 @@ module MediaWiktory::Wikipedia
     #
     # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Imagerotate} action.
     #
-    # Action parameters could be passed to this method, like
-    #
-    # ```ruby
-    # api.imagerotate(: 'value')
-    # ```
-    # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Imagerotate} method calls, like
-    #
-    # ```ruby
-    # api.imagerotate.('value')
-    # ```
+
     #
     # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
     # {MediaWiktory::Wikipedia::Actions::Imagerotate} class for a list of parameters and usage.
@@ -1496,16 +1425,7 @@ module MediaWiktory::Wikipedia
     #
     # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Logout} action.
     #
-    # Action parameters could be passed to this method, like
-    #
-    # ```ruby
-    # api.logout(: 'value')
-    # ```
-    # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Logout} method calls, like
-    #
-    # ```ruby
-    # api.logout.('value')
-    # ```
+
     #
     # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
     # {MediaWiktory::Wikipedia::Actions::Logout} class for a list of parameters and usage.
@@ -2196,16 +2116,7 @@ module MediaWiktory::Wikipedia
     #
     # This method creates an instance of {MediaWiktory::Wikipedia::Actions::Rsd} action.
     #
-    # Action parameters could be passed to this method, like
-    #
-    # ```ruby
-    # api.rsd(: 'value')
-    # ```
-    # ...or by subsequent {MediaWiktory::Wikipedia::Actions::Rsd} method calls, like
-    #
-    # ```ruby
-    # api.rsd.('value')
-    # ```
+
     #
     # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
     # {MediaWiktory::Wikipedia::Actions::Rsd} class for a list of parameters and usage.
@@ -2896,16 +2807,7 @@ module MediaWiktory::Wikipedia
     #
     # This method creates an instance of {MediaWiktory::Wikipedia::Actions::WebappManifest} action.
     #
-    # Action parameters could be passed to this method, like
-    #
-    # ```ruby
-    # api.webapp_manifest(: 'value')
-    # ```
-    # ...or by subsequent {MediaWiktory::Wikipedia::Actions::WebappManifest} method calls, like
-    #
-    # ```ruby
-    # api.webapp_manifest.('value')
-    # ```
+
     #
     # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
     # {MediaWiktory::Wikipedia::Actions::WebappManifest} class for a list of parameters and usage.

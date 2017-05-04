@@ -4,7 +4,7 @@ require 'addressable'
 require 'faraday'
 require 'faraday_middleware'
 
-module {{ namespace }}
+module <%= @namespace %>
   # Internal low-level client class, used by {Api}.
   #
   # Uses [Faraday](https://github.com/lostisland/faraday) library inside (and will expose it's settings

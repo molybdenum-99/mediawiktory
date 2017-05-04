@@ -6,6 +6,7 @@ module MediaWiktory::Wikipedia
     #
     # Usage:
     #
+
     # ```ruby
     # api.reviewactivity(**options).perform # returns string with raw output
     # # or
@@ -42,7 +43,7 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "0", "1".
       # @return [self]
       def reviewing(value)
-        merge(reviewing: value.to_s)
+        defined?(super) && super || ["0", "1"].include?(value.to_s) && merge(reviewing: value.to_s)
       end
 
       # A "csrf" token retrieved from action=query&meta=tokens

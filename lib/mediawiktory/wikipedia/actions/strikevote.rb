@@ -6,6 +6,7 @@ module MediaWiktory::Wikipedia
     #
     # Usage:
     #
+
     # ```ruby
     # api.strikevote(**options).perform # returns string with raw output
     # # or
@@ -26,7 +27,7 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "strike" (Strike a vote (remove it from the count)), "unstrike" (Unstrike a vote (restore it to the count)).
       # @return [self]
       def option(value)
-        merge(option: value.to_s)
+        defined?(super) && super || ["strike", "unstrike"].include?(value.to_s) && merge(option: value.to_s)
       end
 
       # The reason for striking or unstriking the vote.

@@ -4,20 +4,6 @@ module MediaWiktory::Wikipedia
   module Modules
     # List all files that are duplicates of the given files based on hash values. 
     #
-    # Usage:
-    #
-    # ```ruby
-    # api.some_action.duplicatefiles(**options).perform # returns string with raw output
-    # # or
-    # api.some_action.duplicatefiles(**options).response # returns output parsed and wrapped into Mash-like object
-    #
-    # # or, with chainable interface:
-    # api.some_action.duplicatefiles.limit(value).perform
-    # ```
-    #
-    # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and their
-    # submodules.
-    #
     # All submodule's parameters are documented as its public methods, see below.
     #
     module Duplicatefiles
@@ -43,7 +29,7 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "ascending", "descending".
       # @return [self]
       def dir(value)
-        merge(dfdir: value.to_s)
+        defined?(super) && super || ["ascending", "descending"].include?(value.to_s) && merge(dfdir: value.to_s)
       end
 
       # Look only for files in the local repository.

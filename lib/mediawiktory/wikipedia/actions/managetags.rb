@@ -6,6 +6,7 @@ module MediaWiktory::Wikipedia
     #
     # Usage:
     #
+
     # ```ruby
     # api.managetags(**options).perform # returns string with raw output
     # # or
@@ -26,7 +27,7 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "create" (Create a new change tag for manual use), "delete" (Remove a change tag from the database, including removing the tag from all revisions, recent change entries and log entries on which it is used), "activate" (Activate a change tag, allowing users to apply it manually), "deactivate" (Deactivate a change tag, preventing users from applying it manually).
       # @return [self]
       def operation(value)
-        merge(operation: value.to_s)
+        defined?(super) && super || ["create", "delete", "activate", "deactivate"].include?(value.to_s) && merge(operation: value.to_s)
       end
 
       # Tag to create, delete, activate or deactivate. For tag creation, the tag must not exist. For tag deletion, the tag must exist. For tag activation, the tag must exist and not be in use by an extension. For tag deactivation, the tag must be currently active and manually defined.
@@ -57,7 +58,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>] Allowed values: "ProveIt edit", "WPCleaner", "huggle", "large plot addition".
       # @return [self]
       def tags(*values)
-        merge(tags: values.join('|'))
+        values.inject(self) { |res, val| res.tags_single(val) }
+      end
+
+      protected def tags_single(value)
+        defined?(super) && super || ["ProveIt edit", "WPCleaner", "huggle", "large plot addition"].include?(value.to_s) && merge(tags: value.to_s)
       end
 
       # A "csrf" token retrieved from action=query&meta=tokens

@@ -4,20 +4,6 @@ module MediaWiktory::Wikipedia
   module Modules
     # Enumerate all categories. 
     #
-    # Usage:
-    #
-    # ```ruby
-    # api.some_action.allcategories(**options).perform # returns string with raw output
-    # # or
-    # api.some_action.allcategories(**options).response # returns output parsed and wrapped into Mash-like object
-    #
-    # # or, with chainable interface:
-    # api.some_action.allcategories.from(value).perform
-    # ```
-    #
-    # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and their
-    # submodules.
-    #
     # All submodule's parameters are documented as its public methods, see below.
     #
     module Allcategories
@@ -59,7 +45,7 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "ascending", "descending".
       # @return [self]
       def dir(value)
-        merge(acdir: value.to_s)
+        defined?(super) && super || ["ascending", "descending"].include?(value.to_s) && merge(acdir: value.to_s)
       end
 
       # Only return categories with at least this many members.
@@ -91,7 +77,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>] Allowed values: "size" (Adds number of pages in the category), "hidden" (Tags categories that are hidden with __HIDDENCAT__).
       # @return [self]
       def prop(*values)
-        merge(acprop: values.join('|'))
+        values.inject(self) { |res, val| res.prop_single(val) }
+      end
+
+      protected def prop_single(value)
+        defined?(super) && super || ["size", "hidden"].include?(value.to_s) && merge(acprop: value.to_s)
       end
     end
   end

@@ -6,6 +6,7 @@ module MediaWiktory::Wikipedia
     #
     # Usage:
     #
+
     # ```ruby
     # api.feedwatchlist(**options).perform # returns string with raw output
     # # or
@@ -26,7 +27,7 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "rss", "atom".
       # @return [self]
       def feedformat(value)
-        merge(feedformat: value.to_s)
+        defined?(super) && super || ["rss", "atom"].include?(value.to_s) && merge(feedformat: value.to_s)
       end
 
       # List pages modified within this many hours from now.
@@ -72,7 +73,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>] Allowed values: "minor", "!minor", "bot", "!bot", "anon", "!anon", "patrolled", "!patrolled", "unread", "!unread".
       # @return [self]
       def wlshow(*values)
-        merge(wlshow: values.join('|'))
+        values.inject(self) { |res, val| res.wlshow_single(val) }
+      end
+
+      protected def wlshow_single(value)
+        defined?(super) && super || ["minor", "!minor", "bot", "!bot", "anon", "!anon", "patrolled", "!patrolled", "unread", "!unread"].include?(value.to_s) && merge(wlshow: value.to_s)
       end
 
       # Which types of changes to show:
@@ -80,7 +85,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>] Allowed values: "edit" (Regular page edits), "new" (Page creations), "log" (Log entries), "external" (External changes), "categorize" (Category membership changes).
       # @return [self]
       def wltype(*values)
-        merge(wltype: values.join('|'))
+        values.inject(self) { |res, val| res.wltype_single(val) }
+      end
+
+      protected def wltype_single(value)
+        defined?(super) && super || ["edit", "new", "log", "external", "categorize"].include?(value.to_s) && merge(wltype: value.to_s)
       end
 
       # Don't list changes by this user.

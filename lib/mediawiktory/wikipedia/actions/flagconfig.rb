@@ -7,13 +7,12 @@ module MediaWiktory::Wikipedia
     # Usage:
     #
     # ```ruby
-    # api.flagconfig(**options).perform # returns string with raw output
+    # api.flagconfig.perform # returns string with raw output
     # # or
-    # api.flagconfig(**options).response # returns output parsed and wrapped into Mash-like object
-    #
-    # # or, with chainable interface:
-    # api.flagconfig.(value).perform
+    # api.flagconfig.response # returns output parsed and wrapped into Mash-like object
     # ```
+    #
+    # This action has no parameters.
     #
     # See {Base} for generic explanation of working with MediaWiki actions.
     #

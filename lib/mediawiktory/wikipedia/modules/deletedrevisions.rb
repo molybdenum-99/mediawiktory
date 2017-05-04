@@ -4,20 +4,6 @@ module MediaWiktory::Wikipedia
   module Modules
     # Get deleted revision information. 
     #
-    # Usage:
-    #
-    # ```ruby
-    # api.some_action.deletedrevisions(**options).perform # returns string with raw output
-    # # or
-    # api.some_action.deletedrevisions(**options).response # returns output parsed and wrapped into Mash-like object
-    #
-    # # or, with chainable interface:
-    # api.some_action.deletedrevisions.prop(value).perform
-    # ```
-    #
-    # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and their
-    # submodules.
-    #
     # All submodule's parameters are documented as its public methods, see below.
     #
     module Deletedrevisions
@@ -27,7 +13,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>] Allowed values: "ids" (The ID of the revision), "flags" (Revision flags (minor)), "timestamp" (The timestamp of the revision), "user" (User that made the revision), "userid" (User ID of the revision creator), "size" (Length (bytes) of the revision), "sha1" (SHA-1 (base 16) of the revision), "contentmodel" (Content model ID of the revision), "comment" (Comment by the user for the revision), "parsedcomment" (Parsed comment by the user for the revision), "content" (Text of the revision), "tags" (Tags for the revision), "parsetree" (The XML parse tree of revision content (requires content model wikitext)).
       # @return [self]
       def prop(*values)
-        merge(drvprop: values.join('|'))
+        values.inject(self) { |res, val| res.prop_single(val) }
+      end
+
+      protected def prop_single(value)
+        defined?(super) && super || ["ids", "flags", "timestamp", "user", "userid", "size", "sha1", "contentmodel", "comment", "parsedcomment", "content", "tags", "parsetree"].include?(value.to_s) && merge(drvprop: value.to_s)
       end
 
       # Limit how many revisions will be returned.
@@ -95,7 +85,7 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "application/json", "text/x-wiki", "text/javascript", "text/css", "text/plain".
       # @return [self]
       def contentformat(value)
-        merge(drvcontentformat: value.to_s)
+        defined?(super) && super || ["application/json", "text/x-wiki", "text/javascript", "text/css", "text/plain"].include?(value.to_s) && merge(drvcontentformat: value.to_s)
       end
 
       # The timestamp to start enumerating from. Ignored when processing a list of revision IDs.
@@ -119,7 +109,7 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "newer" (List oldest first. Note: drvstart has to be before drvend), "older" (List newest first (default). Note: drvstart has to be later than drvend).
       # @return [self]
       def dir(value)
-        merge(drvdir: value.to_s)
+        defined?(super) && super || ["newer", "older"].include?(value.to_s) && merge(drvdir: value.to_s)
       end
 
       # Only list revisions tagged with this tag.

@@ -4,20 +4,6 @@ module MediaWiktory::Wikipedia
   module Modules
     # List all file usages, including non-existing. 
     #
-    # Usage:
-    #
-    # ```ruby
-    # api.some_action.allfileusages(**options).perform # returns string with raw output
-    # # or
-    # api.some_action.allfileusages(**options).response # returns output parsed and wrapped into Mash-like object
-    #
-    # # or, with chainable interface:
-    # api.some_action.allfileusages.continue(value).perform
-    # ```
-    #
-    # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and their
-    # submodules.
-    #
     # All submodule's parameters are documented as its public methods, see below.
     #
     module Allfileusages
@@ -66,7 +52,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>] Allowed values: "ids" (Adds the page IDs of the using pages (cannot be used with afunique)), "title" (Adds the title of the file).
       # @return [self]
       def prop(*values)
-        merge(afprop: values.join('|'))
+        values.inject(self) { |res, val| res.prop_single(val) }
+      end
+
+      protected def prop_single(value)
+        defined?(super) && super || ["ids", "title"].include?(value.to_s) && merge(afprop: value.to_s)
       end
 
       # How many total items to return.
@@ -82,7 +72,7 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "ascending", "descending".
       # @return [self]
       def dir(value)
-        merge(afdir: value.to_s)
+        defined?(super) && super || ["ascending", "descending"].include?(value.to_s) && merge(afdir: value.to_s)
       end
     end
   end

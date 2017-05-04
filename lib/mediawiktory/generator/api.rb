@@ -20,7 +20,7 @@ module MediaWiktory
         def from_url(url)
           uri = Addressable::URI.parse(url)
           uri.query_values = {action: :query, meta: :siteinfo, siprop: :general, format: :json}
-          meta = JSON.parse(open(uri).read).dig('query', 'general')
+          meta = JSON.parse(open(uri).read)['query']['general']
           uri.query_values = {action: :help, recursivesubmodules: true}
           html = open(uri).read
           from_html(html, site: OpenStruct.new(name: meta['sitename'], base: meta['base']))
@@ -69,13 +69,6 @@ module MediaWiktory
 
       def main_template
         'api.rb'
-      end
-
-      def to_h
-        super.merge(
-          'actions' => actions.map(&:to_h),
-          'main' => main.to_h
-        )
       end
     end
   end

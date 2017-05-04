@@ -6,6 +6,7 @@ module MediaWiktory::Wikipedia
     #
     # Usage:
     #
+
     # ```ruby
     # api.echomarkread(**options).perform # returns string with raw output
     # # or
@@ -26,7 +27,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>]
       # @return [self]
       def list(*values)
-        merge(list: values.join('|'))
+        values.inject(self) { |res, val| res.list_single(val) }
+      end
+
+      protected def list_single(value)
+        merge(list: value.to_s)
       end
 
       # A list of notification IDs to mark as unread.
@@ -34,7 +39,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>]
       # @return [self]
       def unreadlist(*values)
-        merge(unreadlist: values.join('|'))
+        values.inject(self) { |res, val| res.unreadlist_single(val) }
+      end
+
+      protected def unreadlist_single(value)
+        merge(unreadlist: value.to_s)
       end
 
       # If set, marks all of a user's notifications as read.
@@ -49,7 +58,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>] Allowed values: "alert", "message".
       # @return [self]
       def sections(*values)
-        merge(sections: values.join('|'))
+        values.inject(self) { |res, val| res.sections_single(val) }
+      end
+
+      protected def sections_single(value)
+        defined?(super) && super || ["alert", "message"].include?(value.to_s) && merge(sections: value.to_s)
       end
 
       # A "csrf" token retrieved from action=query&meta=tokens

@@ -7,13 +7,12 @@ module MediaWiktory::Wikipedia
     # Usage:
     #
     # ```ruby
-    # api.centralauthtoken(**options).perform # returns string with raw output
+    # api.centralauthtoken.perform # returns string with raw output
     # # or
-    # api.centralauthtoken(**options).response # returns output parsed and wrapped into Mash-like object
-    #
-    # # or, with chainable interface:
-    # api.centralauthtoken.(value).perform
+    # api.centralauthtoken.response # returns output parsed and wrapped into Mash-like object
     # ```
+    #
+    # This action has no parameters.
     #
     # See {Base} for generic explanation of working with MediaWiki actions.
     #

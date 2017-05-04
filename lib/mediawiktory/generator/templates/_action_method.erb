@@ -3,7 +3,7 @@
     #
     # This method creates an instance of {<%= @namespace %>::Actions::<%= class_name %>} action.
     #
-    # Action parameters could be passed to this method, like
+<% unless params.empty? %>    # Action parameters could be passed to this method, like
     #
     # ```ruby
     # api.<%= method_name %>(<%= params.first.name %>: 'value')
@@ -12,7 +12,7 @@
     #
     # ```ruby
     # api.<%= method_name %>.<%= params.first.name %>('value')
-    # ```
+    # ```<% end %>
     #
     # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
     # {<%= @namespace %>::Actions::<%= class_name %>} class for a list of parameters and usage.

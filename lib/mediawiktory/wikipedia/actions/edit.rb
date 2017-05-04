@@ -6,6 +6,7 @@ module MediaWiktory::Wikipedia
     #
     # Usage:
     #
+
     # ```ruby
     # api.edit(**options).perform # returns string with raw output
     # # or
@@ -74,7 +75,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>] Allowed values: "ProveIt edit", "WPCleaner", "huggle", "large plot addition".
       # @return [self]
       def tags(*values)
-        merge(tags: values.join('|'))
+        values.inject(self) { |res, val| res.tags_single(val) }
+      end
+
+      protected def tags_single(value)
+        defined?(super) && super || ["ProveIt edit", "WPCleaner", "huggle", "large plot addition"].include?(value.to_s) && merge(tags: value.to_s)
       end
 
       # Minor edit.
@@ -154,7 +159,7 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "watch", "unwatch", "preferences", "nochange".
       # @return [self]
       def watchlist(value)
-        merge(watchlist: value.to_s)
+        defined?(super) && super || ["watch", "unwatch", "preferences", "nochange"].include?(value.to_s) && merge(watchlist: value.to_s)
       end
 
       # The MD5 hash of the text parameter, or the prependtext and appendtext parameters concatenated. If set, the edit won't be done unless the hash is correct.
@@ -209,7 +214,7 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "application/json", "text/x-wiki", "text/javascript", "text/css", "text/plain".
       # @return [self]
       def contentformat(value)
-        merge(contentformat: value.to_s)
+        defined?(super) && super || ["application/json", "text/x-wiki", "text/javascript", "text/css", "text/plain"].include?(value.to_s) && merge(contentformat: value.to_s)
       end
 
       # Content model of the new content.
@@ -217,7 +222,7 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "GadgetDefinition", "SecurePoll", "MassMessageListContent", "JsonSchema", "wikitext", "javascript", "json", "css", "text", "Scribunto".
       # @return [self]
       def contentmodel(value)
-        merge(contentmodel: value.to_s)
+        defined?(super) && super || ["GadgetDefinition", "SecurePoll", "MassMessageListContent", "JsonSchema", "wikitext", "javascript", "json", "css", "text", "Scribunto"].include?(value.to_s) && merge(contentmodel: value.to_s)
       end
 
       # A "csrf" token retrieved from action=query&meta=tokens

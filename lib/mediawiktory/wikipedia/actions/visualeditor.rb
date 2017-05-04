@@ -6,6 +6,7 @@ module MediaWiktory::Wikipedia
     #
     # Usage:
     #
+
     # ```ruby
     # api.visualeditor(**options).perform # returns string with raw output
     # # or
@@ -34,7 +35,7 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "json", "jsonfm".
       # @return [self]
       def format(value)
-        merge(format: value.to_s)
+        defined?(super) && super || ["json", "jsonfm"].include?(value.to_s) && merge(format: value.to_s)
       end
 
       # Action to perform.
@@ -42,7 +43,7 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "parse", "metadata", "wikitext", "parsefragment", "getlanglinks".
       # @return [self]
       def paction(value)
-        merge(paction: value.to_s)
+        defined?(super) && super || ["parse", "metadata", "wikitext", "parsefragment", "getlanglinks"].include?(value.to_s) && merge(paction: value.to_s)
       end
 
       # Wikitext to send to Parsoid to convert to HTML (paction=parsefragment).

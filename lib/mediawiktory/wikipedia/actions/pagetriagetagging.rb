@@ -6,6 +6,7 @@ module MediaWiktory::Wikipedia
     #
     # Usage:
     #
+
     # ```ruby
     # api.pagetriagetagging(**options).perform # returns string with raw output
     # # or
@@ -73,7 +74,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>]
       # @return [self]
       def taglist(*values)
-        merge(taglist: values.join('|'))
+        values.inject(self) { |res, val| res.taglist_single(val) }
+      end
+
+      protected def taglist_single(value)
+        merge(taglist: value.to_s)
       end
     end
   end

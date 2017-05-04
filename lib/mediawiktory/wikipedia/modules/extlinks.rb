@@ -4,20 +4,6 @@ module MediaWiktory::Wikipedia
   module Modules
     # Returns all external URLs (not interwikis) from the given pages. 
     #
-    # Usage:
-    #
-    # ```ruby
-    # api.some_action.extlinks(**options).perform # returns string with raw output
-    # # or
-    # api.some_action.extlinks(**options).response # returns output parsed and wrapped into Mash-like object
-    #
-    # # or, with chainable interface:
-    # api.some_action.extlinks.limit(value).perform
-    # ```
-    #
-    # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and their
-    # submodules.
-    #
     # All submodule's parameters are documented as its public methods, see below.
     #
     module Extlinks
@@ -43,7 +29,7 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "bitcoin", "ftp", "ftps", "geo", "git", "gopher", "http", "https", "irc", "ircs", "magnet", "mailto", "mms", "news", "nntp", "redis", "sftp", "sip", "sips", "sms", "ssh", "svn", "tel", "telnet", "urn", "worldwind", "xmpp".
       # @return [self]
       def protocol(value)
-        merge(elprotocol: value.to_s)
+        defined?(super) && super || ["bitcoin", "ftp", "ftps", "geo", "git", "gopher", "http", "https", "irc", "ircs", "magnet", "mailto", "mms", "news", "nntp", "redis", "sftp", "sip", "sips", "sms", "ssh", "svn", "tel", "telnet", "urn", "worldwind", "xmpp"].include?(value.to_s) && merge(elprotocol: value.to_s)
       end
 
       # Search string without protocol. Useful for checking whether a certain page contains a certain external url.

@@ -4,20 +4,6 @@ module MediaWiktory::Wikipedia
   module Modules
     # Returns pages having coordinates that are located in a certain area. 
     #
-    # Usage:
-    #
-    # ```ruby
-    # api.some_action.geosearch(**options).perform # returns string with raw output
-    # # or
-    # api.some_action.geosearch(**options).response # returns output parsed and wrapped into Mash-like object
-    #
-    # # or, with chainable interface:
-    # api.some_action.geosearch.coord(value).perform
-    # ```
-    #
-    # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and their
-    # submodules.
-    #
     # All submodule's parameters are documented as its public methods, see below.
     #
     module Geosearch
@@ -75,7 +61,7 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "earth".
       # @return [self]
       def globe(value)
-        merge(gsglobe: value.to_s)
+        defined?(super) && super || ["earth"].include?(value.to_s) && merge(gsglobe: value.to_s)
       end
 
       # Namespaces to search.
@@ -83,7 +69,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>] Allowed values: "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "100", "101", "108", "109", "118", "119", "446", "447", "710", "711", "828", "829", "2300", "2301", "2302", "2303".
       # @return [self]
       def namespace(*values)
-        merge(gsnamespace: values.join('|'))
+        values.inject(self) { |res, val| res.namespace_single(val) }
+      end
+
+      protected def namespace_single(value)
+        defined?(super) && super || ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "100", "101", "108", "109", "118", "119", "446", "447", "710", "711", "828", "829", "2300", "2301", "2302", "2303"].include?(value.to_s) && merge(gsnamespace: value.to_s)
       end
 
       # Which additional coordinate properties to return.
@@ -91,7 +81,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>] Allowed values: "type", "name", "dim", "country", "region", "globe".
       # @return [self]
       def prop(*values)
-        merge(gsprop: values.join('|'))
+        values.inject(self) { |res, val| res.prop_single(val) }
+      end
+
+      protected def prop_single(value)
+        defined?(super) && super || ["type", "name", "dim", "country", "region", "globe"].include?(value.to_s) && merge(gsprop: value.to_s)
       end
 
       # Whether to return only primary coordinates ("primary"), secondary ("secondary") or both ("all").
@@ -99,7 +93,7 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "primary", "secondary", "all".
       # @return [self]
       def primary(value)
-        merge(gsprimary: value.to_s)
+        defined?(super) && super || ["primary", "secondary", "all"].include?(value.to_s) && merge(gsprimary: value.to_s)
       end
 
       # Whether debug information should be returned.

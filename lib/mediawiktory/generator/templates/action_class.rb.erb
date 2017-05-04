@@ -6,6 +6,13 @@ module <%= @namespace %>
     #
     # Usage:
     #
+<% if params.empty? %>    # ```ruby
+    # api.<%= name %>.perform # returns string with raw output
+    # # or
+    # api.<%= name %>.response # returns output parsed and wrapped into Mash-like object
+    # ```
+    #
+    # This action has no parameters.<% else %>
     # ```ruby
     # api.<%= name %>(**options).perform # returns string with raw output
     # # or
@@ -13,7 +20,7 @@ module <%= @namespace %>
     #
     # # or, with chainable interface:
     # api.<%= name %>.<%= params.first.name %>(value).perform
-    # ```
+    # ```<% end %>
     #
     # See {Base} for generic explanation of working with MediaWiki actions.
     #

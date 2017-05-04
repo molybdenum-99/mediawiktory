@@ -4,20 +4,6 @@ module MediaWiktory::Wikipedia
   module Modules
     # Returns plain-text or limited HTML extracts of the given pages. 
     #
-    # Usage:
-    #
-    # ```ruby
-    # api.some_action.extracts(**options).perform # returns string with raw output
-    # # or
-    # api.some_action.extracts(**options).response # returns output parsed and wrapped into Mash-like object
-    #
-    # # or, with chainable interface:
-    # api.some_action.extracts.chars(value).perform
-    # ```
-    #
-    # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and their
-    # submodules.
-    #
     # All submodule's parameters are documented as its public methods, see below.
     #
     module Extracts
@@ -65,7 +51,7 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "plain" (No formatting), "wiki" (Wikitext-style formatting (== like this ==)), "raw" (This module's internal representation (section titles prefixed with <ASCII 1><ASCII 2><section level><ASCII 2><ASCII 1>)).
       # @return [self]
       def sectionformat(value)
-        merge(exsectionformat: value.to_s)
+        defined?(super) && super || ["plain", "wiki", "raw"].include?(value.to_s) && merge(exsectionformat: value.to_s)
       end
 
       # When more results are available, use this to continue.

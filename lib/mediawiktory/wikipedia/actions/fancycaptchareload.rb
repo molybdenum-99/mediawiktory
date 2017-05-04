@@ -7,13 +7,12 @@ module MediaWiktory::Wikipedia
     # Usage:
     #
     # ```ruby
-    # api.fancycaptchareload(**options).perform # returns string with raw output
+    # api.fancycaptchareload.perform # returns string with raw output
     # # or
-    # api.fancycaptchareload(**options).response # returns output parsed and wrapped into Mash-like object
-    #
-    # # or, with chainable interface:
-    # api.fancycaptchareload.(value).perform
+    # api.fancycaptchareload.response # returns output parsed and wrapped into Mash-like object
     # ```
+    #
+    # This action has no parameters.
     #
     # See {Base} for generic explanation of working with MediaWiki actions.
     #

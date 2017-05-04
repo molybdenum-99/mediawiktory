@@ -4,20 +4,6 @@ module MediaWiktory::Wikipedia
   module Modules
     # Query Content Translation database for numbers of translations by period of time. 
     #
-    # Usage:
-    #
-    # ```ruby
-    # api.some_action.contenttranslationlangtrend(**options).perform # returns string with raw output
-    # # or
-    # api.some_action.contenttranslationlangtrend(**options).response # returns output parsed and wrapped into Mash-like object
-    #
-    # # or, with chainable interface:
-    # api.some_action.contenttranslationlangtrend.source(value).perform
-    # ```
-    #
-    # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and their
-    # submodules.
-    #
     # All submodule's parameters are documented as its public methods, see below.
     #
     module Contenttranslationlangtrend
@@ -43,7 +29,7 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "week", "month".
       # @return [self]
       def interval(value)
-        merge(interval: value.to_s)
+        defined?(super) && super || ["week", "month"].include?(value.to_s) && merge(interval: value.to_s)
       end
     end
   end

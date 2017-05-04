@@ -4,20 +4,6 @@ module MediaWiktory::Wikipedia
   module Modules
     # Enumerate all deleted files sequentially. 
     #
-    # Usage:
-    #
-    # ```ruby
-    # api.some_action.filearchive(**options).perform # returns string with raw output
-    # # or
-    # api.some_action.filearchive(**options).response # returns output parsed and wrapped into Mash-like object
-    #
-    # # or, with chainable interface:
-    # api.some_action.filearchive.from(value).perform
-    # ```
-    #
-    # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and their
-    # submodules.
-    #
     # All submodule's parameters are documented as its public methods, see below.
     #
     module Filearchive
@@ -51,7 +37,7 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "ascending", "descending".
       # @return [self]
       def dir(value)
-        merge(fadir: value.to_s)
+        defined?(super) && super || ["ascending", "descending"].include?(value.to_s) && merge(fadir: value.to_s)
       end
 
       # SHA1 hash of image. Overrides fasha1base36.
@@ -75,7 +61,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>] Allowed values: "sha1" (Adds SHA-1 hash for the image), "timestamp" (Adds timestamp for the uploaded version), "user" (Adds user who uploaded the image version), "size" (Adds the size of the image in bytes and the height, width and page count (if applicable)), "dimensions" (Alias for size), "description" (Adds description of the image version), "parseddescription" (Parse the description of the version), "mime" (Adds MIME of the image), "mediatype" (Adds the media type of the image), "metadata" (Lists Exif metadata for the version of the image), "bitdepth" (Adds the bit depth of the version), "archivename" (Adds the filename of the archive version for non-latest versions).
       # @return [self]
       def prop(*values)
-        merge(faprop: values.join('|'))
+        values.inject(self) { |res, val| res.prop_single(val) }
+      end
+
+      protected def prop_single(value)
+        defined?(super) && super || ["sha1", "timestamp", "user", "size", "dimensions", "description", "parseddescription", "mime", "mediatype", "metadata", "bitdepth", "archivename"].include?(value.to_s) && merge(faprop: value.to_s)
       end
 
       # How many images to return in total.

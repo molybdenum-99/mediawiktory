@@ -6,6 +6,7 @@ module MediaWiktory::Wikipedia
     #
     # Usage:
     #
+
     # ```ruby
     # api.pagetriageaction(**options).perform # returns string with raw output
     # # or
@@ -34,7 +35,7 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "1", "0".
       # @return [self]
       def reviewed(value)
-        merge(reviewed: value.to_s)
+        defined?(super) && super || ["1", "0"].include?(value.to_s) && merge(reviewed: value.to_s)
       end
 
       # A "csrf" token retrieved from action=query&meta=tokens

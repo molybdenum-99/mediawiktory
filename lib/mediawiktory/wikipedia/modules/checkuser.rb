@@ -4,20 +4,6 @@ module MediaWiktory::Wikipedia
   module Modules
     # Check which IP addresses are used by a given username or which usernames are used by a given IP address. 
     #
-    # Usage:
-    #
-    # ```ruby
-    # api.some_action.checkuser(**options).perform # returns string with raw output
-    # # or
-    # api.some_action.checkuser(**options).response # returns output parsed and wrapped into Mash-like object
-    #
-    # # or, with chainable interface:
-    # api.some_action.checkuser.request(value).perform
-    # ```
-    #
-    # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and their
-    # submodules.
-    #
     # All submodule's parameters are documented as its public methods, see below.
     #
     module Checkuser
@@ -27,7 +13,7 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "userips" (Get IP address of target user), "edits" (Get changes from target IP address or range), "ipusers" (Get users from target IP address or range).
       # @return [self]
       def request(value)
-        merge(curequest: value.to_s)
+        defined?(super) && super || ["userips", "edits", "ipusers"].include?(value.to_s) && merge(curequest: value.to_s)
       end
 
       # Username, IP address, or CIDR range to check.

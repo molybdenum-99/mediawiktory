@@ -6,6 +6,7 @@ module MediaWiktory::Wikipedia
     #
     # Usage:
     #
+
     # ```ruby
     # api.expandtemplates(**options).perform # returns string with raw output
     # # or
@@ -50,7 +51,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>] Allowed values: "wikitext" (The expanded wikitext), "categories" (Any categories present in the input that are not represented in the wikitext output), "properties" (Page properties defined by expanded magic words in the wikitext), "volatile" (Whether the output is volatile and should not be reused elsewhere within the page), "ttl" (The maximum time after which caches of the result should be invalidated), "modules" (Any ResourceLoader modules that parser functions have requested be added to the output. Either jsconfigvars or encodedjsconfigvars must be requested jointly with modules), "jsconfigvars" (Gives the JavaScript configuration variables specific to the page), "encodedjsconfigvars" (Gives the JavaScript configuration variables specific to the page as a JSON string), "parsetree" (The XML parse tree of the input).
       # @return [self]
       def prop(*values)
-        merge(prop: values.join('|'))
+        values.inject(self) { |res, val| res.prop_single(val) }
+      end
+
+      protected def prop_single(value)
+        defined?(super) && super || ["wikitext", "categories", "properties", "volatile", "ttl", "modules", "jsconfigvars", "encodedjsconfigvars", "parsetree"].include?(value.to_s) && merge(prop: value.to_s)
       end
 
       # Whether to include HTML comments in the output.
@@ -72,7 +77,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>]
       # @return [self]
       def templatesandboxprefix(*values)
-        merge(templatesandboxprefix: values.join('|'))
+        values.inject(self) { |res, val| res.templatesandboxprefix_single(val) }
+      end
+
+      protected def templatesandboxprefix_single(value)
+        merge(templatesandboxprefix: value.to_s)
       end
 
       # Parse the page using templatesandboxtext in place of the contents of the page named here.
@@ -96,7 +105,7 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "GadgetDefinition", "SecurePoll", "MassMessageListContent", "JsonSchema", "wikitext", "javascript", "json", "css", "text", "Scribunto".
       # @return [self]
       def templatesandboxcontentmodel(value)
-        merge(templatesandboxcontentmodel: value.to_s)
+        defined?(super) && super || ["GadgetDefinition", "SecurePoll", "MassMessageListContent", "JsonSchema", "wikitext", "javascript", "json", "css", "text", "Scribunto"].include?(value.to_s) && merge(templatesandboxcontentmodel: value.to_s)
       end
 
       # Content format of templatesandboxtext.
@@ -104,7 +113,7 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "application/json", "text/x-wiki", "text/javascript", "text/css", "text/plain".
       # @return [self]
       def templatesandboxcontentformat(value)
-        merge(templatesandboxcontentformat: value.to_s)
+        defined?(super) && super || ["application/json", "text/x-wiki", "text/javascript", "text/css", "text/plain"].include?(value.to_s) && merge(templatesandboxcontentformat: value.to_s)
       end
     end
   end

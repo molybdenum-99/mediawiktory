@@ -6,6 +6,7 @@ module MediaWiktory::Wikipedia
     #
     # Usage:
     #
+
     # ```ruby
     # api.tokens(**options).perform # returns string with raw output
     # # or
@@ -26,7 +27,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>] Allowed values: "block", "createaccount", "csrf", "delete", "deleteglobalaccount", "edit", "email", "import", "login", "move", "options", "patrol", "protect", "rollback", "setglobalaccountstatus", "unblock", "userrights", "watch".
       # @return [self]
       def type(*values)
-        merge(type: values.join('|'))
+        values.inject(self) { |res, val| res.type_single(val) }
+      end
+
+      protected def type_single(value)
+        defined?(super) && super || ["block", "createaccount", "csrf", "delete", "deleteglobalaccount", "edit", "email", "import", "login", "move", "options", "patrol", "protect", "rollback", "setglobalaccountstatus", "unblock", "userrights", "watch"].include?(value.to_s) && merge(type: value.to_s)
       end
     end
   end

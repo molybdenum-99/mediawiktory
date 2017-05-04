@@ -7,13 +7,12 @@ module MediaWiktory::Wikipedia
     # Usage:
     #
     # ```ruby
-    # api.imagerotate(**options).perform # returns string with raw output
+    # api.imagerotate.perform # returns string with raw output
     # # or
-    # api.imagerotate(**options).response # returns output parsed and wrapped into Mash-like object
-    #
-    # # or, with chainable interface:
-    # api.imagerotate.(value).perform
+    # api.imagerotate.response # returns output parsed and wrapped into Mash-like object
     # ```
+    #
+    # This action has no parameters.
     #
     # See {Base} for generic explanation of working with MediaWiki actions.
     #

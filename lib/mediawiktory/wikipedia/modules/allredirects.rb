@@ -4,20 +4,6 @@ module MediaWiktory::Wikipedia
   module Modules
     # List all redirects to a namespace. 
     #
-    # Usage:
-    #
-    # ```ruby
-    # api.some_action.allredirects(**options).perform # returns string with raw output
-    # # or
-    # api.some_action.allredirects(**options).response # returns output parsed and wrapped into Mash-like object
-    #
-    # # or, with chainable interface:
-    # api.some_action.allredirects.continue(value).perform
-    # ```
-    #
-    # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and their
-    # submodules.
-    #
     # All submodule's parameters are documented as its public methods, see below.
     #
     module Allredirects
@@ -66,7 +52,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>] Allowed values: "ids" (Adds the page ID of the redirecting page (cannot be used with arunique)), "title" (Adds the title of the redirect), "fragment" (Adds the fragment from the redirect, if any (cannot be used with arunique)), "interwiki" (Adds the interwiki prefix from the redirect, if any (cannot be used with arunique)).
       # @return [self]
       def prop(*values)
-        merge(arprop: values.join('|'))
+        values.inject(self) { |res, val| res.prop_single(val) }
+      end
+
+      protected def prop_single(value)
+        defined?(super) && super || ["ids", "title", "fragment", "interwiki"].include?(value.to_s) && merge(arprop: value.to_s)
       end
 
       # The namespace to enumerate.
@@ -74,7 +64,7 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "-2", "-1", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "100", "101", "108", "109", "118", "119", "446", "447", "710", "711", "828", "829", "2300", "2301", "2302", "2303".
       # @return [self]
       def namespace(value)
-        merge(arnamespace: value.to_s)
+        defined?(super) && super || ["-2", "-1", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "100", "101", "108", "109", "118", "119", "446", "447", "710", "711", "828", "829", "2300", "2301", "2302", "2303"].include?(value.to_s) && merge(arnamespace: value.to_s)
       end
 
       # How many total items to return.
@@ -90,7 +80,7 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "ascending", "descending".
       # @return [self]
       def dir(value)
-        merge(ardir: value.to_s)
+        defined?(super) && super || ["ascending", "descending"].include?(value.to_s) && merge(ardir: value.to_s)
       end
     end
   end

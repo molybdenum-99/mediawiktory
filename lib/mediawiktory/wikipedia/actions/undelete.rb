@@ -6,6 +6,7 @@ module MediaWiktory::Wikipedia
     #
     # Usage:
     #
+
     # ```ruby
     # api.undelete(**options).perform # returns string with raw output
     # # or
@@ -42,7 +43,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>] Allowed values: "ProveIt edit", "WPCleaner", "huggle", "large plot addition".
       # @return [self]
       def tags(*values)
-        merge(tags: values.join('|'))
+        values.inject(self) { |res, val| res.tags_single(val) }
+      end
+
+      protected def tags_single(value)
+        defined?(super) && super || ["ProveIt edit", "WPCleaner", "huggle", "large plot addition"].include?(value.to_s) && merge(tags: value.to_s)
       end
 
       # Timestamps of the revisions to restore. If both timestamps and fileids are empty, all will be restored.
@@ -50,7 +55,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<Time>]
       # @return [self]
       def timestamps(*values)
-        merge(timestamps: values.map(&:iso8601).join('|'))
+        values.inject(self) { |res, val| res.timestamps_single(val) }
+      end
+
+      protected def timestamps_single(value)
+        merge(timestamps: value.iso8601)
       end
 
       # IDs of the file revisions to restore. If both timestamps and fileids are empty, all will be restored.
@@ -58,7 +67,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<Integer>]
       # @return [self]
       def fileids(*values)
-        merge(fileids: values.join('|'))
+        values.inject(self) { |res, val| res.fileids_single(val) }
+      end
+
+      protected def fileids_single(value)
+        merge(fileids: value.to_s)
       end
 
       # Unconditionally add or remove the page from the current user's watchlist, use preferences or do not change watch.
@@ -66,7 +79,7 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "watch", "unwatch", "preferences", "nochange".
       # @return [self]
       def watchlist(value)
-        merge(watchlist: value.to_s)
+        defined?(super) && super || ["watch", "unwatch", "preferences", "nochange"].include?(value.to_s) && merge(watchlist: value.to_s)
       end
 
       # A "csrf" token retrieved from action=query&meta=tokens
