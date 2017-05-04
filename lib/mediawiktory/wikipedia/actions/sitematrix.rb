@@ -30,7 +30,8 @@ module MediaWiktory::Wikipedia
         values.inject(self) { |res, val| res.type_single(val) }
       end
 
-      protected def type_single(value)
+      # @private
+      def type_single(value)
         defined?(super) && super || ["special", "language"].include?(value.to_s) && merge(smtype: value.to_s)
       end
 
@@ -42,7 +43,8 @@ module MediaWiktory::Wikipedia
         values.inject(self) { |res, val| res.state_single(val) }
       end
 
-      protected def state_single(value)
+      # @private
+      def state_single(value)
         defined?(super) && super || ["all", "closed", "private", "fishbowl", "nonglobal"].include?(value.to_s) && merge(smstate: value.to_s)
       end
 
@@ -54,7 +56,8 @@ module MediaWiktory::Wikipedia
         values.inject(self) { |res, val| res.langprop_single(val) }
       end
 
-      protected def langprop_single(value)
+      # @private
+      def langprop_single(value)
         defined?(super) && super || ["code", "name", "site", "localname"].include?(value.to_s) && merge(smlangprop: value.to_s)
       end
 
@@ -66,7 +69,8 @@ module MediaWiktory::Wikipedia
         values.inject(self) { |res, val| res.siteprop_single(val) }
       end
 
-      protected def siteprop_single(value)
+      # @private
+      def siteprop_single(value)
         defined?(super) && super || ["url", "dbname", "code", "sitename"].include?(value.to_s) && merge(smsiteprop: value.to_s)
       end
 

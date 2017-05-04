@@ -30,7 +30,8 @@ module MediaWiktory::Wikipedia
         values.inject(self) { |res, val| res.requests_single(val) }
       end
 
-      protected def requests_single(value)
+      # @private
+      def requests_single(value)
         merge(createrequests: value.to_s)
       end
 

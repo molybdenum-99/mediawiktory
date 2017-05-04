@@ -128,7 +128,8 @@ module MediaWiktory::Wikipedia
         values.inject(self) { |res, val| res.mime_single(val) }
       end
 
-      protected def mime_single(value)
+      # @private
+      def mime_single(value)
         merge(gaimime: value.to_s)
       end
 

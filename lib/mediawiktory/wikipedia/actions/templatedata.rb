@@ -30,7 +30,8 @@ module MediaWiktory::Wikipedia
         values.inject(self) { |res, val| res.titles_single(val) }
       end
 
-      protected def titles_single(value)
+      # @private
+      def titles_single(value)
         merge(titles: value.to_s)
       end
 
@@ -42,7 +43,8 @@ module MediaWiktory::Wikipedia
         values.inject(self) { |res, val| res.pageids_single(val) }
       end
 
-      protected def pageids_single(value)
+      # @private
+      def pageids_single(value)
         merge(pageids: value.to_s)
       end
 
@@ -54,7 +56,8 @@ module MediaWiktory::Wikipedia
         values.inject(self) { |res, val| res.revids_single(val) }
       end
 
-      protected def revids_single(value)
+      # @private
+      def revids_single(value)
         merge(revids: value.to_s)
       end
 

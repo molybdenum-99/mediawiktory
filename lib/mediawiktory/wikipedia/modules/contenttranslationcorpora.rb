@@ -31,7 +31,8 @@ module MediaWiktory::Wikipedia
         values.inject(self) { |res, val| res.types_single(val) }
       end
 
-      protected def types_single(value)
+      # @private
+      def types_single(value)
         defined?(super) && super || ["source", "mt", "user"].include?(value.to_s) && merge(types: value.to_s)
       end
     end

@@ -30,7 +30,8 @@ module MediaWiktory::Wikipedia
         values.inject(self) { |res, val| res.courseids_single(val) }
       end
 
-      protected def courseids_single(value)
+      # @private
+      def courseids_single(value)
         merge(courseids: value.to_s)
       end
 

@@ -63,7 +63,8 @@ module MediaWiktory::Wikipedia
         values.inject(self) { |res, val| res.prop_single(val) }
       end
 
-      protected def prop_single(value)
+      # @private
+      def prop_single(value)
         defined?(super) && super || [:categories, :categoryinfo, :contributors, :coordinates, :deletedrevisions, :duplicatefiles, :extlinks, :extracts, :fileusage, :flagged, :globalusage, :imageinfo, :images, :info, :iwlinks, :langlinks, :links, :linkshere, :mapdata, :pageassessments, :pageimages, :pageprops, :pageterms, :pageviews, :redirects, :references, :revisions, :stashimageinfo, :templates, :transcludedin, :transcodestatus, :videoinfo, :wbentityusage].include?(value.to_sym) && merge(prop: value.to_s).submodule({categories: Modules::Categories, categoryinfo: Modules::Categoryinfo, contributors: Modules::Contributors, coordinates: Modules::Coordinates, deletedrevisions: Modules::Deletedrevisions, duplicatefiles: Modules::Duplicatefiles, extlinks: Modules::Extlinks, extracts: Modules::Extracts, fileusage: Modules::Fileusage, flagged: Modules::Flagged, globalusage: Modules::Globalusage, imageinfo: Modules::Imageinfo, images: Modules::Images, info: Modules::Info, iwlinks: Modules::Iwlinks, langlinks: Modules::Langlinks, links: Modules::Links, linkshere: Modules::Linkshere, mapdata: Modules::Mapdata, pageassessments: Modules::Pageassessments, pageimages: Modules::Pageimages, pageprops: Modules::Pageprops, pageterms: Modules::Pageterms, pageviews: Modules::Pageviews, redirects: Modules::Redirects, references: Modules::References, revisions: Modules::Revisions, stashimageinfo: Modules::Stashimageinfo, templates: Modules::Templates, transcludedin: Modules::Transcludedin, transcodestatus: Modules::Transcodestatus, videoinfo: Modules::Videoinfo, wbentityusage: Modules::Wbentityusage}[value.to_sym])
       end
 
@@ -137,7 +138,8 @@ module MediaWiktory::Wikipedia
         values.inject(self) { |res, val| res.list_single(val) }
       end
 
-      protected def list_single(value)
+      # @private
+      def list_single(value)
         defined?(super) && super || [:abusefilters, :abuselog, :allcategories, :alldeletedrevisions, :allfileusages, :allimages, :alllinks, :allpages, :allredirects, :allrevisions, :alltransclusions, :allusers, :backlinks, :betafeatures, :blocks, :categorymembers, :centralnoticelogs, :checkuser, :checkuserlog, :contenttranslation, :contenttranslationcorpora, :contenttranslationlangtrend, :contenttranslationstats, :contenttranslationsuggestions, :cxpublishedtranslations, :cxtranslatorstats, :deletedrevs, :embeddedin, :exturlusage, :filearchive, :gadgetcategories, :gadgets, :geosearch, :gettingstartedgetpages, :globalallusers, :globalblocks, :globalgroups, :imageusage, :iwbacklinks, :langbacklinks, :logevents, :mmsites, :mostviewed, :mystashedfiles, :oldreviewedpages, :pagepropnames, :pageswithprop, :prefixsearch, :projectpages, :projects, :protectedtitles, :querypage, :random, :recentchanges, :search, :tags, :usercontribs, :users, :watchlist, :watchlistraw, :wblistentityusage, :wikisets].include?(value.to_sym) && merge(list: value.to_s).submodule({abusefilters: Modules::Abusefilters, abuselog: Modules::Abuselog, allcategories: Modules::Allcategories, alldeletedrevisions: Modules::Alldeletedrevisions, allfileusages: Modules::Allfileusages, allimages: Modules::Allimages, alllinks: Modules::Alllinks, allpages: Modules::Allpages, allredirects: Modules::Allredirects, allrevisions: Modules::Allrevisions, alltransclusions: Modules::Alltransclusions, allusers: Modules::Allusers, backlinks: Modules::Backlinks, betafeatures: Modules::Betafeatures, blocks: Modules::Blocks, categorymembers: Modules::Categorymembers, centralnoticelogs: Modules::Centralnoticelogs, checkuser: Modules::Checkuser, checkuserlog: Modules::Checkuserlog, contenttranslation: Modules::Contenttranslation, contenttranslationcorpora: Modules::Contenttranslationcorpora, contenttranslationlangtrend: Modules::Contenttranslationlangtrend, contenttranslationstats: Modules::Contenttranslationstats, contenttranslationsuggestions: Modules::Contenttranslationsuggestions, cxpublishedtranslations: Modules::Cxpublishedtranslations, cxtranslatorstats: Modules::Cxtranslatorstats, deletedrevs: Modules::Deletedrevs, embeddedin: Modules::Embeddedin, exturlusage: Modules::Exturlusage, filearchive: Modules::Filearchive, gadgetcategories: Modules::Gadgetcategories, gadgets: Modules::Gadgets, geosearch: Modules::Geosearch, gettingstartedgetpages: Modules::Gettingstartedgetpages, globalallusers: Modules::Globalallusers, globalblocks: Modules::Globalblocks, globalgroups: Modules::Globalgroups, imageusage: Modules::Imageusage, iwbacklinks: Modules::Iwbacklinks, langbacklinks: Modules::Langbacklinks, logevents: Modules::Logevents, mmsites: Modules::Mmsites, mostviewed: Modules::Mostviewed, mystashedfiles: Modules::Mystashedfiles, oldreviewedpages: Modules::Oldreviewedpages, pagepropnames: Modules::Pagepropnames, pageswithprop: Modules::Pageswithprop, prefixsearch: Modules::Prefixsearch, projectpages: Modules::Projectpages, projects: Modules::Projects, protectedtitles: Modules::Protectedtitles, querypage: Modules::Querypage, random: Modules::Random, recentchanges: Modules::Recentchanges, search: Modules::Search, tags: Modules::Tags, usercontribs: Modules::Usercontribs, users: Modules::Users, watchlist: Modules::Watchlist, watchlistraw: Modules::Watchlistraw, wblistentityusage: Modules::Wblistentityusage, wikisets: Modules::Wikisets}[value.to_sym])
       end
 
@@ -164,7 +166,8 @@ module MediaWiktory::Wikipedia
         values.inject(self) { |res, val| res.meta_single(val) }
       end
 
-      protected def meta_single(value)
+      # @private
+      def meta_single(value)
         defined?(super) && super || [:allmessages, :authmanagerinfo, :babel, :featureusage, :filerepoinfo, :globaluserinfo, :notifications, :oath, :ores, :siteinfo, :siteviews, :tokens, :unreadnotificationpages, :userinfo, :wikibase].include?(value.to_sym) && merge(meta: value.to_s).submodule({allmessages: Modules::Allmessages, authmanagerinfo: Modules::Authmanagerinfo, babel: Modules::Babel, featureusage: Modules::Featureusage, filerepoinfo: Modules::Filerepoinfo, globaluserinfo: Modules::Globaluserinfo, notifications: Modules::Notifications, oath: Modules::Oath, ores: Modules::Ores, siteinfo: Modules::Siteinfo, siteviews: Modules::Siteviews, tokens: Modules::Tokens, unreadnotificationpages: Modules::Unreadnotificationpages, userinfo: Modules::Userinfo, wikibase: Modules::Wikibase}[value.to_sym])
       end
 
@@ -219,7 +222,8 @@ module MediaWiktory::Wikipedia
         values.inject(self) { |res, val| res.titles_single(val) }
       end
 
-      protected def titles_single(value)
+      # @private
+      def titles_single(value)
         merge(titles: value.to_s)
       end
 
@@ -231,7 +235,8 @@ module MediaWiktory::Wikipedia
         values.inject(self) { |res, val| res.pageids_single(val) }
       end
 
-      protected def pageids_single(value)
+      # @private
+      def pageids_single(value)
         merge(pageids: value.to_s)
       end
 
@@ -243,7 +248,8 @@ module MediaWiktory::Wikipedia
         values.inject(self) { |res, val| res.revids_single(val) }
       end
 
-      protected def revids_single(value)
+      # @private
+      def revids_single(value)
         merge(revids: value.to_s)
       end
 

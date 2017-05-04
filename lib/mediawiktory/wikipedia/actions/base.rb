@@ -280,26 +280,6 @@ module MediaWiktory::Wikipedia
 
       private
 
-      # Used by generated code in methods like
-      #
-      # ```ruby
-      # action.format(:json)
-      # ```
-      #
-      # It merges used module name into action params and includes submodule's methods into action
-      # for further tweaking.
-      def merge_module(name, val, modules)
-        mod = modules.fetch(val) or return nil
-        merge(name => val).submodule(mod)
-      end
-
-      def merge_modules(name, vals, modules)
-        mods =
-          vals
-          .map { |val| modules.fetch(val) { fail ArgumentError, "Module #{val} is not defined" } }
-        merge(name => vals.join('|')).tap { |res| mods.each { |mod| res.submodule(mod) } }
-      end
-
       # Not in indepented module to decrease generated files/modules list
       def stringify_hash(hash, recursive: false)
         hash.map { |k, v|

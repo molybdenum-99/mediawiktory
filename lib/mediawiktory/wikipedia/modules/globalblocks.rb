@@ -40,7 +40,8 @@ module MediaWiktory::Wikipedia
         values.inject(self) { |res, val| res.ids_single(val) }
       end
 
-      protected def ids_single(value)
+      # @private
+      def ids_single(value)
         merge(bgids: value.to_s)
       end
 
@@ -52,7 +53,8 @@ module MediaWiktory::Wikipedia
         values.inject(self) { |res, val| res.addresses_single(val) }
       end
 
-      protected def addresses_single(value)
+      # @private
+      def addresses_single(value)
         merge(bgaddresses: value.to_s)
       end
 
@@ -80,7 +82,8 @@ module MediaWiktory::Wikipedia
         values.inject(self) { |res, val| res.prop_single(val) }
       end
 
-      protected def prop_single(value)
+      # @private
+      def prop_single(value)
         defined?(super) && super || ["id", "address", "by", "timestamp", "expiry", "reason", "range"].include?(value.to_s) && merge(bgprop: value.to_s)
       end
     end

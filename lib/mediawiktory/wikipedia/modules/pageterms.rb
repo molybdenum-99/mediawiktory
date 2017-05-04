@@ -24,7 +24,8 @@ module MediaWiktory::Wikipedia
         values.inject(self) { |res, val| res.terms_single(val) }
       end
 
-      protected def terms_single(value)
+      # @private
+      def terms_single(value)
         defined?(super) && super || ["alias", "description", "label"].include?(value.to_s) && merge(wbptterms: value.to_s)
       end
     end

@@ -40,7 +40,8 @@ module MediaWiktory::Wikipedia
         values.inject(self) { |res, val| res.features_single(val) }
       end
 
-      protected def features_single(value)
+      # @private
+      def features_single(value)
         merge(afufeatures: value.to_s)
       end
     end

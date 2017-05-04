@@ -7,5 +7,6 @@
         <% if list? %>values.inject(self) { |res, val| res.<%= method_name %>_single(val) }
       end
 
-      protected def <%= method_name %>_single(value)
+      # @private
+      def <%= method_name %>_single(value)
         <%= partial("_param_impl_#{impl_type}") %>      end<% else %><%= partial("_param_impl_#{impl_type}") %>      end<% end %>

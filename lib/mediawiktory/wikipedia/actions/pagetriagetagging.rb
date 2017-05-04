@@ -77,7 +77,8 @@ module MediaWiktory::Wikipedia
         values.inject(self) { |res, val| res.taglist_single(val) }
       end
 
-      protected def taglist_single(value)
+      # @private
+      def taglist_single(value)
         merge(taglist: value.to_s)
       end
     end

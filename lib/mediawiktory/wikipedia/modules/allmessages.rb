@@ -16,7 +16,8 @@ module MediaWiktory::Wikipedia
         values.inject(self) { |res, val| res.messages_single(val) }
       end
 
-      protected def messages_single(value)
+      # @private
+      def messages_single(value)
         merge(ammessages: value.to_s)
       end
 
@@ -28,7 +29,8 @@ module MediaWiktory::Wikipedia
         values.inject(self) { |res, val| res.prop_single(val) }
       end
 
-      protected def prop_single(value)
+      # @private
+      def prop_single(value)
         defined?(super) && super || ["default"].include?(value.to_s) && merge(amprop: value.to_s)
       end
 
@@ -61,7 +63,8 @@ module MediaWiktory::Wikipedia
         values.inject(self) { |res, val| res.args_single(val) }
       end
 
-      protected def args_single(value)
+      # @private
+      def args_single(value)
         merge(amargs: value.to_s)
       end
 

@@ -37,7 +37,8 @@ module MediaWiktory::Wikipedia
         values.inject(self) { |res, val| res.resetkinds_single(val) }
       end
 
-      protected def resetkinds_single(value)
+      # @private
+      def resetkinds_single(value)
         defined?(super) && super || ["registered", "registered-multiselect", "registered-checkmatrix", "userjs", "special", "unused", "all"].include?(value.to_s) && merge(resetkinds: value.to_s)
       end
 
@@ -49,7 +50,8 @@ module MediaWiktory::Wikipedia
         values.inject(self) { |res, val| res.change_single(val) }
       end
 
-      protected def change_single(value)
+      # @private
+      def change_single(value)
         merge(change: value.to_s)
       end
 

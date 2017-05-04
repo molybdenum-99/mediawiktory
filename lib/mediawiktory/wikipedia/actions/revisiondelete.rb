@@ -46,7 +46,8 @@ module MediaWiktory::Wikipedia
         values.inject(self) { |res, val| res.ids_single(val) }
       end
 
-      protected def ids_single(value)
+      # @private
+      def ids_single(value)
         merge(ids: value.to_s)
       end
 
@@ -58,7 +59,8 @@ module MediaWiktory::Wikipedia
         values.inject(self) { |res, val| res.hide_single(val) }
       end
 
-      protected def hide_single(value)
+      # @private
+      def hide_single(value)
         defined?(super) && super || ["content", "comment", "user"].include?(value.to_s) && merge(hide: value.to_s)
       end
 
@@ -70,7 +72,8 @@ module MediaWiktory::Wikipedia
         values.inject(self) { |res, val| res.show_single(val) }
       end
 
-      protected def show_single(value)
+      # @private
+      def show_single(value)
         defined?(super) && super || ["content", "comment", "user"].include?(value.to_s) && merge(show: value.to_s)
       end
 
@@ -98,7 +101,8 @@ module MediaWiktory::Wikipedia
         values.inject(self) { |res, val| res.tags_single(val) }
       end
 
-      protected def tags_single(value)
+      # @private
+      def tags_single(value)
         defined?(super) && super || ["ProveIt edit", "WPCleaner", "huggle", "large plot addition"].include?(value.to_s) && merge(tags: value.to_s)
       end
 

@@ -16,7 +16,8 @@ module MediaWiktory::Wikipedia
         values.inject(self) { |res, val| res.prop_single(val) }
       end
 
-      protected def prop_single(value)
+      # @private
+      def prop_single(value)
         defined?(super) && super || ["url", "siteid"].include?(value.to_s) && merge(wbprop: value.to_s)
       end
     end

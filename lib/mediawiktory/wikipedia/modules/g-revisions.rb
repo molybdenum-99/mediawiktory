@@ -148,7 +148,8 @@ module MediaWiktory::Wikipedia
         values.inject(self) { |res, val| res.token_single(val) }
       end
 
-      protected def token_single(value)
+      # @private
+      def token_single(value)
         defined?(super) && super || ["rollback"].include?(value.to_s) && merge(grvtoken: value.to_s)
       end
 

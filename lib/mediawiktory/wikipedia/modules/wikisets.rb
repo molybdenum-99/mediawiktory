@@ -24,7 +24,8 @@ module MediaWiktory::Wikipedia
         values.inject(self) { |res, val| res.prop_single(val) }
       end
 
-      protected def prop_single(value)
+      # @private
+      def prop_single(value)
         defined?(super) && super || ["type", "wikisincluded", "wikisnotincluded"].include?(value.to_s) && merge(wsprop: value.to_s)
       end
 

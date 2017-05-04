@@ -46,7 +46,8 @@ module MediaWiktory::Wikipedia
         values.inject(self) { |res, val| res.protections_single(val) }
       end
 
-      protected def protections_single(value)
+      # @private
+      def protections_single(value)
         merge(protections: value.to_s)
       end
 
@@ -58,7 +59,8 @@ module MediaWiktory::Wikipedia
         values.inject(self) { |res, val| res.expiry_single(val) }
       end
 
-      protected def expiry_single(value)
+      # @private
+      def expiry_single(value)
         merge(expiry: value.to_s)
       end
 
@@ -78,7 +80,8 @@ module MediaWiktory::Wikipedia
         values.inject(self) { |res, val| res.tags_single(val) }
       end
 
-      protected def tags_single(value)
+      # @private
+      def tags_single(value)
         defined?(super) && super || ["ProveIt edit", "WPCleaner", "huggle", "large plot addition"].include?(value.to_s) && merge(tags: value.to_s)
       end
 

@@ -32,7 +32,8 @@ module MediaWiktory::Wikipedia
         values.inject(self) { |res, val| res.prop_single(val) }
       end
 
-      protected def prop_single(value)
+      # @private
+      def prop_single(value)
         defined?(super) && super || ["type", "name", "dim", "country", "region", "globe"].include?(value.to_s) && merge(coprop: value.to_s)
       end
 

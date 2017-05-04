@@ -54,7 +54,8 @@ module MediaWiktory::Wikipedia
         values.inject(self) { |res, val| res.prop_single(val) }
       end
 
-      protected def prop_single(value)
+      # @private
+      def prop_single(value)
         defined?(super) && super || ["text", "sections", "normalizedtitle", "lastmodified", "lastmodifiedby", "revision", "protection", "editable", "languagecount", "hasvariants", "displaytitle", "pageprops"].include?(value.to_s) && merge(prop: value.to_s)
       end
 
@@ -66,7 +67,8 @@ module MediaWiktory::Wikipedia
         values.inject(self) { |res, val| res.sectionprop_single(val) }
       end
 
-      protected def sectionprop_single(value)
+      # @private
+      def sectionprop_single(value)
         defined?(super) && super || ["toclevel", "level", "line", "number", "index", "fromtitle", "anchor"].include?(value.to_s) && merge(sectionprop: value.to_s)
       end
 

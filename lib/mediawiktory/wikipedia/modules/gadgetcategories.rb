@@ -16,7 +16,8 @@ module MediaWiktory::Wikipedia
         values.inject(self) { |res, val| res.prop_single(val) }
       end
 
-      protected def prop_single(value)
+      # @private
+      def prop_single(value)
         defined?(super) && super || ["name", "title", "members"].include?(value.to_s) && merge(gcprop: value.to_s)
       end
 
@@ -28,7 +29,8 @@ module MediaWiktory::Wikipedia
         values.inject(self) { |res, val| res.names_single(val) }
       end
 
-      protected def names_single(value)
+      # @private
+      def names_single(value)
         merge(gcnames: value.to_s)
       end
     end

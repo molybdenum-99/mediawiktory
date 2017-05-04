@@ -72,7 +72,8 @@ module MediaWiktory::Wikipedia
         values.inject(self) { |res, val| res.prop_single(val) }
       end
 
-      protected def prop_single(value)
+      # @private
+      def prop_single(value)
         defined?(super) && super || ["timestamp", "user", "userid", "comment", "parsedcomment", "canonicaltitle", "url", "size", "dimensions", "sha1", "mime", "mediatype", "metadata", "commonmetadata", "extmetadata", "bitdepth", "badfile"].include?(value.to_s) && merge(aiprop: value.to_s)
       end
 
@@ -140,7 +141,8 @@ module MediaWiktory::Wikipedia
         values.inject(self) { |res, val| res.mime_single(val) }
       end
 
-      protected def mime_single(value)
+      # @private
+      def mime_single(value)
         merge(aimime: value.to_s)
       end
 

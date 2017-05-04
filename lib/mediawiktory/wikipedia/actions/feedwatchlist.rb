@@ -76,7 +76,8 @@ module MediaWiktory::Wikipedia
         values.inject(self) { |res, val| res.wlshow_single(val) }
       end
 
-      protected def wlshow_single(value)
+      # @private
+      def wlshow_single(value)
         defined?(super) && super || ["minor", "!minor", "bot", "!bot", "anon", "!anon", "patrolled", "!patrolled", "unread", "!unread"].include?(value.to_s) && merge(wlshow: value.to_s)
       end
 
@@ -88,7 +89,8 @@ module MediaWiktory::Wikipedia
         values.inject(self) { |res, val| res.wltype_single(val) }
       end
 
-      protected def wltype_single(value)
+      # @private
+      def wltype_single(value)
         defined?(super) && super || ["edit", "new", "log", "external", "categorize"].include?(value.to_s) && merge(wltype: value.to_s)
       end
 

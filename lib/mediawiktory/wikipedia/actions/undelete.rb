@@ -46,7 +46,8 @@ module MediaWiktory::Wikipedia
         values.inject(self) { |res, val| res.tags_single(val) }
       end
 
-      protected def tags_single(value)
+      # @private
+      def tags_single(value)
         defined?(super) && super || ["ProveIt edit", "WPCleaner", "huggle", "large plot addition"].include?(value.to_s) && merge(tags: value.to_s)
       end
 
@@ -58,7 +59,8 @@ module MediaWiktory::Wikipedia
         values.inject(self) { |res, val| res.timestamps_single(val) }
       end
 
-      protected def timestamps_single(value)
+      # @private
+      def timestamps_single(value)
         merge(timestamps: value.iso8601)
       end
 
@@ -70,7 +72,8 @@ module MediaWiktory::Wikipedia
         values.inject(self) { |res, val| res.fileids_single(val) }
       end
 
-      protected def fileids_single(value)
+      # @private
+      def fileids_single(value)
         merge(fileids: value.to_s)
       end
 

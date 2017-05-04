@@ -16,7 +16,8 @@ module MediaWiktory::Wikipedia
         values.inject(self) { |res, val| res.prop_single(val) }
       end
 
-      protected def prop_single(value)
+      # @private
+      def prop_single(value)
         defined?(super) && super || ["id", "metadata", "desc"].include?(value.to_s) && merge(gaprop: value.to_s)
       end
 
@@ -28,7 +29,8 @@ module MediaWiktory::Wikipedia
         values.inject(self) { |res, val| res.categories_single(val) }
       end
 
-      protected def categories_single(value)
+      # @private
+      def categories_single(value)
         merge(gacategories: value.to_s)
       end
 
@@ -40,7 +42,8 @@ module MediaWiktory::Wikipedia
         values.inject(self) { |res, val| res.ids_single(val) }
       end
 
-      protected def ids_single(value)
+      # @private
+      def ids_single(value)
         merge(gaids: value.to_s)
       end
 

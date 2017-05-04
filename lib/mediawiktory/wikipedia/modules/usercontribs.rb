@@ -48,7 +48,8 @@ module MediaWiktory::Wikipedia
         values.inject(self) { |res, val| res.user_single(val) }
       end
 
-      protected def user_single(value)
+      # @private
+      def user_single(value)
         merge(ucuser: value.to_s)
       end
 
@@ -60,7 +61,8 @@ module MediaWiktory::Wikipedia
         values.inject(self) { |res, val| res.userids_single(val) }
       end
 
-      protected def userids_single(value)
+      # @private
+      def userids_single(value)
         merge(ucuserids: value.to_s)
       end
 
@@ -88,7 +90,8 @@ module MediaWiktory::Wikipedia
         values.inject(self) { |res, val| res.namespace_single(val) }
       end
 
-      protected def namespace_single(value)
+      # @private
+      def namespace_single(value)
         defined?(super) && super || ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "100", "101", "108", "109", "118", "119", "446", "447", "710", "711", "828", "829", "2300", "2301", "2302", "2303"].include?(value.to_s) && merge(ucnamespace: value.to_s)
       end
 
@@ -100,7 +103,8 @@ module MediaWiktory::Wikipedia
         values.inject(self) { |res, val| res.prop_single(val) }
       end
 
-      protected def prop_single(value)
+      # @private
+      def prop_single(value)
         defined?(super) && super || ["ids", "title", "timestamp", "comment", "parsedcomment", "size", "sizediff", "flags", "patrolled", "tags"].include?(value.to_s) && merge(ucprop: value.to_s)
       end
 
@@ -112,7 +116,8 @@ module MediaWiktory::Wikipedia
         values.inject(self) { |res, val| res.show_single(val) }
       end
 
-      protected def show_single(value)
+      # @private
+      def show_single(value)
         defined?(super) && super || ["minor", "!minor", "patrolled", "!patrolled", "top", "!top", "new", "!new"].include?(value.to_s) && merge(ucshow: value.to_s)
       end
 

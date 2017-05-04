@@ -16,7 +16,8 @@ module MediaWiktory::Wikipedia
         values.inject(self) { |res, val| res.filekey_single(val) }
       end
 
-      protected def filekey_single(value)
+      # @private
+      def filekey_single(value)
         merge(siifilekey: value.to_s)
       end
 
@@ -28,7 +29,8 @@ module MediaWiktory::Wikipedia
         values.inject(self) { |res, val| res.sessionkey_single(val) }
       end
 
-      protected def sessionkey_single(value)
+      # @private
+      def sessionkey_single(value)
         merge(siisessionkey: value.to_s)
       end
 
@@ -40,7 +42,8 @@ module MediaWiktory::Wikipedia
         values.inject(self) { |res, val| res.prop_single(val) }
       end
 
-      protected def prop_single(value)
+      # @private
+      def prop_single(value)
         defined?(super) && super || ["timestamp", "canonicaltitle", "url", "size", "dimensions", "sha1", "mime", "thumbmime", "metadata", "commonmetadata", "extmetadata", "bitdepth", "badfile"].include?(value.to_s) && merge(siiprop: value.to_s)
       end
 

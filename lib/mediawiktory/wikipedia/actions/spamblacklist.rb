@@ -30,7 +30,8 @@ module MediaWiktory::Wikipedia
         values.inject(self) { |res, val| res.url_single(val) }
       end
 
-      protected def url_single(value)
+      # @private
+      def url_single(value)
         merge(url: value.to_s)
       end
     end

@@ -39,7 +39,8 @@ module MediaWiktory::Wikipedia
         values.inject(self) { |res, val| res.namespace_single(val) }
       end
 
-      protected def namespace_single(value)
+      # @private
+      def namespace_single(value)
         defined?(super) && super || ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "100", "101", "108", "109", "118", "119", "446", "447", "710", "711", "828", "829", "2300", "2301", "2302", "2303"].include?(value.to_s) && merge(wlnamespace: value.to_s)
       end
 
@@ -83,7 +84,8 @@ module MediaWiktory::Wikipedia
         values.inject(self) { |res, val| res.prop_single(val) }
       end
 
-      protected def prop_single(value)
+      # @private
+      def prop_single(value)
         defined?(super) && super || ["ids", "title", "flags", "user", "userid", "comment", "parsedcomment", "timestamp", "patrol", "sizes", "notificationtimestamp", "loginfo"].include?(value.to_s) && merge(wlprop: value.to_s)
       end
 
@@ -95,7 +97,8 @@ module MediaWiktory::Wikipedia
         values.inject(self) { |res, val| res.show_single(val) }
       end
 
-      protected def show_single(value)
+      # @private
+      def show_single(value)
         defined?(super) && super || ["minor", "!minor", "bot", "!bot", "anon", "!anon", "patrolled", "!patrolled", "unread", "!unread"].include?(value.to_s) && merge(wlshow: value.to_s)
       end
 
@@ -107,7 +110,8 @@ module MediaWiktory::Wikipedia
         values.inject(self) { |res, val| res.type_single(val) }
       end
 
-      protected def type_single(value)
+      # @private
+      def type_single(value)
         defined?(super) && super || ["edit", "new", "log", "external", "categorize"].include?(value.to_s) && merge(wltype: value.to_s)
       end
 

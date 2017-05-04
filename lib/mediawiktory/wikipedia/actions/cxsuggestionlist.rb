@@ -46,7 +46,8 @@ module MediaWiktory::Wikipedia
         values.inject(self) { |res, val| res.titles_single(val) }
       end
 
-      protected def titles_single(value)
+      # @private
+      def titles_single(value)
         merge(titles: value.to_s)
       end
 

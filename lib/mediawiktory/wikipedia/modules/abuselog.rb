@@ -56,7 +56,8 @@ module MediaWiktory::Wikipedia
         values.inject(self) { |res, val| res.filter_single(val) }
       end
 
-      protected def filter_single(value)
+      # @private
+      def filter_single(value)
         merge(aflfilter: value.to_s)
       end
 
@@ -76,7 +77,8 @@ module MediaWiktory::Wikipedia
         values.inject(self) { |res, val| res.prop_single(val) }
       end
 
-      protected def prop_single(value)
+      # @private
+      def prop_single(value)
         defined?(super) && super || ["ids", "filter", "user", "ip", "title", "action", "details", "result", "timestamp", "hidden", "revid"].include?(value.to_s) && merge(aflprop: value.to_s)
       end
     end

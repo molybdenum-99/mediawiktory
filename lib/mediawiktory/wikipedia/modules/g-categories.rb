@@ -16,7 +16,8 @@ module MediaWiktory::Wikipedia
         values.inject(self) { |res, val| res.show_single(val) }
       end
 
-      protected def show_single(value)
+      # @private
+      def show_single(value)
         defined?(super) && super || ["hidden", "!hidden"].include?(value.to_s) && merge(gclshow: value.to_s)
       end
 
@@ -44,7 +45,8 @@ module MediaWiktory::Wikipedia
         values.inject(self) { |res, val| res.categories_single(val) }
       end
 
-      protected def categories_single(value)
+      # @private
+      def categories_single(value)
         merge(gclcategories: value.to_s)
       end
 

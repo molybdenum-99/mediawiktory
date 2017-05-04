@@ -48,7 +48,8 @@ module MediaWiktory::Wikipedia
         values.inject(self) { |res, val| res.group_single(val) }
       end
 
-      protected def group_single(value)
+      # @private
+      def group_single(value)
         defined?(super) && super || ["OTRS-member", "abusefilter-helper", "apihighlimits-requestor", "captcha-exempt", "delete-global", "founder", "global-bot", "global-flow-create", "global-interface-editor", "global-ipblock-exempt", "global-rollbacker", "global-sysop", "new-wikis-importer", "oathauth-tester", "ombudsman", "recursive-export", "staff", "steward", "sysadmin", "wmf-ops-monitoring", "wmf-researcher"].include?(value.to_s) && merge(agugroup: value.to_s)
       end
 
@@ -60,7 +61,8 @@ module MediaWiktory::Wikipedia
         values.inject(self) { |res, val| res.excludegroup_single(val) }
       end
 
-      protected def excludegroup_single(value)
+      # @private
+      def excludegroup_single(value)
         defined?(super) && super || ["OTRS-member", "abusefilter-helper", "apihighlimits-requestor", "captcha-exempt", "delete-global", "founder", "global-bot", "global-flow-create", "global-interface-editor", "global-ipblock-exempt", "global-rollbacker", "global-sysop", "new-wikis-importer", "oathauth-tester", "ombudsman", "recursive-export", "staff", "steward", "sysadmin", "wmf-ops-monitoring", "wmf-researcher"].include?(value.to_s) && merge(aguexcludegroup: value.to_s)
       end
 
@@ -72,7 +74,8 @@ module MediaWiktory::Wikipedia
         values.inject(self) { |res, val| res.prop_single(val) }
       end
 
-      protected def prop_single(value)
+      # @private
+      def prop_single(value)
         defined?(super) && super || ["lockinfo", "groups", "existslocally"].include?(value.to_s) && merge(aguprop: value.to_s)
       end
 

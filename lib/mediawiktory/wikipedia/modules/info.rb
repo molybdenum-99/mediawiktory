@@ -16,7 +16,8 @@ module MediaWiktory::Wikipedia
         values.inject(self) { |res, val| res.prop_single(val) }
       end
 
-      protected def prop_single(value)
+      # @private
+      def prop_single(value)
         defined?(super) && super || ["protection", "talkid", "watched", "watchers", "visitingwatchers", "notificationtimestamp", "subjectid", "url", "readable", "preload", "displaytitle"].include?(value.to_s) && merge(inprop: value.to_s)
       end
 
@@ -28,7 +29,8 @@ module MediaWiktory::Wikipedia
         values.inject(self) { |res, val| res.testactions_single(val) }
       end
 
-      protected def testactions_single(value)
+      # @private
+      def testactions_single(value)
         merge(intestactions: value.to_s)
       end
 
@@ -40,7 +42,8 @@ module MediaWiktory::Wikipedia
         values.inject(self) { |res, val| res.token_single(val) }
       end
 
-      protected def token_single(value)
+      # @private
+      def token_single(value)
         defined?(super) && super || ["edit", "delete", "protect", "move", "block", "unblock", "email", "import", "watch"].include?(value.to_s) && merge(intoken: value.to_s)
       end
 

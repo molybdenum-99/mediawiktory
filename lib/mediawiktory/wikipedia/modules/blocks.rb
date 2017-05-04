@@ -40,7 +40,8 @@ module MediaWiktory::Wikipedia
         values.inject(self) { |res, val| res.ids_single(val) }
       end
 
-      protected def ids_single(value)
+      # @private
+      def ids_single(value)
         merge(bkids: value.to_s)
       end
 
@@ -52,7 +53,8 @@ module MediaWiktory::Wikipedia
         values.inject(self) { |res, val| res.users_single(val) }
       end
 
-      protected def users_single(value)
+      # @private
+      def users_single(value)
         merge(bkusers: value.to_s)
       end
 
@@ -80,7 +82,8 @@ module MediaWiktory::Wikipedia
         values.inject(self) { |res, val| res.prop_single(val) }
       end
 
-      protected def prop_single(value)
+      # @private
+      def prop_single(value)
         defined?(super) && super || ["id", "user", "userid", "by", "byid", "timestamp", "expiry", "reason", "range", "flags"].include?(value.to_s) && merge(bkprop: value.to_s)
       end
 
@@ -92,7 +95,8 @@ module MediaWiktory::Wikipedia
         values.inject(self) { |res, val| res.show_single(val) }
       end
 
-      protected def show_single(value)
+      # @private
+      def show_single(value)
         defined?(super) && super || ["account", "!account", "temp", "!temp", "ip", "!ip", "range", "!range"].include?(value.to_s) && merge(bkshow: value.to_s)
       end
 

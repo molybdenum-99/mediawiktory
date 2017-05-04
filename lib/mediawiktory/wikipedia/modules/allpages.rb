@@ -80,7 +80,8 @@ module MediaWiktory::Wikipedia
         values.inject(self) { |res, val| res.prtype_single(val) }
       end
 
-      protected def prtype_single(value)
+      # @private
+      def prtype_single(value)
         defined?(super) && super || ["edit", "move", "upload"].include?(value.to_s) && merge(apprtype: value.to_s)
       end
 
@@ -92,7 +93,8 @@ module MediaWiktory::Wikipedia
         values.inject(self) { |res, val| res.prlevel_single(val) }
       end
 
-      protected def prlevel_single(value)
+      # @private
+      def prlevel_single(value)
         defined?(super) && super || ["autoconfirmed", "extendedconfirmed", "templateeditor", "sysop"].include?(value.to_s) && merge(apprlevel: value.to_s)
       end
 

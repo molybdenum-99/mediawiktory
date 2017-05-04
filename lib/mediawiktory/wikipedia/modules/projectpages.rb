@@ -23,7 +23,8 @@ module MediaWiktory::Wikipedia
         values.inject(self) { |res, val| res.projects_single(val) }
       end
 
-      protected def projects_single(value)
+      # @private
+      def projects_single(value)
         merge(wppprojects: value.to_s)
       end
 

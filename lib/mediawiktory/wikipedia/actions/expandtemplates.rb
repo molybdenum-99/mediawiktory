@@ -54,7 +54,8 @@ module MediaWiktory::Wikipedia
         values.inject(self) { |res, val| res.prop_single(val) }
       end
 
-      protected def prop_single(value)
+      # @private
+      def prop_single(value)
         defined?(super) && super || ["wikitext", "categories", "properties", "volatile", "ttl", "modules", "jsconfigvars", "encodedjsconfigvars", "parsetree"].include?(value.to_s) && merge(prop: value.to_s)
       end
 
@@ -80,7 +81,8 @@ module MediaWiktory::Wikipedia
         values.inject(self) { |res, val| res.templatesandboxprefix_single(val) }
       end
 
-      protected def templatesandboxprefix_single(value)
+      # @private
+      def templatesandboxprefix_single(value)
         merge(templatesandboxprefix: value.to_s)
       end
 

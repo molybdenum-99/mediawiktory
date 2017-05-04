@@ -43,6 +43,7 @@ api = MediaWiktory::Wikipedia::Api
 
 #pp api.new.query.generator(:categorymembers).title('Category:It is not a category').limit('max').response.raw
 #pp api.new.query.generator(:prefixsearch).search('Ukrainian hr').limit('max').to_url
-p api.new.query.titles('Argentina').prop(:revisions).prop(:timestamp).prop(:info).prop(:url).to_h
-#response = api.new.query.titles('Argentina').prop(:revisions).prop(:timestamp).prop(:info).prop(:url).response
-#pp response.to_h
+a = api.new.query.titles('Argentina').prop(:info, :wbentityusage, :revisions).prop(:timestamp).prop(:url)
+p a.to_h
+response = a.response
+pp response.to_h

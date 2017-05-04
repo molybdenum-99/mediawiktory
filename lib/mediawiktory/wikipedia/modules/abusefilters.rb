@@ -40,7 +40,8 @@ module MediaWiktory::Wikipedia
         values.inject(self) { |res, val| res.show_single(val) }
       end
 
-      protected def show_single(value)
+      # @private
+      def show_single(value)
         defined?(super) && super || ["enabled", "!enabled", "deleted", "!deleted", "private", "!private"].include?(value.to_s) && merge(abfshow: value.to_s)
       end
 
@@ -60,7 +61,8 @@ module MediaWiktory::Wikipedia
         values.inject(self) { |res, val| res.prop_single(val) }
       end
 
-      protected def prop_single(value)
+      # @private
+      def prop_single(value)
         defined?(super) && super || ["id", "description", "pattern", "actions", "hits", "comments", "lasteditor", "lastedittime", "status", "private"].include?(value.to_s) && merge(abfprop: value.to_s)
       end
     end

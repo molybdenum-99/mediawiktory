@@ -46,7 +46,8 @@ module MediaWiktory::Wikipedia
         values.inject(self) { |res, val| res.add_single(val) }
       end
 
-      protected def add_single(value)
+      # @private
+      def add_single(value)
         defined?(super) && super || ["bot", "sysop", "bureaucrat", "reviewer", "steward", "accountcreator", "import", "transwiki", "ipblock-exempt", "oversight", "founder", "rollbacker", "autoreviewer", "researcher", "filemover", "checkuser", "templateeditor", "massmessage-sender", "extendedconfirmed", "extendedmover", "patroller", "abusefilter", "confirmed", "epcoordinator", "eponline", "epcampus", "epinstructor"].include?(value.to_s) && merge(add: value.to_s)
       end
 
@@ -58,7 +59,8 @@ module MediaWiktory::Wikipedia
         values.inject(self) { |res, val| res.expiry_single(val) }
       end
 
-      protected def expiry_single(value)
+      # @private
+      def expiry_single(value)
         merge(expiry: value.to_s)
       end
 
@@ -70,7 +72,8 @@ module MediaWiktory::Wikipedia
         values.inject(self) { |res, val| res.remove_single(val) }
       end
 
-      protected def remove_single(value)
+      # @private
+      def remove_single(value)
         defined?(super) && super || ["bot", "sysop", "bureaucrat", "reviewer", "steward", "accountcreator", "import", "transwiki", "ipblock-exempt", "oversight", "founder", "rollbacker", "autoreviewer", "researcher", "filemover", "checkuser", "templateeditor", "massmessage-sender", "extendedconfirmed", "extendedmover", "patroller", "abusefilter", "confirmed", "epcoordinator", "eponline", "epcampus", "epinstructor"].include?(value.to_s) && merge(remove: value.to_s)
       end
 
@@ -98,7 +101,8 @@ module MediaWiktory::Wikipedia
         values.inject(self) { |res, val| res.tags_single(val) }
       end
 
-      protected def tags_single(value)
+      # @private
+      def tags_single(value)
         defined?(super) && super || ["ProveIt edit", "WPCleaner", "huggle", "large plot addition"].include?(value.to_s) && merge(tags: value.to_s)
       end
     end

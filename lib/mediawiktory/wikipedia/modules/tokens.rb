@@ -16,7 +16,8 @@ module MediaWiktory::Wikipedia
         values.inject(self) { |res, val| res.type_single(val) }
       end
 
-      protected def type_single(value)
+      # @private
+      def type_single(value)
         defined?(super) && super || ["createaccount", "csrf", "deleteglobalaccount", "login", "patrol", "rollback", "setglobalaccountstatus", "userrights", "watch"].include?(value.to_s) && merge(type: value.to_s)
       end
     end

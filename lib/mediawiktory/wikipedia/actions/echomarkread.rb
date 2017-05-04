@@ -30,7 +30,8 @@ module MediaWiktory::Wikipedia
         values.inject(self) { |res, val| res.list_single(val) }
       end
 
-      protected def list_single(value)
+      # @private
+      def list_single(value)
         merge(list: value.to_s)
       end
 
@@ -42,7 +43,8 @@ module MediaWiktory::Wikipedia
         values.inject(self) { |res, val| res.unreadlist_single(val) }
       end
 
-      protected def unreadlist_single(value)
+      # @private
+      def unreadlist_single(value)
         merge(unreadlist: value.to_s)
       end
 
@@ -61,7 +63,8 @@ module MediaWiktory::Wikipedia
         values.inject(self) { |res, val| res.sections_single(val) }
       end
 
-      protected def sections_single(value)
+      # @private
+      def sections_single(value)
         defined?(super) && super || ["alert", "message"].include?(value.to_s) && merge(sections: value.to_s)
       end
 

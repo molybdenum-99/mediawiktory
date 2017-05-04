@@ -30,7 +30,8 @@ module MediaWiktory::Wikipedia
         values.inject(self) { |res, val| res.rcid_single(val) }
       end
 
-      protected def rcid_single(value)
+      # @private
+      def rcid_single(value)
         merge(rcid: value.to_s)
       end
 
@@ -42,7 +43,8 @@ module MediaWiktory::Wikipedia
         values.inject(self) { |res, val| res.revid_single(val) }
       end
 
-      protected def revid_single(value)
+      # @private
+      def revid_single(value)
         merge(revid: value.to_s)
       end
 
@@ -54,7 +56,8 @@ module MediaWiktory::Wikipedia
         values.inject(self) { |res, val| res.logid_single(val) }
       end
 
-      protected def logid_single(value)
+      # @private
+      def logid_single(value)
         merge(logid: value.to_s)
       end
 
@@ -66,7 +69,8 @@ module MediaWiktory::Wikipedia
         values.inject(self) { |res, val| res.add_single(val) }
       end
 
-      protected def add_single(value)
+      # @private
+      def add_single(value)
         defined?(super) && super || ["ProveIt edit", "WPCleaner", "huggle", "large plot addition"].include?(value.to_s) && merge(add: value.to_s)
       end
 
@@ -78,7 +82,8 @@ module MediaWiktory::Wikipedia
         values.inject(self) { |res, val| res.remove_single(val) }
       end
 
-      protected def remove_single(value)
+      # @private
+      def remove_single(value)
         merge(remove: value.to_s)
       end
 
@@ -98,7 +103,8 @@ module MediaWiktory::Wikipedia
         values.inject(self) { |res, val| res.tags_single(val) }
       end
 
-      protected def tags_single(value)
+      # @private
+      def tags_single(value)
         defined?(super) && super || ["ProveIt edit", "WPCleaner", "huggle", "large plot addition"].include?(value.to_s) && merge(tags: value.to_s)
       end
 

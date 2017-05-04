@@ -16,7 +16,8 @@ module MediaWiktory::Wikipedia
         values.inject(self) { |res, val| res.prop_single(val) }
       end
 
-      protected def prop_single(value)
+      # @private
+      def prop_single(value)
         defined?(super) && super || ["ids", "flags", "timestamp", "user", "userid", "size", "sha1", "contentmodel", "comment", "parsedcomment", "content", "tags", "parsetree", "flagged"].include?(value.to_s) && merge(rvprop: value.to_s)
       end
 
@@ -160,7 +161,8 @@ module MediaWiktory::Wikipedia
         values.inject(self) { |res, val| res.token_single(val) }
       end
 
-      protected def token_single(value)
+      # @private
+      def token_single(value)
         defined?(super) && super || ["rollback"].include?(value.to_s) && merge(rvtoken: value.to_s)
       end
 

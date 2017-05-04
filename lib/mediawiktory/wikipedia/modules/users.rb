@@ -16,7 +16,8 @@ module MediaWiktory::Wikipedia
         values.inject(self) { |res, val| res.prop_single(val) }
       end
 
-      protected def prop_single(value)
+      # @private
+      def prop_single(value)
         defined?(super) && super || ["blockinfo", "groups", "groupmemberships", "implicitgroups", "rights", "editcount", "registration", "emailable", "gender", "centralids", "cancreate"].include?(value.to_s) && merge(usprop: value.to_s)
       end
 
@@ -36,7 +37,8 @@ module MediaWiktory::Wikipedia
         values.inject(self) { |res, val| res.users_single(val) }
       end
 
-      protected def users_single(value)
+      # @private
+      def users_single(value)
         merge(ususers: value.to_s)
       end
 
@@ -48,7 +50,8 @@ module MediaWiktory::Wikipedia
         values.inject(self) { |res, val| res.userids_single(val) }
       end
 
-      protected def userids_single(value)
+      # @private
+      def userids_single(value)
         merge(ususerids: value.to_s)
       end
 
@@ -60,7 +63,8 @@ module MediaWiktory::Wikipedia
         values.inject(self) { |res, val| res.token_single(val) }
       end
 
-      protected def token_single(value)
+      # @private
+      def token_single(value)
         defined?(super) && super || ["userrights"].include?(value.to_s) && merge(ustoken: value.to_s)
       end
     end

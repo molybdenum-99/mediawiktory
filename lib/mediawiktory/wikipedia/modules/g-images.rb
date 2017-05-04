@@ -32,7 +32,8 @@ module MediaWiktory::Wikipedia
         values.inject(self) { |res, val| res.images_single(val) }
       end
 
-      protected def images_single(value)
+      # @private
+      def images_single(value)
         merge(gimimages: value.to_s)
       end
 

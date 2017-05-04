@@ -30,7 +30,8 @@ module MediaWiktory::Wikipedia
         values.inject(self) { |res, val| res.studentusernames_single(val) }
       end
 
-      protected def studentusernames_single(value)
+      # @private
+      def studentusernames_single(value)
         merge(studentusernames: value.to_s)
       end
 
