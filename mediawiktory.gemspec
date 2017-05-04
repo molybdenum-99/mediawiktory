@@ -10,7 +10,7 @@ Gem::Specification.new do |s|
   s.summary = 'Full-featured MediaWiki client with Arel-like queries'
   s.licenses = ['MIT']
 
-  #s.required_ruby_version = '>= 2.3.0' # &. is cool!
+  s.required_ruby_version = '>= 2.1.0'
 
   s.files = `git ls-files`.split($RS).reject do |file|
     file =~ /^(?:
