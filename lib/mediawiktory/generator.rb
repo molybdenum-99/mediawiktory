@@ -22,7 +22,7 @@ end
 # @private
 class NilClass
   class BlackHole
-    def method_missing(meth, *)
+    def method_missing(*) # rubocop:disable Style/MethodMissing
       nil
     end
   end

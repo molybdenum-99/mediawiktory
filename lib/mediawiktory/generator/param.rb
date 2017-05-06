@@ -106,7 +106,7 @@ module MediaWiktory
       end
 
       def method_name
-        name.gsub('-', '_')
+        name.tr('-', '_')
       end
 
       def modules_hash
@@ -195,7 +195,6 @@ module MediaWiktory
         when 'list of modules'
           ' All selected options include tweaking methods from corresponding modules:'
         when 'list of enums'
-          #return if !vals || vals.empty?
           " Allowed values: #{render_vals}."
         end
       end

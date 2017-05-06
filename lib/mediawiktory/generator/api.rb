@@ -39,7 +39,7 @@ module MediaWiktory
         # by "You can use this or that module, just add 'g' to it".
         query = actions.detect { |a| a.name == 'query' } or return
         query.params.detect { |p| p.name == 'generator' }
-          .tap do |query_generator|
+             .tap do |query_generator|
 
           self.generators =
             query_generator

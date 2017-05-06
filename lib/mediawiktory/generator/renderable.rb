@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require 'erb'
 
 module MediaWiktory
@@ -22,8 +23,8 @@ module MediaWiktory
         vars.each { |name, val| instance_variable_set("@#{name}", val) }
         path = File.expand_path("../templates/#{template}.erb", __FILE__)
         ERB.new(File.read(path))
-          .tap { |tpl| tpl.filename = path }
-          .result(binding)
+           .tap { |tpl| tpl.filename = path }
+           .result(binding)
       end
 
       def partial(template, context = nil)
@@ -34,14 +35,14 @@ module MediaWiktory
         end
         path = File.expand_path("../templates/#{template}.erb", __FILE__)
         ERB.new(File.read(path))
-          .tap { |tpl| tpl.filename = path }
-          .result(context ? context.get_binding : binding)
+           .tap { |tpl| tpl.filename = path }
+           .result(context ? context.get_binding : binding)
       rescue => e
         puts "#{e} while #{template} with #{context || self}"
         raise
       end
 
-      def get_binding
+      def get_binding # rubocop:disable Style/AccessorMethodName
         binding
       end
 

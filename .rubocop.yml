@@ -9,11 +9,12 @@ AllCops:
     - 'spec/**/*'
     - 'script/**/*'
     - 'test/*'
+    - 'test/**/*'
     - 'vendor/**/*'
     - 'examples/**/*'
     - 'profile/**/*'
     - 'tmp/**/*'
-    - 'lib/**/*.liquid'
+    - 'lib/**/*.erb'
     - 'deprecated/**/*'
     - '*'
   DisplayCopNames: true
@@ -41,6 +42,13 @@ Style/FrozenStringLiteralComment:
 
 Style/SignalException:
   EnforcedStyle: semantic
+
+# Good docs can have really long lines.
+Metrics/LineLength:
+  Enabled: false
+
+Style/Alias:
+  EnforcedStyle: prefer_alias_method
 
 # Proper parsing is hard!
 # -----------------------
@@ -80,12 +88,7 @@ Style/ClassAndModuleChildren:
     - 'lib/mediawiktory/wikipedia/**/*'
 
 Metrics/ClassLength:
-  Max: 180
-  Exclude:
-    - 'lib/mediawiktory/wikipedia/**/*'
-
-Metrics/LineLength:
-  Max: 100
+  Max: 218
   Exclude:
     - 'lib/mediawiktory/wikipedia/**/*'
 
@@ -98,5 +101,17 @@ Style/EmptyLinesAroundModuleBody:
     - 'lib/mediawiktory/wikipedia/**/*'
 
 Style/TrailingWhitespace:
+  Exclude:
+    - 'lib/mediawiktory/wikipedia/**/*'
+
+Style/WordArray:
+  Exclude:
+    - 'lib/mediawiktory/wikipedia/**/*'
+
+Style/SymbolArray:
+  Exclude:
+    - 'lib/mediawiktory/wikipedia/**/*'
+
+Style/StringLiterals:
   Exclude:
     - 'lib/mediawiktory/wikipedia/**/*'

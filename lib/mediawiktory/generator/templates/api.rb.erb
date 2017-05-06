@@ -36,7 +36,7 @@ module <%= @namespace %>
     attr_reader :client, :defaults
 
     # @private
-    CLIENT_OPTIONS = %i[user_agent ua]
+    CLIENT_OPTIONS = %i[user_agent ua].freeze
 
     # @param url [String] Source URL for this API, by default "<%= source %>".
     #   Note that most of MediaWiki installations have source URL at `/w/api.php`, but some are
@@ -49,7 +49,7 @@ module <%= @namespace %>
 <% end %>    #
     def initialize(url = '<%= @source %>', **defaults)
       client_options, @defaults = defaults.partition { |k, _| CLIENT_OPTIONS.include?(k) }.map(&:to_h)
-      @client = Client.new(url, **defaults)
+      @client = Client.new(url, **client_options)
     end
 <% actions.each { |action| %><%= partial '_action_method', action %><% } %>  end
 end

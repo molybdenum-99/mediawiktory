@@ -14,7 +14,7 @@ module MediaWiktory::Wikipedia
     Error = Class.new(RuntimeError)
 
     # @private
-    METADATA_KEYS = %w[error warnings batchcomplete continue success limits]
+    METADATA_KEYS = %w[error warnings batchcomplete continue success limits].freeze
 
     # @private
     def self.parse(action, response_body)
@@ -39,7 +39,7 @@ module MediaWiktory::Wikipedia
     def initialize(action, response_hash)
       @action = action
       @raw = response_hash.freeze
-      @metadata, @data  = response_hash.partition { |key, _| METADATA_KEYS.include?(key) }.map(&:to_h).map(&:freeze)
+      @metadata, @data = response_hash.partition { |key, _| METADATA_KEYS.include?(key) }.map(&:to_h).map(&:freeze)
       error! if @metadata['error']
     end
 
