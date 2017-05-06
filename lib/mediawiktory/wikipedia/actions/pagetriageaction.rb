@@ -34,6 +34,11 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "1", "0".
       # @return [self]
       def reviewed(value)
+        _reviewed(value) or fail ArgumentError, "Unknown value for reviewed: #{value}"
+      end
+
+      # @private
+      def _reviewed(value)
         defined?(super) && super || ["1", "0"].include?(value.to_s) && merge(reviewed: value.to_s)
       end
 

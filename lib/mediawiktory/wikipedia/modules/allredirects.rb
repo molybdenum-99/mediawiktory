@@ -52,11 +52,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>] Allowed values: "ids" (Adds the page ID of the redirecting page (cannot be used with arunique)), "title" (Adds the title of the redirect), "fragment" (Adds the fragment from the redirect, if any (cannot be used with arunique)), "interwiki" (Adds the interwiki prefix from the redirect, if any (cannot be used with arunique)).
       # @return [self]
       def prop(*values)
-        values.inject(self) { |res, val| res.prop_single(val) }
+        values.inject(self) { |res, val| res._prop(val) or fail ArgumentError, "Unknown value for prop: #{val}" }
       end
 
       # @private
-      def prop_single(value)
+      def _prop(value)
         defined?(super) && super || ["ids", "title", "fragment", "interwiki"].include?(value.to_s) && merge(arprop: value.to_s)
       end
 
@@ -65,6 +65,11 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "-2", "-1", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "100", "101", "108", "109", "118", "119", "446", "447", "710", "711", "828", "829", "2300", "2301", "2302", "2303".
       # @return [self]
       def namespace(value)
+        _namespace(value) or fail ArgumentError, "Unknown value for namespace: #{value}"
+      end
+
+      # @private
+      def _namespace(value)
         defined?(super) && super || ["-2", "-1", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "100", "101", "108", "109", "118", "119", "446", "447", "710", "711", "828", "829", "2300", "2301", "2302", "2303"].include?(value.to_s) && merge(arnamespace: value.to_s)
       end
 
@@ -81,6 +86,11 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "ascending", "descending".
       # @return [self]
       def dir(value)
+        _dir(value) or fail ArgumentError, "Unknown value for dir: #{value}"
+      end
+
+      # @private
+      def _dir(value)
         defined?(super) && super || ["ascending", "descending"].include?(value.to_s) && merge(ardir: value.to_s)
       end
     end

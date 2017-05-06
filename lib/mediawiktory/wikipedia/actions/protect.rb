@@ -42,11 +42,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>]
       # @return [self]
       def protections(*values)
-        values.inject(self) { |res, val| res.protections_single(val) }
+        values.inject(self) { |res, val| res._protections(val) }
       end
 
       # @private
-      def protections_single(value)
+      def _protections(value)
         merge(protections: value.to_s)
       end
 
@@ -55,11 +55,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>]
       # @return [self]
       def expiry(*values)
-        values.inject(self) { |res, val| res.expiry_single(val) }
+        values.inject(self) { |res, val| res._expiry(val) }
       end
 
       # @private
-      def expiry_single(value)
+      def _expiry(value)
         merge(expiry: value.to_s)
       end
 
@@ -76,11 +76,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>] Allowed values: "ProveIt edit", "WPCleaner", "huggle", "large plot addition".
       # @return [self]
       def tags(*values)
-        values.inject(self) { |res, val| res.tags_single(val) }
+        values.inject(self) { |res, val| res._tags(val) or fail ArgumentError, "Unknown value for tags: #{val}" }
       end
 
       # @private
-      def tags_single(value)
+      def _tags(value)
         defined?(super) && super || ["ProveIt edit", "WPCleaner", "huggle", "large plot addition"].include?(value.to_s) && merge(tags: value.to_s)
       end
 
@@ -103,6 +103,11 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "watch", "unwatch", "preferences", "nochange".
       # @return [self]
       def watchlist(value)
+        _watchlist(value) or fail ArgumentError, "Unknown value for watchlist: #{value}"
+      end
+
+      # @private
+      def _watchlist(value)
         defined?(super) && super || ["watch", "unwatch", "preferences", "nochange"].include?(value.to_s) && merge(watchlist: value.to_s)
       end
 

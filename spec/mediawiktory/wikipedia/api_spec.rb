@@ -25,6 +25,18 @@ module MediaWiktory
         its(:to_url) { is_expected.to eq 'https://en.wikipedia.org/w/api.php?action=query&prop=revisions&rvlimit=max&rvprop=content&titles=Argentina%7CBolivia' }
       end
 
+      context 'chain with changed meaning of methods' do
+        let(:action) { api.query.titles('Argentina').prop(:info, :wbentityusage, :revisions).prop(:timestamp, :url) }
+
+        its(:to_param) { is_expected.to eq(
+          'action' => 'query',
+          'titles' => 'Argentina',
+          'prop' => 'info|wbentityusage|revisions',
+          'rvprop' => 'timestamp',
+          'inprop' => 'url'
+        ) }
+      end
+
       context 'chain with globals' do
         let(:action) { api.query.format(:json).callback('mycallback') }
 
@@ -42,7 +54,18 @@ module MediaWiktory
           'rvprop' => 'content',
           'rvlimit' => 'max'
         ) }
+      end
 
+      context 'fail on unknown enum values' do
+        let(:action) { api.query.generator(:ctegorymembers) }
+
+        its_call { is_expected.to raise_error ArgumentError, 'Unknown value for generator: ctegorymembers' }
+      end
+
+      context 'fail on unknown list values' do
+        let(:action) { api.query.titles('Argentina').prop(:nfo) }
+
+        its_call { is_expected.to raise_error ArgumentError, 'Unknown value for prop: nfo' }
       end
     end
 

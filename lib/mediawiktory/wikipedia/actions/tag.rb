@@ -26,11 +26,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<Integer>]
       # @return [self]
       def rcid(*values)
-        values.inject(self) { |res, val| res.rcid_single(val) }
+        values.inject(self) { |res, val| res._rcid(val) }
       end
 
       # @private
-      def rcid_single(value)
+      def _rcid(value)
         merge(rcid: value.to_s)
       end
 
@@ -39,11 +39,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<Integer>]
       # @return [self]
       def revid(*values)
-        values.inject(self) { |res, val| res.revid_single(val) }
+        values.inject(self) { |res, val| res._revid(val) }
       end
 
       # @private
-      def revid_single(value)
+      def _revid(value)
         merge(revid: value.to_s)
       end
 
@@ -52,11 +52,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<Integer>]
       # @return [self]
       def logid(*values)
-        values.inject(self) { |res, val| res.logid_single(val) }
+        values.inject(self) { |res, val| res._logid(val) }
       end
 
       # @private
-      def logid_single(value)
+      def _logid(value)
         merge(logid: value.to_s)
       end
 
@@ -65,11 +65,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>] Allowed values: "ProveIt edit", "WPCleaner", "huggle", "large plot addition".
       # @return [self]
       def add(*values)
-        values.inject(self) { |res, val| res.add_single(val) }
+        values.inject(self) { |res, val| res._add(val) or fail ArgumentError, "Unknown value for add: #{val}" }
       end
 
       # @private
-      def add_single(value)
+      def _add(value)
         defined?(super) && super || ["ProveIt edit", "WPCleaner", "huggle", "large plot addition"].include?(value.to_s) && merge(add: value.to_s)
       end
 
@@ -78,11 +78,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>]
       # @return [self]
       def remove(*values)
-        values.inject(self) { |res, val| res.remove_single(val) }
+        values.inject(self) { |res, val| res._remove(val) }
       end
 
       # @private
-      def remove_single(value)
+      def _remove(value)
         merge(remove: value.to_s)
       end
 
@@ -99,11 +99,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>] Allowed values: "ProveIt edit", "WPCleaner", "huggle", "large plot addition".
       # @return [self]
       def tags(*values)
-        values.inject(self) { |res, val| res.tags_single(val) }
+        values.inject(self) { |res, val| res._tags(val) or fail ArgumentError, "Unknown value for tags: #{val}" }
       end
 
       # @private
-      def tags_single(value)
+      def _tags(value)
         defined?(super) && super || ["ProveIt edit", "WPCleaner", "huggle", "large plot addition"].include?(value.to_s) && merge(tags: value.to_s)
       end
 

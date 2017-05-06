@@ -13,11 +13,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>] Allowed values: "url" (If enabled url of entity will be added).
       # @return [self]
       def prop(*values)
-        values.inject(self) { |res, val| res.prop_single(val) }
+        values.inject(self) { |res, val| res._prop(val) or fail ArgumentError, "Unknown value for prop: #{val}" }
       end
 
       # @private
-      def prop_single(value)
+      def _prop(value)
         defined?(super) && super || ["url"].include?(value.to_s) && merge(wbeuprop: value.to_s)
       end
 
@@ -26,11 +26,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>] Allowed values: "S", "L", "T", "X", "O".
       # @return [self]
       def aspect(*values)
-        values.inject(self) { |res, val| res.aspect_single(val) }
+        values.inject(self) { |res, val| res._aspect(val) or fail ArgumentError, "Unknown value for aspect: #{val}" }
       end
 
       # @private
-      def aspect_single(value)
+      def _aspect(value)
         defined?(super) && super || ["S", "L", "T", "X", "O"].include?(value.to_s) && merge(wbeuaspect: value.to_s)
       end
 
@@ -39,11 +39,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>]
       # @return [self]
       def entities(*values)
-        values.inject(self) { |res, val| res.entities_single(val) }
+        values.inject(self) { |res, val| res._entities(val) }
       end
 
       # @private
-      def entities_single(value)
+      def _entities(value)
         merge(wbeuentities: value.to_s)
       end
 

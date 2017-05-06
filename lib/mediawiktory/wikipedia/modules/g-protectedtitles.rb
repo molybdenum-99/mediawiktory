@@ -13,11 +13,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>] Allowed values: "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "100", "101", "108", "109", "118", "119", "446", "447", "710", "711", "828", "829", "2300", "2301", "2302", "2303".
       # @return [self]
       def namespace(*values)
-        values.inject(self) { |res, val| res.namespace_single(val) }
+        values.inject(self) { |res, val| res._namespace(val) or fail ArgumentError, "Unknown value for namespace: #{val}" }
       end
 
       # @private
-      def namespace_single(value)
+      def _namespace(value)
         defined?(super) && super || ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "100", "101", "108", "109", "118", "119", "446", "447", "710", "711", "828", "829", "2300", "2301", "2302", "2303"].include?(value.to_s) && merge(gptnamespace: value.to_s)
       end
 
@@ -26,11 +26,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>] Allowed values: "autoconfirmed", "extendedconfirmed", "templateeditor", "sysop".
       # @return [self]
       def level(*values)
-        values.inject(self) { |res, val| res.level_single(val) }
+        values.inject(self) { |res, val| res._level(val) or fail ArgumentError, "Unknown value for level: #{val}" }
       end
 
       # @private
-      def level_single(value)
+      def _level(value)
         defined?(super) && super || ["autoconfirmed", "extendedconfirmed", "templateeditor", "sysop"].include?(value.to_s) && merge(gptlevel: value.to_s)
       end
 
@@ -47,6 +47,11 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "newer" (List oldest first. Note: ptstart has to be before ptend), "older" (List newest first (default). Note: ptstart has to be later than ptend).
       # @return [self]
       def dir(value)
+        _dir(value) or fail ArgumentError, "Unknown value for dir: #{value}"
+      end
+
+      # @private
+      def _dir(value)
         defined?(super) && super || ["newer", "older"].include?(value.to_s) && merge(gptdir: value.to_s)
       end
 

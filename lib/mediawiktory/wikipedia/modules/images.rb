@@ -29,11 +29,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>]
       # @return [self]
       def images(*values)
-        values.inject(self) { |res, val| res.images_single(val) }
+        values.inject(self) { |res, val| res._images(val) }
       end
 
       # @private
-      def images_single(value)
+      def _images(value)
         merge(imimages: value.to_s)
       end
 
@@ -42,6 +42,11 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "ascending", "descending".
       # @return [self]
       def dir(value)
+        _dir(value) or fail ArgumentError, "Unknown value for dir: #{value}"
+      end
+
+      # @private
+      def _dir(value)
         defined?(super) && super || ["ascending", "descending"].include?(value.to_s) && merge(imdir: value.to_s)
       end
     end

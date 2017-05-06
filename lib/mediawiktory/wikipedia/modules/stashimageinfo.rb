@@ -13,11 +13,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>]
       # @return [self]
       def filekey(*values)
-        values.inject(self) { |res, val| res.filekey_single(val) }
+        values.inject(self) { |res, val| res._filekey(val) }
       end
 
       # @private
-      def filekey_single(value)
+      def _filekey(value)
         merge(siifilekey: value.to_s)
       end
 
@@ -26,11 +26,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>]
       # @return [self]
       def sessionkey(*values)
-        values.inject(self) { |res, val| res.sessionkey_single(val) }
+        values.inject(self) { |res, val| res._sessionkey(val) }
       end
 
       # @private
-      def sessionkey_single(value)
+      def _sessionkey(value)
         merge(siisessionkey: value.to_s)
       end
 
@@ -39,11 +39,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>] Allowed values: "timestamp" (Adds timestamp for the uploaded version), "canonicaltitle" (Adds the canonical title of the file), "url" (Gives URL to the file and the description page), "size" (Adds the size of the file in bytes and the height, width and page count (if applicable)), "dimensions" (Alias for size), "sha1" (Adds SHA-1 hash for the file), "mime" (Adds MIME type of the file), "thumbmime" (Adds MIME type of the image thumbnail (requires url and param siiurlwidth)), "metadata" (Lists Exif metadata for the version of the file), "commonmetadata" (Lists file format generic metadata for the version of the file), "extmetadata" (Lists formatted metadata combined from multiple sources. Results are HTML formatted), "bitdepth" (Adds the bit depth of the version), "badfile" (Adds whether the file is on the MediaWiki:Bad image list).
       # @return [self]
       def prop(*values)
-        values.inject(self) { |res, val| res.prop_single(val) }
+        values.inject(self) { |res, val| res._prop(val) or fail ArgumentError, "Unknown value for prop: #{val}" }
       end
 
       # @private
-      def prop_single(value)
+      def _prop(value)
         defined?(super) && super || ["timestamp", "canonicaltitle", "url", "size", "dimensions", "sha1", "mime", "thumbmime", "metadata", "commonmetadata", "extmetadata", "bitdepth", "badfile"].include?(value.to_s) && merge(siiprop: value.to_s)
       end
 

@@ -45,11 +45,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>] Allowed values: "iwprefix" (Adds the prefix of the interwiki), "iwtitle" (Adds the title of the interwiki).
       # @return [self]
       def prop(*values)
-        values.inject(self) { |res, val| res.prop_single(val) }
+        values.inject(self) { |res, val| res._prop(val) or fail ArgumentError, "Unknown value for prop: #{val}" }
       end
 
       # @private
-      def prop_single(value)
+      def _prop(value)
         defined?(super) && super || ["iwprefix", "iwtitle"].include?(value.to_s) && merge(iwblprop: value.to_s)
       end
 
@@ -58,6 +58,11 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "ascending", "descending".
       # @return [self]
       def dir(value)
+        _dir(value) or fail ArgumentError, "Unknown value for dir: #{value}"
+      end
+
+      # @private
+      def _dir(value)
         defined?(super) && super || ["ascending", "descending"].include?(value.to_s) && merge(iwbldir: value.to_s)
       end
     end

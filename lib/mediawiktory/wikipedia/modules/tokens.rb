@@ -13,11 +13,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>] Allowed values: "createaccount", "csrf", "deleteglobalaccount", "login", "patrol", "rollback", "setglobalaccountstatus", "userrights", "watch".
       # @return [self]
       def type(*values)
-        values.inject(self) { |res, val| res.type_single(val) }
+        values.inject(self) { |res, val| res._type(val) or fail ArgumentError, "Unknown value for type: #{val}" }
       end
 
       # @private
-      def type_single(value)
+      def _type(value)
         defined?(super) && super || ["createaccount", "csrf", "deleteglobalaccount", "login", "patrol", "rollback", "setglobalaccountstatus", "userrights", "watch"].include?(value.to_s) && merge(type: value.to_s)
       end
     end

@@ -26,6 +26,11 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "create" (Create a new change tag for manual use), "delete" (Remove a change tag from the database, including removing the tag from all revisions, recent change entries and log entries on which it is used), "activate" (Activate a change tag, allowing users to apply it manually), "deactivate" (Deactivate a change tag, preventing users from applying it manually).
       # @return [self]
       def operation(value)
+        _operation(value) or fail ArgumentError, "Unknown value for operation: #{value}"
+      end
+
+      # @private
+      def _operation(value)
         defined?(super) && super || ["create", "delete", "activate", "deactivate"].include?(value.to_s) && merge(operation: value.to_s)
       end
 
@@ -57,11 +62,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>] Allowed values: "ProveIt edit", "WPCleaner", "huggle", "large plot addition".
       # @return [self]
       def tags(*values)
-        values.inject(self) { |res, val| res.tags_single(val) }
+        values.inject(self) { |res, val| res._tags(val) or fail ArgumentError, "Unknown value for tags: #{val}" }
       end
 
       # @private
-      def tags_single(value)
+      def _tags(value)
         defined?(super) && super || ["ProveIt edit", "WPCleaner", "huggle", "large plot addition"].include?(value.to_s) && merge(tags: value.to_s)
       end
 

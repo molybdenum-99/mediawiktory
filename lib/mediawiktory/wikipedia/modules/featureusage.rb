@@ -37,11 +37,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>]
       # @return [self]
       def features(*values)
-        values.inject(self) { |res, val| res.features_single(val) }
+        values.inject(self) { |res, val| res._features(val) }
       end
 
       # @private
-      def features_single(value)
+      def _features(value)
         merge(afufeatures: value.to_s)
       end
     end

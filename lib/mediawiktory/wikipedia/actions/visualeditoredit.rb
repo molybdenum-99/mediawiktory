@@ -26,6 +26,11 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "serialize", "serializeforcache", "diff", "save".
       # @return [self]
       def paction(value)
+        _paction(value) or fail ArgumentError, "Unknown value for paction: #{value}"
+      end
+
+      # @private
+      def _paction(value)
         defined?(super) && super || ["serialize", "serializeforcache", "diff", "save"].include?(value.to_s) && merge(paction: value.to_s)
       end
 

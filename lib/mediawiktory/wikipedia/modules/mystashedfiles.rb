@@ -13,11 +13,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>] Allowed values: "size" (Fetch the file size and image dimensions), "type" (Fetch the file's MIME type and media type).
       # @return [self]
       def prop(*values)
-        values.inject(self) { |res, val| res.prop_single(val) }
+        values.inject(self) { |res, val| res._prop(val) or fail ArgumentError, "Unknown value for prop: #{val}" }
       end
 
       # @private
-      def prop_single(value)
+      def _prop(value)
         defined?(super) && super || ["size", "type"].include?(value.to_s) && merge(msfprop: value.to_s)
       end
 

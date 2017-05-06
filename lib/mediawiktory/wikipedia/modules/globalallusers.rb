@@ -37,6 +37,11 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "ascending", "descending".
       # @return [self]
       def dir(value)
+        _dir(value) or fail ArgumentError, "Unknown value for dir: #{value}"
+      end
+
+      # @private
+      def _dir(value)
         defined?(super) && super || ["ascending", "descending"].include?(value.to_s) && merge(agudir: value.to_s)
       end
 
@@ -45,11 +50,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>] Allowed values: "OTRS-member", "abusefilter-helper", "apihighlimits-requestor", "captcha-exempt", "delete-global", "founder", "global-bot", "global-flow-create", "global-interface-editor", "global-ipblock-exempt", "global-rollbacker", "global-sysop", "new-wikis-importer", "oathauth-tester", "ombudsman", "recursive-export", "staff", "steward", "sysadmin", "wmf-ops-monitoring", "wmf-researcher".
       # @return [self]
       def group(*values)
-        values.inject(self) { |res, val| res.group_single(val) }
+        values.inject(self) { |res, val| res._group(val) or fail ArgumentError, "Unknown value for group: #{val}" }
       end
 
       # @private
-      def group_single(value)
+      def _group(value)
         defined?(super) && super || ["OTRS-member", "abusefilter-helper", "apihighlimits-requestor", "captcha-exempt", "delete-global", "founder", "global-bot", "global-flow-create", "global-interface-editor", "global-ipblock-exempt", "global-rollbacker", "global-sysop", "new-wikis-importer", "oathauth-tester", "ombudsman", "recursive-export", "staff", "steward", "sysadmin", "wmf-ops-monitoring", "wmf-researcher"].include?(value.to_s) && merge(agugroup: value.to_s)
       end
 
@@ -58,11 +63,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>] Allowed values: "OTRS-member", "abusefilter-helper", "apihighlimits-requestor", "captcha-exempt", "delete-global", "founder", "global-bot", "global-flow-create", "global-interface-editor", "global-ipblock-exempt", "global-rollbacker", "global-sysop", "new-wikis-importer", "oathauth-tester", "ombudsman", "recursive-export", "staff", "steward", "sysadmin", "wmf-ops-monitoring", "wmf-researcher".
       # @return [self]
       def excludegroup(*values)
-        values.inject(self) { |res, val| res.excludegroup_single(val) }
+        values.inject(self) { |res, val| res._excludegroup(val) or fail ArgumentError, "Unknown value for excludegroup: #{val}" }
       end
 
       # @private
-      def excludegroup_single(value)
+      def _excludegroup(value)
         defined?(super) && super || ["OTRS-member", "abusefilter-helper", "apihighlimits-requestor", "captcha-exempt", "delete-global", "founder", "global-bot", "global-flow-create", "global-interface-editor", "global-ipblock-exempt", "global-rollbacker", "global-sysop", "new-wikis-importer", "oathauth-tester", "ombudsman", "recursive-export", "staff", "steward", "sysadmin", "wmf-ops-monitoring", "wmf-researcher"].include?(value.to_s) && merge(aguexcludegroup: value.to_s)
       end
 
@@ -71,11 +76,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>] Allowed values: "lockinfo" (Whether the user account is locked), "groups" (Lists global groups that the user is in. This uses more server resources and may return fewer results than the limit), "existslocally" (Adds the information if the user exists locally).
       # @return [self]
       def prop(*values)
-        values.inject(self) { |res, val| res.prop_single(val) }
+        values.inject(self) { |res, val| res._prop(val) or fail ArgumentError, "Unknown value for prop: #{val}" }
       end
 
       # @private
-      def prop_single(value)
+      def _prop(value)
         defined?(super) && super || ["lockinfo", "groups", "existslocally"].include?(value.to_s) && merge(aguprop: value.to_s)
       end
 

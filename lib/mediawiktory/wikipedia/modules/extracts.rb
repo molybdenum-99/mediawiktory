@@ -51,6 +51,11 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "plain" (No formatting), "wiki" (Wikitext-style formatting (== like this ==)), "raw" (This module's internal representation (section titles prefixed with <ASCII 1><ASCII 2><section level><ASCII 2><ASCII 1>)).
       # @return [self]
       def sectionformat(value)
+        _sectionformat(value) or fail ArgumentError, "Unknown value for sectionformat: #{value}"
+      end
+
+      # @private
+      def _sectionformat(value)
         defined?(super) && super || ["plain", "wiki", "raw"].include?(value.to_s) && merge(exsectionformat: value.to_s)
       end
 

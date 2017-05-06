@@ -131,6 +131,10 @@ module MediaWiktory
         type.start_with?('list')
       end
 
+      def enum?
+        type.start_with?('enum')
+      end
+
       def impl_type
         type = real_type.sub(/^list of (.+)s$/, '\1')
         type = 'string' if type == 'list'

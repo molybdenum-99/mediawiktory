@@ -73,6 +73,11 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "application/json", "text/x-wiki", "text/javascript", "text/css", "text/plain".
       # @return [self]
       def contentformat(value)
+        _contentformat(value) or fail ArgumentError, "Unknown value for contentformat: #{value}"
+      end
+
+      # @private
+      def _contentformat(value)
         defined?(super) && super || ["application/json", "text/x-wiki", "text/javascript", "text/css", "text/plain"].include?(value.to_s) && merge(gdrvcontentformat: value.to_s)
       end
 
@@ -97,6 +102,11 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "newer" (List oldest first. Note: drvstart has to be before drvend), "older" (List newest first (default). Note: drvstart has to be later than drvend).
       # @return [self]
       def dir(value)
+        _dir(value) or fail ArgumentError, "Unknown value for dir: #{value}"
+      end
+
+      # @private
+      def _dir(value)
         defined?(super) && super || ["newer", "older"].include?(value.to_s) && merge(gdrvdir: value.to_s)
       end
 

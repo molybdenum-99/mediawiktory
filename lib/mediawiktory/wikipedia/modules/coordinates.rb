@@ -29,11 +29,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>] Allowed values: "type", "name", "dim", "country", "region", "globe".
       # @return [self]
       def prop(*values)
-        values.inject(self) { |res, val| res.prop_single(val) }
+        values.inject(self) { |res, val| res._prop(val) or fail ArgumentError, "Unknown value for prop: #{val}" }
       end
 
       # @private
-      def prop_single(value)
+      def _prop(value)
         defined?(super) && super || ["type", "name", "dim", "country", "region", "globe"].include?(value.to_s) && merge(coprop: value.to_s)
       end
 
@@ -42,6 +42,11 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "primary", "secondary", "all".
       # @return [self]
       def primary(value)
+        _primary(value) or fail ArgumentError, "Unknown value for primary: #{value}"
+      end
+
+      # @private
+      def _primary(value)
         defined?(super) && super || ["primary", "secondary", "all"].include?(value.to_s) && merge(coprimary: value.to_s)
       end
 

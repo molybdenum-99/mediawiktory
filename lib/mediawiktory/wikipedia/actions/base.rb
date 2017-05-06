@@ -18,6 +18,11 @@ module MediaWiktory::Wikipedia
       #   * `:xmlfm` - {MediaWiktory::Wikipedia::Modules::Xmlfm} Output data in XML format (pretty-print in HTML). 
       # @return [self]
       def format(value)
+        _format(value) or fail ArgumentError, "Unknown value for format: #{value}"
+      end
+
+      # @private
+      def _format(value)
         [:json, :jsonfm, :none, :php, :phpfm, :rawfm, :xml, :xmlfm].include?(value.to_sym) && merge(format: value.to_s).submodule({json: Modules::Json, jsonfm: Modules::Jsonfm, none: Modules::None, php: Modules::Php, phpfm: Modules::Phpfm, rawfm: Modules::Rawfm, xml: Modules::Xml, xmlfm: Modules::Xmlfm}[value.to_sym])
       end
 
@@ -50,6 +55,11 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "user", "bot".
       # @return [self]
       def assert(value)
+        _assert(value) or fail ArgumentError, "Unknown value for assert: #{value}"
+      end
+
+      # @private
+      def _assert(value)
         defined?(super) && super || ["user", "bot"].include?(value.to_s) && merge(assert: value.to_s)
       end
 
@@ -111,6 +121,11 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of " plaintext" ( Wikitext with HTML tags removed and entities replaced), " wikitext" ( Unparsed wikitext), " html" ( HTML), " raw" ( Message key and parameters), " none" ( No text output, only the error codes), " bc" ( Format used prior to MediaWiki 1.29. errorlang and errorsuselocal are ignored).
       # @return [self]
       def errorformat(value)
+        _errorformat(value) or fail ArgumentError, "Unknown value for errorformat: #{value}"
+      end
+
+      # @private
+      def _errorformat(value)
         defined?(super) && super || [" plaintext", " wikitext", " html", " raw", " none", " bc"].include?(value.to_s) && merge(errorformat: value.to_s)
       end
 

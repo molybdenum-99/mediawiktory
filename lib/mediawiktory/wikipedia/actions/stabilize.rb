@@ -26,6 +26,11 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "autoconfirmed", "none".
       # @return [self]
       def protectlevel(value)
+        _protectlevel(value) or fail ArgumentError, "Unknown value for protectlevel: #{value}"
+      end
+
+      # @private
+      def _protectlevel(value)
         defined?(super) && super || ["autoconfirmed", "none"].include?(value.to_s) && merge(protectlevel: value.to_s)
       end
 

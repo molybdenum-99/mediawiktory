@@ -29,6 +29,11 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "week", "month".
       # @return [self]
       def interval(value)
+        _interval(value) or fail ArgumentError, "Unknown value for interval: #{value}"
+      end
+
+      # @private
+      def _interval(value)
         defined?(super) && super || ["week", "month"].include?(value.to_s) && merge(interval: value.to_s)
       end
     end

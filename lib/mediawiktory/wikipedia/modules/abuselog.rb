@@ -29,6 +29,11 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "newer" (List oldest first. Note: aflstart has to be before aflend), "older" (List newest first (default). Note: aflstart has to be later than aflend).
       # @return [self]
       def dir(value)
+        _dir(value) or fail ArgumentError, "Unknown value for dir: #{value}"
+      end
+
+      # @private
+      def _dir(value)
         defined?(super) && super || ["newer", "older"].include?(value.to_s) && merge(afldir: value.to_s)
       end
 
@@ -53,11 +58,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>]
       # @return [self]
       def filter(*values)
-        values.inject(self) { |res, val| res.filter_single(val) }
+        values.inject(self) { |res, val| res._filter(val) }
       end
 
       # @private
-      def filter_single(value)
+      def _filter(value)
         merge(aflfilter: value.to_s)
       end
 
@@ -74,11 +79,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>] Allowed values: "ids", "filter", "user", "ip", "title", "action", "details", "result", "timestamp", "hidden", "revid".
       # @return [self]
       def prop(*values)
-        values.inject(self) { |res, val| res.prop_single(val) }
+        values.inject(self) { |res, val| res._prop(val) or fail ArgumentError, "Unknown value for prop: #{val}" }
       end
 
       # @private
-      def prop_single(value)
+      def _prop(value)
         defined?(super) && super || ["ids", "filter", "user", "ip", "title", "action", "details", "result", "timestamp", "hidden", "revid"].include?(value.to_s) && merge(aflprop: value.to_s)
       end
     end

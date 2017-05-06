@@ -26,11 +26,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>]
       # @return [self]
       def url(*values)
-        values.inject(self) { |res, val| res.url_single(val) }
+        values.inject(self) { |res, val| res._url(val) }
       end
 
       # @private
-      def url_single(value)
+      def _url(value)
         merge(url: value.to_s)
       end
     end

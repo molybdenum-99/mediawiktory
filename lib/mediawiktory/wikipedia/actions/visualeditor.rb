@@ -34,6 +34,11 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "json", "jsonfm".
       # @return [self]
       def format(value)
+        _format(value) or fail ArgumentError, "Unknown value for format: #{value}"
+      end
+
+      # @private
+      def _format(value)
         defined?(super) && super || ["json", "jsonfm"].include?(value.to_s) && merge(format: value.to_s)
       end
 
@@ -42,6 +47,11 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "parse", "metadata", "wikitext", "parsefragment", "getlanglinks".
       # @return [self]
       def paction(value)
+        _paction(value) or fail ArgumentError, "Unknown value for paction: #{value}"
+      end
+
+      # @private
+      def _paction(value)
         defined?(super) && super || ["parse", "metadata", "wikitext", "parsefragment", "getlanglinks"].include?(value.to_s) && merge(paction: value.to_s)
       end
 

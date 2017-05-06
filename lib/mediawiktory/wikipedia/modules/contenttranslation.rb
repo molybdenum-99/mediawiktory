@@ -61,6 +61,11 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "draft", "published".
       # @return [self]
       def type(value)
+        _type(value) or fail ArgumentError, "Unknown value for type: #{value}"
+      end
+
+      # @private
+      def _type(value)
         defined?(super) && super || ["draft", "published"].include?(value.to_s) && merge(type: value.to_s)
       end
     end

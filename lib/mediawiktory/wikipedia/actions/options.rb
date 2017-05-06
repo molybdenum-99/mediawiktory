@@ -33,11 +33,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>] Allowed values: "registered", "registered-multiselect", "registered-checkmatrix", "userjs", "special", "unused", "all".
       # @return [self]
       def resetkinds(*values)
-        values.inject(self) { |res, val| res.resetkinds_single(val) }
+        values.inject(self) { |res, val| res._resetkinds(val) or fail ArgumentError, "Unknown value for resetkinds: #{val}" }
       end
 
       # @private
-      def resetkinds_single(value)
+      def _resetkinds(value)
         defined?(super) && super || ["registered", "registered-multiselect", "registered-checkmatrix", "userjs", "special", "unused", "all"].include?(value.to_s) && merge(resetkinds: value.to_s)
       end
 
@@ -46,11 +46,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>]
       # @return [self]
       def change(*values)
-        values.inject(self) { |res, val| res.change_single(val) }
+        values.inject(self) { |res, val| res._change(val) }
       end
 
       # @private
-      def change_single(value)
+      def _change(value)
         merge(change: value.to_s)
       end
 

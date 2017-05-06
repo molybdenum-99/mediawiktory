@@ -26,6 +26,11 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "rss", "atom".
       # @return [self]
       def feedformat(value)
+        _feedformat(value) or fail ArgumentError, "Unknown value for feedformat: #{value}"
+      end
+
+      # @private
+      def _feedformat(value)
         defined?(super) && super || ["rss", "atom"].include?(value.to_s) && merge(feedformat: value.to_s)
       end
 
@@ -34,6 +39,11 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "potd", "featured", "onthisday".
       # @return [self]
       def feed(value)
+        _feed(value) or fail ArgumentError, "Unknown value for feed: #{value}"
+      end
+
+      # @private
+      def _feed(value)
         defined?(super) && super || ["potd", "featured", "onthisday"].include?(value.to_s) && merge(feed: value.to_s)
       end
 

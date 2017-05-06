@@ -4,8 +4,11 @@
 #
 # There are two ways of using MediaWiktory:
 #
-# 1. either to generate your own wrapper (see {README} for explanations why and how to do it), or
-# 2. by using default wrapper, generated from recent Wikipedia docs, see {MediaWiktory::Wikipedia::Api}.
+# 1. Either to generate your own wrapper (see {file:README.md} for explanations why and how to do it), or
+# 2. By using default wrapper, generated from recent Wikipedia docs, see {MediaWiktory::Wikipedia::Api}.
+#    Note, that most of basic features (like "query some pages") of default wrapper could be used
+#    with **any** MediaWiki installation, but more advanced features could work differently. Please
+#    refer to {file:README.md} for more detailed explanation of those matters.
 #
 module MediaWiktory
   require_relative 'mediawiktory/version'

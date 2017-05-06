@@ -26,6 +26,11 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "add", "remove".
       # @return [self]
       def subaction(value)
+        _subaction(value) or fail ArgumentError, "Unknown value for subaction: #{value}"
+      end
+
+      # @private
+      def _subaction(value)
         defined?(super) && super || ["add", "remove"].include?(value.to_s) && merge(subaction: value.to_s)
       end
 
@@ -34,6 +39,11 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "instructor", "online", "campus", "student".
       # @return [self]
       def role(value)
+        _role(value) or fail ArgumentError, "Unknown value for role: #{value}"
+      end
+
+      # @private
+      def _role(value)
         defined?(super) && super || ["instructor", "online", "campus", "student"].include?(value.to_s) && merge(role: value.to_s)
       end
 

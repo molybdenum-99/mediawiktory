@@ -29,6 +29,11 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "bitcoin", "ftp", "ftps", "geo", "git", "gopher", "http", "https", "irc", "ircs", "magnet", "mailto", "mms", "news", "nntp", "redis", "sftp", "sip", "sips", "sms", "ssh", "svn", "tel", "telnet", "urn", "worldwind", "xmpp".
       # @return [self]
       def protocol(value)
+        _protocol(value) or fail ArgumentError, "Unknown value for protocol: #{value}"
+      end
+
+      # @private
+      def _protocol(value)
         defined?(super) && super || ["bitcoin", "ftp", "ftps", "geo", "git", "gopher", "http", "https", "irc", "ircs", "magnet", "mailto", "mms", "news", "nntp", "redis", "sftp", "sip", "sips", "sms", "ssh", "svn", "tel", "telnet", "urn", "worldwind", "xmpp"].include?(value.to_s) && merge(elprotocol: value.to_s)
       end
 

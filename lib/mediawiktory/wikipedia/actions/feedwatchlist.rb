@@ -26,6 +26,11 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "rss", "atom".
       # @return [self]
       def feedformat(value)
+        _feedformat(value) or fail ArgumentError, "Unknown value for feedformat: #{value}"
+      end
+
+      # @private
+      def _feedformat(value)
         defined?(super) && super || ["rss", "atom"].include?(value.to_s) && merge(feedformat: value.to_s)
       end
 
@@ -72,11 +77,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>] Allowed values: "minor", "!minor", "bot", "!bot", "anon", "!anon", "patrolled", "!patrolled", "unread", "!unread".
       # @return [self]
       def wlshow(*values)
-        values.inject(self) { |res, val| res.wlshow_single(val) }
+        values.inject(self) { |res, val| res._wlshow(val) or fail ArgumentError, "Unknown value for wlshow: #{val}" }
       end
 
       # @private
-      def wlshow_single(value)
+      def _wlshow(value)
         defined?(super) && super || ["minor", "!minor", "bot", "!bot", "anon", "!anon", "patrolled", "!patrolled", "unread", "!unread"].include?(value.to_s) && merge(wlshow: value.to_s)
       end
 
@@ -85,11 +90,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>] Allowed values: "edit" (Regular page edits), "new" (Page creations), "log" (Log entries), "external" (External changes), "categorize" (Category membership changes).
       # @return [self]
       def wltype(*values)
-        values.inject(self) { |res, val| res.wltype_single(val) }
+        values.inject(self) { |res, val| res._wltype(val) or fail ArgumentError, "Unknown value for wltype: #{val}" }
       end
 
       # @private
-      def wltype_single(value)
+      def _wltype(value)
         defined?(super) && super || ["edit", "new", "log", "external", "categorize"].include?(value.to_s) && merge(wltype: value.to_s)
       end
 

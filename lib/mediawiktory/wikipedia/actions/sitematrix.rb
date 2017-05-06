@@ -26,11 +26,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>] Allowed values: "special" (One off and multilingual Wikimedia projects), "language" (Wikimedia projects under this language code).
       # @return [self]
       def type(*values)
-        values.inject(self) { |res, val| res.type_single(val) }
+        values.inject(self) { |res, val| res._type(val) or fail ArgumentError, "Unknown value for type: #{val}" }
       end
 
       # @private
-      def type_single(value)
+      def _type(value)
         defined?(super) && super || ["special", "language"].include?(value.to_s) && merge(smtype: value.to_s)
       end
 
@@ -39,11 +39,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>] Allowed values: "all", "closed", "private", "fishbowl", "nonglobal".
       # @return [self]
       def state(*values)
-        values.inject(self) { |res, val| res.state_single(val) }
+        values.inject(self) { |res, val| res._state(val) or fail ArgumentError, "Unknown value for state: #{val}" }
       end
 
       # @private
-      def state_single(value)
+      def _state(value)
         defined?(super) && super || ["all", "closed", "private", "fishbowl", "nonglobal"].include?(value.to_s) && merge(smstate: value.to_s)
       end
 
@@ -52,11 +52,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>] Allowed values: "code", "name", "site", "localname".
       # @return [self]
       def langprop(*values)
-        values.inject(self) { |res, val| res.langprop_single(val) }
+        values.inject(self) { |res, val| res._langprop(val) or fail ArgumentError, "Unknown value for langprop: #{val}" }
       end
 
       # @private
-      def langprop_single(value)
+      def _langprop(value)
         defined?(super) && super || ["code", "name", "site", "localname"].include?(value.to_s) && merge(smlangprop: value.to_s)
       end
 
@@ -65,11 +65,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>] Allowed values: "url", "dbname", "code", "sitename".
       # @return [self]
       def siteprop(*values)
-        values.inject(self) { |res, val| res.siteprop_single(val) }
+        values.inject(self) { |res, val| res._siteprop(val) or fail ArgumentError, "Unknown value for siteprop: #{val}" }
       end
 
       # @private
-      def siteprop_single(value)
+      def _siteprop(value)
         defined?(super) && super || ["url", "dbname", "code", "sitename"].include?(value.to_s) && merge(smsiteprop: value.to_s)
       end
 

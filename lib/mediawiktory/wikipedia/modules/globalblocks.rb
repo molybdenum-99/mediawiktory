@@ -29,6 +29,11 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "newer" (List oldest first. Note: bgstart has to be before bgend), "older" (List newest first (default). Note: bgstart has to be later than bgend).
       # @return [self]
       def dir(value)
+        _dir(value) or fail ArgumentError, "Unknown value for dir: #{value}"
+      end
+
+      # @private
+      def _dir(value)
         defined?(super) && super || ["newer", "older"].include?(value.to_s) && merge(bgdir: value.to_s)
       end
 
@@ -37,11 +42,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<Integer>]
       # @return [self]
       def ids(*values)
-        values.inject(self) { |res, val| res.ids_single(val) }
+        values.inject(self) { |res, val| res._ids(val) }
       end
 
       # @private
-      def ids_single(value)
+      def _ids(value)
         merge(bgids: value.to_s)
       end
 
@@ -50,11 +55,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>]
       # @return [self]
       def addresses(*values)
-        values.inject(self) { |res, val| res.addresses_single(val) }
+        values.inject(self) { |res, val| res._addresses(val) }
       end
 
       # @private
-      def addresses_single(value)
+      def _addresses(value)
         merge(bgaddresses: value.to_s)
       end
 
@@ -79,11 +84,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>] Allowed values: "id", "address", "by", "timestamp", "expiry", "reason", "range".
       # @return [self]
       def prop(*values)
-        values.inject(self) { |res, val| res.prop_single(val) }
+        values.inject(self) { |res, val| res._prop(val) or fail ArgumentError, "Unknown value for prop: #{val}" }
       end
 
       # @private
-      def prop_single(value)
+      def _prop(value)
         defined?(super) && super || ["id", "address", "by", "timestamp", "expiry", "reason", "range"].include?(value.to_s) && merge(bgprop: value.to_s)
       end
     end

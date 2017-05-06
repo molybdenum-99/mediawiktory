@@ -34,6 +34,11 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "yes", "no".
       # @return [self]
       def redirect(value)
+        _redirect(value) or fail ArgumentError, "Unknown value for redirect: #{value}"
+      end
+
+      # @private
+      def _redirect(value)
         defined?(super) && super || ["yes", "no"].include?(value.to_s) && merge(redirect: value.to_s)
       end
 
@@ -50,11 +55,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>] Allowed values: "text" (HTML of selected sections), "sections" (Information about all sections on the page), "normalizedtitle" (Normalized page title), "lastmodified" (ISO 8601 timestamp for when the page was last modified, e.g. "2014-04-13T22:42:14Z"), "lastmodifiedby" (Information about the user who modified the page last), "revision" (Return the current revision ID of the page), "protection" (Information about protection level), "editable" (Whether the current user can edit this page. This includes all factors for logged-in users but not blocked status for anons), "languagecount" (Number of languages that the page is available in), "hasvariants" (Whether or not the page is available in other language variants), "displaytitle" (The rendered title of the page, with {{DISPLAYTITLE}} and such applied), "pageprops" (Page properties).
       # @return [self]
       def prop(*values)
-        values.inject(self) { |res, val| res.prop_single(val) }
+        values.inject(self) { |res, val| res._prop(val) or fail ArgumentError, "Unknown value for prop: #{val}" }
       end
 
       # @private
-      def prop_single(value)
+      def _prop(value)
         defined?(super) && super || ["text", "sections", "normalizedtitle", "lastmodified", "lastmodifiedby", "revision", "protection", "editable", "languagecount", "hasvariants", "displaytitle", "pageprops"].include?(value.to_s) && merge(prop: value.to_s)
       end
 
@@ -63,11 +68,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>] Allowed values: "toclevel", "level", "line", "number", "index", "fromtitle", "anchor".
       # @return [self]
       def sectionprop(*values)
-        values.inject(self) { |res, val| res.sectionprop_single(val) }
+        values.inject(self) { |res, val| res._sectionprop(val) or fail ArgumentError, "Unknown value for sectionprop: #{val}" }
       end
 
       # @private
-      def sectionprop_single(value)
+      def _sectionprop(value)
         defined?(super) && super || ["toclevel", "level", "line", "number", "index", "fromtitle", "anchor"].include?(value.to_s) && merge(sectionprop: value.to_s)
       end
 

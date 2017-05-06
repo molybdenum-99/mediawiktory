@@ -42,6 +42,11 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "meta", "nost", "de", "es", "fr", "it", "pl", "outreachwiki", "test2wiki".
       # @return [self]
       def interwikisource(value)
+        _interwikisource(value) or fail ArgumentError, "Unknown value for interwikisource: #{value}"
+      end
+
+      # @private
+      def _interwikisource(value)
         defined?(super) && super || ["meta", "nost", "de", "es", "fr", "it", "pl", "outreachwiki", "test2wiki"].include?(value.to_s) && merge(interwikisource: value.to_s)
       end
 
@@ -72,6 +77,11 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "100", "101", "108", "109", "118", "119", "446", "447", "710", "711", "828", "829", "2300", "2301", "2302", "2303".
       # @return [self]
       def namespace(value)
+        _namespace(value) or fail ArgumentError, "Unknown value for namespace: #{value}"
+      end
+
+      # @private
+      def _namespace(value)
         defined?(super) && super || ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "100", "101", "108", "109", "118", "119", "446", "447", "710", "711", "828", "829", "2300", "2301", "2302", "2303"].include?(value.to_s) && merge(namespace: value.to_s)
       end
 
@@ -88,11 +98,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>] Allowed values: "ProveIt edit", "WPCleaner", "huggle", "large plot addition".
       # @return [self]
       def tags(*values)
-        values.inject(self) { |res, val| res.tags_single(val) }
+        values.inject(self) { |res, val| res._tags(val) or fail ArgumentError, "Unknown value for tags: #{val}" }
       end
 
       # @private
-      def tags_single(value)
+      def _tags(value)
         defined?(super) && super || ["ProveIt edit", "WPCleaner", "huggle", "large plot addition"].include?(value.to_s) && merge(tags: value.to_s)
       end
 

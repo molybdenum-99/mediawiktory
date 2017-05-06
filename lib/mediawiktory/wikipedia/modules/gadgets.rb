@@ -13,11 +13,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>] Allowed values: "id" (Internal gadget ID), "metadata" (The gadget metadata), "desc" (Gadget description transformed into HTML (can be slow, use only if really needed)).
       # @return [self]
       def prop(*values)
-        values.inject(self) { |res, val| res.prop_single(val) }
+        values.inject(self) { |res, val| res._prop(val) or fail ArgumentError, "Unknown value for prop: #{val}" }
       end
 
       # @private
-      def prop_single(value)
+      def _prop(value)
         defined?(super) && super || ["id", "metadata", "desc"].include?(value.to_s) && merge(gaprop: value.to_s)
       end
 
@@ -26,11 +26,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>]
       # @return [self]
       def categories(*values)
-        values.inject(self) { |res, val| res.categories_single(val) }
+        values.inject(self) { |res, val| res._categories(val) }
       end
 
       # @private
-      def categories_single(value)
+      def _categories(value)
         merge(gacategories: value.to_s)
       end
 
@@ -39,11 +39,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>]
       # @return [self]
       def ids(*values)
-        values.inject(self) { |res, val| res.ids_single(val) }
+        values.inject(self) { |res, val| res._ids(val) }
       end
 
       # @private
-      def ids_single(value)
+      def _ids(value)
         merge(gaids: value.to_s)
       end
 

@@ -37,6 +37,11 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "newer" (List oldest first. Note: culstart has to be before culend), "older" (List newest first (default). Note: culstart has to be later than culend).
       # @return [self]
       def dir(value)
+        _dir(value) or fail ArgumentError, "Unknown value for dir: #{value}"
+      end
+
+      # @private
+      def _dir(value)
         defined?(super) && super || ["newer", "older"].include?(value.to_s) && merge(culdir: value.to_s)
       end
 

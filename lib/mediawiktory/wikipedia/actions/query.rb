@@ -59,11 +59,11 @@ module MediaWiktory::Wikipedia
       #   * `:wbentityusage` - {MediaWiktory::Wikipedia::Modules::Wbentityusage} Returns all entity IDs used in the given pages. 
       # @return [self]
       def prop(*values)
-        values.inject(self) { |res, val| res.prop_single(val) }
+        values.inject(self) { |res, val| res._prop(val) or fail ArgumentError, "Unknown value for prop: #{val}" }
       end
 
       # @private
-      def prop_single(value)
+      def _prop(value)
         defined?(super) && super || [:categories, :categoryinfo, :contributors, :coordinates, :deletedrevisions, :duplicatefiles, :extlinks, :extracts, :fileusage, :flagged, :globalusage, :imageinfo, :images, :info, :iwlinks, :langlinks, :links, :linkshere, :mapdata, :pageassessments, :pageimages, :pageprops, :pageterms, :pageviews, :redirects, :references, :revisions, :stashimageinfo, :templates, :transcludedin, :transcodestatus, :videoinfo, :wbentityusage].include?(value.to_sym) && merge(prop: value.to_s).submodule({categories: Modules::Categories, categoryinfo: Modules::Categoryinfo, contributors: Modules::Contributors, coordinates: Modules::Coordinates, deletedrevisions: Modules::Deletedrevisions, duplicatefiles: Modules::Duplicatefiles, extlinks: Modules::Extlinks, extracts: Modules::Extracts, fileusage: Modules::Fileusage, flagged: Modules::Flagged, globalusage: Modules::Globalusage, imageinfo: Modules::Imageinfo, images: Modules::Images, info: Modules::Info, iwlinks: Modules::Iwlinks, langlinks: Modules::Langlinks, links: Modules::Links, linkshere: Modules::Linkshere, mapdata: Modules::Mapdata, pageassessments: Modules::Pageassessments, pageimages: Modules::Pageimages, pageprops: Modules::Pageprops, pageterms: Modules::Pageterms, pageviews: Modules::Pageviews, redirects: Modules::Redirects, references: Modules::References, revisions: Modules::Revisions, stashimageinfo: Modules::Stashimageinfo, templates: Modules::Templates, transcludedin: Modules::Transcludedin, transcodestatus: Modules::Transcodestatus, videoinfo: Modules::Videoinfo, wbentityusage: Modules::Wbentityusage}[value.to_sym])
       end
 
@@ -134,11 +134,11 @@ module MediaWiktory::Wikipedia
       #   * `:wikisets` - {MediaWiktory::Wikipedia::Modules::Wikisets} Enumerate all wiki sets. 
       # @return [self]
       def list(*values)
-        values.inject(self) { |res, val| res.list_single(val) }
+        values.inject(self) { |res, val| res._list(val) or fail ArgumentError, "Unknown value for list: #{val}" }
       end
 
       # @private
-      def list_single(value)
+      def _list(value)
         defined?(super) && super || [:abusefilters, :abuselog, :allcategories, :alldeletedrevisions, :allfileusages, :allimages, :alllinks, :allpages, :allredirects, :allrevisions, :alltransclusions, :allusers, :backlinks, :betafeatures, :blocks, :categorymembers, :centralnoticelogs, :checkuser, :checkuserlog, :contenttranslation, :contenttranslationcorpora, :contenttranslationlangtrend, :contenttranslationstats, :contenttranslationsuggestions, :cxpublishedtranslations, :cxtranslatorstats, :deletedrevs, :embeddedin, :exturlusage, :filearchive, :gadgetcategories, :gadgets, :geosearch, :gettingstartedgetpages, :globalallusers, :globalblocks, :globalgroups, :imageusage, :iwbacklinks, :langbacklinks, :logevents, :mmsites, :mostviewed, :mystashedfiles, :oldreviewedpages, :pagepropnames, :pageswithprop, :prefixsearch, :projectpages, :projects, :protectedtitles, :querypage, :random, :recentchanges, :search, :tags, :usercontribs, :users, :watchlist, :watchlistraw, :wblistentityusage, :wikisets].include?(value.to_sym) && merge(list: value.to_s).submodule({abusefilters: Modules::Abusefilters, abuselog: Modules::Abuselog, allcategories: Modules::Allcategories, alldeletedrevisions: Modules::Alldeletedrevisions, allfileusages: Modules::Allfileusages, allimages: Modules::Allimages, alllinks: Modules::Alllinks, allpages: Modules::Allpages, allredirects: Modules::Allredirects, allrevisions: Modules::Allrevisions, alltransclusions: Modules::Alltransclusions, allusers: Modules::Allusers, backlinks: Modules::Backlinks, betafeatures: Modules::Betafeatures, blocks: Modules::Blocks, categorymembers: Modules::Categorymembers, centralnoticelogs: Modules::Centralnoticelogs, checkuser: Modules::Checkuser, checkuserlog: Modules::Checkuserlog, contenttranslation: Modules::Contenttranslation, contenttranslationcorpora: Modules::Contenttranslationcorpora, contenttranslationlangtrend: Modules::Contenttranslationlangtrend, contenttranslationstats: Modules::Contenttranslationstats, contenttranslationsuggestions: Modules::Contenttranslationsuggestions, cxpublishedtranslations: Modules::Cxpublishedtranslations, cxtranslatorstats: Modules::Cxtranslatorstats, deletedrevs: Modules::Deletedrevs, embeddedin: Modules::Embeddedin, exturlusage: Modules::Exturlusage, filearchive: Modules::Filearchive, gadgetcategories: Modules::Gadgetcategories, gadgets: Modules::Gadgets, geosearch: Modules::Geosearch, gettingstartedgetpages: Modules::Gettingstartedgetpages, globalallusers: Modules::Globalallusers, globalblocks: Modules::Globalblocks, globalgroups: Modules::Globalgroups, imageusage: Modules::Imageusage, iwbacklinks: Modules::Iwbacklinks, langbacklinks: Modules::Langbacklinks, logevents: Modules::Logevents, mmsites: Modules::Mmsites, mostviewed: Modules::Mostviewed, mystashedfiles: Modules::Mystashedfiles, oldreviewedpages: Modules::Oldreviewedpages, pagepropnames: Modules::Pagepropnames, pageswithprop: Modules::Pageswithprop, prefixsearch: Modules::Prefixsearch, projectpages: Modules::Projectpages, projects: Modules::Projects, protectedtitles: Modules::Protectedtitles, querypage: Modules::Querypage, random: Modules::Random, recentchanges: Modules::Recentchanges, search: Modules::Search, tags: Modules::Tags, usercontribs: Modules::Usercontribs, users: Modules::Users, watchlist: Modules::Watchlist, watchlistraw: Modules::Watchlistraw, wblistentityusage: Modules::Wblistentityusage, wikisets: Modules::Wikisets}[value.to_sym])
       end
 
@@ -162,11 +162,11 @@ module MediaWiktory::Wikipedia
       #   * `:wikibase` - {MediaWiktory::Wikipedia::Modules::Wikibase} Get information about the Wikibase client and the associated Wikibase repository. 
       # @return [self]
       def meta(*values)
-        values.inject(self) { |res, val| res.meta_single(val) }
+        values.inject(self) { |res, val| res._meta(val) or fail ArgumentError, "Unknown value for meta: #{val}" }
       end
 
       # @private
-      def meta_single(value)
+      def _meta(value)
         defined?(super) && super || [:allmessages, :authmanagerinfo, :babel, :featureusage, :filerepoinfo, :globaluserinfo, :notifications, :oath, :ores, :siteinfo, :siteviews, :tokens, :unreadnotificationpages, :userinfo, :wikibase].include?(value.to_sym) && merge(meta: value.to_s).submodule({allmessages: Modules::Allmessages, authmanagerinfo: Modules::Authmanagerinfo, babel: Modules::Babel, featureusage: Modules::Featureusage, filerepoinfo: Modules::Filerepoinfo, globaluserinfo: Modules::Globaluserinfo, notifications: Modules::Notifications, oath: Modules::Oath, ores: Modules::Ores, siteinfo: Modules::Siteinfo, siteviews: Modules::Siteviews, tokens: Modules::Tokens, unreadnotificationpages: Modules::Unreadnotificationpages, userinfo: Modules::Userinfo, wikibase: Modules::Wikibase}[value.to_sym])
       end
 
@@ -218,11 +218,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>]
       # @return [self]
       def titles(*values)
-        values.inject(self) { |res, val| res.titles_single(val) }
+        values.inject(self) { |res, val| res._titles(val) }
       end
 
       # @private
-      def titles_single(value)
+      def _titles(value)
         merge(titles: value.to_s)
       end
 
@@ -231,11 +231,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<Integer>]
       # @return [self]
       def pageids(*values)
-        values.inject(self) { |res, val| res.pageids_single(val) }
+        values.inject(self) { |res, val| res._pageids(val) }
       end
 
       # @private
-      def pageids_single(value)
+      def _pageids(value)
         merge(pageids: value.to_s)
       end
 
@@ -244,11 +244,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<Integer>]
       # @return [self]
       def revids(*values)
-        values.inject(self) { |res, val| res.revids_single(val) }
+        values.inject(self) { |res, val| res._revids(val) }
       end
 
       # @private
-      def revids_single(value)
+      def _revids(value)
         merge(revids: value.to_s)
       end
 
@@ -301,6 +301,11 @@ module MediaWiktory::Wikipedia
       #   * `:g-wblistentityusage` - {MediaWiktory::Wikipedia::Modules::GWblistentityusage} Generator module.
       # @return [self]
       def generator(value)
+        _generator(value) or fail ArgumentError, "Unknown value for generator: #{value}"
+      end
+
+      # @private
+      def _generator(value)
         defined?(super) && super || [:allcategories, :alldeletedrevisions, :allfileusages, :allimages, :alllinks, :allpages, :allredirects, :allrevisions, :alltransclusions, :backlinks, :categories, :categorymembers, :contenttranslation, :contenttranslationsuggestions, :deletedrevisions, :duplicatefiles, :embeddedin, :exturlusage, :fileusage, :geosearch, :gettingstartedgetpages, :images, :imageusage, :iwbacklinks, :langbacklinks, :links, :linkshere, :mostviewed, :oldreviewedpages, :pageswithprop, :prefixsearch, :projectpages, :protectedtitles, :querypage, :random, :recentchanges, :redirects, :revisions, :search, :templates, :transcludedin, :watchlist, :watchlistraw, :wblistentityusage].include?(value.to_sym) && merge(generator: value.to_s).submodule({allcategories: Modules::GAllcategories, alldeletedrevisions: Modules::GAlldeletedrevisions, allfileusages: Modules::GAllfileusages, allimages: Modules::GAllimages, alllinks: Modules::GAlllinks, allpages: Modules::GAllpages, allredirects: Modules::GAllredirects, allrevisions: Modules::GAllrevisions, alltransclusions: Modules::GAlltransclusions, backlinks: Modules::GBacklinks, categories: Modules::GCategories, categorymembers: Modules::GCategorymembers, contenttranslation: Modules::GContenttranslation, contenttranslationsuggestions: Modules::GContenttranslationsuggestions, deletedrevisions: Modules::GDeletedrevisions, duplicatefiles: Modules::GDuplicatefiles, embeddedin: Modules::GEmbeddedin, exturlusage: Modules::GExturlusage, fileusage: Modules::GFileusage, geosearch: Modules::GGeosearch, gettingstartedgetpages: Modules::GGettingstartedgetpages, images: Modules::GImages, imageusage: Modules::GImageusage, iwbacklinks: Modules::GIwbacklinks, langbacklinks: Modules::GLangbacklinks, links: Modules::GLinks, linkshere: Modules::GLinkshere, mostviewed: Modules::GMostviewed, oldreviewedpages: Modules::GOldreviewedpages, pageswithprop: Modules::GPageswithprop, prefixsearch: Modules::GPrefixsearch, projectpages: Modules::GProjectpages, protectedtitles: Modules::GProtectedtitles, querypage: Modules::GQuerypage, random: Modules::GRandom, recentchanges: Modules::GRecentchanges, redirects: Modules::GRedirects, revisions: Modules::GRevisions, search: Modules::GSearch, templates: Modules::GTemplates, transcludedin: Modules::GTranscludedin, watchlist: Modules::GWatchlist, watchlistraw: Modules::GWatchlistraw, wblistentityusage: Modules::GWblistentityusage}[value.to_sym])
       end
 

@@ -34,6 +34,11 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "lock", "unlock".
       # @return [self]
       def locked(value)
+        _locked(value) or fail ArgumentError, "Unknown value for locked: #{value}"
+      end
+
+      # @private
+      def _locked(value)
         defined?(super) && super || ["lock", "unlock"].include?(value.to_s) && merge(locked: value.to_s)
       end
 
@@ -42,6 +47,11 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "lists", "suppressed".
       # @return [self]
       def hidden(value)
+        _hidden(value) or fail ArgumentError, "Unknown value for hidden: #{value}"
+      end
+
+      # @private
+      def _hidden(value)
         defined?(super) && super || ["lists", "suppressed"].include?(value.to_s) && merge(hidden: value.to_s)
       end
 

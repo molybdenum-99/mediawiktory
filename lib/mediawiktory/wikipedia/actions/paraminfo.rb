@@ -26,11 +26,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>]
       # @return [self]
       def modules(*values)
-        values.inject(self) { |res, val| res.modules_single(val) }
+        values.inject(self) { |res, val| res._modules(val) }
       end
 
       # @private
-      def modules_single(value)
+      def _modules(value)
         merge(modules: value.to_s)
       end
 
@@ -39,6 +39,11 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "html", "wikitext", "raw", "none".
       # @return [self]
       def helpformat(value)
+        _helpformat(value) or fail ArgumentError, "Unknown value for helpformat: #{value}"
+      end
+
+      # @private
+      def _helpformat(value)
         defined?(super) && super || ["html", "wikitext", "raw", "none"].include?(value.to_s) && merge(helpformat: value.to_s)
       end
 
@@ -47,11 +52,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>] Allowed values: "abusefilters", "abuselog", "allcategories", "alldeletedrevisions", "allfileusages", "allimages", "alllinks", "allmessages", "allpages", "allredirects", "allrevisions", "alltransclusions", "allusers", "authmanagerinfo", "babel", "backlinks", "betafeatures", "blocks", "categories", "categoryinfo", "categorymembers", "centralnoticelogs", "checkuser", "checkuserlog", "contenttranslation", "contenttranslationcorpora", "contenttranslationlangtrend", "contenttranslationstats", "contenttranslationsuggestions", "contributors", "coordinates", "cxpublishedtranslations", "cxtranslatorstats", "deletedrevisions", "deletedrevs", "duplicatefiles", "embeddedin", "extlinks", "extracts", "exturlusage", "featureusage", "filearchive", "filerepoinfo", "fileusage", "flagged", "gadgetcategories", "gadgets", "geosearch", "gettingstartedgetpages", "globalallusers", "globalblocks", "globalgroups", "globalusage", "globaluserinfo", "imageinfo", "images", "imageusage", "info", "iwbacklinks", "iwlinks", "langbacklinks", "langlinks", "links", "linkshere", "logevents", "mapdata", "mmsites", "mostviewed", "mystashedfiles", "notifications", "oath", "oldreviewedpages", "ores", "pageassessments", "pageimages", "pagepropnames", "pageprops", "pageswithprop", "pageterms", "pageviews", "prefixsearch", "projectpages", "projects", "protectedtitles", "querypage", "random", "recentchanges", "redirects", "references", "revisions", "search", "siteinfo", "siteviews", "stashimageinfo", "tags", "templates", "tokens", "transcludedin", "transcodestatus", "unreadnotificationpages", "usercontribs", "userinfo", "users", "videoinfo", "watchlist", "watchlistraw", "wbentityusage", "wblistentityusage", "wikibase", "wikisets".
       # @return [self]
       def querymodules(*values)
-        values.inject(self) { |res, val| res.querymodules_single(val) }
+        values.inject(self) { |res, val| res._querymodules(val) or fail ArgumentError, "Unknown value for querymodules: #{val}" }
       end
 
       # @private
-      def querymodules_single(value)
+      def _querymodules(value)
         defined?(super) && super || ["abusefilters", "abuselog", "allcategories", "alldeletedrevisions", "allfileusages", "allimages", "alllinks", "allmessages", "allpages", "allredirects", "allrevisions", "alltransclusions", "allusers", "authmanagerinfo", "babel", "backlinks", "betafeatures", "blocks", "categories", "categoryinfo", "categorymembers", "centralnoticelogs", "checkuser", "checkuserlog", "contenttranslation", "contenttranslationcorpora", "contenttranslationlangtrend", "contenttranslationstats", "contenttranslationsuggestions", "contributors", "coordinates", "cxpublishedtranslations", "cxtranslatorstats", "deletedrevisions", "deletedrevs", "duplicatefiles", "embeddedin", "extlinks", "extracts", "exturlusage", "featureusage", "filearchive", "filerepoinfo", "fileusage", "flagged", "gadgetcategories", "gadgets", "geosearch", "gettingstartedgetpages", "globalallusers", "globalblocks", "globalgroups", "globalusage", "globaluserinfo", "imageinfo", "images", "imageusage", "info", "iwbacklinks", "iwlinks", "langbacklinks", "langlinks", "links", "linkshere", "logevents", "mapdata", "mmsites", "mostviewed", "mystashedfiles", "notifications", "oath", "oldreviewedpages", "ores", "pageassessments", "pageimages", "pagepropnames", "pageprops", "pageswithprop", "pageterms", "pageviews", "prefixsearch", "projectpages", "projects", "protectedtitles", "querypage", "random", "recentchanges", "redirects", "references", "revisions", "search", "siteinfo", "siteviews", "stashimageinfo", "tags", "templates", "tokens", "transcludedin", "transcodestatus", "unreadnotificationpages", "usercontribs", "userinfo", "users", "videoinfo", "watchlist", "watchlistraw", "wbentityusage", "wblistentityusage", "wikibase", "wikisets"].include?(value.to_s) && merge(querymodules: value.to_s)
       end
 
@@ -76,11 +81,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>] Allowed values: "json", "jsonfm", "none", "php", "phpfm", "rawfm", "xml", "xmlfm".
       # @return [self]
       def formatmodules(*values)
-        values.inject(self) { |res, val| res.formatmodules_single(val) }
+        values.inject(self) { |res, val| res._formatmodules(val) or fail ArgumentError, "Unknown value for formatmodules: #{val}" }
       end
 
       # @private
-      def formatmodules_single(value)
+      def _formatmodules(value)
         defined?(super) && super || ["json", "jsonfm", "none", "php", "phpfm", "rawfm", "xml", "xmlfm"].include?(value.to_s) && merge(formatmodules: value.to_s)
       end
     end

@@ -13,11 +13,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>] Allowed values: "thumbnail" (URL and dimensions of thumbnail image associated with page, if any), "original" (URL and original dimensions of image associated with page, if any), "name" (Image title).
       # @return [self]
       def prop(*values)
-        values.inject(self) { |res, val| res.prop_single(val) }
+        values.inject(self) { |res, val| res._prop(val) or fail ArgumentError, "Unknown value for prop: #{val}" }
       end
 
       # @private
-      def prop_single(value)
+      def _prop(value)
         defined?(super) && super || ["thumbnail", "original", "name"].include?(value.to_s) && merge(piprop: value.to_s)
       end
 
@@ -42,6 +42,11 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "free", "any".
       # @return [self]
       def license(value)
+        _license(value) or fail ArgumentError, "Unknown value for license: #{value}"
+      end
+
+      # @private
+      def _license(value)
         defined?(super) && super || ["free", "any"].include?(value.to_s) && merge(pilicense: value.to_s)
       end
 

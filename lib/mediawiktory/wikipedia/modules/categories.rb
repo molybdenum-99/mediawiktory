@@ -13,11 +13,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>] Allowed values: "sortkey" (Adds the sortkey (hexadecimal string) and sortkey prefix (human-readable part) for the category), "timestamp" (Adds timestamp of when the category was added), "hidden" (Tags categories that are hidden with __HIDDENCAT__).
       # @return [self]
       def prop(*values)
-        values.inject(self) { |res, val| res.prop_single(val) }
+        values.inject(self) { |res, val| res._prop(val) or fail ArgumentError, "Unknown value for prop: #{val}" }
       end
 
       # @private
-      def prop_single(value)
+      def _prop(value)
         defined?(super) && super || ["sortkey", "timestamp", "hidden"].include?(value.to_s) && merge(clprop: value.to_s)
       end
 
@@ -26,11 +26,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>] Allowed values: "hidden", "!hidden".
       # @return [self]
       def show(*values)
-        values.inject(self) { |res, val| res.show_single(val) }
+        values.inject(self) { |res, val| res._show(val) or fail ArgumentError, "Unknown value for show: #{val}" }
       end
 
       # @private
-      def show_single(value)
+      def _show(value)
         defined?(super) && super || ["hidden", "!hidden"].include?(value.to_s) && merge(clshow: value.to_s)
       end
 
@@ -55,11 +55,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>]
       # @return [self]
       def categories(*values)
-        values.inject(self) { |res, val| res.categories_single(val) }
+        values.inject(self) { |res, val| res._categories(val) }
       end
 
       # @private
-      def categories_single(value)
+      def _categories(value)
         merge(clcategories: value.to_s)
       end
 
@@ -68,6 +68,11 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "ascending", "descending".
       # @return [self]
       def dir(value)
+        _dir(value) or fail ArgumentError, "Unknown value for dir: #{value}"
+      end
+
+      # @private
+      def _dir(value)
         defined?(super) && super || ["ascending", "descending"].include?(value.to_s) && merge(cldir: value.to_s)
       end
     end

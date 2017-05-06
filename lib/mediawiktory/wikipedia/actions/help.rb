@@ -26,11 +26,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>]
       # @return [self]
       def modules(*values)
-        values.inject(self) { |res, val| res.modules_single(val) }
+        values.inject(self) { |res, val| res._modules(val) }
       end
 
       # @private
-      def modules_single(value)
+      def _modules(value)
         merge(modules: value.to_s)
       end
 

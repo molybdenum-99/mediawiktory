@@ -34,6 +34,11 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "alert", "message", "all".
       # @return [self]
       def type(value)
+        _type(value) or fail ArgumentError, "Unknown value for type: #{value}"
+      end
+
+      # @private
+      def _type(value)
         defined?(super) && super || ["alert", "message", "all"].include?(value.to_s) && merge(type: value.to_s)
       end
 
@@ -42,6 +47,11 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "ISO_8601", "MW".
       # @return [self]
       def timestampFormat(value)
+        _timestampFormat(value) or fail ArgumentError, "Unknown value for timestampFormat: #{value}"
+      end
+
+      # @private
+      def _timestampFormat(value)
         defined?(super) && super || ["ISO_8601", "MW"].include?(value.to_s) && merge(timestampFormat: value.to_s)
       end
     end

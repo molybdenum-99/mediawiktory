@@ -21,11 +21,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>]
       # @return [self]
       def prop(*values)
-        values.inject(self) { |res, val| res.prop_single(val) }
+        values.inject(self) { |res, val| res._prop(val) }
       end
 
       # @private
-      def prop_single(value)
+      def _prop(value)
         merge(ppprop: value.to_s)
       end
     end

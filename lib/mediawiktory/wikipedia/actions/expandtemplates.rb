@@ -50,11 +50,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>] Allowed values: "wikitext" (The expanded wikitext), "categories" (Any categories present in the input that are not represented in the wikitext output), "properties" (Page properties defined by expanded magic words in the wikitext), "volatile" (Whether the output is volatile and should not be reused elsewhere within the page), "ttl" (The maximum time after which caches of the result should be invalidated), "modules" (Any ResourceLoader modules that parser functions have requested be added to the output. Either jsconfigvars or encodedjsconfigvars must be requested jointly with modules), "jsconfigvars" (Gives the JavaScript configuration variables specific to the page), "encodedjsconfigvars" (Gives the JavaScript configuration variables specific to the page as a JSON string), "parsetree" (The XML parse tree of the input).
       # @return [self]
       def prop(*values)
-        values.inject(self) { |res, val| res.prop_single(val) }
+        values.inject(self) { |res, val| res._prop(val) or fail ArgumentError, "Unknown value for prop: #{val}" }
       end
 
       # @private
-      def prop_single(value)
+      def _prop(value)
         defined?(super) && super || ["wikitext", "categories", "properties", "volatile", "ttl", "modules", "jsconfigvars", "encodedjsconfigvars", "parsetree"].include?(value.to_s) && merge(prop: value.to_s)
       end
 
@@ -77,11 +77,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>]
       # @return [self]
       def templatesandboxprefix(*values)
-        values.inject(self) { |res, val| res.templatesandboxprefix_single(val) }
+        values.inject(self) { |res, val| res._templatesandboxprefix(val) }
       end
 
       # @private
-      def templatesandboxprefix_single(value)
+      def _templatesandboxprefix(value)
         merge(templatesandboxprefix: value.to_s)
       end
 
@@ -106,6 +106,11 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "GadgetDefinition", "SecurePoll", "MassMessageListContent", "JsonSchema", "wikitext", "javascript", "json", "css", "text", "Scribunto".
       # @return [self]
       def templatesandboxcontentmodel(value)
+        _templatesandboxcontentmodel(value) or fail ArgumentError, "Unknown value for templatesandboxcontentmodel: #{value}"
+      end
+
+      # @private
+      def _templatesandboxcontentmodel(value)
         defined?(super) && super || ["GadgetDefinition", "SecurePoll", "MassMessageListContent", "JsonSchema", "wikitext", "javascript", "json", "css", "text", "Scribunto"].include?(value.to_s) && merge(templatesandboxcontentmodel: value.to_s)
       end
 
@@ -114,6 +119,11 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "application/json", "text/x-wiki", "text/javascript", "text/css", "text/plain".
       # @return [self]
       def templatesandboxcontentformat(value)
+        _templatesandboxcontentformat(value) or fail ArgumentError, "Unknown value for templatesandboxcontentformat: #{value}"
+      end
+
+      # @private
+      def _templatesandboxcontentformat(value)
         defined?(super) && super || ["application/json", "text/x-wiki", "text/javascript", "text/css", "text/plain"].include?(value.to_s) && merge(templatesandboxcontentformat: value.to_s)
       end
     end

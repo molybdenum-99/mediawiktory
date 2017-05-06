@@ -13,6 +13,11 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "name", "timestamp".
       # @return [self]
       def sort(value)
+        _sort(value) or fail ArgumentError, "Unknown value for sort: #{value}"
+      end
+
+      # @private
+      def _sort(value)
         defined?(super) && super || ["name", "timestamp"].include?(value.to_s) && merge(gaisort: value.to_s)
       end
 
@@ -21,6 +26,11 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "ascending", "descending", "newer", "older".
       # @return [self]
       def dir(value)
+        _dir(value) or fail ArgumentError, "Unknown value for dir: #{value}"
+      end
+
+      # @private
+      def _dir(value)
         defined?(super) && super || ["ascending", "descending", "newer", "older"].include?(value.to_s) && merge(gaidir: value.to_s)
       end
 
@@ -117,6 +127,11 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "all", "bots", "nobots".
       # @return [self]
       def filterbots(value)
+        _filterbots(value) or fail ArgumentError, "Unknown value for filterbots: #{value}"
+      end
+
+      # @private
+      def _filterbots(value)
         defined?(super) && super || ["all", "bots", "nobots"].include?(value.to_s) && merge(gaifilterbots: value.to_s)
       end
 
@@ -125,11 +140,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>]
       # @return [self]
       def mime(*values)
-        values.inject(self) { |res, val| res.mime_single(val) }
+        values.inject(self) { |res, val| res._mime(val) }
       end
 
       # @private
-      def mime_single(value)
+      def _mime(value)
         merge(gaimime: value.to_s)
       end
 

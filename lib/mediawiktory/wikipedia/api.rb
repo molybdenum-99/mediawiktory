@@ -6,7 +6,7 @@ require_relative './actions/base'
 module MediaWiktory::Wikipedia
   # The base API class for [Wikipedia](https://en.wikipedia.org/wiki/Main_Page).
   #
-  # _Generated from https://en.wikipedia.org/w/api.php at May 04, 2017 by MediaWiktory 0.1.0._
+  # _Generated from https://en.wikipedia.org/w/api.php at May 06, 2017 by MediaWiktory 0.1.0._
   #
   # It also can be used for access to any other MediaWiki site, but some of actions could be
   # non-existent/outdated.

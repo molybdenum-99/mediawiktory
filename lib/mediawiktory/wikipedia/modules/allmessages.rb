@@ -13,11 +13,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>]
       # @return [self]
       def messages(*values)
-        values.inject(self) { |res, val| res.messages_single(val) }
+        values.inject(self) { |res, val| res._messages(val) }
       end
 
       # @private
-      def messages_single(value)
+      def _messages(value)
         merge(ammessages: value.to_s)
       end
 
@@ -26,11 +26,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>] Allowed values: "default".
       # @return [self]
       def prop(*values)
-        values.inject(self) { |res, val| res.prop_single(val) }
+        values.inject(self) { |res, val| res._prop(val) or fail ArgumentError, "Unknown value for prop: #{val}" }
       end
 
       # @private
-      def prop_single(value)
+      def _prop(value)
         defined?(super) && super || ["default"].include?(value.to_s) && merge(amprop: value.to_s)
       end
 
@@ -60,11 +60,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>]
       # @return [self]
       def args(*values)
-        values.inject(self) { |res, val| res.args_single(val) }
+        values.inject(self) { |res, val| res._args(val) }
       end
 
       # @private
-      def args_single(value)
+      def _args(value)
         merge(amargs: value.to_s)
       end
 
@@ -81,6 +81,11 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "all", "modified", "unmodified".
       # @return [self]
       def customised(value)
+        _customised(value) or fail ArgumentError, "Unknown value for customised: #{value}"
+      end
+
+      # @private
+      def _customised(value)
         defined?(super) && super || ["all", "modified", "unmodified"].include?(value.to_s) && merge(amcustomised: value.to_s)
       end
 

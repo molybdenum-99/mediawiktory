@@ -26,6 +26,11 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "revision", "archive", "oldimage", "filearchive", "logging".
       # @return [self]
       def type(value)
+        _type(value) or fail ArgumentError, "Unknown value for type: #{value}"
+      end
+
+      # @private
+      def _type(value)
         defined?(super) && super || ["revision", "archive", "oldimage", "filearchive", "logging"].include?(value.to_s) && merge(type: value.to_s)
       end
 
@@ -42,11 +47,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>]
       # @return [self]
       def ids(*values)
-        values.inject(self) { |res, val| res.ids_single(val) }
+        values.inject(self) { |res, val| res._ids(val) }
       end
 
       # @private
-      def ids_single(value)
+      def _ids(value)
         merge(ids: value.to_s)
       end
 
@@ -55,11 +60,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>] Allowed values: "content", "comment", "user".
       # @return [self]
       def hide(*values)
-        values.inject(self) { |res, val| res.hide_single(val) }
+        values.inject(self) { |res, val| res._hide(val) or fail ArgumentError, "Unknown value for hide: #{val}" }
       end
 
       # @private
-      def hide_single(value)
+      def _hide(value)
         defined?(super) && super || ["content", "comment", "user"].include?(value.to_s) && merge(hide: value.to_s)
       end
 
@@ -68,11 +73,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>] Allowed values: "content", "comment", "user".
       # @return [self]
       def show(*values)
-        values.inject(self) { |res, val| res.show_single(val) }
+        values.inject(self) { |res, val| res._show(val) or fail ArgumentError, "Unknown value for show: #{val}" }
       end
 
       # @private
-      def show_single(value)
+      def _show(value)
         defined?(super) && super || ["content", "comment", "user"].include?(value.to_s) && merge(show: value.to_s)
       end
 
@@ -81,6 +86,11 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "yes", "no", "nochange".
       # @return [self]
       def suppress(value)
+        _suppress(value) or fail ArgumentError, "Unknown value for suppress: #{value}"
+      end
+
+      # @private
+      def _suppress(value)
         defined?(super) && super || ["yes", "no", "nochange"].include?(value.to_s) && merge(suppress: value.to_s)
       end
 
@@ -97,11 +107,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>] Allowed values: "ProveIt edit", "WPCleaner", "huggle", "large plot addition".
       # @return [self]
       def tags(*values)
-        values.inject(self) { |res, val| res.tags_single(val) }
+        values.inject(self) { |res, val| res._tags(val) or fail ArgumentError, "Unknown value for tags: #{val}" }
       end
 
       # @private
-      def tags_single(value)
+      def _tags(value)
         defined?(super) && super || ["ProveIt edit", "WPCleaner", "huggle", "large plot addition"].include?(value.to_s) && merge(tags: value.to_s)
       end
 

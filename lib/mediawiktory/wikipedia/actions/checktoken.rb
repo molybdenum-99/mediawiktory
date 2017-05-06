@@ -26,6 +26,11 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "createaccount", "csrf", "deleteglobalaccount", "login", "patrol", "rollback", "setglobalaccountstatus", "userrights", "watch".
       # @return [self]
       def type(value)
+        _type(value) or fail ArgumentError, "Unknown value for type: #{value}"
+      end
+
+      # @private
+      def _type(value)
         defined?(super) && super || ["createaccount", "csrf", "deleteglobalaccount", "login", "patrol", "rollback", "setglobalaccountstatus", "userrights", "watch"].include?(value.to_s) && merge(type: value.to_s)
       end
 

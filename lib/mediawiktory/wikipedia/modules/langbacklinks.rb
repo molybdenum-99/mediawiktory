@@ -45,11 +45,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>] Allowed values: "lllang" (Adds the language code of the language link), "lltitle" (Adds the title of the language link).
       # @return [self]
       def prop(*values)
-        values.inject(self) { |res, val| res.prop_single(val) }
+        values.inject(self) { |res, val| res._prop(val) or fail ArgumentError, "Unknown value for prop: #{val}" }
       end
 
       # @private
-      def prop_single(value)
+      def _prop(value)
         defined?(super) && super || ["lllang", "lltitle"].include?(value.to_s) && merge(lblprop: value.to_s)
       end
 
@@ -58,6 +58,11 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "ascending", "descending".
       # @return [self]
       def dir(value)
+        _dir(value) or fail ArgumentError, "Unknown value for dir: #{value}"
+      end
+
+      # @private
+      def _dir(value)
         defined?(super) && super || ["ascending", "descending"].include?(value.to_s) && merge(lbldir: value.to_s)
       end
     end

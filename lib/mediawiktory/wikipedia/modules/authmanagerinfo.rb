@@ -21,6 +21,11 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "login", "login-continue", "create", "create-continue", "link", "link-continue", "change", "remove", "unlink".
       # @return [self]
       def requestsfor(value)
+        _requestsfor(value) or fail ArgumentError, "Unknown value for requestsfor: #{value}"
+      end
+
+      # @private
+      def _requestsfor(value)
         defined?(super) && super || ["login", "login-continue", "create", "create-continue", "link", "link-continue", "change", "remove", "unlink"].include?(value.to_s) && merge(amirequestsfor: value.to_s)
       end
 
@@ -36,6 +41,11 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "html", "wikitext", "raw", "none".
       # @return [self]
       def messageformat(value)
+        _messageformat(value) or fail ArgumentError, "Unknown value for messageformat: #{value}"
+      end
+
+      # @private
+      def _messageformat(value)
         defined?(super) && super || ["html", "wikitext", "raw", "none"].include?(value.to_s) && merge(amimessageformat: value.to_s)
       end
     end

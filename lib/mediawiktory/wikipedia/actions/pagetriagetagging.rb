@@ -73,11 +73,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>]
       # @return [self]
       def taglist(*values)
-        values.inject(self) { |res, val| res.taglist_single(val) }
+        values.inject(self) { |res, val| res._taglist(val) }
       end
 
       # @private
-      def taglist_single(value)
+      def _taglist(value)
         merge(taglist: value.to_s)
       end
     end

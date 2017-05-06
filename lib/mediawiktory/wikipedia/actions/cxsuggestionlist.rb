@@ -34,6 +34,11 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "add", "remove".
       # @return [self]
       def listaction(value)
+        _listaction(value) or fail ArgumentError, "Unknown value for listaction: #{value}"
+      end
+
+      # @private
+      def _listaction(value)
         defined?(super) && super || ["add", "remove"].include?(value.to_s) && merge(listaction: value.to_s)
       end
 
@@ -42,11 +47,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>]
       # @return [self]
       def titles(*values)
-        values.inject(self) { |res, val| res.titles_single(val) }
+        values.inject(self) { |res, val| res._titles(val) }
       end
 
       # @private
-      def titles_single(value)
+      def _titles(value)
         merge(titles: value.to_s)
       end
 

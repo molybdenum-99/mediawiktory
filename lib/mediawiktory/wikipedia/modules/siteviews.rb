@@ -13,6 +13,11 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "pageviews" (Plain pageviews), "uniques" (Unique visitors).
       # @return [self]
       def metric(value)
+        _metric(value) or fail ArgumentError, "Unknown value for metric: #{value}"
+      end
+
+      # @private
+      def _metric(value)
         defined?(super) && super || ["pageviews", "uniques"].include?(value.to_s) && merge(pvismetric: value.to_s)
       end
 

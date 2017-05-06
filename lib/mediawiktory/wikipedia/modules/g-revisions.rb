@@ -73,6 +73,11 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "application/json", "text/x-wiki", "text/javascript", "text/css", "text/plain".
       # @return [self]
       def contentformat(value)
+        _contentformat(value) or fail ArgumentError, "Unknown value for contentformat: #{value}"
+      end
+
+      # @private
+      def _contentformat(value)
         defined?(super) && super || ["application/json", "text/x-wiki", "text/javascript", "text/css", "text/plain"].include?(value.to_s) && merge(grvcontentformat: value.to_s)
       end
 
@@ -113,6 +118,11 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "newer" (List oldest first. Note: rvstart has to be before rvend), "older" (List newest first (default). Note: rvstart has to be later than rvend).
       # @return [self]
       def dir(value)
+        _dir(value) or fail ArgumentError, "Unknown value for dir: #{value}"
+      end
+
+      # @private
+      def _dir(value)
         defined?(super) && super || ["newer", "older"].include?(value.to_s) && merge(grvdir: value.to_s)
       end
 
@@ -145,11 +155,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>] Allowed values: "rollback".
       # @return [self]
       def token(*values)
-        values.inject(self) { |res, val| res.token_single(val) }
+        values.inject(self) { |res, val| res._token(val) or fail ArgumentError, "Unknown value for token: #{val}" }
       end
 
       # @private
-      def token_single(value)
+      def _token(value)
         defined?(super) && super || ["rollback"].include?(value.to_s) && merge(grvtoken: value.to_s)
       end
 

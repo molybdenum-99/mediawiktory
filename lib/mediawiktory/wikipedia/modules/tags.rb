@@ -29,11 +29,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>] Allowed values: "name" (Adds name of tag), "displayname" (Adds system message for the tag), "description" (Adds description of the tag), "hitcount" (Adds the number of revisions and log entries that have this tag), "defined" (Indicate whether the tag is defined), "source" (Gets the sources of the tag, which may include extension for extension-defined tags and manual for tags that may be applied manually by users), "active" (Whether the tag is still being applied).
       # @return [self]
       def prop(*values)
-        values.inject(self) { |res, val| res.prop_single(val) }
+        values.inject(self) { |res, val| res._prop(val) or fail ArgumentError, "Unknown value for prop: #{val}" }
       end
 
       # @private
-      def prop_single(value)
+      def _prop(value)
         defined?(super) && super || ["name", "displayname", "description", "hitcount", "defined", "source", "active"].include?(value.to_s) && merge(tgprop: value.to_s)
       end
     end

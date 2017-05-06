@@ -20,11 +20,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>]
       # @return [self]
       def projects(*values)
-        values.inject(self) { |res, val| res.projects_single(val) }
+        values.inject(self) { |res, val| res._projects(val) }
       end
 
       # @private
-      def projects_single(value)
+      def _projects(value)
         merge(wppprojects: value.to_s)
       end
 

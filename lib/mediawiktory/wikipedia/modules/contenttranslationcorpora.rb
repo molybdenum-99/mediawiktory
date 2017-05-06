@@ -28,11 +28,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>] Allowed values: "source", "mt", "user".
       # @return [self]
       def types(*values)
-        values.inject(self) { |res, val| res.types_single(val) }
+        values.inject(self) { |res, val| res._types(val) or fail ArgumentError, "Unknown value for types: #{val}" }
       end
 
       # @private
-      def types_single(value)
+      def _types(value)
         defined?(super) && super || ["source", "mt", "user"].include?(value.to_s) && merge(types: value.to_s)
       end
     end

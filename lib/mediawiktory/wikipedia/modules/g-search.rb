@@ -21,11 +21,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>] Allowed values: "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "100", "101", "108", "109", "118", "119", "446", "447", "710", "711", "828", "829", "2300", "2301", "2302", "2303".
       # @return [self]
       def namespace(*values)
-        values.inject(self) { |res, val| res.namespace_single(val) }
+        values.inject(self) { |res, val| res._namespace(val) or fail ArgumentError, "Unknown value for namespace: #{val}" }
       end
 
       # @private
-      def namespace_single(value)
+      def _namespace(value)
         defined?(super) && super || ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "100", "101", "108", "109", "118", "119", "446", "447", "710", "711", "828", "829", "2300", "2301", "2302", "2303"].include?(value.to_s) && merge(gsrnamespace: value.to_s)
       end
 
@@ -50,6 +50,11 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "classic" (Ranking based on the number of incoming links, some templates, article language and recency (templates/language/recency may not be activated on this wiki)), "classic_noboostlinks" (Ranking based on some templates, article language and recency when activated on this wiki), "empty" (Ranking based solely on query dependent features (for debug only)), "wsum_inclinks" (Weighted sum based on incoming links), "wsum_inclinks_pv" (Weighted sum based on incoming links and weekly pageviews), "popular_inclinks_pv" (Ranking based primarily on page views), "popular_inclinks" (Ranking based primarily on incoming link counts).
       # @return [self]
       def qiprofile(value)
+        _qiprofile(value) or fail ArgumentError, "Unknown value for qiprofile: #{value}"
+      end
+
+      # @private
+      def _qiprofile(value)
         defined?(super) && super || ["classic", "classic_noboostlinks", "empty", "wsum_inclinks", "wsum_inclinks_pv", "popular_inclinks_pv", "popular_inclinks"].include?(value.to_s) && merge(gsrqiprofile: value.to_s)
       end
 
@@ -58,6 +63,11 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "title", "text", "nearmatch".
       # @return [self]
       def what(value)
+        _what(value) or fail ArgumentError, "Unknown value for what: #{value}"
+      end
+
+      # @private
+      def _what(value)
         defined?(super) && super || ["title", "text", "nearmatch"].include?(value.to_s) && merge(gsrwhat: value.to_s)
       end
 
@@ -66,11 +76,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>] Allowed values: "totalhits", "suggestion", "rewrittenquery".
       # @return [self]
       def info(*values)
-        values.inject(self) { |res, val| res.info_single(val) }
+        values.inject(self) { |res, val| res._info(val) or fail ArgumentError, "Unknown value for info: #{val}" }
       end
 
       # @private
-      def info_single(value)
+      def _info(value)
         defined?(super) && super || ["totalhits", "suggestion", "rewrittenquery"].include?(value.to_s) && merge(gsrinfo: value.to_s)
       end
 

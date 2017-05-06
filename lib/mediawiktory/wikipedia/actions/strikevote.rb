@@ -26,6 +26,11 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "strike" (Strike a vote (remove it from the count)), "unstrike" (Unstrike a vote (restore it to the count)).
       # @return [self]
       def option(value)
+        _option(value) or fail ArgumentError, "Unknown value for option: #{value}"
+      end
+
+      # @private
+      def _option(value)
         defined?(super) && super || ["strike", "unstrike"].include?(value.to_s) && merge(option: value.to_s)
       end
 

@@ -13,11 +13,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>] Allowed values: "name" (Internal category name), "title" (Category title), "members" (Number of gadgets in category).
       # @return [self]
       def prop(*values)
-        values.inject(self) { |res, val| res.prop_single(val) }
+        values.inject(self) { |res, val| res._prop(val) or fail ArgumentError, "Unknown value for prop: #{val}" }
       end
 
       # @private
-      def prop_single(value)
+      def _prop(value)
         defined?(super) && super || ["name", "title", "members"].include?(value.to_s) && merge(gcprop: value.to_s)
       end
 
@@ -26,11 +26,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>]
       # @return [self]
       def names(*values)
-        values.inject(self) { |res, val| res.names_single(val) }
+        values.inject(self) { |res, val| res._names(val) }
       end
 
       # @private
-      def names_single(value)
+      def _names(value)
         merge(gcnames: value.to_s)
       end
     end

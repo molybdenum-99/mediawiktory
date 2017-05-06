@@ -29,6 +29,11 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "newer" (List oldest first. Note: bkstart has to be before bkend), "older" (List newest first (default). Note: bkstart has to be later than bkend).
       # @return [self]
       def dir(value)
+        _dir(value) or fail ArgumentError, "Unknown value for dir: #{value}"
+      end
+
+      # @private
+      def _dir(value)
         defined?(super) && super || ["newer", "older"].include?(value.to_s) && merge(bkdir: value.to_s)
       end
 
@@ -37,11 +42,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<Integer>]
       # @return [self]
       def ids(*values)
-        values.inject(self) { |res, val| res.ids_single(val) }
+        values.inject(self) { |res, val| res._ids(val) }
       end
 
       # @private
-      def ids_single(value)
+      def _ids(value)
         merge(bkids: value.to_s)
       end
 
@@ -50,11 +55,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>]
       # @return [self]
       def users(*values)
-        values.inject(self) { |res, val| res.users_single(val) }
+        values.inject(self) { |res, val| res._users(val) }
       end
 
       # @private
-      def users_single(value)
+      def _users(value)
         merge(bkusers: value.to_s)
       end
 
@@ -79,11 +84,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>] Allowed values: "id" (Adds the ID of the block), "user" (Adds the username of the blocked user), "userid" (Adds the user ID of the blocked user), "by" (Adds the username of the blocking user), "byid" (Adds the user ID of the blocking user), "timestamp" (Adds the timestamp of when the block was given), "expiry" (Adds the timestamp of when the block expires), "reason" (Adds the reason given for the block), "range" (Adds the range of IP addresses affected by the block), "flags" (Tags the ban with (autoblock, anononly, etc.)).
       # @return [self]
       def prop(*values)
-        values.inject(self) { |res, val| res.prop_single(val) }
+        values.inject(self) { |res, val| res._prop(val) or fail ArgumentError, "Unknown value for prop: #{val}" }
       end
 
       # @private
-      def prop_single(value)
+      def _prop(value)
         defined?(super) && super || ["id", "user", "userid", "by", "byid", "timestamp", "expiry", "reason", "range", "flags"].include?(value.to_s) && merge(bkprop: value.to_s)
       end
 
@@ -92,11 +97,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>] Allowed values: "account", "!account", "temp", "!temp", "ip", "!ip", "range", "!range".
       # @return [self]
       def show(*values)
-        values.inject(self) { |res, val| res.show_single(val) }
+        values.inject(self) { |res, val| res._show(val) or fail ArgumentError, "Unknown value for show: #{val}" }
       end
 
       # @private
-      def show_single(value)
+      def _show(value)
         defined?(super) && super || ["account", "!account", "temp", "!temp", "ip", "!ip", "range", "!range"].include?(value.to_s) && merge(bkshow: value.to_s)
       end
 

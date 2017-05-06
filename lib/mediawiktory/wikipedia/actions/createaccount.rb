@@ -26,11 +26,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>]
       # @return [self]
       def requests(*values)
-        values.inject(self) { |res, val| res.requests_single(val) }
+        values.inject(self) { |res, val| res._requests(val) }
       end
 
       # @private
-      def requests_single(value)
+      def _requests(value)
         merge(createrequests: value.to_s)
       end
 
@@ -39,6 +39,11 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "html", "wikitext", "raw", "none".
       # @return [self]
       def messageformat(value)
+        _messageformat(value) or fail ArgumentError, "Unknown value for messageformat: #{value}"
+      end
+
+      # @private
+      def _messageformat(value)
         defined?(super) && super || ["html", "wikitext", "raw", "none"].include?(value.to_s) && merge(createmessageformat: value.to_s)
       end
 

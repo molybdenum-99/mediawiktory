@@ -13,6 +13,11 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "userips" (Get IP address of target user), "edits" (Get changes from target IP address or range), "ipusers" (Get users from target IP address or range).
       # @return [self]
       def request(value)
+        _request(value) or fail ArgumentError, "Unknown value for request: #{value}"
+      end
+
+      # @private
+      def _request(value)
         defined?(super) && super || ["userips", "edits", "ipusers"].include?(value.to_s) && merge(curequest: value.to_s)
       end
 

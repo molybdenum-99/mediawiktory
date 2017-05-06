@@ -45,6 +45,11 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "100", "101", "108", "109", "118", "119", "446", "447", "710", "711", "828", "829", "2300", "2301", "2302", "2303".
       # @return [self]
       def namespace(value)
+        _namespace(value) or fail ArgumentError, "Unknown value for namespace: #{value}"
+      end
+
+      # @private
+      def _namespace(value)
         defined?(super) && super || ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "100", "101", "108", "109", "118", "119", "446", "447", "710", "711", "828", "829", "2300", "2301", "2302", "2303"].include?(value.to_s) && merge(apnamespace: value.to_s)
       end
 
@@ -53,6 +58,11 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "all", "redirects", "nonredirects".
       # @return [self]
       def filterredir(value)
+        _filterredir(value) or fail ArgumentError, "Unknown value for filterredir: #{value}"
+      end
+
+      # @private
+      def _filterredir(value)
         defined?(super) && super || ["all", "redirects", "nonredirects"].include?(value.to_s) && merge(apfilterredir: value.to_s)
       end
 
@@ -77,11 +87,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>] Allowed values: "edit", "move", "upload".
       # @return [self]
       def prtype(*values)
-        values.inject(self) { |res, val| res.prtype_single(val) }
+        values.inject(self) { |res, val| res._prtype(val) or fail ArgumentError, "Unknown value for prtype: #{val}" }
       end
 
       # @private
-      def prtype_single(value)
+      def _prtype(value)
         defined?(super) && super || ["edit", "move", "upload"].include?(value.to_s) && merge(apprtype: value.to_s)
       end
 
@@ -90,11 +100,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>] Allowed values: "autoconfirmed", "extendedconfirmed", "templateeditor", "sysop".
       # @return [self]
       def prlevel(*values)
-        values.inject(self) { |res, val| res.prlevel_single(val) }
+        values.inject(self) { |res, val| res._prlevel(val) or fail ArgumentError, "Unknown value for prlevel: #{val}" }
       end
 
       # @private
-      def prlevel_single(value)
+      def _prlevel(value)
         defined?(super) && super || ["autoconfirmed", "extendedconfirmed", "templateeditor", "sysop"].include?(value.to_s) && merge(apprlevel: value.to_s)
       end
 
@@ -103,6 +113,11 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "cascading", "noncascading", "all".
       # @return [self]
       def prfiltercascade(value)
+        _prfiltercascade(value) or fail ArgumentError, "Unknown value for prfiltercascade: #{value}"
+      end
+
+      # @private
+      def _prfiltercascade(value)
         defined?(super) && super || ["cascading", "noncascading", "all"].include?(value.to_s) && merge(apprfiltercascade: value.to_s)
       end
 
@@ -119,6 +134,11 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "ascending", "descending".
       # @return [self]
       def dir(value)
+        _dir(value) or fail ArgumentError, "Unknown value for dir: #{value}"
+      end
+
+      # @private
+      def _dir(value)
         defined?(super) && super || ["ascending", "descending"].include?(value.to_s) && merge(apdir: value.to_s)
       end
 
@@ -127,6 +147,11 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "withlanglinks", "withoutlanglinks", "all".
       # @return [self]
       def filterlanglinks(value)
+        _filterlanglinks(value) or fail ArgumentError, "Unknown value for filterlanglinks: #{value}"
+      end
+
+      # @private
+      def _filterlanglinks(value)
         defined?(super) && super || ["withlanglinks", "withoutlanglinks", "all"].include?(value.to_s) && merge(apfilterlanglinks: value.to_s)
       end
 
@@ -135,6 +160,11 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "indefinite" (Get only pages with indefinite protection expiry), "definite" (Get only pages with a definite (specific) protection expiry), "all" (Get pages with any protections expiry).
       # @return [self]
       def prexpiry(value)
+        _prexpiry(value) or fail ArgumentError, "Unknown value for prexpiry: #{value}"
+      end
+
+      # @private
+      def _prexpiry(value)
         defined?(super) && super || ["indefinite", "definite", "all"].include?(value.to_s) && merge(apprexpiry: value.to_s)
       end
     end

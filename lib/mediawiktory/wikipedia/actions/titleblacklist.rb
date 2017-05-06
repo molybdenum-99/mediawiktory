@@ -34,6 +34,11 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "create", "edit", "upload", "createtalk", "createpage", "move", "new-account".
       # @return [self]
       def action(value)
+        _action(value) or fail ArgumentError, "Unknown value for action: #{value}"
+      end
+
+      # @private
+      def _action(value)
         defined?(super) && super || ["create", "edit", "upload", "createtalk", "createpage", "move", "new-account"].include?(value.to_s) && merge(tbaction: value.to_s)
       end
 

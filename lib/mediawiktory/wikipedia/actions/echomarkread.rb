@@ -26,11 +26,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>]
       # @return [self]
       def list(*values)
-        values.inject(self) { |res, val| res.list_single(val) }
+        values.inject(self) { |res, val| res._list(val) }
       end
 
       # @private
-      def list_single(value)
+      def _list(value)
         merge(list: value.to_s)
       end
 
@@ -39,11 +39,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>]
       # @return [self]
       def unreadlist(*values)
-        values.inject(self) { |res, val| res.unreadlist_single(val) }
+        values.inject(self) { |res, val| res._unreadlist(val) }
       end
 
       # @private
-      def unreadlist_single(value)
+      def _unreadlist(value)
         merge(unreadlist: value.to_s)
       end
 
@@ -59,11 +59,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>] Allowed values: "alert", "message".
       # @return [self]
       def sections(*values)
-        values.inject(self) { |res, val| res.sections_single(val) }
+        values.inject(self) { |res, val| res._sections(val) or fail ArgumentError, "Unknown value for sections: #{val}" }
       end
 
       # @private
-      def sections_single(value)
+      def _sections(value)
         defined?(super) && super || ["alert", "message"].include?(value.to_s) && merge(sections: value.to_s)
       end
 

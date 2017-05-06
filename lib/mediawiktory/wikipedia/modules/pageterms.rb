@@ -21,11 +21,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>] Allowed values: "alias", "description", "label".
       # @return [self]
       def terms(*values)
-        values.inject(self) { |res, val| res.terms_single(val) }
+        values.inject(self) { |res, val| res._terms(val) or fail ArgumentError, "Unknown value for terms: #{val}" }
       end
 
       # @private
-      def terms_single(value)
+      def _terms(value)
         defined?(super) && super || ["alias", "description", "label"].include?(value.to_s) && merge(wbptterms: value.to_s)
       end
     end

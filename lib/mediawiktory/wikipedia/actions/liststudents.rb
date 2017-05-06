@@ -26,11 +26,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<Integer>]
       # @return [self]
       def courseids(*values)
-        values.inject(self) { |res, val| res.courseids_single(val) }
+        values.inject(self) { |res, val| res._courseids(val) }
       end
 
       # @private
-      def courseids_single(value)
+      def _courseids(value)
         merge(courseids: value.to_s)
       end
 
@@ -39,6 +39,11 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "username" (The username of the student), "id" (The user ID of the student).
       # @return [self]
       def prop(value)
+        _prop(value) or fail ArgumentError, "Unknown value for prop: #{value}"
+      end
+
+      # @private
+      def _prop(value)
         defined?(super) && super || ["username", "id"].include?(value.to_s) && merge(prop: value.to_s)
       end
 

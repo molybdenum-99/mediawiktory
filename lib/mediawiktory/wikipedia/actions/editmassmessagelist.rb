@@ -34,11 +34,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>]
       # @return [self]
       def add(*values)
-        values.inject(self) { |res, val| res.add_single(val) }
+        values.inject(self) { |res, val| res._add(val) }
       end
 
       # @private
-      def add_single(value)
+      def _add(value)
         merge(add: value.to_s)
       end
 
@@ -47,11 +47,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>]
       # @return [self]
       def remove(*values)
-        values.inject(self) { |res, val| res.remove_single(val) }
+        values.inject(self) { |res, val| res._remove(val) }
       end
 
       # @private
-      def remove_single(value)
+      def _remove(value)
         merge(remove: value.to_s)
       end
 

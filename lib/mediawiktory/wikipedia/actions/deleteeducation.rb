@@ -26,11 +26,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<Integer>]
       # @return [self]
       def ids(*values)
-        values.inject(self) { |res, val| res.ids_single(val) }
+        values.inject(self) { |res, val| res._ids(val) }
       end
 
       # @private
-      def ids_single(value)
+      def _ids(value)
         merge(ids: value.to_s)
       end
 
@@ -39,6 +39,11 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "org", "course".
       # @return [self]
       def type(value)
+        _type(value) or fail ArgumentError, "Unknown value for type: #{value}"
+      end
+
+      # @private
+      def _type(value)
         defined?(super) && super || ["org", "course"].include?(value.to_s) && merge(type: value.to_s)
       end
 

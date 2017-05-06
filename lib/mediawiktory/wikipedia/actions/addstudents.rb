@@ -26,11 +26,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>]
       # @return [self]
       def studentusernames(*values)
-        values.inject(self) { |res, val| res.studentusernames_single(val) }
+        values.inject(self) { |res, val| res._studentusernames(val) }
       end
 
       # @private
-      def studentusernames_single(value)
+      def _studentusernames(value)
         merge(studentusernames: value.to_s)
       end
 

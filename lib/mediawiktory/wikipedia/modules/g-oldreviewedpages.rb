@@ -29,6 +29,11 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "newer" (List oldest first. Note: orstart has to be before orend), "older" (List newest first (default). Note: orstart has to be later than orend).
       # @return [self]
       def dir(value)
+        _dir(value) or fail ArgumentError, "Unknown value for dir: #{value}"
+      end
+
+      # @private
+      def _dir(value)
         defined?(super) && super || ["newer", "older"].include?(value.to_s) && merge(gordir: value.to_s)
       end
 
@@ -45,6 +50,11 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "watched", "all".
       # @return [self]
       def filterwatched(value)
+        _filterwatched(value) or fail ArgumentError, "Unknown value for filterwatched: #{value}"
+      end
+
+      # @private
+      def _filterwatched(value)
         defined?(super) && super || ["watched", "all"].include?(value.to_s) && merge(gorfilterwatched: value.to_s)
       end
 
@@ -53,11 +63,11 @@ module MediaWiktory::Wikipedia
       # @param values [Array<String>] Allowed values: "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "100", "101", "108", "109", "118", "119", "446", "447", "710", "711", "828", "829", "2300", "2301", "2302", "2303".
       # @return [self]
       def namespace(*values)
-        values.inject(self) { |res, val| res.namespace_single(val) }
+        values.inject(self) { |res, val| res._namespace(val) or fail ArgumentError, "Unknown value for namespace: #{val}" }
       end
 
       # @private
-      def namespace_single(value)
+      def _namespace(value)
         defined?(super) && super || ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "100", "101", "108", "109", "118", "119", "446", "447", "710", "711", "828", "829", "2300", "2301", "2302", "2303"].include?(value.to_s) && merge(gornamespace: value.to_s)
       end
 
@@ -74,6 +84,11 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "redirects", "nonredirects", "all".
       # @return [self]
       def filterredir(value)
+        _filterredir(value) or fail ArgumentError, "Unknown value for filterredir: #{value}"
+      end
+
+      # @private
+      def _filterredir(value)
         defined?(super) && super || ["redirects", "nonredirects", "all"].include?(value.to_s) && merge(gorfilterredir: value.to_s)
       end
 

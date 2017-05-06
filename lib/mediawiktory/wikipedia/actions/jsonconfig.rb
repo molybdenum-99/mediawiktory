@@ -26,6 +26,11 @@ module MediaWiktory::Wikipedia
       # @param value [String] One of "status" (Shows JsonConfig configuration), "reset" (Clears configurations from cache. Requires title parameter and jsonconfig-reset right), "reload" (Reloads and caches configurations from config store. Requires title parameter and jsonconfig-reset right).
       # @return [self]
       def command(value)
+        _command(value) or fail ArgumentError, "Unknown value for command: #{value}"
+      end
+
+      # @private
+      def _command(value)
         defined?(super) && super || ["status", "reset", "reload"].include?(value.to_s) && merge(command: value.to_s)
       end
 
