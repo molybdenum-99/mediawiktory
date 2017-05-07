@@ -12,5 +12,5 @@
 #
 module MediaWiktory
   require_relative 'mediawiktory/version'
-  require_relative 'mediawiktory/wikipedia'
+  require_relative 'mediawiktory/wikipedia/api'
 end
