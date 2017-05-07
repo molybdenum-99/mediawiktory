@@ -1766,7 +1766,7 @@ module MediaWiktory::Wikipedia::Actions
       Parse.new(client, @defaults.merge(**options))
     end
 
-    #
+    # 
     #
     # This method creates an instance of {MediaWiktory::Wikipedia::Actions::ParsoidBatch} action.
     #
