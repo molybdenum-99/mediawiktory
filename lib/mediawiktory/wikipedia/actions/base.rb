@@ -8,14 +8,14 @@ module MediaWiktory::Wikipedia
       # The format of the output.
       #
       # @param value [Symbol] Selecting an option includes tweaking methods from corresponding module:
-      #   * `:json` - {MediaWiktory::Wikipedia::Modules::Json} Output data in JSON format. 
-      #   * `:jsonfm` - {MediaWiktory::Wikipedia::Modules::Jsonfm} Output data in JSON format (pretty-print in HTML). 
-      #   * `:none` - {MediaWiktory::Wikipedia::Modules::None} Output nothing. 
-      #   * `:php` - {MediaWiktory::Wikipedia::Modules::Php} Output data in serialized PHP format. 
-      #   * `:phpfm` - {MediaWiktory::Wikipedia::Modules::Phpfm} Output data in serialized PHP format (pretty-print in HTML). 
-      #   * `:rawfm` - {MediaWiktory::Wikipedia::Modules::Rawfm} Output data, including debugging elements, in JSON format (pretty-print in HTML). 
-      #   * `:xml` - {MediaWiktory::Wikipedia::Modules::Xml} Output data in XML format. 
-      #   * `:xmlfm` - {MediaWiktory::Wikipedia::Modules::Xmlfm} Output data in XML format (pretty-print in HTML). 
+      #   * `:json` - {MediaWiktory::Wikipedia::Modules::Json} Output data in JSON format.
+      #   * `:jsonfm` - {MediaWiktory::Wikipedia::Modules::Jsonfm} Output data in JSON format (pretty-print in HTML).
+      #   * `:none` - {MediaWiktory::Wikipedia::Modules::None} Output nothing.
+      #   * `:php` - {MediaWiktory::Wikipedia::Modules::Php} Output data in serialized PHP format.
+      #   * `:phpfm` - {MediaWiktory::Wikipedia::Modules::Phpfm} Output data in serialized PHP format (pretty-print in HTML).
+      #   * `:rawfm` - {MediaWiktory::Wikipedia::Modules::Rawfm} Output data, including debugging elements, in JSON format (pretty-print in HTML).
+      #   * `:xml` - {MediaWiktory::Wikipedia::Modules::Xml} Output data in XML format.
+      #   * `:xmlfm` - {MediaWiktory::Wikipedia::Modules::Xmlfm} Output data in XML format (pretty-print in HTML).
       # @return [self]
       def format(value)
         _format(value) or fail ArgumentError, "Unknown value for format: #{value}"
@@ -159,7 +159,8 @@ module MediaWiktory::Wikipedia
     # are doing by _performing actions_.
     #
     # Typically, you should never instantiate this class or its descendants directly, but rather by
-    # {Api MediaWiktory::Wikipedia::Api} methods.
+    # {MediaWiktory::Wikipedia::Api Api} methods (included from {MediaWiktory::Wikipedia::Actions Actions}
+    # module).
     #
     # The usual workflow with actions is:
     #
@@ -199,7 +200,10 @@ module MediaWiktory::Wikipedia
     # # => #<MediaWiktory::Wikipedia::Actions::Query {"titles"=>"Argentina", "prop"=>"revisions", "rvprop"=>"content", "meta"=>"siteinfo"}>
     # response = action.response
     # # => #<MediaWiktory::Wikipedia::Response(query): pages, general>
-    # puts response['pages'].values.first['revisions'].first['*'].split("\n").first(3) # first page, first revision, content, 3 paragraphs
+    # puts response['pages'].values   # all pages...
+    #   .first['revisions']           # take revisions from first...
+    #   .first['*']                   # take content from first revision...
+    #   .split("\n").first(3)         # and first 3 paragrapahs
     # # {{other uses}}
     # # {{pp-semi|small=yes}}
     # # {{Use dmy dates|date=March 2017}}
@@ -269,7 +273,7 @@ module MediaWiktory::Wikipedia
         url.to_s
       end
 
-      # Performs action (through `GET` or `POST request, depending on action's type) and returns
+      # Performs action (through `GET` or `POST` request, depending on action's type) and returns
       # raw body of response.
       #
       # @return [String]
@@ -278,12 +282,17 @@ module MediaWiktory::Wikipedia
              'Action is abstract, all actions should descend from Actions::Get or Actions::Post'
       end
 
-      # Performs action (as in {#perform}) and returns parsed JSON response body.
+      # Performs action (as in {#perform}) and returns an instance of {Response}. It is a thing
+      # wrapper around parsed action's JSON response, which separates "content" and "meta" (paging,
+      # warnings/erros) fields.
       #
       # Note, that not all actions return a JSON suitable for parsing into {Response}. For example,
       # Wikipedia's [opensearch](https://en.wikipedia.org/w/api.php?action=help&modules=opensearch)
       # action returns absolutely different JSON structure, corresponding to global
       # [OpenSearch](https://en.wikipedia.org/wiki/OpenSearch) standard.
+      #
+      # Note also, that on erroneous request (when response contains `"error"` key), this method
+      # will raise {Response::Error}.
       #
       # @return [Response]
       def response

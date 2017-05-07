@@ -71,8 +71,8 @@ module <%= @namespace %>
       @metadata.key?('continue')
     end
 
-    # Continues current request and returns current & next page. (It is necessary because MediaWiki
-    # tends to return the same object's data continued on the next request page.)
+    # Continues current request and returns current & next pages merged. (Merging is necessary
+    # because MediaWiki tends to return the same object's data continued on the next request page.)
     #
     # @return [Response]
     def continue

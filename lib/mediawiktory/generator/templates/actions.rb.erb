@@ -2,6 +2,24 @@
 
 require_relative './actions/base'
 
+# Methods of this module contains all actions that can be used on {Api}.
+# You use them like this:
+#
+# ```ruby
+# api = <%= @namespace %>::Api.new
+#
+# api.query                           # returns Actions::Query, it is documented
+#    .titles('Argentina', 'Bolivia')  # some methods of Actions::Query...
+#    .prop(:revisions).prop(:content) # ... to set what you want
+#    .response
+# # => performs action and returns Response instance
+# ```
+#
+# See also:
+# * {Api} for starting;
+# * {Actions::Base} for details of working with actions;
+# * and {Response}.
+#
 module <%= @namespace %>::Actions
 <% actions.each { |action| %><%= partial '_action_method', action %><% } %>end
 

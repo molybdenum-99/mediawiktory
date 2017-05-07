@@ -4,7 +4,7 @@ module <%= @namespace %>
   module Actions
     # Global setup methods included into every action through {Base}.
     module GlobalParams
-<% main.params.reject { |p| p.name == 'action' }.each { |param| %><%= partial '_param_method', param %><% } %>
+<% main.params.each { |param| %><%= partial '_param_method', param %><% } %>
     end
 
     # Base class for all {<%= @namespace %>::Api} actions. "Actions" is MediaWiki's term for
@@ -12,7 +12,8 @@ module <%= @namespace %>
     # are doing by _performing actions_.
     #
     # Typically, you should never instantiate this class or its descendants directly, but rather by
-    # {Api <%= @namespace %>::Api} methods.
+    # {<%= @namespace %>::Api Api} methods (included from {<%= @namespace %>::Actions Actions}
+    # module).
     #
     # The usual workflow with actions is:
     #
@@ -52,7 +53,10 @@ module <%= @namespace %>
     # # => #<MediaWiktory::Wikipedia::Actions::Query {"titles"=>"Argentina", "prop"=>"revisions", "rvprop"=>"content", "meta"=>"siteinfo"}>
     # response = action.response
     # # => #<MediaWiktory::Wikipedia::Response(query): pages, general>
-    # puts response['pages'].values.first['revisions'].first['*'].split("\n").first(3) # first page, first revision, content, 3 paragraphs
+    # puts response['pages'].values   # all pages...
+    #   .first['revisions']           # take revisions from first...
+    #   .first['*']                   # take content from first revision...
+    #   .split("\n").first(3)         # and first 3 paragrapahs
     # # {{other uses}}
     # # {{pp-semi|small=yes}}
     # # {{Use dmy dates|date=March 2017}}
@@ -122,7 +126,7 @@ module <%= @namespace %>
         url.to_s
       end
 
-      # Performs action (through `GET` or `POST request, depending on action's type) and returns
+      # Performs action (through `GET` or `POST` request, depending on action's type) and returns
       # raw body of response.
       #
       # @return [String]
@@ -131,12 +135,17 @@ module <%= @namespace %>
              'Action is abstract, all actions should descend from Actions::Get or Actions::Post'
       end
 
-      # Performs action (as in {#perform}) and returns parsed JSON response body.
+      # Performs action (as in {#perform}) and returns an instance of {Response}. It is a thing
+      # wrapper around parsed action's JSON response, which separates "content" and "meta" (paging,
+      # warnings/erros) fields.
       #
       # Note, that not all actions return a JSON suitable for parsing into {Response}. For example,
       # Wikipedia's [opensearch](https://en.wikipedia.org/w/api.php?action=help&modules=opensearch)
       # action returns absolutely different JSON structure, corresponding to global
       # [OpenSearch](https://en.wikipedia.org/wiki/OpenSearch) standard.
+      #
+      # Note also, that on erroneous request (when response contains `"error"` key), this method
+      # will raise {Response::Error}.
       #
       # @return [Response]
       def response

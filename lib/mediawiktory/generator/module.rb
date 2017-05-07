@@ -82,7 +82,7 @@ module MediaWiktory
       def params
         # TODO: some actions have "rest of parameters, see there".
         # Currently, we ignore it
-        (super || []).reject { |p| p.name == '*' }
+        (super || []).reject { |p| p.name == '*' || main? && p.name == 'action' }
       end
 
       def http_method
