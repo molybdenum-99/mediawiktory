@@ -88,6 +88,7 @@ module MediaWiktory
       Response.new.render_to(File.join(path, 'response.rb'), opts)
 
       @api.render_to(File.join(path, 'api.rb'), opts)
+      @api.render_to(File.join(path, 'actions.rb'), opts.merge(template: 'actions.rb'))
       @api.actions.each do |a|
         a.render_to(File.join(path, "actions/#{a.name}.rb"), opts)
       end

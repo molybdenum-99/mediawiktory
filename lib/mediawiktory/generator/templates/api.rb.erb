@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require_relative './client'
-require_relative './actions/base'
+require_relative './actions'
 
 # Wrapper for [<%= site.name %>](<%= site.base %>) API.
 #
@@ -55,5 +55,7 @@ module <%= @namespace %>
       client_options, @defaults = defaults.partition { |k, _| CLIENT_OPTIONS.include?(k) }.map(&:to_h)
       @client = Client.new(url, **client_options)
     end
-<% actions.each { |action| %><%= partial '_action_method', action %><% } %>  end
+
+    include <%= @namespace %>::Actions
+  end
 end

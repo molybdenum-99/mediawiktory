@@ -1,0 +1,8 @@
+# frozen_string_literal: true
+
+require_relative './actions/base'
+
+module <%= @namespace %>::Actions
+<% actions.each { |action| %><%= partial '_action_method', action %><% } %>end
+
+Dir[File.expand_path('../{actions,modules}/*.rb', __FILE__)].each { |f| require f }
