@@ -3,18 +3,22 @@
 require_relative './client'
 require_relative './actions/base'
 
+# Wrapper for [<%= site.name %>](<%= site.base %>) API.
+#
+# _Generated from <%= @source %> at <%= @friendly_date %> by MediaWiktory <%= @version %>._
+#
+# It also can be used for access to any other MediaWiki site, but some of actions could be
+# non-existent/outdated.
+#
+# See {<%= @namespace %>::Api} for usage.
+#
 module <%= @namespace %>
-  # The base API class for [<%= site.name %>](<%= site.base %>).
-  #
-  # _Generated from <%= @source %> at <%= @friendly_date %> by MediaWiktory <%= @version %>._
-  #
-  # It also can be used for access to any other MediaWiki site, but some of actions could be
-  # non-existent/outdated.
+  # Base API class for [<%= site.name %>](<%= site.base %>).
   #
   # Example of usage:
   #
   # ```ruby
-  # # For Wikipedia
+  # # For <%= site.name %>
   # api = <%= @namespace %>::Api.new
   # api.some_action.some_param(value).other_param(*more_values).perform
   # # => returns raw response of MediaWiki API
