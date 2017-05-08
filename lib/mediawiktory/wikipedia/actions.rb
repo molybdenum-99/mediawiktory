@@ -8,9 +8,9 @@ require_relative './actions/base'
 # ```ruby
 # api = MediaWiktory::Wikipedia::Api.new
 #
-# api.query                           # returns Actions::Query, it is documented
-#    .titles('Argentina', 'Bolivia')  # some methods of Actions::Query...
-#    .prop(:revisions).prop(:content) # ... to set what you want
+# api.query                           # method of Api, returning Actions::Query
+#    .titles('Argentina', 'Bolivia')  # methods of Actions::Query...
+#    .prop(:revisions).prop(:content) # ...to set action options
 #    .response
 # # => performs action and returns Response instance
 # ```
@@ -19,6 +19,9 @@ require_relative './actions/base'
 # * {Api} for starting;
 # * {Actions::Base} for details of working with actions;
 # * and {Response}.
+#
+# Note that for each MediaWiki site the main method for **data extraction** (pages, categories,
+# meta-information) is {#query}.
 #
 module MediaWiktory::Wikipedia::Actions
 
@@ -1766,7 +1769,7 @@ module MediaWiktory::Wikipedia::Actions
       Parse.new(client, @defaults.merge(**options))
     end
 
-    # 
+    #
     #
     # This method creates an instance of {MediaWiktory::Wikipedia::Actions::ParsoidBatch} action.
     #

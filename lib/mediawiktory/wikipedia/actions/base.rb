@@ -8,14 +8,14 @@ module MediaWiktory::Wikipedia
       # The format of the output.
       #
       # @param value [Symbol] Selecting an option includes tweaking methods from corresponding module:
-      #   * `:json` - {MediaWiktory::Wikipedia::Modules::Json} Output data in JSON format. 
-      #   * `:jsonfm` - {MediaWiktory::Wikipedia::Modules::Jsonfm} Output data in JSON format (pretty-print in HTML). 
-      #   * `:none` - {MediaWiktory::Wikipedia::Modules::None} Output nothing. 
-      #   * `:php` - {MediaWiktory::Wikipedia::Modules::Php} Output data in serialized PHP format. 
-      #   * `:phpfm` - {MediaWiktory::Wikipedia::Modules::Phpfm} Output data in serialized PHP format (pretty-print in HTML). 
-      #   * `:rawfm` - {MediaWiktory::Wikipedia::Modules::Rawfm} Output data, including debugging elements, in JSON format (pretty-print in HTML). 
-      #   * `:xml` - {MediaWiktory::Wikipedia::Modules::Xml} Output data in XML format. 
-      #   * `:xmlfm` - {MediaWiktory::Wikipedia::Modules::Xmlfm} Output data in XML format (pretty-print in HTML). 
+      #   * `:json` - {MediaWiktory::Wikipedia::Modules::Json} Output data in JSON format.
+      #   * `:jsonfm` - {MediaWiktory::Wikipedia::Modules::Jsonfm} Output data in JSON format (pretty-print in HTML).
+      #   * `:none` - {MediaWiktory::Wikipedia::Modules::None} Output nothing.
+      #   * `:php` - {MediaWiktory::Wikipedia::Modules::Php} Output data in serialized PHP format.
+      #   * `:phpfm` - {MediaWiktory::Wikipedia::Modules::Phpfm} Output data in serialized PHP format (pretty-print in HTML).
+      #   * `:rawfm` - {MediaWiktory::Wikipedia::Modules::Rawfm} Output data, including debugging elements, in JSON format (pretty-print in HTML).
+      #   * `:xml` - {MediaWiktory::Wikipedia::Modules::Xml} Output data in XML format.
+      #   * `:xmlfm` - {MediaWiktory::Wikipedia::Modules::Xmlfm} Output data in XML format (pretty-print in HTML).
       # @return [self]
       def format(value)
         _format(value) or fail ArgumentError, "Unknown value for format: #{value}"
@@ -216,7 +216,7 @@ module MediaWiktory::Wikipedia
       attr_reader :client
 
       # @private
-      def initialize(client, options = {})
+      def initialize(client, **options)
         @client = client
         @params = stringify_hash(options)
         @submodules = []
@@ -240,6 +240,10 @@ module MediaWiktory::Wikipedia
 
       # All action's params in a ready to passing to URL form (string keys & string values).
       #
+      # @example
+      #    api.query.titles('Argentina', 'Bolivia').format(:json).to_h
+      #    # => {"titles"=>"Argentina|Bolivia", "format"=>"json"}
+      #
       # @return [Hash{String => String}]
       def to_h
         @params.dup
@@ -259,12 +263,20 @@ module MediaWiktory::Wikipedia
       # All action's params in a ready to passing to URL form (string keys & string values). Unlike
       # {#to_h}, includes also action name.
       #
+      # @example
+      #    api.query.titles('Argentina', 'Bolivia').format(:json).to_param
+      #    # => {"titles"=>"Argentina|Bolivia", "format"=>"json", "action"=>"query"}
+      #
       # @return [Hash{String => String}]
       def to_param
         to_h.merge('action' => name)
       end
 
       # Full URL for this action invocation.
+      #
+      # @example
+      #    api.query.titles('Argentina', 'Bolivia').format(:json).to_url
+      #    # => "https://en.wikipedia.org/w/api.php?action=query&format=json&titles=Argentina%7CBolivia"
       #
       # @return [String]
       def to_url

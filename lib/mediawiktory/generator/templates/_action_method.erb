@@ -3,12 +3,8 @@
     #
     # This method creates an instance of {<%= @namespace %>::Actions::<%= class_name %>} action.
     #
-<% unless params.empty? %>    # Action parameters could be passed to this method, like
-    #
-    # ```ruby
-    # api.<%= method_name %>(<%= params.first.name %>: 'value')
-    # ```
-    # ...or by subsequent {<%= @namespace %>::Actions::<%= class_name %>} method calls, like
+<% unless params.empty? %>    # Action parameters could be passed or by subsequent
+    # {<%= @namespace %>::Actions::<%= class_name %>} method calls, like
     #
     # ```ruby
     # api.<%= method_name %>.<%= params.first.name %>('value')
@@ -20,6 +16,6 @@
     # @param [Hash] options Action options
     # @return [<%= @namespace %>::Actions::<%= class_name %>]
     #
-    def <%= method_name %>(**options)
-      <%= class_name %>.new(client, @defaults.merge(**options))
+    def <%= method_name %>
+      <%= class_name %>.new(client, @defaults)
     end
