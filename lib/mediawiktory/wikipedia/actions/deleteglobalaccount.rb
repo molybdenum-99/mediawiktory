@@ -7,15 +7,16 @@ module MediaWiktory::Wikipedia
     # Usage:
     #
     # ```ruby
-    # api.deleteglobalaccount(**options).perform # returns string with raw output
+    # api.deleteglobalaccount(**options).perform
     # # or
-    # api.deleteglobalaccount(**options).response # returns output parsed and wrapped into Mash-like object
     #
-    # # or, with chainable interface:
-    # api.deleteglobalaccount.user(value).perform
+    # api.deleteglobalaccount.user(value).perform # returns string with raw output
+    # # or
+    # api.deleteglobalaccount.user(value).response # returns output parsed and wrapped into Response object
     # ```
     #
-    # See {Base} for generic explanation of working with MediaWiki actions.
+    # See {Base} for generic explanation of working with MediaWiki actions and
+    # {MediaWiktory::Wikipedia::Response} for working with action responses.
     #
     # All action's parameters are documented as its public methods, see below.
     #

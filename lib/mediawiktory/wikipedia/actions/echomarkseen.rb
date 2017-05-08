@@ -7,15 +7,16 @@ module MediaWiktory::Wikipedia
     # Usage:
     #
     # ```ruby
-    # api.echomarkseen(**options).perform # returns string with raw output
+    # api.echomarkseen(**options).perform
     # # or
-    # api.echomarkseen(**options).response # returns output parsed and wrapped into Mash-like object
     #
-    # # or, with chainable interface:
-    # api.echomarkseen.token(value).perform
+    # api.echomarkseen.token(value).perform # returns string with raw output
+    # # or
+    # api.echomarkseen.token(value).response # returns output parsed and wrapped into Response object
     # ```
     #
-    # See {Base} for generic explanation of working with MediaWiki actions.
+    # See {Base} for generic explanation of working with MediaWiki actions and
+    # {MediaWiktory::Wikipedia::Response} for working with action responses.
     #
     # All action's parameters are documented as its public methods, see below.
     #

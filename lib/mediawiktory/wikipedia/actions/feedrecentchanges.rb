@@ -7,15 +7,16 @@ module MediaWiktory::Wikipedia
     # Usage:
     #
     # ```ruby
-    # api.feedrecentchanges(**options).perform # returns string with raw output
+    # api.feedrecentchanges(**options).perform
     # # or
-    # api.feedrecentchanges(**options).response # returns output parsed and wrapped into Mash-like object
     #
-    # # or, with chainable interface:
-    # api.feedrecentchanges.feedformat(value).perform
+    # api.feedrecentchanges.feedformat(value).perform # returns string with raw output
+    # # or
+    # api.feedrecentchanges.feedformat(value).response # returns output parsed and wrapped into Response object
     # ```
     #
-    # See {Base} for generic explanation of working with MediaWiki actions.
+    # See {Base} for generic explanation of working with MediaWiki actions and
+    # {MediaWiktory::Wikipedia::Response} for working with action responses.
     #
     # All action's parameters are documented as its public methods, see below.
     #

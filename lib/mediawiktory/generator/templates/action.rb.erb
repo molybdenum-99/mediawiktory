@@ -93,6 +93,10 @@ module <%= @namespace %>
 
       # All action's params in a ready to passing to URL form (string keys & string values).
       #
+      # @example
+      #    api.query.titles('Argentina', 'Bolivia').format(:json).to_h
+      #    # => {"titles"=>"Argentina|Bolivia", "format"=>"json"}
+      #
       # @return [Hash{String => String}]
       def to_h
         @params.dup
@@ -112,12 +116,20 @@ module <%= @namespace %>
       # All action's params in a ready to passing to URL form (string keys & string values). Unlike
       # {#to_h}, includes also action name.
       #
+      # @example
+      #    api.query.titles('Argentina', 'Bolivia').format(:json).to_param
+      #    # => {"titles"=>"Argentina|Bolivia", "format"=>"json", "action"=>"query"}
+      #
       # @return [Hash{String => String}]
       def to_param
         to_h.merge('action' => name)
       end
 
       # Full URL for this action invocation.
+      #
+      # @example
+      #    api.query.titles('Argentina', 'Bolivia').format(:json).to_url
+      #    # => "https://en.wikipedia.org/w/api.php?action=query&format=json&titles=Argentina%7CBolivia"
       #
       # @return [String]
       def to_url

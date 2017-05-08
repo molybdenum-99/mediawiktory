@@ -7,15 +7,16 @@ module MediaWiktory::Wikipedia
     # Usage:
     #
     # ```ruby
-    # api.purge(**options).perform # returns string with raw output
+    # api.purge(**options).perform
     # # or
-    # api.purge(**options).response # returns output parsed and wrapped into Mash-like object
     #
-    # # or, with chainable interface:
-    # api.purge.forcelinkupdate(value).perform
+    # api.purge.forcelinkupdate(value).perform # returns string with raw output
+    # # or
+    # api.purge.forcelinkupdate(value).response # returns output parsed and wrapped into Response object
     # ```
     #
-    # See {Base} for generic explanation of working with MediaWiki actions.
+    # See {Base} for generic explanation of working with MediaWiki actions and
+    # {MediaWiktory::Wikipedia::Response} for working with action responses.
     #
     # All action's parameters are documented as its public methods, see below.
     #

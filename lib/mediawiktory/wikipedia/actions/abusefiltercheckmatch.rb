@@ -7,15 +7,16 @@ module MediaWiktory::Wikipedia
     # Usage:
     #
     # ```ruby
-    # api.abusefiltercheckmatch(**options).perform # returns string with raw output
+    # api.abusefiltercheckmatch(**options).perform
     # # or
-    # api.abusefiltercheckmatch(**options).response # returns output parsed and wrapped into Mash-like object
     #
-    # # or, with chainable interface:
-    # api.abusefiltercheckmatch.filter(value).perform
+    # api.abusefiltercheckmatch.filter(value).perform # returns string with raw output
+    # # or
+    # api.abusefiltercheckmatch.filter(value).response # returns output parsed and wrapped into Response object
     # ```
     #
-    # See {Base} for generic explanation of working with MediaWiki actions.
+    # See {Base} for generic explanation of working with MediaWiki actions and
+    # {MediaWiktory::Wikipedia::Response} for working with action responses.
     #
     # All action's parameters are documented as its public methods, see below.
     #

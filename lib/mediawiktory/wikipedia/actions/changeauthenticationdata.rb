@@ -7,15 +7,16 @@ module MediaWiktory::Wikipedia
     # Usage:
     #
     # ```ruby
-    # api.changeauthenticationdata(**options).perform # returns string with raw output
+    # api.changeauthenticationdata(**options).perform
     # # or
-    # api.changeauthenticationdata(**options).response # returns output parsed and wrapped into Mash-like object
     #
-    # # or, with chainable interface:
-    # api.changeauthenticationdata.request(value).perform
+    # api.changeauthenticationdata.request(value).perform # returns string with raw output
+    # # or
+    # api.changeauthenticationdata.request(value).response # returns output parsed and wrapped into Response object
     # ```
     #
-    # See {Base} for generic explanation of working with MediaWiki actions.
+    # See {Base} for generic explanation of working with MediaWiki actions and
+    # {MediaWiktory::Wikipedia::Response} for working with action responses.
     #
     # All action's parameters are documented as its public methods, see below.
     #

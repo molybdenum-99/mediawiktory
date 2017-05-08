@@ -7,15 +7,16 @@ module MediaWiktory::Wikipedia
     # Usage:
     #
     # ```ruby
-    # api.liststudents(**options).perform # returns string with raw output
+    # api.liststudents(**options).perform
     # # or
-    # api.liststudents(**options).response # returns output parsed and wrapped into Mash-like object
     #
-    # # or, with chainable interface:
-    # api.liststudents.courseids(value).perform
+    # api.liststudents.courseids(value).perform # returns string with raw output
+    # # or
+    # api.liststudents.courseids(value).response # returns output parsed and wrapped into Response object
     # ```
     #
-    # See {Base} for generic explanation of working with MediaWiki actions.
+    # See {Base} for generic explanation of working with MediaWiki actions and
+    # {MediaWiktory::Wikipedia::Response} for working with action responses.
     #
     # All action's parameters are documented as its public methods, see below.
     #

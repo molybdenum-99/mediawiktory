@@ -7,15 +7,16 @@ module MediaWiktory::Wikipedia
     # Usage:
     #
     # ```ruby
-    # api.centralnoticequerycampaign(**options).perform # returns string with raw output
+    # api.centralnoticequerycampaign(**options).perform
     # # or
-    # api.centralnoticequerycampaign(**options).response # returns output parsed and wrapped into Mash-like object
     #
-    # # or, with chainable interface:
-    # api.centralnoticequerycampaign.campaign(value).perform
+    # api.centralnoticequerycampaign.campaign(value).perform # returns string with raw output
+    # # or
+    # api.centralnoticequerycampaign.campaign(value).response # returns output parsed and wrapped into Response object
     # ```
     #
-    # See {Base} for generic explanation of working with MediaWiki actions.
+    # See {Base} for generic explanation of working with MediaWiki actions and
+    # {MediaWiktory::Wikipedia::Response} for working with action responses.
     #
     # All action's parameters are documented as its public methods, see below.
     #

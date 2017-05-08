@@ -10,10 +10,9 @@
     # api.<%= method_name %>.<%= params.first.name %>('value')
     # ```<% end %>
     #
-    # See {MediaWiktory::Action} for generic explanation of working with MediaWiki actions and
+    # See {<%= @namespace %>::Actions::Base} for generic explanation of working with MediaWiki actions and
     # {<%= @namespace %>::Actions::<%= class_name %>} class for a list of parameters and usage.
     #
-    # @param [Hash] options Action options
     # @return [<%= @namespace %>::Actions::<%= class_name %>]
     #
     def <%= method_name %>

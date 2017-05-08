@@ -7,15 +7,16 @@ module MediaWiktory::Wikipedia
     # Usage:
     #
     # ```ruby
-    # api.zeroconfig(**options).perform # returns string with raw output
+    # api.zeroconfig(**options).perform
     # # or
-    # api.zeroconfig(**options).response # returns output parsed and wrapped into Mash-like object
     #
-    # # or, with chainable interface:
-    # api.zeroconfig.type(value).perform
+    # api.zeroconfig.type(value).perform # returns string with raw output
+    # # or
+    # api.zeroconfig.type(value).response # returns output parsed and wrapped into Response object
     # ```
     #
-    # See {Base} for generic explanation of working with MediaWiki actions.
+    # See {Base} for generic explanation of working with MediaWiki actions and
+    # {MediaWiktory::Wikipedia::Response} for working with action responses.
     #
     # All action's parameters are documented as its public methods, see below.
     #

@@ -14,15 +14,16 @@ module <%= @namespace %>
     #
     # This action has no parameters.
 <% else %>    # ```ruby
-    # api.<%= name %>(**options).perform # returns string with raw output
+    # api.<%= name %>(**options).perform
     # # or
-    # api.<%= name %>(**options).response # returns output parsed and wrapped into Mash-like object
     #
-    # # or, with chainable interface:
-    # api.<%= name %>.<%= params.first.name %>(value).perform
+    # api.<%= name %>.<%= params.first.name %>(value).perform # returns string with raw output
+    # # or
+    # api.<%= name %>.<%= params.first.name %>(value).response # returns output parsed and wrapped into Response object
     # ```
 <% end %>    #
-    # See {Base} for generic explanation of working with MediaWiki actions.
+    # See {Base} for generic explanation of working with MediaWiki actions and
+    # {<%= @namespace %>::Response} for working with action responses.
     #
     # All action's parameters are documented as its public methods, see below.
     #

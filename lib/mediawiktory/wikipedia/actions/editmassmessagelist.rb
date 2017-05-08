@@ -7,15 +7,16 @@ module MediaWiktory::Wikipedia
     # Usage:
     #
     # ```ruby
-    # api.editmassmessagelist(**options).perform # returns string with raw output
+    # api.editmassmessagelist(**options).perform
     # # or
-    # api.editmassmessagelist(**options).response # returns output parsed and wrapped into Mash-like object
     #
-    # # or, with chainable interface:
-    # api.editmassmessagelist.spamlist(value).perform
+    # api.editmassmessagelist.spamlist(value).perform # returns string with raw output
+    # # or
+    # api.editmassmessagelist.spamlist(value).response # returns output parsed and wrapped into Response object
     # ```
     #
-    # See {Base} for generic explanation of working with MediaWiki actions.
+    # See {Base} for generic explanation of working with MediaWiki actions and
+    # {MediaWiktory::Wikipedia::Response} for working with action responses.
     #
     # All action's parameters are documented as its public methods, see below.
     #

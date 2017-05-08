@@ -7,15 +7,16 @@ module MediaWiktory::Wikipedia
     # Usage:
     #
     # ```ruby
-    # api.languagesearch(**options).perform # returns string with raw output
+    # api.languagesearch(**options).perform
     # # or
-    # api.languagesearch(**options).response # returns output parsed and wrapped into Mash-like object
     #
-    # # or, with chainable interface:
-    # api.languagesearch.search(value).perform
+    # api.languagesearch.search(value).perform # returns string with raw output
+    # # or
+    # api.languagesearch.search(value).response # returns output parsed and wrapped into Response object
     # ```
     #
-    # See {Base} for generic explanation of working with MediaWiki actions.
+    # See {Base} for generic explanation of working with MediaWiki actions and
+    # {MediaWiktory::Wikipedia::Response} for working with action responses.
     #
     # All action's parameters are documented as its public methods, see below.
     #
