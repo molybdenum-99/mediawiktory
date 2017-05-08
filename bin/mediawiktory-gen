@@ -4,7 +4,10 @@ require 'optparse'
 
 options = {}
 OptionParser.new do |opts|
-  opts.banner = "Usage: example.rb [options]"
+  opts.banner =
+    "Usage: mediawiktory-gen [options]\n\n"\
+    "Generates MediaWiki API wrapper Ruby code for specified site in specified folder and namespace.\n"\
+    "Note that all previous content of the folder will be removed.\n\n"\
 
   opts.on("-uURL", "--url=URL", "Source URL for option parsing. Typically it is http://some.domain/w/api.php.") do |u|
     options[:url] = u
@@ -14,7 +17,7 @@ OptionParser.new do |opts|
     options[:namespace] = n
   end
 
-  opts.on("-pPATH", "--path=PATH", "Path wher to store new modules and classes. Note that there would be dozens of them.") do |p|
+  opts.on("-pPATH", "--path=PATH", "Path where to store new modules and classes. Note that there would be dozens of them, and that previous content of the folder will be removed.") do |p|
     options[:path] = p
   end
 
