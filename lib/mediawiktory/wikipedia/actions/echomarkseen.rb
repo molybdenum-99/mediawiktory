@@ -7,9 +7,6 @@ module MediaWiktory::Wikipedia
     # Usage:
     #
     # ```ruby
-    # api.echomarkseen(**options).perform
-    # # or
-    #
     # api.echomarkseen.token(value).perform # returns string with raw output
     # # or
     # api.echomarkseen.token(value).response # returns output parsed and wrapped into Response object

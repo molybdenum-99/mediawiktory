@@ -7,9 +7,6 @@ module MediaWiktory::Wikipedia
     # Usage:
     #
     # ```ruby
-    # api.compare(**options).perform
-    # # or
-    #
     # api.compare.fromtitle(value).perform # returns string with raw output
     # # or
     # api.compare.fromtitle(value).response # returns output parsed and wrapped into Response object

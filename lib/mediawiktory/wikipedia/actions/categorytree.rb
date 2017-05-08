@@ -7,9 +7,6 @@ module MediaWiktory::Wikipedia
     # Usage:
     #
     # ```ruby
-    # api.categorytree(**options).perform
-    # # or
-    #
     # api.categorytree.category(value).perform # returns string with raw output
     # # or
     # api.categorytree.category(value).response # returns output parsed and wrapped into Response object

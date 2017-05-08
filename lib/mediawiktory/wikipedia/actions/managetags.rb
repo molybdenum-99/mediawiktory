@@ -7,9 +7,6 @@ module MediaWiktory::Wikipedia
     # Usage:
     #
     # ```ruby
-    # api.managetags(**options).perform
-    # # or
-    #
     # api.managetags.operation(value).perform # returns string with raw output
     # # or
     # api.managetags.operation(value).response # returns output parsed and wrapped into Response object

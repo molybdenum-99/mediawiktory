@@ -7,9 +7,6 @@ module MediaWiktory::Wikipedia
     # Usage:
     #
     # ```ruby
-    # api.abusefilterevalexpression(**options).perform
-    # # or
-    #
     # api.abusefilterevalexpression.expression(value).perform # returns string with raw output
     # # or
     # api.abusefilterevalexpression.expression(value).response # returns output parsed and wrapped into Response object

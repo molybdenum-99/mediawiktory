@@ -7,9 +7,6 @@ module MediaWiktory::Wikipedia
     # Usage:
     #
     # ```ruby
-    # api.cxsuggestionlist(**options).perform
-    # # or
-    #
     # api.cxsuggestionlist.listname(value).perform # returns string with raw output
     # # or
     # api.cxsuggestionlist.listname(value).response # returns output parsed and wrapped into Response object

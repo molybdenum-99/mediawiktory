@@ -7,9 +7,6 @@ module MediaWiktory::Wikipedia
     # Usage:
     #
     # ```ruby
-    # api.antispoof(**options).perform
-    # # or
-    #
     # api.antispoof.username(value).perform # returns string with raw output
     # # or
     # api.antispoof.username(value).response # returns output parsed and wrapped into Response object

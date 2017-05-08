@@ -7,9 +7,6 @@ module MediaWiktory::Wikipedia
     # Usage:
     #
     # ```ruby
-    # api.checktoken(**options).perform
-    # # or
-    #
     # api.checktoken.type(value).perform # returns string with raw output
     # # or
     # api.checktoken.type(value).response # returns output parsed and wrapped into Response object

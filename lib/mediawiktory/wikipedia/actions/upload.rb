@@ -7,9 +7,6 @@ module MediaWiktory::Wikipedia
     # Usage:
     #
     # ```ruby
-    # api.upload(**options).perform
-    # # or
-    #
     # api.upload.filename(value).perform # returns string with raw output
     # # or
     # api.upload.filename(value).response # returns output parsed and wrapped into Response object

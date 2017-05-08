@@ -7,9 +7,6 @@ module MediaWiktory::Wikipedia
     # Usage:
     #
     # ```ruby
-    # api.graph(**options).perform
-    # # or
-    #
     # api.graph.hash(value).perform # returns string with raw output
     # # or
     # api.graph.hash(value).response # returns output parsed and wrapped into Response object

@@ -7,9 +7,6 @@ module MediaWiktory::Wikipedia
     # Usage:
     #
     # ```ruby
-    # api.tag(**options).perform
-    # # or
-    #
     # api.tag.rcid(value).perform # returns string with raw output
     # # or
     # api.tag.rcid(value).response # returns output parsed and wrapped into Response object

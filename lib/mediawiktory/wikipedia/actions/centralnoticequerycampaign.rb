@@ -7,9 +7,6 @@ module MediaWiktory::Wikipedia
     # Usage:
     #
     # ```ruby
-    # api.centralnoticequerycampaign(**options).perform
-    # # or
-    #
     # api.centralnoticequerycampaign.campaign(value).perform # returns string with raw output
     # # or
     # api.centralnoticequerycampaign.campaign(value).response # returns output parsed and wrapped into Response object

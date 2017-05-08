@@ -7,9 +7,6 @@ module MediaWiktory::Wikipedia
     # Usage:
     #
     # ```ruby
-    # api.cxtoken(**options).perform
-    # # or
-    #
     # api.cxtoken.token(value).perform # returns string with raw output
     # # or
     # api.cxtoken.token(value).response # returns output parsed and wrapped into Response object

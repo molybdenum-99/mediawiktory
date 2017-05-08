@@ -7,9 +7,6 @@ module MediaWiktory::Wikipedia
     # Usage:
     #
     # ```ruby
-    # api.deleteglobalaccount(**options).perform
-    # # or
-    #
     # api.deleteglobalaccount.user(value).perform # returns string with raw output
     # # or
     # api.deleteglobalaccount.user(value).response # returns output parsed and wrapped into Response object

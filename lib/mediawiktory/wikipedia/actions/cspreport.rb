@@ -7,9 +7,6 @@ module MediaWiktory::Wikipedia
     # Usage:
     #
     # ```ruby
-    # api.cspreport(**options).perform
-    # # or
-    #
     # api.cspreport.reportonly(value).perform # returns string with raw output
     # # or
     # api.cspreport.reportonly(value).response # returns output parsed and wrapped into Response object

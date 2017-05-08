@@ -7,9 +7,6 @@ module MediaWiktory::Wikipedia
     # Usage:
     #
     # ```ruby
-    # api.titleblacklist(**options).perform
-    # # or
-    #
     # api.titleblacklist.title(value).perform # returns string with raw output
     # # or
     # api.titleblacklist.title(value).response # returns output parsed and wrapped into Response object

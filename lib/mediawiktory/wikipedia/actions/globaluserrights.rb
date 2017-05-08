@@ -7,9 +7,6 @@ module MediaWiktory::Wikipedia
     # Usage:
     #
     # ```ruby
-    # api.globaluserrights(**options).perform
-    # # or
-    #
     # api.globaluserrights.user(value).perform # returns string with raw output
     # # or
     # api.globaluserrights.user(value).response # returns output parsed and wrapped into Response object

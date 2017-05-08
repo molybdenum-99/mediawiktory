@@ -7,9 +7,6 @@ module MediaWiktory::Wikipedia
     # Usage:
     #
     # ```ruby
-    # api.revisiondelete(**options).perform
-    # # or
-    #
     # api.revisiondelete.type(value).perform # returns string with raw output
     # # or
     # api.revisiondelete.type(value).response # returns output parsed and wrapped into Response object

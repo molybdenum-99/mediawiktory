@@ -4,8 +4,9 @@ module MediaWiktory::Wikipedia
   module Modules
     # Find all pages that link to the given page. 
     #
-    # The module is included in action after setting some param, providing additional tweaking for
-    # this param. Example:
+    # The "submodule" (MediaWiki API term) is included in action after setting some param, providing
+    # additional tweaking for this param. Example (for {MediaWiktory::Wikipedia::Actions::Query} and
+    # its submodules):
     #
     # ```ruby
     # api.query             # returns Actions::Query

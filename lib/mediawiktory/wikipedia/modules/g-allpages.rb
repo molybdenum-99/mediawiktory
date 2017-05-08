@@ -2,10 +2,11 @@
 
 module MediaWiktory::Wikipedia
   module Modules
-    # Generator module.
+    # Enumerate all pages sequentially in a given namespace.  _Generator module: for fetching pages corresponding to request._
     #
-    # The module is included in action after setting some param, providing additional tweaking for
-    # this param. Example:
+    # The "submodule" (MediaWiki API term) is included in action after setting some param, providing
+    # additional tweaking for this param. Example (for {MediaWiktory::Wikipedia::Actions::Query} and
+    # its submodules):
     #
     # ```ruby
     # api.query             # returns Actions::Query

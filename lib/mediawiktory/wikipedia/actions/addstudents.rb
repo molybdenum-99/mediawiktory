@@ -7,9 +7,6 @@ module MediaWiktory::Wikipedia
     # Usage:
     #
     # ```ruby
-    # api.addstudents(**options).perform
-    # # or
-    #
     # api.addstudents.studentusernames(value).perform # returns string with raw output
     # # or
     # api.addstudents.studentusernames(value).response # returns output parsed and wrapped into Response object

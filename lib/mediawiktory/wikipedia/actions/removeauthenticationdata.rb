@@ -7,9 +7,6 @@ module MediaWiktory::Wikipedia
     # Usage:
     #
     # ```ruby
-    # api.removeauthenticationdata(**options).perform
-    # # or
-    #
     # api.removeauthenticationdata.request(value).perform # returns string with raw output
     # # or
     # api.removeauthenticationdata.request(value).response # returns output parsed and wrapped into Response object

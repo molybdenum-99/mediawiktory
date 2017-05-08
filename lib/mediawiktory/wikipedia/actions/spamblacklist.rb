@@ -7,9 +7,6 @@ module MediaWiktory::Wikipedia
     # Usage:
     #
     # ```ruby
-    # api.spamblacklist(**options).perform
-    # # or
-    #
     # api.spamblacklist.url(value).perform # returns string with raw output
     # # or
     # api.spamblacklist.url(value).response # returns output parsed and wrapped into Response object

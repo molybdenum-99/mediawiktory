@@ -7,9 +7,6 @@ module MediaWiktory::Wikipedia
     # Usage:
     #
     # ```ruby
-    # api.query(**options).perform
-    # # or
-    #
     # api.query.prop(value).perform # returns string with raw output
     # # or
     # api.query.prop(value).response # returns output parsed and wrapped into Response object
@@ -256,50 +253,50 @@ module MediaWiktory::Wikipedia
       # Get the list of pages to work on by executing the specified query module.
       #
       # @param value [Symbol] Selecting an option includes tweaking methods from corresponding module:
-      #   * `:g-allcategories` - {MediaWiktory::Wikipedia::Modules::GAllcategories} Generator module.
-      #   * `:g-alldeletedrevisions` - {MediaWiktory::Wikipedia::Modules::GAlldeletedrevisions} Generator module.
-      #   * `:g-allfileusages` - {MediaWiktory::Wikipedia::Modules::GAllfileusages} Generator module.
-      #   * `:g-allimages` - {MediaWiktory::Wikipedia::Modules::GAllimages} Generator module.
-      #   * `:g-alllinks` - {MediaWiktory::Wikipedia::Modules::GAlllinks} Generator module.
-      #   * `:g-allpages` - {MediaWiktory::Wikipedia::Modules::GAllpages} Generator module.
-      #   * `:g-allredirects` - {MediaWiktory::Wikipedia::Modules::GAllredirects} Generator module.
-      #   * `:g-allrevisions` - {MediaWiktory::Wikipedia::Modules::GAllrevisions} Generator module.
-      #   * `:g-alltransclusions` - {MediaWiktory::Wikipedia::Modules::GAlltransclusions} Generator module.
-      #   * `:g-backlinks` - {MediaWiktory::Wikipedia::Modules::GBacklinks} Generator module.
-      #   * `:g-categories` - {MediaWiktory::Wikipedia::Modules::GCategories} Generator module.
-      #   * `:g-categorymembers` - {MediaWiktory::Wikipedia::Modules::GCategorymembers} Generator module.
-      #   * `:g-contenttranslation` - {MediaWiktory::Wikipedia::Modules::GContenttranslation} Generator module.
-      #   * `:g-contenttranslationsuggestions` - {MediaWiktory::Wikipedia::Modules::GContenttranslationsuggestions} Generator module.
-      #   * `:g-deletedrevisions` - {MediaWiktory::Wikipedia::Modules::GDeletedrevisions} Generator module.
-      #   * `:g-duplicatefiles` - {MediaWiktory::Wikipedia::Modules::GDuplicatefiles} Generator module.
-      #   * `:g-embeddedin` - {MediaWiktory::Wikipedia::Modules::GEmbeddedin} Generator module.
-      #   * `:g-exturlusage` - {MediaWiktory::Wikipedia::Modules::GExturlusage} Generator module.
-      #   * `:g-fileusage` - {MediaWiktory::Wikipedia::Modules::GFileusage} Generator module.
-      #   * `:g-geosearch` - {MediaWiktory::Wikipedia::Modules::GGeosearch} Generator module.
-      #   * `:g-gettingstartedgetpages` - {MediaWiktory::Wikipedia::Modules::GGettingstartedgetpages} Generator module.
-      #   * `:g-images` - {MediaWiktory::Wikipedia::Modules::GImages} Generator module.
-      #   * `:g-imageusage` - {MediaWiktory::Wikipedia::Modules::GImageusage} Generator module.
-      #   * `:g-iwbacklinks` - {MediaWiktory::Wikipedia::Modules::GIwbacklinks} Generator module.
-      #   * `:g-langbacklinks` - {MediaWiktory::Wikipedia::Modules::GLangbacklinks} Generator module.
-      #   * `:g-links` - {MediaWiktory::Wikipedia::Modules::GLinks} Generator module.
-      #   * `:g-linkshere` - {MediaWiktory::Wikipedia::Modules::GLinkshere} Generator module.
-      #   * `:g-mostviewed` - {MediaWiktory::Wikipedia::Modules::GMostviewed} Generator module.
-      #   * `:g-oldreviewedpages` - {MediaWiktory::Wikipedia::Modules::GOldreviewedpages} Generator module.
-      #   * `:g-pageswithprop` - {MediaWiktory::Wikipedia::Modules::GPageswithprop} Generator module.
-      #   * `:g-prefixsearch` - {MediaWiktory::Wikipedia::Modules::GPrefixsearch} Generator module.
-      #   * `:g-projectpages` - {MediaWiktory::Wikipedia::Modules::GProjectpages} Generator module.
-      #   * `:g-protectedtitles` - {MediaWiktory::Wikipedia::Modules::GProtectedtitles} Generator module.
-      #   * `:g-querypage` - {MediaWiktory::Wikipedia::Modules::GQuerypage} Generator module.
-      #   * `:g-random` - {MediaWiktory::Wikipedia::Modules::GRandom} Generator module.
-      #   * `:g-recentchanges` - {MediaWiktory::Wikipedia::Modules::GRecentchanges} Generator module.
-      #   * `:g-redirects` - {MediaWiktory::Wikipedia::Modules::GRedirects} Generator module.
-      #   * `:g-revisions` - {MediaWiktory::Wikipedia::Modules::GRevisions} Generator module.
-      #   * `:g-search` - {MediaWiktory::Wikipedia::Modules::GSearch} Generator module.
-      #   * `:g-templates` - {MediaWiktory::Wikipedia::Modules::GTemplates} Generator module.
-      #   * `:g-transcludedin` - {MediaWiktory::Wikipedia::Modules::GTranscludedin} Generator module.
-      #   * `:g-watchlist` - {MediaWiktory::Wikipedia::Modules::GWatchlist} Generator module.
-      #   * `:g-watchlistraw` - {MediaWiktory::Wikipedia::Modules::GWatchlistraw} Generator module.
-      #   * `:g-wblistentityusage` - {MediaWiktory::Wikipedia::Modules::GWblistentityusage} Generator module.
+      #   * `:allcategories` - {MediaWiktory::Wikipedia::Modules::GAllcategories} Enumerate all categories.  _Generator module: for fetching pages corresponding to request._
+      #   * `:alldeletedrevisions` - {MediaWiktory::Wikipedia::Modules::GAlldeletedrevisions} List all deleted revisions by a user or in a namespace.  _Generator module: for fetching pages corresponding to request._
+      #   * `:allfileusages` - {MediaWiktory::Wikipedia::Modules::GAllfileusages} List all file usages, including non-existing.  _Generator module: for fetching pages corresponding to request._
+      #   * `:allimages` - {MediaWiktory::Wikipedia::Modules::GAllimages} Enumerate all images sequentially.  _Generator module: for fetching pages corresponding to request._
+      #   * `:alllinks` - {MediaWiktory::Wikipedia::Modules::GAlllinks} Enumerate all links that point to a given namespace.  _Generator module: for fetching pages corresponding to request._
+      #   * `:allpages` - {MediaWiktory::Wikipedia::Modules::GAllpages} Enumerate all pages sequentially in a given namespace.  _Generator module: for fetching pages corresponding to request._
+      #   * `:allredirects` - {MediaWiktory::Wikipedia::Modules::GAllredirects} List all redirects to a namespace.  _Generator module: for fetching pages corresponding to request._
+      #   * `:allrevisions` - {MediaWiktory::Wikipedia::Modules::GAllrevisions} List all revisions.  _Generator module: for fetching pages corresponding to request._
+      #   * `:alltransclusions` - {MediaWiktory::Wikipedia::Modules::GAlltransclusions} List all transclusions (pages embedded using {{x}}), including non-existing.  _Generator module: for fetching pages corresponding to request._
+      #   * `:backlinks` - {MediaWiktory::Wikipedia::Modules::GBacklinks} Find all pages that link to the given page.  _Generator module: for fetching pages corresponding to request._
+      #   * `:categories` - {MediaWiktory::Wikipedia::Modules::GCategories} List all categories the pages belong to.  _Generator module: for fetching pages corresponding to request._
+      #   * `:categorymembers` - {MediaWiktory::Wikipedia::Modules::GCategorymembers} List all pages in a given category.  _Generator module: for fetching pages corresponding to request._
+      #   * `:contenttranslation` - {MediaWiktory::Wikipedia::Modules::GContenttranslation} Query Content Translation database for translations.  _Generator module: for fetching pages corresponding to request._
+      #   * `:contenttranslationsuggestions` - {MediaWiktory::Wikipedia::Modules::GContenttranslationsuggestions} Get suggestion lists for Content Translation.  _Generator module: for fetching pages corresponding to request._
+      #   * `:deletedrevisions` - {MediaWiktory::Wikipedia::Modules::GDeletedrevisions} Get deleted revision information.  _Generator module: for fetching pages corresponding to request._
+      #   * `:duplicatefiles` - {MediaWiktory::Wikipedia::Modules::GDuplicatefiles} List all files that are duplicates of the given files based on hash values.  _Generator module: for fetching pages corresponding to request._
+      #   * `:embeddedin` - {MediaWiktory::Wikipedia::Modules::GEmbeddedin} Find all pages that embed (transclude) the given title.  _Generator module: for fetching pages corresponding to request._
+      #   * `:exturlusage` - {MediaWiktory::Wikipedia::Modules::GExturlusage} Enumerate pages that contain a given URL.  _Generator module: for fetching pages corresponding to request._
+      #   * `:fileusage` - {MediaWiktory::Wikipedia::Modules::GFileusage} Find all pages that use the given files.  _Generator module: for fetching pages corresponding to request._
+      #   * `:geosearch` - {MediaWiktory::Wikipedia::Modules::GGeosearch} Returns pages having coordinates that are located in a certain area.  _Generator module: for fetching pages corresponding to request._
+      #   * `:gettingstartedgetpages` - {MediaWiktory::Wikipedia::Modules::GGettingstartedgetpages} This API is for getting a list of one or more pages related to a particular GettingStarted task.  _Generator module: for fetching pages corresponding to request._
+      #   * `:images` - {MediaWiktory::Wikipedia::Modules::GImages} Returns all files contained on the given pages.  _Generator module: for fetching pages corresponding to request._
+      #   * `:imageusage` - {MediaWiktory::Wikipedia::Modules::GImageusage} Find all pages that use the given image title.  _Generator module: for fetching pages corresponding to request._
+      #   * `:iwbacklinks` - {MediaWiktory::Wikipedia::Modules::GIwbacklinks} Find all pages that link to the given interwiki link.  _Generator module: for fetching pages corresponding to request._
+      #   * `:langbacklinks` - {MediaWiktory::Wikipedia::Modules::GLangbacklinks} Find all pages that link to the given language link.  _Generator module: for fetching pages corresponding to request._
+      #   * `:links` - {MediaWiktory::Wikipedia::Modules::GLinks} Returns all links from the given pages.  _Generator module: for fetching pages corresponding to request._
+      #   * `:linkshere` - {MediaWiktory::Wikipedia::Modules::GLinkshere} Find all pages that link to the given pages.  _Generator module: for fetching pages corresponding to request._
+      #   * `:mostviewed` - {MediaWiktory::Wikipedia::Modules::GMostviewed} Lists the most viewed pages (based on last day's pageview count).  _Generator module: for fetching pages corresponding to request._
+      #   * `:oldreviewedpages` - {MediaWiktory::Wikipedia::Modules::GOldreviewedpages} Enumerates pages that have changes pending review.  _Generator module: for fetching pages corresponding to request._
+      #   * `:pageswithprop` - {MediaWiktory::Wikipedia::Modules::GPageswithprop} List all pages using a given page property.  _Generator module: for fetching pages corresponding to request._
+      #   * `:prefixsearch` - {MediaWiktory::Wikipedia::Modules::GPrefixsearch} Perform a prefix search for page titles.  _Generator module: for fetching pages corresponding to request._
+      #   * `:projectpages` - {MediaWiktory::Wikipedia::Modules::GProjectpages} List all pages associated with one or more projects.  _Generator module: for fetching pages corresponding to request._
+      #   * `:protectedtitles` - {MediaWiktory::Wikipedia::Modules::GProtectedtitles} List all titles protected from creation.  _Generator module: for fetching pages corresponding to request._
+      #   * `:querypage` - {MediaWiktory::Wikipedia::Modules::GQuerypage} Get a list provided by a QueryPage-based special page.  _Generator module: for fetching pages corresponding to request._
+      #   * `:random` - {MediaWiktory::Wikipedia::Modules::GRandom} Get a set of random pages.  _Generator module: for fetching pages corresponding to request._
+      #   * `:recentchanges` - {MediaWiktory::Wikipedia::Modules::GRecentchanges} Enumerate recent changes.  _Generator module: for fetching pages corresponding to request._
+      #   * `:redirects` - {MediaWiktory::Wikipedia::Modules::GRedirects} Returns all redirects to the given pages.  _Generator module: for fetching pages corresponding to request._
+      #   * `:revisions` - {MediaWiktory::Wikipedia::Modules::GRevisions} Get revision information.  _Generator module: for fetching pages corresponding to request._
+      #   * `:search` - {MediaWiktory::Wikipedia::Modules::GSearch} Perform a full text search.  _Generator module: for fetching pages corresponding to request._
+      #   * `:templates` - {MediaWiktory::Wikipedia::Modules::GTemplates} Returns all pages transcluded on the given pages.  _Generator module: for fetching pages corresponding to request._
+      #   * `:transcludedin` - {MediaWiktory::Wikipedia::Modules::GTranscludedin} Find all pages that transclude the given pages.  _Generator module: for fetching pages corresponding to request._
+      #   * `:watchlist` - {MediaWiktory::Wikipedia::Modules::GWatchlist} Get recent changes to pages in the current user's watchlist.  _Generator module: for fetching pages corresponding to request._
+      #   * `:watchlistraw` - {MediaWiktory::Wikipedia::Modules::GWatchlistraw} Get all pages on the current user's watchlist.  _Generator module: for fetching pages corresponding to request._
+      #   * `:wblistentityusage` - {MediaWiktory::Wikipedia::Modules::GWblistentityusage} Returns all pages that use the given entity IDs.  _Generator module: for fetching pages corresponding to request._
       # @return [self]
       def generator(value)
         _generator(value) or fail ArgumentError, "Unknown value for generator: #{value}"

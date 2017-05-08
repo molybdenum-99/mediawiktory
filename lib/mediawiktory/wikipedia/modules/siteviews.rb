@@ -4,8 +4,9 @@ module MediaWiktory::Wikipedia
   module Modules
     # Shows sitewide pageview data (daily pageview totals for each of the last pvisdays days). The result format is date (Ymd) => count. 
     #
-    # The module is included in action after setting some param, providing additional tweaking for
-    # this param. Example:
+    # The "submodule" (MediaWiki API term) is included in action after setting some param, providing
+    # additional tweaking for this param. Example (for {MediaWiktory::Wikipedia::Actions::Query} and
+    # its submodules):
     #
     # ```ruby
     # api.query             # returns Actions::Query

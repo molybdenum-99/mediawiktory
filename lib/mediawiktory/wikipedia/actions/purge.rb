@@ -7,9 +7,6 @@ module MediaWiktory::Wikipedia
     # Usage:
     #
     # ```ruby
-    # api.purge(**options).perform
-    # # or
-    #
     # api.purge.forcelinkupdate(value).perform # returns string with raw output
     # # or
     # api.purge.forcelinkupdate(value).response # returns output parsed and wrapped into Response object

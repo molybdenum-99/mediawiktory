@@ -7,9 +7,6 @@ module MediaWiktory::Wikipedia
     # Usage:
     #
     # ```ruby
-    # api.abusefiltercheckmatch(**options).perform
-    # # or
-    #
     # api.abusefiltercheckmatch.filter(value).perform # returns string with raw output
     # # or
     # api.abusefiltercheckmatch.filter(value).response # returns output parsed and wrapped into Response object

@@ -7,9 +7,6 @@ module MediaWiktory::Wikipedia
     # Usage:
     #
     # ```ruby
-    # api.createaccount(**options).perform
-    # # or
-    #
     # api.createaccount.requests(value).perform # returns string with raw output
     # # or
     # api.createaccount.requests(value).response # returns output parsed and wrapped into Response object

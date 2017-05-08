@@ -14,9 +14,6 @@ module <%= @namespace %>
     #
     # This action has no parameters.
 <% else %>    # ```ruby
-    # api.<%= name %>(**options).perform
-    # # or
-    #
     # api.<%= name %>.<%= params.first.name %>(value).perform # returns string with raw output
     # # or
     # api.<%= name %>.<%= params.first.name %>(value).response # returns output parsed and wrapped into Response object

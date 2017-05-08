@@ -7,9 +7,6 @@ module MediaWiktory::Wikipedia
     # Usage:
     #
     # ```ruby
-    # api.stashedit(**options).perform
-    # # or
-    #
     # api.stashedit.title(value).perform # returns string with raw output
     # # or
     # api.stashedit.title(value).response # returns output parsed and wrapped into Response object

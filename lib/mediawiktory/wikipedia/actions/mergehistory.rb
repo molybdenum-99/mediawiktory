@@ -7,9 +7,6 @@ module MediaWiktory::Wikipedia
     # Usage:
     #
     # ```ruby
-    # api.mergehistory(**options).perform
-    # # or
-    #
     # api.mergehistory.from(value).perform # returns string with raw output
     # # or
     # api.mergehistory.from(value).response # returns output parsed and wrapped into Response object

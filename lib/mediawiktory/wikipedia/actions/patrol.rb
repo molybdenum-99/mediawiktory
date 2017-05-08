@@ -7,9 +7,6 @@ module MediaWiktory::Wikipedia
     # Usage:
     #
     # ```ruby
-    # api.patrol(**options).perform
-    # # or
-    #
     # api.patrol.rcid(value).perform # returns string with raw output
     # # or
     # api.patrol.rcid(value).response # returns output parsed and wrapped into Response object

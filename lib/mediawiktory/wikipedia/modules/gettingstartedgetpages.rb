@@ -4,8 +4,9 @@ module MediaWiktory::Wikipedia
   module Modules
     # This API is for getting a list of one or more pages related to a particular GettingStarted task. 
     #
-    # The module is included in action after setting some param, providing additional tweaking for
-    # this param. Example:
+    # The "submodule" (MediaWiki API term) is included in action after setting some param, providing
+    # additional tweaking for this param. Example (for {MediaWiktory::Wikipedia::Actions::Query} and
+    # its submodules):
     #
     # ```ruby
     # api.query             # returns Actions::Query

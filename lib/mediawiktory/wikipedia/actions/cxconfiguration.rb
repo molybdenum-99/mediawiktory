@@ -7,9 +7,6 @@ module MediaWiktory::Wikipedia
     # Usage:
     #
     # ```ruby
-    # api.cxconfiguration(**options).perform
-    # # or
-    #
     # api.cxconfiguration.from(value).perform # returns string with raw output
     # # or
     # api.cxconfiguration.from(value).response # returns output parsed and wrapped into Response object

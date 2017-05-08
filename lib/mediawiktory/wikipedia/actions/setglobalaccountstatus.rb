@@ -7,9 +7,6 @@ module MediaWiktory::Wikipedia
     # Usage:
     #
     # ```ruby
-    # api.setglobalaccountstatus(**options).perform
-    # # or
-    #
     # api.setglobalaccountstatus.user(value).perform # returns string with raw output
     # # or
     # api.setglobalaccountstatus.user(value).response # returns output parsed and wrapped into Response object

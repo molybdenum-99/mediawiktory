@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require_relative '../response'
+
 module MediaWiktory::Wikipedia
   module Actions
     # Global setup methods included into every action through {Base}.

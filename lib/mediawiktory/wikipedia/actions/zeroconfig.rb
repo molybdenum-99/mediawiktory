@@ -7,9 +7,6 @@ module MediaWiktory::Wikipedia
     # Usage:
     #
     # ```ruby
-    # api.zeroconfig(**options).perform
-    # # or
-    #
     # api.zeroconfig.type(value).perform # returns string with raw output
     # # or
     # api.zeroconfig.type(value).response # returns output parsed and wrapped into Response object

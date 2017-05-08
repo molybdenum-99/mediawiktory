@@ -7,9 +7,6 @@ module MediaWiktory::Wikipedia
     # Usage:
     #
     # ```ruby
-    # api.bouncehandler(**options).perform
-    # # or
-    #
     # api.bouncehandler.email(value).perform # returns string with raw output
     # # or
     # api.bouncehandler.email(value).response # returns output parsed and wrapped into Response object

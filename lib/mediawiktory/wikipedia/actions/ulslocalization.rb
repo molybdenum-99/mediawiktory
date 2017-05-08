@@ -7,9 +7,6 @@ module MediaWiktory::Wikipedia
     # Usage:
     #
     # ```ruby
-    # api.ulslocalization(**options).perform
-    # # or
-    #
     # api.ulslocalization.language(value).perform # returns string with raw output
     # # or
     # api.ulslocalization.language(value).response # returns output parsed and wrapped into Response object

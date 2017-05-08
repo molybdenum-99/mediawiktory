@@ -7,9 +7,6 @@ module MediaWiktory::Wikipedia
     # Usage:
     #
     # ```ruby
-    # api.strikevote(**options).perform
-    # # or
-    #
     # api.strikevote.option(value).perform # returns string with raw output
     # # or
     # api.strikevote.option(value).response # returns output parsed and wrapped into Response object

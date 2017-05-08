@@ -7,9 +7,6 @@ module MediaWiktory::Wikipedia
     # Usage:
     #
     # ```ruby
-    # api.pagetriageaction(**options).perform
-    # # or
-    #
     # api.pagetriageaction.pageid(value).perform # returns string with raw output
     # # or
     # api.pagetriageaction.pageid(value).response # returns output parsed and wrapped into Response object

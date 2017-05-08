@@ -7,9 +7,6 @@ module MediaWiktory::Wikipedia
     # Usage:
     #
     # ```ruby
-    # api.changeauthenticationdata(**options).perform
-    # # or
-    #
     # api.changeauthenticationdata.request(value).perform # returns string with raw output
     # # or
     # api.changeauthenticationdata.request(value).response # returns output parsed and wrapped into Response object

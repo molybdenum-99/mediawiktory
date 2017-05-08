@@ -7,9 +7,6 @@ module MediaWiktory::Wikipedia
     # Usage:
     #
     # ```ruby
-    # api.shortenurl(**options).perform
-    # # or
-    #
     # api.shortenurl.url(value).perform # returns string with raw output
     # # or
     # api.shortenurl.url(value).response # returns output parsed and wrapped into Response object

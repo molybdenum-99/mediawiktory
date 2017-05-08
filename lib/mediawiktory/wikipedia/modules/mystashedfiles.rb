@@ -4,8 +4,9 @@ module MediaWiktory::Wikipedia
   module Modules
     # Get a list of files in the current user's upload stash. 
     #
-    # The module is included in action after setting some param, providing additional tweaking for
-    # this param. Example:
+    # The "submodule" (MediaWiki API term) is included in action after setting some param, providing
+    # additional tweaking for this param. Example (for {MediaWiktory::Wikipedia::Actions::Query} and
+    # its submodules):
     #
     # ```ruby
     # api.query             # returns Actions::Query

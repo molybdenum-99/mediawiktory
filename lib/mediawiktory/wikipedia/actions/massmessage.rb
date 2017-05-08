@@ -7,9 +7,6 @@ module MediaWiktory::Wikipedia
     # Usage:
     #
     # ```ruby
-    # api.massmessage(**options).perform
-    # # or
-    #
     # api.massmessage.spamlist(value).perform # returns string with raw output
     # # or
     # api.massmessage.spamlist(value).response # returns output parsed and wrapped into Response object

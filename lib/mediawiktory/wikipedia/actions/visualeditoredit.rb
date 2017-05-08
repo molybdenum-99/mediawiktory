@@ -7,9 +7,6 @@ module MediaWiktory::Wikipedia
     # Usage:
     #
     # ```ruby
-    # api.visualeditoredit(**options).perform
-    # # or
-    #
     # api.visualeditoredit.paction(value).perform # returns string with raw output
     # # or
     # api.visualeditoredit.paction(value).response # returns output parsed and wrapped into Response object

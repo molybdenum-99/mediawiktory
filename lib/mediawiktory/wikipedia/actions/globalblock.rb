@@ -7,9 +7,6 @@ module MediaWiktory::Wikipedia
     # Usage:
     #
     # ```ruby
-    # api.globalblock(**options).perform
-    # # or
-    #
     # api.globalblock.target(value).perform # returns string with raw output
     # # or
     # api.globalblock.target(value).response # returns output parsed and wrapped into Response object

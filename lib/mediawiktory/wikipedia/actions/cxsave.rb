@@ -7,9 +7,6 @@ module MediaWiktory::Wikipedia
     # Usage:
     #
     # ```ruby
-    # api.cxsave(**options).perform
-    # # or
-    #
     # api.cxsave.from(value).perform # returns string with raw output
     # # or
     # api.cxsave.from(value).response # returns output parsed and wrapped into Response object

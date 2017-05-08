@@ -46,7 +46,7 @@ module MediaWiktory
             .modules.map { |mod|
               mod.merge(
                 name: "g-#{mod.name}",
-                description: "Generator module.\n\n#{description}",
+                description: "#{mod.description} _Generator module: for fetching pages corresponding to request._",
                 params: mod.params.reject { |p| p.name == 'prop' }.map(&:dup)
               ).tap { |m| m.prefix = "g#{m.prefix}" }
             }

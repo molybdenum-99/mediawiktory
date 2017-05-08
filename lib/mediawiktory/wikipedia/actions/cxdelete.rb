@@ -7,9 +7,6 @@ module MediaWiktory::Wikipedia
     # Usage:
     #
     # ```ruby
-    # api.cxdelete(**options).perform
-    # # or
-    #
     # api.cxdelete.from(value).perform # returns string with raw output
     # # or
     # api.cxdelete.from(value).response # returns output parsed and wrapped into Response object

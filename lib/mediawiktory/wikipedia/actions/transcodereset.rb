@@ -7,9 +7,6 @@ module MediaWiktory::Wikipedia
     # Usage:
     #
     # ```ruby
-    # api.transcodereset(**options).perform
-    # # or
-    #
     # api.transcodereset.title(value).perform # returns string with raw output
     # # or
     # api.transcodereset.title(value).response # returns output parsed and wrapped into Response object

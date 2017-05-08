@@ -7,9 +7,6 @@ module MediaWiktory::Wikipedia
     # Usage:
     #
     # ```ruby
-    # api.pagetriagetemplate(**options).perform
-    # # or
-    #
     # api.pagetriagetemplate.view(value).perform # returns string with raw output
     # # or
     # api.pagetriagetemplate.view(value).response # returns output parsed and wrapped into Response object

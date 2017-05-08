@@ -7,9 +7,6 @@ module MediaWiktory::Wikipedia
     # Usage:
     #
     # ```ruby
-    # api.move(**options).perform
-    # # or
-    #
     # api.move.from(value).perform # returns string with raw output
     # # or
     # api.move.from(value).response # returns output parsed and wrapped into Response object

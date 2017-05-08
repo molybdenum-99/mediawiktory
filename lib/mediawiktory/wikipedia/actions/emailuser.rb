@@ -7,9 +7,6 @@ module MediaWiktory::Wikipedia
     # Usage:
     #
     # ```ruby
-    # api.emailuser(**options).perform
-    # # or
-    #
     # api.emailuser.target(value).perform # returns string with raw output
     # # or
     # api.emailuser.target(value).response # returns output parsed and wrapped into Response object

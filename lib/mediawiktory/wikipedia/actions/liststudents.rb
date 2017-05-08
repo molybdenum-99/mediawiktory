@@ -7,9 +7,6 @@ module MediaWiktory::Wikipedia
     # Usage:
     #
     # ```ruby
-    # api.liststudents(**options).perform
-    # # or
-    #
     # api.liststudents.courseids(value).perform # returns string with raw output
     # # or
     # api.liststudents.courseids(value).response # returns output parsed and wrapped into Response object

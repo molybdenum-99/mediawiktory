@@ -7,9 +7,6 @@ module MediaWiktory::Wikipedia
     # Usage:
     #
     # ```ruby
-    # api.scribunto-console(**options).perform
-    # # or
-    #
     # api.scribunto-console.title(value).perform # returns string with raw output
     # # or
     # api.scribunto-console.title(value).response # returns output parsed and wrapped into Response object

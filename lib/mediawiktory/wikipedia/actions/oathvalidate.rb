@@ -7,9 +7,6 @@ module MediaWiktory::Wikipedia
     # Usage:
     #
     # ```ruby
-    # api.oathvalidate(**options).perform
-    # # or
-    #
     # api.oathvalidate.user(value).perform # returns string with raw output
     # # or
     # api.oathvalidate.user(value).response # returns output parsed and wrapped into Response object

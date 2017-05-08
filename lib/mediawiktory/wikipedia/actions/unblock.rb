@@ -7,9 +7,6 @@ module MediaWiktory::Wikipedia
     # Usage:
     #
     # ```ruby
-    # api.unblock(**options).perform
-    # # or
-    #
     # api.unblock.id(value).perform # returns string with raw output
     # # or
     # api.unblock.id(value).response # returns output parsed and wrapped into Response object

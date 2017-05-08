@@ -7,9 +7,6 @@ module MediaWiktory::Wikipedia
     # Usage:
     #
     # ```ruby
-    # api.sitematrix(**options).perform
-    # # or
-    #
     # api.sitematrix.type(value).perform # returns string with raw output
     # # or
     # api.sitematrix.type(value).response # returns output parsed and wrapped into Response object

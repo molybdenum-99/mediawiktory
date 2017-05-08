@@ -7,9 +7,6 @@ module MediaWiktory::Wikipedia
     # Usage:
     #
     # ```ruby
-    # api.enlist(**options).perform
-    # # or
-    #
     # api.enlist.subaction(value).perform # returns string with raw output
     # # or
     # api.enlist.subaction(value).response # returns output parsed and wrapped into Response object

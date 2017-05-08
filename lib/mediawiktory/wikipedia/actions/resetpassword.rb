@@ -7,9 +7,6 @@ module MediaWiktory::Wikipedia
     # Usage:
     #
     # ```ruby
-    # api.resetpassword(**options).perform
-    # # or
-    #
     # api.resetpassword.user(value).perform # returns string with raw output
     # # or
     # api.resetpassword.user(value).response # returns output parsed and wrapped into Response object

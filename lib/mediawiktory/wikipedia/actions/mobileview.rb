@@ -7,9 +7,6 @@ module MediaWiktory::Wikipedia
     # Usage:
     #
     # ```ruby
-    # api.mobileview(**options).perform
-    # # or
-    #
     # api.mobileview.page(value).perform # returns string with raw output
     # # or
     # api.mobileview.page(value).response # returns output parsed and wrapped into Response object

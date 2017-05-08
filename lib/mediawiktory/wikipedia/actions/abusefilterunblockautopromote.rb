@@ -7,9 +7,6 @@ module MediaWiktory::Wikipedia
     # Usage:
     #
     # ```ruby
-    # api.abusefilterunblockautopromote(**options).perform
-    # # or
-    #
     # api.abusefilterunblockautopromote.user(value).perform # returns string with raw output
     # # or
     # api.abusefilterunblockautopromote.user(value).response # returns output parsed and wrapped into Response object

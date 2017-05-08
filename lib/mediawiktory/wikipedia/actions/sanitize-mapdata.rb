@@ -7,9 +7,6 @@ module MediaWiktory::Wikipedia
     # Usage:
     #
     # ```ruby
-    # api.sanitize-mapdata(**options).perform
-    # # or
-    #
     # api.sanitize-mapdata.title(value).perform # returns string with raw output
     # # or
     # api.sanitize-mapdata.title(value).response # returns output parsed and wrapped into Response object

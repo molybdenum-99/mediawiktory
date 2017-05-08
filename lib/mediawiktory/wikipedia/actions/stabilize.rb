@@ -7,9 +7,6 @@ module MediaWiktory::Wikipedia
     # Usage:
     #
     # ```ruby
-    # api.stabilize(**options).perform
-    # # or
-    #
     # api.stabilize.protectlevel(value).perform # returns string with raw output
     # # or
     # api.stabilize.protectlevel(value).response # returns output parsed and wrapped into Response object

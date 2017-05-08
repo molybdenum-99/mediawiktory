@@ -7,9 +7,6 @@ module MediaWiktory::Wikipedia
     # Usage:
     #
     # ```ruby
-    # api.deleteeducation(**options).perform
-    # # or
-    #
     # api.deleteeducation.ids(value).perform # returns string with raw output
     # # or
     # api.deleteeducation.ids(value).response # returns output parsed and wrapped into Response object

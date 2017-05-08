@@ -7,9 +7,6 @@ module MediaWiktory::Wikipedia
     # Usage:
     #
     # ```ruby
-    # api.featuredfeed(**options).perform
-    # # or
-    #
     # api.featuredfeed.feedformat(value).perform # returns string with raw output
     # # or
     # api.featuredfeed.feedformat(value).response # returns output parsed and wrapped into Response object

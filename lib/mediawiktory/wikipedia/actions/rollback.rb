@@ -7,9 +7,6 @@ module MediaWiktory::Wikipedia
     # Usage:
     #
     # ```ruby
-    # api.rollback(**options).perform
-    # # or
-    #
     # api.rollback.title(value).perform # returns string with raw output
     # # or
     # api.rollback.title(value).response # returns output parsed and wrapped into Response object

@@ -7,9 +7,6 @@ module MediaWiktory::Wikipedia
     # Usage:
     #
     # ```ruby
-    # api.refresheducation(**options).perform
-    # # or
-    #
     # api.refresheducation.ids(value).perform # returns string with raw output
     # # or
     # api.refresheducation.ids(value).response # returns output parsed and wrapped into Response object

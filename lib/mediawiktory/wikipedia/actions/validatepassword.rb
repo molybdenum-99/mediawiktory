@@ -7,9 +7,6 @@ module MediaWiktory::Wikipedia
     # Usage:
     #
     # ```ruby
-    # api.validatepassword(**options).perform
-    # # or
-    #
     # api.validatepassword.password(value).perform # returns string with raw output
     # # or
     # api.validatepassword.password(value).response # returns output parsed and wrapped into Response object

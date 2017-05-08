@@ -7,9 +7,6 @@ module MediaWiktory::Wikipedia
     # Usage:
     #
     # ```ruby
-    # api.setnotificationtimestamp(**options).perform
-    # # or
-    #
     # api.setnotificationtimestamp.entirewatchlist(value).perform # returns string with raw output
     # # or
     # api.setnotificationtimestamp.entirewatchlist(value).response # returns output parsed and wrapped into Response object

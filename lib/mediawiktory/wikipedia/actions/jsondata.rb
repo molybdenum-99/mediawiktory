@@ -7,9 +7,6 @@ module MediaWiktory::Wikipedia
     # Usage:
     #
     # ```ruby
-    # api.jsondata(**options).perform
-    # # or
-    #
     # api.jsondata.title(value).perform # returns string with raw output
     # # or
     # api.jsondata.title(value).response # returns output parsed and wrapped into Response object

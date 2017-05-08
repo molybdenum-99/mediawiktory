@@ -7,9 +7,6 @@ module MediaWiktory::Wikipedia
     # Usage:
     #
     # ```ruby
-    # api.languagesearch(**options).perform
-    # # or
-    #
     # api.languagesearch.search(value).perform # returns string with raw output
     # # or
     # api.languagesearch.search(value).response # returns output parsed and wrapped into Response object

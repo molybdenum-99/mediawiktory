@@ -7,9 +7,6 @@ module MediaWiktory::Wikipedia
     # Usage:
     #
     # ```ruby
-    # api.cxpublish(**options).perform
-    # # or
-    #
     # api.cxpublish.title(value).perform # returns string with raw output
     # # or
     # api.cxpublish.title(value).response # returns output parsed and wrapped into Response object

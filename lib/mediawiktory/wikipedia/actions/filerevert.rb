@@ -7,9 +7,6 @@ module MediaWiktory::Wikipedia
     # Usage:
     #
     # ```ruby
-    # api.filerevert(**options).perform
-    # # or
-    #
     # api.filerevert.filename(value).perform # returns string with raw output
     # # or
     # api.filerevert.filename(value).response # returns output parsed and wrapped into Response object

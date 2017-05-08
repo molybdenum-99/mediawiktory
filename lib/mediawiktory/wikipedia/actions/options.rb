@@ -7,9 +7,6 @@ module MediaWiktory::Wikipedia
     # Usage:
     #
     # ```ruby
-    # api.options(**options).perform
-    # # or
-    #
     # api.options.reset(value).perform # returns string with raw output
     # # or
     # api.options.reset(value).response # returns output parsed and wrapped into Response object

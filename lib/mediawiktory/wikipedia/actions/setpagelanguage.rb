@@ -7,9 +7,6 @@ module MediaWiktory::Wikipedia
     # Usage:
     #
     # ```ruby
-    # api.setpagelanguage(**options).perform
-    # # or
-    #
     # api.setpagelanguage.title(value).perform # returns string with raw output
     # # or
     # api.setpagelanguage.title(value).response # returns output parsed and wrapped into Response object
