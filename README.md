@@ -59,8 +59,9 @@ use the `query` action, request page title 'Argentina', its `:revisions` propert
 subproperty—and voila, you have a _1-element list of revisions_ for the page and last revisions `'*'`
 key has page's text.
 
-The good news is all methods are documented at [rubydoc.info](#TODO), most of the time documentation
-has enough details, so you don't need to refer to MediaWiki official docs.
+The good news is all methods are documented at [RubyDoc.info](http://www.rubydoc.info/gems/mediawiktory).
+Most of the time, the documentation has enough details, so you don't need to refer to MediaWiki
+official docs.
 
 **Example 2:** Editing the page (we are editing [Sandbox](https://en.wikipedia.org/wiki/Wikipedia:Sandbox)
 here, which is safe, but be careful while experimenting, this code **really** replaces page's text!):
