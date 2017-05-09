@@ -25,9 +25,10 @@ Gem::Specification.new do |s|
   end
   s.require_paths = ["lib"]
 
+  s.add_dependency 'nokogiri'
+  s.add_dependency 'naught'
   s.add_dependency 'faraday'
   s.add_dependency 'faraday_middleware'
   s.add_dependency 'hashie'
   s.add_dependency 'addressable'
-  s.add_dependency 'liquid'
 end
