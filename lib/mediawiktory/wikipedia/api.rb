@@ -71,6 +71,10 @@ module MediaWiktory::Wikipedia
       @client = Client.new(url, **client_options)
     end
 
+    def inspect
+      "#<#{self.class.name}(#{@client.url})>"
+    end
+
     include MediaWiktory::Wikipedia::Actions
   end
 end

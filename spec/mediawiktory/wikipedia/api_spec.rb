@@ -2,6 +2,8 @@ module MediaWiktory
   describe Wikipedia::Api do
     let(:api) { described_class.new }
 
+    its(:inspect) { is_expected.to eq '#<MediaWiktory::Wikipedia::Api(https://en.wikipedia.org/w/api.php)>' }
+
     describe 'Chain of calls' do
       subject { action }
 

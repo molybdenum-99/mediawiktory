@@ -97,5 +97,9 @@ end
 #  Alfa Romeo 1750 Berlina: https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Alfa_Romeo_1750_berlina_grey-front.JPG/50px-Alfa_Romeo_1750_berlina_grey-front.JPG
 #  Alfa Romeo 2000: https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Alfa_2000_touring_spider.JPG/50px-Alfa_2000_touring_spider.JPG
 #  Alfa Romeo 2600: https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Alfa-Romeo_2600-Spider-Touring.JPG/50px-Alfa-Romeo_2600-Spider-Touring.JPG
-
 ```
+
+## Usage
+
+There are a lot of popular installations of MediaWiki besides Wikipedia. All of them are having
+different versions installed
