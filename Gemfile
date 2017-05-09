@@ -13,14 +13,14 @@ group :test do
   gem 'saharspec', github: 'zverok/saharspec'
   gem 'webmock'
   gem 'faker'
-  gem 'byebug'
+  #gem 'byebug'
 end
 
 group :development do
   gem 'nokogiri'
   gem 'naught'
   gem 'rubygems-tasks'
-  gem 'byebug'
+  #gem 'byebug'
   gem 'rake'
   gem 'rubocop'
 end
