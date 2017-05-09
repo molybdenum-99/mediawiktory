@@ -2,7 +2,7 @@
 
 module MediaWiktory::Wikipedia
   module Actions
-    # Unblocks a user from receiving autopromotions due to an abusefilter consequence. 
+    # Unblocks a user from receiving autopromotions due to an abusefilter consequence.
     #
     # Usage:
     #

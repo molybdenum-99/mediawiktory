@@ -2,7 +2,7 @@
 
 module MediaWiktory::Wikipedia
   module Actions
-    # Obtain information about API modules. 
+    # Obtain information about API modules.
     #
     # Usage:
     #

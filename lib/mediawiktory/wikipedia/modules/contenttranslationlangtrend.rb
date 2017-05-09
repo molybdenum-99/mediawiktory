@@ -2,7 +2,7 @@
 
 module MediaWiktory::Wikipedia
   module Modules
-    # Query Content Translation database for numbers of translations by period of time. 
+    # Query Content Translation database for numbers of translations by period of time.
     #
     # The "submodule" (MediaWiki API term) is included in action after setting some param, providing
     # additional tweaking for this param. Example (for {MediaWiktory::Wikipedia::Actions::Query} and

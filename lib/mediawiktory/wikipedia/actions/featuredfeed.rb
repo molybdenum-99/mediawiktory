@@ -2,7 +2,7 @@
 
 module MediaWiktory::Wikipedia
   module Actions
-    # Returns a featured content feed. 
+    # Returns a featured content feed.
     #
     # Usage:
     #

@@ -2,7 +2,7 @@
 
 module MediaWiktory::Wikipedia
   module Actions
-    # Returns a user contributions feed. 
+    # Returns a user contributions feed.
     #
     # Usage:
     #

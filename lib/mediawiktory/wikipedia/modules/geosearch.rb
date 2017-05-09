@@ -2,7 +2,7 @@
 
 module MediaWiktory::Wikipedia
   module Modules
-    # Returns pages having coordinates that are located in a certain area. 
+    # Returns pages having coordinates that are located in a certain area.
     #
     # The "submodule" (MediaWiki API term) is included in action after setting some param, providing
     # additional tweaking for this param. Example (for {MediaWiktory::Wikipedia::Actions::Query} and

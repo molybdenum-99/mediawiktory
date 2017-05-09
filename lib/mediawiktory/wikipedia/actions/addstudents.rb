@@ -2,7 +2,7 @@
 
 module MediaWiktory::Wikipedia
   module Actions
-    # Add multiple students to a course. 
+    # Add multiple students to a course.
     #
     # Usage:
     #

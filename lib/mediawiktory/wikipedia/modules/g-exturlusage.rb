@@ -2,7 +2,7 @@
 
 module MediaWiktory::Wikipedia
   module Modules
-    # Enumerate pages that contain a given URL.  _Generator module: for fetching pages corresponding to request._
+    # Enumerate pages that contain a given URL. _Generator module: for fetching pages corresponding to request._
     #
     # The "submodule" (MediaWiki API term) is included in action after setting some param, providing
     # additional tweaking for this param. Example (for {MediaWiktory::Wikipedia::Actions::Query} and

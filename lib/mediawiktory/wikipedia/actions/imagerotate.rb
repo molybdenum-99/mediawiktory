@@ -2,7 +2,7 @@
 
 module MediaWiktory::Wikipedia
   module Actions
-    # This module has been disabled. 
+    # This module has been disabled.
     #
     # Usage:
     #

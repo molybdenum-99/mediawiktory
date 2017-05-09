@@ -2,7 +2,7 @@
 
 module MediaWiktory::Wikipedia
   module Actions
-    # Add or remove change tags from individual revisions or log entries. 
+    # Add or remove change tags from individual revisions or log entries.
     #
     # Usage:
     #

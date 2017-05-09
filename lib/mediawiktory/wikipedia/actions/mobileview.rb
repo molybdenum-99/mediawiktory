@@ -2,7 +2,7 @@
 
 module MediaWiktory::Wikipedia
   module Actions
-    # Returns data needed for mobile views. 
+    # Returns data needed for mobile views.
     #
     # Usage:
     #

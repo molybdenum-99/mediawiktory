@@ -2,7 +2,7 @@
 
 module MediaWiktory::Wikipedia
   module Actions
-    # Dump of CirrusSearch mapping for this wiki. 
+    # Dump of CirrusSearch mapping for this wiki.
     #
     # Usage:
     #

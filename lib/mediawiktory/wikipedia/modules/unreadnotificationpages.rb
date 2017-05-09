@@ -2,7 +2,7 @@
 
 module MediaWiktory::Wikipedia
   module Modules
-    # Get pages for which there are unread notifications for the current user. 
+    # Get pages for which there are unread notifications for the current user.
     #
     # The "submodule" (MediaWiki API term) is included in action after setting some param, providing
     # additional tweaking for this param. Example (for {MediaWiktory::Wikipedia::Actions::Query} and

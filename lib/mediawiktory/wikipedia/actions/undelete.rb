@@ -2,7 +2,7 @@
 
 module MediaWiktory::Wikipedia
   module Actions
-    # Restore revisions of a deleted page. 
+    # Restore revisions of a deleted page.
     #
     # Usage:
     #

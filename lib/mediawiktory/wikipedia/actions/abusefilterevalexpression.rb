@@ -2,7 +2,7 @@
 
 module MediaWiktory::Wikipedia
   module Actions
-    # Evaluates an AbuseFilter expression. 
+    # Evaluates an AbuseFilter expression.
     #
     # Usage:
     #

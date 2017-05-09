@@ -2,7 +2,7 @@
 
 module MediaWiktory::Wikipedia
   module Actions
-    # Delete a draft translation created using the Content Translation extension. 
+    # Delete a draft translation created using the Content Translation extension.
     #
     # Usage:
     #

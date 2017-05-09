@@ -2,7 +2,7 @@
 
 module MediaWiktory::Wikipedia
   module Actions
-    # Returns HTML5 for a page from the Parsoid service. 
+    # Returns HTML5 for a page from the Parsoid service.
     #
     # Usage:
     #

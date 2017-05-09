@@ -2,7 +2,7 @@
 
 module MediaWiktory::Wikipedia
   module Actions
-    # Send a message to a list of pages. 
+    # Send a message to a list of pages.
     #
     # Usage:
     #

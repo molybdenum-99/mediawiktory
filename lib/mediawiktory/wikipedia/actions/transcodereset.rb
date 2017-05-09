@@ -2,7 +2,7 @@
 
 module MediaWiktory::Wikipedia
   module Actions
-    # Users with the 'transcode-reset' right can reset and re-run a transcode job. 
+    # Users with the 'transcode-reset' right can reset and re-run a transcode job.
     #
     # Usage:
     #

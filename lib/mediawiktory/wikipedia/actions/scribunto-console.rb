@@ -2,7 +2,7 @@
 
 module MediaWiktory::Wikipedia
   module Actions
-    # Internal module for servicing XHR requests from the Scribunto console. 
+    # Internal module for servicing XHR requests from the Scribunto console.
     #
     # Usage:
     #

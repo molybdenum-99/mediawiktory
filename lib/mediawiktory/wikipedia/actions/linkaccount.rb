@@ -2,7 +2,7 @@
 
 module MediaWiktory::Wikipedia
   module Actions
-    # Link an account from a third-party provider to the current user. 
+    # Link an account from a third-party provider to the current user.
     #
     # Usage:
     #

@@ -2,7 +2,7 @@
 
 module MediaWiktory::Wikipedia
   module Actions
-    # Give WikiLove to another user. 
+    # Give WikiLove to another user.
     #
     # Usage:
     #

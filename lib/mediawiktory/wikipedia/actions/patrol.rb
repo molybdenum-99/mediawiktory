@@ -2,7 +2,7 @@
 
 module MediaWiktory::Wikipedia
   module Actions
-    # Patrol a page or revision. 
+    # Patrol a page or revision.
     #
     # Usage:
     #

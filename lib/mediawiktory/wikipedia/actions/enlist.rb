@@ -2,7 +2,7 @@
 
 module MediaWiktory::Wikipedia
   module Actions
-    # Associate or disassociate a user as instructor or volunteer for a course. 
+    # Associate or disassociate a user as instructor or volunteer for a course.
     #
     # Usage:
     #

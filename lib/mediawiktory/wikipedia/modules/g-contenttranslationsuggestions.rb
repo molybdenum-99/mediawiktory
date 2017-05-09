@@ -2,7 +2,7 @@
 
 module MediaWiktory::Wikipedia
   module Modules
-    # Get suggestion lists for Content Translation.  _Generator module: for fetching pages corresponding to request._
+    # Get suggestion lists for Content Translation. _Generator module: for fetching pages corresponding to request._
     #
     # The "submodule" (MediaWiki API term) is included in action after setting some param, providing
     # additional tweaking for this param. Example (for {MediaWiktory::Wikipedia::Actions::Query} and

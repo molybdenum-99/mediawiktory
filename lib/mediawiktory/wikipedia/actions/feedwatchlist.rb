@@ -2,7 +2,7 @@
 
 module MediaWiktory::Wikipedia
   module Actions
-    # Returns a watchlist feed. 
+    # Returns a watchlist feed.
     #
     # Usage:
     #

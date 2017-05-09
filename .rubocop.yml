@@ -92,6 +92,10 @@ Metrics/ClassLength:
   Exclude:
     - 'lib/mediawiktory/wikipedia/**/*'
 
+Metrics/ModuleLength:
+  Exclude:
+    - 'lib/mediawiktory/wikipedia/**/*'
+
 Style/EmptyLinesAroundClassBody:
   Exclude:
     - 'lib/mediawiktory/wikipedia/**/*'

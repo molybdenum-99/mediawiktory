@@ -2,7 +2,7 @@
 
 module MediaWiktory::Wikipedia
   module Actions
-    # Shorten a long URL into a shorter one. 
+    # Shorten a long URL into a shorter one.
     #
     # Usage:
     #

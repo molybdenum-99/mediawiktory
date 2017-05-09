@@ -2,7 +2,7 @@
 
 module MediaWiktory::Wikipedia
   module Actions
-    # Get a new FancyCaptcha. 
+    # Get a new FancyCaptcha.
     #
     # Usage:
     #

@@ -2,7 +2,7 @@
 
 module MediaWiktory::Wikipedia
   module Actions
-    # Validate a password against the wiki's password policies. 
+    # Validate a password against the wiki's password policies.
     #
     # Usage:
     #

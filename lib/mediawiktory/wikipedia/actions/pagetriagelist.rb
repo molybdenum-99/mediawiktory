@@ -2,7 +2,7 @@
 
 module MediaWiktory::Wikipedia
   module Actions
-    # Get a list of page IDs for building a PageTriage queue. 
+    # Get a list of page IDs for building a PageTriage queue.
     #
     # Usage:
     #

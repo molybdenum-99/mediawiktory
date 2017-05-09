@@ -2,7 +2,7 @@
 
 module MediaWiktory::Wikipedia
   module Actions
-    # Add/remove a user to/from global groups. 
+    # Add/remove a user to/from global groups.
     #
     # Usage:
     #

@@ -91,7 +91,7 @@ module <%= @namespace %>
     private
 
     def merge_responses(new_response)
-      merger = ->(_k, v1, v2) do
+      merger = lambda do |_k, v1, v2|
         if v1.is_a?(Hash) && v2.is_a?(Hash)
           v1.merge(v2, &merger)
         elsif v1.is_a?(Array) && v2.is_a?(Array)

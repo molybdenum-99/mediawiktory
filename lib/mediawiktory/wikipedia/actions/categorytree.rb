@@ -2,7 +2,7 @@
 
 module MediaWiktory::Wikipedia
   module Actions
-    # Internal module for the CategoryTree extension. 
+    # Internal module for the CategoryTree extension.
     #
     # Usage:
     #

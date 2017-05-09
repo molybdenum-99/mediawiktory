@@ -2,7 +2,7 @@
 
 module MediaWiktory::Wikipedia
   module Actions
-    # Globally block or unblock a user. 
+    # Globally block or unblock a user.
     #
     # Usage:
     #

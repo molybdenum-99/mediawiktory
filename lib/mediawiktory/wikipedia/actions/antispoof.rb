@@ -2,7 +2,7 @@
 
 module MediaWiktory::Wikipedia
   module Actions
-    # Check a username against AntiSpoof's normalisation checks. 
+    # Check a username against AntiSpoof's normalisation checks.
     #
     # Usage:
     #

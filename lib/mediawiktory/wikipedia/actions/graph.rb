@@ -2,7 +2,7 @@
 
 module MediaWiktory::Wikipedia
   module Actions
-    # Access graph tag functionality. 
+    # Access graph tag functionality.
     #
     # Usage:
     #

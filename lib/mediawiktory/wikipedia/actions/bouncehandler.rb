@@ -2,7 +2,7 @@
 
 module MediaWiktory::Wikipedia
   module Actions
-    # Receive a bounce email and process it to handle the failing recipient. 
+    # Receive a bounce email and process it to handle the failing recipient.
     #
     # Usage:
     #

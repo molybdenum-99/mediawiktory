@@ -2,7 +2,7 @@
 
 module MediaWiktory::Wikipedia
   module Actions
-    # Validate an article title, filename, or username against the TitleBlacklist. 
+    # Validate an article title, filename, or username against the TitleBlacklist.
     #
     # Usage:
     #

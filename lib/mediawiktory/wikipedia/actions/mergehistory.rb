@@ -2,7 +2,7 @@
 
 module MediaWiktory::Wikipedia
   module Actions
-    # Merge page histories. 
+    # Merge page histories.
     #
     # Usage:
     #

@@ -2,7 +2,7 @@
 
 module MediaWiktory::Wikipedia
   module Actions
-    # Get JWT tokens to authenticate with cxserver. 
+    # Get JWT tokens to authenticate with cxserver.
     #
     # Usage:
     #

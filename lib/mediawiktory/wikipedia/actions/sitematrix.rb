@@ -2,7 +2,7 @@
 
 module MediaWiktory::Wikipedia
   module Actions
-    # Get Wikimedia sites list. 
+    # Get Wikimedia sites list.
     #
     # Usage:
     #

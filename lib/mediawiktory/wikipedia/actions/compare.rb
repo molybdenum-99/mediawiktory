@@ -2,7 +2,7 @@
 
 module MediaWiktory::Wikipedia
   module Actions
-    # Get the difference between 2 pages. 
+    # Get the difference between 2 pages.
     #
     # Usage:
     #

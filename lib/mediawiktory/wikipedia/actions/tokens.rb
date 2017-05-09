@@ -2,7 +2,7 @@
 
 module MediaWiktory::Wikipedia
   module Actions
-    # Get tokens for data-modifying actions. 
+    # Get tokens for data-modifying actions.
     #
     # Usage:
     #

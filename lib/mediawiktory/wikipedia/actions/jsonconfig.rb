@@ -2,7 +2,7 @@
 
 module MediaWiktory::Wikipedia
   module Actions
-    # Allows direct access to JsonConfig subsystem. 
+    # Allows direct access to JsonConfig subsystem.
     #
     # Usage:
     #

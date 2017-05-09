@@ -2,7 +2,7 @@
 
 module MediaWiktory::Wikipedia
   module Actions
-    # Delete and undelete revisions. 
+    # Delete and undelete revisions.
     #
     # Usage:
     #

@@ -2,7 +2,7 @@
 
 module MediaWiktory::Wikipedia
   module Actions
-    # Remove a linked third-party account from the current user. 
+    # Remove a linked third-party account from the current user.
     #
     # Usage:
     #

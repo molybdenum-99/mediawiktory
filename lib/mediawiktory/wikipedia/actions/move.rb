@@ -2,7 +2,7 @@
 
 module MediaWiktory::Wikipedia
   module Actions
-    # Move a page. 
+    # Move a page.
     #
     # Usage:
     #

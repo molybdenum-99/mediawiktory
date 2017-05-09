@@ -2,7 +2,7 @@
 
 module MediaWiktory::Wikipedia
   module Actions
-    # Edit a mass message delivery list. 
+    # Edit a mass message delivery list.
     #
     # Usage:
     #

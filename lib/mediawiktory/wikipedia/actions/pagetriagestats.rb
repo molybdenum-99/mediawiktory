@@ -2,7 +2,7 @@
 
 module MediaWiktory::Wikipedia
   module Actions
-    # Get the stats for page triage. 
+    # Get the stats for page triage.
     #
     # Usage:
     #

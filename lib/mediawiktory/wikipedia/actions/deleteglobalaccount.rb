@@ -2,7 +2,7 @@
 
 module MediaWiktory::Wikipedia
   module Actions
-    # Delete a global user. 
+    # Delete a global user.
     #
     # Usage:
     #

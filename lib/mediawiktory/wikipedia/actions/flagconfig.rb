@@ -2,7 +2,7 @@
 
 module MediaWiktory::Wikipedia
   module Actions
-    # Get basic information about review flag configuration for this site. 
+    # Get basic information about review flag configuration for this site.
     #
     # Usage:
     #

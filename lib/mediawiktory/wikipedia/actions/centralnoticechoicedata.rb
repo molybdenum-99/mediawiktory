@@ -2,7 +2,7 @@
 
 module MediaWiktory::Wikipedia
   module Actions
-    # Get data needed to choose a banner for a given project and language 
+    # Get data needed to choose a banner for a given project and language
     #
     # Usage:
     #

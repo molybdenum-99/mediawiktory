@@ -2,7 +2,7 @@
 
 module MediaWiktory::Wikipedia
   module Actions
-    # Send a thank-you notification to an editor. 
+    # Send a thank-you notification to an editor.
     #
     # Usage:
     #

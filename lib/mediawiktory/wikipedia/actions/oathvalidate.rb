@@ -2,7 +2,7 @@
 
 module MediaWiktory::Wikipedia
   module Actions
-    # Validate a two-factor authentication (OATH) token. 
+    # Validate a two-factor authentication (OATH) token.
     #
     # Usage:
     #

@@ -2,7 +2,7 @@
 
 module MediaWiktory::Wikipedia
   module Actions
-    # Changing the language of a page is not allowed on this wiki. 
+    # Changing the language of a page is not allowed on this wiki.
     #
     # Usage:
     #

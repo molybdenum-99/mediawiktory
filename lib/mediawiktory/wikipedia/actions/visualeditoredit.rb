@@ -2,7 +2,7 @@
 
 module MediaWiktory::Wikipedia
   module Actions
-    # Save an HTML5 page to MediaWiki (converted to wikitext via the Parsoid service). 
+    # Save an HTML5 page to MediaWiki (converted to wikitext via the Parsoid service).
     #
     # Usage:
     #

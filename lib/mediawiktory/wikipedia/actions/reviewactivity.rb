@@ -2,7 +2,7 @@
 
 module MediaWiktory::Wikipedia
   module Actions
-    # Advertise or de-advertise yourself as reviewing an unreviewed page or unreviewed changes. 
+    # Advertise or de-advertise yourself as reviewing an unreviewed page or unreviewed changes.
     #
     # Usage:
     #

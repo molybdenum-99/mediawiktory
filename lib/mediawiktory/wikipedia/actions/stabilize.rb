@@ -2,7 +2,7 @@
 
 module MediaWiktory::Wikipedia
   module Actions
-    # Configure review-protection settings for a page. 
+    # Configure review-protection settings for a page.
     #
     # Usage:
     #

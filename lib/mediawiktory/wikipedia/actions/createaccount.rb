@@ -2,7 +2,7 @@
 
 module MediaWiktory::Wikipedia
   module Actions
-    # Create a new user account. 
+    # Create a new user account.
     #
     # Usage:
     #

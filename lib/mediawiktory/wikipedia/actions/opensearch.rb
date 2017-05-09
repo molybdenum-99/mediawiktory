@@ -2,7 +2,7 @@
 
 module MediaWiktory::Wikipedia
   module Actions
-    # Search the wiki using the OpenSearch protocol. 
+    # Search the wiki using the OpenSearch protocol.
     #
     # Usage:
     #

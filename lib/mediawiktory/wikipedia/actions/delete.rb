@@ -2,7 +2,7 @@
 
 module MediaWiktory::Wikipedia
   module Actions
-    # Delete a page. 
+    # Delete a page.
     #
     # Usage:
     #

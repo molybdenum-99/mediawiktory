@@ -2,7 +2,7 @@
 
 module MediaWiktory::Wikipedia
   module Modules
-    # Check which IP addresses are used by a given username or which usernames are used by a given IP address. 
+    # Check which IP addresses are used by a given username or which usernames are used by a given IP address.
     #
     # The "submodule" (MediaWiki API term) is included in action after setting some param, providing
     # additional tweaking for this param. Example (for {MediaWiktory::Wikipedia::Actions::Query} and

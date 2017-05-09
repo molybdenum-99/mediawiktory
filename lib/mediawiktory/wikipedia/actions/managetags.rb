@@ -2,7 +2,7 @@
 
 module MediaWiktory::Wikipedia
   module Actions
-    # Perform management tasks relating to change tags. 
+    # Perform management tasks relating to change tags.
     #
     # Usage:
     #

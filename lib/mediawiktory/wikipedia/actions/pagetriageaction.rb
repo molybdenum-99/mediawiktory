@@ -2,7 +2,7 @@
 
 module MediaWiktory::Wikipedia
   module Actions
-    # Mark an article as reviewed or unreviewed. 
+    # Mark an article as reviewed or unreviewed.
     #
     # Usage:
     #

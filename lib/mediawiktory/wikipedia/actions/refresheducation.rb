@@ -2,7 +2,7 @@
 
 module MediaWiktory::Wikipedia
   module Actions
-    # Rebuild summary data of Education Program objects. 
+    # Rebuild summary data of Education Program objects.
     #
     # Usage:
     #

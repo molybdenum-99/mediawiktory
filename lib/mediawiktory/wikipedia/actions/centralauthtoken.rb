@@ -2,7 +2,7 @@
 
 module MediaWiktory::Wikipedia
   module Actions
-    # Fetch a centralauthtoken for making an authenticated request to an attached wiki. 
+    # Fetch a centralauthtoken for making an authenticated request to an attached wiki.
     #
     # Usage:
     #

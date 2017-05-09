@@ -6,18 +6,11 @@ RSpec.describe MediaWiktory::Generator::Api do
 
     subject(:api) { described_class.from_html(source) }
 
-    describe '#actions' do
-      subject { api.actions }
-
-      it { is_expected.to be_an(Array).and have_attributes(size: 116).and all be_a(MediaWiktory::Generator::Module) }
-      its_map(:name) { is_expected.to include('edit', 'query', 'delete') }
-    end
-
-    describe '#modules' do
-      subject { api.modules }
-
-      it { is_expected.to be_an(Array) }
-      its_map(:name) { are_expected.to include('query', 'categories', 'categorymembers', 'json') }
+    specify do # parsing is long, so all tests are grouped
+      expect(api.actions).to be_an(Array).and have_attributes(size: 116).and all be_a(MediaWiktory::Generator::Module)
+      expect(api.actions.map(&:name)).to include('edit', 'query', 'delete')
+      expect(api.modules).to be_an(Array).and all be_a(MediaWiktory::Generator::Module)
+      expect(api.modules.map(&:name)).to include('query', 'categories', 'categorymembers', 'json')
     end
   end
 
@@ -29,30 +22,11 @@ RSpec.describe MediaWiktory::Generator::Api do
         .to_return(body: '<html>TEST</html>')
       expect(described_class).to receive(:from_html)
         .with('<html>TEST</html>',
-          source: 'https://en.wikipedia.org/w/api.php',
-          site: {name: 'Wikipedia', base: 'https://en.wikipedia.org/wiki/Main_Page'}
+          site: OpenStruct.new(name: 'Wikipedia', base: 'https://en.wikipedia.org/wiki/Main_Page')
         )
 
       described_class.from_url('https://en.wikipedia.org/w/api.php')
     end
-  end
-
-  describe '#to_h' do
-    let(:source) { File.read('spec/fixtures/api_short.php.html') }
-
-    let(:api) {
-      described_class.from_html(
-        source,
-        source: 'https://en.wikipedia.org/w/api.php',
-        site: {name: 'Wikipedia', base: 'https://en.wikipedia.org/wiki/Main_Page'}
-      )
-    }
-    subject { api.to_h }
-
-    it { is_expected.to include(
-      'source' => 'https://en.wikipedia.org/w/api.php',
-      'site' => {'name' => 'Wikipedia', 'base' => 'https://en.wikipedia.org/wiki/Main_Page'}
-    ) }
   end
 
   describe '#to_html' do
@@ -68,17 +42,34 @@ RSpec.describe MediaWiktory::Generator::Api do
 
     it 'creates base docs' do
       is_expected
-        .to include('The base API class for [Wikipedia](https://en.wikipedia.org/wiki/Main_Page).')
+        .to include('Wrapper for [Wikipedia](https://en.wikipedia.org/wiki/Main_Page) API.')
         .and include('Generated from https://en.wikipedia.org/w/api.php')
     end
+
+    it 'creates initialize param docs' do
+      is_expected
+        .to include('  # @option defaults [Integer] maxlag Maximum lag can be used when MediaWiki is installed on a database replicated cluster.')
+    end
+  end
+
+  describe 'html: actions' do
+    let(:source) { File.read('spec/fixtures/api_short.php.html') }
+
+    let(:api) {
+      described_class.from_html(
+        source,
+        site: OpenStruct.new(name: 'Wikipedia', base: 'https://en.wikipedia.org/wiki/Main_Page')
+      )
+    }
+    subject { api.to_html(namespace: 'Dummy', source: 'https://en.wikipedia.org/w/api.php', template: 'actions.rb') }
 
     it 'creates action methods' do
       is_expected
         .to include(%Q{
           |    # @return [Dummy::Actions::Abusefiltercheckmatch]
           |    #
-          |    def abusefiltercheckmatch(**options)
-          |      Actions::Abusefiltercheckmatch.new(client, @defaults.merge(**options))
+          |    def abusefiltercheckmatch
+          |      Abusefiltercheckmatch.new(client, @defaults)
           |    end
         }.unindent)
     end
@@ -86,16 +77,10 @@ RSpec.describe MediaWiktory::Generator::Api do
     it 'creates action docs' do
       is_expected
         .to include('This method creates an instance of {Dummy::Actions::Abusefiltercheckmatch} action.')
-        .and include("api.abusefiltercheckmatch(filter: 'value')")
+        .and include("api.abusefiltercheckmatch.filter('value')")
         .and include(
           "  # Check to see if an AbuseFilter matches a set of variables, editor logged AbuseFilter event."
         )
-    end
-
-    it 'creates initialize param docs' do
-      is_expected
-        .to include('  # @option defaults [Integer] maxlag Maximum lag can be used when MediaWiki is installed on a database replicated cluster.')
-
     end
   end
 end

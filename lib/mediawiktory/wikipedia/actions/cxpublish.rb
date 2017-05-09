@@ -2,7 +2,7 @@
 
 module MediaWiktory::Wikipedia
   module Actions
-    # Save a page created using the Content Translation extension. 
+    # Save a page created using the Content Translation extension.
     #
     # Usage:
     #

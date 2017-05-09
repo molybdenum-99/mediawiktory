@@ -2,7 +2,7 @@
 
 module MediaWiktory::Wikipedia
   module Actions
-    # Unblock a user. 
+    # Unblock a user.
     #
     # Usage:
     #

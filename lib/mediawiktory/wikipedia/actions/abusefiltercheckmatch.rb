@@ -2,7 +2,7 @@
 
 module MediaWiktory::Wikipedia
   module Actions
-    # Check to see if an AbuseFilter matches a set of variables, editor logged AbuseFilter event. 
+    # Check to see if an AbuseFilter matches a set of variables, editor logged AbuseFilter event.
     #
     # Usage:
     #

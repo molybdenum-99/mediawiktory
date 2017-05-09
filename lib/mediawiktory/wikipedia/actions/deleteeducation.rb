@@ -2,7 +2,7 @@
 
 module MediaWiktory::Wikipedia
   module Actions
-    # Delete Education Program objects. 
+    # Delete Education Program objects.
     #
     # Usage:
     #

@@ -2,7 +2,7 @@
 
 module MediaWiktory::Wikipedia
   module Actions
-    # Search for language names in any script. 
+    # Search for language names in any script.
     #
     # Usage:
     #

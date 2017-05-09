@@ -2,7 +2,7 @@
 
 module MediaWiktory::Wikipedia
   module Modules
-    # List all categories the pages belong to.  _Generator module: for fetching pages corresponding to request._
+    # List all categories the pages belong to. _Generator module: for fetching pages corresponding to request._
     #
     # The "submodule" (MediaWiki API term) is included in action after setting some param, providing
     # additional tweaking for this param. Example (for {MediaWiktory::Wikipedia::Actions::Query} and

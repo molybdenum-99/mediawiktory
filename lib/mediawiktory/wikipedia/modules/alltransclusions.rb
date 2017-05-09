@@ -2,7 +2,7 @@
 
 module MediaWiktory::Wikipedia
   module Modules
-    # List all transclusions (pages embedded using {{x}}), including non-existing. 
+    # List all transclusions (pages embedded using {{x}}), including non-existing.
     #
     # The "submodule" (MediaWiki API term) is included in action after setting some param, providing
     # additional tweaking for this param. Example (for {MediaWiktory::Wikipedia::Actions::Query} and

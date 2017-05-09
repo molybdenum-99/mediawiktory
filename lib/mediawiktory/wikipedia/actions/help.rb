@@ -2,7 +2,7 @@
 
 module MediaWiktory::Wikipedia
   module Actions
-    # Display help for the specified modules. 
+    # Display help for the specified modules.
     #
     # Usage:
     #

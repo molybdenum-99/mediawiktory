@@ -2,7 +2,7 @@
 
 module MediaWiktory::Wikipedia
   module Actions
-    # Check syntax of an AbuseFilter filter. 
+    # Check syntax of an AbuseFilter filter.
     #
     # Usage:
     #

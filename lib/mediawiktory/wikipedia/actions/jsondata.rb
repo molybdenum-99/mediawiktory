@@ -2,7 +2,7 @@
 
 module MediaWiktory::Wikipedia
   module Actions
-    # Retrieve localized JSON data. 
+    # Retrieve localized JSON data.
     #
     # Usage:
     #

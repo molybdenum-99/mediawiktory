@@ -2,7 +2,7 @@
 
 module MediaWiktory::Wikipedia
   module Actions
-    # Mark notifications as seen for the current user. 
+    # Mark notifications as seen for the current user.
     #
     # Usage:
     #

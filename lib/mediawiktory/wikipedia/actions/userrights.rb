@@ -2,7 +2,7 @@
 
 module MediaWiktory::Wikipedia
   module Actions
-    # Change a user's group membership. 
+    # Change a user's group membership.
     #
     # Usage:
     #

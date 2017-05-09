@@ -2,7 +2,7 @@
 
 module MediaWiktory::Wikipedia
   module Actions
-    # Get all configuration settings for a campaign. 
+    # Get all configuration settings for a campaign.
     #
     # Usage:
     #

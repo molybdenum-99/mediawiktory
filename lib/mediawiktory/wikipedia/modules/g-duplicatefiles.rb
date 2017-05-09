@@ -2,7 +2,7 @@
 
 module MediaWiktory::Wikipedia
   module Modules
-    # List all files that are duplicates of the given files based on hash values.  _Generator module: for fetching pages corresponding to request._
+    # List all files that are duplicates of the given files based on hash values. _Generator module: for fetching pages corresponding to request._
     #
     # The "submodule" (MediaWiki API term) is included in action after setting some param, providing
     # additional tweaking for this param. Example (for {MediaWiktory::Wikipedia::Actions::Query} and

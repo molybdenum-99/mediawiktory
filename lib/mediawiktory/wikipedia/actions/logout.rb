@@ -2,7 +2,7 @@
 
 module MediaWiktory::Wikipedia
   module Actions
-    # Log out and clear session data. 
+    # Log out and clear session data.
     #
     # Usage:
     #

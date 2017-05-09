@@ -2,7 +2,7 @@
 
 module MediaWiktory::Wikipedia
   module Actions
-    # Send a password reset email to a user. 
+    # Send a password reset email to a user.
     #
     # Usage:
     #

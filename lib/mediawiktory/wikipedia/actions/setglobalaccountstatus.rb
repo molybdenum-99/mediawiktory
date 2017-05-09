@@ -2,7 +2,7 @@
 
 module MediaWiktory::Wikipedia
   module Actions
-    # Set a global user's status. 
+    # Set a global user's status.
     #
     # Usage:
     #

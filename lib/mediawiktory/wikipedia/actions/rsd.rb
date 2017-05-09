@@ -2,7 +2,7 @@
 
 module MediaWiktory::Wikipedia
   module Actions
-    # Export an RSD (Really Simple Discovery) schema. 
+    # Export an RSD (Really Simple Discovery) schema.
     #
     # Usage:
     #

@@ -2,7 +2,7 @@
 
 module MediaWiktory::Wikipedia
   module Actions
-    # Mark notifications as read for the current user. 
+    # Mark notifications as read for the current user.
     #
     # Usage:
     #

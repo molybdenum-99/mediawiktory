@@ -2,7 +2,7 @@
 
 module MediaWiktory::Wikipedia
   module Actions
-    # Validate one or more URLs against the SpamBlacklist. 
+    # Validate one or more URLs against the SpamBlacklist.
     #
     # Usage:
     #

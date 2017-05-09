@@ -2,7 +2,7 @@
 
 module MediaWiktory::Wikipedia
   module Actions
-    # Get configuration of the Zero extension. 
+    # Get configuration of the Zero extension.
     #
     # Usage:
     #

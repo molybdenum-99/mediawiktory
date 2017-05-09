@@ -2,7 +2,7 @@
 
 module MediaWiktory::Wikipedia
   module Actions
-    # Email a user. 
+    # Email a user.
     #
     # Usage:
     #

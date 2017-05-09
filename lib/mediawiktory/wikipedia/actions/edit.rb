@@ -2,7 +2,7 @@
 
 module MediaWiktory::Wikipedia
   module Actions
-    # Create and edit pages. 
+    # Create and edit pages.
     #
     # Usage:
     #

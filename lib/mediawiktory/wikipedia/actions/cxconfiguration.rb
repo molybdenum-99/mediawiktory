@@ -2,7 +2,7 @@
 
 module MediaWiktory::Wikipedia
   module Actions
-    # Fetch the Content Translation configuration json for the given language pair. 
+    # Fetch the Content Translation configuration json for the given language pair.
     #
     # Usage:
     #

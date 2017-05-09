@@ -2,7 +2,7 @@
 
 module MediaWiktory::Wikipedia
   module Actions
-    # Log in to the wiki using the interactive flow. 
+    # Log in to the wiki using the interactive flow.
     #
     # Usage:
     #

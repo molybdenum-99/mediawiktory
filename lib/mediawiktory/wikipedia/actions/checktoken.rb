@@ -2,7 +2,7 @@
 
 module MediaWiktory::Wikipedia
   module Actions
-    # Check the validity of a token from action=query&meta=tokens. 
+    # Check the validity of a token from action=query&meta=tokens.
     #
     # Usage:
     #

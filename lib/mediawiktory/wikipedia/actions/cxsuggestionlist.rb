@@ -2,7 +2,7 @@
 
 module MediaWiktory::Wikipedia
   module Actions
-    # Manage the suggestion lists. Add suggestions to lists and remove them. 
+    # Manage the suggestion lists. Add suggestions to lists and remove them.
     #
     # Usage:
     #

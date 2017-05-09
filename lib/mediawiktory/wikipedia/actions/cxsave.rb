@@ -2,7 +2,7 @@
 
 module MediaWiktory::Wikipedia
   module Actions
-    # This module allows to save draft translations by section to save bandwidth and to collect parallel corpora. 
+    # This module allows to save draft translations by section to save bandwidth and to collect parallel corpora.
     #
     # Usage:
     #

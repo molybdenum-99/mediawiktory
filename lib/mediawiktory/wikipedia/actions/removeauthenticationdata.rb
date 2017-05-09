@@ -2,7 +2,7 @@
 
 module MediaWiktory::Wikipedia
   module Actions
-    # Remove authentication data for the current user. 
+    # Remove authentication data for the current user.
     #
     # Usage:
     #

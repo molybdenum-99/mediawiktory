@@ -2,7 +2,7 @@
 
 module MediaWiktory::Wikipedia
   module Actions
-    # Fetch templates that are used within the PageTriage application. 
+    # Fetch templates that are used within the PageTriage application.
     #
     # Usage:
     #

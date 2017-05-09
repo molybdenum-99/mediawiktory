@@ -2,7 +2,7 @@
 
 module MediaWiktory::Wikipedia
   module Actions
-    # Log in and get authentication cookies. 
+    # Log in and get authentication cookies.
     #
     # Usage:
     #

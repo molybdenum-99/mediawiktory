@@ -19,7 +19,7 @@ module MediaWiktory
       end
 
       def render(template, **vars)
-        puts "Rendering #{template} with #{self}#{vars}"
+        # puts "Rendering #{template} with #{self}#{vars}"
         vars.each { |name, val| instance_variable_set("@#{name}", val) }
         path = File.expand_path("../templates/#{template}.erb", __FILE__)
         ERB.new(File.read(path))
@@ -28,7 +28,8 @@ module MediaWiktory
       end
 
       def partial(template, context = nil)
-        puts "Rendering #{template} with #{context || self}"
+        # puts "Rendering #{template} with #{context || self}"
+
         # Never repeat this at home, dear children.
         if context
           instance_variables.each { |var| context.instance_variable_set(var, instance_variable_get(var)) }

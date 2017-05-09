@@ -2,7 +2,7 @@
 
 module MediaWiktory::Wikipedia
   module Actions
-    # Import a page from another wiki, or from an XML file. 
+    # Import a page from another wiki, or from an XML file.
     #
     # Usage:
     #

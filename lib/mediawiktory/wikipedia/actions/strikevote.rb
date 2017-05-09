@@ -2,7 +2,7 @@
 
 module MediaWiktory::Wikipedia
   module Actions
-    # Allows admins to strike or unstrike a vote. 
+    # Allows admins to strike or unstrike a vote.
     #
     # Usage:
     #

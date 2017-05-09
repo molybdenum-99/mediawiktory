@@ -2,28 +2,29 @@
 
 require_relative './actions/base'
 
-# Methods of this module contains all actions that can be used on {Api}.
-# You use them like this:
-#
-# ```ruby
-# api = MediaWiktory::Wikipedia::Api.new
-#
-# api.query                           # method of Api, returning Actions::Query
-#    .titles('Argentina', 'Bolivia')  # methods of Actions::Query...
-#    .prop(:revisions).prop(:content) # ...to set action options
-#    .response
-# # => performs action and returns Response instance
-# ```
-#
-# See also:
-# * {Api} for starting;
-# * {Actions::Base} for details of working with actions;
-# * and {Response}.
-#
-# Note that for each MediaWiki site the main method for **data extraction** (pages, categories,
-# meta-information) is {#query}.
-#
-module MediaWiktory::Wikipedia::Actions
+module MediaWiktory::Wikipedia
+  # Methods of this module contains all actions that can be used on {Api}.
+  # You use them like this:
+  #
+  # ```ruby
+  # api = MediaWiktory::Wikipedia::Api.new
+  #
+  # api.query                           # method of Api, returning Actions::Query
+  #    .titles('Argentina', 'Bolivia')  # methods of Actions::Query...
+  #    .prop(:revisions).prop(:content) # ...to set action options
+  #    .response
+  # # => performs action and returns Response instance
+  # ```
+  #
+  # See also:
+  # * {Api} for starting;
+  # * {Actions::Base} for details of working with actions;
+  # * and {Response}.
+  #
+  # Note that for each MediaWiki site the main method for **data extraction** (pages, categories,
+  # meta-information) is {#query}.
+  #
+  module Actions
 
     # Check to see if an AbuseFilter matches a set of variables, editor logged AbuseFilter event.
     #
@@ -2289,6 +2290,7 @@ module MediaWiktory::Wikipedia::Actions
     def zeroconfig
       Zeroconfig.new(client, @defaults)
     end
+  end
 end
 
 Dir[File.expand_path('../{actions,modules}/*.rb', __FILE__)].each { |f| require f }

@@ -2,7 +2,7 @@
 
 module MediaWiktory::Wikipedia
   module Actions
-    # Revert a file to an old version. 
+    # Revert a file to an old version.
     #
     # Usage:
     #

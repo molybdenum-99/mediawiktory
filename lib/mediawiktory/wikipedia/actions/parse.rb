@@ -2,7 +2,7 @@
 
 module MediaWiktory::Wikipedia
   module Actions
-    # Parses content and returns parser output. 
+    # Parses content and returns parser output.
     #
     # Usage:
     #

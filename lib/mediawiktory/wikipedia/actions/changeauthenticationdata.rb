@@ -2,7 +2,7 @@
 
 module MediaWiktory::Wikipedia
   module Actions
-    # Change authentication data for the current user. 
+    # Change authentication data for the current user.
     #
     # Usage:
     #

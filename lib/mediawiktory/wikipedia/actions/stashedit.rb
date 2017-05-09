@@ -2,7 +2,7 @@
 
 module MediaWiktory::Wikipedia
   module Actions
-    # Prepare an edit in shared cache. 
+    # Prepare an edit in shared cache.
     #
     # Usage:
     #

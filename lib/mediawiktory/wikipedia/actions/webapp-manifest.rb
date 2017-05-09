@@ -2,7 +2,7 @@
 
 module MediaWiktory::Wikipedia
   module Actions
-    # Returns a webapp manifest. 
+    # Returns a webapp manifest.
     #
     # Usage:
     #

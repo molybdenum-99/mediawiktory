@@ -2,7 +2,7 @@
 
 module MediaWiktory::Wikipedia
   module Actions
-    # Change the protection level of a page. 
+    # Change the protection level of a page.
     #
     # Usage:
     #

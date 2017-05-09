@@ -2,7 +2,7 @@
 
 module MediaWiktory::Wikipedia
   module Actions
-    # Add tags to an article. 
+    # Add tags to an article.
     #
     # Usage:
     #

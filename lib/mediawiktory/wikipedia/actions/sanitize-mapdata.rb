@@ -2,7 +2,7 @@
 
 module MediaWiktory::Wikipedia
   module Actions
-    # Performs data validation for Kartographer extension 
+    # Performs data validation for Kartographer extension
     #
     # Usage:
     #

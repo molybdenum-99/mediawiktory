@@ -2,7 +2,7 @@
 
 module MediaWiktory::Wikipedia
   module Actions
-    # Upload a file, or get the status of pending uploads. 
+    # Upload a file, or get the status of pending uploads.
     #
     # Usage:
     #

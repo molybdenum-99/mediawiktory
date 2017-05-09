@@ -2,7 +2,7 @@
 
 module MediaWiktory::Wikipedia
   module Actions
-    # Block a user. 
+    # Block a user.
     #
     # Usage:
     #

@@ -2,7 +2,7 @@
 
 module MediaWiktory::Wikipedia
   module Actions
-    # Review a revision by approving or de-approving it. 
+    # Review a revision by approving or de-approving it.
     #
     # Usage:
     #

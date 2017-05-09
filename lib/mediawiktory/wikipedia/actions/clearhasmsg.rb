@@ -2,7 +2,7 @@
 
 module MediaWiktory::Wikipedia
   module Actions
-    # Clears the hasmsg flag for the current user. 
+    # Clears the hasmsg flag for the current user.
     #
     # Usage:
     #

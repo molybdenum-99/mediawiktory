@@ -2,7 +2,7 @@
 
 module MediaWiktory::Wikipedia
   module Actions
-    # Expands all templates within wikitext. 
+    # Expands all templates within wikitext.
     #
     # Usage:
     #

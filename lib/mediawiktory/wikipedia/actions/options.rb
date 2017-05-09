@@ -2,7 +2,7 @@
 
 module MediaWiktory::Wikipedia
   module Actions
-    # Change preferences of the current user. 
+    # Change preferences of the current user.
     #
     # Usage:
     #

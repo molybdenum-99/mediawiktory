@@ -2,7 +2,7 @@
 
 module MediaWiktory::Wikipedia
   module Modules
-    # Check to see if two-factor authentication (OATH) is enabled for a user. 
+    # Check to see if two-factor authentication (OATH) is enabled for a user.
     #
     # The "submodule" (MediaWiki API term) is included in action after setting some param, providing
     # additional tweaking for this param. Example (for {MediaWiktory::Wikipedia::Actions::Query} and

@@ -2,7 +2,7 @@
 
 module MediaWiktory::Wikipedia
   module Actions
-    # Returns a recent changes feed. 
+    # Returns a recent changes feed.
     #
     # Usage:
     #

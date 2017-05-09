@@ -2,7 +2,7 @@
 
 module MediaWiktory::Wikipedia
   module Actions
-    # Get the usernames and other information for students enrolled in one or more courses. 
+    # Get the usernames and other information for students enrolled in one or more courses.
     #
     # Usage:
     #

@@ -2,7 +2,7 @@
 
 module MediaWiktory::Wikipedia
   module Actions
-    # Get the localization of ULS in the given language. 
+    # Get the localization of ULS in the given language.
     #
     # Usage:
     #

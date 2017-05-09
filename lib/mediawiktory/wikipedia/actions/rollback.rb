@@ -2,7 +2,7 @@
 
 module MediaWiktory::Wikipedia
   module Actions
-    # Undo the last edit to the page. 
+    # Undo the last edit to the page.
     #
     # Usage:
     #
