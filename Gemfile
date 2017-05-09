@@ -2,6 +2,11 @@ source 'https://rubygems.org'
 
 gemspec
 
+group :docs do
+  gem 'rouge', '= 1.11.1'
+  gem 'dokaz', git: 'https://github.com/zverok/dokaz.git'
+end
+
 group :test do
   gem 'rspec'
   gem 'rspec-its'

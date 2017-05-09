@@ -79,6 +79,7 @@ module MediaWiktory::Wikipedia
       fail 'This is the last page' unless continue?
 
       action = @action.merge(@metadata.fetch('continue'))
+      pp action.to_h
 
       self.class.new(action, merge_responses(JSON.parse(action.perform)))
     end
