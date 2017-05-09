@@ -22,7 +22,7 @@ module MediaWiktory
         private
 
         def extract_description(nodes)
-          nodes.detect { |n| n.name == 'p' }._n.text.to_s.tr("\n", ' ')
+          nodes.detect { |n| n.name == 'p' }._n.text.to_s.tr("\n", ' ').strip
         end
 
         def extract_flags(nodes)
