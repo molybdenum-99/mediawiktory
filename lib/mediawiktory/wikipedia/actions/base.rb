@@ -226,7 +226,7 @@ module MediaWiktory::Wikipedia
 
       # @return [String]
       def inspect
-        "#<#{self.class.name} {to_h}>"
+        "#<#{self.class.name} #{to_h}>"
       end
 
       # Make new action, with additional params passed as `hash`. No params validations are made.

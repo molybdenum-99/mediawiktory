@@ -15,6 +15,7 @@ module MediaWiktory
       it { is_expected.to be_a described_class }
       its(:client) { is_expected.to be client }
       its(:to_h) { is_expected.to eq('format' => 'json', 'version' => '1') }
+      its(:inspect) { is_expected.to eq('#<MediaWiktory::Wikipedia::Actions::Base {"format"=>"json", "version"=>"1"}>') }
       it 'does not change source' do
         expect(action.to_h).to be_empty
       end
