@@ -28,7 +28,7 @@ module MediaWiktory::Wikipedia
 
       # @private
       def _prop(value)
-        defined?(super) && super || ["ids", "flags", "timestamp", "user", "userid", "size", "sha1", "contentmodel", "comment", "parsedcomment", "content", "tags", "parsetree"].include?(value.to_s) && merge(drvprop: value.to_s)
+        defined?(super) && super || ["ids", "flags", "timestamp", "user", "userid", "size", "sha1", "contentmodel", "comment", "parsedcomment", "content", "tags", "parsetree"].include?(value.to_s) && merge(drvprop: value.to_s, replace: false)
       end
 
       # Limit how many revisions will be returned.

@@ -36,7 +36,7 @@ module MediaWiktory::Wikipedia
 
       # @private
       def _prop(value)
-        defined?(super) && super || ["ids", "title", "value"].include?(value.to_s) && merge(pwpprop: value.to_s)
+        defined?(super) && super || ["ids", "title", "value"].include?(value.to_s) && merge(pwpprop: value.to_s, replace: false)
       end
 
       # When more results are available, use this to continue.

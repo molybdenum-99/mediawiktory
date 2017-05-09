@@ -28,7 +28,7 @@ module MediaWiktory::Wikipedia
 
       # @private
       def _prop(value)
-        defined?(super) && super || ["ids", "title", "type", "user", "userid", "timestamp", "comment", "parsedcomment", "details", "tags"].include?(value.to_s) && merge(leprop: value.to_s)
+        defined?(super) && super || ["ids", "title", "type", "user", "userid", "timestamp", "comment", "parsedcomment", "details", "tags"].include?(value.to_s) && merge(leprop: value.to_s, replace: false)
       end
 
       # Filter log entries to only this type.

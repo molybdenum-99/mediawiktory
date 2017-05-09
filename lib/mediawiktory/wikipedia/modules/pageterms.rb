@@ -36,7 +36,7 @@ module MediaWiktory::Wikipedia
 
       # @private
       def _terms(value)
-        defined?(super) && super || ["alias", "description", "label"].include?(value.to_s) && merge(wbptterms: value.to_s)
+        defined?(super) && super || ["alias", "description", "label"].include?(value.to_s) && merge(wbptterms: value.to_s, replace: false)
       end
     end
   end

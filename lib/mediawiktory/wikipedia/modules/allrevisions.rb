@@ -28,7 +28,7 @@ module MediaWiktory::Wikipedia
 
       # @private
       def _prop(value)
-        defined?(super) && super || ["ids", "flags", "timestamp", "user", "userid", "size", "sha1", "contentmodel", "comment", "parsedcomment", "content", "tags", "parsetree"].include?(value.to_s) && merge(arvprop: value.to_s)
+        defined?(super) && super || ["ids", "flags", "timestamp", "user", "userid", "size", "sha1", "contentmodel", "comment", "parsedcomment", "content", "tags", "parsetree"].include?(value.to_s) && merge(arvprop: value.to_s, replace: false)
       end
 
       # Limit how many revisions will be returned.
@@ -122,7 +122,7 @@ module MediaWiktory::Wikipedia
 
       # @private
       def _namespace(value)
-        defined?(super) && super || ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "100", "101", "108", "109", "118", "119", "446", "447", "710", "711", "828", "829", "2300", "2301", "2302", "2303"].include?(value.to_s) && merge(arvnamespace: value.to_s)
+        defined?(super) && super || ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "100", "101", "108", "109", "118", "119", "446", "447", "710", "711", "828", "829", "2300", "2301", "2302", "2303"].include?(value.to_s) && merge(arvnamespace: value.to_s, replace: false)
       end
 
       # The timestamp to start enumerating from.

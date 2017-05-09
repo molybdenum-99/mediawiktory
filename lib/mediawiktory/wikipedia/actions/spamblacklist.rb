@@ -29,7 +29,7 @@ module MediaWiktory::Wikipedia
 
       # @private
       def _url(value)
-        merge(url: value.to_s)
+        merge(url: value.to_s, replace: false)
       end
     end
   end

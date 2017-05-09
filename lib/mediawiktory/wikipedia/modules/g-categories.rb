@@ -28,7 +28,7 @@ module MediaWiktory::Wikipedia
 
       # @private
       def _show(value)
-        defined?(super) && super || ["hidden", "!hidden"].include?(value.to_s) && merge(gclshow: value.to_s)
+        defined?(super) && super || ["hidden", "!hidden"].include?(value.to_s) && merge(gclshow: value.to_s, replace: false)
       end
 
       # How many categories to return.
@@ -57,7 +57,7 @@ module MediaWiktory::Wikipedia
 
       # @private
       def _categories(value)
-        merge(gclcategories: value.to_s)
+        merge(gclcategories: value.to_s, replace: false)
       end
 
       # The direction in which to list.

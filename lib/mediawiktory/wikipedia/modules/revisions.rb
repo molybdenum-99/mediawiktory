@@ -28,7 +28,7 @@ module MediaWiktory::Wikipedia
 
       # @private
       def _prop(value)
-        defined?(super) && super || ["ids", "flags", "timestamp", "user", "userid", "size", "sha1", "contentmodel", "comment", "parsedcomment", "content", "tags", "parsetree", "flagged"].include?(value.to_s) && merge(rvprop: value.to_s)
+        defined?(super) && super || ["ids", "flags", "timestamp", "user", "userid", "size", "sha1", "contentmodel", "comment", "parsedcomment", "content", "tags", "parsetree", "flagged"].include?(value.to_s) && merge(rvprop: value.to_s, replace: false)
       end
 
       # Limit how many revisions will be returned.
@@ -183,7 +183,7 @@ module MediaWiktory::Wikipedia
 
       # @private
       def _token(value)
-        defined?(super) && super || ["rollback"].include?(value.to_s) && merge(rvtoken: value.to_s)
+        defined?(super) && super || ["rollback"].include?(value.to_s) && merge(rvtoken: value.to_s, replace: false)
       end
 
       # When more results are available, use this to continue.

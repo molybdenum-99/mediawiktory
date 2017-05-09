@@ -28,7 +28,7 @@ module MediaWiktory::Wikipedia
 
       # @private
       def _prop(value)
-        defined?(super) && super || ["url"].include?(value.to_s) && merge(iwprop: value.to_s)
+        defined?(super) && super || ["url"].include?(value.to_s) && merge(iwprop: value.to_s, replace: false)
       end
 
       # Only return interwiki links with this prefix.

@@ -29,7 +29,7 @@ module MediaWiktory::Wikipedia
 
       # @private
       def _modules(value)
-        merge(modules: value.to_s)
+        merge(modules: value.to_s, replace: false)
       end
 
       # Include help for submodules of the named module.

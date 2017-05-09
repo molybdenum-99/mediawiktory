@@ -28,7 +28,7 @@ module MediaWiktory::Wikipedia
 
       # @private
       def _prop(value)
-        defined?(super) && super || ["apiurl", "name", "displayname", "rooturl", "local"].include?(value.to_s) && merge(friprop: value.to_s)
+        defined?(super) && super || ["apiurl", "name", "displayname", "rooturl", "local"].include?(value.to_s) && merge(friprop: value.to_s, replace: false)
       end
     end
   end

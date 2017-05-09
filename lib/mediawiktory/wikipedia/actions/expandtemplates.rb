@@ -53,7 +53,7 @@ module MediaWiktory::Wikipedia
 
       # @private
       def _prop(value)
-        defined?(super) && super || ["wikitext", "categories", "properties", "volatile", "ttl", "modules", "jsconfigvars", "encodedjsconfigvars", "parsetree"].include?(value.to_s) && merge(prop: value.to_s)
+        defined?(super) && super || ["wikitext", "categories", "properties", "volatile", "ttl", "modules", "jsconfigvars", "encodedjsconfigvars", "parsetree"].include?(value.to_s) && merge(prop: value.to_s, replace: false)
       end
 
       # Whether to include HTML comments in the output.
@@ -80,7 +80,7 @@ module MediaWiktory::Wikipedia
 
       # @private
       def _templatesandboxprefix(value)
-        merge(templatesandboxprefix: value.to_s)
+        merge(templatesandboxprefix: value.to_s, replace: false)
       end
 
       # Parse the page using templatesandboxtext in place of the contents of the page named here.

@@ -28,7 +28,7 @@ module MediaWiktory::Wikipedia
 
       # @private
       def _prop(value)
-        defined?(super) && super || ["url", "langname", "autonym"].include?(value.to_s) && merge(llprop: value.to_s)
+        defined?(super) && super || ["url", "langname", "autonym"].include?(value.to_s) && merge(llprop: value.to_s, replace: false)
       end
 
       # Only return language links with this language code.

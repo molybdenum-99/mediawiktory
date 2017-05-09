@@ -28,7 +28,7 @@ module MediaWiktory::Wikipedia
 
       # @private
       def _prop(value)
-        defined?(super) && super || ["protection", "talkid", "watched", "watchers", "visitingwatchers", "notificationtimestamp", "subjectid", "url", "readable", "preload", "displaytitle"].include?(value.to_s) && merge(inprop: value.to_s)
+        defined?(super) && super || ["protection", "talkid", "watched", "watchers", "visitingwatchers", "notificationtimestamp", "subjectid", "url", "readable", "preload", "displaytitle"].include?(value.to_s) && merge(inprop: value.to_s, replace: false)
       end
 
       # Test whether the current user can perform certain actions on the page.
@@ -41,7 +41,7 @@ module MediaWiktory::Wikipedia
 
       # @private
       def _testactions(value)
-        merge(intestactions: value.to_s)
+        merge(intestactions: value.to_s, replace: false)
       end
 
       # Use action=query&meta=tokens instead.
@@ -54,7 +54,7 @@ module MediaWiktory::Wikipedia
 
       # @private
       def _token(value)
-        defined?(super) && super || ["edit", "delete", "protect", "move", "block", "unblock", "email", "import", "watch"].include?(value.to_s) && merge(intoken: value.to_s)
+        defined?(super) && super || ["edit", "delete", "protect", "move", "block", "unblock", "email", "import", "watch"].include?(value.to_s) && merge(intoken: value.to_s, replace: false)
       end
 
       # When more results are available, use this to continue.

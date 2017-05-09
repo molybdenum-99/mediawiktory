@@ -36,7 +36,7 @@ module MediaWiktory::Wikipedia
 
       # @private
       def _namespace(value)
-        defined?(super) && super || ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "100", "101", "108", "109", "118", "119", "446", "447", "710", "711", "828", "829", "2300", "2301", "2302", "2303"].include?(value.to_s) && merge(gsrnamespace: value.to_s)
+        defined?(super) && super || ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "100", "101", "108", "109", "118", "119", "446", "447", "710", "711", "828", "829", "2300", "2301", "2302", "2303"].include?(value.to_s) && merge(gsrnamespace: value.to_s, replace: false)
       end
 
       # How many total pages to return.
@@ -91,7 +91,7 @@ module MediaWiktory::Wikipedia
 
       # @private
       def _info(value)
-        defined?(super) && super || ["totalhits", "suggestion", "rewrittenquery"].include?(value.to_s) && merge(gsrinfo: value.to_s)
+        defined?(super) && super || ["totalhits", "suggestion", "rewrittenquery"].include?(value.to_s) && merge(gsrinfo: value.to_s, replace: false)
       end
 
       # Include interwiki results in the search, if available.

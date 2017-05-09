@@ -52,7 +52,7 @@ module MediaWiktory::Wikipedia
 
       # @private
       def _titles(value)
-        merge(titles: value.to_s)
+        merge(titles: value.to_s, replace: false)
       end
 
       # A list of page IDs to work on.
@@ -65,7 +65,7 @@ module MediaWiktory::Wikipedia
 
       # @private
       def _pageids(value)
-        merge(pageids: value.to_s)
+        merge(pageids: value.to_s, replace: false)
       end
 
       # A list of revision IDs to work on.
@@ -78,7 +78,7 @@ module MediaWiktory::Wikipedia
 
       # @private
       def _revids(value)
-        merge(revids: value.to_s)
+        merge(revids: value.to_s, replace: false)
       end
 
       # Get the list of pages to work on by executing the specified query module.

@@ -60,7 +60,7 @@ module MediaWiktory::Wikipedia
 
       # @private
       def _user(value)
-        merge(ucuser: value.to_s)
+        merge(ucuser: value.to_s, replace: false)
       end
 
       # The user IDs to retrieve contributions for. Cannot be used with ucuser or ucuserprefix.
@@ -73,7 +73,7 @@ module MediaWiktory::Wikipedia
 
       # @private
       def _userids(value)
-        merge(ucuserids: value.to_s)
+        merge(ucuserids: value.to_s, replace: false)
       end
 
       # Retrieve contributions for all users whose names begin with this value. Cannot be used with ucuser or ucuserids.
@@ -107,7 +107,7 @@ module MediaWiktory::Wikipedia
 
       # @private
       def _namespace(value)
-        defined?(super) && super || ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "100", "101", "108", "109", "118", "119", "446", "447", "710", "711", "828", "829", "2300", "2301", "2302", "2303"].include?(value.to_s) && merge(ucnamespace: value.to_s)
+        defined?(super) && super || ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "100", "101", "108", "109", "118", "119", "446", "447", "710", "711", "828", "829", "2300", "2301", "2302", "2303"].include?(value.to_s) && merge(ucnamespace: value.to_s, replace: false)
       end
 
       # Include additional pieces of information:
@@ -120,7 +120,7 @@ module MediaWiktory::Wikipedia
 
       # @private
       def _prop(value)
-        defined?(super) && super || ["ids", "title", "timestamp", "comment", "parsedcomment", "size", "sizediff", "flags", "patrolled", "tags"].include?(value.to_s) && merge(ucprop: value.to_s)
+        defined?(super) && super || ["ids", "title", "timestamp", "comment", "parsedcomment", "size", "sizediff", "flags", "patrolled", "tags"].include?(value.to_s) && merge(ucprop: value.to_s, replace: false)
       end
 
       # Show only items that meet these criteria, e.g. non minor edits only: ucshow=!minor.
@@ -133,7 +133,7 @@ module MediaWiktory::Wikipedia
 
       # @private
       def _show(value)
-        defined?(super) && super || ["minor", "!minor", "patrolled", "!patrolled", "top", "!top", "new", "!new"].include?(value.to_s) && merge(ucshow: value.to_s)
+        defined?(super) && super || ["minor", "!minor", "patrolled", "!patrolled", "top", "!top", "new", "!new"].include?(value.to_s) && merge(ucshow: value.to_s, replace: false)
       end
 
       # Only list revisions tagged with this tag.

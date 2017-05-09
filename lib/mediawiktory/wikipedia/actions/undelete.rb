@@ -45,7 +45,7 @@ module MediaWiktory::Wikipedia
 
       # @private
       def _tags(value)
-        defined?(super) && super || ["ProveIt edit", "WPCleaner", "huggle", "large plot addition"].include?(value.to_s) && merge(tags: value.to_s)
+        defined?(super) && super || ["ProveIt edit", "WPCleaner", "huggle", "large plot addition"].include?(value.to_s) && merge(tags: value.to_s, replace: false)
       end
 
       # Timestamps of the revisions to restore. If both timestamps and fileids are empty, all will be restored.
@@ -58,7 +58,7 @@ module MediaWiktory::Wikipedia
 
       # @private
       def _timestamps(value)
-        merge(timestamps: value.iso8601)
+        merge(timestamps: value.iso8601, replace: false)
       end
 
       # IDs of the file revisions to restore. If both timestamps and fileids are empty, all will be restored.
@@ -71,7 +71,7 @@ module MediaWiktory::Wikipedia
 
       # @private
       def _fileids(value)
-        merge(fileids: value.to_s)
+        merge(fileids: value.to_s, replace: false)
       end
 
       # Unconditionally add or remove the page from the current user's watchlist, use preferences or do not change watch.

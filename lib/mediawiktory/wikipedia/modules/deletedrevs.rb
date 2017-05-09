@@ -125,7 +125,7 @@ module MediaWiktory::Wikipedia
 
       # @private
       def _prop(value)
-        defined?(super) && super || ["revid", "parentid", "user", "userid", "comment", "parsedcomment", "minor", "len", "sha1", "content", "token", "tags"].include?(value.to_s) && merge(drprop: value.to_s)
+        defined?(super) && super || ["revid", "parentid", "user", "userid", "comment", "parsedcomment", "minor", "len", "sha1", "content", "token", "tags"].include?(value.to_s) && merge(drprop: value.to_s, replace: false)
       end
 
       # The maximum amount of revisions to list.

@@ -29,7 +29,7 @@ module MediaWiktory::Wikipedia
 
       # @private
       def _type(value)
-        defined?(super) && super || ["special", "language"].include?(value.to_s) && merge(smtype: value.to_s)
+        defined?(super) && super || ["special", "language"].include?(value.to_s) && merge(smtype: value.to_s, replace: false)
       end
 
       # Filter the Site Matrix by wiki state:
@@ -42,7 +42,7 @@ module MediaWiktory::Wikipedia
 
       # @private
       def _state(value)
-        defined?(super) && super || ["all", "closed", "private", "fishbowl", "nonglobal"].include?(value.to_s) && merge(smstate: value.to_s)
+        defined?(super) && super || ["all", "closed", "private", "fishbowl", "nonglobal"].include?(value.to_s) && merge(smstate: value.to_s, replace: false)
       end
 
       # Which information about a language to return.
@@ -55,7 +55,7 @@ module MediaWiktory::Wikipedia
 
       # @private
       def _langprop(value)
-        defined?(super) && super || ["code", "name", "site", "localname"].include?(value.to_s) && merge(smlangprop: value.to_s)
+        defined?(super) && super || ["code", "name", "site", "localname"].include?(value.to_s) && merge(smlangprop: value.to_s, replace: false)
       end
 
       # Which information about a site to return.
@@ -68,7 +68,7 @@ module MediaWiktory::Wikipedia
 
       # @private
       def _siteprop(value)
-        defined?(super) && super || ["url", "dbname", "code", "sitename"].include?(value.to_s) && merge(smsiteprop: value.to_s)
+        defined?(super) && super || ["url", "dbname", "code", "sitename"].include?(value.to_s) && merge(smsiteprop: value.to_s, replace: false)
       end
 
       # Maximum number of results.

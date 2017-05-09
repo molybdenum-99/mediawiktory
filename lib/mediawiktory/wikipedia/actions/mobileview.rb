@@ -58,7 +58,7 @@ module MediaWiktory::Wikipedia
 
       # @private
       def _prop(value)
-        defined?(super) && super || ["text", "sections", "normalizedtitle", "lastmodified", "lastmodifiedby", "revision", "protection", "editable", "languagecount", "hasvariants", "displaytitle", "pageprops"].include?(value.to_s) && merge(prop: value.to_s)
+        defined?(super) && super || ["text", "sections", "normalizedtitle", "lastmodified", "lastmodifiedby", "revision", "protection", "editable", "languagecount", "hasvariants", "displaytitle", "pageprops"].include?(value.to_s) && merge(prop: value.to_s, replace: false)
       end
 
       # What information about sections to get.
@@ -71,7 +71,7 @@ module MediaWiktory::Wikipedia
 
       # @private
       def _sectionprop(value)
-        defined?(super) && super || ["toclevel", "level", "line", "number", "index", "fromtitle", "anchor"].include?(value.to_s) && merge(sectionprop: value.to_s)
+        defined?(super) && super || ["toclevel", "level", "line", "number", "index", "fromtitle", "anchor"].include?(value.to_s) && merge(sectionprop: value.to_s, replace: false)
       end
 
       # What page properties to return, a pipe ("|") separated list or "*" for all properties.

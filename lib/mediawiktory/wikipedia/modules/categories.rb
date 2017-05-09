@@ -28,7 +28,7 @@ module MediaWiktory::Wikipedia
 
       # @private
       def _prop(value)
-        defined?(super) && super || ["sortkey", "timestamp", "hidden"].include?(value.to_s) && merge(clprop: value.to_s)
+        defined?(super) && super || ["sortkey", "timestamp", "hidden"].include?(value.to_s) && merge(clprop: value.to_s, replace: false)
       end
 
       # Which kind of categories to show.
@@ -41,7 +41,7 @@ module MediaWiktory::Wikipedia
 
       # @private
       def _show(value)
-        defined?(super) && super || ["hidden", "!hidden"].include?(value.to_s) && merge(clshow: value.to_s)
+        defined?(super) && super || ["hidden", "!hidden"].include?(value.to_s) && merge(clshow: value.to_s, replace: false)
       end
 
       # How many categories to return.
@@ -70,7 +70,7 @@ module MediaWiktory::Wikipedia
 
       # @private
       def _categories(value)
-        merge(clcategories: value.to_s)
+        merge(clcategories: value.to_s, replace: false)
       end
 
       # The direction in which to list.

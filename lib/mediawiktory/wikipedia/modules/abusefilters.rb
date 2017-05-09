@@ -57,7 +57,7 @@ module MediaWiktory::Wikipedia
 
       # @private
       def _show(value)
-        defined?(super) && super || ["enabled", "!enabled", "deleted", "!deleted", "private", "!private"].include?(value.to_s) && merge(abfshow: value.to_s)
+        defined?(super) && super || ["enabled", "!enabled", "deleted", "!deleted", "private", "!private"].include?(value.to_s) && merge(abfshow: value.to_s, replace: false)
       end
 
       # The maximum number of filters to list.
@@ -78,7 +78,7 @@ module MediaWiktory::Wikipedia
 
       # @private
       def _prop(value)
-        defined?(super) && super || ["id", "description", "pattern", "actions", "hits", "comments", "lasteditor", "lastedittime", "status", "private"].include?(value.to_s) && merge(abfprop: value.to_s)
+        defined?(super) && super || ["id", "description", "pattern", "actions", "hits", "comments", "lasteditor", "lastedittime", "status", "private"].include?(value.to_s) && merge(abfprop: value.to_s, replace: false)
       end
     end
   end

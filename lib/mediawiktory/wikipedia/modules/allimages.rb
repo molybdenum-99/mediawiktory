@@ -94,7 +94,7 @@ module MediaWiktory::Wikipedia
 
       # @private
       def _prop(value)
-        defined?(super) && super || ["timestamp", "user", "userid", "comment", "parsedcomment", "canonicaltitle", "url", "size", "dimensions", "sha1", "mime", "mediatype", "metadata", "commonmetadata", "extmetadata", "bitdepth", "badfile"].include?(value.to_s) && merge(aiprop: value.to_s)
+        defined?(super) && super || ["timestamp", "user", "userid", "comment", "parsedcomment", "canonicaltitle", "url", "size", "dimensions", "sha1", "mime", "mediatype", "metadata", "commonmetadata", "extmetadata", "bitdepth", "badfile"].include?(value.to_s) && merge(aiprop: value.to_s, replace: false)
       end
 
       # Search for all image titles that begin with this value. Can only be used with aisort=name.
@@ -168,7 +168,7 @@ module MediaWiktory::Wikipedia
 
       # @private
       def _mime(value)
-        merge(aimime: value.to_s)
+        merge(aimime: value.to_s, replace: false)
       end
 
       # How many images in total to return.

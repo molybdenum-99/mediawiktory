@@ -102,7 +102,7 @@ module MediaWiktory::Wikipedia
 
       # @private
       def _prtype(value)
-        defined?(super) && super || ["edit", "move", "upload"].include?(value.to_s) && merge(gapprtype: value.to_s)
+        defined?(super) && super || ["edit", "move", "upload"].include?(value.to_s) && merge(gapprtype: value.to_s, replace: false)
       end
 
       # Filter protections based on protection level (must be used with apprtype= parameter).
@@ -115,7 +115,7 @@ module MediaWiktory::Wikipedia
 
       # @private
       def _prlevel(value)
-        defined?(super) && super || ["autoconfirmed", "extendedconfirmed", "templateeditor", "sysop"].include?(value.to_s) && merge(gapprlevel: value.to_s)
+        defined?(super) && super || ["autoconfirmed", "extendedconfirmed", "templateeditor", "sysop"].include?(value.to_s) && merge(gapprlevel: value.to_s, replace: false)
       end
 
       # Filter protections based on cascadingness (ignored when apprtype isn't set).

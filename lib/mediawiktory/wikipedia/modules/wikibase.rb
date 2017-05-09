@@ -28,7 +28,7 @@ module MediaWiktory::Wikipedia
 
       # @private
       def _prop(value)
-        defined?(super) && super || ["url", "siteid"].include?(value.to_s) && merge(wbprop: value.to_s)
+        defined?(super) && super || ["url", "siteid"].include?(value.to_s) && merge(wbprop: value.to_s, replace: false)
       end
     end
   end

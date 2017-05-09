@@ -28,7 +28,7 @@ module MediaWiktory::Wikipedia
 
       # @private
       def _namespace(value)
-        defined?(super) && super || ["-2", "-1", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "100", "101", "108", "109", "118", "119", "446", "447", "710", "711", "828", "829", "2300", "2301", "2302", "2303"].include?(value.to_s) && merge(gplnamespace: value.to_s)
+        defined?(super) && super || ["-2", "-1", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "100", "101", "108", "109", "118", "119", "446", "447", "710", "711", "828", "829", "2300", "2301", "2302", "2303"].include?(value.to_s) && merge(gplnamespace: value.to_s, replace: false)
       end
 
       # How many links to return.
@@ -57,7 +57,7 @@ module MediaWiktory::Wikipedia
 
       # @private
       def _titles(value)
-        merge(gpltitles: value.to_s)
+        merge(gpltitles: value.to_s, replace: false)
       end
 
       # The direction in which to list.

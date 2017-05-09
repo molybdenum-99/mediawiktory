@@ -43,7 +43,7 @@ module MediaWiktory::Wikipedia
 
       # @private
       def _types(value)
-        defined?(super) && super || ["source", "mt", "user"].include?(value.to_s) && merge(types: value.to_s)
+        defined?(super) && super || ["source", "mt", "user"].include?(value.to_s) && merge(types: value.to_s, replace: false)
       end
     end
   end

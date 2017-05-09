@@ -29,7 +29,7 @@ module MediaWiktory::Wikipedia
 
       # @private
       def _rcid(value)
-        merge(rcid: value.to_s)
+        merge(rcid: value.to_s, replace: false)
       end
 
       # One or more revision IDs from which to add or remove the tag.
@@ -42,7 +42,7 @@ module MediaWiktory::Wikipedia
 
       # @private
       def _revid(value)
-        merge(revid: value.to_s)
+        merge(revid: value.to_s, replace: false)
       end
 
       # One or more log entry IDs from which to add or remove the tag.
@@ -55,7 +55,7 @@ module MediaWiktory::Wikipedia
 
       # @private
       def _logid(value)
-        merge(logid: value.to_s)
+        merge(logid: value.to_s, replace: false)
       end
 
       # Tags to add. Only manually defined tags can be added.
@@ -68,7 +68,7 @@ module MediaWiktory::Wikipedia
 
       # @private
       def _add(value)
-        defined?(super) && super || ["ProveIt edit", "WPCleaner", "huggle", "large plot addition"].include?(value.to_s) && merge(add: value.to_s)
+        defined?(super) && super || ["ProveIt edit", "WPCleaner", "huggle", "large plot addition"].include?(value.to_s) && merge(add: value.to_s, replace: false)
       end
 
       # Tags to remove. Only tags that are either manually defined or completely undefined can be removed.
@@ -81,7 +81,7 @@ module MediaWiktory::Wikipedia
 
       # @private
       def _remove(value)
-        merge(remove: value.to_s)
+        merge(remove: value.to_s, replace: false)
       end
 
       # Reason for the change.
@@ -102,7 +102,7 @@ module MediaWiktory::Wikipedia
 
       # @private
       def _tags(value)
-        defined?(super) && super || ["ProveIt edit", "WPCleaner", "huggle", "large plot addition"].include?(value.to_s) && merge(tags: value.to_s)
+        defined?(super) && super || ["ProveIt edit", "WPCleaner", "huggle", "large plot addition"].include?(value.to_s) && merge(tags: value.to_s, replace: false)
       end
 
       # A "csrf" token retrieved from action=query&meta=tokens

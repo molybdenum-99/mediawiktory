@@ -57,7 +57,7 @@ module MediaWiktory::Wikipedia
 
       # @private
       def _ids(value)
-        merge(bgids: value.to_s)
+        merge(bgids: value.to_s, replace: false)
       end
 
       # Pipe-separated list of IP addresses to search for.
@@ -70,7 +70,7 @@ module MediaWiktory::Wikipedia
 
       # @private
       def _addresses(value)
-        merge(bgaddresses: value.to_s)
+        merge(bgaddresses: value.to_s, replace: false)
       end
 
       # Get all blocks applying to this IP address or CIDR range, including range blocks. Cannot be used together with bgaddresses. CIDR ranges broader than /16 are not accepted.
@@ -99,7 +99,7 @@ module MediaWiktory::Wikipedia
 
       # @private
       def _prop(value)
-        defined?(super) && super || ["id", "address", "by", "timestamp", "expiry", "reason", "range"].include?(value.to_s) && merge(bgprop: value.to_s)
+        defined?(super) && super || ["id", "address", "by", "timestamp", "expiry", "reason", "range"].include?(value.to_s) && merge(bgprop: value.to_s, replace: false)
       end
     end
   end

@@ -50,7 +50,7 @@ module MediaWiktory::Wikipedia
 
       # @private
       def _ids(value)
-        merge(ids: value.to_s)
+        merge(ids: value.to_s, replace: false)
       end
 
       # What to hide for each revision.
@@ -63,7 +63,7 @@ module MediaWiktory::Wikipedia
 
       # @private
       def _hide(value)
-        defined?(super) && super || ["content", "comment", "user"].include?(value.to_s) && merge(hide: value.to_s)
+        defined?(super) && super || ["content", "comment", "user"].include?(value.to_s) && merge(hide: value.to_s, replace: false)
       end
 
       # What to unhide for each revision.
@@ -76,7 +76,7 @@ module MediaWiktory::Wikipedia
 
       # @private
       def _show(value)
-        defined?(super) && super || ["content", "comment", "user"].include?(value.to_s) && merge(show: value.to_s)
+        defined?(super) && super || ["content", "comment", "user"].include?(value.to_s) && merge(show: value.to_s, replace: false)
       end
 
       # Whether to suppress data from administrators as well as others.
@@ -110,7 +110,7 @@ module MediaWiktory::Wikipedia
 
       # @private
       def _tags(value)
-        defined?(super) && super || ["ProveIt edit", "WPCleaner", "huggle", "large plot addition"].include?(value.to_s) && merge(tags: value.to_s)
+        defined?(super) && super || ["ProveIt edit", "WPCleaner", "huggle", "large plot addition"].include?(value.to_s) && merge(tags: value.to_s, replace: false)
       end
 
       # A "csrf" token retrieved from action=query&meta=tokens

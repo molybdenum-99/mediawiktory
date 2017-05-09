@@ -36,7 +36,7 @@ module MediaWiktory::Wikipedia
 
       # @private
       def _prop(value)
-        defined?(super) && super || ["groups", "rights", "merged", "unattached", "editcount"].include?(value.to_s) && merge(guiprop: value.to_s)
+        defined?(super) && super || ["groups", "rights", "merged", "unattached", "editcount"].include?(value.to_s) && merge(guiprop: value.to_s, replace: false)
       end
     end
   end

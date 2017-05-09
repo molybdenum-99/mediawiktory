@@ -73,7 +73,7 @@ module MediaWiktory::Wikipedia
 
       # @private
       def _filter(value)
-        merge(aflfilter: value.to_s)
+        merge(aflfilter: value.to_s, replace: false)
       end
 
       # The maximum amount of entries to list.
@@ -94,7 +94,7 @@ module MediaWiktory::Wikipedia
 
       # @private
       def _prop(value)
-        defined?(super) && super || ["ids", "filter", "user", "ip", "title", "action", "details", "result", "timestamp", "hidden", "revid"].include?(value.to_s) && merge(aflprop: value.to_s)
+        defined?(super) && super || ["ids", "filter", "user", "ip", "title", "action", "details", "result", "timestamp", "hidden", "revid"].include?(value.to_s) && merge(aflprop: value.to_s, replace: false)
       end
     end
   end

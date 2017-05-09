@@ -28,7 +28,7 @@ module MediaWiktory::Wikipedia
 
       # @private
       def _prop(value)
-        defined?(super) && super || ["blockinfo", "hasmsg", "groups", "groupmemberships", "implicitgroups", "rights", "changeablegroups", "options", "preferencestoken", "editcount", "ratelimits", "email", "realname", "acceptlang", "registrationdate", "unreadcount", "centralids"].include?(value.to_s) && merge(uiprop: value.to_s)
+        defined?(super) && super || ["blockinfo", "hasmsg", "groups", "groupmemberships", "implicitgroups", "rights", "changeablegroups", "options", "preferencestoken", "editcount", "ratelimits", "email", "realname", "acceptlang", "registrationdate", "unreadcount", "centralids"].include?(value.to_s) && merge(uiprop: value.to_s, replace: false)
       end
 
       # With uiprop=centralids, indicate whether the user is attached with the wiki identified by this ID.

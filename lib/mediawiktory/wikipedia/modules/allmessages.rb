@@ -28,7 +28,7 @@ module MediaWiktory::Wikipedia
 
       # @private
       def _messages(value)
-        merge(ammessages: value.to_s)
+        merge(ammessages: value.to_s, replace: false)
       end
 
       # Which properties to get.
@@ -41,7 +41,7 @@ module MediaWiktory::Wikipedia
 
       # @private
       def _prop(value)
-        defined?(super) && super || ["default"].include?(value.to_s) && merge(amprop: value.to_s)
+        defined?(super) && super || ["default"].include?(value.to_s) && merge(amprop: value.to_s, replace: false)
       end
 
       # Set to enable parser, will preprocess the wikitext of message (substitute magic words, handle templates, etc.).
@@ -75,7 +75,7 @@ module MediaWiktory::Wikipedia
 
       # @private
       def _args(value)
-        merge(amargs: value.to_s)
+        merge(amargs: value.to_s, replace: false)
       end
 
       # Return only messages with names that contain this string.

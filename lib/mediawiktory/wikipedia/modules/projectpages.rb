@@ -35,7 +35,7 @@ module MediaWiktory::Wikipedia
 
       # @private
       def _projects(value)
-        merge(wppprojects: value.to_s)
+        merge(wppprojects: value.to_s, replace: false)
       end
 
       # The maximum number of pages to return.

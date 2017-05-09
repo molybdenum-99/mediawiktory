@@ -80,7 +80,7 @@ module MediaWiktory::Wikipedia
 
       # @private
       def _wlshow(value)
-        defined?(super) && super || ["minor", "!minor", "bot", "!bot", "anon", "!anon", "patrolled", "!patrolled", "unread", "!unread"].include?(value.to_s) && merge(wlshow: value.to_s)
+        defined?(super) && super || ["minor", "!minor", "bot", "!bot", "anon", "!anon", "patrolled", "!patrolled", "unread", "!unread"].include?(value.to_s) && merge(wlshow: value.to_s, replace: false)
       end
 
       # Which types of changes to show:
@@ -93,7 +93,7 @@ module MediaWiktory::Wikipedia
 
       # @private
       def _wltype(value)
-        defined?(super) && super || ["edit", "new", "log", "external", "categorize"].include?(value.to_s) && merge(wltype: value.to_s)
+        defined?(super) && super || ["edit", "new", "log", "external", "categorize"].include?(value.to_s) && merge(wltype: value.to_s, replace: false)
       end
 
       # Don't list changes by this user.

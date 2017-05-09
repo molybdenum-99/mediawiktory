@@ -28,7 +28,7 @@ module MediaWiktory::Wikipedia
 
       # @private
       def _prop(value)
-        defined?(super) && super || ["url", "pageid", "namespace"].include?(value.to_s) && merge(guprop: value.to_s)
+        defined?(super) && super || ["url", "pageid", "namespace"].include?(value.to_s) && merge(guprop: value.to_s, replace: false)
       end
 
       # How many links to return.

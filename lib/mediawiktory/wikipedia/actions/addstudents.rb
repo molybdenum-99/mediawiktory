@@ -29,7 +29,7 @@ module MediaWiktory::Wikipedia
 
       # @private
       def _studentusernames(value)
-        merge(studentusernames: value.to_s)
+        merge(studentusernames: value.to_s, replace: false)
       end
 
       # The ID of the course to which the students should be added/removed.

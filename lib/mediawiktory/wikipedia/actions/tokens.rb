@@ -29,7 +29,7 @@ module MediaWiktory::Wikipedia
 
       # @private
       def _type(value)
-        defined?(super) && super || ["block", "createaccount", "csrf", "delete", "deleteglobalaccount", "edit", "email", "import", "login", "move", "options", "patrol", "protect", "rollback", "setglobalaccountstatus", "unblock", "userrights", "watch"].include?(value.to_s) && merge(type: value.to_s)
+        defined?(super) && super || ["block", "createaccount", "csrf", "delete", "deleteglobalaccount", "edit", "email", "import", "login", "move", "options", "patrol", "protect", "rollback", "setglobalaccountstatus", "unblock", "userrights", "watch"].include?(value.to_s) && merge(type: value.to_s, replace: false)
       end
     end
   end

@@ -28,7 +28,7 @@ module MediaWiktory::Wikipedia
 
       # @private
       def _filekey(value)
-        merge(siifilekey: value.to_s)
+        merge(siifilekey: value.to_s, replace: false)
       end
 
       # Alias for siifilekey, for backward compatibility.
@@ -41,7 +41,7 @@ module MediaWiktory::Wikipedia
 
       # @private
       def _sessionkey(value)
-        merge(siisessionkey: value.to_s)
+        merge(siisessionkey: value.to_s, replace: false)
       end
 
       # Which file information to get:
@@ -54,7 +54,7 @@ module MediaWiktory::Wikipedia
 
       # @private
       def _prop(value)
-        defined?(super) && super || ["timestamp", "canonicaltitle", "url", "size", "dimensions", "sha1", "mime", "thumbmime", "metadata", "commonmetadata", "extmetadata", "bitdepth", "badfile"].include?(value.to_s) && merge(siiprop: value.to_s)
+        defined?(super) && super || ["timestamp", "canonicaltitle", "url", "size", "dimensions", "sha1", "mime", "thumbmime", "metadata", "commonmetadata", "extmetadata", "bitdepth", "badfile"].include?(value.to_s) && merge(siiprop: value.to_s, replace: false)
       end
 
       # If siiprop=url is set, a URL to an image scaled to this width will be returned. For performance reasons if this option is used, no more than 50 scaled images will be returned.

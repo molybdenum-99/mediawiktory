@@ -50,7 +50,7 @@ module MediaWiktory::Wikipedia
 
       # @private
       def _titles(value)
-        merge(titles: value.to_s)
+        merge(titles: value.to_s, replace: false)
       end
 
       # The source language code.

@@ -28,7 +28,7 @@ module MediaWiktory::Wikipedia
 
       # @private
       def _prop(value)
-        defined?(super) && super || ["thumbnail", "original", "name"].include?(value.to_s) && merge(piprop: value.to_s)
+        defined?(super) && super || ["thumbnail", "original", "name"].include?(value.to_s) && merge(piprop: value.to_s, replace: false)
       end
 
       # Maximum thumbnail dimension.

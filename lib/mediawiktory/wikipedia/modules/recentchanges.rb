@@ -57,7 +57,7 @@ module MediaWiktory::Wikipedia
 
       # @private
       def _namespace(value)
-        defined?(super) && super || ["-2", "-1", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "100", "101", "108", "109", "118", "119", "446", "447", "710", "711", "828", "829", "2300", "2301", "2302", "2303"].include?(value.to_s) && merge(rcnamespace: value.to_s)
+        defined?(super) && super || ["-2", "-1", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "100", "101", "108", "109", "118", "119", "446", "447", "710", "711", "828", "829", "2300", "2301", "2302", "2303"].include?(value.to_s) && merge(rcnamespace: value.to_s, replace: false)
       end
 
       # Only list changes by this user.
@@ -94,7 +94,7 @@ module MediaWiktory::Wikipedia
 
       # @private
       def _prop(value)
-        defined?(super) && super || ["user", "userid", "comment", "parsedcomment", "flags", "timestamp", "title", "ids", "sizes", "redirect", "patrolled", "loginfo", "tags", "sha1"].include?(value.to_s) && merge(rcprop: value.to_s)
+        defined?(super) && super || ["user", "userid", "comment", "parsedcomment", "flags", "timestamp", "title", "ids", "sizes", "redirect", "patrolled", "loginfo", "tags", "sha1"].include?(value.to_s) && merge(rcprop: value.to_s, replace: false)
       end
 
       # Use action=query&meta=tokens instead.
@@ -107,7 +107,7 @@ module MediaWiktory::Wikipedia
 
       # @private
       def _token(value)
-        defined?(super) && super || ["patrol"].include?(value.to_s) && merge(rctoken: value.to_s)
+        defined?(super) && super || ["patrol"].include?(value.to_s) && merge(rctoken: value.to_s, replace: false)
       end
 
       # Show only items that meet these criteria. For example, to see only minor edits done by logged-in users, set rcshow=minor|!anon.
@@ -120,7 +120,7 @@ module MediaWiktory::Wikipedia
 
       # @private
       def _show(value)
-        defined?(super) && super || ["minor", "!minor", "bot", "!bot", "anon", "!anon", "redirect", "!redirect", "patrolled", "!patrolled", "unpatrolled"].include?(value.to_s) && merge(rcshow: value.to_s)
+        defined?(super) && super || ["minor", "!minor", "bot", "!bot", "anon", "!anon", "redirect", "!redirect", "patrolled", "!patrolled", "unpatrolled"].include?(value.to_s) && merge(rcshow: value.to_s, replace: false)
       end
 
       # How many total changes to return.
@@ -141,7 +141,7 @@ module MediaWiktory::Wikipedia
 
       # @private
       def _type(value)
-        defined?(super) && super || ["edit", "new", "log", "external", "categorize"].include?(value.to_s) && merge(rctype: value.to_s)
+        defined?(super) && super || ["edit", "new", "log", "external", "categorize"].include?(value.to_s) && merge(rctype: value.to_s, replace: false)
       end
 
       # Only list changes which are the latest revision.

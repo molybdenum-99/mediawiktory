@@ -29,7 +29,7 @@ module MediaWiktory::Wikipedia
 
       # @private
       def _modules(value)
-        merge(modules: value.to_s)
+        merge(modules: value.to_s, replace: false)
       end
 
       # Format of help strings.
@@ -55,7 +55,7 @@ module MediaWiktory::Wikipedia
 
       # @private
       def _querymodules(value)
-        defined?(super) && super || ["abusefilters", "abuselog", "allcategories", "alldeletedrevisions", "allfileusages", "allimages", "alllinks", "allmessages", "allpages", "allredirects", "allrevisions", "alltransclusions", "allusers", "authmanagerinfo", "babel", "backlinks", "betafeatures", "blocks", "categories", "categoryinfo", "categorymembers", "centralnoticelogs", "checkuser", "checkuserlog", "contenttranslation", "contenttranslationcorpora", "contenttranslationlangtrend", "contenttranslationstats", "contenttranslationsuggestions", "contributors", "coordinates", "cxpublishedtranslations", "cxtranslatorstats", "deletedrevisions", "deletedrevs", "duplicatefiles", "embeddedin", "extlinks", "extracts", "exturlusage", "featureusage", "filearchive", "filerepoinfo", "fileusage", "flagged", "gadgetcategories", "gadgets", "geosearch", "gettingstartedgetpages", "globalallusers", "globalblocks", "globalgroups", "globalusage", "globaluserinfo", "imageinfo", "images", "imageusage", "info", "iwbacklinks", "iwlinks", "langbacklinks", "langlinks", "links", "linkshere", "logevents", "mapdata", "mmsites", "mostviewed", "mystashedfiles", "notifications", "oath", "oldreviewedpages", "ores", "pageassessments", "pageimages", "pagepropnames", "pageprops", "pageswithprop", "pageterms", "pageviews", "prefixsearch", "projectpages", "projects", "protectedtitles", "querypage", "random", "recentchanges", "redirects", "references", "revisions", "search", "siteinfo", "siteviews", "stashimageinfo", "tags", "templates", "tokens", "transcludedin", "transcodestatus", "unreadnotificationpages", "usercontribs", "userinfo", "users", "videoinfo", "watchlist", "watchlistraw", "wbentityusage", "wblistentityusage", "wikibase", "wikisets"].include?(value.to_s) && merge(querymodules: value.to_s)
+        defined?(super) && super || ["abusefilters", "abuselog", "allcategories", "alldeletedrevisions", "allfileusages", "allimages", "alllinks", "allmessages", "allpages", "allredirects", "allrevisions", "alltransclusions", "allusers", "authmanagerinfo", "babel", "backlinks", "betafeatures", "blocks", "categories", "categoryinfo", "categorymembers", "centralnoticelogs", "checkuser", "checkuserlog", "contenttranslation", "contenttranslationcorpora", "contenttranslationlangtrend", "contenttranslationstats", "contenttranslationsuggestions", "contributors", "coordinates", "cxpublishedtranslations", "cxtranslatorstats", "deletedrevisions", "deletedrevs", "duplicatefiles", "embeddedin", "extlinks", "extracts", "exturlusage", "featureusage", "filearchive", "filerepoinfo", "fileusage", "flagged", "gadgetcategories", "gadgets", "geosearch", "gettingstartedgetpages", "globalallusers", "globalblocks", "globalgroups", "globalusage", "globaluserinfo", "imageinfo", "images", "imageusage", "info", "iwbacklinks", "iwlinks", "langbacklinks", "langlinks", "links", "linkshere", "logevents", "mapdata", "mmsites", "mostviewed", "mystashedfiles", "notifications", "oath", "oldreviewedpages", "ores", "pageassessments", "pageimages", "pagepropnames", "pageprops", "pageswithprop", "pageterms", "pageviews", "prefixsearch", "projectpages", "projects", "protectedtitles", "querypage", "random", "recentchanges", "redirects", "references", "revisions", "search", "siteinfo", "siteviews", "stashimageinfo", "tags", "templates", "tokens", "transcludedin", "transcodestatus", "unreadnotificationpages", "usercontribs", "userinfo", "users", "videoinfo", "watchlist", "watchlistraw", "wbentityusage", "wblistentityusage", "wikibase", "wikisets"].include?(value.to_s) && merge(querymodules: value.to_s, replace: false)
       end
 
       # Get information about the main (top-level) module as well. Use modules=main instead.
@@ -84,7 +84,7 @@ module MediaWiktory::Wikipedia
 
       # @private
       def _formatmodules(value)
-        defined?(super) && super || ["json", "jsonfm", "none", "php", "phpfm", "rawfm", "xml", "xmlfm"].include?(value.to_s) && merge(formatmodules: value.to_s)
+        defined?(super) && super || ["json", "jsonfm", "none", "php", "phpfm", "rawfm", "xml", "xmlfm"].include?(value.to_s) && merge(formatmodules: value.to_s, replace: false)
       end
     end
   end

@@ -45,7 +45,7 @@ module MediaWiktory::Wikipedia
 
       # @private
       def _protections(value)
-        merge(protections: value.to_s)
+        merge(protections: value.to_s, replace: false)
       end
 
       # Expiry timestamps. If only one timestamp is set, it'll be used for all protections. Use infinite, indefinite, infinity, or never, for a never-expiring protection.
@@ -58,7 +58,7 @@ module MediaWiktory::Wikipedia
 
       # @private
       def _expiry(value)
-        merge(expiry: value.to_s)
+        merge(expiry: value.to_s, replace: false)
       end
 
       # Reason for (un)protecting.
@@ -79,7 +79,7 @@ module MediaWiktory::Wikipedia
 
       # @private
       def _tags(value)
-        defined?(super) && super || ["ProveIt edit", "WPCleaner", "huggle", "large plot addition"].include?(value.to_s) && merge(tags: value.to_s)
+        defined?(super) && super || ["ProveIt edit", "WPCleaner", "huggle", "large plot addition"].include?(value.to_s) && merge(tags: value.to_s, replace: false)
       end
 
       # Enable cascading protection (i.e. protect transcluded templates and images used in this page). Ignored if none of the given protection levels support cascading.

@@ -29,7 +29,7 @@ module MediaWiktory::Wikipedia
 
       # @private
       def _requests(value)
-        merge(createrequests: value.to_s)
+        merge(createrequests: value.to_s, replace: false)
       end
 
       # Format to use for returning messages.

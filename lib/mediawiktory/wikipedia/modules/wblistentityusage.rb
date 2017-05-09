@@ -28,7 +28,7 @@ module MediaWiktory::Wikipedia
 
       # @private
       def _prop(value)
-        defined?(super) && super || ["url"].include?(value.to_s) && merge(wbeuprop: value.to_s)
+        defined?(super) && super || ["url"].include?(value.to_s) && merge(wbeuprop: value.to_s, replace: false)
       end
 
       # Only return entity IDs that used this aspect.
@@ -41,7 +41,7 @@ module MediaWiktory::Wikipedia
 
       # @private
       def _aspect(value)
-        defined?(super) && super || ["S", "L", "T", "X", "O"].include?(value.to_s) && merge(wbeuaspect: value.to_s)
+        defined?(super) && super || ["S", "L", "T", "X", "O"].include?(value.to_s) && merge(wbeuaspect: value.to_s, replace: false)
       end
 
       # Entities that have been used.
@@ -54,7 +54,7 @@ module MediaWiktory::Wikipedia
 
       # @private
       def _entities(value)
-        merge(wbeuentities: value.to_s)
+        merge(wbeuentities: value.to_s, replace: false)
       end
 
       # How many entity usages to return.

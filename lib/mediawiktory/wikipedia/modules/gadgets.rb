@@ -28,7 +28,7 @@ module MediaWiktory::Wikipedia
 
       # @private
       def _prop(value)
-        defined?(super) && super || ["id", "metadata", "desc"].include?(value.to_s) && merge(gaprop: value.to_s)
+        defined?(super) && super || ["id", "metadata", "desc"].include?(value.to_s) && merge(gaprop: value.to_s, replace: false)
       end
 
       # Gadgets from what categories to retrieve.
@@ -41,7 +41,7 @@ module MediaWiktory::Wikipedia
 
       # @private
       def _categories(value)
-        merge(gacategories: value.to_s)
+        merge(gacategories: value.to_s, replace: false)
       end
 
       # IDs of gadgets to retrieve.
@@ -54,7 +54,7 @@ module MediaWiktory::Wikipedia
 
       # @private
       def _ids(value)
-        merge(gaids: value.to_s)
+        merge(gaids: value.to_s, replace: false)
       end
 
       # List only gadgets allowed to current user.

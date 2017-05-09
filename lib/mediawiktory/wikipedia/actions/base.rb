@@ -235,8 +235,10 @@ module MediaWiktory::Wikipedia
       # @return [Action] Produced action of the same type as current action was, with all passed
       #   params applied.
       def merge(hash)
+        replace = hash.fetch(:replace, true)
+        hash.delete(:replace)
         self.class
-            .new(@client, @params.merge(stringify_hash(hash)) { |_, o, n| [o, n].compact.uniq.join('|') })
+            .new(@client, @params.merge(stringify_hash(hash)) { |_, o, n| replace ? n : [o, n].compact.uniq.join('|') })
             .tap { |action| @submodules.each { |sm| action.submodule(sm) } }
       end
 

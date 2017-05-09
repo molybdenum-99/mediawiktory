@@ -155,7 +155,7 @@ module MediaWiktory::Wikipedia
 
       # @private
       def _mime(value)
-        merge(gaimime: value.to_s)
+        merge(gaimime: value.to_s, replace: false)
       end
 
       # How many images in total to return.

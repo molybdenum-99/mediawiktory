@@ -28,7 +28,7 @@ module MediaWiktory::Wikipedia
 
       # @private
       def _prop(value)
-        defined?(super) && super || ["blockinfo", "groups", "groupmemberships", "implicitgroups", "rights", "editcount", "registration", "emailable", "gender", "centralids", "cancreate"].include?(value.to_s) && merge(usprop: value.to_s)
+        defined?(super) && super || ["blockinfo", "groups", "groupmemberships", "implicitgroups", "rights", "editcount", "registration", "emailable", "gender", "centralids", "cancreate"].include?(value.to_s) && merge(usprop: value.to_s, replace: false)
       end
 
       # With usprop=centralids, indicate whether the user is attached with the wiki identified by this ID.
@@ -49,7 +49,7 @@ module MediaWiktory::Wikipedia
 
       # @private
       def _users(value)
-        merge(ususers: value.to_s)
+        merge(ususers: value.to_s, replace: false)
       end
 
       # A list of user IDs to obtain information for.
@@ -62,7 +62,7 @@ module MediaWiktory::Wikipedia
 
       # @private
       def _userids(value)
-        merge(ususerids: value.to_s)
+        merge(ususerids: value.to_s, replace: false)
       end
 
       # Use action=query&meta=tokens instead.
@@ -75,7 +75,7 @@ module MediaWiktory::Wikipedia
 
       # @private
       def _token(value)
-        defined?(super) && super || ["userrights"].include?(value.to_s) && merge(ustoken: value.to_s)
+        defined?(super) && super || ["userrights"].include?(value.to_s) && merge(ustoken: value.to_s, replace: false)
       end
     end
   end

@@ -44,7 +44,7 @@ module MediaWiktory::Wikipedia
 
       # @private
       def _prop(value)
-        defined?(super) && super || ["type", "name", "dim", "country", "region", "globe"].include?(value.to_s) && merge(coprop: value.to_s)
+        defined?(super) && super || ["type", "name", "dim", "country", "region", "globe"].include?(value.to_s) && merge(coprop: value.to_s, replace: false)
       end
 
       # Whether to return only primary coordinates ("primary"), secondary ("secondary") or both ("all").

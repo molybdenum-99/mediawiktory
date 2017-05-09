@@ -84,7 +84,7 @@ module MediaWiktory::Wikipedia
 
       # @private
       def _prop(value)
-        defined?(super) && super || ["text", "langlinks", "categories", "categorieshtml", "links", "templates", "images", "externallinks", "sections", "revid", "displaytitle", "headitems", "headhtml", "modules", "jsconfigvars", "encodedjsconfigvars", "indicators", "iwlinks", "wikitext", "properties", "limitreportdata", "limitreporthtml", "parsetree", "parsewarnings"].include?(value.to_s) && merge(prop: value.to_s)
+        defined?(super) && super || ["text", "langlinks", "categories", "categorieshtml", "links", "templates", "images", "externallinks", "sections", "revid", "displaytitle", "headitems", "headhtml", "modules", "jsconfigvars", "encodedjsconfigvars", "indicators", "iwlinks", "wikitext", "properties", "limitreportdata", "limitreporthtml", "parsetree", "parsewarnings"].include?(value.to_s) && merge(prop: value.to_s, replace: false)
       end
 
       # Do a pre-save transform on the input before parsing it. Only valid when used with text.
@@ -237,7 +237,7 @@ module MediaWiktory::Wikipedia
 
       # @private
       def _templatesandboxprefix(value)
-        merge(templatesandboxprefix: value.to_s)
+        merge(templatesandboxprefix: value.to_s, replace: false)
       end
 
       # Parse the page using templatesandboxtext in place of the contents of the page named here.

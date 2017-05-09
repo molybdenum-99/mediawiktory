@@ -28,7 +28,7 @@ module MediaWiktory::Wikipedia
 
       # @private
       def _aspect(value)
-        defined?(super) && super || ["S", "L", "T", "X", "O"].include?(value.to_s) && merge(gwbeuaspect: value.to_s)
+        defined?(super) && super || ["S", "L", "T", "X", "O"].include?(value.to_s) && merge(gwbeuaspect: value.to_s, replace: false)
       end
 
       # Entities that have been used.
@@ -41,7 +41,7 @@ module MediaWiktory::Wikipedia
 
       # @private
       def _entities(value)
-        merge(gwbeuentities: value.to_s)
+        merge(gwbeuentities: value.to_s, replace: false)
       end
 
       # How many entity usages to return.

@@ -67,7 +67,7 @@ module MediaWiktory::Wikipedia
 
       # @private
       def _prop(value)
-        defined?(super) && super || ["ids", "title"].include?(value.to_s) && merge(afprop: value.to_s)
+        defined?(super) && super || ["ids", "title"].include?(value.to_s) && merge(afprop: value.to_s, replace: false)
       end
 
       # How many total items to return.

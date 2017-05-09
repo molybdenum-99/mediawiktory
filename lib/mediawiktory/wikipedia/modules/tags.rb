@@ -44,7 +44,7 @@ module MediaWiktory::Wikipedia
 
       # @private
       def _prop(value)
-        defined?(super) && super || ["name", "displayname", "description", "hitcount", "defined", "source", "active"].include?(value.to_s) && merge(tgprop: value.to_s)
+        defined?(super) && super || ["name", "displayname", "description", "hitcount", "defined", "source", "active"].include?(value.to_s) && merge(tgprop: value.to_s, replace: false)
       end
     end
   end

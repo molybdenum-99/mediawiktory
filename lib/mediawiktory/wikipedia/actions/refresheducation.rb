@@ -29,7 +29,7 @@ module MediaWiktory::Wikipedia
 
       # @private
       def _ids(value)
-        merge(ids: value.to_s)
+        merge(ids: value.to_s, replace: false)
       end
 
       # Type of object to refresh.

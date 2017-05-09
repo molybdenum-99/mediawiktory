@@ -28,7 +28,7 @@ module MediaWiktory::Wikipedia
 
       # @private
       def _prop(value)
-        defined?(super) && super || ["rights"].include?(value.to_s) && merge(ggpprop: value.to_s)
+        defined?(super) && super || ["rights"].include?(value.to_s) && merge(ggpprop: value.to_s, replace: false)
       end
     end
   end

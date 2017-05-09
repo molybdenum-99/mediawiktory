@@ -12,17 +12,18 @@ module MediaWiktory
       end
 
       context 'long chain' do
-        let(:action) { api.query.titles('Argentina', 'Bolivia').prop(:revisions).prop(:content).limit('max') }
+        let(:action) { api.query.titles('Argentina', 'Bolivia').prop(:revisions).prop(:content).limit('max').format(:json).format(:jsonfm) }
 
         its(:to_param) { is_expected.to eq(
           'action' => 'query',
-          'titles' => 'Argentina|Bolivia',
+          'titles' => 'Argentina|Bolivia', # joined
           'prop' => 'revisions',
           'rvprop' => 'content',
-          'rvlimit' => 'max'
+          'rvlimit' => 'max',
+          'format' => 'jsonfm' # replaced
         ) }
 
-        its(:to_url) { is_expected.to eq 'https://en.wikipedia.org/w/api.php?action=query&prop=revisions&rvlimit=max&rvprop=content&titles=Argentina%7CBolivia' }
+        its(:to_url) { is_expected.to eq 'https://en.wikipedia.org/w/api.php?action=query&format=jsonfm&prop=revisions&rvlimit=max&rvprop=content&titles=Argentina%7CBolivia' }
       end
 
       context 'chain with changed meaning of methods' do

@@ -60,7 +60,7 @@ module MediaWiktory::Wikipedia
 
       # @private
       def _prop(value)
-        defined?(super) && super || ["lllang", "lltitle"].include?(value.to_s) && merge(lblprop: value.to_s)
+        defined?(super) && super || ["lllang", "lltitle"].include?(value.to_s) && merge(lblprop: value.to_s, replace: false)
       end
 
       # The direction in which to list.

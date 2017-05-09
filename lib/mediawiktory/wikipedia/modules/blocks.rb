@@ -57,7 +57,7 @@ module MediaWiktory::Wikipedia
 
       # @private
       def _ids(value)
-        merge(bkids: value.to_s)
+        merge(bkids: value.to_s, replace: false)
       end
 
       # List of users to search for (optional).
@@ -70,7 +70,7 @@ module MediaWiktory::Wikipedia
 
       # @private
       def _users(value)
-        merge(bkusers: value.to_s)
+        merge(bkusers: value.to_s, replace: false)
       end
 
       # Get all blocks applying to this IP address or CIDR range, including range blocks. Cannot be used together with bkusers. CIDR ranges broader than IPv4/16 or IPv6/19 are not accepted.
@@ -99,7 +99,7 @@ module MediaWiktory::Wikipedia
 
       # @private
       def _prop(value)
-        defined?(super) && super || ["id", "user", "userid", "by", "byid", "timestamp", "expiry", "reason", "range", "flags"].include?(value.to_s) && merge(bkprop: value.to_s)
+        defined?(super) && super || ["id", "user", "userid", "by", "byid", "timestamp", "expiry", "reason", "range", "flags"].include?(value.to_s) && merge(bkprop: value.to_s, replace: false)
       end
 
       # Show only items that meet these criteria. For example, to see only indefinite blocks on IP addresses, set bkshow=ip|!temp.
@@ -112,7 +112,7 @@ module MediaWiktory::Wikipedia
 
       # @private
       def _show(value)
-        defined?(super) && super || ["account", "!account", "temp", "!temp", "ip", "!ip", "range", "!range"].include?(value.to_s) && merge(bkshow: value.to_s)
+        defined?(super) && super || ["account", "!account", "temp", "!temp", "ip", "!ip", "range", "!range"].include?(value.to_s) && merge(bkshow: value.to_s, replace: false)
       end
 
       # When more results are available, use this to continue.

@@ -28,7 +28,7 @@ module MediaWiktory::Wikipedia
 
       # @private
       def _prop(value)
-        defined?(super) && super || ["general", "namespaces", "namespacealiases", "specialpagealiases", "magicwords", "interwikimap", "dbrepllag", "statistics", "usergroups", "libraries", "extensions", "fileextensions", "rightsinfo", "restrictions", "languages", "languagevariants", "skins", "extensiontags", "functionhooks", "showhooks", "variables", "protocols", "defaultoptions", "uploaddialog"].include?(value.to_s) && merge(siprop: value.to_s)
+        defined?(super) && super || ["general", "namespaces", "namespacealiases", "specialpagealiases", "magicwords", "interwikimap", "dbrepllag", "statistics", "usergroups", "libraries", "extensions", "fileextensions", "rightsinfo", "restrictions", "languages", "languagevariants", "skins", "extensiontags", "functionhooks", "showhooks", "variables", "protocols", "defaultoptions", "uploaddialog"].include?(value.to_s) && merge(siprop: value.to_s, replace: false)
       end
 
       # Return only local or only nonlocal entries of the interwiki map.

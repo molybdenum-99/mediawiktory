@@ -52,7 +52,7 @@ module MediaWiktory::Wikipedia
 
       # @private
       def _features(value)
-        merge(afufeatures: value.to_s)
+        merge(afufeatures: value.to_s, replace: false)
       end
     end
   end

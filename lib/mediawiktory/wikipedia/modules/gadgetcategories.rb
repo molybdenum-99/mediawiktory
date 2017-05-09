@@ -28,7 +28,7 @@ module MediaWiktory::Wikipedia
 
       # @private
       def _prop(value)
-        defined?(super) && super || ["name", "title", "members"].include?(value.to_s) && merge(gcprop: value.to_s)
+        defined?(super) && super || ["name", "title", "members"].include?(value.to_s) && merge(gcprop: value.to_s, replace: false)
       end
 
       # Names of categories to retrieve.
@@ -41,7 +41,7 @@ module MediaWiktory::Wikipedia
 
       # @private
       def _names(value)
-        merge(gcnames: value.to_s)
+        merge(gcnames: value.to_s, replace: false)
       end
     end
   end

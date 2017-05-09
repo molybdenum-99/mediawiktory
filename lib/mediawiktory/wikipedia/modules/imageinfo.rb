@@ -28,7 +28,7 @@ module MediaWiktory::Wikipedia
 
       # @private
       def _prop(value)
-        defined?(super) && super || ["timestamp", "user", "userid", "comment", "parsedcomment", "canonicaltitle", "url", "size", "dimensions", "sha1", "mime", "thumbmime", "mediatype", "metadata", "commonmetadata", "extmetadata", "archivename", "bitdepth", "uploadwarning", "badfile"].include?(value.to_s) && merge(iiprop: value.to_s)
+        defined?(super) && super || ["timestamp", "user", "userid", "comment", "parsedcomment", "canonicaltitle", "url", "size", "dimensions", "sha1", "mime", "thumbmime", "mediatype", "metadata", "commonmetadata", "extmetadata", "archivename", "bitdepth", "uploadwarning", "badfile"].include?(value.to_s) && merge(iiprop: value.to_s, replace: false)
       end
 
       # How many file revisions to return per file.
@@ -104,7 +104,7 @@ module MediaWiktory::Wikipedia
 
       # @private
       def _extmetadatafilter(value)
-        merge(iiextmetadatafilter: value.to_s)
+        merge(iiextmetadatafilter: value.to_s, replace: false)
       end
 
       # A handler specific parameter string. For example, PDFs might use page15-100px. iiurlwidth must be used and be consistent with iiurlparam.

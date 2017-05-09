@@ -29,7 +29,7 @@ module MediaWiktory::Wikipedia
 
       # @private
       def _list(value)
-        merge(list: value.to_s)
+        merge(list: value.to_s, replace: false)
       end
 
       # A list of notification IDs to mark as unread.
@@ -42,7 +42,7 @@ module MediaWiktory::Wikipedia
 
       # @private
       def _unreadlist(value)
-        merge(unreadlist: value.to_s)
+        merge(unreadlist: value.to_s, replace: false)
       end
 
       # If set, marks all of a user's notifications as read.
@@ -62,7 +62,7 @@ module MediaWiktory::Wikipedia
 
       # @private
       def _sections(value)
-        defined?(super) && super || ["alert", "message"].include?(value.to_s) && merge(sections: value.to_s)
+        defined?(super) && super || ["alert", "message"].include?(value.to_s) && merge(sections: value.to_s, replace: false)
       end
 
       # A "csrf" token retrieved from action=query&meta=tokens

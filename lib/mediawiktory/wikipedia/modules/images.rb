@@ -44,7 +44,7 @@ module MediaWiktory::Wikipedia
 
       # @private
       def _images(value)
-        merge(imimages: value.to_s)
+        merge(imimages: value.to_s, replace: false)
       end
 
       # The direction in which to list.

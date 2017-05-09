@@ -5,7 +5,7 @@ require_relative './actions'
 
 # Wrapper for [Wikipedia](https://en.wikipedia.org/wiki/Main_Page) API.
 #
-# _Generated from https://en.wikipedia.org/w/api.php at May 08, 2017 by MediaWiktory 0.1.0._
+# _Generated from https://en.wikipedia.org/w/api.php at May 09, 2017 by MediaWiktory 0.1.0._
 #
 # It also can be used for access to any other MediaWiki site, but some of actions could be
 # non-existent/outdated.

@@ -36,7 +36,7 @@ module MediaWiktory::Wikipedia
 
       # @private
       def _prop(value)
-        merge(ppprop: value.to_s)
+        merge(ppprop: value.to_s, replace: false)
       end
     end
   end

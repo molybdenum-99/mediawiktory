@@ -1,1 +1,1 @@
-<% unless full_name == 'format' %>defined?(super) && super || <% end %>[<%= enum_values %>].include?(value.to_sym) && merge(<%= full_name %>: value.to_s).submodule({<%= modules_hash %>}[value.to_sym])
+<% unless full_name == 'format' %>defined?(super) && super || <% end %>[<%= enum_values %>].include?(value.to_sym) && merge(<%= full_name %>: value.to_s<% if list? %>, replace: false<% end %>).submodule({<%= modules_hash %>}[value.to_sym])

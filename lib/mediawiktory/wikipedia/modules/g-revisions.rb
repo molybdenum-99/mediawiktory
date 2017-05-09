@@ -170,7 +170,7 @@ module MediaWiktory::Wikipedia
 
       # @private
       def _token(value)
-        defined?(super) && super || ["rollback"].include?(value.to_s) && merge(grvtoken: value.to_s)
+        defined?(super) && super || ["rollback"].include?(value.to_s) && merge(grvtoken: value.to_s, replace: false)
       end
 
       # When more results are available, use this to continue.

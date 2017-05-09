@@ -51,7 +51,7 @@ module MediaWiktory::Wikipedia
 
       # @private
       def _namespace(value)
-        defined?(super) && super || ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "100", "101", "108", "109", "118", "119", "446", "447", "710", "711", "828", "829", "2300", "2301", "2302", "2303"].include?(value.to_s) && merge(gwlnamespace: value.to_s)
+        defined?(super) && super || ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "100", "101", "108", "109", "118", "119", "446", "447", "710", "711", "828", "829", "2300", "2301", "2302", "2303"].include?(value.to_s) && merge(gwlnamespace: value.to_s, replace: false)
       end
 
       # Only list changes by this user.
@@ -101,7 +101,7 @@ module MediaWiktory::Wikipedia
 
       # @private
       def _show(value)
-        defined?(super) && super || ["minor", "!minor", "bot", "!bot", "anon", "!anon", "patrolled", "!patrolled", "unread", "!unread"].include?(value.to_s) && merge(gwlshow: value.to_s)
+        defined?(super) && super || ["minor", "!minor", "bot", "!bot", "anon", "!anon", "patrolled", "!patrolled", "unread", "!unread"].include?(value.to_s) && merge(gwlshow: value.to_s, replace: false)
       end
 
       # Which types of changes to show:
@@ -114,7 +114,7 @@ module MediaWiktory::Wikipedia
 
       # @private
       def _type(value)
-        defined?(super) && super || ["edit", "new", "log", "external", "categorize"].include?(value.to_s) && merge(gwltype: value.to_s)
+        defined?(super) && super || ["edit", "new", "log", "external", "categorize"].include?(value.to_s) && merge(gwltype: value.to_s, replace: false)
       end
 
       # Used along with wltoken to access a different user's watchlist.

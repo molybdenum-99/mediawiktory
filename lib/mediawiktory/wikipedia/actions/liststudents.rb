@@ -29,7 +29,7 @@ module MediaWiktory::Wikipedia
 
       # @private
       def _courseids(value)
-        merge(courseids: value.to_s)
+        merge(courseids: value.to_s, replace: false)
       end
 
       # Which property to get for each student:

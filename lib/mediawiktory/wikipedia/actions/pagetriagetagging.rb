@@ -76,7 +76,7 @@ module MediaWiktory::Wikipedia
 
       # @private
       def _taglist(value)
-        merge(taglist: value.to_s)
+        merge(taglist: value.to_s, replace: false)
       end
     end
   end

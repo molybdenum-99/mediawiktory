@@ -37,7 +37,7 @@ module MediaWiktory::Wikipedia
 
       # @private
       def _add(value)
-        merge(add: value.to_s)
+        merge(add: value.to_s, replace: false)
       end
 
       # Titles to remove from the list.
@@ -50,7 +50,7 @@ module MediaWiktory::Wikipedia
 
       # @private
       def _remove(value)
-        merge(remove: value.to_s)
+        merge(remove: value.to_s, replace: false)
       end
 
       # A "csrf" token retrieved from action=query&meta=tokens
