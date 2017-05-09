@@ -1,20 +1,21 @@
 # MediaWiktory, The MediaWiki Client
 
+[![Gem Version](https://badge.fury.io/rb/mediawiktory.svg)](http://badge.fury.io/rb/mediawiktory)
+[![Build Status](https://travis-ci.org/molybdenum-99/mediawiktory.svg?branch=master)](https://travis-ci.org/molybdenum-99/mediawiktory)
+
 **MediaWiktory** is MediaWiki (think Wikipedia, Wiktionary and others) API client that doesn't suck.
 No, seriously.
 
-[MediaWiki API](https://www.mediawiki.org/wiki/API:Main_page)
-currently is very powerful and full-featured (thought not very easy to use).
-Things like "fetch first 50 pages from that category alongside with their
-revision history and interwiki links and mediafile stats" are typically done
+[MediaWiki API](https://www.mediawiki.org/wiki/API:Main_page) currently is very powerful and
+full-featured (thought not very easy to use). Things like "fetch first 50 pages from that category
+alongside with their revision history and interwiki links and mediafile stats" are typically done
 with one carefully constructed request and return lots of useful information.
 
 Yes, there already are [several](https://www.mediawiki.org/wiki/API:Client_code#Ruby)
 API clients for Ruby, including ["official" one](https://github.com/wikimedia/mediawiki-ruby-api).
-Typical approach for all of them is thick wrapper around some functionality
-(like "login and edit pages" or "search and analyze pages"), and leave
-all the other cool things for generic `query` method (at best), or
-without any coverage at all.
+Typical approach for all of them is thick wrapper around some functionality (like "login and edit
+pages" or "search and analyze pages"), and leave all the other cool things for generic `action` method
+(at best), or without any coverage at all.
 
 MediaWiktory, to the contrary is:
 
@@ -41,7 +42,7 @@ puts page['title']
 puts page['fullurl']
 # Prints:
 #  https://en.wikipedia.org/wiki/Argentina
-puts page['revisions'].first['*'].slice(0..200)
+puts page['revisions'].first['*'].slice(0..200) # first 200 chars of page contents
 # Prints:
 #  {{other uses}}
 #  {{pp-semi|small=yes}}
@@ -53,7 +54,7 @@ puts page['revisions'].first['*'].slice(0..200)
 ```
 
 Note, that for using MediaWiktory API wrapper you need to understand the underlying API. While previous
-experience might make you expect something like `api.pages('Argentina').text`, in fact you should
+experience might make you expect something like `api.page('Argentina').text`, in fact you should
 use the `query` action, request page title 'Argentina', its `:revisions` property, its `:content`
 subproperty—and voila, you have a _1-element list of revisions_ for the page and last revisions `'*'`
 key has page's text.
@@ -62,7 +63,7 @@ The good news is all methods are documented at [rubydoc.info](#TODO), most of th
 has enough details, so you don't need to refer to MediaWiki official docs.
 
 **Example 2:** Editing the page (we are editing [Sandbox](https://en.wikipedia.org/wiki/Wikipedia:Sandbox)
-here, which is safe, but be careful while experimenting, this code is **really** replaces page's text!):
+here, which is safe, but be careful while experimenting, this code **really** replaces page's text!):
 
 ```ruby
 token = api.query.meta(:tokens).response.dig('tokens', 'csrftoken')
@@ -72,8 +73,7 @@ response.to_h
 
 # This, without token, will raise:
 pp api.edit.title('Wikipedia:Sandbox').text("Test '''me''', MediaWiktory without token!").response
-# Throws: The "token" parameter must be set. (MediaWiktory::Wikipedia::Response::Error)
-
+# MediaWiktory::Wikipedia::Response::Error: The "token" parameter must be set.
 ```
 
 **Example 3:** Fetching all "main" page images for the pages of category:
@@ -101,5 +101,75 @@ end
 
 ## Usage
 
+```
+gem install mediawiktory
+```
+
 There are a lot of popular installations of MediaWiki besides Wikipedia. All of them are having
-different versions installed
+different versions installed with different features enabled and custom extensions turned on.
+
+To catch with this multitude of features, MediaWiktory provides two ways of usage.
+
+### 1. Use default wrapper, generated from English Wikipedia:
+
+```ruby
+require 'mediawiktory'
+api = MediaWiktory::Wikipedia::Api.new # => English Wikipedia
+# or
+api = MediaWiktory::Wikipedia::Api.new('http://some.site/w/api.php') # => any other MediaWiki
+```
+
+### 2. Custom wrapper generation.
+```
+mediawiktory-gen -u http://some.site/w/api.php --path lib/path/to/wrapper --namespace My::Wrapper
+```
+This will generate `My::Wrapper::Api` class and a lot of other classes wrapping all actions and
+modules of target APIs. The generated code is **independent** of MediaWiktory (so you can exclude it
+from your runtime), and depends only on `addressable`, `faraday` and `faraday_middleware` gems.
+
+The usage of custom wrapper is basically the same:
+
+```ruby
+require 'path/to/wrapper/api'
+api = My::Wrapper::Api.new
+api.query # .and.so.on
+```
+
+You need custom wrapper if:
+
+* you want to have the exact list of features your site has: for example, with Wikia sites, most of
+  generic functionality (like query and edit) will work, but most of fancy modern Wikipedia actions
+  will fail with "unknown action";
+* your target site has some custom actions and modules: for example, most informative Wikidata actions
+  are custom ones, like [wbgetentities](https://www.wikidata.org/w/api.php?action=help&modules=wbgetentities),
+  they are not present in default wrapper;
+* you want to catch up with some edge Wikipedia features; Wikipedia wrapper is generated on gem
+  release, but Wikipedia's API changes everyday with new small and large exerimental features.
+
+**Generator limitations:** Wrapper is generated from [HTML docs of API](en.wikipedia.org/w/api.php),
+but currently generator can't process old MediaWiki versions ASCII docs format, which, unfortunately,
+is stil in use on [Wikia](https://marvel.wikia.com/api.php), for example. It is subject to further
+development, as some "old" installations of MediaWiki provide pretty useful content and a lot of
+custom modules.
+
+If you integrate wrapper generated by MediaWiktory into some other library, you should note that:
+
+* All generated code is documented in YARD format, Markdown markup flavour;
+* If you use Rubocop, you will find some "good code" practices broken in generated code, because it
+  is hard to follow them in large code generation.
+
+## Roadmap
+
+* Expose underlying Faraday client for fine-tuning;
+* Handle cookies automatically (for logging in);
+* Handle file uploads (should be done as multipart, use appropriate Faraday middleware);
+* Add parser for outdated ASCII docs.
+
+## Authors
+
+* [Victor Shepelev](https://zverok.github.io) [@zverok](https://github.com/zverok);
+* Serhiy Mostovyi [@smostovoy](https://github.com/smostovoy).
+
+## License
+
+[MIT](https://github.com/molybdenum-99/mediawiktory/blob/master/LICENSE.txt)

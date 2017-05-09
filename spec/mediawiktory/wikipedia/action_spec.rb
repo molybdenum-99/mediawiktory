@@ -20,7 +20,15 @@ module MediaWiktory
       end
 
       context 'chain of merges' do
-        subject { action.merge(title: 'Argentina').merge(title: 'Bolivia') }
+        subject { action.merge(format: 'json').merge(format: 'xml') }
+
+        it { is_expected.to be_a described_class }
+        its(:client) { is_expected.to be client }
+        its(:to_h) { is_expected.to eq('format' => 'xml') }
+      end
+
+      context 'chain of merges: do not replace' do
+        subject { action.merge(title: 'Argentina').merge(title: 'Bolivia', replace: false) }
 
         it { is_expected.to be_a described_class }
         its(:client) { is_expected.to be client }

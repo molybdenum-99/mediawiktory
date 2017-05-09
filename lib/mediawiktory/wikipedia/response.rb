@@ -91,7 +91,15 @@ module MediaWiktory::Wikipedia
     private
 
     def merge_responses(new_response)
-      merger = ->(_k, v1, v2) { v1.is_a?(Hash) && v2.is_a?(Hash) ? v1.merge(v2, &merger) : v2 }
+      merger = ->(_k, v1, v2) do
+        if v1.is_a?(Hash) && v2.is_a?(Hash)
+          v1.merge(v2, &merger)
+        elsif v1.is_a?(Array) && v2.is_a?(Array)
+          v1 + v2
+        else
+          v2
+        end
+      end
 
       # Newest page is responsible for all metadata, so we take entire new response and only data
       # part of old one.
