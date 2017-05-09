@@ -1,9 +1,9 @@
 module MediaWiktory
-  describe Client do
+  describe Wikipedia::Client do
     let(:url){'http://en.wikipedia.org/w/api.php'}
 
     context 'creation' do
-      subject{Client.new(url)}
+      subject{described_class.new(url)}
       its(:'url.to_s'){should == url}
 
       # TODO:
@@ -16,7 +16,7 @@ module MediaWiktory
       before{
         stub_request(:any, /#{url}.*/).to_return(body: 'stub')
       }
-      let(:client){Client.new(url)}
+      let(:client){described_class.new(url)}
 
       it 'GETs' do
         expect(client.get(action: :query, prop: :revision)).to eq 'stub'
@@ -57,8 +57,7 @@ module MediaWiktory
         end
 
         it 'passes when set explicitly' do
-
-          client = Client.new(url, user_agent: 'Rspec Test')
+          client = described_class.new(url, user_agent: 'Rspec Test')
           expect(client.get(action: :query, prop: :revision)).to eq 'stub'
           expect(WebMock).to have_requested(:get, url).
             with(
