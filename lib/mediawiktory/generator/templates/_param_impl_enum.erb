@@ -1,0 +1,1 @@
+defined?(super) && super || [<%= enum_values %>].include?(value.to_s) && merge(<%= full_name %>: value.to_s<% if list? %>, replace: false<% end %>)

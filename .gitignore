@@ -3,3 +3,7 @@ vendor
 .bundle
 pkg
 Gemfile.lock
+.yardoc
+deprecated
+doc
+test

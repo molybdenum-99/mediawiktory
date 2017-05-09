@@ -1,0 +1,65 @@
+# frozen_string_literal: true
+
+require_relative './client'
+require_relative './actions'
+
+# Wrapper for [<%= site.name %>](<%= site.base %>) API.
+#
+# _Generated from <%= @source %> at <%= @friendly_date %> by MediaWiktory <%= @version %>._
+#
+# It also can be used for access to any other MediaWiki site, but some of actions could be
+# non-existent/outdated.
+#
+# See {<%= @namespace %>::Api} for usage.
+#
+module <%= @namespace %>
+  # Base API class for [<%= site.name %>](<%= site.base %>).
+  #
+  # Example of usage:
+  #
+  # ```ruby
+  # # For <%= site.name %>
+  # api = <%= @namespace %>::Api.new
+  # api.some_action.some_param(value).other_param(*more_values).perform
+  # # => returns raw response of MediaWiki API
+  # api.some_action.some_param(value).other_param(*more_values).response
+  # # => returns an instance of Response, parsed from JSON
+  #
+  # # For any other site:
+  # api = <%= @namespace %>::Api.new('https://some.site/w/api.php')
+  # # ...the same as above
+  # ```
+  #
+  # {Actions} module lists all available API actions and refers to corresponding classes and
+  # their options.
+  #
+  # See also {Response} for working with return values and {Actions::Base} for working with actions.
+  #
+  class Api
+    # @private
+    attr_reader :client, :defaults
+
+    # @private
+    CLIENT_OPTIONS = %i[user_agent ua].freeze
+
+    # @param url [String] Source URL for this API, by default "<%= source %>".
+    #   Note that most of MediaWiki installations have source URL at `/w/api.php`, but some are
+    #   just `/api.php`, others use `/wiki/api.php` and so on.
+    #
+    # @param defaults [Hash] Default options for all API queries. Default param values also can be
+    #   set by subsequent {Actions::Base} methods, like `api.some_action.json(callback: 'mycallbackname')...`
+    # @option defaults [Symbol] user_agent User-Agent header for underlying client.
+<% main.params.each do |param| %>    # @option defaults [<%= param.ruby_type %>] <%= param.name %> <%= param.description %><%=param.param_docs%> See {Actions::Base#<%=param.name%>}
+<% end %>    #
+    def initialize(url = '<%= @source %>', **defaults)
+      client_options, @defaults = defaults.partition { |k, _| CLIENT_OPTIONS.include?(k) }.map(&:to_h)
+      @client = Client.new(url, **client_options)
+    end
+
+    def inspect
+      "#<#{self.class.name}(#{@client.url})>"
+    end
+
+    include <%= @namespace %>::Actions
+  end
+end

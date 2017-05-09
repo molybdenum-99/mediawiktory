@@ -10,6 +10,8 @@ Gem::Specification.new do |s|
   s.summary = 'Full-featured MediaWiki client with Arel-like queries'
   s.licenses = ['MIT']
 
+  s.required_ruby_version = '>= 2.1.0'
+
   s.files = `git ls-files`.split($RS).reject do |file|
     file =~ /^(?:
     spec\/.*
@@ -23,6 +25,8 @@ Gem::Specification.new do |s|
   end
   s.require_paths = ["lib"]
 
+  s.add_dependency 'nokogiri'
+  s.add_dependency 'naught'
   s.add_dependency 'faraday'
   s.add_dependency 'faraday_middleware'
   s.add_dependency 'hashie'

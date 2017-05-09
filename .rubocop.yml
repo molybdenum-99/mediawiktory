@@ -1,0 +1,121 @@
+inherit_from: .rubocop_todo.yml
+
+AllCops:
+  Include:
+    - 'lib/**/*'
+  Exclude:
+    - 'bin/*'
+    - 'spec/*'
+    - 'spec/**/*'
+    - 'script/**/*'
+    - 'test/*'
+    - 'test/**/*'
+    - 'vendor/**/*'
+    - 'examples/**/*'
+    - 'profile/**/*'
+    - 'tmp/**/*'
+    - 'lib/**/*.erb'
+    - 'deprecated/**/*'
+    - '*'
+  DisplayCopNames: true
+  TargetRubyVersion: '2.3'
+
+# TODO
+Style/Documentation:
+  Enabled: false
+
+# My personal style
+# -----------------
+# See http://zverok.github.io/blog/2016-02-23-control-flow.html
+Style/AndOr:
+  Enabled: false
+
+Style/SpaceInsideHashLiteralBraces:
+  EnforcedStyle: no_space
+
+# I prefer {} for all one-line blocks AND all functional blocks, which Rubocop can't.
+Style/BlockDelimiters:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  EnforcedStyle: when_needed
+
+Style/SignalException:
+  EnforcedStyle: semantic
+
+# Good docs can have really long lines.
+Metrics/LineLength:
+  Enabled: false
+
+Style/Alias:
+  EnforcedStyle: prefer_alias_method
+
+# Proper parsing is hard!
+# -----------------------
+
+Metrics/MethodLength:
+  Exclude:
+    - 'lib/mediawiktory/generator.rb'
+    - 'lib/mediawiktory/generator/*'
+    - 'lib/nokogiri/more.rb'
+
+Metrics/CyclomaticComplexity:
+  Exclude:
+    - 'lib/mediawiktory/generator/*'
+
+Metrics/AbcSize:
+  Exclude:
+    - 'lib/mediawiktory/generator.rb'
+    - 'lib/mediawiktory/generator/*'
+    - 'lib/nokogiri/more.rb'
+
+
+# Generated code: hard to support some conventions
+# ------------------------------------------------
+
+Style/DefWithParentheses:
+  Exclude:
+    - 'lib/mediawiktory/wikipedia/**/*'
+
+# Methods in generated code are reflecting MediaWiki option names, which could be inSadCamelCase
+Style/MethodName:
+  Exclude:
+    - 'lib/mediawiktory/wikipedia/**/*'
+
+# WTF, rubocop???
+Style/ClassAndModuleChildren:
+  Exclude:
+    - 'lib/mediawiktory/wikipedia/**/*'
+
+Metrics/ClassLength:
+  Max: 218
+  Exclude:
+    - 'lib/mediawiktory/wikipedia/**/*'
+
+Metrics/ModuleLength:
+  Exclude:
+    - 'lib/mediawiktory/wikipedia/**/*'
+
+Style/EmptyLinesAroundClassBody:
+  Exclude:
+    - 'lib/mediawiktory/wikipedia/**/*'
+
+Style/EmptyLinesAroundModuleBody:
+  Exclude:
+    - 'lib/mediawiktory/wikipedia/**/*'
+
+Style/TrailingWhitespace:
+  Exclude:
+    - 'lib/mediawiktory/wikipedia/**/*'
+
+Style/WordArray:
+  Exclude:
+    - 'lib/mediawiktory/wikipedia/**/*'
+
+Style/SymbolArray:
+  Exclude:
+    - 'lib/mediawiktory/wikipedia/**/*'
+
+Style/StringLiterals:
+  Exclude:
+    - 'lib/mediawiktory/wikipedia/**/*'
