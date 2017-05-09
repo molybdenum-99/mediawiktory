@@ -344,7 +344,7 @@ RSpec.describe MediaWiktory::Generator::Param do
           |      # @param value [String] One of "foo", "bar", "baz".
           |      # @return [self]
           |      def test(value)
-          |        _test(value) or fail ArgumentError, "\#{value} is not acceptable"
+          |        _test(value) or fail ArgumentError, "Unknown value for test: \#{value}"
           |      end
           |
           |      # @private
@@ -371,7 +371,7 @@ RSpec.describe MediaWiktory::Generator::Param do
           |      #   * `:mod` - {Dummy::Modules::Mod} Descr of mod
           |      # @return [self]
           |      def test(value)
-          |        _test(value) or fail ArgumentError, "\#{value} is not acceptable"
+          |        _test(value) or fail ArgumentError, "Unknown value for test: \#{value}"
           |      end
           |
           |      # @private
@@ -400,7 +400,7 @@ RSpec.describe MediaWiktory::Generator::Param do
           |
           |      # @private
           |      def _test(value)
-          |        merge(test: value.to_s)
+          |        merge(test: value.to_s, replace: false)
           |      end
           |
         }.unindent }
@@ -421,7 +421,7 @@ RSpec.describe MediaWiktory::Generator::Param do
           |
           |      # @private
           |      def _test(value)
-          |        merge(test: value.to_s)
+          |        merge(test: value.to_s, replace: false)
           |      end
           |
         }.unindent }
@@ -438,12 +438,12 @@ RSpec.describe MediaWiktory::Generator::Param do
           |      # @param values [Array<String>] Allowed values: "foo", "bar", "baz".
           |      # @return [self]
           |      def test(*values)
-          |        values.inject(self) { |res, val| res._test(val) or fail ArgumentError, "\#{value} is not acceptable" }
+          |        values.inject(self) { |res, val| res._test(val) or fail ArgumentError, "Unknown value for test: \#{val}" }
           |      end
           |
           |      # @private
           |      def _test(value)
-          |        defined?(super) && super || ["foo", "bar", "baz"].include?(value.to_s) && merge(test: value.to_s)
+          |        defined?(super) && super || ["foo", "bar", "baz"].include?(value.to_s) && merge(test: value.to_s, replace: false)
           |      end
           |
         }.unindent }
@@ -464,12 +464,12 @@ RSpec.describe MediaWiktory::Generator::Param do
           |      # @param values [Array<String>] Allowed values: "foo" (Foo), "bar" (The Bar), "baz" (Pretty baz).
           |      # @return [self]
           |      def test(*values)
-          |        values.inject(self) { |res, val| res._test(val) or fail ArgumentError, "\#{value} is not acceptable" }
+          |        values.inject(self) { |res, val| res._test(val) or fail ArgumentError, "Unknown value for test: \#{val}" }
           |      end
           |
           |      # @private
           |      def _test(value)
-          |        defined?(super) && super || ["foo", "bar", "baz"].include?(value.to_s) && merge(test: value.to_s)
+          |        defined?(super) && super || ["foo", "bar", "baz"].include?(value.to_s) && merge(test: value.to_s, replace: false)
           |      end
           |
         }.unindent }
@@ -491,12 +491,12 @@ RSpec.describe MediaWiktory::Generator::Param do
           |      #   * `:mod` - {Dummy::Modules::Mod} Descr of mod
           |      # @return [self]
           |      def test(*values)
-          |        values.inject(self) { |res, val| res._test(val) or fail ArgumentError, "\#{value} is not acceptable" }
+          |        values.inject(self) { |res, val| res._test(val) or fail ArgumentError, "Unknown value for test: \#{val}" }
           |      end
           |
           |      # @private
           |      def _test(value)
-          |        defined?(super) && super || [:mod].include?(value.to_sym) && merge(test: value.to_s).submodule({mod: Modules::Mod}[value.to_sym])
+          |        defined?(super) && super || [:mod].include?(value.to_sym) && merge(test: value.to_s, replace: false).submodule({mod: Modules::Mod}[value.to_sym])
           |      end
           |
         }.unindent }
