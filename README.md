@@ -3,7 +3,9 @@
 [![Gem Version](https://badge.fury.io/rb/mediawiktory.svg)](http://badge.fury.io/rb/mediawiktory)
 [![Build Status](https://travis-ci.org/molybdenum-99/mediawiktory.svg?branch=master)](https://travis-ci.org/molybdenum-99/mediawiktory)
 
-**MediaWiktory** is MediaWiki (think Wikipedia, Wiktionary and others) API client that doesn't suck.
+**MediaWiktory** is a MediaWiki (think Wikipedia, Wiktionary and others) API client. It is the only
+client that allows (almost) full access to MediaWiki API powers without loosing of Ruby powers.
+
 No, seriously.
 
 [MediaWiki API](https://www.mediawiki.org/wiki/API:Main_page) currently is very powerful and
@@ -29,11 +31,11 @@ MediaWiktory, to the contrary is:
 
 ```ruby
 api = MediaWiktory::Wikipedia::Api.new
-response = api.query.
-  titles('Argentina').
-  prop(:info, :revisions).
-  prop(:url, :content).
-  response
+response = api.query.       # "query" action is a basis for all pages/categories/meta receiving
+  titles('Argentina').      # query page titles: Argentina
+  prop(:info, :revisions).  # query page properties: info, revisions
+  prop(:url, :content).     # query those properties subproperties: full URL (from info) and content (from revisions)
+  response                  # perform query and parse it!
 
 page = response['pages'].values.first
 puts page['title']
@@ -73,17 +75,19 @@ response.to_h
 # => {"result"=>"Success", "pageid"=>16283969, "title"=>"Wikipedia:Sandbox", "contentmodel"=>"wikitext", "oldrevid"=>779502714, "newrevid"=>779502729, "newtimestamp"=>"2017-05-09T08:24:26Z"}
 
 # This, without token, will raise:
-pp api.edit.title('Wikipedia:Sandbox').text("Test '''me''', MediaWiktory without token!").response
+api.edit.title('Wikipedia:Sandbox').text("Test '''me''', MediaWiktory without token!").response
 # MediaWiktory::Wikipedia::Response::Error: The "token" parameter must be set.
 ```
 
 **Example 3:** Fetching all "main" page images for the pages of category:
 
 ```ruby
-response = api.query.
-  generator(:categorymembers).title('Category:1960s_automobiles').
-  prop(:pageimages).prop(:thumbnail, :name).
-  limit('max').response
+response = api.query.                   # "query" action again
+  generator(:categorymembers).          # instead of listing titles, we use "page list generator": all members of a category
+  title('Category:1960s_automobiles').  # ...of this category
+  prop(:pageimages).prop(:thumbnail).   # and fetch "pageimages" property, its "thumbnail" sub-property
+  limit('max').                         # limit to maximum number of pages available in one response
+  response
 
 # You can fetch ALL of them with, it will be a lot:
 # response = response.continue while response.continue?
@@ -91,13 +95,14 @@ response = api.query.
 response.to_h['pages'].values.each do |page|
   puts "#{page['title']}: #{page.dig('thumbnail', 'source')}"
 end
-#  AC Cobra: https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Shelby_AC_427_Cobra_vl_blue.jpg/50px-Shelby_AC_427_Cobra_vl_blue.jpg
-#  Acadian (automobile):
-#  Alfa Romeo 33 Stradale: https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/1968_Alfa_Romeo_Tipo_33_Stradale.jpg/50px-1968_Alfa_Romeo_Tipo_33_Stradale.jpg
-#  Alfa Romeo 105/115 Series Coupés: https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/Alfa_Romeo_GT_1300_Junior.jpg/50px-Alfa_Romeo_GT_1300_Junior.jpg
-#  Alfa Romeo 1750 Berlina: https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Alfa_Romeo_1750_berlina_grey-front.JPG/50px-Alfa_Romeo_1750_berlina_grey-front.JPG
-#  Alfa Romeo 2000: https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Alfa_2000_touring_spider.JPG/50px-Alfa_2000_touring_spider.JPG
-#  Alfa Romeo 2600: https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Alfa-Romeo_2600-Spider-Touring.JPG/50px-Alfa-Romeo_2600-Spider-Touring.JPG
+# AC Cobra: https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Shelby_AC_427_Cobra_vl_blue.jpg/50px-Shelby_AC_427_Cobra_vl_blue.jpg
+# Acadian (automobile):
+# Alfa Romeo 33 Stradale: https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/1968_Alfa_Romeo_Tipo_33_Stradale.jpg/50px-1968_Alfa_Romeo_Tipo_33_Stradale.jpg
+# Alfa Romeo 105/115 Series Coupés: https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/Alfa_Romeo_GT_1300_Junior.jpg/50px-Alfa_Romeo_GT_1300_Junior.jpg
+# Alfa Romeo 1750 Berlina: https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Alfa_Romeo_1750_berlina_grey-front.JPG/50px-Alfa_Romeo_1750_berlina_grey-front.JPG
+# Alfa Romeo 2000: https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Alfa_2000_touring_spider.JPG/50px-Alfa_2000_touring_spider.JPG
+# Alfa Romeo 2600: https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Alfa-Romeo_2600-Spider-Touring.JPG/50px-Alfa-Romeo_2600-Spider-Touring.JPG
+# ...
 ```
 
 ## Usage
@@ -119,6 +124,9 @@ api = MediaWiktory::Wikipedia::Api.new # => English Wikipedia
 # or
 api = MediaWiktory::Wikipedia::Api.new('http://some.site/w/api.php') # => any other MediaWiki
 ```
+
+...and wonder through docs of [MediaWiktory::Wikipedia::Api](http://www.rubydoc.info/gems/mediawiktory/MediaWiktory/Wikipedia/Api)
+class to understand what you can do.
 
 ### 2. Custom wrapper generation.
 ```
