@@ -1,5 +1,10 @@
 # MediaWiktory Changelog
 
+# 0.1.1 (2017-05-11)
+
+* **quickfix** properly registered `mediawiktory-gen` binary;
+* API definitions generated from recent Wikipedia API.
+
 # 0.1.0 (2017-05-10)
 
 * First mature release;
