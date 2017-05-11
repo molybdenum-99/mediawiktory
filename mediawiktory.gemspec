@@ -25,6 +25,9 @@ Gem::Specification.new do |s|
   end
   s.require_paths = ["lib"]
 
+  s.bindir = 'bin'
+  s.executables << 'mediawiktory-gen'
+
   s.add_dependency 'nokogiri'
   s.add_dependency 'naught'
   s.add_dependency 'faraday'
