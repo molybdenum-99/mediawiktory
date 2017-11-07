@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'addressable'
+require 'addressable/uri'
 require 'faraday'
 require 'faraday_middleware'
 
