@@ -10,7 +10,7 @@ end
 group :test do
   gem 'rspec'
   gem 'rspec-its'
-  gem 'saharspec', github: 'zverok/saharspec'
+  gem 'saharspec', '~> 0.0.4'
   gem 'webmock'
   #gem 'byebug'
 end

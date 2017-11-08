@@ -15,12 +15,12 @@ module MediaWiktory
       context 'with errors' do
         let(:hash) { {error: {code: 'invalidcategory', info: 'The category name you entered is not valid.'}} }
 
-        its_call { is_expected.to raise_error('The category name you entered is not valid.') }
+        its_block { is_expected.to raise_error('The category name you entered is not valid.') }
       end
 
       context 'without errors' do
         let(:hash) { {query: {}} }
-        its_call { is_expected.not_to raise_error }
+        its_block { is_expected.not_to raise_error }
       end
     end
 
@@ -79,7 +79,7 @@ module MediaWiktory
       context 'when there are nothing to continue' do
         let(:hash) { {query: {foo: 'bar'}} }
 
-        its_call { is_expected.to raise_error /last page/ }
+        its_block { is_expected.to raise_error /last page/ }
       end
     end
 

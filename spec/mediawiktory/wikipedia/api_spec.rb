@@ -62,13 +62,13 @@ module MediaWiktory
       context 'fail on unknown enum values' do
         let(:action) { api.query.generator(:ctegorymembers) }
 
-        its_call { is_expected.to raise_error ArgumentError, 'Unknown value for generator: ctegorymembers' }
+        its_block { is_expected.to raise_error ArgumentError, 'Unknown value for generator: ctegorymembers' }
       end
 
       context 'fail on unknown list values' do
         let(:action) { api.query.titles('Argentina').prop(:nfo) }
 
-        its_call { is_expected.to raise_error ArgumentError, 'Unknown value for prop: nfo' }
+        its_block { is_expected.to raise_error ArgumentError, 'Unknown value for prop: nfo' }
       end
     end
 

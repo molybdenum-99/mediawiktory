@@ -3,10 +3,15 @@ require 'mediawiktory'
 
 require 'rspec/its'
 require 'webmock/rspec'
-require 'saharspec/its_map'
-require 'saharspec/its_call'
-require 'saharspec/send_message'
-require 'saharspec/string_ext'
+require 'saharspec'
+
+include Saharspec::Util
+
+class String
+  def unindent
+    multiline(self)
+  end
+end
 
 def read_fixture(path)
   File.read(File.join('spec/fixtures', path))

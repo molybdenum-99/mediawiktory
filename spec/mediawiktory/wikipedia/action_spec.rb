@@ -66,24 +66,29 @@ module MediaWiktory
     end
 
     describe '#perform' do
-      before { allow(action_class).to receive(:name).and_return('Query') }
+      before {
+        allow(action_class).to receive(:name).and_return('Query')
+        # FIXME: should be fixed in RSpec for not being necessary
+        allow(client).to receive(:get)
+        allow(client).to receive(:post)
+      }
       let(:action) { action_class.new(client, 'format' => 'json') }
 
       subject { action.perform }
 
       context 'default' do
         let(:action_class) { described_class }
-        its_call { is_expected.to raise_error NotImplementedError }
+        its_block { is_expected.to raise_error NotImplementedError }
       end
 
       context 'get' do
         let(:action_class) { Wikipedia::Actions::Get }
-        its_call { is_expected.to send_message(client, :get).with('action' => 'query', 'format' => 'json') }
+        its_block { is_expected.to send_message(client, :get).with('action' => 'query', 'format' => 'json') }
       end
 
       context 'post' do
         let(:action_class) { Wikipedia::Actions::Post }
-        its_call { is_expected.to send_message(client, :post).with('action' => 'query', 'format' => 'json') }
+        its_block { is_expected.to send_message(client, :post).with('action' => 'query', 'format' => 'json') }
       end
     end
   end

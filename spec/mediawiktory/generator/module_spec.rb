@@ -70,7 +70,7 @@ RSpec.describe MediaWiktory::Generator::Module do
     end
 
     it 'renders param docs' do
-      is_expected.to include(%Q{
+      is_expected.to include(multiline(%Q{
         |
         |      # The full filter text to check for a match.
         |      #
@@ -79,7 +79,7 @@ RSpec.describe MediaWiktory::Generator::Module do
         |      def filter(value)
         |        merge(filter: value.to_s)
         |      end
-      }.unindent)
+      }))
     end
 
     context 'when post module' do
