@@ -1,5 +1,9 @@
 # MediaWiktory Changelog
 
+# 0.1.2 (2017-11-09)
+
+* Fix requiring `addressable` (@chrisadams).
+
 # 0.1.1 (2017-05-11)
 
 * **quickfix** properly registered `mediawiktory-gen` binary;
