@@ -33,12 +33,12 @@ module MediaWiktory::Wikipedia
     def initialize(url, **options)
       @url = Addressable::URI.parse(url)
       @options = options
-      @faraday = Faraday.new(url) do |f|
+      @faraday = Faraday.new(url, headers: headers) do |f|
         f.request :url_encoded
         f.use FaradayMiddleware::FollowRedirects, limit: 5
+        f.use FaradayMiddleware::Gzip
         f.adapter Faraday.default_adapter
       end
-      @faraday.headers.merge!(headers)
     end
 
     def user_agent
@@ -56,7 +56,7 @@ module MediaWiktory::Wikipedia
     private
 
     def headers
-      {'User-Agent' => user_agent}
+      {'Accept-Encoding' => 'gzip', 'User-Agent' => user_agent}
     end
   end
 end
