@@ -1,5 +1,9 @@
 # MediaWiktory Changelog
 
+# 0.1.3 (2018-02-08)
+
+* Add gzip headers, as it should be done a long ago :(
+
 # 0.1.2 (2017-11-09)
 
 * Fix requiring `addressable` (@chrisadams).
